@@ -1,0 +1,6 @@
+{
+  "name": "BibleArena 2.0",
+  "description": "Multiplayer Bible gaming platform with immersive scripture challenges, timeline builders, and live competitive rooms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

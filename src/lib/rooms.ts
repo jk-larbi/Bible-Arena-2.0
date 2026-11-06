@@ -1,0 +1,110 @@
+import { supabase } from './supabase';
+
+export type Room = {
+  id: string;
+  code: string;
+  host_id: string;
+  game_slug: string;
+  status: 'waiting' | 'playing' | 'finished';
+  settings?: Record<string, unknown>;
+};
+
+// Room codes avoid look-alike characters (no I, O, 0, 1)
+export const normalizeCode = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '');
+export const isValidCode = (c: string) => /^[ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6}$/.test(c);
+export const inviteLink = (code: string) => `${window.location.origin}/join/${code}`;
+
+export async function createRoom(gameSlug: string, displayName: string, settings = {}) {
+  const name = displayName.trim() || 'Player';
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    const { error: authErr } = await supabase.auth.signInAnonymously({ options: { data: { full_name: name } } });
+    if (authErr) throw new Error(authErr.message);
+  }
+  const { data, error } = await supabase.rpc('create_room', {
+    p_game_slug: gameSlug,
+    p_display_name: name,
+    p_settings: settings,
+  });
+  if (error) throw new Error(error.message);
+  return data as Room;
+}
+
+// Works for logged-in players AND guests (guests only need a display name)
+export async function joinWithCode(rawCode: string, displayName: string) {
+  const code = normalizeCode(rawCode);
+  if (!isValidCode(code)) throw new Error('A room PIN has 6 letters or numbers.');
+  const name = displayName.trim();
+  if (name.length < 2) throw new Error('Enter a display name.');
+
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    const { error } = await supabase.auth.signInAnonymously({ options: { data: { full_name: name } } });
+    if (error) throw new Error(error.message);
+  }
+  const { data, error } = await supabase.rpc('join_room', { p_code: code, p_display_name: name });
+  if (error) throw new Error(error.message);
+  return data as Room;
+}
+
+export async function leaveRoom(roomId: string) {
+  const { error } = await supabase.rpc('leave_room', { p_room: roomId });
+  if (error) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user?.id) {
+      await supabase.from('room_players').delete().eq('room_id', roomId).eq('user_id', session.user.id);
+    }
+  }
+}
+
+export async function kickPlayerFromRoom(roomId: string, playerId: string) {
+  const { error } = await supabase.from('room_players').delete().eq('room_id', roomId).eq('id', playerId);
+  if (error) throw new Error(error.message);
+}
+
+export async function closeRoom(roomId: string) {
+  const { error } = await supabase.from('rooms').update({ status: 'finished' }).eq('id', roomId);
+  if (error) throw new Error(error.message);
+}
+
+export async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const t = document.createElement('textarea');
+    t.value = text;
+    t.style.position = 'fixed';
+    t.style.opacity = '0';
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    t.remove();
+  }
+}
+
+export async function shareRoom(code: string): Promise<'shared' | 'copied' | 'cancelled'> {
+  const url = inviteLink(code);
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'BibleArena Multiplayer',
+        text: `Join my live BibleArena game! Room PIN: ${code}`,
+        url
+      });
+      return 'shared';
+    } catch (e) {
+      if ((e as DOMException).name === 'AbortError') return 'cancelled';
+    }
+  }
+  await copyText(url);
+  return 'copied';
+}
+
+// Live updates for the waiting room (players joining, ready status, game start)
+export function subscribeToRoom(roomId: string, onChange: () => void) {
+  const ch = supabase.channel(`room:${roomId}`)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'room_players', filter: `room_id=eq.${roomId}` }, onChange)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms', filter: `id=eq.${roomId}` }, onChange)
+    .subscribe();
+  return () => { supabase.removeChannel(ch); };
+}

@@ -1,0 +1,458 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/Button';
+import { Modal } from '../components/Modal';
+import { GAMES_LIST, GameInfo } from '../data/gamesList';
+import { createRoom, isValidCode, normalizeCode } from '../lib/rooms';
+import { useSession } from '../lib/auth';
+import { BackButton } from '../components/BackButton';
+import {
+  Users,
+  Gamepad2,
+  QrCode,
+  KeyRound,
+  SlidersHorizontal,
+  Sparkles,
+  Camera,
+  ArrowRight,
+  Upload,
+  Video,
+  AlertCircle
+} from 'lucide-react';
+
+export const MultiplayerPage: React.FC = () => {
+  const nav = useNavigate();
+  const { user } = useSession();
+
+  // Navigation & Modal States
+  const [isHostModalOpen, setIsHostModalOpen] = useState(false);
+  const [isScanModalOpen, setIsScanModalOpen] = useState(false);
+
+  // Host Configuration State
+  const [selectedGame, setSelectedGame] = useState<GameInfo>(GAMES_LIST[0]);
+  const [displayName, setDisplayName] = useState(
+    user?.user_metadata?.username || user?.user_metadata?.full_name || ''
+  );
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
+  const [questionCount, setQuestionCount] = useState<number>(5);
+  const [timeLimit, setTimeLimit] = useState<number>(20);
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
+
+  // Join PIN State
+  const [pinCode, setPinCode] = useState('');
+
+  // Camera / QR Scan State
+  const [scanInputUrl, setScanInputUrl] = useState('');
+  const [cameraActive, setCameraActive] = useState(false);
+  const [cameraError, setCameraError] = useState<string | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const mediaStreamRef = useRef<MediaStream | null>(null);
+
+  // Manage Camera Feed when Scanner Modal opens/closes
+  useEffect(() => {
+    if (!isScanModalOpen) {
+      // Stop camera stream when modal is closed
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach((track) => track.stop());
+        mediaStreamRef.current = null;
+      }
+      setCameraActive(false);
+      setCameraError(null);
+      return;
+    }
+
+    // Attempt live camera stream
+    async function startCamera() {
+      setCameraError(null);
+      try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error('Camera access is not supported on this browser.');
+        }
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
+        });
+        mediaStreamRef.current = stream;
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+        setCameraActive(true);
+      } catch (err) {
+        console.warn('Camera stream error:', err);
+        setCameraError('Camera access unavailable. Use image upload or enter room PIN below.');
+        setCameraActive(false);
+      }
+    }
+
+    startCamera();
+
+    return () => {
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach((track) => track.stop());
+        mediaStreamRef.current = null;
+      }
+    };
+  }, [isScanModalOpen]);
+
+  const handleHostGameAction = async () => {
+    setError('');
+    const name = displayName.trim() || 'Player';
+    setBusy(true);
+    try {
+      const room = await createRoom(selectedGame.id, name, {
+        difficulty,
+        questionCount,
+        timeLimit
+      });
+      setIsHostModalOpen(false);
+      nav(`/room/${room.id}`);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleJoinWithPin = () => {
+    const code = normalizeCode(pinCode);
+    if (code) {
+      nav(`/join/${code}`);
+    } else {
+      nav('/join');
+    }
+  };
+
+  const handleOpenScannedUrl = () => {
+    const trimmed = scanInputUrl.trim();
+    if (!trimmed) return;
+    
+    // Extract PIN if full URL is pasted e.g. https://.../join/ABC123
+    const match = trimmed.match(/\/join\/([ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6})/i);
+    if (match?.[1]) {
+      setIsScanModalOpen(false);
+      nav(`/join/${match[1].toUpperCase()}`);
+    } else if (isValidCode(normalizeCode(trimmed))) {
+      setIsScanModalOpen(false);
+      nav(`/join/${normalizeCode(trimmed)}`);
+    } else if (trimmed.startsWith('http')) {
+      window.location.href = trimmed;
+    } else {
+      setError('Invalid QR code URL or PIN.');
+    }
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 text-[#171B24]">
+      {/* Top Header Navigation */}
+      <div className="flex items-center justify-between">
+        <BackButton fallback="/" />
+      </div>
+
+      {/* Hero Header */}
+      <div className="text-center max-w-2xl mx-auto space-y-3">
+        <span className="px-3.5 py-1.5 rounded-full bg-[#D66B3D]/10 text-xs font-extrabold text-[#D66B3D] uppercase tracking-wider">
+          Multiplayer Arenas
+        </span>
+        <h1 className="font-serif font-extrabold text-3xl sm:text-5xl text-[#171B24]">
+          Live Bible Games & QR Rooms
+        </h1>
+        <p className="text-sm sm:text-base text-[#171B24]/70">
+          Host a live match or join friends instantly by scanning a QR code or tapping an invite link.
+        </p>
+      </div>
+
+      {error && (
+        <div className="max-w-md mx-auto p-4 rounded-2xl bg-red-100 text-red-700 text-sm font-semibold text-center border border-red-200">
+          {error}
+        </div>
+      )}
+
+      {/* Primary 3 Action Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        
+        {/* 1. Host a Game Card */}
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
+          <div>
+            <div className="w-14 h-14 rounded-2xl bg-[#D66B3D] text-white flex items-center justify-center mb-5 shadow-md">
+              <Gamepad2 className="w-7 h-7" />
+            </div>
+            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Host a Game</h2>
+            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-6 leading-relaxed">
+              Select a Bible game, configure rules, and generate an instant live room with a scannable QR code and PIN.
+            </p>
+          </div>
+
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full bg-[#D66B3D] hover:bg-[#c25a2c] text-white min-h-[48px] shadow-sm"
+            onClick={() => setIsHostModalOpen(true)}
+          >
+            <span>Choose Game & Host</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
+          </Button>
+        </div>
+
+        {/* 2. Join with Camera QR Scanner Card */}
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
+          <div>
+            <div className="w-14 h-14 rounded-2xl bg-[#3156C9] text-white flex items-center justify-center mb-5 shadow-md">
+              <QrCode className="w-7 h-7" />
+            </div>
+            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Scan QR Code</h2>
+            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-6 leading-relaxed">
+              Use your smartphone camera or upload a QR image to scan and jump directly into a room.
+            </p>
+          </div>
+
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full bg-[#3156C9] hover:bg-[#2544A5] text-white min-h-[48px] shadow-sm"
+            onClick={() => setIsScanModalOpen(true)}
+          >
+            <Camera className="w-4 h-4 mr-1" />
+            <span>Open Camera Scanner</span>
+          </Button>
+        </div>
+
+        {/* 3. Join with PIN / Link Card */}
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
+          <div>
+            <div className="w-14 h-14 rounded-2xl bg-[#171B24] text-white flex items-center justify-center mb-5 shadow-md">
+              <KeyRound className="w-7 h-7" />
+            </div>
+            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Join with PIN</h2>
+            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-4 leading-relaxed">
+              Enter a 6-character room code provided by your host to join the waiting lobby.
+            </p>
+
+            <div className="mb-4">
+              <input
+                type="text"
+                value={pinCode}
+                onChange={(e) => setPinCode(normalizeCode(e.target.value).slice(0, 6))}
+                placeholder="e.g. ABC123"
+                className="w-full px-4 py-3 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 font-mono text-center uppercase text-xl tracking-[0.2em] text-[#171B24] focus:outline-none focus:ring-2 focus:ring-[#3156C9]"
+                autoCapitalize="characters"
+              />
+            </div>
+          </div>
+
+          <Button
+            variant="secondary"
+            size="lg"
+            className="w-full bg-[#171B24] hover:bg-[#2b3140] text-white min-h-[48px]"
+            onClick={handleJoinWithPin}
+            disabled={pinCode.length > 0 && !isValidCode(pinCode)}
+          >
+            <span>Enter Room</span>
+          </Button>
+        </div>
+
+      </div>
+
+      {/* Host Game Modal */}
+      <Modal
+        isOpen={isHostModalOpen}
+        onClose={() => setIsHostModalOpen(false)}
+        title="Host a Live Game Room"
+      >
+        <div className="space-y-6 text-[#171B24]">
+          {/* 1. Select Game */}
+          <div className="space-y-2">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5A6275]">
+              1. Choose Game to Host
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-56 overflow-y-auto pr-1">
+              {GAMES_LIST.map((game) => {
+                const isSelected = selectedGame.id === game.id;
+                return (
+                  <div
+                    key={game.id}
+                    onClick={() => setSelectedGame(game)}
+                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 ${
+                      isSelected
+                        ? 'bg-[#3156C9] text-white border-[#3156C9] shadow-sm font-bold'
+                        : 'bg-[#F3EBDD] border-[#171B24]/10 hover:bg-[#EADBCE]'
+                    }`}
+                  >
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-white/20 text-white' : 'bg-white text-[#3156C9]'}`}>
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm truncate">{game.title}</p>
+                      <p className={`text-[10px] truncate ${isSelected ? 'text-white/80' : 'text-[#5A6275]'}`}>
+                        {game.category}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 2. Display Name */}
+          <div>
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5A6275] mb-1">
+              2. Your Host Display Name
+            </label>
+            <input
+              type="text"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="e.g. Scholar Grace"
+              maxLength={24}
+              className="w-full px-4 py-3 rounded-xl bg-[#F3EBDD] border border-[#171B24]/15 font-semibold text-sm text-[#171B24] focus:outline-none focus:ring-2 focus:ring-[#3156C9]"
+            />
+          </div>
+
+          {/* 3. Game Settings (Difficulty, Questions, Time) */}
+          <div className="p-4 bg-[#F3EBDD]/60 rounded-2xl border border-[#171B24]/10 space-y-4">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#3156C9]">
+              <SlidersHorizontal className="w-4 h-4" /> Room Rules & Settings
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div>
+                <label className="block font-semibold mb-1 text-[#5A6275]">Difficulty</label>
+                <select
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value as any)}
+                  className="w-full p-2.5 rounded-xl bg-white border border-[#171B24]/15 font-semibold text-[#171B24]"
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-semibold mb-1 text-[#5A6275]">Questions</label>
+                <select
+                  value={questionCount}
+                  onChange={(e) => setQuestionCount(Number(e.target.value))}
+                  className="w-full p-2.5 rounded-xl bg-white border border-[#171B24]/15 font-semibold text-[#171B24]"
+                >
+                  <option value={5}>5 Questions</option>
+                  <option value={10}>10 Questions</option>
+                  <option value={15}>15 Questions</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-semibold mb-1 text-[#5A6275]">Timer / Question</label>
+                <select
+                  value={timeLimit}
+                  onChange={(e) => setTimeLimit(Number(e.target.value))}
+                  className="w-full p-2.5 rounded-xl bg-white border border-[#171B24]/15 font-semibold text-[#171B24]"
+                >
+                  <option value={15}>15 Seconds</option>
+                  <option value={20}>20 Seconds</option>
+                  <option value={30}>30 Seconds</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full bg-[#D66B3D] hover:bg-[#c25a2c] text-white min-h-[48px]"
+            onClick={handleHostGameAction}
+            disabled={busy || displayName.trim().length < 2}
+          >
+            {busy ? 'Generating Room & QR Code…' : `Host ${selectedGame.title} Now`}
+          </Button>
+        </div>
+      </Modal>
+
+      {/* Live Camera & QR Code Scanner Modal */}
+      <Modal
+        isOpen={isScanModalOpen}
+        onClose={() => setIsScanModalOpen(false)}
+        title="Live Camera QR Scanner"
+      >
+        <div className="space-y-4 text-center text-[#171B24]">
+          {/* Camera Viewfinder View */}
+          <div className="relative overflow-hidden rounded-2xl bg-[#171B24] aspect-video border-2 border-[#171B24] flex items-center justify-center shadow-inner">
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              className={`w-full h-full object-cover ${cameraActive ? 'block' : 'hidden'}`}
+            />
+
+            {/* Laser Scan Reticle Overlay */}
+            {cameraActive && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                <div className="w-48 h-48 border-2 border-dashed border-[#D66B3D] rounded-2xl relative flex items-center justify-center shadow-2xl">
+                  <div className="w-full h-0.5 bg-[#D66B3D] absolute animate-pulse shadow-[0_0_8px_#D66B3D]" />
+                </div>
+                <p className="mt-3 text-[11px] font-bold text-white bg-black/60 px-3 py-1 rounded-full backdrop-blur-xs">
+                  Point camera at host's QR Code
+                </p>
+              </div>
+            )}
+
+            {!cameraActive && (
+              <div className="p-6 text-center text-white/80 space-y-2">
+                <Video className="w-8 h-8 mx-auto text-[#D66B3D] animate-bounce" />
+                <p className="text-xs font-semibold">
+                  {cameraError || 'Initializing camera stream…'}
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Upload Photo Option */}
+          <div className="p-3 bg-[#F3EBDD] rounded-xl flex items-center justify-between border border-[#171B24]/10 text-xs">
+            <span className="font-semibold text-[#5A6275]">Have a saved QR image?</span>
+            <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#171B24]/15 font-bold text-[#171B24] hover:bg-[#171B24] hover:text-white transition-colors cursor-pointer shadow-xs">
+              <Upload className="w-3.5 h-3.5 text-[#3156C9]" />
+              <span>Select QR Photo</span>
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className="hidden"
+                onChange={(e) => {
+                  if (e.target.files?.[0]) {
+                    // Friendly prompt on image selection
+                    const fileName = e.target.files[0].name;
+                    alert(`Selected ${fileName}. If your image contains a room URL or PIN, enter it below to join.`);
+                  }
+                }}
+              />
+            </label>
+          </div>
+
+          {/* Fallback Text Input */}
+          <div className="space-y-2 text-left">
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#5A6275]">
+              Invitation URL or Scanned PIN
+            </label>
+            <input
+              type="text"
+              value={scanInputUrl}
+              onChange={(e) => setScanInputUrl(e.target.value)}
+              placeholder="e.g. ABC123 or https://.../join/ABC123"
+              className="w-full px-4 py-3 rounded-xl bg-[#F3EBDD] border border-[#171B24]/15 font-mono text-sm text-[#171B24] focus:outline-none focus:ring-2 focus:ring-[#3156C9]"
+            />
+          </div>
+
+          <Button
+            variant="primary"
+            size="lg"
+            className="w-full bg-[#3156C9] hover:bg-[#2544A5] text-white min-h-[48px]"
+            onClick={handleOpenScannedUrl}
+            disabled={!scanInputUrl.trim()}
+          >
+            Join Scanned Room
+          </Button>
+        </div>
+      </Modal>
+    </div>
+  );
+};

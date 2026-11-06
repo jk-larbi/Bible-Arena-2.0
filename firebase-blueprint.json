@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "Profile",
+      "description": "User account profile and level stats",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string", "minLength": 2, "maxLength": 50 },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "level": { "type": "number" },
+        "xp": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["username", "level", "xp"]
+    },
+    "GameProgress": {
+      "title": "GameProgress",
+      "description": "User progress per game",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "gameId": { "type": "string" },
+        "currentLevel": { "type": "number" },
+        "maxLevelCompleted": { "type": "number" },
+        "bestScore": { "type": "number" },
+        "totalAttempts": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "gameId", "currentLevel"]
+    },
+    "Score": {
+      "title": "Score",
+      "description": "Completed game session score",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "gameId": { "type": "string" },
+        "score": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "gameId", "score"]
+    },
+    "Room": {
+      "title": "Room",
+      "description": "Multiplayer arena waiting room",
+      "type": "object",
+      "properties": {
+        "roomCode": { "type": "string", "minLength": 4, "maxLength": 8 },
+        "hostId": { "type": "string" },
+        "gameId": { "type": "string" },
+        "status": { "type": "string", "enum": ["waiting", "playing", "finished"] },
+        "currentRound": { "type": "number" },
+        "maxRounds": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["roomCode", "hostId", "gameId", "status"]
+    }
+  },
+  "firestore": {
+    "/profiles/{userId}": {
+      "schema": "Profile",
+      "description": "User profiles indexed by UID"
+    },
+    "/progress/{progressId}": {
+      "schema": "GameProgress",
+      "description": "Individual game progress records"
+    },
+    "/scores/{scoreId}": {
+      "schema": "Score",
+      "description": "Global game scores for leaderboards"
+    },
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Live multiplayer game rooms"
+    }
+  }
+}

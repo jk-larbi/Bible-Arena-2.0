@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-midnight: #171B24;
+    --color-parchment: #F3EBDD;
+    --color-parchment-light: #FAF6EE;
+    --color-orange: #D66B3D;
+    --color-orange-hover: #C05A2F;
+    --color-blue: #3156C9;
+    --color-sage: #A7B49A;
+  }
+
+  html {
+    height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-parchment);
+    color: var(--color-midnight);
+    font-family: 'Inter', sans-serif;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Fraunces', serif;
+  }
+
+  /* Prevent iOS Safari 16px auto-zoom on input focus */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(23, 27, 36, 0.2);
+  border-radius: 3px;
+}
+
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
