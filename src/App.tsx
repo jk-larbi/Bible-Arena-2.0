@@ -22,8 +22,23 @@ import { VerseBuilder } from './games/VerseBuilder';
 import { BibleTimeline } from './games/BibleTimeline';
 import { ScriptureChallenge } from './games/ScriptureChallenge';
 import { GuessTheEmoji } from './games/GuessTheEmoji';
+import { BibleCharacterQuest } from './games/BibleCharacterQuest';
+import { BibleWordSearch } from './games/BibleWordSearch';
+import { BibleCrossword } from './games/BibleCrossword';
+import { WhoSaidIt } from './games/WhoSaidIt';
+import { CompleteTheScripture } from './games/CompleteTheScripture';
+import { BibleMatchUp } from './games/BibleMatchUp';
+import { BiblePuzzles } from './games/BiblePuzzles';
+import { FindTheBibleBook } from './games/FindTheBibleBook';
+import { BibleRiddles } from './games/BibleRiddles';
+import { BibleGeographyQuest } from './games/BibleGeographyQuest';
+import { BibleMemoryChallenge } from './games/BibleMemoryChallenge';
+import { OldVsNewTestament } from './games/OldVsNewTestament';
+import { BibleDetective } from './games/BibleDetective';
+import { BibleChainChallenge } from './games/BibleChainChallenge';
+import { BaseGame } from './components/game/BaseGame';
 import { GAMES_LIST, GameInfo, getGameById } from './data/gamesList';
-import { Search, Sparkles } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Button } from './components/Button';
 import { useSession } from './lib/auth';
 import { useNotifications, Notification } from './hooks/useNotifications';
@@ -85,83 +100,57 @@ export default function App() {
     setActiveGame(game);
   };
 
-  const handleCompleteLevel = async (gameId: string, level: number, earnedScore: number) => {
-    const stats = JSON.parse(localStorage.getItem('biblearena_user_stats') || '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}');
-    const newXp = (stats.xp || 0) + earnedScore;
-    const newGamesPlayed = (stats.gamesPlayed || 0) + 1;
-    const newLevel = Math.floor(newXp / 500) + 1;
-
-    const updatedStats = {
-      ...stats,
-      xp: newXp,
-      gamesPlayed: newGamesPlayed,
-      level: newLevel
-    };
-    localStorage.setItem('biblearena_user_stats', JSON.stringify(updatedStats));
-
-    const username = user?.user_metadata?.username || user?.email?.split('@')[0] || 'Player Scholar';
-    const localScores = JSON.parse(localStorage.getItem('biblearena_scores') || '[]');
-    localScores.push({
-      gameId,
-      level,
-      score: earnedScore,
-      username,
-      createdAt: new Date().toISOString()
-    });
-    localStorage.setItem('biblearena_scores', JSON.stringify(localScores));
-
-    if (user && user.id) {
-      const timestamp = new Date().toISOString();
-      if (typeof navigator !== 'undefined' && navigator.onLine) {
-        try {
-          const { supabase, isBackendConfigured } = await import('./lib/supabase');
-          if (isBackendConfigured && supabase) {
-            const { error: scoreErr } = await supabase.from('scores').insert({
-              user_id: user.id,
-              game_id: gameId,
-              score: earnedScore,
-              created_at: timestamp
-            });
-            if (scoreErr) throw scoreErr;
-
-            await supabase.from('game_progress').upsert({
-              user_id: user.id,
-              game_id: gameId,
-              current_level: level + 1,
-              max_level_completed: level,
-              best_score: earnedScore,
-              total_attempts: 1,
-              updated_at: timestamp
-            });
-          }
-        } catch {
-          // Network / DB failure -> queue in IndexedDB
-          await enqueueOfflineScore({
-            userId: user.id,
-            gameId,
-            level,
-            score: earnedScore,
-            timestamp
-          });
-        }
-      } else {
-        // Offline -> queue in IndexedDB
-        await enqueueOfflineScore({
-          userId: user.id,
-          gameId,
-          level,
-          score: earnedScore,
-          timestamp
-        });
-      }
-    }
-  };
-
   const filteredSearchGames = GAMES_LIST.filter(g =>
     g.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     g.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
     g.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const renderActiveGame = (game: GameInfo) => {
+    const closeGame = () => setActiveGame(null);
+    switch (game.id) {
+      case 'scripture-challenge':
+        return <ScriptureChallenge onBack={closeGame} />;
+      case 'scripture-scramble':
+        return <ScriptureScramble onBack={closeGame} />;
+      case 'verse-builder':
+        return <VerseBuilder onBack={closeGame} />;
+      case 'bible-timeline':
+        return <BibleTimeline onBack={closeGame} />;
+      case 'guess-the-emoji':
+        return <GuessTheEmoji onBack={closeGame} />;
+      case 'bible-character-quest':
+        return <BibleCharacterQuest onBack={closeGame} />;
+      case 'bible-word-search':
+        return <BibleWordSearch onBack={closeGame} />;
+      case 'bible-crossword':
+        return <BibleCrossword onBack={closeGame} />;
+      case 'who-said-it':
+        return <WhoSaidIt onBack={closeGame} />;
+      case 'complete-the-scripture':
+        return <CompleteTheScripture onBack={closeGame} />;
+      case 'bible-match-up':
+        return <BibleMatchUp onBack={closeGame} />;
+      case 'bible-puzzles':
+        return <BiblePuzzles onBack={closeGame} />;
+      case 'find-the-bible-book':
+        return <FindTheBibleBook onBack={closeGame} />;
+      case 'bible-riddles':
+        return <BibleRiddles onBack={closeGame} />;
+      case 'bible-geography-quest':
+        return <BibleGeographyQuest onBack={closeGame} />;
+      case 'bible-memory-challenge':
+        return <BibleMemoryChallenge onBack={closeGame} />;
+      case 'old-vs-new-testament':
+        return <OldVsNewTestament onBack={closeGame} />;
+      case 'bible-detective':
+        return <BibleDetective onBack={closeGame} />;
+      case 'bible-chain-challenge':
+        return <BibleChainChallenge onBack={closeGame} />;
+      default:
+        return <BaseGame gameId={game.id} gameName={game.title} onBack={closeGame} />;
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F3EBDD] text-[#171B24] pb-20 md:pb-0">
@@ -200,46 +189,7 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1">
         {activeGame ? (
-          <div>
-            {activeGame.id === 'scripture-scramble' && (
-              <ScriptureScramble onBack={() => setActiveGame(null)} onCompleteLevel={handleCompleteLevel} />
-            )}
-            {activeGame.id === 'verse-builder' && (
-              <VerseBuilder onBack={() => setActiveGame(null)} onCompleteLevel={handleCompleteLevel} />
-            )}
-            {activeGame.id === 'bible-timeline' && (
-              <BibleTimeline onBack={() => setActiveGame(null)} onCompleteLevel={handleCompleteLevel} />
-            )}
-            {activeGame.id === 'scripture-challenge' && (
-              <ScriptureChallenge onBack={() => setActiveGame(null)} onCompleteLevel={handleCompleteLevel} />
-            )}
-            {activeGame.id === 'guess-the-emoji' && (
-              <GuessTheEmoji onBack={() => setActiveGame(null)} onCompleteLevel={handleCompleteLevel} />
-            )}
-            {['ark-navigator', 'david-sling', 'prophets-lamp', 'exodus-journey', 'solomons-wisdom', 'paul-journeys', 'daniel-lions', 'joseph-dreams', 'psalms-harp', 'creation-week', 'tabernacle-secrets', 'parables-hidden', 'judges-tribes', 'revelation-seals'].includes(activeGame.id) && (
-              <div className="max-w-xl mx-auto p-6 my-12 bg-white rounded-3xl shadow-xl text-center border border-[#171B24]/10">
-                <div className="flex items-center justify-between mb-4">
-                  <button onClick={() => setActiveGame(null)} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold hover:bg-[#F3EBDD] transition-colors cursor-pointer text-[#171B24]">
-                    ← Back to Library
-                  </button>
-                  <span className="text-xs font-bold text-[#D66B3D] uppercase tracking-wider">{activeGame.category}</span>
-                </div>
-                <div className="w-16 h-16 rounded-2xl bg-[#D66B3D] text-white flex items-center justify-center mx-auto mb-4 shadow-md">
-                  <Sparkles className="w-8 h-8" />
-                </div>
-                <h2 className="font-serif font-bold text-3xl text-[#171B24] mt-2 mb-3">{activeGame.title}</h2>
-                <p className="text-sm text-[#171B24]/70 mb-6 leading-relaxed">{activeGame.description}</p>
-                
-                <div className="p-4 bg-[#F3EBDD] rounded-2xl text-xs text-[#171B24]/80 mb-6">
-                  This game is scheduled for release in the upcoming expansion pack. Play <strong>Scripture Scramble</strong>, <strong>Verse Builder</strong>, <strong>Bible Timeline</strong>, <strong>Guess the Emoji</strong>, or <strong>Scripture Challenge</strong> right now!
-                </div>
-
-                <Button variant="primary" onClick={() => setActiveGame(null)}>
-                  Return to Game Library
-                </Button>
-              </div>
-            )}
-          </div>
+          <div>{renderActiveGame(activeGame)}</div>
         ) : (
           <Routes>
             <Route path="/" element={<HomePage onSelectGame={handleSelectGame} onNavigateTab={handleSelectTab} />} />

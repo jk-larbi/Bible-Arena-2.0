@@ -346,3 +346,20 @@ begin
   return 100 + (greatest(0, p_seconds_remaining) * 10);
 end $$;
 grant execute on function public.calculate_score(text, boolean, integer) to anon, authenticated;
+
+-- GRANT EXECUTE FOR LEVEL PROGRESSION FUNCTIONS (prevents "permission denied for function get_level_map")
+do $$
+begin
+  if exists (select 1 from pg_proc where proname = 'get_level_map') then
+    execute 'grant execute on function public.get_level_map(text) to anon, authenticated';
+  end if;
+  if exists (select 1 from pg_proc where proname = 'start_level') then
+    execute 'grant execute on function public.start_level(text, int, boolean) to anon, authenticated';
+  end if;
+  if exists (select 1 from pg_proc where proname = 'record_challenge') then
+    execute 'grant execute on function public.record_challenge(uuid, int, numeric, int, int) to anon, authenticated';
+  end if;
+  if exists (select 1 from pg_proc where proname = 'finish_level') then
+    execute 'grant execute on function public.finish_level(uuid) to anon, authenticated';
+  end if;
+end $$;
