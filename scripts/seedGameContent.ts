@@ -91,7 +91,7 @@ async function main() {
     const batch = questionRows.slice(offset, offset + 200);
     const { error } = await supabase
       .from('game_content')
-      .upsert(batch, { onConflict: 'question_key' });
+      .upsert(batch, { onConflict: 'game_slug,level,challenge_index' });
     if (error) throw new Error(`Question batch ${Math.floor(offset / 200) + 1} failed: ${error.message}`);
     console.log(`Uploaded questions ${offset + 1}-${offset + batch.length} of ${questionRows.length}`);
   }
