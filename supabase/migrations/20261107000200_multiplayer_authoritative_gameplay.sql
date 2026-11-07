@@ -8,7 +8,7 @@ returns void
 language plpgsql
 security definer
 set search_path = public
-as $
+as $$
 declare r public.rooms;
 begin
   select * into r from public.rooms where id = p_room;
@@ -17,7 +17,7 @@ begin
     where room_id = p_room and user_id = auth.uid();
   if not found then raise exception 'You are not a member of this room'; end if;
 end;
-$;
+$$;
 grant execute on function public.set_room_ready(uuid, boolean) to authenticated;
 
 create or replace function public.kick_room_player(p_room uuid, p_player uuid)
@@ -25,7 +25,7 @@ returns void
 language plpgsql
 security definer
 set search_path = public
-as $
+as $$
 declare r public.rooms;
 begin
   select * into r from public.rooms where id = p_room;
@@ -36,7 +36,7 @@ begin
     where id = p_player and room_id = p_room and is_host = false;
   if not found then raise exception 'Player not found or cannot be removed'; end if;
 end;
-$;
+$$;
 grant execute on function public.kick_room_player(uuid, uuid) to authenticated;
 
 create or replace function public.publish_room_questions(p_room uuid, p_questions jsonb)

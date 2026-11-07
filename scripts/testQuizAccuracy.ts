@@ -214,6 +214,35 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 5B. PER-LEVEL ANSWER POSITION ROTATION (no all-A levels)
+  // ===================================================================
+  {
+    let failures = 0;
+    let audited = 0;
+    for (const slug of MULTIPLE_CHOICE_GAMES) {
+      for (let lvl = 1; lvl <= 50; lvl++) {
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        const positionCounts = [0, 0, 0, 0];
+        for (const item of items) {
+          const idx = item.options.findIndex(
+            (option) => option.trim().toLowerCase() === item.correct_answer.trim().toLowerCase()
+          );
+          if (idx < 0 || idx > 3) failures++;
+          else positionCounts[idx]++;
+          audited++;
+        }
+        if (Math.max(...positionCounts) > 3 || Math.min(...positionCounts) < 2) failures++;
+      }
+    }
+    results.push({
+      name: '5B. Balanced A/B/C/D answer positions within every level',
+      scope: 'All multiple-choice games, levels 1–50',
+      passed: failures === 0 && audited > 0,
+      details: `Audited ${audited} questions. Each 10-question level must use every answer position 2–3 times; failures: ${failures}.`,
+    });
+  }
+
+  // ===================================================================
   // 6. ANSWER GRADING LOGIC: Accurate scoring (+10 correct, 0 incorrect)
   // ===================================================================
   {

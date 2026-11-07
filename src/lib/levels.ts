@@ -426,9 +426,9 @@ export async function submitChallengeAnswer(
   if (!localItem) {
     const localChallenges = buildLocalChallengesForLevel(gameSlug, level);
     localItem = localChallenges.find((c) => c.id === questionId);
-    if (!localItem) {
-      localItem = localChallenges.find((c) => c.challenge_index === challengeIndex) || localChallenges[0];
-    }
+  }
+  if (!localItem || localItem.id !== questionId) {
+    throw new Error(`Question ID mismatch: "${questionId}" is not part of ${gameSlug} level ${level}.`);
   }
 
   const challengeKey = `${gameSlug}-l${level}-c${challengeIndex}`;
@@ -442,9 +442,14 @@ export async function submitChallengeAnswer(
         p_hints_used: 0,
         p_duration_ms: durationMs,
         p_question_id: questionId,
+        p_expected_answer: localItem.correct_answer,
       });
       if (!error && data?.[0]) {
         const row = data[0];
+        const serverAnswer = String(row.correct_answer ?? '').trim();
+        if (!serverAnswer || serverAnswer.toLowerCase() !== localItem.correct_answer.trim().toLowerCase()) {
+          throw new Error('The server question bank is out of sync with this question. Local answer validation was used.');
+        }
         const isCorrect = Boolean(row.is_correct);
         const { isNew, newTotal } = isCorrect
           ? recordAwardedChallenge(challengeKey, 10)
@@ -466,9 +471,9 @@ export async function submitChallengeAnswer(
           is_new_marks: isNew,
           session_marks: sessionMarks,
           total_marks: newTotal,
-          correct_answer: localItem.correct_answer,
-          explanation: row.explanation || localItem.explanation,
-          reference: row.reference || localItem.reference,
+          correct_answer: serverAnswer,
+          explanation: localItem.explanation,
+          reference: localItem.reference,
         };
       }
     } catch {
@@ -649,36 +654,8 @@ export async function getLevelChallenges(
   gameSlug: string,
   level: number
 ): Promise<ChallengeItem[]> {
-  if (isBackendConfigured && supabase) {
-    try {
-      const { data, error } = await supabase
-        .from('game_content_public')
-        .select(
-          'id, game_slug, level, challenge_index, question_text, options, explanation, reference, metadata'
-        )
-        .eq('game_slug', gameSlug)
-        .eq('level', level)
-        .order('challenge_index');
-
-      if (!error && Array.isArray(data) && data.length === CHALLENGES_PER_LEVEL) {
-        const localBackup = buildLocalChallengesForLevel(gameSlug, level);
-        return data.map((row: any, idx: number) => ({
-          id: row.id || localBackup[idx].id,
-          game_slug: row.game_slug || gameSlug,
-          level: row.level || level,
-          challenge_index: row.challenge_index || idx + 1,
-          question_text: row.question_text || localBackup[idx].question_text,
-          options: Array.isArray(row.options) && row.options.length > 0 ? row.options : localBackup[idx].options,
-          correct_answer: localBackup[idx].correct_answer,
-          explanation: row.explanation || localBackup[idx].explanation,
-          reference: row.reference || localBackup[idx].reference,
-          metadata: row.metadata || localBackup[idx].metadata,
-        }));
-      }
-    } catch {
-      // Fallback to local challenge generator below
-    }
-  }
-
+  // Keep each prompt, options, answer key, explanation and reference together.
+  // Mixing remote prompt/options with local keys by array index caused stale
+  // database rows to be graded against a different local question.
   return buildLocalChallengesForLevel(gameSlug, level);
 }

@@ -292,7 +292,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
     const globalSeed = baseIdx + i;
-    const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + 1337;
+    const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + challengeIndex + 1337;
     const id = `${gameSlug}-l${level}-c${challengeIndex}`;
 
     switch (gameSlug) {
@@ -799,7 +799,11 @@ export function makeFourDistinctOptions(
       if (distinct.length === 4) break;
     }
   }
-  return shuffleDeterministic(distinct, seed);
+  const correctIndex = ((seed % 4) + 4) % 4;
+  const distractors = shuffleDeterministic(distinct.slice(1), seed);
+  const balanced = [...distractors];
+  balanced.splice(correctIndex, 0, correct);
+  return balanced;
 }
 
 /**
