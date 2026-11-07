@@ -54,16 +54,11 @@ export async function joinWithCode(rawCode: string, displayName: string) {
 
 export async function leaveRoom(roomId: string) {
   const { error } = await supabase.rpc('leave_room', { p_room: roomId });
-  if (error) {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user?.id) {
-      await supabase.from('room_players').delete().eq('room_id', roomId).eq('user_id', session.user.id);
-    }
-  }
+  if (error) throw new Error(error.message);
 }
 
 export async function kickPlayerFromRoom(roomId: string, playerId: string) {
-  const { error } = await supabase.from('room_players').delete().eq('room_id', roomId).eq('id', playerId);
+  const { error } = await supabase.rpc('kick_room_player', { p_room: roomId, p_player: playerId });
   if (error) throw new Error(error.message);
 }
 

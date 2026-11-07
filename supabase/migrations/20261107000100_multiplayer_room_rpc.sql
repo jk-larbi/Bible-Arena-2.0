@@ -3,6 +3,32 @@
 -- File: supabase/migrations/20261107000100_multiplayer_room_rpc.sql
 -- =====================================================================
 
+-- Question content is private; clients receive only the public projection.
+create table if not exists public.game_content (
+  id text primary key,
+  game_slug text not null,
+  level integer not null,
+  challenge_index smallint not null,
+  question_text text not null,
+  options text[] not null default '{}',
+  correct_answer text not null,
+  explanation text,
+  reference text not null,
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  unique(game_slug, level, challenge_index)
+);
+create index if not exists game_content_game_level_idx
+  on public.game_content(game_slug, level, challenge_index);
+alter table public.game_content enable row level security;
+revoke all on public.game_content from anon, authenticated;
+
+create or replace view public.game_content_public as
+select id, game_slug, level, challenge_index, question_text, options,
+       explanation, reference, null::jsonb as metadata
+from public.game_content;
+grant select on public.game_content_public to anon, authenticated;
+
 -- 1. Ensure room_answers table exists for enforcing 1 submission per question & auditing
 create table if not exists public.room_answers (
   id uuid default gen_random_uuid() primary key,
@@ -16,6 +42,10 @@ create table if not exists public.room_answers (
   created_at timestamptz default timezone('utc'::text, now()) not null,
   unique(room_id, user_id, question_id)
 );
+
+alter table public.room_players enable row level security;
+revoke insert, update, delete on public.room_players from anon, authenticated;
+grant select on public.room_players to anon, authenticated;
 
 alter table public.room_answers add column if not exists new_marks integer not null default 0;
 alter table public.room_answers enable row level security;

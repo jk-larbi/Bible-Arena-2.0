@@ -121,6 +121,32 @@ create table if not exists public.question_keys (
   created_at timestamptz default timezone('utc'::text, now()) not null
 );
 
+-- Question content is private; clients receive only the public projection.
+create table if not exists public.game_content (
+  id text primary key,
+  game_slug text not null,
+  level integer not null,
+  challenge_index smallint not null,
+  question_text text not null,
+  options text[] not null default '{}',
+  correct_answer text not null,
+  explanation text,
+  reference text not null,
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  unique(game_slug, level, challenge_index)
+);
+create index if not exists game_content_game_level_idx
+  on public.game_content(game_slug, level, challenge_index);
+alter table public.game_content enable row level security;
+revoke all on public.game_content from anon, authenticated;
+
+create or replace view public.game_content_public as
+select id, game_slug, level, challenge_index, question_text, options,
+       explanation, reference, null::jsonb as metadata
+from public.game_content;
+grant select on public.game_content_public to anon, authenticated;
+
 -- 10. NOTIFICATIONS TABLE
 create table if not exists public.notifications (
   id uuid primary key default gen_random_uuid(),

@@ -166,10 +166,10 @@ export default function WaitingRoom() {
     if (!currentPlayer || busy) return;
     setBusy(true);
     try {
-      const { error: err } = await supabase
-        .from('room_players')
-        .update({ is_ready: !currentPlayer.is_ready })
-        .eq('id', currentPlayer.id);
+      const { error: err } = await supabase.rpc('set_room_ready', {
+        p_room: room?.id,
+        p_is_ready: !currentPlayer.is_ready,
+      });
       if (err) throw err;
       await refetch();
     } catch (err) {

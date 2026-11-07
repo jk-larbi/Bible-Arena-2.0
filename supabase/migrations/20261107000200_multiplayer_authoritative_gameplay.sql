@@ -3,6 +3,42 @@
 -- Correct answers stay in game_content and are only returned after the answer timer ends.
 alter table public.room_answers add column if not exists new_marks integer not null default 0;
 
+create or replace function public.set_room_ready(p_room uuid, p_is_ready boolean)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $
+declare r public.rooms;
+begin
+  select * into r from public.rooms where id = p_room;
+  if not found or r.status <> 'waiting' then raise exception 'Room is not accepting readiness changes'; end if;
+  update public.room_players set is_ready = p_is_ready
+    where room_id = p_room and user_id = auth.uid();
+  if not found then raise exception 'You are not a member of this room'; end if;
+end;
+$;
+grant execute on function public.set_room_ready(uuid, boolean) to authenticated;
+
+create or replace function public.kick_room_player(p_room uuid, p_player uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $
+declare r public.rooms;
+begin
+  select * into r from public.rooms where id = p_room;
+  if not found then raise exception 'Room not found'; end if;
+  if r.host_id <> auth.uid() then raise exception 'Only the host can remove players'; end if;
+  if r.status <> 'waiting' then raise exception 'Players cannot be removed after the match starts'; end if;
+  delete from public.room_players
+    where id = p_player and room_id = p_room and is_host = false;
+  if not found then raise exception 'Player not found or cannot be removed'; end if;
+end;
+$;
+grant execute on function public.kick_room_player(uuid, uuid) to authenticated;
+
 create or replace function public.publish_room_questions(p_room uuid, p_questions jsonb)
 returns text[]
 language plpgsql
