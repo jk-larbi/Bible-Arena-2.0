@@ -74,23 +74,64 @@ export function ResultsScreen({ gameName, level, result: r, nextLevelAvailable, 
           {[0, 1, 2, 3, 4].map((i) => <Star key={i} i={i} on={i < stars} />)}
         </div>
         <p className="v-rise font-serif text-2xl font-bold" style={rise(1.1)}>{stars} out of 5 stars</p>
+        
+        {/* Unified Marks Badge */}
+        <div className="v-rise flex flex-col items-center gap-1.5" style={rise(1.15)}>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#D66B3D] text-white font-bold text-lg shadow-md">
+            <span>Session Marks: {r.session_marks ?? r.fully_correct * 10} / 100</span>
+          </div>
+          {r.new_marks_awarded > 0 ? (
+            <span className="text-xs font-semibold text-[#A7B49A]">
+              +{r.new_marks_awarded} new marks added to your career total
+            </span>
+          ) : (
+            <span className="text-xs font-semibold text-[#F3EBDD]/70">
+              Replay: duplicate marks prevention active
+            </span>
+          )}
+        </div>
+
         {r.is_new_best && (
-          <p className="v-rise rounded-full bg-[#3156C9] px-3 py-1 text-sm font-semibold" style={rise(1.2)}>
-            New best rating (was {r.prev_best_stars})
+          <p className="v-rise rounded-full bg-[#3156C9] px-3.5 py-1 text-sm font-semibold" style={rise(1.2)}>
+            New best rating (was {r.prev_best_stars} stars)
           </p>
         )}
 
-        <dl className="v-rise grid w-full max-w-sm grid-cols-2 gap-3 text-center" style={rise(1.2)}>
-          <div><dt className="text-xs uppercase tracking-wider text-[#A7B49A]">Performance</dt>
-               <dd className="font-serif text-3xl font-bold tabular-nums">{pct}%</dd></div>
-          <div><dt className="text-xs uppercase tracking-wider text-[#A7B49A]">Challenges</dt>
-               <dd className="font-serif text-3xl font-bold tabular-nums">10/10</dd></div>
-          <div><dt className="text-xs uppercase tracking-wider text-[#A7B49A]">Fully correct</dt>
-               <dd className="font-serif text-3xl font-bold tabular-nums">{r.fully_correct}/10</dd></div>
-          {r.total_ms > 0 && (
-            <div><dt className="text-xs uppercase tracking-wider text-[#A7B49A]">Time</dt>
-                 <dd className="font-serif text-3xl font-bold tabular-nums">{fmtTime(r.total_ms)}</dd></div>
-          )}
+        <dl className="v-rise grid w-full max-w-md grid-cols-2 sm:grid-cols-3 gap-2.5 text-center my-2" style={rise(1.2)}>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Accuracy</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums">{pct}%</dd>
+          </div>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Correct</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums text-emerald-400">
+              {r.correct_count ?? r.fully_correct}/10
+            </dd>
+          </div>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Incorrect</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums text-rose-300">
+              {r.incorrect_count ?? (10 - r.fully_correct)}/10
+            </dd>
+          </div>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Overall Marks</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums text-[#D66B3D]">
+              {r.total_accumulated_marks ?? (r.fully_correct * 10)}
+            </dd>
+          </div>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Personal Best</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums">
+              {r.personal_best_marks ?? (r.fully_correct * 10)}
+            </dd>
+          </div>
+          <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
+            <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Completed</dt>
+            <dd className="font-serif text-2xl font-bold tabular-nums">
+              {r.completed_levels ?? 1} lvl
+            </dd>
+          </div>
         </dl>
 
         <p className="v-rise max-w-sm text-base" style={rise(1.4)}>

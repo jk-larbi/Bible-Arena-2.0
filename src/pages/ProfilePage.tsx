@@ -15,6 +15,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
 
   const xp = user?.user_metadata?.xp ?? localStats.xp ?? 0;
   const level = user?.user_metadata?.level ?? localStats.level ?? 1;
+  const totalMarks = user?.user_metadata?.total_marks ?? localStats.total_marks ?? 0;
   const gamesPlayed = localStats.gamesPlayed ?? 0;
   const unlockedAchievements: string[] = localStats.achievements || [];
 
@@ -54,6 +55,9 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
               Level {level}
             </span>
             <span className="text-xs font-bold bg-[#F3EBDD] px-3.5 py-1.5 rounded-xl text-[#D66B3D] font-mono">
+              {totalMarks} Career Marks
+            </span>
+            <span className="text-xs font-bold bg-[#F3EBDD] px-3.5 py-1.5 rounded-xl text-[#3156C9] font-mono">
               {xp} Total XP
             </span>
             <span className="text-xs font-bold bg-[#F3EBDD] px-3.5 py-1.5 rounded-xl text-[#171B24] font-mono">

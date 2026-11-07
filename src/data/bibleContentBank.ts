@@ -55,7 +55,7 @@ const BOOKS_66 = [
   { name: 'Mark', testament: 'New Testament', section: 'Gospels', author: 'John Mark', chapters: 16, clue: 'Fast-paced Gospel emphasizing Jesus as the suffering Servant who came to give His life a ransom', ref: 'Mark 10:45' },
   { name: 'Luke', testament: 'New Testament', section: 'Gospels', author: 'Luke', chapters: 24, clue: 'Orderly historical Gospel written to Theophilus highlighting Jesus’ compassion for the outcast', ref: 'Luke 19:10' },
   { name: 'John', testament: 'New Testament', section: 'Gospels', author: 'John the Apostle', chapters: 21, clue: 'Gospel of the eternal Word made flesh, seven miraculous signs, and the seven "I AM" statements', ref: 'John 20:31' },
-  { name: 'Acts', testament: 'New Testament', section: 'Acts', author: 'Luke', chapters: 28, clue: 'Pentecost, the birth of the early church, and the spread of the Gospel from Jerusalem to Rome', ref: 'Acts 1:8' },
+  { name: 'Acts', testament: 'New Testament', section: 'Acts', author: 'Luke', chapters: 28, clue: 'Pentecost, the birth of the early church, and the spread of the Gospel from Jerusalem to Rome', ref: 'Acts 2:1-4; Acts 1:8' },
   { name: 'Romans', testament: 'New Testament', section: 'Letters', author: 'Paul', chapters: 16, clue: 'Paul’s systematic exposition of the Gospel, justification by faith, and life in the Spirit', ref: 'Romans 1:16' },
   { name: '1 Corinthians', testament: 'New Testament', section: 'Letters', author: 'Paul', chapters: 16, clue: 'Addresses church divisions, spiritual gifts, the chapter on love, and bodily resurrection', ref: '1 Corinthians 13:13' },
   { name: '2 Corinthians', testament: 'New Testament', section: 'Letters', author: 'Paul', chapters: 13, clue: 'Paul defends his apostolic ministry and teaches that God’s power is made perfect in weakness', ref: '2 Corinthians 12:9' },
@@ -81,38 +81,38 @@ const BOOKS_66 = [
 ];
 
 const BIBLE_CHARACTERS = [
-  { name: 'Noah', testament: 'Old Testament', role: 'Patriarch', clue1: 'Walked faithfully with God when the earth was filled with violence', clue2: 'Built a three-story vessel of gopher wood', clue3: 'Sent out a raven and a dove after forty days of rain', ref: 'Genesis 6:9' },
-  { name: 'Abraham', testament: 'Old Testament', role: 'Patriarch', clue1: 'Called by God to leave Ur of the Chaldeans for a land he did not know', clue2: 'Promised descendants as numerous as the stars of heaven', clue3: 'Tested on Mount Moriah with his promised son Isaac', ref: 'Genesis 12:1-3' },
-  { name: 'Sarah', testament: 'Old Testament', role: 'Matriarch', clue1: 'Traveled from Mesopotamia to Canaan with her husband Abram', clue2: 'Laughed within herself when visitors promised she would bear a son in old age', clue3: 'Gave birth to Isaac at ninety years old and was buried in Machpelah', ref: 'Genesis 21:2' },
-  { name: 'Joseph', testament: 'Old Testament', role: 'Patriarch', clue1: 'Dreamed of eleven sheaves bowing down to his sheaf', clue2: 'Sold by his jealous brothers to Ishmaelite traders for twenty shekels of silver', clue3: 'Interpreted Pharaoh’s dreams of seven fat and seven lean cows to become governor of Egypt', ref: 'Genesis 41:41' },
-  { name: 'Moses', testament: 'Old Testament', role: 'Prophet & Deliverer', clue1: 'Hidden for three months in a basket of bulrushes along the Nile', clue2: 'Encountered the Angel of the Lord in a bush that burned without being consumed', clue3: 'Led Israel across the Red Sea and received the tablets of the Law on Mount Sinai', ref: 'Exodus 3:2' },
-  { name: 'Miriam', testament: 'Old Testament', role: 'Prophetess', clue1: 'Watched over her baby brother’s reed basket by the bank of the Nile', clue2: 'Led the women of Israel with timbrels and dancing after the Red Sea crossing', clue3: 'Sister of Aaron and Moses during the wilderness journey', ref: 'Exodus 15:20' },
-  { name: 'Joshua', testament: 'Old Testament', role: 'Leader', clue1: 'One of the two faithful spies who brought back a good report of Canaan', clue2: 'Succeeded Moses and led Israel dry-shod across the Jordan River', clue3: 'Commanded the people to march around Jericho for seven days', ref: 'Joshua 6:2' },
-  { name: 'Deborah', testament: 'Old Testament', role: 'Judge & Prophetess', clue1: 'Held court under a palm tree between Ramah and Bethel in Ephraim', clue2: 'Summoned Barak to muster ten thousand men at Mount Tabor', clue3: 'Sang a famous victory hymn after Sisera’s Canaanite chariots were routed', ref: 'Judges 4:4-5' },
-  { name: 'Gideon', testament: 'Old Testament', role: 'Judge', clue1: 'Threshed wheat in a winepress to hide it from the Midianites', clue2: 'Asked God for a sign using a fleece of wool and morning dew', clue3: 'Routed the Midianite camp with only three hundred men carrying trumpets and torches in jars', ref: 'Judges 7:7' },
-  { name: 'Samson', testament: 'Old Testament', role: 'Judge', clue1: 'Set apart as a Nazirite from before his birth to begin delivering Israel from the Philistines', clue2: 'Tore a young lion apart with his bare hands and posed a riddle about honey', clue3: 'Betrayed by Delilah when the seven locks of his hair were shaved', ref: 'Judges 16:17' },
-  { name: 'Ruth', testament: 'Old Testament', role: 'Ancestor of David', clue1: 'Refused to leave her widowed mother-in-law Naomi, saying "Your God shall be my God"', clue2: 'Gleaned ears of barley in the fields of Bethlehem', clue3: 'Married her kinsman-redeemer Boaz and became the great-grandmother of King David', ref: 'Ruth 1:16' },
-  { name: 'Hannah', testament: 'Old Testament', role: 'Mother of Samuel', clue1: 'Wept and prayed silently at the tabernacle in Shiloh while Eli watched', clue2: 'Vowed to dedicate her son to the Lord for all the days of his life', clue3: 'Sang a prophetic prayer exalting the Lord who humbles and exalts', ref: '1 Samuel 1:11' },
-  { name: 'Samuel', testament: 'Old Testament', role: 'Prophet & Judge', clue1: 'Heard the voice of the Lord calling his name in the night while serving under Eli', clue2: 'Set up the stone of Ebenezer saying "Till now the Lord has helped us"', clue3: 'Anointed both Saul and David as kings over Israel', ref: '1 Samuel 3:10' },
-  { name: 'David', testament: 'Old Testament', role: 'King & Psalmist', clue1: 'Youngest son of Jesse who tended his father’s sheep in Bethlehem', clue2: 'Defeated the Philistine champion Goliath with a sling and a smooth stone', clue3: 'Ruled as king in Hebron and Jerusalem and composed many of the Psalms', ref: '1 Samuel 17:50' },
-  { name: 'Solomon', testament: 'Old Testament', role: 'King', clue1: 'Asked God at Gibeon for an understanding heart to govern His people rather than riches', clue2: 'Built the magnificent First Temple on Mount Moriah in Jerusalem', clue3: 'Visited by the Queen of Sheba who marveled at his wisdom and proverbs', ref: '1 Kings 3:9' },
-  { name: 'Elijah', testament: 'Old Testament', role: 'Prophet', clue1: 'Fed by ravens by the brook Cherith during a three-year drought', clue2: 'Challenged the prophets of Baal on Mount Carmel and prayed down fire from heaven', clue3: 'Taken up into heaven by a whirlwind with a chariot and horses of fire', ref: '1 Kings 18:38' },
-  { name: 'Elisha', testament: 'Old Testament', role: 'Prophet', clue1: 'Left his twelve yoke of oxen to follow Elijah and asked for a double portion of his spirit', clue2: 'Purified the bitter waters of Jericho and multiplied a widow’s jar of oil', clue3: 'Instructed Naaman the Syrian commander to wash seven times in the Jordan River', ref: '2 Kings 5:10' },
-  { name: 'Esther', testament: 'Old Testament', role: 'Queen of Persia', clue1: 'An orphan raised by her cousin Mordecai in the citadel of Susa', clue2: 'Chosen as queen by King Ahasuerus in place of Vashti', clue3: 'Called a three-day fast and approached the king uninvited to save the Jewish people', ref: 'Esther 4:16' },
-  { name: 'Nehemiah', testament: 'Old Testament', role: 'Governor', clue1: 'Served as royal cupbearer to King Artaxerxes in Susa', clue2: 'Inspected the ruined gates of Jerusalem by night on a single mount', clue3: 'Led the people to rebuild Jerusalem’s walls in fifty-two days despite Sanballat’s opposition', ref: 'Nehemiah 2:17' },
-  { name: 'Daniel', testament: 'Old Testament', role: 'Prophet', clue1: 'Resolved in Babylon not to defile himself with the king’s rich food and wine', clue2: 'Read the mysterious handwriting MENE, MENE, TEKEL, PARSIN on Belshazzar’s palace wall', clue3: 'Delivered unharmed from the den of lions under King Darius', ref: 'Daniel 6:22' },
-  { name: 'Jonah', testament: 'Old Testament', role: 'Prophet', clue1: 'Boarded a ship at Joppa bound for Tarshish to flee from the presence of the Lord', clue2: 'Prayed from the belly of a great fish for three days and three nights', clue3: 'Preached to Nineveh and sat outside the city under a shade plant God provided', ref: 'Jonah 1:17' },
-  { name: 'John the Baptist', testament: 'New Testament', role: 'Forerunner', clue1: 'Son of Zechariah and Elizabeth who leaped in the womb at Mary’s greeting', clue2: 'Preached repentance in the wilderness of Judea wearing camel’s hair', clue3: 'Baptized Jesus in the Jordan River and declared, "Behold, the Lamb of God!"', ref: 'John 1:29' },
-  { name: 'Mary of Nazareth', testament: 'New Testament', role: 'Mother of Jesus', clue1: 'Visited by the angel Gabriel in Nazareth while betrothed to Joseph', clue2: 'Sang the Magnificat: "My soul magnifies the Lord"', clue3: 'Gave birth to Jesus in Bethlehem and treasured all these things in her heart', ref: 'Luke 1:46-47' },
-  { name: 'Simon Peter', testament: 'New Testament', role: 'Apostle', clue1: 'A fisherman of Bethsaida and Capernaum called with his brother Andrew', clue2: 'Confessed at Caesarea Philippi, "You are the Christ, the Son of the living God"', clue3: 'Preached boldly at Pentecost where about three thousand souls were added', ref: 'Matthew 16:16' },
-  { name: 'John the Apostle', testament: 'New Testament', role: 'Apostle', clue1: 'Son of Zebedee and brother of James, called by Jesus "Sons of Thunder"', clue2: 'Known as the disciple whom Jesus loved, who leaned back against Jesus at the Last Supper', clue3: 'Wrote the fourth Gospel, three epistles, and the Book of Revelation on Patmos', ref: 'John 21:20' },
-  { name: 'Mary Magdalene', testament: 'New Testament', role: 'Disciple', clue1: 'Delivered by Jesus from seven demons and supported His ministry in Galilee', clue2: 'Stood near the cross at Golgotha and watched where Joseph of Arimathea laid Jesus', clue3: 'First witness to see the risen Lord outside the empty tomb on resurrection morning', ref: 'John 20:16-18' },
-  { name: 'Stephen', testament: 'New Testament', role: 'Deacon & Martyr', clue1: 'Chosen among the seven men full of the Spirit and wisdom to care for widows in Jerusalem', clue2: 'Recounted Israel’s history from Abraham to Solomon before the Sanhedrin', clue3: 'Saw the heavens opened and the Son of Man standing at the right hand of God as he was martyred', ref: 'Acts 7:55-56' },
-  { name: 'Barnabas', testament: 'New Testament', role: 'Missionary', clue1: 'A Levite from Cyprus named Joseph whom the apostles called "Son of Encouragement"', clue2: 'Vouched for the newly converted Saul before the apostles in Jerusalem', clue3: 'Traveled with Paul to Antioch and on the first missionary journey', ref: 'Acts 4:36' },
-  { name: 'Paul (Saul of Tarsus)', testament: 'New Testament', role: 'Apostle to the Gentiles', clue1: 'Educated in Jerusalem at the feet of Gamaliel and blinded by a light on the road to Damascus', clue2: 'Undertook three missionary journeys across Asia Minor and Greece planting churches', clue3: 'Authored thirteen New Testament epistles including Romans, Corinthians, and Ephesians', ref: 'Acts 9:3-6' },
-  { name: 'Lydia', testament: 'New Testament', role: 'Believer in Philippi', clue1: 'A worshiper of God from the city of Thyatira who sold purple cloth', clue2: 'Listened to Paul by the riverside outside Philippi when the Lord opened her heart', clue3: 'Baptized with her household and hosted the missionaries in her home', ref: 'Acts 16:14' },
-  { name: 'Timothy', testament: 'New Testament', role: 'Pastor & Coworker', clue1: 'Native of Lystra taught the sacred Scriptures from childhood by his grandmother Lois and mother Eunice', clue2: 'Joined Paul on his second missionary journey as a trusted spiritual son', clue3: 'Recipient of two pastoral epistles charging him to guard the good deposit in Ephesus', ref: '2 Timothy 1:5' },
-  { name: 'Priscilla and Aquila', testament: 'New Testament', role: 'Tentmakers & Teachers', clue1: 'Jewish Christian couple who left Rome under Claudius’ decree and worked with Paul in Corinth', clue2: 'Hosted a church in their house and risked their necks for Paul’s life', clue3: 'Took Apollos aside in Ephesus and explained to him the way of God more accurately', ref: 'Acts 18:26' },
+  { name: 'Noah', testament: 'Old Testament', role: 'Patriarch', clue1: 'Walked faithfully with God when the earth was filled with violence', clue1Ref: 'Genesis 6:9-11', clue2: 'Built a three-story vessel of gopher wood to preserve life', clue2Ref: 'Genesis 6:14-16', clue3: 'Sent out a raven and a dove after forty days of rain', clue3Ref: 'Genesis 8:6-12', ref: 'Genesis 6:9' },
+  { name: 'Abraham', testament: 'Old Testament', role: 'Patriarch', clue1: 'Called by God to leave Ur of the Chaldeans for a land he did not know', clue1Ref: 'Genesis 12:1-4', clue2: 'Promised descendants as numerous as the stars of heaven', clue2Ref: 'Genesis 15:5-6', clue3: 'Tested on Mount Moriah when offering his promised son Isaac', clue3Ref: 'Genesis 22:1-14', ref: 'Genesis 12:1-3' },
+  { name: 'Sarah', testament: 'Old Testament', role: 'Matriarch', clue1: 'Traveled from Mesopotamia to Canaan with her husband Abram', clue1Ref: 'Genesis 12:4-5', clue2: 'Laughed within herself when visitors promised she would bear a son in old age', clue2Ref: 'Genesis 18:10-14', clue3: 'Gave birth to Isaac at ninety years old and was buried in Machpelah', clue3Ref: 'Genesis 21:1-3; 23:19', ref: 'Genesis 21:2' },
+  { name: 'Joseph', testament: 'Old Testament', role: 'Patriarch', clue1: 'Dreamed of eleven sheaves bowing down to his sheaf', clue1Ref: 'Genesis 37:5-8', clue2: 'Sold by his jealous brothers to Ishmaelite traders for twenty shekels of silver', clue2Ref: 'Genesis 37:28', clue3: 'Interpreted Pharaoh’s dreams of seven fat and seven lean cows to become governor of Egypt', clue3Ref: 'Genesis 41:39-43', ref: 'Genesis 41:41' },
+  { name: 'Moses', testament: 'Old Testament', role: 'Prophet & Deliverer', clue1: 'Hidden for three months in a basket of bulrushes along the Nile', clue1Ref: 'Exodus 2:2-3', clue2: 'Encountered the Angel of the Lord in a bush that burned without being consumed', clue2Ref: 'Exodus 3:2-4', clue3: 'Led Israel across the Red Sea and received the tablets of the Law on Mount Sinai', clue3Ref: 'Exodus 14:21-22; 31:18', ref: 'Exodus 3:2' },
+  { name: 'Miriam', testament: 'Old Testament', role: 'Prophetess', clue1: 'Watched over her baby brother’s reed basket by the bank of the Nile', clue1Ref: 'Exodus 2:4-8', clue2: 'Led the women of Israel with timbrels and dancing after the Red Sea crossing', clue2Ref: 'Exodus 15:20-21', clue3: 'Sister of Aaron and Moses during the wilderness journey', clue3Ref: 'Exodus 15:20; Numbers 26:59', ref: 'Exodus 15:20' },
+  { name: 'Joshua', testament: 'Old Testament', role: 'Leader', clue1: 'One of the two faithful spies who brought back a good report of Canaan', clue1Ref: 'Numbers 14:6-9', clue2: 'Succeeded Moses and led Israel dry-shod across the Jordan River', clue2Ref: 'Joshua 3:14-17', clue3: 'Commanded the people to march around Jericho for seven days', clue3Ref: 'Joshua 6:15-20', ref: 'Joshua 6:2' },
+  { name: 'Deborah', testament: 'Old Testament', role: 'Judge & Prophetess', clue1: 'Held court under a palm tree between Ramah and Bethel in Ephraim', clue1Ref: 'Judges 4:4-5', clue2: 'Summoned Barak to muster ten thousand men at Mount Tabor', clue2Ref: 'Judges 4:6-14', clue3: 'Sang a famous victory hymn after Sisera’s Canaanite chariots were routed', clue3Ref: 'Judges 5:1-12', ref: 'Judges 4:4-5' },
+  { name: 'Gideon', testament: 'Old Testament', role: 'Judge', clue1: 'Threshed wheat in a winepress to hide it from the Midianites', clue1Ref: 'Judges 6:11', clue2: 'Asked God for a sign using a fleece of wool and morning dew', clue2Ref: 'Judges 6:36-40', clue3: 'Routed the Midianite camp with only three hundred men carrying trumpets and torches in jars', clue3Ref: 'Judges 7:16-22', ref: 'Judges 7:7' },
+  { name: 'Samson', testament: 'Old Testament', role: 'Judge', clue1: 'Set apart as a Nazirite from before his birth to begin delivering Israel from the Philistines', clue1Ref: 'Judges 13:5', clue2: 'Tore a young lion apart with his bare hands and posed a riddle about honey', clue2Ref: 'Judges 14:5-14', clue3: 'Betrayed by Delilah when the seven locks of his hair were shaved', clue3Ref: 'Judges 16:17-19', ref: 'Judges 16:17' },
+  { name: 'Ruth', testament: 'Old Testament', role: 'Ancestor of David', clue1: 'Refused to leave her widowed mother-in-law Naomi, saying "Your God shall be my God"', clue1Ref: 'Ruth 1:16-17', clue2: 'Gleaned ears of barley in the fields of Bethlehem', clue2Ref: 'Ruth 2:2-3', clue3: 'Married her kinsman-redeemer Boaz and became the great-grandmother of King David', clue3Ref: 'Ruth 4:13-17', ref: 'Ruth 1:16' },
+  { name: 'Hannah', testament: 'Old Testament', role: 'Mother of Samuel', clue1: 'Wept and prayed silently at the tabernacle in Shiloh while Eli watched', clue1Ref: '1 Samuel 1:10-13', clue2: 'Vowed to dedicate her son to the Lord for all the days of his life', clue2Ref: '1 Samuel 1:11', clue3: 'Sang a prophetic prayer exalting the Lord who humbles and exalts', clue3Ref: '1 Samuel 2:1-10', ref: '1 Samuel 1:11' },
+  { name: 'Samuel', testament: 'Old Testament', role: 'Prophet & Judge', clue1: 'Heard the voice of the Lord calling his name in the night while serving under Eli', clue1Ref: '1 Samuel 3:8-10', clue2: 'Set up the stone of Ebenezer saying "Till now the Lord has helped us"', clue2Ref: '1 Samuel 7:12', clue3: 'Anointed both Saul and David as kings over Israel', clue3Ref: '1 Samuel 10:1; 16:13', ref: '1 Samuel 3:10' },
+  { name: 'David', testament: 'Old Testament', role: 'King & Psalmist', clue1: 'Youngest son of Jesse who tended his father’s sheep in Bethlehem', clue1Ref: '1 Samuel 16:11-23', clue2: 'Defeated the Philistine champion Goliath with a sling and a smooth stone', clue2Ref: '1 Samuel 17:49-50', clue3: 'Ruled as king in Hebron and Jerusalem and composed many of the Psalms', clue3Ref: '2 Samuel 5:4-5; Psalm 23:1', ref: '1 Samuel 17:50' },
+  { name: 'Solomon', testament: 'Old Testament', role: 'King', clue1: 'Asked God at Gibeon for an understanding heart to govern His people rather than riches', clue1Ref: '1 Kings 3:9-12', clue2: 'Built the magnificent First Temple on Mount Moriah in Jerusalem', clue2Ref: '1 Kings 6:1; 2 Chronicles 3:1', clue3: 'Visited by the Queen of Sheba who marveled at his wisdom and proverbs', clue3Ref: '1 Kings 10:1-9', ref: '1 Kings 3:9' },
+  { name: 'Elijah', testament: 'Old Testament', role: 'Prophet', clue1: 'Fed by ravens by the brook Cherith during a three-year drought', clue1Ref: '1 Kings 17:4-6', clue2: 'Challenged the prophets of Baal on Mount Carmel and prayed down fire from heaven', clue2Ref: '1 Kings 18:36-38', clue3: 'Taken up into heaven by a whirlwind with a chariot and horses of fire', clue3Ref: '2 Kings 2:11', ref: '1 Kings 18:38' },
+  { name: 'Elisha', testament: 'Old Testament', role: 'Prophet', clue1: 'Left his twelve yoke of oxen to follow Elijah and asked for a double portion of his spirit', clue1Ref: '1 Kings 19:19-21; 2 Kings 2:9-12', clue2: 'Purified the bitter waters of Jericho and multiplied a widow’s jar of oil', clue2Ref: '2 Kings 2:19-22; 4:1-7', clue3: 'Instructed Naaman the Syrian commander to wash seven times in the Jordan River', clue3Ref: '2 Kings 5:10-14', ref: '2 Kings 5:10' },
+  { name: 'Esther', testament: 'Old Testament', role: 'Queen of Persia', clue1: 'An orphan raised by her cousin Mordecai in the citadel of Susa', clue1Ref: 'Esther 2:7', clue2: 'Chosen as queen by King Ahasuerus in place of Vashti', clue2Ref: 'Esther 2:16-17', clue3: 'Approached the king uninvited saying "If I perish, I perish" to save the Jewish people', clue3Ref: 'Esther 4:15-16', ref: 'Esther 4:16' },
+  { name: 'Nehemiah', testament: 'Old Testament', role: 'Governor', clue1: 'Served as royal cupbearer to King Artaxerxes in Susa', clue1Ref: 'Nehemiah 1:11; 2:1', clue2: 'Inspected the ruined gates of Jerusalem by night on a single mount', clue2Ref: 'Nehemiah 2:12-15', clue3: 'Led the people to rebuild Jerusalem’s walls in fifty-two days despite Sanballat’s opposition', clue3Ref: 'Nehemiah 6:15', ref: 'Nehemiah 2:17' },
+  { name: 'Daniel', testament: 'Old Testament', role: 'Prophet', clue1: 'Resolved in Babylon not to defile himself with the king’s rich food and wine', clue1Ref: 'Daniel 1:8', clue2: 'Read the mysterious handwriting MENE, MENE, TEKEL, PARSIN on Belshazzar’s palace wall', clue2Ref: 'Daniel 5:25-28', clue3: 'Delivered unharmed from the den of lions under King Darius', clue3Ref: 'Daniel 6:22-23', ref: 'Daniel 6:22' },
+  { name: 'Jonah', testament: 'Old Testament', role: 'Prophet', clue1: 'Boarded a ship at Joppa bound for Tarshish to flee from the presence of the Lord', clue1Ref: 'Jonah 1:3', clue2: 'Prayed from the belly of a great fish for three days and three nights', clue2Ref: 'Jonah 1:17; 2:1-2', clue3: 'Preached to Nineveh and sat outside the city under a shade plant God provided', clue3Ref: 'Jonah 3:4-5; 4:5-6', ref: 'Jonah 1:17' },
+  { name: 'John the Baptist', testament: 'New Testament', role: 'Forerunner', clue1: 'Son of Zechariah and Elizabeth who leaped in the womb at Mary’s greeting', clue1Ref: 'Luke 1:13, 41; Matthew 3:4', clue2: 'Preached repentance in the wilderness of Judea wearing camel’s hair', clue2Ref: 'Matthew 3:1-8', clue3: 'Baptized Jesus in the Jordan River and declared, "Behold, the Lamb of God!"', clue3Ref: 'John 1:29-34; Matthew 3:13-17', ref: 'John 1:29' },
+  { name: 'Mary of Nazareth', testament: 'New Testament', role: 'Mother of Jesus', clue1: 'Visited by the angel Gabriel in Nazareth while betrothed to Joseph', clue1Ref: 'Luke 1:26-35', clue2: 'Sang the Magnificat: "My soul magnifies the Lord"', clue2Ref: 'Luke 1:46-47', clue3: 'Gave birth to Jesus in Bethlehem and treasured all these things in her heart', clue3Ref: 'Luke 2:6-7, 19', ref: 'Luke 1:46-47' },
+  { name: 'Simon Peter', testament: 'New Testament', role: 'Apostle', clue1: 'A fisherman of Bethsaida and Capernaum called with his brother Andrew', clue1Ref: 'Matthew 4:18-20', clue2: 'Confessed at Caesarea Philippi, "You are the Christ, the Son of the living God"', clue2Ref: 'Matthew 16:16', clue3: 'Preached boldly at Pentecost where about three thousand souls were added', clue3Ref: 'Acts 2:14-41', ref: 'Matthew 16:16' },
+  { name: 'John the Apostle', testament: 'New Testament', role: 'Apostle', clue1: 'Son of Zebedee and brother of James, called by Jesus "Sons of Thunder"', clue1Ref: 'Mark 3:17', clue2: 'Known as the disciple whom Jesus loved, who leaned back against Jesus at the Last Supper', clue2Ref: 'John 13:23; 19:26', clue3: 'Wrote the fourth Gospel, three epistles, and the Book of Revelation on Patmos', clue3Ref: 'John 21:24; Revelation 1:9', ref: 'John 21:20' },
+  { name: 'Mary Magdalene', testament: 'New Testament', role: 'Disciple', clue1: 'Delivered by Jesus from seven demons and supported His ministry in Galilee', clue1Ref: 'Luke 8:2', clue2: 'Stood near the cross at Golgotha and watched where Joseph of Arimathea laid Jesus', clue2Ref: 'Mark 15:40, 47', clue3: 'First witness to see the risen Lord outside the empty tomb on resurrection morning', clue3Ref: 'John 20:14-18', ref: 'John 20:16-18' },
+  { name: 'Stephen', testament: 'New Testament', role: 'Deacon & Martyr', clue1: 'Chosen among the seven men full of the Spirit and wisdom to care for widows in Jerusalem', clue1Ref: 'Acts 6:3-5', clue2: 'Recounted Israel’s history from Abraham to Solomon before the Sanhedrin', clue2Ref: 'Acts 7:2-50', clue3: 'Saw the heavens opened and the Son of Man standing at the right hand of God as he was martyred', clue3Ref: 'Acts 7:55-60', ref: 'Acts 7:55-56' },
+  { name: 'Barnabas', testament: 'New Testament', role: 'Missionary', clue1: 'A Levite from Cyprus named Joseph whom the apostles called "Son of Encouragement"', clue1Ref: 'Acts 4:36-37', clue2: 'Vouched for the newly converted Saul before the apostles in Jerusalem', clue2Ref: 'Acts 9:26-27', clue3: 'Traveled with Paul to Antioch and on the first missionary journey', clue3Ref: 'Acts 13:2-4', ref: 'Acts 4:36' },
+  { name: 'Paul (Saul of Tarsus)', testament: 'New Testament', role: 'Apostle to the Gentiles', clue1: 'Educated in Jerusalem at the feet of Gamaliel and blinded by a light on the road to Damascus', clue1Ref: 'Acts 9:3-6; 22:3', clue2: 'Undertook three missionary journeys across Asia Minor and Greece planting churches', clue2Ref: 'Acts 13-21', clue3: 'Authored thirteen New Testament epistles including Romans, Corinthians, and Ephesians', clue3Ref: 'Romans 1:1; 2 Peter 3:15-16', ref: 'Acts 9:3-6' },
+  { name: 'Lydia', testament: 'New Testament', role: 'Believer in Philippi', clue1: 'A worshiper of God from the city of Thyatira who sold purple cloth', clue1Ref: 'Acts 16:14', clue2: 'Listened to Paul by the riverside outside Philippi when the Lord opened her heart', clue2Ref: 'Acts 16:14', clue3: 'Baptized with her household and hosted the missionaries in her home', clue3Ref: 'Acts 16:14-15', ref: 'Acts 16:14' },
+  { name: 'Timothy', testament: 'New Testament', role: 'Pastor & Coworker', clue1: 'Native of Lystra taught the sacred Scriptures from childhood by his grandmother Lois and mother Eunice', clue1Ref: 'Acts 16:1-2; 2 Timothy 1:5', clue2: 'Joined Paul on his second missionary journey as a trusted spiritual son', clue2Ref: 'Philippians 2:19-22', clue3: 'Recipient of two pastoral epistles charging him to guard the good deposit in Ephesus', clue3Ref: '1 Timothy 1:18; 4:12; 2 Timothy 1:5', ref: '2 Timothy 1:5' },
+  { name: 'Priscilla and Aquila', testament: 'New Testament', role: 'Tentmakers & Teachers', clue1: 'Jewish Christian couple who left Rome under Claudius’ decree and worked with Paul in Corinth', clue1Ref: 'Acts 18:2-3', clue2: 'Hosted a church in their house and risked their necks for Paul’s life', clue2Ref: 'Romans 16:3-5', clue3: 'Took Apollos aside in Ephesus and explained to him the way of God more accurately', clue3Ref: 'Acts 18:24-26', ref: 'Acts 18:26' },
 ];
 
 const QUOTES_POOL = [
@@ -184,7 +184,7 @@ const GEOGRAPHY_LOCATIONS = [
   { place: 'Mount Sinai (Horeb)', region: 'Sinai Peninsula', event: 'Mountain where Moses saw the burning bush and received the Ten Commandments', ref: 'Exodus 3:1; 19:20' },
   { place: 'Mount Carmel', region: 'Northern Israel', event: 'Mountain ridge overlooking the Mediterranean where Elijah confronted the prophets of Baal', ref: '1 Kings 18:19' },
   { place: 'Sea of Galilee', region: 'Galilee', event: 'Freshwater lake where Jesus called fishermen, calmed the storm, and walked on water', ref: 'Matthew 4:18; 14:25' },
-  { place: 'Jordan River', region: 'Rift Valley', event: 'River parted for Joshua, where Naaman washed seven times, and where John baptized Jesus', ref: 'Joshua 3:17; Mark 1:9' },
+  { place: 'Jordan River', region: 'Rift Valley', event: 'River parted for Joshua, where Naaman washed seven times, and where John baptized Jesus', ref: 'Joshua 3:17; 2 Kings 5:14; Mark 1:9' },
   { place: 'Ur of the Chaldeans', region: 'Mesopotamia', event: 'Ancient Mesopotamian city from which Abram and Terah set out toward Canaan', ref: 'Genesis 11:31' },
   { place: 'Nineveh', region: 'Assyria (Tigris River)', event: 'Capital of Assyria where Jonah preached and the people repented in sackcloth', ref: 'Jonah 3:3-5' },
   { place: 'Babylon', region: 'Mesopotamia (Euphrates)', event: 'Imperial capital where Daniel and Judah’s exiles were taken under Nebuchadnezzar', ref: 'Daniel 1:1' },
@@ -292,6 +292,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
     const globalSeed = baseIdx + i;
+    const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + 1337;
     const id = `${gameSlug}-l${level}-c${challengeIndex}`;
 
     switch (gameSlug) {
@@ -299,48 +300,57 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const mode = globalSeed % 3;
         if (mode === 0) {
           const char = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
-          const d1 = BIBLE_CHARACTERS[(globalSeed + 3) % BIBLE_CHARACTERS.length].name;
-          const d2 = BIBLE_CHARACTERS[(globalSeed + 7) % BIBLE_CHARACTERS.length].name;
-          const d3 = BIBLE_CHARACTERS[(globalSeed + 11) % BIBLE_CHARACTERS.length].name;
+          const candidateChars: string[] = [];
+          for (let off = 1; candidateChars.length < 3 && off < BIBLE_CHARACTERS.length; off++) {
+            const c = BIBLE_CHARACTERS[(globalSeed + off * 7) % BIBLE_CHARACTERS.length].name;
+            if (c !== char.name && !candidateChars.includes(c)) candidateChars.push(c);
+          }
+          const options = makeFourDistinctOptions(char.name, candidateChars, shuffleSeed);
           items.push({
             id,
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
             question_text: `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?`,
-            options: shuffleDeterministic([char.name, d1, d2, d3], globalSeed),
+            options,
             correct_answer: char.name,
-            explanation: `${char.name} (${char.role}): ${char.clue1}; ${char.clue3}.`,
-            reference: char.ref,
+            explanation: `${char.name} (${char.role}): ${char.clue3}.`,
+            reference: char.clue3Ref,
           });
         } else if (mode === 1) {
           const book = BOOKS_66[globalSeed % BOOKS_66.length];
-          const b1 = BOOKS_66[(globalSeed + 5) % BOOKS_66.length].name;
-          const b2 = BOOKS_66[(globalSeed + 11) % BOOKS_66.length].name;
-          const b3 = BOOKS_66[(globalSeed + 19) % BOOKS_66.length].name;
+          const candidateBooks: string[] = [];
+          for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
+            const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+            if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
+          }
+          const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
           items.push({
             id,
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
             question_text: `Which book of the ${book.testament} features: "${book.clue}"?`,
-            options: shuffleDeterministic([book.name, b1, b2, b3], globalSeed),
+            options,
             correct_answer: book.name,
             explanation: `${book.name} is in the ${book.section} section of the ${book.testament} (${book.chapters} chapters).`,
             reference: book.ref,
           });
         } else {
           const loc = GEOGRAPHY_LOCATIONS[globalSeed % GEOGRAPHY_LOCATIONS.length];
-          const l1 = GEOGRAPHY_LOCATIONS[(globalSeed + 2) % GEOGRAPHY_LOCATIONS.length].place;
-          const l2 = GEOGRAPHY_LOCATIONS[(globalSeed + 5) % GEOGRAPHY_LOCATIONS.length].place;
-          const l3 = GEOGRAPHY_LOCATIONS[(globalSeed + 9) % GEOGRAPHY_LOCATIONS.length].place;
+          const candidateLocs: string[] = [];
+          for (let off = 1; candidateLocs.length < 3 && off < GEOGRAPHY_LOCATIONS.length; off++) {
+            const l = GEOGRAPHY_LOCATIONS[(globalSeed + off * 5) % GEOGRAPHY_LOCATIONS.length].place;
+            if (l !== loc.place && !candidateLocs.includes(l)) candidateLocs.push(l);
+          }
+          const options = makeFourDistinctOptions(loc.place, candidateLocs, shuffleSeed);
           items.push({
             id,
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which biblical place is known as the "${loc.event.charAt(0).toLowerCase() + loc.event.slice(1)}"?`,
-            options: shuffleDeterministic([loc.place, l1, l2, l3], globalSeed),
+            question_text: `Which biblical location is described: "${loc.event}"?`,
+            options,
             correct_answer: loc.place,
             explanation: `${loc.place} (${loc.region}): ${loc.event}.`,
             reference: loc.ref,
@@ -351,19 +361,22 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-character-quest': {
         const char = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
-        const d1 = BIBLE_CHARACTERS[(globalSeed + 4) % BIBLE_CHARACTERS.length].name;
-        const d2 = BIBLE_CHARACTERS[(globalSeed + 8) % BIBLE_CHARACTERS.length].name;
-        const d3 = BIBLE_CHARACTERS[(globalSeed + 13) % BIBLE_CHARACTERS.length].name;
+        const candidateChars: string[] = [];
+        for (let off = 1; candidateChars.length < 3 && off < BIBLE_CHARACTERS.length; off++) {
+          const c = BIBLE_CHARACTERS[(globalSeed + off * 7) % BIBLE_CHARACTERS.length].name;
+          if (c !== char.name && !candidateChars.includes(c)) candidateChars.push(c);
+        }
+        const options = makeFourDistinctOptions(char.name, candidateChars, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Identify this ${char.testament} ${char.role} from progressive scriptural clues:`,
-          options: shuffleDeterministic([char.name, d1, d2, d3], globalSeed),
+          question_text: `Identify this ${char.testament} ${char.role} from the biblical record:`,
+          options,
           correct_answer: char.name,
           explanation: `${char.name} is remembered as the ${char.role.toLowerCase()} who ${char.clue3.toLowerCase()}.`,
-          reference: char.ref,
+          reference: char.clue3Ref,
           metadata: {
             clues: [char.clue1, char.clue2, char.clue3],
             role: char.role,
@@ -382,12 +395,11 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           level,
           challenge_index: challengeIndex,
           question_text: `Unscramble the letters to form the name of this biblical book: "${wordSource.clue}"`,
-          options: shuffleDeterministic(cleanWord.split(''), globalSeed + 1),
+          options: shuffleDeterministic(cleanWord.split(''), shuffleSeed),
           correct_answer: cleanWord,
           explanation: `${wordSource.name} (${wordSource.section}): ${wordSource.clue}.`,
           reference: wordSource.ref,
           metadata: {
-            hint: `${wordSource.testament} • ${wordSource.section} (${cleanWord.length} letters)`,
             word: cleanWord,
           },
         });
@@ -411,8 +423,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           question_text: `Locate the hidden sacred words in the letter grid: ${words.join(', ')}`,
           options: words,
           correct_answer: words.join(','),
-          explanation: `Key terms from ${c1.ref} and ${c3.ref}: ${words.join(', ')}.`,
-          reference: c1.ref,
+          explanation: `Key terms from ${c1.clue3Ref}, ${c2.clue3Ref}, and ${c3.ref}: ${words.join(', ')}.`,
+          reference: `${c1.clue3Ref}; ${c2.clue3Ref}; ${c3.ref}`,
           metadata: {
             words,
             gridSize: 8,
@@ -434,8 +446,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${book.clue}" • Down (${downWord.length} letters): "${char.clue2}"`,
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
-          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.ref}).`,
-          reference: `${book.ref}; ${char.ref}`,
+          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.clue2Ref}).`,
+          reference: `${book.ref}; ${char.clue2Ref}`,
           metadata: {
             acrossClue: book.clue,
             acrossAnswer: acrossWord,
@@ -448,13 +460,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'who-said-it': {
         const q = QUOTES_POOL[globalSeed % QUOTES_POOL.length];
+        const options = makeFourDistinctOptions(q.speaker, q.options, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: `Who spoke these words in Scripture: "${q.quote}"?`,
-          options: shuffleDeterministic([...q.options], globalSeed),
+          options,
           correct_answer: q.speaker,
           explanation: q.context,
           reference: q.ref,
@@ -465,13 +478,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       case 'complete-the-scripture': {
         const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
         const masked = v.text.replace(new RegExp(`\\b${v.missing}\\b`, 'i'), '_____');
+        const options = makeFourDistinctOptions(v.missing, v.distractors, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: `Complete the verse (${v.ref}): "${masked}"`,
-          options: shuffleDeterministic([v.missing, ...v.distractors], globalSeed),
+          options,
           correct_answer: v.missing,
           explanation: `Full verse (${v.ref}): "${v.text}."`,
           reference: v.ref,
@@ -485,7 +499,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           BIBLE_CHARACTERS[(globalSeed + 3) % BIBLE_CHARACTERS.length],
           BIBLE_CHARACTERS[(globalSeed + 7) % BIBLE_CHARACTERS.length],
           BIBLE_CHARACTERS[(globalSeed + 11) % BIBLE_CHARACTERS.length],
-        ].map((c) => ({ left: c.name, right: c.clue3, ref: c.ref }));
+        ].map((c) => ({ left: c.name, right: c.clue3, ref: c.clue3Ref }));
         items.push({
           id,
           game_slug: gameSlug,
@@ -495,7 +509,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           options: pairs.map((p) => `${p.left}:${p.right}`),
           correct_answer: pairs.map((p) => `${p.left}=${p.right}`).join('|'),
           explanation: pairs.map((p) => `${p.left} — ${p.right} (${p.ref})`).join(' • '),
-          reference: pairs[0].ref,
+          reference: pairs.map((p) => p.ref).join('; '),
           metadata: { pairs },
         });
         break;
@@ -515,7 +529,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           level,
           challenge_index: challengeIndex,
           question_text: 'Arrange these four biblical books and epochs in canonical order from earliest to latest:',
-          options: shuffleDeterministic(seq.map((s) => s.name), globalSeed + 2),
+          options: shuffleDeterministic(seq.map((s) => s.name), shuffleSeed),
           correct_answer: seq.map((s) => s.name).join(' -> '),
           explanation: `Canonical sequence: ${seq.map((s) => `${s.name} (${s.clue})`).join(' → ')}.`,
           reference: `${seq[0].ref} – ${seq[3].ref}`,
@@ -541,7 +555,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           level,
           challenge_index: challengeIndex,
           question_text: `Reconstruct the sacred tablet mosaic for ${v.ref} by placing the three carved stone fragments in order:`,
-          options: shuffleDeterministic([...tiles], globalSeed + 3),
+          options: shuffleDeterministic([...tiles], shuffleSeed),
           correct_answer: tiles.join(' | '),
           explanation: `Completed inscription (${v.ref}): "${v.text}."`,
           reference: v.ref,
@@ -552,18 +566,21 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'find-the-bible-book': {
         const book = BOOKS_66[globalSeed % BOOKS_66.length];
-        const d1 = BOOKS_66[(globalSeed + 6) % BOOKS_66.length].name;
-        const d2 = BOOKS_66[(globalSeed + 14) % BOOKS_66.length].name;
-        const d3 = BOOKS_66[(globalSeed + 23) % BOOKS_66.length].name;
+        const candidateBooks: string[] = [];
+        for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
+          const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+          if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
+        }
+        const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: `Clue: "${book.clue}" (${book.testament} • ${book.section}, ${book.chapters} chapters). Which book is this?`,
-          options: shuffleDeterministic([book.name, d1, d2, d3], globalSeed),
+          options,
           correct_answer: book.name,
-          explanation: `${book.name} was written by ${book.author} and belongs to the ${book.section} section.`,
+          explanation: `${book.name} was written by ${book.author} and belongs to the ${book.section} section. Key scripture: ${book.ref}.`,
           reference: book.ref,
         });
         break;
@@ -571,13 +588,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-riddles': {
         const r = RIDDLES_POOL[globalSeed % RIDDLES_POOL.length];
+        const options = makeFourDistinctOptions(r.answer, r.options, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: r.riddle,
-          options: shuffleDeterministic([...r.options], globalSeed),
+          options,
           correct_answer: r.answer,
           explanation: r.explanation,
           reference: r.ref,
@@ -587,16 +605,19 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-geography-quest': {
         const loc = GEOGRAPHY_LOCATIONS[globalSeed % GEOGRAPHY_LOCATIONS.length];
-        const d1 = GEOGRAPHY_LOCATIONS[(globalSeed + 3) % GEOGRAPHY_LOCATIONS.length].place;
-        const d2 = GEOGRAPHY_LOCATIONS[(globalSeed + 7) % GEOGRAPHY_LOCATIONS.length].place;
-        const d3 = GEOGRAPHY_LOCATIONS[(globalSeed + 11) % GEOGRAPHY_LOCATIONS.length].place;
+        const candidateLocs: string[] = [];
+        for (let off = 1; candidateLocs.length < 3 && off < GEOGRAPHY_LOCATIONS.length; off++) {
+          const l = GEOGRAPHY_LOCATIONS[(globalSeed + off * 5) % GEOGRAPHY_LOCATIONS.length].place;
+          if (l !== loc.place && !candidateLocs.includes(l)) candidateLocs.push(l);
+        }
+        const options = makeFourDistinctOptions(loc.place, candidateLocs, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: `Sacred Atlas (${loc.region}): Identify the location where "${loc.event}".`,
-          options: shuffleDeterministic([loc.place, d1, d2, d3], globalSeed),
+          options,
           correct_answer: loc.place,
           explanation: `${loc.place} is located in ${loc.region}. ${loc.event}.`,
           reference: loc.ref,
@@ -620,7 +641,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           options: subset.map((s) => `${s.name}|${s.ref}`),
           correct_answer: subset.map((s) => `${s.name}=${s.ref}`).join(','),
           explanation: subset.map((s) => `${s.name} (${s.ref}): ${s.clue}`).join(' • '),
-          reference: subset[0].ref,
+          reference: subset.map((s) => s.ref).join('; '),
           metadata: {
             memoryPairs: subset.map((s) => ({ a: s.name, b: s.ref })),
           },
@@ -646,13 +667,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-detective': {
         const c = DETECTIVE_CASES[globalSeed % DETECTIVE_CASES.length];
+        const options = makeFourDistinctOptions(c.answer, c.options, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: `${c.title} — Examine the evidence and identify the biblical account:`,
-          options: shuffleDeterministic([...c.options], globalSeed),
+          options,
           correct_answer: c.answer,
           explanation: c.explanation,
           reference: c.ref,
@@ -677,7 +699,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           level,
           challenge_index: challengeIndex,
           question_text: `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
-          options: shuffleDeterministic([matching.name, distractor1, distractor2], globalSeed),
+          options: shuffleDeterministic([matching.name, distractor1, distractor2], shuffleSeed),
           correct_answer: matching.name,
           explanation: `"${bookA.name}" ends with "${lastChar}", linking directly to "${matching.name}" (${matching.ref}).`,
           reference: matching.ref,
@@ -698,7 +720,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           level,
           challenge_index: challengeIndex,
           question_text: `Tap the word tiles in order to assemble ${v.ref}:`,
-          options: shuffleDeterministic([...words], globalSeed + 4),
+          options: shuffleDeterministic([...words], shuffleSeed),
           correct_answer: v.text,
           explanation: `Completed verse (${v.ref}): "${v.text}."`,
           reference: v.ref,
@@ -724,13 +746,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           { emojis: '🍷 🏺 💧 💒', answer: 'Water into Wine at Cana', opts: ['Water into Wine at Cana', 'The Last Supper', 'Woman at the Well', 'Waters of Marah'], exp: 'Jesus turned water into choice wine at the wedding in Cana of Galilee.', ref: 'John 2:1-11' },
         ];
         const em = emojiList[globalSeed % emojiList.length];
+        const options = makeFourDistinctOptions(em.answer, em.opts, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
           question_text: em.emojis,
-          options: shuffleDeterministic([...em.opts], globalSeed),
+          options,
           correct_answer: em.answer,
           explanation: em.exp,
           reference: em.ref,
@@ -744,12 +767,50 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
   return items;
 }
 
-function shuffleDeterministic<T>(arr: T[], seed: number): T[] {
+/**
+ * High-quality 32-bit Mulberry32 PRNG for uniform, unbiased deterministic shuffling.
+ */
+export function mulberry32(seed: number): () => number {
+  let s = (seed >>> 0) + 0x6d2b79f5;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * Guarantees exactly 4 distinct options with the correct answer included,
+ * shuffled uniformly across positions A, B, C, and D (~25% each).
+ */
+export function makeFourDistinctOptions(
+  correct: string,
+  candidates: string[],
+  seed: number
+): string[] {
+  const distinct = [correct];
+  const seen = new Set<string>([correct.trim().toLowerCase()]);
+  for (const c of candidates) {
+    const norm = c.trim().toLowerCase();
+    if (!seen.has(norm) && c.trim().length > 0) {
+      seen.add(norm);
+      distinct.push(c);
+      if (distinct.length === 4) break;
+    }
+  }
+  return shuffleDeterministic(distinct, seed);
+}
+
+/**
+ * Uniform Fisher-Yates shuffle powered by Mulberry32.
+ */
+export function shuffleDeterministic<T>(arr: T[], seed: number): T[] {
   const copy = [...arr];
-  let s = seed + 17;
+  if (copy.length <= 1) return copy;
+  const rand = mulberry32(seed + 0x9e3779b9);
   for (let i = copy.length - 1; i > 0; i--) {
-    s = (s * 1664525 + 1013904223) % 4294967296;
-    const j = Math.abs(s) % (i + 1);
+    const j = Math.floor(rand() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;

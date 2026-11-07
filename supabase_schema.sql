@@ -347,19 +347,420 @@ begin
 end $$;
 grant execute on function public.calculate_score(text, boolean, integer) to anon, authenticated;
 
--- GRANT EXECUTE FOR LEVEL PROGRESSION FUNCTIONS (prevents "permission denied for function get_level_map")
-do $$
+-- =====================================================================
+-- 6. GAME CONTENT, LEVEL PROGRESSION & UNIFIED MARKS SYSTEM
+-- =====================================================================
+
+-- Game content master table with full challenge details
+create table if not exists public.game_content (
+  id text primary key,
+  game_slug text not null,
+  level integer not null,
+  challenge_index smallint not null,
+  question_text text not null,
+  options text[] not null default '{}',
+  correct_answer text not null,
+  explanation text not null,
+  reference text not null,
+  metadata jsonb default '{}'::jsonb,
+  created_at timestamptz default timezone('utc'::text, now()) not null
+);
+
+create unique index if not exists uq_game_content_game_level_challenge
+  on public.game_content(game_slug, level, challenge_index);
+
+-- Public-safe view that hides correct_answer
+create or replace view public.game_content_public
+with (security_invoker = true)
+as
+select id, game_slug, level, challenge_index, question_text, options,
+       explanation, reference, metadata
+from public.game_content;
+
+alter table public.game_content enable row level security;
+drop policy if exists "content_public_safe_read" on public.game_content;
+create policy "content_public_safe_read"
+  on public.game_content for select to anon, authenticated using (true);
+revoke select on public.game_content from public, anon, authenticated;
+grant select (id, game_slug, level, challenge_index, question_text, options,
+              explanation, reference, metadata)
+  on public.game_content to anon, authenticated;
+revoke all on public.game_content_public from public, anon, authenticated;
+grant select on public.game_content_public to anon, authenticated;
+
+-- Level attempts tracking table
+create table if not exists public.level_attempts (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade not null,
+  game_slug text not null,
+  level integer not null,
+  challenges_done smallint default 0,
+  score numeric(5,2) default 0,
+  session_marks integer default 0,
+  total_duration_ms integer default 0,
+  status text default 'in_progress' check (status in ('in_progress', 'completed', 'abandoned')),
+  created_at timestamptz default timezone('utc'::text, now()) not null,
+  completed_at timestamptz
+);
+
+alter table public.level_attempts enable row level security;
+drop policy if exists "Users can access own attempts" on public.level_attempts;
+create policy "Users can access own attempts"
+  on public.level_attempts for all to authenticated
+  using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+-- Anti-farming: Tracks challenges that already awarded career marks (+10 marks)
+create table if not exists public.user_awarded_challenges (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade not null,
+  game_slug text not null,
+  level integer not null,
+  challenge_index smallint not null,
+  marks_awarded smallint default 10,
+  awarded_at timestamptz default timezone('utc'::text, now()) not null,
+  unique(user_id, game_slug, level, challenge_index)
+);
+
+alter table public.user_awarded_challenges enable row level security;
+drop policy if exists "Users can view own awarded challenges" on public.user_awarded_challenges;
+create policy "Users can view own awarded challenges"
+  on public.user_awarded_challenges for select to authenticated
+  using (auth.uid() = user_id);
+
+-- RPC: GET LEVEL MAP
+create or replace function public.get_level_map(p_game text)
+returns table(
+  level integer,
+  name text,
+  difficulty text,
+  challenge_count integer,
+  is_published boolean,
+  unlocked boolean,
+  completed boolean,
+  best_stars integer,
+  best_percent numeric,
+  challenges_done integer,
+  attempts integer
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid := auth.uid();
 begin
-  if exists (select 1 from pg_proc where proname = 'get_level_map') then
-    execute 'grant execute on function public.get_level_map(text) to anon, authenticated';
-  end if;
-  if exists (select 1 from pg_proc where proname = 'start_level') then
-    execute 'grant execute on function public.start_level(text, int, boolean) to anon, authenticated';
-  end if;
-  if exists (select 1 from pg_proc where proname = 'record_challenge') then
-    execute 'grant execute on function public.record_challenge(uuid, int, numeric, int, int) to anon, authenticated';
-  end if;
-  if exists (select 1 from pg_proc where proname = 'finish_level') then
-    execute 'grant execute on function public.finish_level(uuid) to anon, authenticated';
-  end if;
+  return query
+  with user_prog as (
+    select
+      gp.current_level,
+      gp.max_level_completed,
+      gp.best_score,
+      gp.stars,
+      gp.total_attempts
+    from public.game_progress gp
+    where gp.user_id = v_user_id and gp.game_id = p_game
+  )
+  select
+    lvl.lvl as level,
+    case
+      when lvl.lvl <= 10 then 'Beginner Stage ' || lvl.lvl
+      when lvl.lvl <= 25 then 'Intermediate Stage ' || (lvl.lvl - 10)
+      when lvl.lvl <= 40 then 'Advanced Stage ' || (lvl.lvl - 25)
+      else 'Expert Mastery Stage ' || (lvl.lvl - 40)
+    end as name,
+    case
+      when lvl.lvl <= 10 then 'Beginner'
+      when lvl.lvl <= 25 then 'Intermediate'
+      when lvl.lvl <= 40 then 'Advanced'
+      else 'Expert'
+    end as difficulty,
+    10 as challenge_count,
+    true as is_published,
+    case
+      when lvl.lvl = 1 then true
+      when v_user_id is null then lvl.lvl = 1
+      else lvl.lvl <= coalesce((select max_level_completed + 1 from user_prog), 1)
+    end as unlocked,
+    case
+      when v_user_id is null then false
+      else lvl.lvl <= coalesce((select max_level_completed from user_prog), 0)
+    end as completed,
+    coalesce((select stars from user_prog), 0) as best_stars,
+    coalesce((select best_score::numeric from user_prog), 0) as best_percent,
+    10 as challenges_done,
+    coalesce((select total_attempts from user_prog), 0) as attempts
+  from generate_series(1, 50) as lvl(lvl)
+  order by lvl.lvl;
 end $$;
+grant execute on function public.get_level_map(text) to anon, authenticated;
+
+-- RPC: START LEVEL
+create or replace function public.start_level(
+  p_game text,
+  p_level integer,
+  p_restart boolean default false
+)
+returns table(attempt_id uuid, challenges_done integer)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_user_id uuid := auth.uid();
+  v_attempt_id uuid;
+  v_done integer := 0;
+begin
+  if v_user_id is null then
+    raise exception 'Authentication required to persist cloud attempts';
+  end if;
+
+  if not p_restart then
+    select id, la.challenges_done into v_attempt_id, v_done
+    from public.level_attempts la
+    where la.user_id = v_user_id
+      and la.game_slug = p_game
+      and la.level = p_level
+      and la.status = 'in_progress'
+    order by la.created_at desc
+    limit 1;
+
+    if v_attempt_id is not null then
+      return query select v_attempt_id, v_done;
+      return;
+    end if;
+  end if;
+
+  insert into public.level_attempts (user_id, game_slug, level, status)
+  values (v_user_id, p_game, p_level, 'in_progress')
+  returning id into v_attempt_id;
+
+  return query select v_attempt_id, 0;
+end $$;
+grant execute on function public.start_level(text, integer, boolean) to anon, authenticated;
+
+-- RPC: SUBMIT CHALLENGE ANSWER (Enforces unified 10 marks per correct answer, anti-farming on replay, stable question ID lookup)
+create or replace function public.submit_challenge_answer(
+  p_attempt uuid,
+  p_challenge_index smallint,
+  p_answer text,
+  p_hints_used smallint default 0,
+  p_duration_ms integer default 0,
+  p_question_id text default null
+)
+returns table(
+  is_correct boolean,
+  score numeric,
+  marks_awarded integer,
+  is_new_marks boolean,
+  explanation text,
+  reference text,
+  correct_answer text
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_attempt public.level_attempts%rowtype;
+  v_correct_answer text;
+  v_explanation text;
+  v_reference text;
+  v_is_correct boolean := false;
+  v_marks integer := 0;
+  v_is_new boolean := false;
+begin
+  if auth.uid() is null then
+    raise exception 'Authentication required';
+  end if;
+
+  select * into v_attempt
+  from public.level_attempts
+  where id = p_attempt and user_id = auth.uid() and status = 'in_progress'
+  for update;
+
+  if not found then
+    raise exception 'Attempt is not active or does not belong to user';
+  end if;
+
+  -- 1. Try stable question ID first to prevent question-to-answer mismatches
+  if p_question_id is not null and length(trim(p_question_id)) > 0 then
+    select gc.correct_answer, gc.explanation, gc.reference
+      into v_correct_answer, v_explanation, v_reference
+    from public.game_content gc
+    where gc.id = p_question_id;
+  end if;
+
+  -- 2. Fall back to attempt game_slug, level, and challenge_index
+  if v_correct_answer is null then
+    select gc.correct_answer, gc.explanation, gc.reference
+      into v_correct_answer, v_explanation, v_reference
+    from public.game_content gc
+    where gc.game_slug = v_attempt.game_slug
+      and gc.level = v_attempt.level
+      and gc.challenge_index = p_challenge_index;
+  end if;
+
+  if v_correct_answer is not null then
+    v_is_correct := (trim(lower(p_answer)) = trim(lower(v_correct_answer)));
+  else
+    v_is_correct := length(trim(p_answer)) > 0;
+  end if;
+
+  if v_is_correct then
+    v_marks := 10;
+    -- Anti-farming: Check if challenge was already awarded for this user
+    if not exists (
+      select 1 from public.user_awarded_challenges
+      where user_id = auth.uid()
+        and game_slug = v_attempt.game_slug
+        and level = v_attempt.level
+        and challenge_index = p_challenge_index
+    ) then
+      v_is_new := true;
+      insert into public.user_awarded_challenges (user_id, game_slug, level, challenge_index, marks_awarded)
+      values (auth.uid(), v_attempt.game_slug, v_attempt.level, p_challenge_index, 10);
+
+      -- Update user profile total XP/marks
+      update public.profiles
+      set xp = xp + 10
+      where id = auth.uid();
+    end if;
+  else
+    v_marks := 0;
+  end if;
+
+  update public.level_attempts
+  set challenges_done = greatest(challenges_done, p_challenge_index),
+      session_marks = session_marks + v_marks,
+      total_duration_ms = total_duration_ms + coalesce(p_duration_ms, 0)
+  where id = p_attempt;
+
+  return query select
+    v_is_correct,
+    v_marks::numeric,
+    v_marks,
+    v_is_new,
+    coalesce(v_explanation, ''),
+    coalesce(v_reference, ''),
+    coalesce(v_correct_answer, '');
+end $$;
+grant execute on function public.submit_challenge_answer(uuid, smallint, text, smallint, integer, text) to anon, authenticated;
+
+-- RPC: RECORD CHALLENGE
+create or replace function public.record_challenge(
+  p_attempt uuid,
+  p_index integer,
+  p_score numeric,
+  p_hints integer default 0,
+  p_ms integer default 0
+)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  update public.level_attempts
+  set challenges_done = greatest(challenges_done, p_index),
+      total_duration_ms = total_duration_ms + coalesce(p_ms, 0)
+  where id = p_attempt and user_id = auth.uid();
+end $$;
+grant execute on function public.record_challenge(uuid, integer, numeric, integer, integer) to anon, authenticated;
+
+-- RPC: FINISH LEVEL
+create or replace function public.finish_level(p_attempt uuid)
+returns table(
+  result_percent numeric,
+  result_stars integer,
+  result_points integer,
+  total_ms integer,
+  fully_correct integer,
+  prev_best_stars integer,
+  new_best_stars integer,
+  is_new_best boolean,
+  first_completion boolean,
+  completed_levels integer
+)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_attempt public.level_attempts%rowtype;
+  v_prev_stars integer := 0;
+  v_stars integer := 0;
+  v_pct numeric := 0;
+  v_correct integer := 0;
+  v_is_new_best boolean := false;
+  v_first boolean := false;
+  v_completed_count integer := 0;
+begin
+  select * into v_attempt
+  from public.level_attempts
+  where id = p_attempt and user_id = auth.uid();
+
+  if not found then
+    raise exception 'Attempt not found';
+  end if;
+
+  v_correct := round(v_attempt.session_marks / 10);
+  v_pct := (v_correct::numeric / 10.0) * 100.0;
+
+  v_stars := case
+    when v_pct >= 90 then 5
+    when v_pct >= 75 then 4
+    when v_pct >= 60 then 3
+    when v_pct >= 40 then 2
+    when v_pct > 0 then 1
+    else 0
+  end;
+
+  select coalesce(stars, 0) into v_prev_stars
+  from public.game_progress
+  where user_id = auth.uid() and game_id = v_attempt.game_slug;
+
+  v_first := (v_prev_stars = 0);
+  v_is_new_best := (v_stars > v_prev_stars);
+
+  insert into public.game_progress (
+    user_id, game_id, current_level, max_level_completed,
+    best_score, total_attempts, stars, best_time_ms
+  )
+  values (
+    auth.uid(), v_attempt.game_slug, v_attempt.level + 1, v_attempt.level,
+    v_attempt.session_marks, 1, v_stars, v_attempt.total_duration_ms
+  )
+  on conflict (user_id, game_id) do update set
+    current_level = greatest(game_progress.current_level, v_attempt.level + 1),
+    max_level_completed = greatest(game_progress.max_level_completed, v_attempt.level),
+    best_score = greatest(game_progress.best_score, v_attempt.session_marks),
+    total_attempts = game_progress.total_attempts + 1,
+    stars = greatest(game_progress.stars, v_stars),
+    best_time_ms = case
+      when game_progress.best_time_ms = 0 then v_attempt.total_duration_ms
+      else least(game_progress.best_time_ms, v_attempt.total_duration_ms)
+    end,
+    updated_at = now();
+
+  update public.level_attempts
+  set status = 'completed', completed_at = now()
+  where id = p_attempt;
+
+  select count(distinct game_id) into v_completed_count
+  from public.game_progress
+  where user_id = auth.uid() and max_level_completed >= v_attempt.level;
+
+  return query select
+    v_pct,
+    v_stars,
+    v_attempt.session_marks,
+    v_attempt.total_duration_ms,
+    v_correct,
+    v_prev_stars,
+    greatest(v_prev_stars, v_stars),
+    v_is_new_best,
+    v_first,
+    v_completed_count;
+end $$;
+grant execute on function public.finish_level(uuid) to anon, authenticated;

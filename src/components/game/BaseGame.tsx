@@ -11,12 +11,13 @@ import {
   finishLevel,
   getLevelChallenges,
   submitChallengeAnswer,
+  getOverallTotalMarks,
   CHALLENGES_PER_LEVEL,
   type LevelNode,
   type LevelResult,
 } from '../../lib/levels';
 import type { ChallengeItem } from '../../data/bibleContentBank';
-import { Lightbulb, ArrowUp, ArrowDown, RotateCcw, CheckCircle2 } from 'lucide-react';
+import { ArrowUp, ArrowDown, RotateCcw } from 'lucide-react';
 
 interface BaseGameProps {
   gameId: string;
@@ -43,14 +44,13 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [result, setResult] = useState<LevelResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [reveal, setReveal] = useState<Reveal | null>(null);
-  const [hintsUsed, setHintsUsed] = useState(0);
-  const [showHint, setShowHint] = useState(false);
+  const [sessionMarks, setSessionMarks] = useState(0);
+  const [totalMarks, setTotalMarks] = useState(() => getOverallTotalMarks());
 
   // Interactive per-mechanic state
   const [scramblePicked, setScramblePicked] = useState<number[]>([]);
   const [versePicked, setVersePicked] = useState<number[]>([]);
   const [timelineOrder, setTimelineOrder] = useState<string[]>([]);
-  const [clueStep, setClueStep] = useState(1);
   const [wordSearchFound, setWordSearchFound] = useState<string[]>([]);
   const [crosswordAcross, setCrosswordAcross] = useState('');
   const [crosswordDown, setCrosswordDown] = useState('');
@@ -84,11 +84,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   // Reset interactive state whenever challenge changes
   useEffect(() => {
     setReveal(null);
-    setHintsUsed(0);
-    setShowHint(false);
     setScramblePicked([]);
     setVersePicked([]);
-    setClueStep(1);
     setWordSearchFound([]);
     setCrosswordAcross('');
     setCrosswordDown('');
@@ -131,6 +128,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setCurrentIdx(Math.min(started.startIndex, CHALLENGES_PER_LEVEL - 1));
       setResult(null);
       setReveal(null);
+      setSessionMarks(0);
+      setTotalMarks(getOverallTotalMarks());
     } catch (e) {
       setError((e as Error).message);
     }
@@ -141,15 +140,20 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     locked.current = true;
     setError(null);
 
+    const challengeToGrade = currentChallenge;
     const duration = Math.max(100, Date.now() - challengeStart.current);
     try {
       const res = await submitChallengeAnswer(
         attempt.attemptId,
-        currentIdx + 1,
+        challengeToGrade.id,
+        challengeToGrade.challenge_index,
         pickedAnswer ?? '',
-        hintsUsed,
-        duration
+        duration,
+        challengeToGrade
       );
+
+      setSessionMarks(res.session_marks);
+      setTotalMarks(res.total_marks);
 
       setReveal({
         is_correct: res.is_correct,
@@ -157,6 +161,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         explanation: res.explanation,
         reference: res.reference,
         picked: pickedAnswer,
+        marks_awarded: res.marks_awarded,
+        is_new_marks: res.is_new_marks,
       });
     } catch (e) {
       locked.current = false;
@@ -168,7 +174,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     Boolean(attempt && !result && reveal === null && currentChallenge),
     QUESTION_SECONDS,
     () => settleAnswer(null),
-    currentIdx
+    currentChallenge?.id ?? currentIdx
   );
 
   const isLastChallenge = currentIdx === CHALLENGES_PER_LEVEL - 1;
@@ -189,19 +195,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         return;
       }
       setReveal(null);
-      locked.current = false;
+      // Keep locked.current = true during transition to prevent race conditions or stale submissions;
+      // it is unlocked safely when the next challenge mounts in useEffect([currentIdx]).
       setCurrentIdx((idx) => idx + 1);
     },
     currentIdx
   );
-
-  const handleUseHint = () => {
-    setShowHint(true);
-    setHintsUsed((h) => h + 1);
-    if (gameId === 'bible-character-quest' || gameId === 'bible-detective') {
-      setClueStep((s) => Math.min(3, s + 1));
-    }
-  };
 
   if (result && level !== null) {
     const nextNode = levels.find((l) => l.level === level + 1);
@@ -533,7 +532,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                 disabled={reveal !== null}
                 value={crosswordAcross}
                 onChange={(e) => setCrosswordAcross(e.target.value.toUpperCase())}
-                placeholder={`Starts with ${acrossAns[0] || ''}...`}
+                placeholder="Enter across answer..."
                 className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold"
               />
             </div>
@@ -547,28 +546,17 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                 disabled={reveal !== null}
                 value={crosswordDown}
                 onChange={(e) => setCrosswordDown(e.target.value.toUpperCase())}
-                placeholder={`Starts with ${downAns[0] || ''}...`}
+                placeholder="Enter down answer..."
                 className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold"
               />
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 justify-between items-center">
+          <div className="flex justify-end items-center">
             <button
               type="button"
-              disabled={reveal !== null}
-              onClick={() => {
-                setCrosswordAcross(acrossAns);
-                setCrosswordDown(downAns);
-              }}
-              className="text-xs font-semibold text-[#3156C9] underline cursor-pointer"
-            >
-              Auto-fill intersecting letters ({acrossAns} / {downAns})
-            </button>
-            <button
-              type="button"
-              disabled={reveal !== null}
+              disabled={reveal !== null || !crosswordAcross.trim() || !crosswordDown.trim()}
               onClick={() => settleAnswer(`${crosswordAcross.trim()}|${crosswordDown.trim()}`)}
-              className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white font-bold text-sm cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white font-bold text-sm cursor-pointer disabled:opacity-40"
             >
               Submit Crossword
             </button>
@@ -688,29 +676,18 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 8. Progressive Clues + Multiple Choice / Binary Classification / Standard Games
-    const clues: string[] | undefined = currentChallenge.metadata?.clues;
+    // 8. Biblical Record Scenarios + Multiple Choice / Standard Games
+    const scenarioPoints: string[] | undefined = currentChallenge.metadata?.clues;
     return (
       <div className="space-y-5">
-        {clues && clues.length > 0 && (
+        {scenarioPoints && scenarioPoints.length > 0 && (
           <div className="space-y-2 bg-[#F3EBDD] p-4 rounded-2xl border border-[#171B24]/15">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">
-                Investigation Clues ({clueStep} of {clues.length} revealed)
-              </span>
-              {clueStep < clues.length && reveal === null && (
-                <button
-                  type="button"
-                  onClick={handleUseHint}
-                  className="text-xs font-bold text-[#3156C9] hover:underline cursor-pointer"
-                >
-                  + Reveal Next Clue
-                </button>
-              )}
-            </div>
-            {clues.slice(0, clueStep).map((c, idx) => (
+            <span className="text-xs font-bold uppercase tracking-wider text-[#171B24]/70">
+              Biblical Record &amp; Testimony
+            </span>
+            {scenarioPoints.map((point, idx) => (
               <p key={idx} className="text-sm text-[#171B24] font-medium">
-                • {c}
+                • {point}
               </p>
             ))}
           </div>
@@ -756,12 +733,20 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             refreshMap();
           }}
         />
-        <div className="flex items-center gap-3">
-          <span className="px-3 py-1.5 rounded-full bg-[#171B24] text-[#F3EBDD] text-xs font-bold">
-            Level {level} • Challenge {currentIdx + 1} / {CHALLENGES_PER_LEVEL}
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="px-3.5 py-1.5 rounded-xl bg-[#D66B3D] text-white text-xs font-bold shadow-sm flex items-center gap-1.5">
+            <span>Marks:</span>
+            <span className="tabular-nums text-sm">{sessionMarks} / 100</span>
+          </div>
+          <div className="px-3 py-1.5 rounded-xl bg-[#171B24] text-[#F3EBDD] text-xs font-bold flex items-center gap-1.5">
+            <span className="text-[#A7B49A]">Career:</span>
+            <span className="tabular-nums">{totalMarks}</span>
+          </div>
+          <span className="px-3 py-1.5 rounded-full bg-[#171B24]/10 text-[#171B24] text-xs font-bold">
+            Level {level} • Q{currentIdx + 1}/{CHALLENGES_PER_LEVEL}
           </span>
           {reveal === null && (
-            <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-base">
+            <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-sm sm:text-base">
               ⏱ {answering.secondsLeft}s
             </span>
           )}
@@ -771,26 +756,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#171B24]/10">
         <div className="flex items-center justify-between mb-4">
           <span className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">
-            {gameName} • Scripture Reference: {currentChallenge.reference}
+            {gameName} • Level {level}
           </span>
-          {reveal === null && !showHint && (
-            <button
-              type="button"
-              onClick={handleUseHint}
-              className="inline-flex items-center gap-1 text-xs font-semibold text-[#3156C9] hover:underline cursor-pointer"
-            >
-              <Lightbulb className="w-3.5 h-3.5" /> Hint
-            </button>
-          )}
         </div>
-
-        {showHint && (
-          <div className="mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-            <strong>Scriptural Hint:</strong> Look closely at passage{' '}
-            <strong>{currentChallenge.reference}</strong> —{' '}
-            {currentChallenge.explanation.slice(0, 75)}...
-          </div>
-        )}
 
         <h2
           className={`font-serif font-bold text-[#171B24] mb-6 ${

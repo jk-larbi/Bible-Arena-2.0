@@ -42,6 +42,12 @@ export type LevelResult = {
   result_percent: number;
   result_stars: Stars;
   result_points: number;
+  session_marks: number;
+  new_marks_awarded: number;
+  total_accumulated_marks: number;
+  correct_count: number;
+  incorrect_count: number;
+  personal_best_marks: number;
   total_ms: number;
   fully_correct: number;
   prev_best_stars: number;
@@ -56,6 +62,7 @@ interface LocalLevelProgress {
   best_stars: Stars;
   best_percent: number;
   best_score: number;
+  best_marks: number;
   attempts: number;
   challenges_done: number;
 }
@@ -64,43 +71,93 @@ interface LocalAttempt {
   id: string;
   gameSlug: string;
   level: number;
-  scores: Record<number, { score: number; durationMs: number; hints: number }>;
+  scores: Record<
+    number,
+    {
+      isCorrect: boolean;
+      marks: number;
+      isNewMarks: boolean;
+      durationMs: number;
+    }
+  >;
   isLocal: boolean;
 }
 
 const PROGRESS_STORAGE_KEY = 'biblearena_level_progress_v2';
 const ACTIVE_ATTEMPTS_KEY = 'biblearena_active_attempts_v2';
+const TOTAL_MARKS_STORAGE_KEY = 'biblearena_total_marks_v2';
+const AWARDED_CHALLENGES_KEY = 'biblearena_awarded_challenges_v2';
+
+const memoryStore: Record<string, string> = {};
+
+function safeStorageGet(key: string): string | null {
+  try {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem) {
+      const val = localStorage.getItem(key);
+      if (val !== null) return val;
+    }
+  } catch {
+    // ignore
+  }
+  return memoryStore[key] ?? null;
+}
+
+function safeStorageSet(key: string, value: string): void {
+  try {
+    if (typeof localStorage !== 'undefined' && localStorage.setItem) {
+      localStorage.setItem(key, value);
+    }
+  } catch {
+    // ignore
+  }
+  memoryStore[key] = value;
+}
+
+export function getOverallTotalMarks(): number {
+  const val = safeStorageGet(TOTAL_MARKS_STORAGE_KEY);
+  return val ? parseInt(val, 10) || 0 : 0;
+}
+
+export function getAwardedChallenges(): Set<string> {
+  const raw = safeStorageGet(AWARDED_CHALLENGES_KEY);
+  return new Set(raw ? JSON.parse(raw) : []);
+}
+
+export function recordAwardedChallenge(key: string, marks = 10): { isNew: boolean; newTotal: number } {
+  const set = getAwardedChallenges();
+  const isNew = !set.has(key);
+  let total = getOverallTotalMarks();
+  if (isNew) {
+    set.add(key);
+    total += marks;
+    safeStorageSet(AWARDED_CHALLENGES_KEY, JSON.stringify(Array.from(set)));
+    safeStorageSet(TOTAL_MARKS_STORAGE_KEY, String(total));
+  }
+  return { isNew, newTotal: total };
+}
 
 function loadAllLocalProgress(): Record<string, Record<number, LocalLevelProgress>> {
   try {
-    return JSON.parse(localStorage.getItem(PROGRESS_STORAGE_KEY) || '{}');
+    return JSON.parse(safeStorageGet(PROGRESS_STORAGE_KEY) || '{}');
   } catch {
     return {};
   }
 }
 
 function saveAllLocalProgress(data: Record<string, Record<number, LocalLevelProgress>>) {
-  try {
-    localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(data));
-  } catch {
-    // ignore storage quota errors
-  }
+  safeStorageSet(PROGRESS_STORAGE_KEY, JSON.stringify(data));
 }
 
 function loadActiveAttempts(): Record<string, LocalAttempt> {
   try {
-    return JSON.parse(localStorage.getItem(ACTIVE_ATTEMPTS_KEY) || '{}');
+    return JSON.parse(safeStorageGet(ACTIVE_ATTEMPTS_KEY) || '{}');
   } catch {
     return {};
   }
 }
 
 function saveActiveAttempts(data: Record<string, LocalAttempt>) {
-  try {
-    localStorage.setItem(ACTIVE_ATTEMPTS_KEY, JSON.stringify(data));
-  } catch {
-    // ignore
-  }
+  safeStorageSet(ACTIVE_ATTEMPTS_KEY, JSON.stringify(data));
 }
 
 function buildLocalLevelMap(game: string, totalLevels = DEFAULT_TOTAL_LEVELS): LevelNode[] {
@@ -263,6 +320,7 @@ export async function startLevel(
     best_stars: prev?.best_stars ?? 0,
     best_percent: prev?.best_percent ?? 0,
     best_score: prev?.best_score ?? 0,
+    best_marks: prev?.best_marks ?? 0,
     attempts: prev?.attempts ?? 0,
     challenges_done: 0,
   };
@@ -271,22 +329,23 @@ export async function startLevel(
   return { attemptId, startIndex: 0 };
 }
 
-/** index is 1..10. score is 0..1 (1 = fully correct; puzzles can give partial credit). */
+/** Record challenge result. Score is 10 for correct, 0 for incorrect. */
 export async function recordChallenge(
   attemptId: string,
   index: number,
-  score: number,
-  hints = 0,
+  isCorrect: boolean,
+  isNewMarks: boolean,
   ms?: number
 ) {
-  const clean = Math.round(Math.min(1, Math.max(0, score)) * 1000) / 1000;
+  const marks = isCorrect ? 10 : 0;
   const attempts = loadActiveAttempts();
   const attempt = attempts[attemptId];
 
   if (attempt) {
     attempt.scores[index] = {
-      score: clean,
-      hints: Math.max(0, hints),
+      isCorrect,
+      marks,
+      isNewMarks,
       durationMs: ms ?? 0,
     };
     saveActiveAttempts(attempts);
@@ -299,6 +358,7 @@ export async function recordChallenge(
       best_stars: prev?.best_stars ?? 0,
       best_percent: prev?.best_percent ?? 0,
       best_score: prev?.best_score ?? 0,
+      best_marks: prev?.best_marks ?? 0,
       attempts: prev?.attempts ?? 0,
       challenges_done: Math.min(CHALLENGES_PER_LEVEL, index),
     };
@@ -310,8 +370,8 @@ export async function recordChallenge(
       await supabase.rpc('record_challenge', {
         p_attempt: attemptId,
         p_index: index,
-        p_score: clean,
-        p_hints: hints,
+        p_score: marks,
+        p_hints: 0,
         p_ms: ms ?? null,
       });
     } catch {
@@ -322,13 +382,18 @@ export async function recordChallenge(
 
 export async function submitChallengeAnswer(
   attemptId: string,
-  challengeIndex: number,
-  answer: string,
-  hintsUsed = 0,
-  durationMs = 0
+  questionIdOrIndex: string | number,
+  answerOrIndex: string | number,
+  rawAnswerOrHints?: string | number,
+  durationMs = 0,
+  clientQuestion?: ChallengeItem
 ): Promise<{
   is_correct: boolean;
   score: number;
+  marks_awarded: number;
+  is_new_marks: boolean;
+  session_marks: number;
+  total_marks: number;
   correct_answer: string;
   explanation: string;
   reference: string;
@@ -338,10 +403,35 @@ export async function submitChallengeAnswer(
   const gameSlug = attempt?.gameSlug || 'scripture-challenge';
   const level = attempt?.level || 1;
 
-  const localChallenges = buildLocalChallengesForLevel(gameSlug, level);
-  const localItem =
-    localChallenges.find((c) => c.challenge_index === challengeIndex) ||
-    localChallenges[0];
+  let questionId: string;
+  let challengeIndex: number;
+  let answer: string;
+
+  if (typeof questionIdOrIndex === 'string') {
+    questionId = questionIdOrIndex;
+    challengeIndex = typeof answerOrIndex === 'number' ? answerOrIndex : 1;
+    answer = typeof rawAnswerOrHints === 'string' ? rawAnswerOrHints : String(rawAnswerOrHints ?? '');
+  } else {
+    challengeIndex = questionIdOrIndex;
+    answer = typeof answerOrIndex === 'string' ? answerOrIndex : '';
+    questionId = clientQuestion?.id || `${gameSlug}-l${level}-c${challengeIndex}`;
+  }
+
+  // Find exact question object: priority to clientQuestion if matched, then id lookup, then index fallback
+  let localItem: ChallengeItem | undefined;
+  if (clientQuestion && clientQuestion.id === questionId) {
+    localItem = clientQuestion;
+  }
+
+  if (!localItem) {
+    const localChallenges = buildLocalChallengesForLevel(gameSlug, level);
+    localItem = localChallenges.find((c) => c.id === questionId);
+    if (!localItem) {
+      localItem = localChallenges.find((c) => c.challenge_index === challengeIndex) || localChallenges[0];
+    }
+  }
+
+  const challengeKey = `${gameSlug}-l${level}-c${challengeIndex}`;
 
   if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
     try {
@@ -349,21 +439,33 @@ export async function submitChallengeAnswer(
         p_attempt: attemptId,
         p_challenge_index: challengeIndex,
         p_answer: answer,
-        p_hints_used: hintsUsed,
+        p_hints_used: 0,
         p_duration_ms: durationMs,
+        p_question_id: questionId,
       });
       if (!error && data?.[0]) {
         const row = data[0];
-        await recordChallenge(
-          attemptId,
-          challengeIndex,
-          Number(row.score ?? (row.is_correct ? 1 : 0)),
-          hintsUsed,
-          durationMs
+        const isCorrect = Boolean(row.is_correct);
+        const { isNew, newTotal } = isCorrect
+          ? recordAwardedChallenge(challengeKey, 10)
+          : { isNew: false, newTotal: getOverallTotalMarks() };
+
+        await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs);
+
+        // Calculate session marks so far
+        const currentAttempt = loadActiveAttempts()[attemptId];
+        const sessionMarks = Object.values(currentAttempt?.scores || {}).reduce(
+          (sum, s) => sum + (s.isCorrect ? 10 : 0),
+          0
         );
+
         return {
-          is_correct: Boolean(row.is_correct),
-          score: Number(row.score ?? (row.is_correct ? 1 : 0)),
+          is_correct: isCorrect,
+          score: isCorrect ? 10 : 0,
+          marks_awarded: isCorrect ? 10 : 0,
+          is_new_marks: isNew,
+          session_marks: sessionMarks,
+          total_marks: newTotal,
           correct_answer: localItem.correct_answer,
           explanation: row.explanation || localItem.explanation,
           reference: row.reference || localItem.reference,
@@ -377,14 +479,27 @@ export async function submitChallengeAnswer(
   const normUser = answer.trim().toLowerCase();
   const normCorrect = localItem.correct_answer.trim().toLowerCase();
   const isCorrect = normUser.length > 0 && normUser === normCorrect;
-  const penalty = Math.min(0.4, hintsUsed * 0.15);
-  const numericScore = isCorrect ? Math.max(0.2, 1 - penalty) : 0;
 
-  await recordChallenge(attemptId, challengeIndex, numericScore, hintsUsed, durationMs);
+  // Anti-farming check: only add to persistent overall total if this challenge wasn't awarded before
+  const { isNew, newTotal } = isCorrect
+    ? recordAwardedChallenge(challengeKey, 10)
+    : { isNew: false, newTotal: getOverallTotalMarks() };
+
+  await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs);
+
+  const updatedAttempt = loadActiveAttempts()[attemptId];
+  const sessionMarks = Object.values(updatedAttempt?.scores || {}).reduce(
+    (sum, s) => sum + (s.isCorrect ? 10 : 0),
+    0
+  );
 
   return {
     is_correct: isCorrect,
-    score: numericScore,
+    score: isCorrect ? 10 : 0,
+    marks_awarded: isCorrect ? 10 : 0,
+    is_new_marks: isNew,
+    session_marks: sessionMarks,
+    total_marks: newTotal,
     correct_answer: localItem.correct_answer,
     explanation: localItem.explanation,
     reference: localItem.reference,
@@ -395,41 +510,30 @@ export async function finishLevel(attemptId: string): Promise<LevelResult> {
   const attempts = loadActiveAttempts();
   const attempt = attempts[attemptId];
 
-  // Try remote finish_level first when using a server attempt
-  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
-    try {
-      const { data, error } = await supabase.rpc('finish_level', { p_attempt: attemptId });
-      if (!error && data?.[0]) {
-        const remoteRes = data[0] as LevelResult;
-        if (attempt) {
-          syncLocalProgressAfterFinish(attempt.gameSlug, attempt.level, remoteRes);
-        }
-        return remoteRes;
-      }
-    } catch {
-      // Fallback to local calculation below
-    }
-  }
-
   const gameSlug = attempt?.gameSlug || 'scripture-challenge';
   const level = attempt?.level || 1;
   const scoresMap = attempt?.scores || {};
 
-  let totalScore = 0;
   let totalMs = 0;
-  let fullyCorrect = 0;
+  let correctCount = 0;
+  let newMarksCount = 0;
 
   for (let i = 1; i <= CHALLENGES_PER_LEVEL; i++) {
     const entry = scoresMap[i];
-    const s = entry?.score ?? 0;
-    totalScore += s;
     totalMs += entry?.durationMs ?? 0;
-    if (s >= 0.999) fullyCorrect += 1;
+    if (entry?.isCorrect) {
+      correctCount += 1;
+      if (entry.isNewMarks) {
+        newMarksCount += 1;
+      }
+    }
   }
 
-  const pct = Math.round((totalScore / CHALLENGES_PER_LEVEL) * 10000) / 100;
+  const incorrectCount = CHALLENGES_PER_LEVEL - correctCount;
+  const sessionMarks = correctCount * 10;
+  const newMarksAwarded = newMarksCount * 10;
+  const pct = Math.round((correctCount / CHALLENGES_PER_LEVEL) * 100);
   const stars = starsForPercent(pct);
-  const points = Math.round(totalScore * 100);
 
   const allProgress = loadAllLocalProgress();
   if (!allProgress[gameSlug]) allProgress[gameSlug] = {};
@@ -439,36 +543,62 @@ export async function finishLevel(attemptId: string): Promise<LevelResult> {
   const prevBestStars = prev?.best_stars ?? 0;
   const newBestStars = Math.max(prevBestStars, stars) as Stars;
   const isNewBest = !firstCompletion && stars > prevBestStars;
+  const personalBestMarks = Math.max(prev?.best_marks ?? 0, sessionMarks);
 
   allProgress[gameSlug][level] = {
     completed: true,
     best_stars: newBestStars,
     best_percent: Math.max(prev?.best_percent ?? 0, pct),
-    best_score: Math.max(prev?.best_score ?? 0, points),
+    best_score: Math.max(prev?.best_score ?? 0, sessionMarks),
+    best_marks: personalBestMarks,
     attempts: (prev?.attempts ?? 0) + 1,
     challenges_done: CHALLENGES_PER_LEVEL,
   };
   saveAllLocalProgress(allProgress);
 
-  // Update overall user XP stats in localStorage for HomePage & ProfilePage
+  // Update user XP & total marks in localStorage for HomePage & ProfilePage
   try {
     const stats = JSON.parse(
       localStorage.getItem('biblearena_user_stats') ||
         '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}'
     );
-    const newXp = (stats.xp || 0) + points;
+    const newXp = (stats.xp || 0) + sessionMarks;
     const newGamesPlayed = (stats.gamesPlayed || 0) + 1;
     localStorage.setItem(
       'biblearena_user_stats',
       JSON.stringify({
         ...stats,
         xp: newXp,
+        total_marks: getOverallTotalMarks(),
         gamesPlayed: newGamesPlayed,
         level: Math.floor(newXp / 500) + 1,
       })
     );
   } catch {
     // ignore
+  }
+
+  // Try remote finish_level if authenticated
+  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
+    try {
+      const { data, error } = await supabase.rpc('finish_level', { p_attempt: attemptId });
+      if (!error && data?.[0]) {
+        const remoteRes = data[0] as any;
+        if (attempt) {
+          syncLocalProgressAfterFinish(attempt.gameSlug, attempt.level, {
+            ...remoteRes,
+            session_marks: sessionMarks,
+            new_marks_awarded: newMarksAwarded,
+            total_accumulated_marks: getOverallTotalMarks(),
+            correct_count: correctCount,
+            incorrect_count: incorrectCount,
+            personal_best_marks: personalBestMarks,
+          });
+        }
+      }
+    } catch {
+      // Fallback already recorded above
+    }
   }
 
   const completedLevelsCount = Object.values(allProgress[gameSlug]).filter(
@@ -478,9 +608,15 @@ export async function finishLevel(attemptId: string): Promise<LevelResult> {
   return {
     result_percent: pct,
     result_stars: stars,
-    result_points: points,
+    result_points: sessionMarks,
+    session_marks: sessionMarks,
+    new_marks_awarded: newMarksAwarded,
+    total_accumulated_marks: getOverallTotalMarks(),
+    correct_count: correctCount,
+    incorrect_count: incorrectCount,
+    personal_best_marks: personalBestMarks,
     total_ms: totalMs,
-    fully_correct: fullyCorrect,
+    fully_correct: correctCount,
     prev_best_stars: prevBestStars,
     new_best_stars: newBestStars,
     is_new_best: isNewBest,
@@ -502,6 +638,7 @@ function syncLocalProgressAfterFinish(
     best_stars: Math.max(prev?.best_stars ?? 0, res.new_best_stars) as Stars,
     best_percent: Math.max(prev?.best_percent ?? 0, Number(res.result_percent)),
     best_score: Math.max(prev?.best_score ?? 0, res.result_points),
+    best_marks: Math.max(prev?.best_marks ?? 0, res.personal_best_marks ?? res.session_marks),
     attempts: (prev?.attempts ?? 0) + 1,
     challenges_done: CHALLENGES_PER_LEVEL,
   };
