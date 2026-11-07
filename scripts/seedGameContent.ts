@@ -10,14 +10,6 @@ const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const dryRun = process.argv.includes('--dry-run');
 
-if (!supabaseUrl || !serviceRoleKey) {
-  throw new Error('Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your environment. Never use a publishable/anon key for this script.');
-}
-
-const supabase = createClient(supabaseUrl, serviceRoleKey, {
-  auth: { persistSession: false, autoRefreshToken: false },
-});
-
 async function main() {
   const questions = ALL_19_GAME_SLUGS.flatMap((gameSlug) =>
     Array.from({ length: 50 }, (_, index) =>
@@ -60,6 +52,13 @@ async function main() {
     console.log(`Validated ${questionRows.length} questions and ${levels.length} levels across ${ALL_19_GAME_SLUGS.length} games.`);
     return;
   }
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error('Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in your environment. Never use a publishable/anon key for this script.');
+  }
+  const supabase = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
 
   for (let offset = 0; offset < questionRows.length; offset += 200) {
     const batch = questionRows.slice(offset, offset + 200);
