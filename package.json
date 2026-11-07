@@ -10,7 +10,8 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "validate:content": "tsx scripts/validateContent.ts",
-    "test:quiz": "tsx scripts/testQuizAccuracy.ts"
+    "test:quiz": "tsx scripts/testQuizAccuracy.ts",
+    "test:multiplayer": "tsx scripts/testMultiplayerAnd19Games.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -20,6 +21,7 @@
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
     "firebase": "^13.2.0",
+    "jsqr": "^1.4.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "qrcode.react": "^4.2.0",
