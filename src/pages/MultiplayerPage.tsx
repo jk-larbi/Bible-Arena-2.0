@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jsQR from 'jsqr';
 import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
 import { GAMES_LIST, GameInfo } from '../data/gamesList';
@@ -46,13 +47,72 @@ export const MultiplayerPage: React.FC = () => {
   const [scanInputUrl, setScanInputUrl] = useState('');
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
+  const [decodingPhoto, setDecodingPhoto] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const mediaStreamRef = useRef<MediaStream | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+
+  const processScannedText = useCallback((raw: string) => {
+    const trimmed = raw.trim();
+    if (!trimmed) return false;
+
+    // Check URL pattern e.g. https://.../join/ABC123 or /join/ABC123
+    const match = trimmed.match(/\/join\/([ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6})/i);
+    if (match?.[1]) {
+      setIsScanModalOpen(false);
+      nav(`/join/${match[1].toUpperCase()}`);
+      return true;
+    }
+
+    // Check direct 6-character room PIN
+    const normalized = normalizeCode(trimmed);
+    if (isValidCode(normalized)) {
+      setIsScanModalOpen(false);
+      nav(`/join/${normalized}`);
+      return true;
+    }
+
+    return false;
+  }, [nav]);
+
+  // Scan video frames in real time
+  const scanVideoFrame = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || video.readyState < 2) {
+      animationFrameRef.current = requestAnimationFrame(scanVideoFrame);
+      return;
+    }
+
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      if (ctx && canvas.width > 0 && canvas.height > 0) {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: 'dontInvert',
+        });
+        if (code && code.data) {
+          const handled = processScannedText(code.data);
+          if (handled) return; // Stop scanning once successfully decoded
+        }
+      }
+    } catch {
+      // Ignore frame read errors
+    }
+
+    animationFrameRef.current = requestAnimationFrame(scanVideoFrame);
+  }, [processScannedText]);
 
   // Manage Camera Feed when Scanner Modal opens/closes
   useEffect(() => {
     if (!isScanModalOpen) {
-      // Stop camera stream when modal is closed
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach((track) => track.stop());
         mediaStreamRef.current = null;
@@ -62,7 +122,8 @@ export const MultiplayerPage: React.FC = () => {
       return;
     }
 
-    // Attempt live camera stream
+    let isMounted = true;
+
     async function startCamera() {
       setCameraError(null);
       try {
@@ -70,13 +131,20 @@ export const MultiplayerPage: React.FC = () => {
           throw new Error('Camera access is not supported on this browser.');
         }
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment' }
+          video: { facingMode: 'environment', width: { ideal: 640 }, height: { ideal: 480 } }
         });
+        if (!isMounted) {
+          stream.getTracks().forEach((track) => track.stop());
+          return;
+        }
         mediaStreamRef.current = stream;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
+          videoRef.current.setAttribute('playsinline', 'true');
+          await videoRef.current.play();
         }
         setCameraActive(true);
+        animationFrameRef.current = requestAnimationFrame(scanVideoFrame);
       } catch (err) {
         console.warn('Camera stream error:', err);
         setCameraError('Camera access unavailable. Use image upload or enter room PIN below.');
@@ -87,12 +155,17 @@ export const MultiplayerPage: React.FC = () => {
     startCamera();
 
     return () => {
+      isMounted = false;
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach((track) => track.stop());
         mediaStreamRef.current = null;
       }
     };
-  }, [isScanModalOpen]);
+  }, [isScanModalOpen, scanVideoFrame]);
 
   const handleHostGameAction = async () => {
     setError('');
@@ -411,18 +484,51 @@ export const MultiplayerPage: React.FC = () => {
             <span className="font-semibold text-[#5A6275]">Have a saved QR image?</span>
             <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#171B24]/15 font-bold text-[#171B24] hover:bg-[#171B24] hover:text-white transition-colors cursor-pointer shadow-xs">
               <Upload className="w-3.5 h-3.5 text-[#3156C9]" />
-              <span>Select QR Photo</span>
+              <span>{decodingPhoto ? 'Scanning Photo…' : 'Select QR Photo'}</span>
               <input
                 type="file"
                 accept="image/*"
-                capture="environment"
                 className="hidden"
+                disabled={decodingPhoto}
                 onChange={(e) => {
-                  if (e.target.files?.[0]) {
-                    // Friendly prompt on image selection
-                    const fileName = e.target.files[0].name;
-                    alert(`Selected ${fileName}. If your image contains a room URL or PIN, enter it below to join.`);
-                  }
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setDecodingPhoto(true);
+                  setError('');
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                      try {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        if (!ctx) throw new Error('Could not initialize canvas context');
+                        ctx.drawImage(img, 0, 0);
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const code = jsQR(imageData.data, imageData.width, imageData.height);
+                        if (code && code.data) {
+                          const handled = processScannedText(code.data);
+                          if (!handled) {
+                            setScanInputUrl(code.data);
+                          }
+                        } else {
+                          setError('No valid QR code was detected in this photo. Please enter the room PIN below.');
+                        }
+                      } catch (decodeErr) {
+                        setError('Could not decode photo: ' + (decodeErr as Error).message);
+                      } finally {
+                        setDecodingPhoto(false);
+                      }
+                    };
+                    img.onerror = () => {
+                      setError('Failed to load image file.');
+                      setDecodingPhoto(false);
+                    };
+                    img.src = event.target?.result as string;
+                  };
+                  reader.readAsDataURL(file);
                 }}
               />
             </label>
