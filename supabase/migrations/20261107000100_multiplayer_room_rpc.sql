@@ -17,16 +17,29 @@ create table if not exists public.room_answers (
   unique(room_id, user_id, question_id)
 );
 
+alter table public.room_answers add column if not exists new_marks integer not null default 0;
 alter table public.room_answers enable row level security;
 drop policy if exists "room_answers_select" on public.room_answers;
-create policy "room_answers_select" on public.room_answers for select using (true);
 drop policy if exists "room_answers_insert" on public.room_answers;
-create policy "room_answers_insert" on public.room_answers for insert with check (auth.uid() = user_id);
+revoke all on public.room_answers from anon, authenticated;
+
+create table if not exists public.user_awarded_challenges (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade not null,
+  game_slug text not null,
+  level integer not null,
+  challenge_index smallint not null,
+  marks_awarded smallint not null default 10 check (marks_awarded = 10),
+  awarded_at timestamptz not null default now(),
+  unique(user_id, game_slug, level, challenge_index)
+);
+alter table public.user_awarded_challenges enable row level security;
+revoke all on public.user_awarded_challenges from anon, authenticated;
 
 -- Server time endpoint for high-precision multiplayer clock synchronization
 create or replace function public.server_now()
 returns timestamptz language sql security definer set search_path = public as $$
-  select timezone('utc'::text, now());
+  select clock_timestamp();
 $$;
 grant execute on function public.server_now() to anon, authenticated;
 
@@ -68,10 +81,11 @@ begin
       'question_started_at', v_room.question_started_at,
       'question_duration_seconds', coalesce(v_room.question_duration_seconds, 20),
       'reveal_seconds', coalesce(v_room.reveal_seconds, 5),
-      'question_ids', coalesce(v_room.question_ids, '{}')
+      'question_ids', coalesce(v_room.question_ids, '{}'),
+      'settings', coalesce(v_room.settings, '{}'::jsonb)
     ),
     'players', v_players,
-    'server_time', timezone('utc'::text, now())
+    'server_time', clock_timestamp()
   );
 end $$;
 grant execute on function public.get_room_sync(uuid) to anon, authenticated;
@@ -239,8 +253,8 @@ begin
     raise exception 'Room not found with PIN %', v_clean_code;
   end if;
 
-  if v_room.status = 'finished' then
-    raise exception 'This match has already ended';
+  if v_room.status <> 'waiting' then
+    raise exception 'This match has already started or ended';
   end if;
 
   -- Ensure profile exists

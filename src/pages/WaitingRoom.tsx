@@ -8,7 +8,6 @@ import {
   closeRoom,
   submitRoomAnswer,
   advanceRoomQuestion,
-  finishRoomSession,
 } from '../lib/rooms';
 import { notifyGameStarted } from '../services/notificationService';
 import { getGameById } from '../data/gamesList';
@@ -61,14 +60,24 @@ export default function WaitingRoom() {
   const [timelineOrder, setTimelineOrder] = useState<string[]>([]);
   const [matchSelectedLeft, setMatchSelectedLeft] = useState<string | null>(null);
   const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
+  const [wordSearchFound, setWordSearchFound] = useState<string[]>([]);
+  const [wordSearchSelection, setWordSearchSelection] = useState<{ row: number; col: number }[]>([]);
+  const [crosswordAcross, setCrosswordAcross] = useState('');
+  const [crosswordDown, setCrosswordDown] = useState('');
+  const [memoryFlipped, setMemoryFlipped] = useState<number[]>([]);
+  const [memorySolved, setMemorySolved] = useState<number[]>([]);
+  const [memoryCards, setMemoryCards] = useState<{ id: number; text: string; pairKey: string }[]>([]);
 
   useAutoAdvance(room, phase);
 
   // Load challenges whenever room's selected game is identified
   useEffect(() => {
     if (room?.game_slug) {
-      getLevelChallenges(room.game_slug, 1)
-        .then(setChallenges)
+      const requestedCount = Math.min(50, Math.max(1, Number(room.settings?.questionCount) || 10));
+      const levelsNeeded = Math.ceil(requestedCount / 10);
+      const firstLevel = room.settings?.difficulty === 'hard' ? 26 : room.settings?.difficulty === 'medium' ? 11 : 1;
+      Promise.all(Array.from({ length: levelsNeeded }, (_, index) => getLevelChallenges(room.game_slug, firstLevel + index)))
+        .then((sets) => setChallenges(sets.flat().slice(0, requestedCount)))
         .catch((e) => setError(e.message));
     }
   }, [room?.game_slug]);
@@ -85,9 +94,25 @@ export default function WaitingRoom() {
       setVersePicked([]);
       setMatchSelectedLeft(null);
       setMatchedPairs({});
+      setWordSearchFound([]);
+      setWordSearchSelection([]);
+      setCrosswordAcross('');
+      setCrosswordDown('');
+      setMemoryFlipped([]);
+      setMemorySolved([]);
+      setMemoryCards([]);
       if (currentChallenge) {
         if (room?.game_slug === 'bible-timeline' || room?.game_slug === 'bible-puzzles') {
           setTimelineOrder([...currentChallenge.options]);
+        }
+        if (room?.game_slug === 'bible-memory-challenge') {
+          const pairs: { a: string; b: string }[] = currentChallenge.metadata?.memoryPairs || [];
+          const deck: { id: number; text: string; pairKey: string }[] = [];
+          pairs.forEach((pair, index) => {
+            deck.push({ id: index * 2, text: pair.a, pairKey: `pair-${index}` });
+            deck.push({ id: index * 2 + 1, text: pair.b, pairKey: `pair-${index}` });
+          });
+          setMemoryCards(deck.sort((a, b) => ((a.id * 7 + (room?.current_question_index || 0)) % 5) - ((b.id * 7 + (room?.current_question_index || 0)) % 5)));
         }
       }
     }
@@ -180,22 +205,18 @@ export default function WaitingRoom() {
     if (!roomId || !isHost || busy) return;
     setBusy(true);
     try {
-      const questionIds = challenges.map((q) => q.id);
-      const { error: err } = await supabase.rpc('start_game', {
+      if (challenges.length === 0) throw new Error('No published challenges are available for this game.');
+      const publishResult = await supabase.rpc('publish_room_questions', {
+        p_room: roomId,
+        p_questions: challenges,
+      });
+      if (publishResult.error) throw new Error(publishResult.error.message);
+      const questionIds = (publishResult.data as string[]) || challenges.map((q) => q.id);
+      const startResult = await supabase.rpc('start_game', {
         p_room: roomId,
         p_question_ids: questionIds,
       });
-      if (err) {
-        await supabase
-          .from('rooms')
-          .update({
-            status: 'playing',
-            question_started_at: new Date().toISOString(),
-            current_question_index: 0,
-            question_ids: questionIds,
-          })
-          .eq('id', roomId);
-      }
+      if (startResult.error) throw new Error(startResult.error.message);
 
       // Notify other players
       const hostName = currentPlayer?.display_name || 'Host';
@@ -220,11 +241,13 @@ export default function WaitingRoom() {
   async function handleAnswerSubmission(picked: string) {
     if (!room || !currentChallenge || phase !== 'answering' || myPick !== null) return;
     setMyPick(picked);
+    setError(null);
     try {
       await submitRoomAnswer(room.id, currentChallenge.id, picked, 0, currentChallenge);
       await refetch();
     } catch (err) {
-      console.warn('Answer submit notice:', err);
+      setMyPick(null);
+      setError((err as Error).message);
     }
   }
 
@@ -232,11 +255,7 @@ export default function WaitingRoom() {
     if (!room || !isHost || busy) return;
     setBusy(true);
     try {
-      if (isLastQuestion) {
-        await finishRoomSession(room.id);
-      } else {
-        await advanceRoomQuestion(room.id, room.current_question_index);
-      }
+      await advanceRoomQuestion(room.id, room.current_question_index);
       await refetch();
     } catch (err) {
       setError((err as Error).message);
@@ -482,6 +501,169 @@ export default function WaitingRoom() {
       );
     }
 
+    // 4. Bible Word Search — select adjacent letters to find every target word.
+    if (room.game_slug === 'bible-word-search') {
+      const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
+      const cleanWord = (value: string) => value.toUpperCase().replace(/[^A-Z]/g, '');
+      const words = targetWords.map(cleanWord).filter(Boolean);
+      const columns = Math.max(12, ...words.map((word) => word.length));
+      const grid = words.map((word, row) => {
+        const cells = Array.from({ length: columns }, (_, col) => 'ABCDEFGHJKLMNPQRSTUVWXYZ'[(row * 11 + col * 7 + 3) % 24]);
+        const start = (row * 3) % Math.max(1, columns - word.length + 1);
+        [...word].forEach((letter, offset) => { cells[start + offset] = letter; });
+        return cells;
+      });
+      const selectCell = (row: number, col: number) => {
+        if (!isAnswering) return;
+        const previous = wordSearchSelection[wordSearchSelection.length - 1];
+        if (previous && (previous.row !== row || Math.abs(previous.col - col) !== 1)) {
+          setWordSearchSelection([{ row, col }]);
+          return;
+        }
+        if (wordSearchSelection.some((cell) => cell.row === row && cell.col === col)) return;
+        const next = [...wordSearchSelection, { row, col }];
+        const candidate = next.map(({ row: r, col: c }) => grid[r][c]).join('');
+        const match = targetWords.find((word) => {
+          const normalized = cleanWord(word);
+          return !wordSearchFound.includes(word) && (candidate === normalized || candidate === [...normalized].reverse().join(''));
+        });
+        if (match) {
+          const found = [...wordSearchFound, match];
+          setWordSearchFound(found);
+          setWordSearchSelection([]);
+          if (found.length === targetWords.length) handleAnswerSubmission(targetWords.join(','));
+          return;
+        }
+        setWordSearchSelection(next);
+      };
+      return (
+        <div className="space-y-5">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {targetWords.map((word) => (
+              <span key={word} className={`px-3 py-2 rounded-xl font-mono text-sm font-bold border ${wordSearchFound.includes(word) ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/20'}`}>
+                {wordSearchFound.includes(word) ? `✓ ${word}` : word}
+              </span>
+            ))}
+          </div>
+          <div className="bg-[#171B24] text-[#F3EBDD] p-4 rounded-2xl font-mono text-center select-none overflow-x-auto">
+            <div className="inline-grid gap-1.5" style={{ gridTemplateColumns: `repeat(${columns}, minmax(1.8rem, 1fr))` }}>
+              {grid.flatMap((row, rowIdx) => row.map((letter, colIdx) => {
+                const selected = wordSearchSelection.some((cell) => cell.row === rowIdx && cell.col === colIdx);
+                return <button key={`${rowIdx}-${colIdx}`} type="button" disabled={!isAnswering || wordSearchFound.length === targetWords.length}
+                  onClick={() => selectCell(rowIdx, colIdx)} aria-label={`Row ${rowIdx + 1}, column ${colIdx + 1}, ${letter}`}
+                  className={`w-7 h-8 sm:w-8 sm:h-9 rounded flex items-center justify-center font-bold text-sm ${selected ? 'bg-[#D66B3D] text-white' : 'bg-white/10 hover:bg-white/25'}`}>{letter}</button>;
+              }))}
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs text-[#5A6275]">Select adjacent letters in a row, forwards or backwards.</p>
+            <button type="button" disabled={!isAnswering || wordSearchSelection.length === 0} onClick={() => setWordSearchSelection([])}
+              className="shrink-0 px-3 py-2 rounded-lg border border-[#171B24]/20 text-xs font-semibold disabled:opacity-40">Clear selection</button>
+          </div>
+          <p className="text-xs text-center text-[#5A6275]">{wordSearchFound.length} of {targetWords.length} words found</p>
+        </div>
+      );
+    }
+
+    // 5. Bible Crossword — solve both intersecting clues.
+    if (room.game_slug === 'bible-crossword') {
+      const acrossAnswer: string = currentChallenge.metadata?.acrossAnswer || currentChallenge.options[0] || '';
+      const downAnswer: string = currentChallenge.metadata?.downAnswer || currentChallenge.options[1] || '';
+      return (
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+              <label className="block text-xs font-bold uppercase text-[#D66B3D] mb-1">Across ({acrossAnswer.length} letters)</label>
+              <p className="text-xs text-[#171B24]/80 mb-2">{currentChallenge.metadata?.acrossClue}</p>
+              <input type="text" disabled={!isAnswering} value={crosswordAcross} onChange={(e) => setCrosswordAcross(e.target.value.toUpperCase())}
+                placeholder="Enter across answer..." className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold" />
+            </div>
+            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+              <label className="block text-xs font-bold uppercase text-[#3156C9] mb-1">Down ({downAnswer.length} letters)</label>
+              <p className="text-xs text-[#171B24]/80 mb-2">{currentChallenge.metadata?.downClue}</p>
+              <input type="text" disabled={!isAnswering} value={crosswordDown} onChange={(e) => setCrosswordDown(e.target.value.toUpperCase())}
+                placeholder="Enter down answer..." className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold" />
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <button type="button" disabled={!isAnswering || !crosswordAcross.trim() || !crosswordDown.trim()}
+              onClick={() => handleAnswerSubmission(`${crosswordAcross.trim()}|${crosswordDown.trim()}`)}
+              className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white font-bold text-sm disabled:opacity-40">Submit Crossword</button>
+          </div>
+        </div>
+      );
+    }
+
+    // 6. Bible Match-Up — pair each biblical figure with the correct act.
+    if (room.game_slug === 'bible-match-up') {
+      const pairs: { left: string; right: string }[] = currentChallenge.metadata?.pairs || [];
+      const leftItems = pairs.map((pair) => pair.left);
+      const rightItems = pairs.map((pair) => pair.right);
+      return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="space-y-2">
+            <span className="text-xs font-bold uppercase text-[#5A6275]">Select Biblical Figure</span>
+            {leftItems.map((left) => {
+              const matched = Boolean(matchedPairs[left]);
+              const selected = matchSelectedLeft === left;
+              return <button key={left} disabled={!isAnswering || matched} onClick={() => setMatchSelectedLeft(left)}
+                className={`w-full p-3 rounded-xl text-left text-sm font-bold border ${matched ? 'bg-emerald-100 border-emerald-600 text-emerald-900' : selected ? 'bg-[#3156C9] text-white border-[#3156C9]' : 'bg-white border-[#171B24]/15'}`}>
+                {left} {matched ? '✓' : ''}
+              </button>;
+            })}
+          </div>
+          <div className="space-y-2">
+            <span className="text-xs font-bold uppercase text-[#5A6275]">Match Defining Act</span>
+            {rightItems.map((right) => {
+              const used = Object.values(matchedPairs).includes(right);
+              return <button key={right} disabled={!isAnswering || used || !matchSelectedLeft}
+                onClick={() => {
+                  if (!matchSelectedLeft) return;
+                  const next = { ...matchedPairs, [matchSelectedLeft]: right };
+                  setMatchedPairs(next);
+                  setMatchSelectedLeft(null);
+                  if (Object.keys(next).length === pairs.length) {
+                    handleAnswerSubmission(pairs.map((pair) => `${pair.left}=${next[pair.left]}`).join('|'));
+                  }
+                }}
+                className={`w-full p-3 rounded-xl text-left text-xs font-semibold border ${used ? 'bg-stone-100 text-stone-400 border-stone-200' : 'bg-[#F3EBDD] border-[#171B24]/15 hover:bg-[#D66B3D] hover:text-white'}`}>{right}</button>;
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 7. Bible Memory Challenge — flip cards and find every matching pair.
+    if (room.game_slug === 'bible-memory-challenge' && memoryCards.length > 0) {
+      return (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {memoryCards.map((card, idx) => {
+            const solved = memorySolved.includes(idx);
+            const flipped = memoryFlipped.includes(idx) || solved;
+            return <button key={card.id} disabled={!isAnswering || flipped || memoryFlipped.length >= 2}
+              onClick={() => {
+                const nextFlipped = [...memoryFlipped, idx];
+                setMemoryFlipped(nextFlipped);
+                if (nextFlipped.length === 2) {
+                  const [firstIdx, secondIdx] = nextFlipped;
+                  if (memoryCards[firstIdx].pairKey === memoryCards[secondIdx].pairKey) {
+                    const nextSolved = [...memorySolved, firstIdx, secondIdx];
+                    setMemorySolved(nextSolved);
+                    setMemoryFlipped([]);
+                    if (nextSolved.length === memoryCards.length) handleAnswerSubmission(currentChallenge.correct_answer);
+                  } else {
+                    setTimeout(() => setMemoryFlipped([]), 700);
+                  }
+                }
+              }}
+              className={`min-h-[80px] p-3 rounded-2xl font-serif font-bold text-sm border flex items-center justify-center text-center ${solved ? 'bg-emerald-700 text-white border-emerald-700' : flipped ? 'bg-[#3156C9] text-white border-[#3156C9]' : 'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/20'}`}>
+              {flipped ? card.text : '✦ Tap to Flip'}
+            </button>;
+          })}
+        </div>
+      );
+    }
+
     // 4. Default Multiple-Choice Layout for remaining games
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
@@ -584,7 +766,7 @@ export default function WaitingRoom() {
             <div className="pt-4 border-t border-[#F3EBDD] flex justify-end">
               <button
                 onClick={handleHostAdvance}
-                disabled={busy}
+                disabled={busy || phase !== 'advancing'}
                 className="px-5 py-2.5 rounded-xl bg-[#171B24] text-white text-xs font-bold hover:bg-[#2b3140] inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
               >
                 <span>{isLastQuestion ? 'Complete Match (Host)' : 'Advance Next Round (Host)'}</span>
@@ -747,7 +929,7 @@ export default function WaitingRoom() {
               <div className="space-y-2">
                 <button
                   onClick={handleStartGame}
-                  disabled={busy}
+                  disabled={busy || challenges.length === 0}
                   className="min-h-[48px] w-full rounded-xl bg-[#D66B3D] font-semibold text-white shadow hover:bg-[#c25a2c] transition-colors disabled:opacity-50"
                 >
                   {busy ? 'Starting Game…' : `Start ${gameInfo?.title || 'Game'} (Host)`}
