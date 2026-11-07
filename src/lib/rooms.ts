@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, isBackendConfigured } from './supabase';
 
 export type Room = {
   id: string;
