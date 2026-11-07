@@ -23,7 +23,8 @@ create index if not exists game_content_game_level_idx
 alter table public.game_content enable row level security;
 revoke all on public.game_content from anon, authenticated;
 
-create or replace view public.game_content_public as
+drop view if exists public.game_content_public;
+create view public.game_content_public as
 select id, game_slug, level, challenge_index, question_text, options,
        explanation, reference, null::jsonb as metadata
 from public.game_content;

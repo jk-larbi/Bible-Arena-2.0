@@ -57,7 +57,7 @@ export function useAutoAdvance(room: RoomState | null, phase: string) {
         if (data && (data as RoomState).current_question_index === room.current_question_index && (data as RoomState).status === 'playing')
           setTimeout(fire, 500);
       } catch {
-        // Retry
+        setTimeout(fire, 500);
       }
     };
     if (asked.current === key) return;
