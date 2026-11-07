@@ -335,7 +335,8 @@ export async function recordChallenge(
   index: number,
   isCorrect: boolean,
   isNewMarks: boolean,
-  ms?: number
+  ms?: number,
+  syncRemote = true
 ) {
   const marks = isCorrect ? 10 : 0;
   const attempts = loadActiveAttempts();
@@ -365,7 +366,7 @@ export async function recordChallenge(
     saveAllLocalProgress(allProgress);
   }
 
-  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
+  if (syncRemote && !attemptId.startsWith('local-') && isBackendConfigured && supabase) {
     try {
       await supabase.rpc('record_challenge', {
         p_attempt: attemptId,
@@ -448,14 +449,14 @@ export async function submitChallengeAnswer(
         const row = data[0];
         const serverAnswer = String(row.correct_answer ?? '').trim();
         if (!serverAnswer || serverAnswer.toLowerCase() !== localItem.correct_answer.trim().toLowerCase()) {
-          throw new Error('The server question bank is out of sync with this question. Local answer validation was used.');
+          throw new Error('Question bank mismatch: the server question does not match the displayed question. Refresh before continuing.');
         }
         const isCorrect = Boolean(row.is_correct);
         const { isNew, newTotal } = isCorrect
           ? recordAwardedChallenge(challengeKey, 10)
           : { isNew: false, newTotal: getOverallTotalMarks() };
 
-        await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs);
+        await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs, false);
 
         // Calculate session marks so far
         const currentAttempt = loadActiveAttempts()[attemptId];
@@ -476,8 +477,13 @@ export async function submitChallengeAnswer(
           reference: localItem.reference,
         };
       }
-    } catch {
-      // Fallback to local evaluation below
+    } catch (rpcError) {
+      const message = rpcError instanceof Error ? rpcError.message : String(rpcError);
+      if (/question bank mismatch|question content is not published|stable question ID|not active or does not belong/i.test(message)) {
+        throw rpcError;
+      }
+      // If the RPC is not installed yet or temporarily unavailable, use the
+      // bundled canonical question record. Confirmed content mismatches fail closed.
     }
   }
 
