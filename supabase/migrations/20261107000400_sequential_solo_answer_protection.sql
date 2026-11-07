@@ -31,7 +31,7 @@ begin
   if p_challenge_index is null
      or p_challenge_index < 1
      or p_challenge_index > 10
-     or p_challenge_index <> v_attempt.challenges_done + 1 then
+     or p_challenge_index <> coalesce(v_attempt.challenges_done, 0) + 1 then
     raise exception 'Challenge already submitted or out of sequence';
   end if;
 
