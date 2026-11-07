@@ -410,7 +410,7 @@ export default function WaitingRoom() {
           {players.length === 0 ? (
             <p className="py-4 text-center text-sm text-[#5A6275]">Waiting for players to join…</p>
           ) : (
-            players.map((p) => {
+            [...players].sort((a, b) => (b.score || 0) - (a.score || 0)).map((p) => {
               const isSelf = p.user_id === user?.id;
               return (
                 <div key={p.id} className="flex items-center justify-between py-3">
@@ -432,15 +432,14 @@ export default function WaitingRoom() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    {p.is_ready ? (
+                    {room.status !== 'waiting' && <span className="rounded-lg bg-[#F3EBDD] px-2.5 py-1 text-xs font-bold tabular-nums">{p.score || 0} pts</span>}
+                    {room.status === 'waiting' && p.is_ready ? (
                       <span className="inline-flex items-center gap-1 text-sm font-semibold text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-200">
                         ✓ Ready
                       </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-sm font-medium text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                        • Waiting
-                      </span>
-                    )}
+                    ) : room.status === 'waiting' ? (
+                      <span className="inline-flex items-center gap-1 text-sm font-medium text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">• Waiting</span>
+                    ) : null}
 
                     {isHost && !p.is_host && room.status === 'waiting' && (
                       <button
