@@ -13,7 +13,7 @@ import { notifyGameStarted } from '../services/notificationService';
 import { getGameById } from '../data/gamesList';
 import { getLevelChallenges } from '../lib/levels';
 import type { ChallengeItem } from '../data/bibleContentBank';
-import { useAutoAdvance } from '../hooks/useRoomClock';
+import { getQuestionDurationSeconds, useAutoAdvance } from '../hooks/useRoomClock';
 import { useMultiplayerSync, SyncPlayer } from '../hooks/useMultiplayerSync';
 import { AutoAdvanceBar } from '../components/AutoAdvanceBar';
 import { AnswerFeedback, Reveal } from '../components/AnswerFeedback';
@@ -206,6 +206,13 @@ export default function WaitingRoom() {
     setBusy(true);
     try {
       if (challenges.length === 0) throw new Error('No published challenges are available for this game.');
+      // Persist the game-specific answer window before starting the server-clocked room.
+      const durationResult = await supabase
+        .from('rooms')
+        .update({ question_duration_seconds: getQuestionDurationSeconds(room?.game_slug || '') })
+        .eq('id', roomId);
+      if (durationResult.error) throw new Error(`Could not set the question timer: ${durationResult.error.message}`);
+
       const publishResult = await supabase.rpc('publish_room_questions', {
         p_room: roomId,
         p_questions: challenges,
