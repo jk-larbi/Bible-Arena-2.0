@@ -243,7 +243,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Locate books by chapter and verse clues',
     description: 'Quickly identify whether a given verse belongs to Old Testament history, poetry, minor prophets, or epistles.',
     difficulty: 'Medium',
-    levelsCount: 75,
+    levelsCount: 100,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-purple-950',
@@ -315,7 +315,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Categorize laws, covenants & eras',
     description: 'Distinguish between Levitical ordinances and New Covenant epistles in lightning-fast classification rounds.',
     difficulty: 'Easy',
-    levelsCount: 80,
+    levelsCount: 100,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-blue-950',

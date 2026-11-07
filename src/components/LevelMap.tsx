@@ -1,59 +1,115 @@
-import React from 'react';
-import { Check, Lock, Star, Play } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import type { LevelNode } from '../lib/levels';
 
-interface LevelMapProps {
-  totalLevels?: number;
-  currentLevel: number;
-  maxCompleted: number;
-  onSelectLevel: (level: number) => void;
-}
+type Props = { gameName: string; levels: LevelNode[]; onPlay: (level: number, restart: boolean) => void };
 
-export const LevelMap: React.FC<LevelMapProps> = ({
-  totalLevels = 20,
-  currentLevel,
-  maxCompleted,
-  onSelectLevel
-}) => {
-  const levels = Array.from({ length: totalLevels }, (_, i) => i + 1);
+const Star = ({ on }: { on: boolean }) => (
+  <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+    <polygon points="12 2 15.1 8.6 22 9.3 16.8 14 18.4 21 12 17.3 5.6 21 7.2 14 2 9.3 8.9 8.6"
+      fill={on ? '#D66B3D' : 'none'} stroke={on ? '#D66B3D' : '#8a8f99'} strokeWidth="1.5" strokeLinejoin="round" />
+  </svg>
+);
+export const Stars5 = ({ n }: { n: number }) => (
+  <span className="inline-flex" role="img" aria-label={`${n} out of 5 stars`}>
+    {[1, 2, 3, 4, 5].map((i) => <Star key={i} on={i <= n} />)}
+  </span>
+);
+
+type State = 'locked' | 'soon' | 'done' | 'progress' | 'open';
+const stateOf = (l: LevelNode): State =>
+  !l.unlocked ? 'locked' : !l.is_published ? 'soon' : l.completed ? 'done' : l.challenges_done > 0 ? 'progress' : 'open';
+
+const STYLE: Record<State, string> = {
+  done:     'bg-[#A7B49A] text-[#171B24]',
+  progress: 'bg-[#3156C9] text-white',
+  open:     'bg-[#D66B3D] text-white',
+  soon:     'bg-white/10 text-[#F3EBDD]/60 border border-dashed border-white/30',
+  locked:   'bg-white/5 text-[#F3EBDD]/40',
+};
+
+export function LevelMap({ gameName, levels, onPlay }: Props) {
+  const [sel, setSel] = useState<LevelNode | null>(null);
+  const currentRef = useRef<HTMLButtonElement>(null);
+  const current = levels.find((l) => l.unlocked && l.is_published && !l.completed);
+  const done = levels.filter((l) => l.completed).length;
+  const stars = levels.reduce((s, l) => s + l.best_stars, 0);
+
+  useEffect(() => { currentRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, [current?.level]);
 
   return (
-    <div className="py-6 px-4">
-      <div className="text-center mb-6">
-        <h4 className="font-serif font-bold text-lg text-[#171B24]">Difficulty Ladder & Level Map</h4>
-        <p className="text-xs text-[#171B24]/70">Select an unlocked level or continue your journey</p>
+    <div className="bg-[#171B24] p-4 pb-40 text-[#F3EBDD]">
+      <h1 className="font-serif text-3xl font-bold">{gameName}</h1>
+      <p className="mt-1 text-sm tabular-nums">
+        {done} of {levels.length} levels completed · {stars} stars earned
+      </p>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/15" role="progressbar"
+           aria-valuemin={0} aria-valuemax={levels.length} aria-valuenow={done}>
+        <div className="h-full bg-[#D66B3D]" style={{ width: `${levels.length ? (done / levels.length) * 100 : 0}%` }} />
       </div>
 
-      <div className="grid grid-cols-4 sm:grid-cols-5 gap-3 max-h-[350px] overflow-y-auto p-2">
-        {levels.map((lvl) => {
-          const isCompleted = lvl <= maxCompleted;
-          const isCurrent = lvl === currentLevel;
-          const isLocked = lvl > maxCompleted + 1;
-
+      <ul className="mt-5 grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-10">
+        {levels.map((l) => {
+          const s = stateOf(l);
+          const isCurrent = current?.level === l.level;
           return (
-            <button
-              key={lvl}
-              disabled={isLocked}
-              onClick={() => onSelectLevel(lvl)}
-              className={`relative flex flex-col items-center justify-center h-20 rounded-2xl font-bold transition-all cursor-pointer ${
-                isCompleted
-                  ? 'bg-emerald-800 text-white shadow-md hover:bg-emerald-700'
-                  : isCurrent
-                  ? 'bg-[#D66B3D] text-white shadow-lg ring-4 ring-[#D66B3D]/30 scale-105'
-                  : 'bg-white/60 text-[#171B24]/40 border border-[#171B24]/10 opacity-60 cursor-not-allowed'
-              }`}
-            >
-              <span className="text-xs uppercase opacity-80 mb-0.5">Lvl</span>
-              <span className="text-xl font-serif font-extrabold">{lvl}</span>
-              
-              <div className="absolute top-1.5 right-1.5">
-                {isCompleted && <Check className="w-3.5 h-3.5 text-emerald-300" />}
-                {isLocked && <Lock className="w-3.5 h-3.5 text-stone-400" />}
-                {isCurrent && <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300 animate-pulse" />}
-              </div>
-            </button>
+            <li key={l.level}>
+              <button ref={isCurrent ? currentRef : undefined} onClick={() => setSel(l)}
+                aria-label={`Level ${l.level}, ${s === 'done' ? `completed, ${l.best_stars} stars` : s === 'progress' ? `in progress, ${l.challenges_done} of 10` : s}`}
+                className={`flex min-h-[64px] w-full flex-col items-center justify-center rounded-xl font-serif text-xl font-bold
+                  ${STYLE[s]} ${isCurrent ? 'ring-2 ring-[#F3EBDD] ring-offset-2 ring-offset-[#171B24]' : ''}`}>
+                {s === 'locked' ? <LockIcon /> : l.level}
+                {s === 'done' && <Stars5 n={l.best_stars} />}
+                {s === 'progress' && <span className="text-xs font-sans tabular-nums">{l.challenges_done}/10</span>}
+              </button>
+            </li>
           );
         })}
-      </div>
+      </ul>
+
+      <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+        <li>Completed</li><li>In progress</li><li>Available</li><li>Coming soon</li><li>Locked</li>
+      </ul>
+
+      {sel && (
+        <div role="dialog" aria-label={`Level ${sel.level}`}
+             className="fixed inset-x-0 bottom-0 z-40 mx-auto max-w-md rounded-t-2xl bg-[#F3EBDD] p-5 text-[#171B24]"
+             style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}>
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="font-serif text-xl font-bold">Level {sel.level} — {sel.name}</h2>
+              <p className="text-sm">{sel.challenge_count} challenges</p>
+            </div>
+            <button onClick={() => setSel(null)} className="min-h-[44px] min-w-[44px] text-sm font-semibold">Close</button>
+          </div>
+          {sel.completed && (
+            <p className="mt-2 flex items-center gap-2 text-sm">
+              Best: <Stars5 n={sel.best_stars} /> <span className="tabular-nums">{Math.round(sel.best_percent)}%</span>
+              <span>· {sel.attempts} attempt{sel.attempts === 1 ? '' : 's'}</span>
+            </p>
+          )}
+          <div className="mt-4 grid gap-2">
+            {!sel.unlocked && <p className="text-sm">Complete Level {sel.level - 1} to unlock this level.</p>}
+            {sel.unlocked && !sel.is_published && <p className="text-sm">This level is coming soon.</p>}
+            {sel.unlocked && sel.is_published && sel.challenges_done > 0 && !sel.completed && (<>
+              <button onClick={() => onPlay(sel.level, false)} className="min-h-[48px] rounded-xl bg-[#3156C9] font-semibold text-white">
+                Continue ({sel.challenges_done}/10)
+              </button>
+              <button onClick={() => onPlay(sel.level, true)} className="min-h-[48px] rounded-xl border border-[#171B24]/40 font-semibold">Start over</button>
+            </>)}
+            {sel.unlocked && sel.is_published && !(sel.challenges_done > 0 && !sel.completed) && (
+              <button onClick={() => onPlay(sel.level, true)} className="min-h-[48px] rounded-xl bg-[#D66B3D] font-semibold text-white">
+                {sel.completed ? 'Replay level' : 'Start level'}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
-};
+}
+
+const LockIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+    <rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 018 0v3" />
+  </svg>
+);
