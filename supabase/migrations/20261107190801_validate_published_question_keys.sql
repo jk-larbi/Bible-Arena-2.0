@@ -1,4 +1,4 @@
--- Applied remotely as Supabase migration 20261107190812.
+-- Applied remotely as Supabase migration 20261107190801.
 -- Prevent room hosts from overwriting a question key belonging to another game
 -- or publishing a key that does not match its game/level/challenge coordinates.
 create or replace function public.publish_room_questions(p_room uuid,p_questions jsonb)
