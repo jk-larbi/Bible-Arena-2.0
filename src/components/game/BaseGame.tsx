@@ -5,6 +5,7 @@ import { LeaveGameButton } from '../LeaveGameButton';
 import { AnswerFeedback, type Reveal } from '../AnswerFeedback';
 import { AutoAdvanceBar } from '../AutoAdvanceBar';
 import { useCountdown } from '../../hooks/useCountdown';
+import { getQuestionDurationSeconds } from '../../hooks/useRoomClock';
 import {
   getLevelMap,
   startLevel,
@@ -31,7 +32,6 @@ interface BaseGameProps {
   ) => React.ReactNode;
 }
 
-const QUESTION_SECONDS = 35;
 const REVEAL_SECONDS = 5;
 
 export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) => {
@@ -174,7 +174,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const answering = useCountdown(
     Boolean(attempt && !result && reveal === null && currentChallenge),
-    QUESTION_SECONDS,
+    getQuestionDurationSeconds(gameId),
     () => settleAnswer(null),
     currentChallenge?.id ?? currentIdx
   );
