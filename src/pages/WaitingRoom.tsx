@@ -6,11 +6,10 @@ import { RoomSharePanel } from '../components/RoomSharePanel';
 import { subscribeToRoom, kickPlayerFromRoom, closeRoom } from '../lib/rooms';
 import { notifyGameStarted } from '../services/notificationService';
 import { getGameById } from '../data/gamesList';
-import { SCRIPTURE_CHALLENGE_QUESTIONS } from '../data/initialQuestions';
 import { useServerOffset, useRoomPhase, useAutoAdvance, RoomState } from '../hooks/useRoomClock';
 import { AutoAdvanceBar } from '../components/AutoAdvanceBar';
 import { AnswerFeedback, Reveal } from '../components/AnswerFeedback';
-import { Trash2, UserX, XCircle } from 'lucide-react';
+import { UserX, XCircle } from 'lucide-react';
 
 type RoomPlayer = {
   id: string;
@@ -26,7 +25,22 @@ type RoomData = RoomState & {
   code: string;
   host_id: string;
   game_slug: string;
+  question_ids?: string[];
+  settings?: Record<string, unknown>;
 };
+
+type LiveQuestion = {
+  id: string;
+  question_text: string;
+  options: string[];
+  explanation?: string;
+  reference?: string;
+  metadata?: Record<string, any>;
+};
+
+function gameInfoLabel(slug: string) {
+  return getGameById(slug)?.title || slug;
+}
 
 export default function WaitingRoom() {
   const { roomId } = useParams<{ roomId: string }>();
@@ -40,6 +54,9 @@ export default function WaitingRoom() {
   const [busy, setBusy] = useState(false);
   const [reveal, setReveal] = useState<Reveal | null>(null);
   const [myPick, setMyPick] = useState<string | null>(null);
+  const [questions, setQuestions] = useState<LiveQuestion[]>([]);
+  const [answerResult, setAnswerResult] = useState<{ is_correct: boolean; marks_awarded: number } | null>(null);
+  const [textAnswer, setTextAnswer] = useState('');
 
   const offset = useServerOffset();
   const { phase, secondsLeft, progress } = useRoomPhase(room, offset);
@@ -61,6 +78,8 @@ export default function WaitingRoom() {
         code: roomData.room_code || roomData.code,
         host_id: roomData.host_id,
         game_slug: roomData.game_id || roomData.game_slug,
+        question_ids: roomData.question_ids || [],
+        settings: roomData.settings || {},
         status: roomData.status,
         current_question_index: roomData.current_question_index ?? 0,
         question_started_at: roomData.question_started_at ?? null,
@@ -68,6 +87,16 @@ export default function WaitingRoom() {
         reveal_seconds: roomData.reveal_seconds ?? 5
       };
       setRoom(formattedRoom);
+
+      if (formattedRoom.status === 'playing' && formattedRoom.question_ids?.length) {
+        const { data: content, error: contentError } = await supabase
+          .from('game_content_public')
+          .select('id, question_text, options, explanation, reference, metadata')
+          .in('id', formattedRoom.question_ids);
+        if (contentError) throw new Error(`Could not load this game's questions: ${contentError.message}`);
+        const byId = new Map((content || []).map((q: any) => [q.id, q]));
+        setQuestions(formattedRoom.question_ids.map((id) => byId.get(id)).filter(Boolean) as LiveQuestion[]);
+      }
 
       const { data: playersData, error: playersError } = await supabase
         .from('room_players')
@@ -95,48 +124,37 @@ export default function WaitingRoom() {
     };
   }, [roomId, loadData]);
 
-  // Reveal answer when phase flips to 'reveal'
+  // Reveal the server-validated answer only after the shared answer timer ends.
   useEffect(() => {
     if (phase !== 'reveal' || !room) return;
+    let cancelled = false;
     const fetchReveal = async () => {
-      try {
-        const { data } = await supabase.rpc('reveal_current_question', { p_room: room.id });
-        if (data?.[0]) {
-          const row = data[0];
-          setReveal({
-            is_correct: myPick !== null ? myPick === row.correct_answer : null,
-            correct_answer: row.correct_answer,
-            explanation: row.explanation,
-            reference: row.reference,
-            picked: myPick
-          });
-          return;
-        }
-      } catch {
-        // Fallthrough to local fallback
+      const { data, error: revealError } = await supabase.rpc('reveal_current_question', { p_room: room.id });
+      if (cancelled) return;
+      if (revealError || !data?.[0]) {
+        setError(revealError?.message || 'The answer explanation is not available yet.');
+        return;
       }
-
-      const qIndex = room.current_question_index;
-      const localQ = SCRIPTURE_CHALLENGE_QUESTIONS[qIndex % SCRIPTURE_CHALLENGE_QUESTIONS.length];
-      if (localQ) {
-        setReveal({
-          is_correct: myPick !== null ? myPick === localQ.correctAnswer : null,
-          correct_answer: localQ.correctAnswer,
-          explanation: localQ.explanation,
-          reference: localQ.reference,
-          picked: myPick
-        });
-      }
+      const row = data[0];
+      setReveal({
+        is_correct: answerResult?.is_correct ?? null,
+        correct_answer: row.correct_answer,
+        explanation: row.explanation,
+        reference: row.reference,
+        picked: myPick
+      });
     };
-
     fetchReveal();
-  }, [phase, room?.current_question_index, room, myPick]);
+    return () => { cancelled = true; };
+  }, [phase, room?.current_question_index, room?.id, answerResult, myPick]);
 
   // Reset myPick on new question
   useEffect(() => {
     if (phase === 'answering') {
       setReveal(null);
       setMyPick(null);
+      setAnswerResult(null);
+      setTextAnswer('');
     }
   }, [room?.current_question_index, phase]);
 
@@ -186,19 +204,25 @@ export default function WaitingRoom() {
     if (!roomId || !isHost || busy) return;
     setBusy(true);
     try {
-      const questionIds = SCRIPTURE_CHALLENGE_QUESTIONS.map(q => q.id);
+      if (!room) throw new Error('Room details are unavailable.');
+      const requestedCount = Number(room.settings?.questionCount || 5);
+      const { data: content, error: contentError } = await supabase
+        .from('game_content_public')
+        .select('id, level, challenge_index')
+        .eq('game_slug', room.game_slug)
+        .eq('level', 1)
+        .order('challenge_index', { ascending: true })
+        .limit(Math.min(15, Math.max(1, requestedCount)));
+      if (contentError) throw new Error(`Could not load ${gameInfoLabel(room.game_slug)} content: ${contentError.message}`);
+      const questionIds = (content || []).map((q: any) => q.id as string);
+      if (questionIds.length !== requestedCount) {
+        throw new Error(`${gameInfoLabel(room.game_slug)} has only ${questionIds.length} published questions for this room. Publish at least ${requestedCount} questions for Level 1, then try again.`);
+      }
       const { error: err } = await supabase.rpc('start_game', {
         p_room: roomId,
         p_question_ids: questionIds
       });
-      if (err) {
-        // Direct fallback update if RPC is missing
-        await supabase.from('rooms').update({
-          status: 'playing',
-          question_started_at: new Date().toISOString(),
-          current_question_index: 0
-        }).eq('id', roomId);
-      }
+      if (err) throw new Error(err.message);
 
       // Dispatch notifications to players
       const hostName = currentPlayer?.display_name || 'Host';
@@ -245,9 +269,35 @@ export default function WaitingRoom() {
     );
   }
 
-  const gameInfo = getGameById(room.game_slug) || getGameById('scripture-challenge');
-  const currentQ = SCRIPTURE_CHALLENGE_QUESTIONS[room.current_question_index % SCRIPTURE_CHALLENGE_QUESTIONS.length];
-  const isLastQuestion = (room.current_question_index + 1) >= SCRIPTURE_CHALLENGE_QUESTIONS.length;
+  const gameInfo = getGameById(room.game_slug);
+  const currentQ = questions[room.current_question_index];
+  const questionTotal = room.question_ids?.length || questions.length;
+  const isLastQuestion = questionTotal > 0 && (room.current_question_index + 1) >= questionTotal;
+
+  async function submitAnswer() {
+    if (!room || !currentQ || phase !== 'answering' || myPick !== null || busy) return;
+    const answer = textAnswer.trim();
+    if (!answer) { setError('Enter or select an answer before submitting.'); return; }
+    setBusy(true);
+    setError(null);
+    try {
+      const { data, error: submitError } = await supabase.rpc('submit_room_answer', {
+        p_room: room.id,
+        p_question_id: currentQ.id,
+        p_answer: answer
+      });
+      if (submitError) throw new Error(submitError.message);
+      const result = Array.isArray(data) ? data[0] : data;
+      if (result?.already_answered) throw new Error('Your answer has already been recorded for this question.');
+      setMyPick(answer);
+      setAnswerResult({ is_correct: Boolean(result?.is_correct), marks_awarded: Number(result?.marks_awarded || 0) });
+      await loadData();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
 
   return (
     <main className="mx-auto max-w-2xl space-y-6 p-6 text-[#171B24]">
@@ -270,38 +320,59 @@ export default function WaitingRoom() {
         <div className="rounded-3xl bg-white p-8 shadow-xl border border-[#171B24]/10 text-[#171B24]">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">
-              Live Arena • Question {room.current_question_index + 1} of {SCRIPTURE_CHALLENGE_QUESTIONS.length}
+              Live Arena • Question {room.current_question_index + 1} of {questionTotal}
             </span>
             {phase === 'answering' && (
               <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-lg">⏱ {secondsLeft}s</span>
             )}
           </div>
 
-          <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-6">{currentQ.question}</h2>
+          {currentQ ? (
+            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-6">{currentQ.question_text}</h2>
+          ) : (
+            <p className="rounded-xl bg-amber-50 p-4 text-sm text-amber-800">Loading this game's question… If this persists, ask the host to check the published game content.</p>
+          )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-            {currentQ.options.map((opt) => {
-              const isSelected = myPick === opt;
-              let style = 'bg-[#F3EBDD] border-[#171B24]/15 hover:bg-[#3156C9] hover:text-white';
-              if (isSelected) style = 'bg-[#3156C9] text-white border-[#3156C9] font-bold';
-              if (reveal) {
-                if (opt === reveal.correct_answer) style = 'bg-green-600 text-white border-green-600 font-bold';
-                else if (isSelected && !reveal.is_correct) style = 'bg-red-600 text-white border-red-600';
-                else style = 'bg-gray-100 text-gray-400 opacity-50';
-              }
-
-              return (
-                <button
-                  key={opt}
-                  disabled={phase !== 'answering' || myPick !== null}
-                  onClick={() => setMyPick(opt)}
-                  className={`min-h-[48px] rounded-xl border p-4 text-left font-semibold text-base transition-all cursor-pointer disabled:cursor-default ${style}`}
-                >
-                  {opt}
-                </button>
-              );
-            })}
-          </div>
+          {currentQ?.options?.length ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              {currentQ.options.map((opt) => {
+                const isSelected = textAnswer === opt;
+                let style = 'bg-[#F3EBDD] border-[#171B24]/15 hover:bg-[#3156C9] hover:text-white';
+                if (isSelected) style = 'bg-[#3156C9] text-white border-[#3156C9] font-bold';
+                if (reveal) {
+                  if (opt === reveal.correct_answer) style = 'bg-green-600 text-white border-green-600 font-bold';
+                  else if (isSelected && !reveal.is_correct) style = 'bg-red-600 text-white border-red-600';
+                  else style = 'bg-gray-100 text-gray-400 opacity-50';
+                }
+                return (
+                  <button key={opt} type="button" disabled={phase !== 'answering' || myPick !== null || busy}
+                    onClick={() => setTextAnswer(opt)}
+                    className={`min-h-[48px] rounded-xl border p-4 text-left font-semibold text-base transition-all cursor-pointer disabled:cursor-default ${style}`}>
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="mb-4">
+              <label className="mb-2 block text-sm font-semibold">Your answer</label>
+              <input value={textAnswer} onChange={(e) => setTextAnswer(e.target.value)}
+                disabled={phase !== 'answering' || myPick !== null || busy}
+                className="w-full rounded-xl border border-[#171B24]/20 p-4" placeholder="Type your answer…" />
+            </div>
+          )}
+          {phase === 'answering' && (
+            <button type="button" onClick={submitAnswer}
+              disabled={!textAnswer.trim() || myPick !== null || busy || !currentQ}
+              className="min-h-[48px] w-full rounded-xl bg-[#3156C9] px-5 font-bold text-white disabled:opacity-50">
+              {busy ? 'Submitting…' : myPick !== null ? 'Answer recorded' : 'Submit Answer'}
+            </button>
+          )}
+          {answerResult && (
+            <p className="mt-3 text-sm font-semibold" aria-live="polite">
+              Answer recorded. {answerResult.marks_awarded} marks awarded.
+            </p>
+          )}
 
           {reveal && (
             <div>

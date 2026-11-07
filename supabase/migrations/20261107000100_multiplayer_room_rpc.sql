@@ -35,7 +35,7 @@ create or replace function public.start_game(p_room uuid, p_question_ids text[])
 returns public.rooms
 language plpgsql security definer set search_path = public
 as $$
-declare v_room public.rooms; v_count integer;
+declare v_room public.rooms; v_count integer; v_time_limit integer;
 begin
   select * into v_room from public.rooms where id = p_room for update;
   if not found then raise exception 'Room not found'; end if;
@@ -48,12 +48,17 @@ begin
   if v_count <> cardinality(p_question_ids) then
     raise exception 'Selected game challenges are missing from the published game content. Publish this game content before starting multiplayer.';
   end if;
+  begin
+    v_time_limit := (v_room.settings->>'timeLimit')::integer;
+  exception when invalid_text_representation or numeric_value_out_of_range then
+    v_time_limit := null;
+  end;
   update public.rooms set
     status = 'playing',
     question_ids = p_question_ids,
     current_question_index = 0,
     question_started_at = clock_timestamp(),
-    question_duration_seconds = greatest(5, least(180, coalesce((settings->>'timeLimit')::integer, question_duration_seconds, 20)))
+    question_duration_seconds = greatest(5, least(180, coalesce(v_time_limit, question_duration_seconds, 20)))
   where id = p_room returning * into v_room;
   return v_room;
 end;
@@ -108,6 +113,9 @@ declare v_room public.rooms; v_id text;
 begin
   select * into v_room from public.rooms where id = p_room;
   if not found or v_room.status <> 'playing' then return; end if;
+  if not exists (select 1 from public.room_players rp where rp.room_id = p_room and rp.user_id = auth.uid()) then
+    raise exception 'You are not a member of this room';
+  end if;
   if v_room.question_started_at is null or clock_timestamp() <
     v_room.question_started_at + make_interval(secs => v_room.question_duration_seconds) then
     raise exception 'The answer is not ready to be revealed';
@@ -127,6 +135,9 @@ declare v_room public.rooms; v_next integer;
 begin
   select * into v_room from public.rooms where id = p_room for update;
   if not found then raise exception 'Room not found'; end if;
+  if not exists (select 1 from public.room_players rp where rp.room_id = p_room and rp.user_id = auth.uid()) then
+    raise exception 'You are not a member of this room';
+  end if;
   if v_room.status <> 'playing' then return v_room; end if;
   if v_room.current_question_index <> p_from_index then return v_room; end if;
   if v_room.question_started_at is null or clock_timestamp() <
