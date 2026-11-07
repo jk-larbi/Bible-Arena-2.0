@@ -4,7 +4,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import { AutoAdvanceBar } from './AutoAdvanceBar';
 import { AnswerFeedback, type Reveal } from './AnswerFeedback';
 
-const QUESTION_SECONDS = 20;
+const QUESTION_SECONDS = 15;
 const REVEAL_SECONDS = 5;   // change this one number to adjust the pause
 
 export type Q = { id: string; prompt: string; options: string[]; explanation?: string; reference?: string; correctAnswer?: string };
