@@ -12,11 +12,12 @@ export type Room = {
 // Room codes avoid look-alike characters (no I, O, 0, 1)
 export const normalizeCode = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '');
 export const isValidCode = (c: string) => /^[ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6}$/.test(c);
+// Always share the stable public app URL, never a deployment-specific
+// Vercel preview hostname. Preview deployments can expire and break QR invites.
+const PUBLIC_APP_URL = 'https://bible-arena-2-0.vercel.app';
+
 export const inviteLink = (code: string) => {
-  const origin = typeof window !== 'undefined' && window.location?.origin
-    ? window.location.origin
-    : 'https://biblearena.app';
-  return `${origin}/join/${code}`;
+  return `${PUBLIC_APP_URL}/join/${normalizeCode(code)}`;
 };
 
 export async function createRoom(gameSlug: string, displayName: string, settings = {}) {
