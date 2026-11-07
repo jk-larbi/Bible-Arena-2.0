@@ -1,6 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
+// Scripture-focused and non-ABCD mechanics need a shorter, focused answer window.
+const FIFTEEN_SECOND_GAMES = new Set([
+  'scripture-challenge',
+  'complete-the-scripture',
+  'scripture-scramble',
+  'verse-builder',
+  'bible-timeline',
+  'bible-puzzles',
+  'bible-word-search',
+  'bible-crossword',
+  'bible-match-up',
+  'bible-memory-challenge',
+]);
+
+export function getQuestionDurationSeconds(gameSlug: string): number {
+  return FIFTEEN_SECOND_GAMES.has(gameSlug) ? 15 : 35;
+}
+
 export type RoomState = {
   id: string; status: 'waiting' | 'playing' | 'finished';
   current_question_index: number; question_started_at: string | null;
