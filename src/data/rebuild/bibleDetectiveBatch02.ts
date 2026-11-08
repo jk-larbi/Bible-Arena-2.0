@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: corrected for cross-game fact duplication. */
+/** Staged batch 02: cross-game duplicate corrections. */
 export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-detective-rebuild-b02-001",
@@ -370,7 +370,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A Roman officer asked Jesus to heal a servant without visiting the house. What was the officer's role?",
     "options": [
       "Centurion",
-      "Seven times",
+      "Grass like oxen",
       "Esther",
       "Mordecai"
     ],
@@ -970,7 +970,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "From which town did Philip come, according to John's Gospel?",
     "options": [
       "Bethsaida",
-      "Seven times",
+      "Grass like oxen",
       "Esther",
       "Mordecai"
     ],
@@ -1147,16 +1147,16 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 17,
     "challenge_index": 3,
-    "question_text": "For how long was Nebuchadnezzar's understanding taken from him?",
+    "question_text": "What did Nebuchadnezzar eat during the period of his humiliation?",
     "options": [
-      "Seven times",
+      "Grass like oxen",
       "Ahithophel",
       "Hushai",
       "The wise woman of Abel"
     ],
-    "correct_answer": "Seven times",
-    "reference": "Daniel 4:32-34",
-    "explanation": "The passage Daniel 4:32-34 supports this distinct biblical detail.",
+    "correct_answer": "Grass like oxen",
+    "reference": "Daniel 4:33",
+    "explanation": "The passage Daniel 4:33 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-detective-b02-fact-58"
@@ -1571,7 +1571,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "options": [
       "Shammah",
       "Jonah",
-      "Seven times",
+      "Grass like oxen",
       "Esther"
     ],
     "correct_answer": "Shammah",
