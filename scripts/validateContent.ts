@@ -12,6 +12,10 @@ async function validate() {
   let totalLevels = 0;
   let totalChallenges = 0;
   const seenIds = new Set<string>();
+  const seenQuestions = new Map<string, string>();
+  const seenQuestionAnswers = new Map<string, string>();
+  let duplicateQuestionCount = 0;
+  let duplicateOptionCount = 0;
   const errors: string[] = [];
 
   for (const slug of ALL_19_GAME_SLUGS) {
@@ -31,6 +35,30 @@ async function validate() {
           errors.push(`Duplicate challenge ID: ${item.id}`);
         }
         seenIds.add(item.id);
+
+        const normalize = (value: string) => value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+        const normalizedQuestion = normalize(item.question_text || '');
+        const previousQuestion = seenQuestions.get(`${slug}:${normalizedQuestion}`);
+        if (previousQuestion) {
+          duplicateQuestionCount += 1;
+          errors.push(`Repeated question in ${slug}: ${item.id} duplicates ${previousQuestion}`);
+        } else if (normalizedQuestion) {
+          seenQuestions.set(`${slug}:${normalizedQuestion}`, item.id);
+        }
+
+        const questionAnswerKey = `${slug}:${normalizedQuestion}:${normalize(item.correct_answer || '')}`;
+        const previousPair = seenQuestionAnswers.get(questionAnswerKey);
+        if (previousPair && !previousQuestion) {
+          errors.push(`Repeated question/answer pair in ${slug}: ${item.id} duplicates ${previousPair}`);
+        } else if (questionAnswerKey) {
+          seenQuestionAnswers.set(questionAnswerKey, item.id);
+        }
+
+        const normalizedOptions = (item.options || []).map(normalize).filter(Boolean);
+        if (new Set(normalizedOptions).size !== normalizedOptions.length) {
+          duplicateOptionCount += 1;
+          errors.push(`Duplicate answer options in ${item.id}`);
+        }
 
         if (!item.question_text?.trim()) {
           errors.push(`${item.id}: Missing question_text`);
@@ -53,6 +81,8 @@ async function validate() {
   console.log(`Games validated:      ${totalGames}`);
   console.log(`Levels validated:     ${totalLevels}`);
   console.log(`Challenges validated: ${totalChallenges}`);
+  console.log(`Repeated question rows: ${duplicateQuestionCount}`);
+  console.log(`Rows with duplicate options: ${duplicateOptionCount}`);
 
   if (errors.length > 0) {
     console.error(`Validation failed with ${errors.length} error(s):`);
@@ -60,7 +90,7 @@ async function validate() {
     process.exit(1);
   }
 
-  console.log('SUCCESS: All 19 games x 50 levels (9,500 challenges) passed validation.');
+  console.log('SUCCESS: All 19 games x 50 levels (9,500 challenges) passed uniqueness and quality validation.');
 }
 
 validate();
