@@ -247,16 +247,16 @@ export const BIBLE_CHARACTER_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 3,
     "challenge_index": 3,
-    "question_text": "Who struck down six hundred Philistines with an oxgoad?",
+    "question_text": "Who was the father of Jephthah, whose son was later rejected by his half-brothers?",
     "options": [
-      "Shamgar",
+      "Gilead",
       "Rahab",
       "Miriam",
       "Bezalel"
     ],
-    "correct_answer": "Shamgar",
-    "explanation": "The account in Judges 3:31 identifies Shamgar in this event or role.",
-    "reference": "Judges 3:31",
+    "correct_answer": "Gilead",
+    "explanation": "The biblical account in Judges 11:1-2 identifies Gilead in this event or role.",
+    "reference": "Judges 11:1-2",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "character-quest-fact-13"
@@ -1727,16 +1727,16 @@ export const BIBLE_CHARACTER_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 18,
     "challenge_index": 2,
-    "question_text": "Which woman did Paul commend as a servant of the church at Cenchreae and bearer of his letter to Rome?",
+    "question_text": "Which woman did Paul say had laboured much in the Lord?",
     "options": [
-      "Phoebe",
+      "Persis",
       "Rahab",
       "Miriam",
       "Bezalel"
     ],
-    "correct_answer": "Phoebe",
-    "explanation": "The account in Romans 16:1-2 identifies Phoebe in this event or role.",
-    "reference": "Romans 16:1-2",
+    "correct_answer": "Persis",
+    "explanation": "The biblical account in Romans 16:12 identifies Persis in this event or role.",
+    "reference": "Romans 16:12",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "character-quest-fact-87"
