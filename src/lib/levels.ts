@@ -693,7 +693,7 @@ export async function getLevelChallenges(
           correct_answer: localBackup[idx].correct_answer,
           explanation: row.explanation || localBackup[idx].explanation,
           reference: row.reference || localBackup[idx].reference,
-          metadata: row.metadata || localBackup[idx].metadata,
+          metadata: { ...localBackup[idx].metadata, ...(row.metadata || {}) },
         }));
       }
     } catch {
