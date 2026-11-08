@@ -12,10 +12,15 @@ const ids = new Set<string>();
 const questions = new Set<string>();
 const facts = new Set<string>();
 const byGameLevel = new Map<string, number>();
+const challengeIndexes = new Map<string, Set<number>>();
 
 for (const item of ALL_BATCHES) {
   const gameLevel = `${item.game_slug}:${item.level}`;
   byGameLevel.set(gameLevel, (byGameLevel.get(gameLevel) ?? 0) + 1);
+  const indexes = challengeIndexes.get(gameLevel) ?? new Set<number>();
+  if (indexes.has(item.challenge_index)) errors.push(`Duplicate challenge index ${item.challenge_index} in ${gameLevel}`);
+  indexes.add(item.challenge_index);
+  challengeIndexes.set(gameLevel, indexes);
   if (ids.has(item.id)) errors.push(`Duplicate ID: ${item.id}`);
   ids.add(item.id);
 
@@ -59,3 +64,5 @@ console.log(`Questions: ${ALL_BATCHES.length}; games: ${new Set(ALL_BATCHES.map(
 console.log('Note: this structural audit does not replace human verification of every Bible reference and interpretation.');
 
 // CI trigger: staged batch validation is required before any live-bank replacement.
+
+// Keep this validator intentionally structural; human review remains required for Scripture accuracy and semantic duplication.
