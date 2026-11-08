@@ -29,7 +29,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
       {bgImage && (
         <div className="absolute inset-0">
           <img
-            src={bgImage}
+            src={bgImage.startsWith('/') ? `${import.meta.env.BASE_URL}${bgImage.slice(1)}` : bgImage}
             alt={title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
