@@ -35,7 +35,7 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
       "Jerusalem"
     ],
     "correct_answer": "Malta",
-    "explanation": "This event is recorded in Acts 28:1. The question tests the setting associated with this later ministry episode.",
+    "explanation": "Acts 28:1 says the survivors learned that the island was called Malta.",
     "reference": "Acts 28:1",
     "metadata": {
       "difficulty": "expert",
@@ -172,11 +172,11 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
       "Ephesus",
       "Corinth",
       "Jerusalem",
-      "Antipatris on the way to Caesarea"
+      "Antioch"
     ],
-    "correct_answer": "Miletus",
-    "explanation": "This event is recorded in 2 Timothy 4:20. The question tests the setting associated with this later ministry episode.",
-    "reference": "2 Timothy 4:20",
+    "correct_answer": "Ephesus",
+    "explanation": "Paul reasoned daily in the school of Tyrannus, and this continued for two years in Ephesus.",
+    "reference": "Acts 19:9-10",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-timeline-b03-fact-9"
@@ -835,8 +835,8 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
       "Jerusalem"
     ],
     "correct_answer": "Corinth",
-    "explanation": "This event is recorded in Romans 16:23. The question tests the setting associated with this later ministry episode.",
-    "reference": "Romans 16:23",
+    "explanation": "Acts 18:11 records that Paul stayed there a year and six months, teaching the word of God.",
+    "reference": "Acts 18:11",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-timeline-b03-fact-42"
