@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { GAMES_LIST, GameInfo } from '../data/gamesList';
 import { Flame, Search, UserCheck, Check, X, Swords, Send, Trophy } from 'lucide-react';
 import { Button } from '../components/Button';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -31,9 +31,10 @@ type ChallengeItem = {
   created_at: string;
 };
 
-export const ChallengesPage: React.FC = () => {
+interface ChallengesPageProps { onSelectGame?: (game: GameInfo) => void; }
+
+export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) => {
   const { user } = useSession();
-  const navigate = useNavigate();
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -304,7 +305,10 @@ export const ChallengesPage: React.FC = () => {
                 {c.status === 'accepted' && (
                   <Button
                     size="sm"
-                    onClick={() => navigate('/game/scripture-challenge')}
+                    onClick={() => {
+                      const game = GAMES_LIST.find((item) => item.id === 'scripture-challenge');
+                      if (game) onSelectGame?.(game);
+                    }}
                     className="bg-[#3156C9] hover:bg-[#2544A5] text-white w-full sm:w-auto"
                   >
                     Play Challenge
