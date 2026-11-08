@@ -46,7 +46,7 @@ export function AuthForm({ onDone }: { onDone?: () => void }) {
   return (
     <form onSubmit={submit} className="mx-auto max-w-md space-y-3 p-6 bg-[#F3EBDD] rounded-2xl text-[#171B24] border border-[#E3D9C6]">
       <div className="flex items-center gap-3 mb-2">
-        <img src="/assets/bible-arena-logo.png" alt="BibleArena Logo" className="h-12 w-auto object-contain rounded-xl" />
+        <img src={`${import.meta.env.BASE_URL}assets/bible-arena-logo.png`} alt="BibleArena Logo" className="h-12 w-auto object-contain rounded-xl" />
         <span className="font-serif font-extrabold text-xl text-[#171B24]">BibleArena</span>
       </div>
       <h1 className="font-serif text-3xl font-bold">
