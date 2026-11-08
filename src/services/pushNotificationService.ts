@@ -17,7 +17,10 @@ const DEFAULT_VAPID_PUBLIC_KEY = 'BMoD5ezxr7kAYMFNs2fJf3WrTJoWhtOCuI2g46URESOf27
 
 export async function requestNotificationPermission(): Promise<boolean> {
   if (!('Notification' in window)) {
-    throw new Error('Browser notifications are not supported on this browser.');
+    throw new Error('This browser does not support notifications. Try the latest Chrome or Edge.');
+  }
+  if (!window.isSecureContext) {
+    throw new Error('Push notifications require a secure HTTPS connection. Open BibleArena using its https:// address.');
   }
 
   const permission = await Notification.requestPermission();
@@ -44,8 +47,12 @@ export async function subscribeUserToPush(userId: string): Promise<boolean> {
   const isGranted = await requestNotificationPermission();
   if (!isGranted) return false;
 
-  const registration = await registerNotificationWorker();
-  if (!registration) return false;
+  const registered = await registerNotificationWorker();
+  if (!registered) {
+    throw new Error('BibleArena could not install its notification service worker. Refresh the page and try again.');
+  }
+  // Wait until the worker is active before calling PushManager.subscribe.
+  const registration = await navigator.serviceWorker.ready;
 
   if (!('PushManager' in window)) {
     throw new Error('Background push is not supported by this browser.');
@@ -60,8 +67,9 @@ export async function subscribeUserToPush(userId: string): Promise<boolean> {
         applicationServerKey: urlBase64ToUint8Array(vapidKey)
       });
     } catch (err) {
-      console.error('Push subscription failed:', err);
-      throw new Error('Your browser could not create a push subscription. Please check browser support and try again.');
+      const cause = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+      console.error('Push subscription failed:', { cause, secureContext: window.isSecureContext, permission: Notification.permission, serviceWorkerScope: registration.scope, pushManagerAvailable: 'PushManager' in window, vapidKeyLength: vapidKey.length });
+      throw new Error(`Browser push subscription failed (${cause}). Refresh BibleArena and try again. If it still fails, send this error to support.`);
     }
   }
 
