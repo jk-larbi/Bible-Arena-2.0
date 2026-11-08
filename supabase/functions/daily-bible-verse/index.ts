@@ -1,7 +1,7 @@
 import webpush from "npm:web-push@3.6.7";
 import { createClient } from "npm:@supabase/supabase-js@2";
 
-const VAPID_PUBLIC_KEY = "BDG6yYS-EvZYYXHAvLMPX9QrqlSVl4dkKNdst0BRwFvmeTqmN889vmNVU2y3EeBPqDqhjVOLXGPE97oDtUQCCo8";
+const VAPID_PUBLIC_KEY = "BMoD5ezxr7kAYMFNs2fJf3WrTJoWhtOCuI2g46URESOf2746xTk3xV-2e6G_GydgGReQbi26JoqKE7esDCXFXp8";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SECRET_KEYS = JSON.parse(Deno.env.get("SUPABASE_SECRET_KEYS") ?? "{}");
 const SERVICE_KEY = SECRET_KEYS.default ?? Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
