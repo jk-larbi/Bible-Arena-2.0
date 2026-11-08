@@ -142,7 +142,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
 
         {/* Keep the swipeable game rail as the default; expand to the full 19-game grid on demand. */}
         {showAllGames ? (
-          <div id="game-catalog" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pb-2">
+          <div id="game-catalog" className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
             {GAMES_LIST.map((game) => (
               <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
             ))}
