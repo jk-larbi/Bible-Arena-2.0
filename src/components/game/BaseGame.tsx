@@ -534,12 +534,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const sharedLetter = acrossIndex >= 0 ? acrossAns[acrossIndex] : '';
       const downIndex = sharedLetter ? downAns.indexOf(sharedLetter) : 0;
       const gridSize = Math.max(11, acrossAns.length + 2, downAns.length + 2);
-      const centerRow = Math.floor(gridSize / 2);
+      const centerRow = Math.max(downIndex, Math.floor(gridSize / 2));
       const acrossStart = Math.max(0, Math.floor((gridSize - acrossAns.length) / 2));
       const downCol = acrossStart + Math.max(0, acrossIndex);
-      const cells = new Map<string, string>();
-      [...acrossAns].forEach((letter, i) => cells.set(`${centerRow},${acrossStart + i}`, crosswordAcross.length === acrossAns.length ? crosswordAcross[i] : ''));
-      [...downAns].forEach((letter, i) => cells.set(`${centerRow - downIndex + i},${downCol}`, crosswordDown.length === downAns.length ? crosswordDown[i] : ''));
       return (
         <div className="space-y-4">
           <div className="rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 p-4">
@@ -555,7 +552,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                 const isAcross = row === centerRow && col >= acrossStart && col < acrossStart + acrossAns.length;
                 const isDown = col === downCol && row >= centerRow - downIndex && row < centerRow - downIndex + downAns.length;
                 const active = isAcross || isDown;
-                const value = isAcross && crosswordAcross.length === acrossAns.length ? crosswordAcross[col - acrossStart] : isDown && crosswordDown.length === downAns.length ? crosswordDown[row - (centerRow - downIndex)] : '';
+                const acrossValue = isAcross ? (crosswordAcross[col - acrossStart] || '') : '';
+                const downValue = isDown ? (crosswordDown[row - (centerRow - downIndex)] || '') : '';
+                const value = acrossValue || downValue;
                 return <div key={key} className={`aspect-square rounded-sm flex items-center justify-center text-xs font-black ${active ? 'bg-white text-[#171B24] border border-[#D66B3D]' : 'bg-white/5'}`}>{value || (active ? '' : '')}</div>;
               })}
             </div>
