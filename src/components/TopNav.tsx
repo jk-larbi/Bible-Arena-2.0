@@ -128,7 +128,12 @@ export const TopNav: React.FC<TopNavProps> = ({
               <button
                 onClick={async () => {
                   const { logoutPlayer } = await import('../lib/auth');
-                  await logoutPlayer();
+                  const { error } = await logoutPlayer();
+                  if (error) {
+                    console.error('BibleArena logout failed:', error);
+                    return;
+                  }
+                  onSelectTab('games');
                 }}
                 className="px-3 py-1.5 rounded-full bg-[#171B24]/10 text-[#171B24] font-semibold text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
                 title="Log out"
