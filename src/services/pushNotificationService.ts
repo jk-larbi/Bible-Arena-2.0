@@ -13,7 +13,7 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 // Default public VAPID key placeholder if env var is not set
-const DEFAULT_VAPID_PUBLIC_KEY = 'BEl62iUYgUivxIkv69yViEuiBIa-m36_1pC8Q-Qv6p4v2gU6XW2R3C9E2W3Q-8A0123456789ABCDEF01234';
+const DEFAULT_VAPID_PUBLIC_KEY = 'BDG6yYS-EvZYYXHAvLMPX9QrqlSVl4dkKNdst0BRwFvmeTqmN889vmNVU2y3EeBPqDqhjVOLXGPE97oDtUQCCo8';
 
 export async function requestNotificationPermission(): Promise<boolean> {
   if (!('Notification' in window)) {
@@ -31,7 +31,8 @@ export async function registerNotificationWorker(): Promise<ServiceWorkerRegistr
   }
 
   try {
-    const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    const basePath = import.meta.env.BASE_URL || '/';
+    const registration = await navigator.serviceWorker.register(`${basePath}sw.js`, { scope: basePath });
     return registration;
   } catch (err) {
     console.error('Service Worker registration failed:', err);
@@ -46,22 +47,28 @@ export async function subscribeUserToPush(userId: string): Promise<boolean> {
   const registration = await registerNotificationWorker();
   if (!registration) return false;
 
-  const vapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY || DEFAULT_VAPID_PUBLIC_KEY;
-  let subscription: PushSubscription | null = null;
-
-  try {
-    subscription = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(vapidKey)
-    });
-  } catch (err) {
-    console.warn('Could not subscribe with pushManager (using local notification mode):', err);
+  if (!('PushManager' in window)) {
+    throw new Error('Background push is not supported by this browser.');
   }
 
-  const subJson = subscription ? subscription.toJSON() : {
-    endpoint: 'local-browser-notification',
-    keys: { auth: 'local', p256dh: 'local' }
-  };
+  const vapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY || DEFAULT_VAPID_PUBLIC_KEY;
+  let subscription = await registration.pushManager.getSubscription();
+  if (!subscription) {
+    try {
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidKey)
+      });
+    } catch (err) {
+      console.error('Push subscription failed:', err);
+      throw new Error('Your browser could not create a push subscription. Please check browser support and try again.');
+    }
+  }
+
+  const subJson = subscription.toJSON();
+  if (!subJson.endpoint || !subJson.keys?.auth || !subJson.keys?.p256dh) {
+    throw new Error('Your browser returned an incomplete push subscription.');
+  }
 
   const { error } = await supabase
     .from('push_subscriptions')
@@ -73,6 +80,7 @@ export async function subscribeUserToPush(userId: string): Promise<boolean> {
 
   if (error) {
     console.error('Error saving push subscription to Supabase:', error);
+    throw new Error('Your push subscription was created but could not be saved. Please try again.');
   }
 
   return true;

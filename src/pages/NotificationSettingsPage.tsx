@@ -8,7 +8,6 @@ import {
   NotificationPreferences
 } from '../services/notificationService';
 import {
-  requestNotificationPermission,
   subscribeUserToPush,
   unsubscribeUserFromPush
 } from '../services/pushNotificationService';
@@ -21,6 +20,7 @@ export const NotificationSettingsPage: React.FC = () => {
 
   const [prefs, setPrefs] = useState<NotificationPreferences>({
     browser_push_enabled: true,
+    daily_verse_enabled: true,
     challenges_enabled: true,
     live_games_enabled: true,
     achievements_enabled: true,
@@ -69,17 +69,16 @@ export const NotificationSettingsPage: React.FC = () => {
     setSaving(true);
     setStatusMsg(null);
     try {
-      const granted = await requestNotificationPermission();
+      const subscribed = await subscribeUserToPush(user.id);
       if (typeof Notification !== 'undefined') {
         setBrowserPermission(Notification.permission);
       }
-      if (granted) {
-        await subscribeUserToPush(user.id);
+      if (subscribed) {
         setPrefs((p) => ({ ...p, browser_push_enabled: true }));
-        setStatusMsg({ type: 'success', text: 'Browser push notifications successfully enabled!' });
+        setStatusMsg({ type: 'success', text: 'Browser push notifications successfully enabled on this device!' });
       } else {
         setPrefs((p) => ({ ...p, browser_push_enabled: false }));
-        setStatusMsg({ type: 'error', text: 'Browser permission was denied or blocked by your browser.' });
+        setStatusMsg({ type: 'error', text: 'Push notifications could not be enabled. Check browser permission and support, then try again.' });
       }
     } catch (err) {
       setStatusMsg({ type: 'error', text: (err as Error).message });
@@ -233,6 +232,28 @@ export const NotificationSettingsPage: React.FC = () => {
                 prefs.challenges_enabled ? 'translate-x-6' : 'translate-x-0'
               }`}
             />
+          </button>
+        </div>
+
+        {/* Daily Bible Verse */}
+        <div className="py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center">
+              <Bell className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="font-bold text-sm text-[#171B24]">Daily Bible Verse</p>
+              <p className="text-xs text-[#5A6275]">Receive a Scripture and short encouragement each morning.</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={prefs.daily_verse_enabled}
+            onClick={() => handleToggle('daily_verse_enabled')}
+            className={`w-12 h-6 rounded-full transition-colors p-1 cursor-pointer ${prefs.daily_verse_enabled ? 'bg-emerald-600' : 'bg-gray-300'}`}
+          >
+            <div className={`w-4 h-4 rounded-full bg-white transition-transform ${prefs.daily_verse_enabled ? 'translate-x-6' : 'translate-x-0'}`} />
           </button>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GAMES_LIST, GameInfo } from '../data/gamesList';
 import { Flame, Search, UserCheck, Check, X, Swords, Send, Trophy } from 'lucide-react';
 import { Button } from '../components/Button';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -21,13 +22,18 @@ type ChallengeItem = {
   game_id: string;
   target_score: number;
   reward_xp: number;
+  challenger_score?: number;
+  opponent_score?: number;
+  winner_id?: string | null;
   challenger_id?: string;
   opponent_id?: string;
   status?: string;
   created_at: string;
 };
 
-export const ChallengesPage: React.FC = () => {
+interface ChallengesPageProps { onSelectGame?: (game: GameInfo) => void; }
+
+export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) => {
   const { user } = useSession();
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -44,14 +50,21 @@ export const ChallengesPage: React.FC = () => {
       if (isSupabaseConfigured && supabase) {
         try {
           // Fetch existing challenges
-          const { data: challengeData } = await supabase
+          if (!user?.id) {
+            if (isMounted) {
+              setChallenges([]);
+              setLoading(false);
+            }
+            return;
+          }
+          const { data: challengeData, error: challengeError } = await supabase
             .from('challenges')
             .select('*')
+            .or(`challenger_id.eq.${user.id},opponent_id.eq.${user.id}`)
             .order('created_at', { ascending: false });
 
-          if (isMounted && challengeData) {
-            setChallenges(challengeData);
-          }
+          if (challengeError) throw challengeError;
+          if (isMounted && challengeData) setChallenges(challengeData);
 
           // Fetch profiles to allow peer search
           const { data: profileData } = await supabase
@@ -70,7 +83,7 @@ export const ChallengesPage: React.FC = () => {
     }
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [user?.id]);
 
   const handleSendChallenge = async (targetProfile: Profile) => {
     if (!user?.id) {
@@ -91,6 +104,8 @@ export const ChallengesPage: React.FC = () => {
       const { data: inserted, error: insertErr } = await supabase
         .from('challenges')
         .insert({
+          challenger_id: user.id,
+          opponent_id: targetProfile.id,
           title: challengeTitle,
           description: `Score at least 1500 XP in Scripture Challenge to win 250 bonus XP!`,
           game_id: 'scripture-challenge',
@@ -123,8 +138,15 @@ export const ChallengesPage: React.FC = () => {
   const handleResponse = async (challenge: ChallengeItem, status: 'accepted' | 'declined') => {
     setActionBusy(challenge.id);
     try {
-      await supabase.from('challenges').update({ status }).eq('id', challenge.id);
-      
+      if (!user?.id || challenge.opponent_id !== user.id || challenge.status !== 'pending') {
+        throw new Error('Only the invited player can respond to a pending challenge.');
+      }
+      const { error: responseError } = await supabase.rpc('respond_to_challenge', {
+        p_challenge_id: challenge.id,
+        p_status: status,
+      });
+      if (responseError) throw responseError;
+
       if (challenge.challenger_id && user?.id) {
         const senderName = user.user_metadata?.username || user.user_metadata?.full_name || 'Scholar';
         await notifyChallengeResponse(challenge.challenger_id, user.id, senderName, challenge.id, status);
@@ -262,31 +284,57 @@ export const ChallengesPage: React.FC = () => {
                     )}
                   </div>
                   <p className="text-xs text-[#171B24]/70">{c.description}</p>
-                  <div className="flex items-center gap-3 text-[11px] font-semibold text-[#5A6275]">
+                  <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold text-[#5A6275]">
                     <span className="flex items-center gap-1"><Trophy className="w-3.5 h-3.5 text-amber-500" /> +{c.reward_xp} XP Reward</span>
-                    <span>Target: {c.target_score} PTS</span>
+                    <span>Target: {c.target_score} XP</span>
                   </div>
+                  {(c.status === 'accepted' || c.status === 'completed') && (
+                    <div className="mt-2 rounded-xl border border-[#171B24]/10 bg-white/70 px-3 py-2 text-xs font-semibold text-[#5A6275]">
+                      Challenger: {c.challenger_score ?? 0} XP
+                      <span className="mx-2 text-[#D66B3D]">•</span>
+                      Opponent: {c.opponent_score ?? 0} XP
+                      {c.status === 'completed' && (
+                        <span className="ml-2 font-bold text-emerald-700">
+                          {c.winner_id === user?.id ? 'You won!' : 'Challenge completed'}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-2 w-full sm:w-auto">
+                {c.status === 'accepted' && (
                   <Button
                     size="sm"
-                    disabled={actionBusy === c.id}
-                    onClick={() => handleResponse(c, 'accepted')}
-                    className="bg-[#3156C9] hover:bg-[#2544A5] text-white flex-1 sm:flex-initial"
+                    onClick={() => {
+                      const game = GAMES_LIST.find((item) => item.id === 'scripture-challenge');
+                      if (game) onSelectGame?.(game);
+                    }}
+                    className="bg-[#3156C9] hover:bg-[#2544A5] text-white w-full sm:w-auto"
                   >
-                    <Check className="w-4 h-4 mr-1" /> Accept
+                    Play Challenge
                   </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    disabled={actionBusy === c.id}
-                    onClick={() => handleResponse(c, 'declined')}
-                    className="text-red-600 border-red-200 hover:bg-red-50 flex-1 sm:flex-initial"
-                  >
-                    <X className="w-4 h-4 mr-1" /> Decline
-                  </Button>
-                </div>
+                )}
+                {c.status === 'pending' && c.opponent_id === user?.id && (
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <Button
+                      size="sm"
+                      disabled={actionBusy === c.id}
+                      onClick={() => handleResponse(c, 'accepted')}
+                      className="bg-[#3156C9] hover:bg-[#2544A5] text-white flex-1 sm:flex-initial"
+                    >
+                      <Check className="w-4 h-4 mr-1" /> Accept
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      disabled={actionBusy === c.id}
+                      onClick={() => handleResponse(c, 'declined')}
+                      className="text-red-600 border-red-200 hover:bg-red-50 flex-1 sm:flex-initial"
+                    >
+                      <X className="w-4 h-4 mr-1" /> Decline
+                    </Button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
