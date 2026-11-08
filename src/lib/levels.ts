@@ -677,7 +677,7 @@ export async function getLevelChallenges(
       const { data, error } = await supabase
         .from('game_content_public')
         .select(
-          'id, question_key, game_slug, level, challenge_index, question_text, options, explanation, reference, metadata'
+          'id, question_key, game_slug, level, challenge_index, question_text, options, correct_answer, explanation, reference, metadata'
         )
         .eq('game_slug', gameSlug)
         .eq('level', level)
@@ -692,7 +692,7 @@ export async function getLevelChallenges(
           challenge_index: row.challenge_index || idx + 1,
           question_text: row.question_text || localBackup[idx].question_text,
           options: Array.isArray(row.options) && row.options.length > 0 ? row.options : localBackup[idx].options,
-          correct_answer: localBackup[idx].correct_answer,
+          correct_answer: row.correct_answer || localBackup[idx].correct_answer,
           explanation: row.explanation || localBackup[idx].explanation,
           reference: row.reference || localBackup[idx].reference,
           metadata: { ...localBackup[idx].metadata, ...(row.metadata || {}) },
