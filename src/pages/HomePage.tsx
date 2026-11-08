@@ -103,7 +103,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           <h3 className="font-serif font-bold text-2xl text-[#171B24]">Explore Categories</h3>
           <span className="text-xs text-[#171B24]/60 font-medium">19 featured games</span>
         </div>
-        <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none smooth-horizontal-scroll">
           {CATEGORIES.map((cat) => (
             <Pill
               key={cat}
@@ -181,7 +181,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none"
+                className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none smooth-horizontal-scroll"
               >
                 {filteredGames.map((game) => (
                   <GameCard key={game.id} game={game} onPlay={onSelectGame} />
