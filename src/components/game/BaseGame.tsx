@@ -103,6 +103,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [crosswordExtraDown, setCrosswordExtraDown] = useState('');
   const [crosswordCompleted, setCrosswordCompleted] = useState<string[]>([]);
   const [crosswordBonusSeconds, setCrosswordBonusSeconds] = useState(0);
+  const [crosswordActiveWord, setCrosswordActiveWord] = useState<'across' | 'down' | 'bonus'>('across');
   const [hintLevel, setHintLevel] = useState(0);
   const [matchSelectedLeft, setMatchSelectedLeft] = useState<string | null>(null);
   const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
@@ -143,6 +144,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setCrosswordExtraDown('');
     setCrosswordCompleted([]);
     setCrosswordBonusSeconds(0);
+    setCrosswordActiveWord('across');
     setHintLevel(0);
     setMatchSelectedLeft(null);
     setMatchedPairs({});
@@ -731,55 +733,64 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                 const isDown = col === downCol && row >= centerRow - downIndex && row < centerRow - downIndex + downAns.length;
                 const isExtra = hasExtra && col === extraCol && row >= centerRow - extraDownIndex && row < centerRow - extraDownIndex + extraAns.length;
                 const active = isAcross || isDown || isExtra;
-                if (!active) return <div key={index} className="aspect-square rounded-sm bg-white/5" />;
+                if (!active) return <div key={index} className="aspect-square rounded-sm bg-[#080B12] border border-white/5" />;
                 const acrossPos = col - acrossStart;
                 const downPos = row - (centerRow - downIndex);
                 const extraPos = row - (centerRow - extraDownIndex);
                 const value = isAcross ? (crosswordAcross[acrossPos] || '') : isDown ? (crosswordDown[downPos] || '') : (crosswordExtraDown[extraPos] || '');
                 const isCrossing = [isAcross, isDown, isExtra].filter(Boolean).length > 1;
+                const startsAcross = isAcross && col === acrossStart;
+                const startsDown = isDown && row === centerRow - downIndex;
+                const startsExtra = isExtra && row === centerRow - extraDownIndex;
+                const cellNumber = startsAcross ? '1' : startsDown ? '2' : startsExtra ? '3' : '';
+                const inActiveWord = (crosswordActiveWord === 'across' && isAcross) || (crosswordActiveWord === 'down' && isDown) || (crosswordActiveWord === 'bonus' && isExtra);
                 return (
-                  <input
-                    key={index}
-                    aria-label={`Crossword row ${row + 1}, column ${col + 1}`}
-                    type="text"
-                    inputMode="text"
-                    autoComplete="off"
-                    autoCapitalize="characters"
-                    maxLength={1}
-                    value={value}
-                    disabled={reveal !== null}
-                    onChange={(event) => updateCell(row, col, event.target.value)}
-                    className={`aspect-square min-w-0 w-full rounded-md text-center text-lg sm:text-xl font-black uppercase outline-none border-2 focus:ring-2 focus:ring-[#D66B3D] ${isCrossing ? 'bg-[#FDE2A7] border-[#D66B3D] text-[#171B24]' : 'bg-white border-white/70 text-[#171B24]'}`}
-                  />
+                  <div key={index} className="relative aspect-square min-w-0">
+                    {cellNumber && <span className="absolute left-0.5 top-0 z-10 text-[8px] leading-none font-black text-[#171B24]/70 pointer-events-none">{cellNumber}</span>}
+                    <input
+                      aria-label={`Crossword row ${row + 1}, column ${col + 1}`}
+                      type="text"
+                      inputMode="text"
+                      autoComplete="off"
+                      autoCapitalize="characters"
+                      maxLength={1}
+                      value={value}
+                      disabled={reveal !== null}
+                      onFocus={() => setCrosswordActiveWord(isAcross && (crosswordActiveWord === 'across' || !isDown) ? 'across' : isDown ? 'down' : 'bonus')}
+                      onChange={(event) => updateCell(row, col, event.target.value)}
+                      className={`h-full w-full rounded-md text-center text-lg sm:text-xl font-black uppercase outline-none border-2 focus:ring-2 focus:ring-[#D66B3D] ${isCrossing ? 'bg-[#FDE2A7] border-[#D66B3D] text-[#171B24]' : inActiveWord ? 'bg-[#DCE7FF] border-[#3156C9] text-[#171B24]' : 'bg-white border-white/70 text-[#171B24]'}`}
+                    />
+                  </div>
                 );
               })}
             </div>
-            <p className="text-center text-[11px] text-white/65 mt-3">Scroll sideways if needed. Gold squares are shared letters.</p>
+            <p className="text-center text-[11px] text-white/65 mt-3">Tap a clue to highlight its squares. Tap a square and type one letter. Gold squares are where answers cross.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+          <div className="space-y-2">
+            <p className="text-[11px] font-black uppercase tracking-wider text-[#5A6275]">Clues · tap one to highlight it on the board</p>
+            <button type="button" onClick={() => setCrosswordActiveWord('across')} className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${crosswordActiveWord === 'across' ? 'bg-[#FFF5E8] border-[#D66B3D]' : 'bg-white border-[#171B24]/10'}`}>
               <div className="flex items-center justify-between gap-2 mb-1">
-                <label className="text-xs font-black uppercase text-[#D66B3D]">1 Across · {acrossAns.length} letters</label>
-                {crosswordCompleted.includes('across') && <span className="text-xs font-bold text-emerald-700">✓ +15s</span>}
+                <span className="text-xs font-black uppercase text-[#D66B3D]">1 Across · {acrossAns.length} letters</span>
+                {crosswordCompleted.includes('across') && <span className="text-xs font-bold text-emerald-700">✓ Solved · +15s</span>}
               </div>
               <p className="text-sm text-[#171B24]">{currentChallenge.metadata?.acrossClue || 'Across clue'}</p>
-            </div>
-            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+            </button>
+            <button type="button" onClick={() => setCrosswordActiveWord('down')} className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${crosswordActiveWord === 'down' ? 'bg-[#EEF3FF] border-[#3156C9]' : 'bg-white border-[#171B24]/10'}`}>
               <div className="flex items-center justify-between gap-2 mb-1">
-                <label className="text-xs font-black uppercase text-[#3156C9]">2 Down · {downAns.length} letters</label>
-                {crosswordCompleted.includes('down') && <span className="text-xs font-bold text-emerald-700">✓ +15s</span>}
+                <span className="text-xs font-black uppercase text-[#3156C9]">2 Down · {downAns.length} letters</span>
+                {crosswordCompleted.includes('down') && <span className="text-xs font-bold text-emerald-700">✓ Solved · +15s</span>}
               </div>
               <p className="text-sm text-[#171B24]">{currentChallenge.metadata?.downClue || 'Down clue'}</p>
-            </div>
+            </button>
             {hasExtra && (
-              <div className="sm:col-span-2 p-4 rounded-2xl bg-[#EEF3FF] border border-[#3156C9]/20">
+              <button type="button" onClick={() => setCrosswordActiveWord('bonus')} className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${crosswordActiveWord === 'bonus' ? 'bg-[#EEF3FF] border-[#3156C9]' : 'bg-white border-[#171B24]/10'}`}>
                 <div className="flex items-center justify-between gap-2 mb-1">
-                  <label className="text-xs font-black uppercase text-[#3156C9]">3 Down · Bonus word · {extraAns.length} letters</label>
-                  {crosswordCompleted.includes('bonus') && <span className="text-xs font-bold text-emerald-700">✓ +15s</span>}
+                  <span className="text-xs font-black uppercase text-[#3156C9]">3 Down · Bonus word · {extraAns.length} letters</span>
+                  {crosswordCompleted.includes('bonus') && <span className="text-xs font-bold text-emerald-700">✓ Solved · +15s</span>}
                 </div>
                 <p className="text-sm text-[#171B24]">{currentChallenge.metadata?.extraDownClue}</p>
-              </div>
+              </button>
             )}
           </div>
 
