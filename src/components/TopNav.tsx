@@ -6,6 +6,7 @@ interface TopNavProps {
   onSelectTab: (tab: string) => void;
   onOpenSearch: () => void;
   onOpenAuth: () => void;
+  onLogout: () => void;
   user: any;
   unreadCount?: number;
   isNotifOpen?: boolean;
@@ -17,6 +18,7 @@ export const TopNav: React.FC<TopNavProps> = ({
   onSelectTab,
   onOpenSearch,
   onOpenAuth,
+  onLogout,
   user,
   unreadCount = 0,
   isNotifOpen = false,
@@ -47,7 +49,7 @@ export const TopNav: React.FC<TopNavProps> = ({
           aria-label="BibleArena home"
         >
           <img 
-            src={`${import.meta.env.BASE_URL}assets/bible-arena-logo.png`} 
+            src={`${import.meta.env.BASE_URL}assets/bible-arena-logo.webp`} 
             alt="" 
             className="h-6 w-6 shrink-0 object-contain rounded group-hover:scale-105 transition-transform" 
           />
@@ -126,15 +128,7 @@ export const TopNav: React.FC<TopNavProps> = ({
               </div>
 
               <button
-                onClick={async () => {
-                  const { logoutPlayer } = await import('../lib/auth');
-                  const { error } = await logoutPlayer();
-                  if (error) {
-                    console.error('BibleArena logout failed:', error);
-                    return;
-                  }
-                  onSelectTab('games');
-                }}
+                onClick={onLogout}
                 className="px-3 py-1.5 rounded-full bg-[#171B24]/10 text-[#171B24] font-semibold text-xs hover:bg-red-600 hover:text-white transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
                 title="Log out"
               >
