@@ -1,7 +1,8 @@
 import { BIBLE_RIDDLES_BATCH_01 } from '../src/data/rebuild/bibleRiddlesBatch01';
 import { BIBLE_DETECTIVE_BATCH_01 } from '../src/data/rebuild/bibleDetectiveBatch01';
+import { BIBLE_GEOGRAPHY_BATCH_01 } from '../src/data/rebuild/bibleGeographyBatch01';
 
-const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01];
+const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01];
 
 const normalize = (value: string) =>
   value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -38,8 +39,8 @@ for (const item of ALL_BATCHES) {
   }
 }
 
-for (const game of ['bible-riddles', 'bible-detective']) {
-  for (let level = 1; level <= 5; level++) {
+for (const [game, maxLevel] of [['bible-riddles', 5], ['bible-detective', 5], ['bible-geography-quest', 20]] as const) {
+  for (let level = 1; level <= maxLevel; level++) {
     const key = `${game}:${level}`;
     if (byGameLevel.get(key) !== 5) {
       errors.push(`${key}: expected five questions, found ${byGameLevel.get(key) ?? 0}`);
