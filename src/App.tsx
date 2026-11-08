@@ -13,6 +13,7 @@ import { ChallengesPage } from './pages/ChallengesPage';
 import { ProfilePage } from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import JoinRoom from './pages/JoinRoom';
+import CommunityChallengesPage from './pages/CommunityChallengesPage';
 import WaitingRoom from './pages/WaitingRoom';
 import ResetPassword from './pages/ResetPassword';
 import GameDetailPage from './pages/GameDetailPage';
@@ -211,6 +212,8 @@ export default function App() {
             <Route path="/multiplayer" element={<MultiplayerPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/challenges" element={<ChallengesPage onSelectGame={handleSelectGame} />} />
+            <Route path="/community-challenges" element={<CommunityChallengesPage />} />
+            <Route path="/community-challenges/:code" element={<CommunityChallengesPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/notification-settings" element={<NotificationSettingsPage />} />
             <Route path="/profile" element={<ProfilePage user={user} onLogout={handleLogout} onNavigateTab={handleSelectTab} />} />
