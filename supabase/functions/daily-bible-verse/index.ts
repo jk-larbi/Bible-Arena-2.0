@@ -6,7 +6,6 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SECRET_KEYS = JSON.parse(Deno.env.get("SUPABASE_SECRET_KEYS") ?? "{}");
 const SERVICE_KEY = SECRET_KEYS.default ?? Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 if (!SERVICE_KEY) throw new Error("Supabase service key is unavailable.");
-
 const admin = createClient(SUPABASE_URL, SERVICE_KEY, {
   auth: { autoRefreshToken: false, persistSession: false },
 });
@@ -32,20 +31,54 @@ Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
   const { data: secrets, error: secretError } = await admin.rpc("get_daily_verse_secrets");
   if (secretError || !secrets?.vapid_private_key || !secrets?.cron_secret) {
-    console.error("Daily verse secrets unavailable", secretError);
-    return json({ error: "Daily verse push secrets have not been configured." }, 503);
+    console.error("Push secrets unavailable", secretError);
+    return json({ error: "Push secrets have not been configured." }, 503);
   }
   if (req.headers.get("authorization") !== `Bearer ${secrets.cron_secret}`) return json({ error: "Unauthorized" }, 401);
+  webpush.setVapidDetails("mailto:support@biblearena.app", VAPID_PUBLIC_KEY, secrets.vapid_private_key);
+
+  const body = await req.json().catch(() => ({}));
+  if (body?.action === "dispatch_notification") {
+    const n = body.notification;
+    if (!n?.user_id || !n?.title || !n?.message) return json({ error: "Invalid notification payload" }, 400);
+
+    const [{ data: sub, error: subError }, { data: pref, error: prefError }] = await Promise.all([
+      admin.from("push_subscriptions").select("id,subscription").eq("user_id", n.user_id).maybeSingle(),
+      admin.from("notification_preferences").select("*").eq("user_id", n.user_id).maybeSingle(),
+    ]);
+    if (subError || prefError) return json({ error: "Could not load notification recipient" }, 500);
+    if (!sub?.subscription?.endpoint || !sub.subscription?.keys?.auth || !sub.subscription?.keys?.p256dh) {
+      return json({ sent: false, skipped: "no_push_subscription" });
+    }
+
+    const categoryAllowed =
+      (n.type === "challenge" || n.type === "challenge_response") ? pref?.challenges_enabled !== false :
+      (n.type === "room_invite" || n.type === "room_joined" || n.type === "game_started") ? pref?.live_games_enabled !== false :
+      n.type === "achievement" ? pref?.achievements_enabled !== false :
+      n.type === "daily_verse" ? pref?.daily_verse_enabled !== false : true;
+    if (pref?.browser_push_enabled === false || !categoryAllowed) return json({ sent: false, skipped: "disabled_by_preference" });
+
+    try {
+      await webpush.sendNotification(sub.subscription, JSON.stringify({
+        title: n.title, body: n.message, link: "/notifications", icon: "/assets/bible-arena-logo.png",
+      }), { TTL: 86400, urgency: "normal" });
+      return json({ sent: true });
+    } catch (error) {
+      const statusCode = (error as any)?.statusCode;
+      if (statusCode === 404 || statusCode === 410) await admin.from("push_subscriptions").delete().eq("id", sub.id);
+      console.error("Web push delivery failed", statusCode ?? error);
+      return json({ sent: false, error: "Push provider rejected delivery" }, statusCode === 404 || statusCode === 410 ? 410 : 502);
+    }
+  }
 
   const dateKey = new Date().toISOString().slice(0, 10);
   const dayNumber = Math.floor(Date.now() / 86400000);
   const verse = VERSES[((dayNumber % VERSES.length) + VERSES.length) % VERSES.length];
   const title = "BibleArena Daily Verse";
   const message = `${verse.reference} — ${verse.text}`;
-  webpush.setVapidDetails("mailto:support@biblearena.app", VAPID_PUBLIC_KEY, secrets.vapid_private_key);
 
   const [{ data: subscriptions, error: subscriptionsError }, { data: preferences, error: preferencesError }] = await Promise.all([
-    admin.from("push_subscriptions").select("id,user_id,subscription"),
+    admin.from("push_subscriptions").select("user_id,subscription"),
     admin.from("notification_preferences").select("user_id,browser_push_enabled,daily_verse_enabled"),
   ]);
   if (subscriptionsError || preferencesError) return json({ error: "Could not load subscribers" }, 500);
@@ -56,14 +89,14 @@ Deno.serve(async (req: Request) => {
     return pref?.browser_push_enabled !== false && pref?.daily_verse_enabled !== false &&
       row.subscription?.endpoint && row.subscription?.keys?.p256dh && row.subscription?.keys?.auth;
   });
-  if (!recipients.length) return json({ sent: 0, date: dateKey, reference: verse.reference });
+  if (!recipients.length) return json({ queued: 0, date: dateKey, reference: verse.reference });
 
   const { data: existing, error: existingError } = await admin.from("daily_verse_deliveries")
     .select("user_id").eq("verse_date", dateKey).in("user_id", recipients.map((r: any) => r.user_id));
   if (existingError) return json({ error: "Could not check daily delivery history" }, 500);
   const alreadySent = new Set((existing ?? []).map((r: any) => r.user_id));
   const fresh = recipients.filter((r: any) => !alreadySent.has(r.user_id));
-  if (!fresh.length) return json({ sent: 0, skipped: recipients.length, date: dateKey });
+  if (!fresh.length) return json({ queued: 0, skipped: recipients.length, date: dateKey });
 
   const { data: reserved, error: reserveError } = await admin.from("daily_verse_deliveries")
     .upsert(fresh.map((r: any) => ({ user_id: r.user_id, verse_date: dateKey, verse_reference: verse.reference })),
@@ -71,26 +104,11 @@ Deno.serve(async (req: Request) => {
   if (reserveError) return json({ error: "Could not reserve daily verse deliveries" }, 500);
   const reservedUsers = new Set((reserved ?? []).map((r: any) => r.user_id));
   const sendRows = fresh.filter((r: any) => reservedUsers.has(r.user_id));
-  if (!sendRows.length) return json({ sent: 0, date: dateKey });
+  if (!sendRows.length) return json({ queued: 0, date: dateKey });
 
   const { error: notificationError } = await admin.from("notifications").insert(sendRows.map((r: any) => ({
     user_id: r.user_id, title, message, type: "daily_verse", reference_id: verse.reference,
   })));
-  if (notificationError) console.error("Could not save in-app daily verses", notificationError);
-
-  const outcomes = await Promise.allSettled(sendRows.map((row: any) => webpush.sendNotification(row.subscription,
-    JSON.stringify({ title, body: message, link: "/notifications", icon: "/assets/bible-arena-logo.png" }),
-    { TTL: 86400, urgency: "normal" })));
-  const expiredIds: string[] = [];
-  let sent = 0;
-  outcomes.forEach((outcome, index) => {
-    if (outcome.status === "fulfilled") sent++;
-    else {
-      const statusCode = (outcome.reason as any)?.statusCode;
-      if (statusCode === 404 || statusCode === 410) expiredIds.push(sendRows[index].id);
-      console.error("Push delivery failed", statusCode ?? outcome.reason);
-    }
-  });
-  if (expiredIds.length) await admin.from("push_subscriptions").delete().in("id", expiredIds);
-  return json({ sent, failed: outcomes.length - sent, date: dateKey, reference: verse.reference });
+  if (notificationError) return json({ error: "Could not create daily verse notifications" }, 500);
+  return json({ queued: sendRows.length, date: dateKey, reference: verse.reference });
 });
