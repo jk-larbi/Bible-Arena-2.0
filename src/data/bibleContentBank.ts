@@ -282,7 +282,7 @@ export function getDifficultyForLevel(level: number): string {
 }
 
 /**
- * Deterministically builds 10 authentic, distinct challenges for any (gameSlug, level) pair
+ * Deterministically builds 5 challenges for any (gameSlug, level) pair
  * from 1..50+ so every level in all 19 games is genuinely playable and biblically accurate.
  */
 export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
