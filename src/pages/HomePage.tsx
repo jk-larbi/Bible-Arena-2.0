@@ -39,7 +39,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           title="Scripture Challenge"
           description="Test your theological knowledge across timed multi-choice rounds with instant verse commentaries and references."
           bgGradient="from-[#171B24] via-[#222836] to-[#0A0D14]"
-          bgImage="/assets/scripture-challenge-hero.jpg"
+          bgImage="/assets/scripture-challenge-hero.webp"
           onAction={() => {
             const game = GAMES_LIST.find(g => g.id === 'scripture-challenge') || GAMES_LIST[0];
             onSelectGame(game);
@@ -52,7 +52,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           title="Battle of the Prophets"
           description="Create or join live competitive rooms on Mount Carmel with real-time timers, automatic score reveals, and instant rankings."
           bgGradient="from-[#D66B3D] via-[#C05A2F] to-[#8C3F1B]"
-          bgImage="/assets/battle-of-the-prophets.png"
+          bgImage="/assets/battle-of-the-prophets.webp"
           onAction={() => onNavigateTab('multiplayer')}
         />
       </div>
