@@ -13,7 +13,6 @@ import {
   QrCode,
   KeyRound,
   SlidersHorizontal,
-  Sparkles,
   Camera,
   ArrowRight,
   Upload,
@@ -337,24 +336,35 @@ export const MultiplayerPage: React.FC = () => {
             <label className="block text-xs font-bold uppercase tracking-wider text-[#5A6275]">
               1. Choose Game to Host
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-56 overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-72 overflow-y-auto pr-1">
               {GAMES_LIST.map((game) => {
                 const isSelected = selectedGame.id === game.id;
                 return (
                   <div
                     key={game.id}
                     onClick={() => setSelectedGame(game)}
-                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 ${
+                    className={`p-2.5 rounded-2xl border transition-all cursor-pointer flex items-center gap-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D66B3D] ${
                       isSelected
                         ? 'bg-[#3156C9] text-white border-[#3156C9] shadow-sm font-bold'
                         : 'bg-[#F3EBDD] border-[#171B24]/10 hover:bg-[#EADBCE]'
                     }`}
                   >
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-white/20 text-white' : 'bg-white text-[#3156C9]'}`}>
-                      <Sparkles className="w-4 h-4" />
+                    <div className="w-[76px] h-[62px] rounded-xl overflow-hidden shrink-0 bg-[#171B24]/10 border border-black/5">
+                      <img
+                        src={`${import.meta.env.BASE_URL}assets/games/${game.imageFile.replace(/\.(png|jpe?g)$/i, '.webp')}`}
+                        alt={`${game.title} game artwork`}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                        onError={(event) => {
+                          const image = event.currentTarget;
+                          if (!image.src.endsWith(game.imageFile)) {
+                            image.src = `${import.meta.env.BASE_URL}assets/games/${game.imageFile}`;
+                          }
+                        }}
+                      />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm truncate">{game.title}</p>
+                      <p className="text-sm leading-snug line-clamp-2">{game.title}</p>
                       <p className={`text-[10px] truncate ${isSelected ? 'text-white/80' : 'text-[#5A6275]'}`}>
                         {game.category}
                       </p>
@@ -362,6 +372,21 @@ export const MultiplayerPage: React.FC = () => {
                   </div>
                 );
               })}
+            </div>
+            <div className="flex items-center gap-3 rounded-2xl border border-[#3156C9]/20 bg-[#3156C9]/5 p-3">
+              <img
+                src={`${import.meta.env.BASE_URL}assets/games/${selectedGame.imageFile.replace(/\.(png|jpe?g)$/i, '.webp')}`}
+                alt={`${selectedGame.title} selected artwork`}
+                className="h-16 w-24 rounded-xl object-cover bg-white"
+                onError={(event) => {
+                  event.currentTarget.src = `${import.meta.env.BASE_URL}assets/games/${selectedGame.imageFile}`;
+                }}
+              />
+              <div className="min-w-0 text-left">
+                <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#3156C9]">Selected for hosting</p>
+                <p className="font-bold text-sm text-[#171B24]">{selectedGame.title}</p>
+                <p className="text-[11px] text-[#5A6275]">{selectedGame.category}</p>
+              </div>
             </div>
           </div>
 
