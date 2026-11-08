@@ -92,7 +92,7 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
             {sel.is_published && !sel.unlocked && <p className="text-sm">Complete Level {sel.level - 1} to unlock this level.</p>}
             {sel.unlocked && sel.is_published && sel.challenges_done > 0 && !sel.completed && (<>
               <button onClick={() => onPlay(sel.level, false)} className="min-h-[48px] rounded-xl bg-[#3156C9] font-semibold text-white">
-                Continue ({sel.challenges_done}/10)
+                Continue ({sel.challenges_done}/{sel.challenge_count})
               </button>
               <button onClick={() => onPlay(sel.level, true)} className="min-h-[48px] rounded-xl border border-[#171B24]/40 font-semibold">Start over</button>
             </>)}
