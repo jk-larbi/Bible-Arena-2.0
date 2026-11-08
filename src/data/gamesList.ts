@@ -27,7 +27,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Timed multi-choice theological quiz',
     description: 'Test your knowledge of prophets, kings, parables, and epistles with instant verse references and commentary.',
     difficulty: 'Medium',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-rose-950',
@@ -45,7 +45,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Rearrange letters to form sacred words & verses',
     description: 'Unscramble mixed-up biblical words and phrases against the clock to unlock deeper scriptural mysteries.',
     difficulty: 'Medium',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-amber-950',
@@ -63,7 +63,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Assemble scattered words into complete verses',
     description: 'Tap or drag words into their correct chronological place to reconstruct famous passages of scripture.',
     difficulty: 'Easy',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-blue-900',
@@ -81,7 +81,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Chronicle pivotal biblical epochs & events',
     description: 'Drag and drop historical events from Creation to Revelation into absolute chronological order.',
     difficulty: 'Hard',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-emerald-900',
@@ -99,7 +99,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Decipher scriptural stories & characters from emojis',
     description: 'Interpret combinations of emojis representing Bible characters, stories, miracles, and places across 100 levels.',
     difficulty: 'Medium',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-amber-950',
@@ -117,7 +117,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Step into the sandals of biblical heroes',
     description: 'Relive pivotal decisions and moral trials faced by Abraham, Moses, Esther, and Paul.',
     difficulty: 'Medium',
-    levelsCount: 80,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-amber-900',
@@ -135,7 +135,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Hunt for hidden scriptural terms in grids',
     description: 'Locate patriarchs, cities, mountains, and tribes hidden vertically, horizontally, and diagonally.',
     difficulty: 'Easy',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-blue-900',
@@ -153,7 +153,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Intersecting clues from Genesis to Revelation',
     description: 'Solve classical crossword puzzles crafted entirely around biblical history, geography, and theology.',
     difficulty: 'Hard',
-    levelsCount: 90,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-stone-900',
@@ -171,7 +171,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Attribute famous biblical quotes & pronouncements',
     description: 'Identify whether a verse or proclamation was spoken by Jesus, Paul, Moses, a prophet, or a king.',
     difficulty: 'Medium',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-teal-950',
@@ -189,7 +189,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Fill in the missing words of well-known verses',
     description: 'Test your memory of famous Bible verses by selecting the exact missing words.',
     difficulty: 'Easy',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-indigo-950',
@@ -207,7 +207,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Pair figures with their defining acts or symbols',
     description: 'Match biblical characters with their corresponding miracles, plagues, offerings, or epistles.',
     difficulty: 'Medium',
-    levelsCount: 60,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-yellow-950',
@@ -243,7 +243,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Locate books by chapter and verse clues',
     description: 'Quickly identify whether a given verse belongs to Old Testament history, poetry, minor prophets, or epistles.',
     difficulty: 'Medium',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-purple-950',
@@ -261,7 +261,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Delve into ancient parables & allegories',
     description: 'Unravel Samson’s riddle, royal allegories from Ezekiel, and wisdom sayings from Solomon.',
     difficulty: 'Hard',
-    levelsCount: 60,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-rose-900',
@@ -279,7 +279,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Map out the lands of patriarchs & apostles',
     description: 'Explore ancient topography from Ur of the Chaldeans to Jerusalem, Antioch, and Rome.',
     difficulty: 'Hard',
-    levelsCount: 70,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-orange-950',
@@ -315,7 +315,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Categorize laws, covenants & eras',
     description: 'Distinguish between Levitical ordinances and New Covenant epistles in lightning-fast classification rounds.',
     difficulty: 'Easy',
-    levelsCount: 100,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-blue-950',
@@ -333,7 +333,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Unearth archaeological clues & biblical mysteries',
     description: 'Examine manuscript fragments, seals, and historical artifacts to solve theological mysteries.',
     difficulty: 'Expert',
-    levelsCount: 40,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-zinc-900',
@@ -351,7 +351,7 @@ export const GAMES_LIST: GameInfo[] = [
     subtitle: 'Link words by final and initial letters',
     description: 'Build continuous chains of biblical names and terms where each word begins with the last letter of the previous.',
     difficulty: 'Medium',
-    levelsCount: 60,
+    levelsCount: 50,
     playerLevel: 1,
     colorScheme: {
       bg: 'bg-stone-950',
