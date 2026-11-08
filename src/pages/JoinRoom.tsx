@@ -38,6 +38,17 @@ export default function JoinRoom() {
       setLoadingRoom(true);
       setError('');
       try {
+        // Room lookup policies require an authenticated session. QR/PIN guests
+        // may arrive without one, so establish their anonymous session first.
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          const guestName = name.trim() || 'Player';
+          const { error: authError } = await supabase.auth.signInAnonymously({
+            options: { data: { full_name: guestName } },
+          });
+          if (authError) throw new Error(`Could not prepare your guest session: ${authError.message}`);
+        }
+
         const { data, error: fetchErr } = await supabase
           .from('rooms')
           .select('id, room_code, game_id, host_id, status')
