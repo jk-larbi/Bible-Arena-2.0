@@ -730,9 +730,11 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         });
         const source = eligibleStarts[globalSeed % eligibleStarts.length];
         const requiredLetter = source.name.slice(-1).toUpperCase();
-        const candidates = entries.filter((entry) =>
-          entry.name !== source.name && entry.name.toUpperCase().startsWith(requiredLetter)
-        );
+        const candidates = Array.from(new Map(
+          entries
+            .filter((entry) => entry.name !== source.name && entry.name.toUpperCase().startsWith(requiredLetter))
+            .map((entry) => [entry.name, entry])
+        ).values());
         const orderedCandidates = shuffleDeterministic(candidates, shuffleSeed + 71);
         const matching = orderedCandidates[0];
         const options = shuffleDeterministic(
