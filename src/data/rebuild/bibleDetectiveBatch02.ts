@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged Bible Detective batch 02: 100 questions, levels 6–25. */
+/** Staged batch 02: final duplicate-fact corrections. */
 export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-detective-rebuild-b02-001",
@@ -30,9 +30,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king hid in a baggage pile when the people sought him. Who was he?",
     "options": [
       "Saul",
-      "Eglon",
-      "The donkey",
-      "Jehoiakim"
+      "Jehoiakim",
+      "King Aretas",
+      "Elymas"
     ],
     "correct_answer": "Saul",
     "reference": "1 Samuel 10:21-23",
@@ -50,9 +50,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet's bones brought a dead man back to life when the body touched them. Whose bones?",
     "options": [
       "Elisha",
-      "King Aretas",
-      "Elymas",
-      "Sapphira"
+      "Elisha's servant",
+      "Blindness from birth",
+      "Bleeding for twelve years"
     ],
     "correct_answer": "Elisha",
     "reference": "2 Kings 13:20-21",
@@ -70,9 +70,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman killed a fleeing commander with a tent peg. Who was the commander?",
     "options": [
       "Sisera",
-      "Jeroboam",
-      "Elisha's servant",
-      "Blindness from birth"
+      "The region of the Gerasenes",
+      "See",
+      "Centurion"
     ],
     "correct_answer": "Sisera",
     "reference": "Judges 4:21",
@@ -90,9 +90,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A judge killed a Moabite king in a private chamber. Who was the king?",
     "options": [
       "Eglon",
-      "Bleeding for twelve years",
-      "Five barley loaves and two fish",
-      "Paralysis"
+      "Peter",
+      "The high priest's servant",
+      "Barabbas"
     ],
     "correct_answer": "Eglon",
     "reference": "Judges 3:20-22",
@@ -110,9 +110,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "After the man of God died, which animal remained standing beside the body?",
     "options": [
       "The donkey",
-      "The region of the Gerasenes",
-      "See",
-      "Centurion"
+      "The disciple whom Jesus loved",
+      "Apollos",
+      "The third storey"
     ],
     "correct_answer": "The donkey",
     "reference": "1 Kings 13:28",
@@ -130,9 +130,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king cut up a scroll and burned it as it was read. Who was the king?",
     "options": [
       "Jehoiakim",
-      "Peter, James and John",
-      "Fourfold",
-      "Peter"
+      "Simon",
+      "Joash",
+      "Jehoiada"
     ],
     "correct_answer": "Jehoiakim",
     "reference": "Jeremiah 36:20-26",
@@ -150,9 +150,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the ruler of Damascus when Paul escaped the city in a basket?",
     "options": [
       "King Aretas",
-      "The high priest's servant",
-      "Barabbas",
-      "Joseph of Arimathea"
+      "Herod Agrippa",
+      "Aeneas",
+      "Tabitha"
     ],
     "correct_answer": "King Aretas",
     "reference": "2 Corinthians 11:32",
@@ -170,9 +170,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was struck blind after opposing the gospel before a proconsul. Who was he?",
     "options": [
       "Elymas",
-      "Thomas",
-      "The disciple whom Jesus loved",
-      "Apollos"
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child",
+      "The consolation of Israel"
     ],
     "correct_answer": "Elymas",
     "reference": "Acts 13:8-11",
@@ -190,9 +190,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What was the name of Ananias' wife who also confirmed the false account?",
     "options": [
       "Sapphira",
-      "The third storey",
-      "Agabus",
-      "Artemis"
+      "The repentant criminal",
+      "Bethsaida",
+      "Andrew"
     ],
     "correct_answer": "Sapphira",
     "reference": "Acts 5:1-10",
@@ -210,9 +210,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king's hand became leprous after he stretched it against a prophet. Which king?",
     "options": [
       "Jeroboam",
-      "Simon",
-      "Joash",
-      "Jehoiada"
+      "A small cake",
+      "Naaman",
+      "Jehoshaphat"
     ],
     "correct_answer": "Jeroboam",
     "reference": "1 Kings 13:4-6",
@@ -230,9 +230,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet's servant saw an army of horses and chariots of fire around the city. Who was the servant?",
     "options": [
       "Elisha's servant",
-      "Jael",
-      "Hezekiah",
-      "Herod Agrippa"
+      "Esther",
+      "Mordecai",
+      "Honey"
     ],
     "correct_answer": "Elisha's servant",
     "reference": "2 Kings 6:15-17",
@@ -250,9 +250,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was healed after washing in the pool of Siloam. What was his condition?",
     "options": [
       "Blindness from birth",
-      "Aeneas",
-      "Tabitha",
-      "The ninth hour"
+      "Old rags and worn-out clothes",
+      "Jeremiah",
+      "Hilkiah"
     ],
     "correct_answer": "Blindness from birth",
     "reference": "John 9:1-7",
@@ -270,9 +270,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman was healed after touching the fringe of Jesus' garment. What had she suffered?",
     "options": [
       "Bleeding for twelve years",
-      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
-      "An unnamed young man",
-      "She gave thanks to God and spoke about the child"
+      "Shadrach",
+      "You have been weighed and found wanting",
+      "The palm tree of Deborah"
     ],
     "correct_answer": "Bleeding for twelve years",
     "reference": "Mark 5:25-29",
@@ -290,9 +290,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A boy's lunch was used to feed a huge crowd. What did he bring?",
     "options": [
       "Five barley loaves and two fish",
-      "The consolation of Israel",
-      "Herod the Great",
-      "Cyrene"
+      "Shammah",
+      "Abishai",
+      "David"
     ],
     "correct_answer": "Five barley loaves and two fish",
     "reference": "John 6:8-13",
@@ -310,9 +310,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was lowered through a roof because a crowd blocked the entrance. What was his condition?",
     "options": [
       "Paralysis",
-      "The repentant criminal",
-      "Bethsaida",
-      "Andrew"
+      "Joshua",
+      "Deborah",
+      "Gideon"
     ],
     "correct_answer": "Paralysis",
     "reference": "Mark 2:1-12",
@@ -330,9 +330,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A demon-possessed man broke chains and lived among tombs. Where did Jesus meet him?",
     "options": [
       "The region of the Gerasenes",
-      "Silas",
-      "Elijah",
-      "A small cake"
+      "Shimei",
+      "Ahithophel",
+      "Hushai"
     ],
     "correct_answer": "The region of the Gerasenes",
     "reference": "Mark 5:1-5",
@@ -350,9 +350,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was healed when Jesus put mud on his eyes. What was the man unable to do?",
     "options": [
       "See",
-      "Naaman",
-      "Jehoshaphat",
-      "Jonah"
+      "Azariah",
+      "Lemuel",
+      "Aquila"
     ],
     "correct_answer": "See",
     "reference": "John 9:6-7",
@@ -370,9 +370,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A Roman officer asked Jesus to heal a servant without visiting the house. What was the officer's role?",
     "options": [
       "Centurion",
-      "Grass like oxen",
-      "Esther",
-      "Mordecai"
+      "Samson",
+      "Saul",
+      "Elisha"
     ],
     "correct_answer": "Centurion",
     "reference": "Matthew 8:5-13",
@@ -390,9 +390,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Which three disciples, besides the child's parents, were present when Jesus raised Jairus' daughter?",
     "options": [
       "Peter, James and John",
-      "Honey",
-      "Love",
-      "Summer fruit"
+      "The donkey",
+      "Jehoiakim",
+      "King Aretas"
     ],
     "correct_answer": "Peter, James and John",
     "reference": "Mark 5:37-40",
@@ -410,9 +410,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "How much did Zacchaeus promise to repay if he had taken anything by false accusation?",
     "options": [
       "Fourfold",
-      "Old rags and worn-out clothes",
-      "Jeremiah",
-      "Hilkiah"
+      "Jeroboam",
+      "Elisha's servant",
+      "Blindness from birth"
     ],
     "correct_answer": "Fourfold",
     "reference": "Luke 19:8",
@@ -430,9 +430,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A disciple cut off a servant's ear during Jesus' arrest. Which disciple?",
     "options": [
       "Peter",
-      "Josiah",
-      "Daniel",
-      "Shadrach"
+      "Paralysis",
+      "The region of the Gerasenes",
+      "See"
     ],
     "correct_answer": "Peter",
     "reference": "John 18:10",
@@ -450,9 +450,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A servant's ear was restored by Jesus after the arrest scene. Whose servant was he?",
     "options": [
       "The high priest's servant",
-      "You have been weighed and found wanting",
-      "The palm tree of Deborah",
-      "Benaiah"
+      "Fourfold",
+      "Peter",
+      "Barabbas"
     ],
     "correct_answer": "The high priest's servant",
     "reference": "Luke 22:50-51",
@@ -470,9 +470,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prisoner was released instead of Jesus at Passover. Who was he?",
     "options": [
       "Barabbas",
-      "Adino the Eznite",
-      "Shammah",
-      "Abishai"
+      "The disciple whom Jesus loved",
+      "Apollos",
+      "The third storey"
     ],
     "correct_answer": "Barabbas",
     "reference": "Mark 15:6-15",
@@ -490,9 +490,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man asked Pilate for Jesus' body and placed it in a tomb. Who was he?",
     "options": [
       "Joseph of Arimathea",
-      "David",
-      "A window",
-      "Achan"
+      "Simon",
+      "Joash",
+      "Jehoiada"
     ],
     "correct_answer": "Joseph of Arimathea",
     "reference": "Mark 15:43-46",
@@ -510,9 +510,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A disciple doubted the resurrection until seeing Jesus' wounds. Who was he?",
     "options": [
       "Thomas",
-      "Joshua",
-      "Deborah",
-      "Gideon"
+      "Herod Agrippa",
+      "Aeneas",
+      "Tabitha"
     ],
     "correct_answer": "Thomas",
     "reference": "John 20:24-29",
@@ -530,9 +530,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A disciple recognised Jesus by the miraculous catch of fish. Who was the disciple?",
     "options": [
       "The disciple whom Jesus loved",
-      "Jephthah",
-      "Samuel",
-      "Shimei"
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child",
+      "The consolation of Israel"
     ],
     "correct_answer": "The disciple whom Jesus loved",
     "reference": "John 21:4-7",
@@ -550,9 +550,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A couple explained the way of God more accurately to a preacher. Who was the preacher?",
     "options": [
       "Apollos",
-      "Ahithophel",
-      "Hushai",
-      "The wise woman of Abel"
+      "The repentant criminal",
+      "Bethsaida",
+      "Andrew"
     ],
     "correct_answer": "Apollos",
     "reference": "Acts 18:24-26",
@@ -570,9 +570,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "From which storey did Eutychus fall at Troas?",
     "options": [
       "The third storey",
-      "The oxen",
-      "Azariah",
-      "Lemuel"
+      "A small cake",
+      "Naaman",
+      "Jehoshaphat"
     ],
     "correct_answer": "The third storey",
     "reference": "Acts 20:9",
@@ -590,9 +590,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet bound his own hands and feet with Paul's belt as a warning. Who was the prophet?",
     "options": [
       "Agabus",
-      "Aquila",
-      "A man of the sons of the prophets",
-      "The captain on whose hand the king leaned"
+      "Esther",
+      "Mordecai",
+      "Honey"
     ],
     "correct_answer": "Agabus",
     "reference": "Acts 21:10-11",
@@ -610,9 +610,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Which goddess was represented by the silver shrines made by Demetrius?",
     "options": [
       "Artemis",
-      "Samson",
-      "Saul",
-      "Elisha"
+      "Old rags and worn-out clothes",
+      "Jeremiah",
+      "Hilkiah"
     ],
     "correct_answer": "Artemis",
     "reference": "Acts 19:24-28",
@@ -630,9 +630,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A sorcerer tried to buy the power to give the Holy Spirit. Who was he?",
     "options": [
       "Simon",
-      "Sisera",
-      "Eglon",
-      "The donkey"
+      "Shadrach",
+      "You have been weighed and found wanting",
+      "The palm tree of Deborah"
     ],
     "correct_answer": "Simon",
     "reference": "Acts 8:18-24",
@@ -650,9 +650,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A queen tried to kill the royal family but one child was hidden. Who was the child?",
     "options": [
       "Joash",
-      "Jehoiakim",
-      "King Aretas",
-      "Elymas"
+      "Shammah",
+      "Abishai",
+      "David"
     ],
     "correct_answer": "Joash",
     "reference": "2 Kings 11:1-3",
@@ -670,9 +670,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A priest hid a boy in the temple for six years while a queen ruled. Who was the priest?",
     "options": [
       "Jehoiada",
-      "Sapphira",
-      "Jeroboam",
-      "Elisha's servant"
+      "Joshua",
+      "Deborah",
+      "Gideon"
     ],
     "correct_answer": "Jehoiada",
     "reference": "2 Kings 11:2-4",
@@ -687,16 +687,16 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 12,
     "challenge_index": 5,
-    "question_text": "A woman killed a general by driving a tent peg through his head. Who was she?",
+    "question_text": "What did Jael give Sisera to drink before covering him?",
     "options": [
-      "Jael",
-      "Blindness from birth",
-      "Bleeding for twelve years",
-      "Five barley loaves and two fish"
+      "Milk",
+      "Shimei",
+      "Ahithophel",
+      "Hushai"
     ],
-    "correct_answer": "Jael",
-    "reference": "Judges 4:21",
-    "explanation": "The passage Judges 4:21 records this biblical detail.",
+    "correct_answer": "Milk",
+    "reference": "Judges 4:19",
+    "explanation": "The passage Judges 4:19 records this distinct detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-detective-b02-fact-35"
@@ -710,9 +710,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king asked for a sign and the shadow moved backward ten steps. Who was the king?",
     "options": [
       "Hezekiah",
-      "Paralysis",
-      "The region of the Gerasenes",
-      "See"
+      "Azariah",
+      "Lemuel",
+      "Aquila"
     ],
     "correct_answer": "Hezekiah",
     "reference": "2 Kings 20:8-11",
@@ -730,9 +730,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet's cloak divided a river after its owner was taken up. Who used the cloak?",
     "options": [
       "Elisha",
-      "Peter, James and John",
-      "Fourfold",
-      "Peter"
+      "Samson",
+      "Saul",
+      "Sisera"
     ],
     "correct_answer": "Elisha",
     "reference": "2 Kings 2:13-14",
@@ -750,9 +750,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king was struck down by an angel and eaten by worms after accepting praise. Who was he?",
     "options": [
       "Herod Agrippa",
-      "Peter",
-      "The high priest's servant",
-      "Barabbas"
+      "The donkey",
+      "Jehoiakim",
+      "King Aretas"
     ],
     "correct_answer": "Herod Agrippa",
     "reference": "Acts 12:21-23",
@@ -770,9 +770,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was healed when Peter told him to stand up after eight years on a bed. Who was he?",
     "options": [
       "Aeneas",
-      "Joseph of Arimathea",
-      "Thomas",
-      "The disciple whom Jesus loved"
+      "Jeroboam",
+      "Elisha's servant",
+      "Blindness from birth"
     ],
     "correct_answer": "Aeneas",
     "reference": "Acts 9:32-35",
@@ -790,9 +790,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman was raised after Peter prayed and told her to arise. What was her name?",
     "options": [
       "Tabitha",
-      "Apollos",
-      "The third storey",
-      "Agabus"
+      "Paralysis",
+      "The region of the Gerasenes",
+      "See"
     ],
     "correct_answer": "Tabitha",
     "reference": "Acts 9:36-41",
@@ -810,9 +810,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "At what hour did Cornelius see the angel in his vision?",
     "options": [
       "The ninth hour",
-      "Artemis",
-      "Simon",
-      "Joash"
+      "Fourfold",
+      "Peter",
+      "The high priest's servant"
     ],
     "correct_answer": "The ninth hour",
     "reference": "Acts 10:3",
@@ -830,9 +830,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What qualification did the replacement for Judas need to meet according to Peter?",
     "options": [
       "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
-      "Jehoiada",
-      "Jael",
-      "Hezekiah"
+      "Thomas",
+      "The disciple whom Jesus loved",
+      "Apollos"
     ],
     "correct_answer": "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
     "reference": "Acts 1:21-22",
@@ -850,9 +850,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A young man escaped arrest by leaving his linen cloth behind. Who was he?",
     "options": [
       "An unnamed young man",
-      "Herod Agrippa",
-      "Aeneas",
-      "Tabitha"
+      "Artemis",
+      "Simon",
+      "Joash"
     ],
     "correct_answer": "An unnamed young man",
     "reference": "Mark 14:51-52",
@@ -870,9 +870,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What was Anna's response after seeing the infant Jesus?",
     "options": [
       "She gave thanks to God and spoke about the child",
-      "The ninth hour",
-      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
-      "An unnamed young man"
+      "Hezekiah",
+      "Herod Agrippa",
+      "Aeneas"
     ],
     "correct_answer": "She gave thanks to God and spoke about the child",
     "reference": "Luke 2:38",
@@ -890,9 +890,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What was Simeon waiting for when he came into the temple?",
     "options": [
       "The consolation of Israel",
-      "She gave thanks to God and spoke about the child",
-      "Herod the Great",
-      "Cyrene"
+      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child"
     ],
     "correct_answer": "The consolation of Israel",
     "reference": "Luke 2:25",
@@ -930,9 +930,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What were the names of Simon of Cyrene's sons mentioned by Mark?",
     "options": [
       "Alexander and Rufus",
-      "Samson",
-      "Saul",
-      "Elisha"
+      "A small cake",
+      "Naaman",
+      "Jehoshaphat"
     ],
     "correct_answer": "Alexander and Rufus",
     "reference": "Mark 15:21",
@@ -950,9 +950,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A criminal asked Jesus to remember him when he came into his kingdom. Which criminal?",
     "options": [
       "The repentant criminal",
-      "Naaman",
-      "Jehoshaphat",
-      "Jonah"
+      "Esther",
+      "Mordecai",
+      "Honey"
     ],
     "correct_answer": "The repentant criminal",
     "reference": "Luke 23:39-43",
@@ -970,9 +970,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "From which town did Philip come, according to John's Gospel?",
     "options": [
       "Bethsaida",
-      "Grass like oxen",
-      "Esther",
-      "Mordecai"
+      "Old rags and worn-out clothes",
+      "Jeremiah",
+      "Hilkiah"
     ],
     "correct_answer": "Bethsaida",
     "reference": "John 1:44",
@@ -990,9 +990,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A disciple brought a boy with loaves and fish to Jesus. Who was he?",
     "options": [
       "Andrew",
-      "Honey",
-      "Love",
-      "Summer fruit"
+      "Shadrach",
+      "You have been weighed and found wanting",
+      "The palm tree of Deborah"
     ],
     "correct_answer": "Andrew",
     "reference": "John 6:8-9",
@@ -1010,9 +1010,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was chosen to carry the church's letter to Antioch with Paul and Barnabas. Who was he?",
     "options": [
       "Silas",
-      "Old rags and worn-out clothes",
-      "Jeremiah",
-      "Hilkiah"
+      "Shammah",
+      "Abishai",
+      "David"
     ],
     "correct_answer": "Silas",
     "reference": "Acts 15:22-27",
@@ -1030,9 +1030,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet was fed by ravens beside a brook during a drought. Who was he?",
     "options": [
       "Elijah",
-      "Josiah",
-      "Daniel",
-      "Shadrach"
+      "Joshua",
+      "Deborah",
+      "Gideon"
     ],
     "correct_answer": "Elijah",
     "reference": "1 Kings 17:2-6",
@@ -1050,9 +1050,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What did Elijah ask the widow to make for him first?",
     "options": [
       "A small cake",
-      "You have been weighed and found wanting",
-      "The palm tree of Deborah",
-      "Benaiah"
+      "Shimei",
+      "Ahithophel",
+      "Hushai"
     ],
     "correct_answer": "A small cake",
     "reference": "1 Kings 17:13",
@@ -1070,9 +1070,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was healed of leprosy after washing seven times in a river. Who was he?",
     "options": [
       "Naaman",
-      "Adino the Eznite",
-      "Shammah",
-      "Abishai"
+      "Azariah",
+      "Lemuel",
+      "Aquila"
     ],
     "correct_answer": "Naaman",
     "reference": "2 Kings 5:1-14",
@@ -1090,9 +1090,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman poured out water from a jar and was told her son would live. Which prophet helped her?",
     "options": [
       "Elisha",
-      "David",
-      "A window",
-      "Achan"
+      "Samson",
+      "Saul",
+      "Sisera"
     ],
     "correct_answer": "Elisha",
     "reference": "2 Kings 4:1-7",
@@ -1110,9 +1110,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king's army was defeated after singers went ahead praising God. Which king led Judah?",
     "options": [
       "Jehoshaphat",
-      "Joshua",
-      "Deborah",
-      "Gideon"
+      "The donkey",
+      "Jehoiakim",
+      "King Aretas"
     ],
     "correct_answer": "Jehoshaphat",
     "reference": "2 Chronicles 20:20-23",
@@ -1130,9 +1130,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was swallowed by a great fish after fleeing a mission. Who was he?",
     "options": [
       "Jonah",
-      "Jephthah",
-      "Samuel",
-      "Shimei"
+      "Jeroboam",
+      "Elisha's servant",
+      "Blindness from birth"
     ],
     "correct_answer": "Jonah",
     "reference": "Jonah 1:15-17",
@@ -1150,9 +1150,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What did Nebuchadnezzar eat during the period of his humiliation?",
     "options": [
       "Grass like oxen",
-      "Ahithophel",
-      "Hushai",
-      "The wise woman of Abel"
+      "Paralysis",
+      "The region of the Gerasenes",
+      "See"
     ],
     "correct_answer": "Grass like oxen",
     "reference": "Daniel 4:33",
@@ -1170,9 +1170,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A queen risked death by approaching the king without being summoned. Who was she?",
     "options": [
       "Esther",
-      "The oxen",
-      "Azariah",
-      "Lemuel"
+      "Fourfold",
+      "Peter",
+      "The high priest's servant"
     ],
     "correct_answer": "Esther",
     "reference": "Esther 5:1-3",
@@ -1190,9 +1190,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man refused to bow to Haman and became the target of a plot. Who was he?",
     "options": [
       "Mordecai",
-      "Aquila",
-      "A man of the sons of the prophets",
-      "The captain on whose hand the king leaned"
+      "Thomas",
+      "The disciple whom Jesus loved",
+      "Apollos"
     ],
     "correct_answer": "Mordecai",
     "reference": "Esther 3:2-6",
@@ -1210,9 +1210,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What did Ezekiel say the scroll tasted like when he ate it?",
     "options": [
       "Honey",
-      "Samson",
-      "Saul",
-      "Elisha"
+      "Artemis",
+      "Simon",
+      "Joash"
     ],
     "correct_answer": "Honey",
     "reference": "Ezekiel 3:3",
@@ -1230,9 +1230,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "In Hosea's sign-act, what did God tell him to show toward his wife despite her unfaithfulness?",
     "options": [
       "Love",
-      "Sisera",
-      "Eglon",
-      "The donkey"
+      "Hezekiah",
+      "Herod Agrippa",
+      "Aeneas"
     ],
     "correct_answer": "Love",
     "reference": "Hosea 3:1",
@@ -1250,9 +1250,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What did Amos see in the basket shown to him?",
     "options": [
       "Summer fruit",
-      "Jehoiakim",
-      "King Aretas",
-      "Elymas"
+      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child"
     ],
     "correct_answer": "Summer fruit",
     "reference": "Amos 8:1-2",
@@ -1270,9 +1270,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What was lowered into the cistern to lift Jeremiah out?",
     "options": [
       "Old rags and worn-out clothes",
-      "Sapphira",
-      "Jeroboam",
-      "Elisha's servant"
+      "Alexander and Rufus",
+      "The repentant criminal",
+      "Bethsaida"
     ],
     "correct_answer": "Old rags and worn-out clothes",
     "reference": "Jeremiah 38:11-12",
@@ -1290,9 +1290,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Who dictated the scroll that Baruch wrote at Jeremiah's instruction?",
     "options": [
       "Jeremiah",
-      "Blindness from birth",
-      "Bleeding for twelve years",
-      "Five barley loaves and two fish"
+      "Elijah",
+      "A small cake",
+      "Naaman"
     ],
     "correct_answer": "Jeremiah",
     "reference": "Jeremiah 36:4",
@@ -1310,9 +1310,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king burned a scroll containing prophetic warnings. Which prophet dictated it?",
     "options": [
       "Jeremiah",
-      "Paralysis",
-      "The region of the Gerasenes",
-      "See"
+      "Grass like oxen",
+      "Esther",
+      "Mordecai"
     ],
     "correct_answer": "Jeremiah",
     "reference": "Jeremiah 36:1-4",
@@ -1330,9 +1330,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A priest discovered a book of the law during temple repairs. Who was he?",
     "options": [
       "Hilkiah",
-      "Centurion",
-      "Peter, James and John",
-      "Fourfold"
+      "Summer fruit",
+      "Old rags and worn-out clothes",
+      "Jeremiah"
     ],
     "correct_answer": "Hilkiah",
     "reference": "2 Kings 22:8-10",
@@ -1350,9 +1350,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Which king sent officials to consult the prophetess after the book of the Law was found?",
     "options": [
       "Josiah",
-      "Peter",
-      "The high priest's servant",
-      "Barabbas"
+      "Shadrach",
+      "You have been weighed and found wanting",
+      "The palm tree of Deborah"
     ],
     "correct_answer": "Josiah",
     "reference": "2 Kings 22:13-14",
@@ -1370,9 +1370,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king was healed after a cake of figs was placed on his boil. Who was he?",
     "options": [
       "Hezekiah",
-      "Joseph of Arimathea",
-      "Thomas",
-      "The disciple whom Jesus loved"
+      "Shammah",
+      "Abishai",
+      "David"
     ],
     "correct_answer": "Hezekiah",
     "reference": "2 Kings 20:7",
@@ -1390,9 +1390,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man survived a night in a den of lions after an angel shut their mouths. Who was he?",
     "options": [
       "Daniel",
-      "Apollos",
-      "The third storey",
-      "Agabus"
+      "Joshua",
+      "Deborah",
+      "Gideon"
     ],
     "correct_answer": "Daniel",
     "reference": "Daniel 6:16-23",
@@ -1410,9 +1410,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Three men survived a furnace heated seven times hotter. Name one of them.",
     "options": [
       "Shadrach",
-      "Artemis",
-      "Simon",
-      "Joash"
+      "Shimei",
+      "Ahithophel",
+      "Hushai"
     ],
     "correct_answer": "Shadrach",
     "reference": "Daniel 3:19-27",
@@ -1430,9 +1430,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet interpreted a dream about a statue with a head of gold. Who was he?",
     "options": [
       "Daniel",
-      "Jehoiada",
-      "Jael",
-      "Hezekiah"
+      "Azariah",
+      "Lemuel",
+      "Aquila"
     ],
     "correct_answer": "Daniel",
     "reference": "Daniel 2:31-45",
@@ -1450,9 +1450,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What did the word TEKEL mean in Daniel's interpretation of the writing?",
     "options": [
       "You have been weighed and found wanting",
-      "Herod Agrippa",
-      "Aeneas",
-      "Tabitha"
+      "Samson",
+      "Saul",
+      "Elisha"
     ],
     "correct_answer": "You have been weighed and found wanting",
     "reference": "Daniel 5:25-28",
@@ -1470,9 +1470,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man was chosen by lot to be king but was found hiding among baggage. Who was he?",
     "options": [
       "Saul",
-      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
-      "An unnamed young man",
-      "She gave thanks to God and spoke about the child"
+      "Jehoiakim",
+      "King Aretas",
+      "Elymas"
     ],
     "correct_answer": "Saul",
     "reference": "1 Samuel 10:20-24",
@@ -1490,9 +1490,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Under which tree did Deborah sit while judging Israel?",
     "options": [
       "The palm tree of Deborah",
-      "She gave thanks to God and spoke about the child",
-      "The consolation of Israel",
-      "Herod the Great"
+      "Jeroboam",
+      "Elisha's servant",
+      "Blindness from birth"
     ],
     "correct_answer": "The palm tree of Deborah",
     "reference": "Judges 4:4-5",
@@ -1510,9 +1510,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man killed a lion in a pit on a snowy day. Who was he?",
     "options": [
       "Benaiah",
-      "Cyrene",
-      "The repentant criminal",
-      "Bethsaida"
+      "Paralysis",
+      "The region of the Gerasenes",
+      "See"
     ],
     "correct_answer": "Benaiah",
     "reference": "2 Samuel 23:20",
@@ -1530,9 +1530,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man killed an Egyptian with the Egyptian's own spear. Who was he?",
     "options": [
       "Benaiah",
-      "Andrew",
-      "Silas",
-      "Elijah"
+      "Fourfold",
+      "Peter",
+      "The high priest's servant"
     ],
     "correct_answer": "Benaiah",
     "reference": "2 Samuel 23:21",
@@ -1550,9 +1550,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A mighty warrior killed eight hundred men with his spear in one encounter. Who was he?",
     "options": [
       "Adino the Eznite",
-      "A small cake",
-      "Naaman",
-      "Jehoshaphat"
+      "Thomas",
+      "The disciple whom Jesus loved",
+      "Apollos"
     ],
     "correct_answer": "Adino the Eznite",
     "reference": "2 Samuel 23:8",
@@ -1570,9 +1570,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man stood his ground in a field of lentils and defended it from the Philistines. Who was he?",
     "options": [
       "Shammah",
-      "Jonah",
-      "Grass like oxen",
-      "Esther"
+      "Artemis",
+      "Simon",
+      "Joash"
     ],
     "correct_answer": "Shammah",
     "reference": "2 Samuel 23:11-12",
@@ -1590,9 +1590,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man broke through the Philistine camp to bring David water from Bethlehem. Name one of the three mighty men.",
     "options": [
       "Abishai",
-      "Mordecai",
-      "Honey",
-      "Love"
+      "Hezekiah",
+      "Herod Agrippa",
+      "Aeneas"
     ],
     "correct_answer": "Abishai",
     "reference": "2 Samuel 23:13-17",
@@ -1610,9 +1610,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man refused to drink the water brought at great risk from Bethlehem. Who was the king?",
     "options": [
       "David",
-      "Summer fruit",
-      "Old rags and worn-out clothes",
-      "Jeremiah"
+      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child"
     ],
     "correct_answer": "David",
     "reference": "2 Samuel 23:15-17",
@@ -1630,9 +1630,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Through what opening did Rahab lower the spies to help them escape?",
     "options": [
       "A window",
-      "Hilkiah",
-      "Josiah",
-      "Daniel"
+      "Alexander and Rufus",
+      "The repentant criminal",
+      "Bethsaida"
     ],
     "correct_answer": "A window",
     "reference": "Joshua 2:15",
@@ -1650,9 +1650,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man stole devoted items from Jericho and brought defeat at Ai. Who was he?",
     "options": [
       "Achan",
-      "Shadrach",
-      "You have been weighed and found wanting",
-      "The palm tree of Deborah"
+      "Elijah",
+      "A small cake",
+      "Naaman"
     ],
     "correct_answer": "Achan",
     "reference": "Joshua 7:1-26",
@@ -1670,9 +1670,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man challenged Israel to choose whom they would serve at Shechem. Who was he?",
     "options": [
       "Joshua",
-      "Benaiah",
-      "Adino the Eznite",
-      "Shammah"
+      "Grass like oxen",
+      "Esther",
+      "Mordecai"
     ],
     "correct_answer": "Joshua",
     "reference": "Joshua 24:14-15",
@@ -1690,9 +1690,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman judged Israel and summoned Barak to battle. Who was she?",
     "options": [
       "Deborah",
-      "Abishai",
-      "David",
-      "A window"
+      "Summer fruit",
+      "Old rags and worn-out clothes",
+      "Jeremiah"
     ],
     "correct_answer": "Deborah",
     "reference": "Judges 4:4-9",
@@ -1710,9 +1710,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A judge reduced his army to three hundred before facing Midian. Who was he?",
     "options": [
       "Gideon",
-      "Achan",
-      "Joshua",
-      "Deborah"
+      "Daniel",
+      "Shadrach",
+      "You have been weighed and found wanting"
     ],
     "correct_answer": "Gideon",
     "reference": "Judges 7:1-8",
@@ -1730,9 +1730,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A judge made a rash vow before fighting the Ammonites. Who was he?",
     "options": [
       "Jephthah",
-      "Gideon",
-      "Samuel",
-      "Shimei"
+      "Adino the Eznite",
+      "Shammah",
+      "Abishai"
     ],
     "correct_answer": "Jephthah",
     "reference": "Judges 11:29-40",
@@ -1750,9 +1750,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king spared Agag and livestock despite a command to destroy them. Who was he?",
     "options": [
       "Saul",
-      "Ahithophel",
-      "Hushai",
-      "The wise woman of Abel"
+      "Joshua",
+      "Deborah",
+      "Gideon"
     ],
     "correct_answer": "Saul",
     "reference": "1 Samuel 15:8-9",
@@ -1770,9 +1770,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet anointed David while his brothers were present. Who was he?",
     "options": [
       "Samuel",
-      "The oxen",
-      "Azariah",
-      "Lemuel"
+      "Shimei",
+      "Ahithophel",
+      "Hushai"
     ],
     "correct_answer": "Samuel",
     "reference": "1 Samuel 16:1-13",
@@ -1790,9 +1790,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man cursed David as he fled Jerusalem and later asked forgiveness. Who was he?",
     "options": [
       "Shimei",
-      "Aquila",
-      "A man of the sons of the prophets",
-      "The captain on whose hand the king leaned"
+      "Azariah",
+      "Lemuel",
+      "Aquila"
     ],
     "correct_answer": "Shimei",
     "reference": "2 Samuel 16:5-13; 19:16-23",
@@ -1830,9 +1830,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A man pretended to be loyal to David while secretly serving Absalom. Who was he?",
     "options": [
       "Hushai",
-      "Sisera",
-      "Eglon",
-      "The donkey"
+      "The donkey",
+      "Jehoiakim",
+      "King Aretas"
     ],
     "correct_answer": "Hushai",
     "reference": "2 Samuel 15:32-37",
@@ -1850,9 +1850,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman from Abel persuaded Joab to spare her city by delivering a traitor's head. Who was she?",
     "options": [
       "The wise woman of Abel",
-      "Jehoiakim",
-      "King Aretas",
-      "Elymas"
+      "Jeroboam",
+      "Elisha's servant",
+      "Blindness from birth"
     ],
     "correct_answer": "The wise woman of Abel",
     "reference": "2 Samuel 20:14-22",
@@ -1870,9 +1870,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet rebuked a king for taking another man's wife and arranging his death. Who was the king?",
     "options": [
       "David",
-      "Sapphira",
-      "Jeroboam",
-      "Elisha's servant"
+      "Paralysis",
+      "The region of the Gerasenes",
+      "See"
     ],
     "correct_answer": "David",
     "reference": "2 Samuel 12:1-12",
@@ -1890,9 +1890,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "What animals stumbled when Uzzah reached out toward the ark?",
     "options": [
       "The oxen",
-      "Blindness from birth",
-      "Bleeding for twelve years",
-      "Five barley loaves and two fish"
+      "Fourfold",
+      "Peter",
+      "The high priest's servant"
     ],
     "correct_answer": "The oxen",
     "reference": "2 Samuel 6:6",
@@ -1910,9 +1910,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "Which priest led the group that opposed Uzziah when he entered the temple to burn incense?",
     "options": [
       "Azariah",
-      "Paralysis",
-      "The region of the Gerasenes",
-      "See"
+      "Thomas",
+      "The disciple whom Jesus loved",
+      "Apollos"
     ],
     "correct_answer": "Azariah",
     "reference": "2 Chronicles 26:17-18",
@@ -1930,9 +1930,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king's mother advised him about justice and the dangers of immoral leadership. Who was the king?",
     "options": [
       "Lemuel",
-      "Centurion",
-      "Peter, James and John",
-      "Fourfold"
+      "Artemis",
+      "Simon",
+      "Joash"
     ],
     "correct_answer": "Lemuel",
     "reference": "Proverbs 31:1-9",
@@ -1950,9 +1950,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A woman named Priscilla and her husband helped explain the way of God to a preacher. Who was her husband?",
     "options": [
       "Aquila",
-      "Peter",
-      "The high priest's servant",
-      "Barabbas"
+      "Hezekiah",
+      "Herod Agrippa",
+      "Aeneas"
     ],
     "correct_answer": "Aquila",
     "reference": "Acts 18:24-26",
@@ -1970,9 +1970,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A prophet was struck by a lion after refusing to strike another prophet. Who was he?",
     "options": [
       "A man of the sons of the prophets",
-      "Joseph of Arimathea",
-      "Thomas",
-      "The disciple whom Jesus loved"
+      "He had to have accompanied the disciples from John's baptism to Jesus' ascension",
+      "An unnamed young man",
+      "She gave thanks to God and spoke about the child"
     ],
     "correct_answer": "A man of the sons of the prophets",
     "reference": "1 Kings 20:35-36",
@@ -1990,9 +1990,9 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "question_text": "A king's official mocked the Lord's promise and was trampled at the city gate. Who was he?",
     "options": [
       "The captain on whose hand the king leaned",
-      "Apollos",
-      "The third storey",
-      "Agabus"
+      "Alexander and Rufus",
+      "The repentant criminal",
+      "Bethsaida"
     ],
     "correct_answer": "The captain on whose hand the king leaned",
     "reference": "2 Kings 7:17-20",
