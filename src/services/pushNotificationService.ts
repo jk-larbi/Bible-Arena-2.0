@@ -31,7 +31,9 @@ export async function registerNotificationWorker(): Promise<ServiceWorkerRegistr
   }
 
   try {
-    const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    const basePath = import.meta.env.BASE_URL || '/';
+    const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    const registration = await navigator.serviceWorker.register(`${normalizedBase}sw.js`, { scope: normalizedBase });
     return registration;
   } catch (err) {
     console.error('Service Worker registration failed:', err);
@@ -111,14 +113,14 @@ export async function getPushSubscription(userId: string) {
 /**
  * Display desktop background notification if tab is hidden or user has granted permission
  */
-export function showBackgroundDesktopNotification(title: string, message: string, url: string = '/notifications') {
+export function showBackgroundDesktopNotification(title: string, message: string, url: string = `${import.meta.env.BASE_URL || '/'}notifications`) {
   if (!('Notification' in window) || Notification.permission !== 'granted') return;
 
   try {
     const notif = new Notification(title, {
       body: message,
-      icon: '/assets/bible-arena-logo.png',
-      badge: '/assets/bible-arena-logo.png',
+      icon: `${import.meta.env.BASE_URL || '/'}assets/bible-arena-logo.png`,
+      badge: `${import.meta.env.BASE_URL || '/'}assets/bible-arena-logo.png`,
       tag: 'biblearena-notif',
       data: { url }
     });
