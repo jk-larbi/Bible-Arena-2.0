@@ -40,7 +40,7 @@ import { BaseGame } from './components/game/BaseGame';
 import { GAMES_LIST, GameInfo, getGameById } from './data/gamesList';
 import { Search } from 'lucide-react';
 import { Button } from './components/Button';
-import { useSession } from './lib/auth';
+import { useSession, logoutPlayer } from './lib/auth';
 import { useNotifications, Notification } from './hooks/useNotifications';
 import { enqueueOfflineScore, setupOfflineSyncListener } from './lib/offlineSync';
 
@@ -51,6 +51,20 @@ export default function App() {
   const nav = useNavigate();
   const location = useLocation();
   const { user } = useSession();
+
+  const handleLogout = async () => {
+    const { error } = await logoutPlayer();
+    if (error) {
+      console.error('BibleArena logout failed:', error);
+      window.alert('We could not sign you out. Please try again.');
+      return;
+    }
+    setActiveGame(null);
+    setIsNotifOpen(false);
+    setIsOpenAuth(false);
+    nav('/', { replace: true });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const [activeGame, setActiveGame] = useState<GameInfo | null>(null);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
@@ -161,6 +175,7 @@ export default function App() {
         onSelectTab={handleSelectTab}
         onOpenSearch={() => setIsOpenSearch(true)}
         onOpenAuth={() => nav('/login')}
+        onLogout={handleLogout}
         user={user}
         unreadCount={notifUnread}
         isNotifOpen={isNotifOpen}
@@ -198,7 +213,7 @@ export default function App() {
             <Route path="/challenges" element={<ChallengesPage onSelectGame={handleSelectGame} />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/notification-settings" element={<NotificationSettingsPage />} />
-            <Route path="/profile" element={<ProfilePage user={user} onLogout={() => {}} />} />
+            <Route path="/profile" element={<ProfilePage user={user} onLogout={handleLogout} onNavigateTab={handleSelectTab} />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/join/:code?" element={<JoinRoom />} />
             <Route path="/room/:roomId" element={<WaitingRoom />} />
