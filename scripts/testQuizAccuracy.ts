@@ -513,6 +513,58 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 12. PROGRESSIVE DIFFICULTY ACROSS ALL 19 GAMES AND 50 LEVELS
+  // ===================================================================
+  {
+    let metadataFailures = 0;
+    let missingHardModeCoverage = 0;
+    const tierCoverage = new Set<number>();
+    for (const slug of ALL_19_GAME_SLUGS) {
+      for (let lvl = 1; lvl <= 50; lvl++) {
+        const expectedTier = Math.min(4, Math.floor((lvl - 1) / 10));
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        for (const item of items) {
+          if (item.metadata?.difficultyTier !== expectedTier) metadataFailures++;
+          tierCoverage.add(item.metadata?.difficultyTier);
+          if (expectedTier >= 3 && !item.question_text.trim()) missingHardModeCoverage++;
+        }
+      }
+    }
+    const passed = metadataFailures === 0 && missingHardModeCoverage === 0 && tierCoverage.size === 5;
+    results.push({
+      name: '12. Progressive difficulty metadata across every game and level',
+      scope: 'All 9,500 questions: 19 games x 50 levels x 10 challenges',
+      passed,
+      details: `Difficulty tiers found: ${[...tierCoverage].sort().join(', ')}. Metadata failures: ${metadataFailures}; missing expert/master prompts: ${missingHardModeCoverage}.`,
+    });
+  }
+
+  // ===================================================================
+  // 13. ADVANCED CONTENT AND MIXED TESTAMENT COVERAGE
+  // ===================================================================
+  {
+    let failures = 0;
+    for (let lvl = 31; lvl <= 50; lvl++) {
+      for (const slug of ALL_19_GAME_SLUGS) {
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        if (items.some((item) => item.metadata?.difficultyTier < 3)) failures++;
+        if (items.some((item) => !item.reference || !item.explanation || !item.correct_answer)) failures++;
+      }
+      const classify = buildLocalChallengesForLevel('old-vs-new-testament', lvl);
+      const answers = new Set(classify.map((item) => item.correct_answer));
+      if (!answers.has('Old Testament') || !answers.has('New Testament')) failures++;
+      const bookNames = buildLocalChallengesForLevel('find-the-bible-book', lvl).map((item) => item.correct_answer);
+      const canonical = bookNames.map((name) => CANONICAL_BOOKS.indexOf(name));
+      if (!canonical.some((value, index) => index > 0 && value < canonical[index - 1])) failures++;
+    }
+    results.push({
+      name: '13. Expert/Master levels preserve content integrity and mixed Testament selection',
+      scope: 'Levels 31-50 across all 19 games',
+      passed: failures === 0,
+      details: `Expert/Master levels checked across all games, with scripture references, explanations, answer integrity, both Testaments and non-canonical book ordering. Failures: ${failures}.`,
+    });
+  }
+  // ===================================================================
   // SUMMARY REPORT
   // ===================================================================
   console.log('TEST EXECUTION REPORT:\n');
