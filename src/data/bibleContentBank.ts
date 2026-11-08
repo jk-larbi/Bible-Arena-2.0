@@ -347,11 +347,18 @@ function getCharacterClue(char: (typeof BIBLE_CHARACTERS)[number], tier: number)
 function getQuoteOptions(q: (typeof QUOTES_POOL)[number], tier: number, seed: number): string[] {
   if (tier < 2) return makeFourDistinctOptions(q.speaker, q.options, seed);
   const testament = BIBLE_CHARACTERS.find((person) => person.name === q.speaker)?.testament;
-  const relatedSpeakers = QUOTES_POOL
+  const relatedSpeakers = [...new Set(QUOTES_POOL
     .filter((quote) => quote.speaker !== q.speaker)
     .filter((quote) => !testament || BIBLE_CHARACTERS.find((person) => person.name === quote.speaker)?.testament === testament)
-    .map((quote) => quote.speaker);
+    .map((quote) => quote.speaker))];
   return makeFourDistinctOptions(q.speaker, relatedSpeakers.length >= 3 ? relatedSpeakers : q.options, seed);
+}
+
+function getCharacterClueReference(char: (typeof BIBLE_CHARACTERS)[number], tier: number): string {
+  if (tier <= 1) return char.clue3Ref;
+  if (tier === 2) return char.clue1Ref;
+  if (tier === 3) return `${char.clue1Ref}; ${char.clue2Ref}`;
+  return `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
 }
 
 function getBookClue(book: (typeof BOOKS_66)[number], tier: number): string {
@@ -393,8 +400,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             question_text: difficultyTier === 0 ? `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?` : `Identify the biblical figure from this evidence: ${getCharacterClue(char, difficultyTier)}.`,
             options,
             correct_answer: char.name,
-            explanation: `${char.name} (${char.role}): ${char.clue3}.`,
-            reference: char.clue3Ref,
+            explanation: `${char.name} (${char.role}): ${getCharacterClue(char, difficultyTier)}.`,
+            reference: getCharacterClueReference(char, difficultyTier),
           });
         } else if (mode === 1) {
           const book = mixedBooks[globalSeed % BOOKS_66.length];
@@ -454,8 +461,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           question_text: `Identify this ${char.testament} ${char.role} from the biblical record: ${getCharacterClue(char, difficultyTier)}.`,
           options,
           correct_answer: char.name,
-          explanation: `${char.name} is remembered as the ${char.role.toLowerCase()} who ${char.clue3.toLowerCase()}.`,
-          reference: char.clue3Ref,
+          explanation: `${char.name} is remembered as the ${char.role.toLowerCase()}: ${getCharacterClue(char, difficultyTier)}.`,
+          reference: getCharacterClueReference(char, difficultyTier),
           metadata: {
             clues: [char.clue1, char.clue2, char.clue3],
             role: char.role,
@@ -522,6 +529,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const char = BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
+        const downReference = difficultyTier <= 1 ? char.clue2Ref : difficultyTier === 2 ? char.clue1Ref : difficultyTier === 3 ? `${char.clue1Ref}; ${char.clue2Ref}` : `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
         items.push({
           id,
           game_slug: gameSlug,
@@ -530,8 +538,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${getBookClue(book, difficultyTier)}" • Down (${downWord.length} letters): "${getCharacterClue(char, difficultyTier)}"`,
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
-          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.clue2Ref}).`,
-          reference: `${book.ref}; ${char.clue2Ref}`,
+          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${downReference}).`,
+          reference: `${book.ref}; ${downReference}`,
           metadata: {
             acrossClue: book.clue,
             acrossAnswer: acrossWord,
