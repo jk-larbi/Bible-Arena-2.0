@@ -307,8 +307,6 @@ export const MultiplayerPage: React.FC = () => {
           </div>
         </article>
       </section>
-    </div>
-  );
 
       {/* Host Game Modal */}
       <Modal
