@@ -523,6 +523,14 @@ export default function WaitingRoom() {
             Live Multiplayer Arena
           </span>
           <h1 className="font-serif text-2xl sm:text-3xl font-bold">{gameInfo?.title}</h1>
+          {gameInfo?.imageFile && (
+            <img
+              src={`${import.meta.env.BASE_URL}assets/games/${gameInfo.imageFile.replace(/\\.(png|jpe?g)$/i, '.webp')}`}
+              alt={`${gameInfo.title} game artwork`}
+              className="mt-2 h-16 w-28 rounded-xl object-cover border border-[#E3D9C6] shadow-sm"
+              onError={(event) => { event.currentTarget.src = `${import.meta.env.BASE_URL}assets/games/${gameInfo.imageFile}`; }}
+            />
+          )}
         </div>
         <Link to="/multiplayer" className="text-sm font-semibold text-[#5A6275] hover:text-[#171B24]">
           ← Exit
@@ -745,12 +753,16 @@ export default function WaitingRoom() {
 
             {isHost && (
               <div className="space-y-2">
+                <div className="rounded-xl border border-[#3156C9]/15 bg-[#3156C9]/5 p-3 text-xs text-[#5A6275]">
+                  <strong className="text-[#171B24]">{players.filter((p) => p.is_ready).length} of {players.length}</strong> players ready.
+                  {players.length < 2 ? ' Invite at least one other player to begin.' : players.some((p) => !p.is_ready) ? ' Waiting for everyone to mark themselves ready.' : ' Everyone is ready. Let the battle begin!'}
+                </div>
                 <button
                   onClick={handleStartGame}
-                  disabled={busy}
+                  disabled={busy || players.length < 2 || players.some((p) => !p.is_ready)}
                   className="min-h-[48px] w-full rounded-xl bg-[#D66B3D] font-semibold text-white shadow hover:bg-[#c25a2c] transition-colors disabled:opacity-50"
                 >
-                  {busy ? 'Starting Game…' : `Start ${gameInfo?.title || 'Game'} (Host)`}
+                  {busy ? 'Starting Game…' : players.length < 2 ? 'Waiting for Players…' : players.some((p) => !p.is_ready) ? 'Waiting for Everyone to Be Ready…' : `Start ${gameInfo?.title || 'Game'} (Host)`}
                 </button>
 
                 <button
