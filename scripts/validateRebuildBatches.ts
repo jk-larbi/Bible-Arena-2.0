@@ -56,3 +56,5 @@ if (errors.length) {
 console.log('REBUILD BATCH AUDIT PASSED');
 console.log(`Questions: ${ALL_BATCHES.length}; games: ${new Set(ALL_BATCHES.map((item) => item.game_slug)).size}; unique wording: ${questions.size}; unique fact keys: ${facts.size}`);
 console.log('Note: this structural audit does not replace human verification of every Bible reference and interpretation.');
+
+// CI trigger: staged batch validation is required before any live-bank replacement.
