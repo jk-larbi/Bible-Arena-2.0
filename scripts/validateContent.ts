@@ -3,8 +3,8 @@ import {
   buildLocalChallengesForLevel,
 } from '../src/data/bibleContentBank';
 
-const LEVELS_TO_VALIDATE = 7;
-const CHALLENGES_PER_LEVEL = 10;
+const LEVELS_TO_VALIDATE = 50;
+const CHALLENGES_PER_LEVEL = 5;
 
 async function validate() {
   console.log('=== BibleArena 2.0 Content Validation ===');
@@ -74,7 +74,7 @@ async function validate() {
         }
       }
     }
-    console.log(`✓ ${slug}: ${LEVELS_TO_VALIDATE} levels (${LEVELS_TO_VALIDATE * 10} challenges) verified`);
+    console.log(`✓ ${slug}: ${LEVELS_TO_VALIDATE} levels (${LEVELS_TO_VALIDATE * CHALLENGES_PER_LEVEL} challenges) verified`);
   }
 
   console.log('-----------------------------------------');
@@ -90,7 +90,7 @@ async function validate() {
     process.exit(1);
   }
 
-  console.log('SUCCESS: All 19 games x 7 levels (1,330 challenges) passed uniqueness and quality validation.');
+  console.log('SUCCESS: All 19 games x 50 levels (4,750 challenges) passed uniqueness and quality validation.');
 }
 
 validate();
