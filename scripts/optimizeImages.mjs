@@ -11,7 +11,7 @@ for (const dir of targets) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
     if (!entry.isFile() || !/\\.(png|jpe?g)$/i.test(entry.name)) continue;
-    if (dir === 'public/assets' && entry.name !== 'bible-arena-logo.png') continue;
+    if (dir === 'public/assets' && !['bible-arena-logo.png', 'battle-of-the-prophets.png', 'scripture-challenge-hero.jpg'].includes(entry.name)) continue;
     const input = path.join(dir, entry.name);
     const output = path.join(dir, entry.name.replace(/\\.(png|jpe?g)$/i, '.webp'));
     await sharp(input, { failOn: 'error' })
