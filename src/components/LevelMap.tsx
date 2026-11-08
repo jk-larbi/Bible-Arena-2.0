@@ -17,7 +17,7 @@ export const Stars5 = ({ n }: { n: number }) => (
 
 type State = 'locked' | 'soon' | 'done' | 'progress' | 'open';
 const stateOf = (l: LevelNode): State =>
-  !l.unlocked ? 'locked' : !l.is_published ? 'soon' : l.completed ? 'done' : l.challenges_done > 0 ? 'progress' : 'open';
+  !l.is_published ? 'soon' : !l.unlocked ? 'locked' : l.completed ? 'done' : l.challenges_done > 0 ? 'progress' : 'open';
 
 const STYLE: Record<State, string> = {
   done:     'bg-[#A7B49A] text-[#171B24]',
@@ -54,12 +54,12 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
           return (
             <li key={l.level}>
               <button ref={isCurrent ? currentRef : undefined} onClick={() => setSel(l)}
-                aria-label={`Level ${l.level}, ${s === 'done' ? `completed, ${l.best_stars} stars` : s === 'progress' ? `in progress, ${l.challenges_done} of 10` : s}`}
+                aria-label={`Level ${l.level}, ${s === 'done' ? `completed, ${l.best_stars} stars` : s === 'progress' ? `in progress, ${l.challenges_done} of ${l.challenge_count}` : s}`}
                 className={`flex min-h-[64px] w-full flex-col items-center justify-center rounded-xl font-serif text-xl font-bold
                   ${STYLE[s]} ${isCurrent ? 'ring-2 ring-[#F3EBDD] ring-offset-2 ring-offset-[#171B24]' : ''}`}>
-                {s === 'locked' ? <LockIcon /> : l.level}
+                {s === 'locked' ? <LockIcon /> : s === 'soon' ? '…' : l.level}
                 {s === 'done' && <Stars5 n={l.best_stars} />}
-                {s === 'progress' && <span className="text-xs font-sans tabular-nums">{l.challenges_done}/10</span>}
+                {s === 'progress' && <span className="text-xs font-sans tabular-nums">{l.challenges_done}/{l.challenge_count}</span>}
               </button>
             </li>
           );
@@ -88,8 +88,8 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
             </p>
           )}
           <div className="mt-4 grid gap-2">
-            {!sel.unlocked && <p className="text-sm">Complete Level {sel.level - 1} to unlock this level.</p>}
-            {sel.unlocked && !sel.is_published && <p className="text-sm">This level is coming soon.</p>}
+            {!sel.is_published && <p className="text-sm">This level is coming soon. We're preparing its Bible challenges.</p>}
+            {sel.is_published && !sel.unlocked && <p className="text-sm">Complete Level {sel.level - 1} to unlock this level.</p>}
             {sel.unlocked && sel.is_published && sel.challenges_done > 0 && !sel.completed && (<>
               <button onClick={() => onPlay(sel.level, false)} className="min-h-[48px] rounded-xl bg-[#3156C9] font-semibold text-white">
                 Continue ({sel.challenges_done}/10)
