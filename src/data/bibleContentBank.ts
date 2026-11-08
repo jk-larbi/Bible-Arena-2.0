@@ -287,9 +287,10 @@ export function getDifficultyForLevel(level: number): string {
  */
 export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
   const items: ChallengeItem[] = [];
-  // Keep the original 10-slot level stride so the first five generated items
-  // stay aligned with the five published rows retained for each level.
-  const baseIdx = (level - 1) * 10;
+  // Five questions per level: consume the source pools sequentially without
+  // skipping every other item. This improves coverage but does not replace
+  // the separate uniqueness audit or the ongoing source-bank expansion.
+  const baseIdx = (level - 1) * 5;
 
   for (let i = 0; i < 5; i++) {
     const challengeIndex = i + 1;
