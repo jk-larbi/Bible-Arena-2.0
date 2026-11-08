@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged question batch. */
+/** Staged Who Said It batch 01: 100 questions across levels 1–20. */
 export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
   {
     "id": "who-said-it-rebuild-001",
@@ -1287,7 +1287,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 13,
     "challenge_index": 5,
-    "question_text": "\"Is anything too hard for the Lord?\"",
+    "question_text": "\"Be not afraid of their faces: for I am with thee to deliver thee.\"",
     "options": [
       "The Lord",
       "Cain",
@@ -1295,8 +1295,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "Isaiah"
     ],
     "correct_answer": "The Lord",
-    "explanation": "The biblical account in Genesis 18:14 supports this identification.",
-    "reference": "Genesis 18:14",
+    "explanation": "The Lord reassures Jeremiah in his prophetic calling.",
+    "reference": "Jeremiah 1:8",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "who-said-it-fact-65"
