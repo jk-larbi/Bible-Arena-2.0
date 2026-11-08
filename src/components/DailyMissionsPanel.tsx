@@ -154,12 +154,10 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
       setClaimed((current) => current.includes(mission.id) ? current : [...current, mission.id]);
       onXpAwarded?.(Number(row.total_xp));
       setMessage(`Reward claimed! +${Number(row.reward_xp)} XP added to your account.`);
-      await loadMissions();
     } catch (error) {
       console.error('Daily mission claim failed:', error);
       const detail = error instanceof Error ? error.message : 'Please check your connection and try again.';
       setMessage(detail.toLowerCase().includes('already') ? 'You have already claimed this reward today.' : detail);
-      await loadMissions();
     } finally {
       setClaiming(null);
     }
