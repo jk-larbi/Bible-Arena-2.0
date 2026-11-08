@@ -468,6 +468,51 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 11. BIBLE BOOK ORDER: Mixed Old/New Testament selection, not canonical order
+  // ===================================================================
+  {
+    let failures = 0;
+    const failureLog: string[] = [];
+
+    for (let lvl = 1; lvl <= 50; lvl++) {
+      const classification = buildLocalChallengesForLevel('old-vs-new-testament', lvl);
+      const testaments = classification.map((item) => item.correct_answer);
+      const hasOld = testaments.includes('Old Testament');
+      const hasNew = testaments.includes('New Testament');
+      let longestRun = 1;
+      let currentRun = 1;
+      for (let i = 1; i < testaments.length; i++) {
+        currentRun = testaments[i] === testaments[i - 1] ? currentRun + 1 : 1;
+        longestRun = Math.max(longestRun, currentRun);
+      }
+      if (!hasOld || !hasNew || longestRun > 3) {
+        failures++;
+        failureLog.push(`Level ${lvl}: OT=${hasOld}, NT=${hasNew}, longest same-testament run=${longestRun}`);
+      }
+
+      const bookQuestions = buildLocalChallengesForLevel('find-the-bible-book', lvl);
+      const sequence = bookQuestions.map((item) => CANONICAL_BOOKS.indexOf(item.correct_answer));
+      const hasOutOfOrderStep = sequence.some((value, index) => index > 0 && value < sequence[index - 1]);
+      const mixedQuestionTestaments = new Set(bookQuestions.map((item) =>
+        item.question_text.includes('(Old Testament') ? 'Old Testament' : 'New Testament'
+      ));
+      if (!hasOutOfOrderStep || mixedQuestionTestaments.size !== 2) {
+        failures++;
+        failureLog.push(`Level ${lvl}: book sequence was not sufficiently mixed (${sequence.join(', ')}); testaments=${[...mixedQuestionTestaments].join('/')}`);
+      }
+    }
+
+    results.push({
+      name: '11. Old/New Testament book order is mixed and non-predictable',
+      scope: 'All 50 levels of book classification and book-identification games',
+      passed: failures === 0,
+      details: failures === 0
+        ? 'All 50 levels include both Testaments, avoid long same-Testament runs, and present book-identification answers outside canonical order.'
+        : `${failures} ordering failures. ${failureLog.slice(0, 5).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
   // SUMMARY REPORT
   // ===================================================================
   console.log('TEST EXECUTION REPORT:\n');
