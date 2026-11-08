@@ -80,6 +80,49 @@ const BOOKS_66 = [
   { name: 'Revelation', testament: 'New Testament', section: 'Revelation', author: 'John the Apostle', chapters: 22, clue: 'Apocalyptic letters to seven churches and visions of the Lamb’s victory and the New Jerusalem', ref: 'Revelation 21:1' },
 ];
 
+// A stable but non-canonical order for book-based questions. The order is
+// re-seeded per game and level, and Old/New Testament books are interleaved
+// proportionally so players cannot infer answers from the canonical sequence.
+function seededBookShuffle<T>(items: T[], seed: number): T[] {
+  const result = [...items];
+  let state = seed >>> 0;
+  const random = () => {
+    state = (state + 0x6D2B79F5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function getMixedBookOrder(key: string) {
+  let hash = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    hash ^= key.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  const oldTestament = seededBookShuffle(BOOKS_66.filter((book) => book.testament === 'Old Testament'), hash ^ 0x0B1B1E);
+  const newTestament = seededBookShuffle(BOOKS_66.filter((book) => book.testament === 'New Testament'), hash ^ 0x4E455754);
+  const mixed: typeof BOOKS_66 = [];
+  let oldIndex = 0;
+  let newIndex = 0;
+  while (oldIndex < oldTestament.length || newIndex < newTestament.length) {
+    const oldProgress = oldIndex / oldTestament.length;
+    const newProgress = newIndex / newTestament.length;
+    if (oldIndex < oldTestament.length && (newIndex >= newTestament.length || oldProgress <= newProgress)) {
+      mixed.push(oldTestament[oldIndex++]);
+    } else {
+      mixed.push(newTestament[newIndex++]);
+    }
+  }
+  return mixed;
+}
+
 const BIBLE_CHARACTERS = [
   { name: 'Noah', testament: 'Old Testament', role: 'Patriarch', clue1: 'Walked faithfully with God when the earth was filled with violence', clue1Ref: 'Genesis 6:9-11', clue2: 'Built a three-story vessel of gopher wood to preserve life', clue2Ref: 'Genesis 6:14-16', clue3: 'Sent out a raven and a dove after forty days of rain', clue3Ref: 'Genesis 8:6-12', ref: 'Genesis 6:9' },
   { name: 'Abraham', testament: 'Old Testament', role: 'Patriarch', clue1: 'Called by God to leave Ur of the Chaldeans for a land he did not know', clue1Ref: 'Genesis 12:1-4', clue2: 'Promised descendants as numerous as the stars of heaven', clue2Ref: 'Genesis 15:5-6', clue3: 'Tested on Mount Moriah when offering his promised son Isaac', clue3Ref: 'Genesis 22:1-14', ref: 'Genesis 12:1-3' },
@@ -288,6 +331,7 @@ export function getDifficultyForLevel(level: number): string {
 export function buildLocalChallengesForLevel(gameSlug: string, level: number): ChallengeItem[] {
   const items: ChallengeItem[] = [];
   const baseIdx = (level - 1) * 10;
+  const mixedBooks = getMixedBookOrder(`${gameSlug}:${level}`);
 
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
@@ -318,10 +362,10 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             reference: char.clue3Ref,
           });
         } else if (mode === 1) {
-          const book = BOOKS_66[globalSeed % BOOKS_66.length];
+          const book = mixedBooks[globalSeed % BOOKS_66.length];
           const candidateBooks: string[] = [];
           for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
-            const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+            const b = mixedBooks[(globalSeed + off * 11) % BOOKS_66.length].name;
             if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
           }
           const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
@@ -387,7 +431,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'scripture-scramble': {
-        const wordSource = BOOKS_66[globalSeed % BOOKS_66.length];
+        const wordSource = mixedBooks[globalSeed % BOOKS_66.length];
         const cleanWord = wordSource.name.replace(/[^a-zA-Z]/g, '').toUpperCase();
         items.push({
           id,
@@ -409,7 +453,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       case 'bible-word-search': {
         const c1 = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
         const c2 = BIBLE_CHARACTERS[(globalSeed + 5) % BIBLE_CHARACTERS.length];
-        const c3 = BOOKS_66[globalSeed % BOOKS_66.length];
+        const c3 = mixedBooks[globalSeed % BOOKS_66.length];
         const words = [
           c1.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
           c2.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
@@ -434,7 +478,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-crossword': {
-        const book = BOOKS_66[(globalSeed * 3) % BOOKS_66.length];
+        const book = mixedBooks[(globalSeed * 3) % BOOKS_66.length];
         const char = BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
@@ -565,10 +609,10 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'find-the-bible-book': {
-        const book = BOOKS_66[globalSeed % BOOKS_66.length];
+        const book = mixedBooks[globalSeed % BOOKS_66.length];
         const candidateBooks: string[] = [];
         for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
-          const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+          const b = mixedBooks[(globalSeed + off * 11) % BOOKS_66.length].name;
           if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
         }
         const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
@@ -628,9 +672,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-memory-challenge': {
         const subset = [
-          BOOKS_66[globalSeed % BOOKS_66.length],
-          BOOKS_66[(globalSeed + 4) % BOOKS_66.length],
-          BOOKS_66[(globalSeed + 9) % BOOKS_66.length],
+          mixedBooks[globalSeed % BOOKS_66.length],
+          mixedBooks[(globalSeed + 4) % BOOKS_66.length],
+          mixedBooks[(globalSeed + 9) % BOOKS_66.length],
         ];
         items.push({
           id,
@@ -650,7 +694,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'old-vs-new-testament': {
-        const book = BOOKS_66[globalSeed % BOOKS_66.length];
+        const book = mixedBooks[globalSeed % BOOKS_66.length];
         items.push({
           id,
           game_slug: gameSlug,
@@ -686,13 +730,13 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-chain-challenge': {
-        const bookA = BOOKS_66[globalSeed % BOOKS_66.length];
+        const bookA = mixedBooks[globalSeed % BOOKS_66.length];
         const lastChar = bookA.name.slice(-1).toUpperCase();
         const matching = BOOKS_66.find((b) => b.name.toUpperCase().startsWith(lastChar))
           || BIBLE_CHARACTERS.find((c) => c.name.toUpperCase().startsWith(lastChar))
           || { name: 'Samuel', ref: '1 Samuel 3:10', clue: 'Prophet who anointed David' };
-        const distractor1 = BOOKS_66[(globalSeed + 5) % BOOKS_66.length].name;
-        const distractor2 = BOOKS_66[(globalSeed + 13) % BOOKS_66.length].name;
+        const distractor1 = mixedBooks[(globalSeed + 5) % BOOKS_66.length].name;
+        const distractor2 = mixedBooks[(globalSeed + 13) % BOOKS_66.length].name;
         items.push({
           id,
           game_slug: gameSlug,
