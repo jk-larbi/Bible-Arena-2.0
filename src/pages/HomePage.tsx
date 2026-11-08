@@ -124,6 +124,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
             <p className="text-sm text-[#171B24]/70">Explore illustrated Bible games in fixed editorial order</p>
           </div>
           <button
+            type="button"
+            aria-expanded={showAllGames}
+            aria-controls="game-catalog-expanded"
             onClick={() => {
               if (showAllGames) {
                 setShowAllGames(false);
@@ -136,24 +139,41 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
             className="text-xs font-bold text-[#D66B3D] flex items-center gap-1 hover:underline cursor-pointer"
           >
             <span>{showAllGames ? 'View Less' : 'View All'}</span>
-            <ArrowRight className={`w-4 h-4 transition-transform ${showAllGames ? 'rotate-180' : ''}`} />
+            <ArrowRight className={`w-4 h-4 transition-transform duration-500 ease-in-out ${showAllGames ? 'rotate-180' : ''}`} />
           </button>
         </div>
 
-        {/* Keep the swipeable game rail as the default; expand to the full 19-game grid on demand. */}
-        {showAllGames ? (
-          <div id="game-catalog" className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
-            {GAMES_LIST.map((game) => (
-              <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
-            ))}
+        {/* Both layouts stay mounted so the catalogue can expand and collapse smoothly. */}
+        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out motion-reduce:transition-none ${showAllGames ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}>
+          <div className="min-h-0 overflow-hidden">
+            <div
+              className={`transition-opacity duration-300 ease-in-out ${showAllGames ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              aria-hidden={showAllGames}
+            >
+              <div id="game-catalog" className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
+                {filteredGames.map((game) => (
+                  <GameCard key={game.id} game={game} onPlay={onSelectGame} />
+                ))}
+              </div>
+            </div>
           </div>
-        ) : (
-          <div id="game-catalog" className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
-            {filteredGames.map((game) => (
-              <GameCard key={game.id} game={game} onPlay={onSelectGame} />
-            ))}
+        </div>
+
+        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out motion-reduce:transition-none ${showAllGames ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+          <div className="min-h-0 overflow-hidden">
+            <div
+              id="game-catalog-expanded"
+              className={`transition-opacity duration-300 ease-in-out ${showAllGames ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              aria-hidden={!showAllGames}
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
+                {GAMES_LIST.map((game) => (
+                  <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
+                ))}
+              </div>
+            </div>
           </div>
-        )}
+        </div>
       </div>
 
 
