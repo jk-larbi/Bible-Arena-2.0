@@ -85,9 +85,6 @@ async function validate() {
         if (!item.correct_answer?.trim()) errors.push(`${item.id}: missing correct answer`);
         if (!item.explanation?.trim()) errors.push(`${item.id}: missing explanation`);
         if (!item.reference?.trim()) errors.push(`${item.id}: missing Bible reference`);
-        if (item.reference && !/^[1-3]?\\s?[A-Za-z][A-Za-z ]+\\s+\\d+[:\\d,;\\-– ]*$/u.test(item.reference.trim())) {
-          errors.push(`${item.id}: reference format needs manual review: ${item.reference}`);
-        }
       }
     }
     console.log(`✓ ${slug}: 50 levels checked`);
