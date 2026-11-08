@@ -45,7 +45,7 @@ export default function RoomBoardPanel({ roomId, gameSlug, challenge, players, i
   const rack = useMemo(() => Array.isArray(myPrivateState.tiles) ? myPrivateState.tiles.map(String) : challenge.options, [myPrivateState.tiles, challenge.options]);
   const currentPlayer = players.find(p => p.user_id === currentPlayerId);
   const selected = picked.map(i => rack[i]).filter(Boolean);
-  const answer = type === 'verse_builder' || type === 'complete_scripture' ? selected.join(' ') : selected.join('');
+  const answer = selected.length === 1 ? selected[0] : (type === 'verse_builder' || type === 'complete_scripture' ? selected.join(' ') : selected.join(''));
 
   if (!type) return null;
   if (loading) return <div className="rounded-2xl bg-white border p-4 text-sm text-[#5A6275]">Preparing shared board…</div>;
@@ -76,7 +76,7 @@ export default function RoomBoardPanel({ roomId, gameSlug, challenge, players, i
       </div>
       <div className="rounded-2xl bg-white border border-[#E3D9C6] p-3">
         <p className="text-xs font-semibold text-[#5A6275]">Shared board activity</p>
-        {board.board_state.last_move ? <p className="mt-1 text-sm font-bold text-[#171B24]">{String((board.board_state.last_move as Record<string, unknown>).answer || 'A move was played')}</p> : <p className="mt-1 text-sm text-[#5A6275]">The board is ready. Players take turns on their own devices.</p>}
+        {Array.isArray(board.board_state.moves) && board.board_state.moves.length > 0 ? <div className="mt-2 space-y-1">{(board.board_state.moves as Array<Record<string, unknown>>).slice(-4).reverse().map((move, index) => <p key={String(move.turn_number ?? index)} className="text-sm font-semibold text-[#171B24]">{players.find(p => p.user_id === move.player_id)?.display_name || 'Player'}: {String(move.answer || 'played a move')} {move.is_correct ? '✓' : '·'}</p>)}</div> : <p className="mt-1 text-sm text-[#5A6275]">The board is ready. Players take turns on their own devices.</p>}
         <p className="mt-2 text-[11px] text-[#5A6275]">Revision {board.revision} · {players.length} players connected</p>
       </div>
       <div className="flex flex-wrap gap-2">
