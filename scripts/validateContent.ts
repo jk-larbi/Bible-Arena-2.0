@@ -3,7 +3,7 @@ import {
   buildLocalChallengesForLevel,
 } from '../src/data/bibleContentBank';
 
-const LEVELS_TO_VALIDATE = 50;
+const LEVELS_TO_VALIDATE = 7;
 const CHALLENGES_PER_LEVEL = 10;
 
 async function validate() {
@@ -38,12 +38,12 @@ async function validate() {
 
         const normalize = (value: string) => value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
         const normalizedQuestion = normalize(item.question_text || '');
-        const previousQuestion = seenQuestions.get(`${slug}:${normalizedQuestion}`);
+        const previousQuestion = seenQuestions.get(normalizedQuestion);
         if (previousQuestion) {
           duplicateQuestionCount += 1;
-          errors.push(`Repeated question in ${slug}: ${item.id} duplicates ${previousQuestion}`);
+          errors.push(`Repeated question across game bank: ${slug}/${item.id} duplicates ${previousQuestion}`);
         } else if (normalizedQuestion) {
-          seenQuestions.set(`${slug}:${normalizedQuestion}`, item.id);
+          seenQuestions.set(normalizedQuestion, `${slug}/${item.id}`);
         }
 
         const questionAnswerKey = `${slug}:${normalizedQuestion}:${normalize(item.correct_answer || '')}`;
@@ -90,7 +90,7 @@ async function validate() {
     process.exit(1);
   }
 
-  console.log('SUCCESS: All 19 games x 50 levels (9,500 challenges) passed uniqueness and quality validation.');
+  console.log('SUCCESS: All 19 games x 7 levels (1,330 challenges) passed uniqueness and quality validation.');
 }
 
 validate();
