@@ -13,7 +13,7 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 // Default public VAPID key placeholder if env var is not set
-const DEFAULT_VAPID_PUBLIC_KEY = 'BGY2Tr833_ez4qC5WkUZRJ0bhpICsvJw8I6tj2X0lfU9klOdWBy3IjqCjbYyVdGcX18pMHy0PgyOdcQ2pDKOyy0';
+const DEFAULT_VAPID_PUBLIC_KEY = 'BDG6yYS-EvZYYXHAvLMPX9QrqlSVl4dkKNdst0BRwFvmeTqmN889vmNVU2y3EeBPqDqhjVOLXGPE97oDtUQCCo8';
 
 export async function requestNotificationPermission(): Promise<boolean> {
   if (!('Notification' in window)) {
