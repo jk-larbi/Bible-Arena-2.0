@@ -1,0 +1,28 @@
+name: Validate Staged Bible Rebuild Batches
+
+on:
+  push:
+    branches:
+      - hosting/cloudflare-github-pages
+    paths:
+      - 'src/data/rebuild/**'
+      - 'scripts/validateRebuildBatches.ts'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+jobs:
+  staged-batch-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out BibleArena
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate staged questions across games
+        run: npm run validate:rebuild
