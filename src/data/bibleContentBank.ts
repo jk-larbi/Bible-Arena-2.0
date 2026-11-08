@@ -544,10 +544,12 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${downReference}).`,
           reference: `${book.ref}; ${downReference}`,
           metadata: {
-            acrossClue: book.clue,
+            acrossClue: getBookClue(book, difficultyTier),
             acrossAnswer: acrossWord,
+            acrossReference: book.ref,
             downClue,
             downAnswer: downWord,
+            downReference,
           },
         });
         break;
