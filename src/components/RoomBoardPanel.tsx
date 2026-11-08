@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
-import { submitRoomBoardMove, type RoomBoardType } from '../lib/rooms';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { startRoomBoard, submitRoomBoardMove, type RoomBoardType } from '../lib/rooms';
 import { useRoomBoardSync } from '../hooks/useRoomBoardSync';
 import type { ChallengeItem } from '../data/bibleContentBank';
 import type { SyncPlayer } from '../hooks/useMultiplayerSync';
 
-type Props = { roomId: string; gameSlug: string; challenge: ChallengeItem; players: SyncPlayer[] };
+type Props = { roomId: string; gameSlug: string; challenge: ChallengeItem; players: SyncPlayer[]; isHost: boolean };
 
 const boardTypeFor = (slug: string): RoomBoardType | null => {
   if (slug === 'scripture-scramble') return 'scramble';
@@ -15,12 +15,33 @@ const boardTypeFor = (slug: string): RoomBoardType | null => {
   return null;
 };
 
-export default function RoomBoardPanel({ roomId, gameSlug, challenge, players }: Props) {
+export default function RoomBoardPanel({ roomId, gameSlug, challenge, players, isHost }: Props) {
   const { board, myPrivateState, isMyTurn, currentPlayerId, loading, error, refresh } = useRoomBoardSync(roomId);
   const [picked, setPicked] = useState<number[]>([]);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const type = boardTypeFor(gameSlug);
+  const initializedQuestion = useRef<string>('');
+  useEffect(() => {
+    if (!isHost || !board || !challenge?.id || board.board_state.question_id === challenge.id || initializedQuestion.current === challenge.id) return;
+    initializedQuestion.current = challenge.id;
+    const privateStates: Record<string, { tiles: string[] }> = {};
+    for (const player of players) {
+      if (!player.user_id) continue;
+      const tiles = [...challenge.options];
+      for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+      }
+      privateStates[player.user_id] = { tiles };
+    }
+    const boardType = boardTypeFor(gameSlug);
+    if (!boardType) return;
+    void startRoomBoard(roomId, boardType, { question_id: challenge.id, prompt: challenge.question_text, last_move: null }, privateStates)
+      .then(refresh)
+      .catch((e) => setNotice(e instanceof Error ? e.message : 'Could not load the next board.'));
+  }, [isHost, board, challenge?.id, challenge?.options, challenge?.question_text, gameSlug, players, refresh, roomId]);
+
   const rack = useMemo(() => Array.isArray(myPrivateState.tiles) ? myPrivateState.tiles.map(String) : challenge.options, [myPrivateState.tiles, challenge.options]);
   const currentPlayer = players.find(p => p.user_id === currentPlayerId);
   const selected = picked.map(i => rack[i]).filter(Boolean);
