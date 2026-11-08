@@ -5,7 +5,7 @@ import { Star, Play, Sparkles } from 'lucide-react';
 interface GameCardProps {
   game: GameInfo;
   onPlay: (game: GameInfo) => void;
-  layout?: 'poster' | 'horizontal';
+  layout?: 'poster' | 'horizontal' | 'grid';
 }
 
 export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'poster' }) => {
@@ -50,7 +50,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
   return (
     <div
       onClick={() => onPlay(game)}
-      className="group relative flex flex-col justify-between w-[280px] sm:w-[300px] h-[380px] sm:h-[400px] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer shrink-0 border border-[#171B24]/10 bg-gradient-to-b from-[#171B24] to-[#0A0D14]"
+      className={`group relative flex flex-col justify-between ${layout === 'grid' ? 'w-full min-w-0' : 'w-[280px] sm:w-[300px] shrink-0'} h-[380px] sm:h-[400px] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-[#171B24]/10 bg-gradient-to-b from-[#171B24] to-[#0A0D14]`}
     >
       {/* Background illustration image or gradient fallback */}
       <div className={`absolute inset-0 bg-gradient-to-br ${game.colorScheme.gradient} opacity-90 group-hover:scale-105 transition-transform duration-500`} />
