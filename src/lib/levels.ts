@@ -386,19 +386,6 @@ export async function recordChallenge(
     saveAllLocalProgress(allProgress);
   }
 
-  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
-    try {
-      await supabase.rpc('record_challenge', {
-        p_attempt: attemptId,
-        p_index: index,
-        p_score: marks,
-        p_hints: 0,
-        p_ms: ms ?? null,
-      });
-    } catch {
-      // Local state already persisted above
-    }
-  }
 }
 
 export async function submitChallengeAnswer(
@@ -455,46 +442,49 @@ export async function submitChallengeAnswer(
   const challengeKey = `${gameSlug}-l${level}-c${challengeIndex}`;
 
   if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
-    try {
-      const { data, error } = await supabase.rpc('submit_challenge_answer', {
-        p_attempt: attemptId,
-        p_challenge_index: challengeIndex,
-        p_answer: answer,
-        p_hints_used: 0,
-        p_duration_ms: durationMs,
-        p_question_id: questionId,
-      });
-      if (!error && data?.[0]) {
-        const row = data[0];
-        const isCorrect = Boolean(row.is_correct);
-        const { isNew, newTotal } = isCorrect
-          ? recordAwardedChallenge(challengeKey, 10)
-          : { isNew: false, newTotal: getOverallTotalMarks() };
-
-        await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs);
-
-        // Calculate session marks so far
-        const currentAttempt = loadActiveAttempts()[attemptId];
-        const sessionMarks = Object.values(currentAttempt?.scores || {}).reduce(
-          (sum, s) => sum + (s.isCorrect ? 10 : 0),
-          0
-        );
-
-        return {
-          is_correct: isCorrect,
-          score: isCorrect ? 10 : 0,
-          marks_awarded: isCorrect ? 10 : 0,
-          is_new_marks: isNew,
-          session_marks: sessionMarks,
-          total_marks: newTotal,
-          correct_answer: localItem.correct_answer,
-          explanation: row.explanation || localItem.explanation,
-          reference: row.reference || localItem.reference,
-        };
-      }
-    } catch {
-      // Fallback to local evaluation below
+    const { data, error } = await supabase.rpc('submit_challenge_answer', {
+      p_attempt: attemptId,
+      p_challenge_index: challengeIndex,
+      p_answer: answer,
+      p_hints_used: 0,
+      p_duration_ms: durationMs,
+      p_question_id: questionId,
+      p_expected_answer: localItem.correct_answer,
+    });
+    if (error) {
+      throw new Error(`Your answer could not be saved. Please try again. (${error.message})`);
     }
+    if (!data?.[0]) {
+      throw new Error('The server did not confirm your answer. Please try again.');
+    }
+
+    const row = data[0];
+    const isCorrect = Boolean(row.is_correct);
+    const { isNew, newTotal } = isCorrect
+      ? recordAwardedChallenge(challengeKey, 10)
+      : { isNew: false, newTotal: getOverallTotalMarks() };
+
+    // The answer RPC has already saved the authoritative result in Supabase.
+    // This call only updates the local UI cache.
+    await recordChallenge(attemptId, challengeIndex, isCorrect, isNew, durationMs);
+
+    const currentAttempt = loadActiveAttempts()[attemptId];
+    const sessionMarks = Object.values(currentAttempt?.scores || {}).reduce(
+      (sum, s) => sum + (s.isCorrect ? 10 : 0),
+      0
+    );
+
+    return {
+      is_correct: isCorrect,
+      score: isCorrect ? 10 : 0,
+      marks_awarded: isCorrect ? 10 : 0,
+      is_new_marks: isNew,
+      session_marks: sessionMarks,
+      total_marks: newTotal,
+      correct_answer: localItem.correct_answer,
+      explanation: row.explanation || localItem.explanation,
+      reference: row.reference || localItem.reference,
+    };
   }
 
   const normUser = answer.trim().toLowerCase();
@@ -577,49 +567,55 @@ export async function finishLevel(attemptId: string): Promise<LevelResult> {
   };
   saveAllLocalProgress(allProgress);
 
-  // Update user XP & total marks in localStorage for HomePage & ProfilePage
-  try {
-    const stats = JSON.parse(
-      localStorage.getItem('biblearena_user_stats') ||
-        '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}'
-    );
-    const newXp = (stats.xp || 0) + sessionMarks;
-    const newGamesPlayed = (stats.gamesPlayed || 0) + 1;
-    localStorage.setItem(
-      'biblearena_user_stats',
-      JSON.stringify({
-        ...stats,
-        xp: newXp,
-        total_marks: getOverallTotalMarks(),
-        gamesPlayed: newGamesPlayed,
-        level: Math.floor(newXp / 500) + 1,
-      })
-    );
-  } catch {
-    // ignore
+  // A server-backed attempt must be completed by Supabase before local
+  // progress is marked complete. Never report a false local-only success.
+  let remoteRes: any = null;
+  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
+    const { data, error } = await supabase.rpc('finish_level', { p_attempt: attemptId });
+    if (error) {
+      throw new Error(`Your level result could not be saved. Please try again. (${error.message})`);
+    }
+    if (!data?.[0]) {
+      throw new Error('The server did not confirm level completion. Please try again.');
+    }
+    remoteRes = data[0];
   }
 
-  // Try remote finish_level if authenticated
-  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
+  // Local-only/offline sessions keep a local XP display. Registered players
+  // receive authoritative XP from finish_level in Supabase.
+  if (attemptId.startsWith('local-')) {
     try {
-      const { data, error } = await supabase.rpc('finish_level', { p_attempt: attemptId });
-      if (!error && data?.[0]) {
-        const remoteRes = data[0] as any;
-        if (attempt) {
-          syncLocalProgressAfterFinish(attempt.gameSlug, attempt.level, {
-            ...remoteRes,
-            session_marks: sessionMarks,
-            new_marks_awarded: newMarksAwarded,
-            total_accumulated_marks: getOverallTotalMarks(),
-            correct_count: correctCount,
-            incorrect_count: incorrectCount,
-            personal_best_marks: personalBestMarks,
-          });
-        }
-      }
+      const stats = JSON.parse(
+        localStorage.getItem('biblearena_user_stats') ||
+          '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}'
+      );
+      const newXp = (stats.xp || 0) + sessionMarks;
+      const newGamesPlayed = (stats.gamesPlayed || 0) + 1;
+      localStorage.setItem(
+        'biblearena_user_stats',
+        JSON.stringify({
+          ...stats,
+          xp: newXp,
+          total_marks: getOverallTotalMarks(),
+          gamesPlayed: newGamesPlayed,
+          level: Math.floor(newXp / 500) + 1,
+        })
+      );
     } catch {
-      // Fallback already recorded above
+      // ignore local cache failures
     }
+  }
+
+  if (remoteRes && attempt) {
+    syncLocalProgressAfterFinish(attempt.gameSlug, attempt.level, {
+      ...remoteRes,
+      session_marks: sessionMarks,
+      new_marks_awarded: newMarksAwarded,
+      total_accumulated_marks: getOverallTotalMarks(),
+      correct_count: correctCount,
+      incorrect_count: incorrectCount,
+      personal_best_marks: personalBestMarks,
+    });
   }
 
   const completedLevelsCount = Object.values(allProgress[gameSlug]).filter(
