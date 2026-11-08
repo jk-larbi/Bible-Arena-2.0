@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BookOpen, CalendarCheck, CheckCircle2, Clock3, Flame, LockKeyhole, Sparkles, Target, Trophy, Zap } from 'lucide-react';
+import { BookOpen, CalendarCheck, CheckCircle2, Clock3, Flame, LockKeyhole, Target, Trophy } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 type Attempt = { game_slug: string; level: number; percent: number | null; completed_at: string };
@@ -168,7 +168,7 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
       <div className="flex flex-col gap-3 bg-[#171B24] px-5 py-5 text-white sm:flex-row sm:items-center sm:justify-between sm:px-7">
         <div>
           <div className="mb-1 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-[#F0B18D]">
-            <Sparkles className="h-4 w-4" /> Daily Missions
+            <BookOpen className="h-4 w-4" /> Daily Missions
           </div>
           <h2 className="font-serif text-2xl font-bold">Today's Scripture Goals</h2>
           <p className="mt-1 text-sm text-white/65">Play, improve and earn bonus XP every day.</p>
@@ -205,7 +205,7 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-bold text-[#171B24]">{mission.title}</h3>
                     <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-800">
-                      <Zap className="h-3 w-3" /> +{mission.reward} XP
+                      <Trophy className="h-3 w-3" /> +{mission.reward} XP
                     </span>
                   </div>
                   <p className="mt-1 text-xs text-[#5A6275]">{mission.description}</p>
