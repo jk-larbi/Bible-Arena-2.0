@@ -499,6 +499,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const c3 = mixedBooks[globalSeed % BOOKS_66.length];
         const c4 = BIBLE_CHARACTERS[(globalSeed + 13) % BIBLE_CHARACTERS.length];
         const c5 = BIBLE_CHARACTERS[(globalSeed + 19) % BIBLE_CHARACTERS.length];
+        const wordSearchRefs = [c1.clue3Ref, c2.clue3Ref, c3.ref, ...(difficultyTier >= 2 ? [c4.clue3Ref] : []), ...(difficultyTier >= 4 ? [c5.clue3Ref] : [])];
         const words = [
           c1.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
           c2.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
@@ -514,8 +515,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           question_text: `Locate ${words.length} hidden biblical terms in the ${8 + difficultyTier * 2}×${8 + difficultyTier * 2} letter grid. ${difficultyTier >= 3 ? 'Some terms are long and may intersect in any direction.' : ''} Targets: ${words.join(', ')}`,
           options: words,
           correct_answer: words.join(','),
-          explanation: `Key terms from ${c1.clue3Ref}, ${c2.clue3Ref}, and ${c3.ref}: ${words.join(', ')}.`,
-          reference: `${c1.clue3Ref}; ${c2.clue3Ref}; ${c3.ref}`,
+          explanation: `Key terms drawn from these biblical passages: ${wordSearchRefs.join('; ')}. Find each term: ${words.join(', ')}.`,
+          reference: wordSearchRefs.join('; '),
           metadata: {
             words,
             gridSize: 8 + difficultyTier * 2,
@@ -529,13 +530,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const char = BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
+        const downClue = difficultyTier === 0 ? char.clue2 : getCharacterClue(char, difficultyTier);
         const downReference = difficultyTier <= 1 ? char.clue2Ref : difficultyTier === 2 ? char.clue1Ref : difficultyTier === 3 ? `${char.clue1Ref}; ${char.clue2Ref}` : `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${getBookClue(book, difficultyTier)}" • Down (${downWord.length} letters): "${getCharacterClue(char, difficultyTier)}"`,
+          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${getBookClue(book, difficultyTier)}" • Down (${downWord.length} letters): "${downClue}"`,
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
           explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${downReference}).`,
@@ -543,7 +545,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           metadata: {
             acrossClue: book.clue,
             acrossAnswer: acrossWord,
-            downClue: char.clue2,
+            downClue,
             downAnswer: downWord,
           },
         });
