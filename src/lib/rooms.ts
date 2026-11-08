@@ -16,7 +16,9 @@ export const inviteLink = (code: string) => {
   const origin = typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
     : 'https://biblearena.app';
-  return `${origin}/join/${code}`;
+  const basePath = import.meta.env.BASE_URL || '/';
+  const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
+  return `${origin}${normalizedBase}join/${code}`;
 };
 
 export async function createRoom(gameSlug: string, displayName: string, settings = {}) {
