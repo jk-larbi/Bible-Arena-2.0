@@ -903,6 +903,167 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
+    // 8. OLD VS NEW TESTAMENT — a direct two-choice classification round.
+    if (gameId === 'old-vs-new-testament') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#F3EBDD] p-4 text-center">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">Testament Classification</p>
+            <p className="mt-2 font-serif text-xl font-bold text-[#171B24]">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => {
+              const old = option === 'Old Testament';
+              const correct = reveal?.correct_answer === option;
+              const picked = reveal?.picked === option;
+              return (
+                <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                  className={\`min-h-28 rounded-2xl border-2 p-5 text-center font-serif text-lg font-bold transition \${reveal !== null ? (correct ? 'border-emerald-600 bg-emerald-100 text-emerald-900' : picked ? 'border-rose-500 bg-rose-100 text-rose-900' : 'border-stone-200 bg-stone-50 text-stone-400') : old ? 'border-[#D66B3D]/30 bg-[#FFF5EA] text-[#171B24] hover:border-[#D66B3D]' : 'border-[#3156C9]/30 bg-[#EEF2FF] text-[#171B24] hover:border-[#3156C9]'}\`}>
+                  <span className="mb-2 block text-3xl">{old ? '📜' : '✝️'}</span>{option}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 9. BIBLE CHAIN CHALLENGE — continue the chain using the required opening letter.
+    if (gameId === 'bible-chain-challenge') {
+      const previous = String(currentChallenge.metadata?.previousWord || '');
+      const required = String(currentChallenge.metadata?.requiredLetter || '');
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#171B24] p-5 text-center text-white">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">Continue the Scripture Chain</p>
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <span className="rounded-xl bg-white/10 px-4 py-3 font-serif text-xl font-bold">{previous}</span>
+              <span className="text-2xl text-[#F0B18D]">→</span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D66B3D] text-2xl font-black">{required}</span>
+              <span className="text-2xl text-[#F0B18D]">…</span>
+            </div>
+            <p className="mt-3 text-xs text-white/65">Choose a Bible name or book that begins with the highlighted letter.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-4 text-left font-bold text-[#171B24] hover:border-[#D66B3D] disabled:opacity-50">
+                <span className="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#D66B3D]/15 text-sm font-black text-[#D66B3D]">{option.charAt(0)}</span>
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 10. WHO SAID IT — put the quotation at the centre of the round.
+    if (gameId === 'who-said-it') {
+      const quote = currentChallenge.question_text.match(/"([^"]+)"/)?.[1] || currentChallenge.question_text;
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-6 text-center">
+            <span className="text-4xl text-[#D66B3D]">“</span>
+            <blockquote className="font-serif text-xl font-bold leading-relaxed text-[#171B24]">{quote}</blockquote>
+            <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#7A8190]">Who spoke these words?</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-4 text-left font-bold text-[#171B24] hover:bg-[#3156C9] hover:text-white disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 11. COMPLETE THE SCRIPTURE — select the missing word from the verse.
+    if (gameId === 'complete-the-scripture') {
+      const verse = currentChallenge.question_text.replace(/^Complete the verse\s*\([^)]*\):\s*/i, '');
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-5">
+            <p className="mb-2 text-xs font-bold uppercase tracking-wider text-[#3156C9]">Restore the Missing Word</p>
+            <p className="font-serif text-lg font-semibold leading-relaxed text-[#171B24]">{verse}</p>
+            <p className="mt-3 text-xs font-bold text-[#5A6275]">Reference: {currentChallenge.reference}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-white p-4 text-center font-serif text-lg font-bold text-[#171B24] hover:border-[#D66B3D] disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 12. FIND THE BIBLE BOOK — choose the correct book from the library shelves.
+    if (gameId === 'find-the-bible-book') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#171B24] p-5 text-white">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">The Bible Library</p>
+            <p className="mt-2 font-serif text-lg font-semibold leading-relaxed">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {currentChallenge.options.map((option, index) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-24 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-3 text-center font-serif font-bold text-[#171B24] shadow-sm hover:-translate-y-0.5 hover:border-[#D66B3D] disabled:opacity-50">
+                <span className="mb-2 block text-2xl">{['📕', '📗', '📘', '📙'][index % 4]}</span>{option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 13. BIBLE GEOGRAPHY QUEST — identify the sacred place from its historical event.
+    if (gameId === 'bible-geography-quest') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-emerald-800/15 bg-emerald-50 p-5">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <span className="text-2xl">🧭</span> Sacred Atlas · {currentChallenge.metadata?.region || 'Biblical Lands'}
+            </div>
+            <p className="mt-3 font-serif text-lg font-semibold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+            <p className="mt-2 text-xs text-[#5A6275]">Choose the place where this event happened.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-emerald-900/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-emerald-700 disabled:opacity-50">
+                📍 {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 14. BIBLE RIDDLES — solve the riddle before selecting the answer.
+    if (gameId === 'bible-riddles') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-amber-700/20 bg-amber-50 p-6 text-center">
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-800">A Biblical Mystery</p>
+            <p className="mt-3 font-serif text-xl font-bold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-amber-900/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-amber-700 disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
     // 8. Biblical Record Scenarios + Multiple Choice / Standard Games
     const scenarioPoints: string[] | undefined = currentChallenge.metadata?.clues;
     return (
@@ -912,11 +1073,13 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             <span className="text-xs font-bold uppercase tracking-wider text-[#171B24]/70">
               Biblical Record &amp; Testimony
             </span>
-            {scenarioPoints.map((point, idx) => (
-              <p key={idx} className="text-sm text-[#171B24] font-medium">
-                • {point}
-              </p>
-            ))}
+            {scenarioPoints
+              .filter((_, idx) => !['bible-character-quest', 'bible-detective'].includes(gameId) || idx <= hintLevel)
+              .map((point, idx) => (
+                <p key={idx} className="text-sm text-[#171B24] font-medium">
+                  • {point}
+                </p>
+              ))}
           </div>
         )}
 
