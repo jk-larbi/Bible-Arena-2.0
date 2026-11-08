@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: corrected for cross-game fact duplication. */
+/** Staged batch 02: cross-game duplicate corrections. */
 export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
   {
     "id": "find-the-bible-book-rebuild-b02-001",
@@ -647,7 +647,7 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 27,
     "challenge_index": 3,
-    "question_text": "Which prophetic book asks what the Lord requires: justice, mercy and humble walking with God?",
+    "question_text": "Which prophetic book asks who is a God like the Lord, who pardons iniquity?",
     "options": [
       "Micah",
       "Habakkuk",
@@ -655,8 +655,8 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
       "Haggai"
     ],
     "correct_answer": "Micah",
-    "reference": "Micah 6:8",
-    "explanation": "The passage Micah 6:8 supports this distinct biblical detail.",
+    "reference": "Micah 7:18-19",
+    "explanation": "The passage Micah 7:18-19 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-33"
@@ -1667,7 +1667,7 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 37,
     "challenge_index": 4,
-    "question_text": "Which prophetic book records the vision of a basket of summer fruit?",
+    "question_text": "Which prophetic book records its author describing himself as a herdsman and dresser of sycamore figs?",
     "options": [
       "Amos",
       "1 Peter",
@@ -1675,8 +1675,8 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
       "1 John"
     ],
     "correct_answer": "Amos",
-    "reference": "Amos 8:1-3",
-    "explanation": "The passage Amos 8:1-3 supports this distinct biblical detail.",
+    "reference": "Amos 7:14-15",
+    "explanation": "The passage Amos 7:14-15 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-84"
@@ -1807,7 +1807,7 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 1,
-    "question_text": "Which letter says a person is not justified by works of the law but through faith in Jesus Christ?",
+    "question_text": "Which letter tells believers to bear one another's burdens?",
     "options": [
       "Galatians",
       "Nehemiah",
@@ -1815,8 +1815,8 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
       "Job"
     ],
     "correct_answer": "Galatians",
-    "reference": "Galatians 2:16",
-    "explanation": "The passage Galatians 2:16 supports this distinct biblical detail.",
+    "reference": "Galatians 6:2",
+    "explanation": "The passage Galatians 6:2 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-91"
@@ -1827,7 +1827,7 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 2,
-    "question_text": "Which letter describes Paul's thorn in the flesh and the Lord's sufficient grace?",
+    "question_text": "Which letter describes the Macedonian churches giving generously despite their deep poverty?",
     "options": [
       "2 Corinthians",
       "Psalms",
@@ -1835,8 +1835,8 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
       "Ecclesiastes"
     ],
     "correct_answer": "2 Corinthians",
-    "reference": "2 Corinthians 12:7-10",
-    "explanation": "The passage 2 Corinthians 12:7-10 supports this distinct biblical detail.",
+    "reference": "2 Corinthians 8:1-5",
+    "explanation": "The passage 2 Corinthians 8:1-5 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-92"
@@ -1847,7 +1847,7 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 3,
-    "question_text": "Which letter warns believers not to be taken captive by philosophy and empty deceit?",
+    "question_text": "Which letter tells believers to put on compassion, kindness, humility, meekness and patience?",
     "options": [
       "Colossians",
       "Song of Solomon",
@@ -1855,8 +1855,8 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
       "Jeremiah"
     ],
     "correct_answer": "Colossians",
-    "reference": "Colossians 2:8",
-    "explanation": "The passage Colossians 2:8 supports this distinct biblical detail.",
+    "reference": "Colossians 3:12-14",
+    "explanation": "The passage Colossians 3:12-14 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-93"
