@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Bell, Trophy, Gamepad2, Users, Flame } from 'lucide-react';
 
 interface TopNavProps {
@@ -22,6 +22,7 @@ export const TopNav: React.FC<TopNavProps> = ({
   isNotifOpen = false,
   onToggleNotif
 }) => {
+  const [logoFailed, setLogoFailed] = useState(false);
   const isGuest = user?.is_anonymous === true;
 
   const navTabs = [
