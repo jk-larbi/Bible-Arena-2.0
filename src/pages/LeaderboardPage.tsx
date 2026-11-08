@@ -151,24 +151,31 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
     const userId = authData.user?.id ?? null;
     setCurrentUserId(userId);
 
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('id, username, full_name, level, xp, created_at')
-      .eq('is_guest', false)
-      .order('xp', { ascending: false })
-      .order('level', { ascending: false })
-      .order('created_at', { ascending: true })
-      .limit(500);
+    const allPlayers: any[] = [];
+    const pageSize = 1000;
+    for (let offset = 0; ; offset += pageSize) {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, username, full_name, level, xp, created_at')
+        .eq('is_guest', false)
+        .order('xp', { ascending: false })
+        .order('level', { ascending: false })
+        .order('created_at', { ascending: true })
+        .order('id', { ascending: true })
+        .range(offset, offset + pageSize - 1);
 
-    if (error) {
-      setLoadError('We could not load the leaderboard. Please try again.');
-      setLoading(false);
-      return;
+      if (error) {
+        setLoadError('We could not load the leaderboard. Please try again.');
+        setLoading(false);
+        return;
+      }
+
+      allPlayers.push(...(data || []));
+      if (!data || data.length < pageSize) break;
     }
 
-    // The database flag distinguishes registered players from guest sessions.
-    // Include every registered player, even when they have not earned points yet.
-    setLeaders((data || []).map((player: any, index: number) => {
+    // Fetch every registered account in stable pages, including players with zero XP.
+    setLeaders(allPlayers.map((player: any, index: number) => {
       const name = player.username || player.full_name || 'Bible Arena Player';
       return {
         id: player.id,
