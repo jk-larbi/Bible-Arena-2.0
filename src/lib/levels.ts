@@ -664,8 +664,14 @@ function syncLocalProgressAfterFinish(
 
 export async function getLevelChallenges(
   gameSlug: string,
-  level: number
+  level: number,
+  variationSeed = 0
 ): Promise<ChallengeItem[]> {
+  // Bible Chain is generated per attempt so players never receive a fixed replay set.
+  if (gameSlug === 'bible-chain-challenge') {
+    return buildLocalChallengesForLevel(gameSlug, level, variationSeed);
+  }
+
   if (isBackendConfigured && supabase) {
     try {
       const { data, error } = await supabase
