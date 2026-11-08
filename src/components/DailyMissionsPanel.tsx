@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { BookOpen, CalendarCheck, CheckCircle2, Clock3, Flame, LockKeyhole, Target, Trophy } from 'lucide-react';
+import { BookOpen, CalendarCheck, CheckCircle2, Clock3, Flame, LockKeyhole, Target, Trophy, Zap } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 type Attempt = { game_slug: string; level: number; percent: number | null; completed_at: string };
