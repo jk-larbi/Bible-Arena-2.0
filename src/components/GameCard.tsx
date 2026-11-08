@@ -87,22 +87,9 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
         )}
       </div>
 
-      {/* Center visual representation / thumbnail */}
+      {/* Game title and description — the illustration is rendered once as the card background. */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 text-white shadow-xl group-hover:scale-105 transition-transform overflow-hidden relative">
-          {!imgError ? (
-            <img
-              src={imagePath}
-              alt={game.title}
-              onError={() => setImgError(true)}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          ) : (
-            <Sparkles className="w-10 h-10 text-white/90" />
-          )}
-        </div>
-        <h3 className="font-serif font-bold text-2xl text-white mb-1 drop-shadow-md">{game.title}</h3>
+        <h3 className="font-serif font-bold text-2xl text-white mb-2 drop-shadow-md">{game.title}</h3>
         <p className="text-xs text-white/80 line-clamp-2 max-w-[220px]">{game.subtitle}</p>
       </div>
 
