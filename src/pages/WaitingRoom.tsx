@@ -10,6 +10,7 @@ import {
   submitRoomAnswer,
   advanceRoomQuestion,
   finishRoomSession,
+  startRoomBoard,
 } from '../lib/rooms';
 import { notifyGameStarted } from '../services/notificationService';
 import { getGameById } from '../data/gamesList';
@@ -17,6 +18,7 @@ import { getLevelChallenges } from '../lib/levels';
 import type { ChallengeItem } from '../data/bibleContentBank';
 import { useAutoAdvance } from '../hooks/useRoomClock';
 import { useMultiplayerSync, SyncPlayer } from '../hooks/useMultiplayerSync';
+import RoomBoardPanel from '../components/RoomBoardPanel';
 import { AutoAdvanceBar } from '../components/AutoAdvanceBar';
 import { AnswerFeedback, Reveal } from '../components/AnswerFeedback';
 import {
@@ -77,6 +79,11 @@ export default function WaitingRoom() {
 
   const currentChallenge: ChallengeItem | undefined =
     challenges[room?.current_question_index ?? 0] || challenges[0];
+
+  const sharedBoardType = room?.game_slug === 'scripture-scramble' || room?.game_slug === 'bible-crossword' ||
+    room?.game_slug === 'bible-word-search' || room?.game_slug === 'verse-builder' ||
+    room?.game_slug === 'complete-the-scripture' || room?.game_slug === 'complete-scripture';
+
 
   // Reset interactive challenge state when question changes
   useEffect(() => {
@@ -212,6 +219,31 @@ export default function WaitingRoom() {
         p_question_ids: questionIds,
       });
       if (startError) throw new Error(startError.message);
+
+      // Initialize a server-owned shared board for the five board-style game formats.
+      if (sharedBoardType && room && currentChallenge) {
+        const privateStates: Record<string, { tiles: string[] }> = {};
+        for (const player of players) {
+          if (!player.user_id) continue;
+          const tiles = [...currentChallenge.options];
+          for (let i = tiles.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+          }
+          privateStates[player.user_id] = { tiles };
+        }
+        const boardType = room.game_slug === 'scripture-scramble' ? 'scramble'
+          : room.game_slug === 'bible-crossword' ? 'crossword'
+          : room.game_slug === 'bible-word-search' ? 'word_search'
+          : room.game_slug === 'verse-builder' ? 'verse_builder'
+          : 'complete_scripture';
+        await startRoomBoard(room.id, boardType, {
+          question_id: currentChallenge.id,
+          prompt: currentChallenge.question_text,
+          board_revision: 1,
+          last_move: null,
+        }, privateStates);
+      }
 
       // Notify other players after the database confirms the game has started.
       const hostName = currentPlayer?.display_name || 'Host';
@@ -581,7 +613,7 @@ export default function WaitingRoom() {
           </div>
 
           {/* Interactive Mechanic */}
-          {renderInteractiveMechanic()}
+          {sharedBoardType && roomId && currentChallenge ? <RoomBoardPanel roomId={roomId} gameSlug={room.game_slug} challenge={currentChallenge} players={players} /> : renderInteractiveMechanic()}
 
           {/* Submission status banner */}
           {phase === 'answering' && myPick !== null && (
