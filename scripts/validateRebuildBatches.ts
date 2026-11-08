@@ -10,10 +10,11 @@ const errors: string[] = [];
 const ids = new Set<string>();
 const questions = new Set<string>();
 const facts = new Set<string>();
-const byLevel = new Map<number, number>();
+const byGameLevel = new Map<string, number>();
 
 for (const item of ALL_BATCHES) {
-  byLevel.set(item.level, (byLevel.get(item.level) ?? 0) + 1);
+  const gameLevel = `${item.game_slug}:${item.level}`;
+  byGameLevel.set(gameLevel, (byGameLevel.get(gameLevel) ?? 0) + 1);
   if (ids.has(item.id)) errors.push(`Duplicate ID: ${item.id}`);
   ids.add(item.id);
 
@@ -37,9 +38,12 @@ for (const item of ALL_BATCHES) {
   }
 }
 
-for (let level = 1; level <= 5; level++) {
-  if (byLevel.get(level) !== 5) {
-    errors.push(`Level ${level}: expected five questions, found ${byLevel.get(level) ?? 0}`);
+for (const game of ['bible-riddles', 'bible-detective']) {
+  for (let level = 1; level <= 5; level++) {
+    const key = `${game}:${level}`;
+    if (byGameLevel.get(key) !== 5) {
+      errors.push(`${key}: expected five questions, found ${byGameLevel.get(key) ?? 0}`);
+    }
   }
 }
 
