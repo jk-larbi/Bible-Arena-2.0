@@ -169,13 +169,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 4,
     "question_text": "\"Is it well with thee? is it well with thy husband? is it well with the child?\"",
     "options": [
-      "Gehazi",
+      "Elisha",
       "Cain",
       "Joseph",
       "Isaiah"
     ],
-    "correct_answer": "Gehazi",
-    "explanation": "The biblical account in 2 Kings 4:26 supports this identification.",
+    "correct_answer": "Elisha",
+    "explanation": "Elisha instructed Gehazi to ask the Shunammite woman these questions.",
     "reference": "2 Kings 4:26",
     "metadata": {
       "difficulty": "beginner",
