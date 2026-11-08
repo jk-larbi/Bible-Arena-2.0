@@ -52,6 +52,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [versePicked, setVersePicked] = useState<number[]>([]);
   const [timelineOrder, setTimelineOrder] = useState<string[]>([]);
   const [wordSearchFound, setWordSearchFound] = useState<string[]>([]);
+  const [wordSearchStart, setWordSearchStart] = useState<{ row: number; col: number } | null>(null);
   const [crosswordAcross, setCrosswordAcross] = useState('');
   const [crosswordDown, setCrosswordDown] = useState('');
   const [matchSelectedLeft, setMatchSelectedLeft] = useState<string | null>(null);
@@ -87,6 +88,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setScramblePicked([]);
     setVersePicked([]);
     setWordSearchFound([]);
+    setWordSearchStart(null);
     setCrosswordAcross('');
     setCrosswordDown('');
     setMatchSelectedLeft(null);
@@ -456,111 +458,123 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 4. BIBLE WORD SEARCH (Interactive word-finding grid)
+    // 4. BIBLE WORD SEARCH — select the first and last letter of each hidden word.
     if (gameId === 'bible-word-search') {
       const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
+      const size = 10;
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const grid = Array.from({ length: size }, (_, row) => {
+        const word = targetWords[row % targetWords.length].replace(/[^A-Z]/g, '').slice(0, size - 1);
+        const offset = (row * 3 + 1) % Math.max(1, size - word.length + 1);
+        const cells = Array.from({ length: size }, (_, col) => alphabet[(row * 7 + col * 11 + 5) % alphabet.length]);
+        [...word].forEach((letter, i) => { cells[offset + i] = letter; });
+        return cells;
+      });
+      const selectCell = (row: number, col: number) => {
+        if (!wordSearchStart) {
+          setWordSearchStart({ row, col });
+          return;
+        }
+        const first = wordSearchStart;
+        setWordSearchStart(null);
+        if (first.row !== row) return;
+        const low = Math.min(first.col, col);
+        const high = Math.max(first.col, col);
+        const selected = grid[row].slice(low, high + 1).join('');
+        const match = targetWords.find((word) =>
+          !wordSearchFound.includes(word) &&
+          word.replace(/[^A-Z]/g, '').toUpperCase() === selected
+        );
+        const reverseMatch = targetWords.find((word) =>
+          !wordSearchFound.includes(word) &&
+          word.replace(/[^A-Z]/g, '').toUpperCase() === selected.split('').reverse().join('')
+        );
+        const foundWord = match || reverseMatch;
+        if (foundWord) {
+          const next = [...wordSearchFound, foundWord];
+          setWordSearchFound(next);
+          if (next.length === targetWords.length) settleAnswer(targetWords.join(','));
+        } else {
+          setError('Not a word on the list. Select the first and last letters in the same row.');
+        }
+      };
       return (
         <div className="space-y-5">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {targetWords.map((w) => {
-              const found = wordSearchFound.includes(w);
-              return (
-                <button
-                  key={w}
-                  disabled={reveal !== null || found}
-                  onClick={() => {
-                    const next = [...wordSearchFound, w];
-                    setWordSearchFound(next);
-                    if (next.length === targetWords.length) {
-                      settleAnswer(targetWords.join(','));
-                    }
-                  }}
-                  className={`px-4 py-2 rounded-xl font-mono text-sm font-bold border transition-all cursor-pointer ${
-                    found
-                      ? 'bg-emerald-700 text-white border-emerald-700 line-through'
-                      : 'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/20 hover:bg-[#3156C9] hover:text-white'
-                  }`}
-                >
-                  {found ? `✓ ${w}` : `Locate: ${w}`}
-                </button>
-              );
-            })}
+          <div className="rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 p-4">
+            <p className="text-sm font-bold text-[#171B24] mb-1">Find all the hidden Bible words</p>
+            <p className="text-xs text-[#171B24]/65">Tap the first letter, then tap the last letter of a word. Words run left-to-right or right-to-left.</p>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {targetWords.map((word) => {
+                const found = wordSearchFound.includes(word);
+                return <span key={word} className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}`}>{found ? '✓ ' : ''}{word}</span>;
+              })}
+            </div>
           </div>
-          <div className="bg-[#171B24] text-[#F3EBDD] p-4 rounded-2xl font-mono text-center tracking-widest text-sm sm:text-base space-y-1.5 select-none">
-            {targetWords.map((w, rIdx) => {
-              const pad = 'ABCDEFGHJKLMNPQRSTVWXYZ';
-              const rowStr = (
-                pad.slice(rIdx, rIdx + 2) +
-                w +
-                pad.slice(rIdx + 2, rIdx + 10)
-              ).slice(0, 10);
-              return (
-                <div key={rIdx} className="flex justify-center gap-2">
-                  {rowStr.split('').map((ch, cIdx) => (
-                    <span
-                      key={cIdx}
-                      className="w-7 h-7 rounded bg-white/10 flex items-center justify-center font-bold"
-                    >
-                      {ch}
-                    </span>
-                  ))}
-                </div>
-              );
-            })}
+          <div className="mx-auto max-w-[420px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
+            <div className="grid grid-cols-10 gap-1">
+              {grid.flatMap((row, rowIndex) => row.map((letter, colIndex) => {
+                const active = wordSearchStart?.row === rowIndex && wordSearchStart?.col === colIndex;
+                return <button key={`${rowIndex}-${colIndex}`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors ${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}`}>{letter}</button>;
+              }))}
+            </div>
           </div>
-          <p className="text-xs text-center text-[#5A6275]">
-            Spot each hidden biblical word in the letter matrix above and tap its tag to mark it found.
-          </p>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-xs text-[#5A6275]">{wordSearchFound.length} of {targetWords.length} words found</p>
+            <button type="button" onClick={() => setWordSearchStart(null)} className="px-4 py-2 rounded-xl border border-[#171B24]/20 text-xs font-bold">Clear selection</button>
+          </div>
         </div>
       );
     }
 
-    // 5. BIBLE CROSSWORD (Intersecting Across & Down Clues)
+    // 5. BIBLE CROSSWORD — two clues connected through a shared letter.
     if (gameId === 'bible-crossword') {
-      const acrossAns: string = currentChallenge.metadata?.acrossAnswer || currentChallenge.options[0] || '';
-      const downAns: string = currentChallenge.metadata?.downAnswer || currentChallenge.options[1] || '';
+      const acrossAns: string = (currentChallenge.metadata?.acrossAnswer || currentChallenge.options[0] || '').replace(/[^A-Z]/gi, '').toUpperCase();
+      const downAns: string = (currentChallenge.metadata?.downAnswer || currentChallenge.options[1] || '').replace(/[^A-Z]/gi, '').toUpperCase();
+      const acrossIndex = [...acrossAns].findIndex((letter) => downAns.includes(letter));
+      const sharedLetter = acrossIndex >= 0 ? acrossAns[acrossIndex] : '';
+      const downIndex = sharedLetter ? downAns.indexOf(sharedLetter) : 0;
+      const gridSize = Math.max(11, acrossAns.length + 2, downAns.length + 2);
+      const centerRow = Math.floor(gridSize / 2);
+      const acrossStart = Math.max(0, Math.floor((gridSize - acrossAns.length) / 2));
+      const downCol = acrossStart + Math.max(0, acrossIndex);
+      const cells = new Map<string, string>();
+      [...acrossAns].forEach((letter, i) => cells.set(`${centerRow},${acrossStart + i}`, crosswordAcross.length === acrossAns.length ? crosswordAcross[i] : ''));
+      [...downAns].forEach((letter, i) => cells.set(`${centerRow - downIndex + i},${downCol}`, crosswordDown.length === downAns.length ? crosswordDown[i] : ''));
       return (
         <div className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
-              <label className="block text-xs font-bold uppercase text-[#D66B3D] mb-1">
-                Across ({acrossAns.length} letters)
-              </label>
-              <p className="text-xs text-[#171B24]/80 mb-2">{currentChallenge.metadata?.acrossClue}</p>
-              <input
-                type="text"
-                disabled={reveal !== null}
-                value={crosswordAcross}
-                onChange={(e) => setCrosswordAcross(e.target.value.toUpperCase())}
-                placeholder="Enter across answer..."
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold"
-              />
-            </div>
-            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
-              <label className="block text-xs font-bold uppercase text-[#3156C9] mb-1">
-                Down ({downAns.length} letters)
-              </label>
-              <p className="text-xs text-[#171B24]/80 mb-2">{currentChallenge.metadata?.downClue}</p>
-              <input
-                type="text"
-                disabled={reveal !== null}
-                value={crosswordDown}
-                onChange={(e) => setCrosswordDown(e.target.value.toUpperCase())}
-                placeholder="Enter down answer..."
-                className="w-full px-3 py-2 rounded-xl bg-white border border-[#171B24]/20 font-mono uppercase font-bold"
-              />
+          <div className="rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 p-4">
+            <p className="text-sm font-bold text-[#171B24]">Complete the intersecting words</p>
+            <p className="text-xs text-[#171B24]/65 mt-1">Solve both Bible clues. The two answers share a letter where Across and Down meet.</p>
+          </div>
+          <div className="flex justify-center overflow-x-auto rounded-2xl bg-[#171B24] p-3">
+            <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${gridSize}, minmax(18px, 28px))` }}>
+              {Array.from({ length: gridSize * gridSize }, (_, index) => {
+                const row = Math.floor(index / gridSize);
+                const col = index % gridSize;
+                const key = `${row},${col}`;
+                const isAcross = row === centerRow && col >= acrossStart && col < acrossStart + acrossAns.length;
+                const isDown = col === downCol && row >= centerRow - downIndex && row < centerRow - downIndex + downAns.length;
+                const active = isAcross || isDown;
+                const value = isAcross && crosswordAcross.length === acrossAns.length ? crosswordAcross[col - acrossStart] : isDown && crosswordDown.length === downAns.length ? crosswordDown[row - (centerRow - downIndex)] : '';
+                return <div key={key} className={`aspect-square rounded-sm flex items-center justify-center text-xs font-black ${active ? 'bg-white text-[#171B24] border border-[#D66B3D]' : 'bg-white/5'}`}>{value || (active ? '' : '')}</div>;
+              })}
             </div>
           </div>
-          <div className="flex justify-end items-center">
-            <button
-              type="button"
-              disabled={reveal !== null || !crosswordAcross.trim() || !crosswordDown.trim()}
-              onClick={() => settleAnswer(`${crosswordAcross.trim()}|${crosswordDown.trim()}`)}
-              className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white font-bold text-sm cursor-pointer disabled:opacity-40"
-            >
-              Submit Crossword
-            </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+              <label className="block text-xs font-black uppercase text-[#D66B3D] mb-1">1 Across · {acrossAns.length} letters</label>
+              <p className="text-sm text-[#171B24] mb-2">{currentChallenge.metadata?.acrossClue || 'Across clue'}</p>
+              <input type="text" disabled={reveal !== null} maxLength={acrossAns.length} value={crosswordAcross} onChange={(e) => setCrosswordAcross(e.target.value.replace(/[^a-z]/gi, '').toUpperCase())} placeholder={`${acrossAns.length} letters`} className="w-full px-3 py-2.5 rounded-xl bg-white border border-[#171B24]/20 font-mono tracking-widest font-bold uppercase" />
+            </div>
+            <div className="p-4 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15">
+              <label className="block text-xs font-black uppercase text-[#3156C9] mb-1">2 Down · {downAns.length} letters</label>
+              <p className="text-sm text-[#171B24] mb-2">{currentChallenge.metadata?.downClue || 'Down clue'}</p>
+              <input type="text" disabled={reveal !== null} maxLength={downAns.length} value={crosswordDown} onChange={(e) => setCrosswordDown(e.target.value.replace(/[^a-z]/gi, '').toUpperCase())} placeholder={`${downAns.length} letters`} className="w-full px-3 py-2.5 rounded-xl bg-white border border-[#171B24]/20 font-mono tracking-widest font-bold uppercase" />
+            </div>
           </div>
+          {sharedLetter && <p className="text-xs text-center text-[#5A6275]">Crossing letter: {sharedLetter} · The answers intersect at this letter.</p>}
+          {!sharedLetter && <p className="text-xs text-center text-amber-700">These clues do not share a letter, so solve both entries as a paired Bible word puzzle.</p>}
+          <button type="button" disabled={reveal !== null || !crosswordAcross.trim() || !crosswordDown.trim()} onClick={() => settleAnswer(`${crosswordAcross.trim()}|${crosswordDown.trim()}`)} className="w-full px-6 py-3 rounded-xl bg-[#D66B3D] text-white font-bold text-sm disabled:opacity-40">Check Crossword</button>
         </div>
       );
     }
