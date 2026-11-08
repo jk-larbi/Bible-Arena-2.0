@@ -461,10 +461,10 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     // 4. BIBLE WORD SEARCH — select the first and last letter of each hidden word.
     if (gameId === 'bible-word-search') {
       const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
-      const size = 10;
+      const size = Math.max(10, ...targetWords.map((word) => word.replace(/[^A-Z]/gi, '').length + 2));
       const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       const grid = Array.from({ length: size }, (_, row) => {
-        const word = targetWords[row % targetWords.length].replace(/[^A-Z]/g, '').slice(0, size - 1);
+        const word = targetWords[row % targetWords.length].replace(/[^A-Z]/gi, '').toUpperCase();
         const offset = (row * 3 + 1) % Math.max(1, size - word.length + 1);
         const cells = Array.from({ length: size }, (_, col) => alphabet[(row * 7 + col * 11 + 5) % alphabet.length]);
         [...word].forEach((letter, i) => { cells[offset + i] = letter; });
@@ -511,7 +511,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             </div>
           </div>
           <div className="mx-auto max-w-[420px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
-            <div className="grid grid-cols-10 gap-1">
+            <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
               {grid.flatMap((row, rowIndex) => row.map((letter, colIndex) => {
                 const active = wordSearchStart?.row === rowIndex && wordSearchStart?.col === colIndex;
                 return <button key={`${rowIndex}-${colIndex}`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors ${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}`}>{letter}</button>;
