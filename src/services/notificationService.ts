@@ -15,6 +15,7 @@ export type NotificationItem = {
 export type NotificationPreferences = {
   user_id?: string;
   browser_push_enabled: boolean;
+  daily_verse_enabled: boolean;
   challenges_enabled: boolean;
   live_games_enabled: boolean;
   achievements_enabled: boolean;
@@ -23,6 +24,7 @@ export type NotificationPreferences = {
 
 export const DEFAULT_PREFERENCES: NotificationPreferences = {
   browser_push_enabled: true,
+  daily_verse_enabled: true,
   challenges_enabled: true,
   live_games_enabled: true,
   achievements_enabled: true,
@@ -354,6 +356,7 @@ export async function getNotificationPreferences(userId: string): Promise<Notifi
     return {
       user_id: data.user_id,
       browser_push_enabled: data.browser_push_enabled ?? true,
+      daily_verse_enabled: data.daily_verse_enabled ?? true,
       challenges_enabled: data.challenges_enabled ?? true,
       live_games_enabled: data.live_games_enabled ?? true,
       achievements_enabled: data.achievements_enabled ?? true,
@@ -376,6 +379,7 @@ export async function updateNotificationPreferences(
     await supabase.from('notification_preferences').upsert({
       user_id: userId,
       browser_push_enabled: prefs.browser_push_enabled,
+      daily_verse_enabled: prefs.daily_verse_enabled,
       challenges_enabled: prefs.challenges_enabled,
       live_games_enabled: prefs.live_games_enabled,
       achievements_enabled: prefs.achievements_enabled,
