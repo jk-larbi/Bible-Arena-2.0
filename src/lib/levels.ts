@@ -6,7 +6,7 @@ import {
   type ChallengeItem,
 } from '../data/bibleContentBank';
 
-export const CHALLENGES_PER_LEVEL = 10;
+export const CHALLENGES_PER_LEVEL = 5;
 export const DEFAULT_TOTAL_LEVELS = 50;
 export type Stars = 0 | 1 | 2 | 3 | 4 | 5;
 
