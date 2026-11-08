@@ -238,42 +238,42 @@ export const MultiplayerPage: React.FC = () => {
         </div>
       )}
 
-      {/* Three clean, icon-led actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      {/* Balanced, evenly aligned multiplayer actions */}
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         <button
           type="button"
           onClick={() => setIsHostModalOpen(true)}
           aria-label="Host a Game"
-          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#D66B3D]/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#D66B3D]/20 active:scale-[0.99]"
+          className="group flex min-h-[230px] w-full flex-col items-center justify-center rounded-3xl border border-[#171B24]/10 bg-white px-6 py-9 text-center shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#D66B3D]/40 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#D66B3D]/20 active:scale-[0.99] sm:min-h-[250px] sm:px-8"
         >
-          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#D66B3D] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+          <span className="mb-6 flex h-24 w-24 shrink-0 items-center justify-center rounded-[1.75rem] bg-[#D66B3D] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
             <Gamepad2 className="h-12 w-12" strokeWidth={2.1} />
           </span>
-          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Host a Game</span>
+          <span className="block font-serif text-2xl font-bold leading-tight text-[#171B24] sm:text-3xl">Host a Game</span>
         </button>
 
         <button
           type="button"
           onClick={() => setIsScanModalOpen(true)}
           aria-label="Scan QR Code"
-          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#3156C9]/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3156C9]/20 active:scale-[0.99]"
+          className="group flex min-h-[230px] w-full flex-col items-center justify-center rounded-3xl border border-[#171B24]/10 bg-white px-6 py-9 text-center shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#3156C9]/40 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3156C9]/20 active:scale-[0.99] sm:min-h-[250px] sm:px-8"
         >
-          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#3156C9] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+          <span className="mb-6 flex h-24 w-24 shrink-0 items-center justify-center rounded-[1.75rem] bg-[#3156C9] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
             <QrCode className="h-12 w-12" strokeWidth={2.1} />
           </span>
-          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Scan QR Code</span>
+          <span className="block font-serif text-2xl font-bold leading-tight text-[#171B24] sm:text-3xl">Scan QR Code</span>
         </button>
 
         <button
           type="button"
           onClick={() => nav('/join')}
           aria-label="Join with PIN"
-          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#171B24]/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#171B24]/15 active:scale-[0.99]"
+          className="group flex min-h-[230px] w-full flex-col items-center justify-center rounded-3xl border border-[#171B24]/10 bg-white px-6 py-9 text-center shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#171B24]/30 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#171B24]/15 active:scale-[0.99] sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.625rem)] lg:col-span-1 lg:mx-0 lg:w-full lg:min-h-[250px] lg:px-8"
         >
-          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#171B24] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+          <span className="mb-6 flex h-24 w-24 shrink-0 items-center justify-center rounded-[1.75rem] bg-[#171B24] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
             <KeyRound className="h-12 w-12" strokeWidth={2.1} />
           </span>
-          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Join with PIN</span>
+          <span className="block font-serif text-2xl font-bold leading-tight text-[#171B24] sm:text-3xl">Join with PIN</span>
         </button>
       </div>
 
