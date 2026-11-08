@@ -21,6 +21,7 @@ export const NotificationSettingsPage: React.FC = () => {
 
   const [prefs, setPrefs] = useState<NotificationPreferences>({
     browser_push_enabled: true,
+    daily_verse_enabled: true,
     challenges_enabled: true,
     live_games_enabled: true,
     achievements_enabled: true,
@@ -233,6 +234,28 @@ export const NotificationSettingsPage: React.FC = () => {
                 prefs.challenges_enabled ? 'translate-x-6' : 'translate-x-0'
               }`}
             />
+          </button>
+        </div>
+
+        {/* Daily Bible Verse */}
+        <div className="py-4 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center">
+              <Bell className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="font-bold text-sm text-[#171B24]">Daily Bible Verse</p>
+              <p className="text-xs text-[#5A6275]">Receive a Scripture and short encouragement each morning.</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={prefs.daily_verse_enabled}
+            onClick={() => handleToggle('daily_verse_enabled')}
+            className={`w-12 h-6 rounded-full transition-colors p-1 cursor-pointer ${prefs.daily_verse_enabled ? 'bg-emerald-600' : 'bg-gray-300'}`}
+          >
+            <div className={`w-4 h-4 rounded-full bg-white transition-transform ${prefs.daily_verse_enabled ? 'translate-x-6' : 'translate-x-0'}`} />
           </button>
         </div>
 
