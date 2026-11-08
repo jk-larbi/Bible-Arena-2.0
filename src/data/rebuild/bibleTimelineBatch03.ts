@@ -27,7 +27,7 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-timeline",
     "level": 41,
     "challenge_index": 2,
-    "question_text": "During which place or setting did this event in Paul's later ministry occur: Paul's ship runs aground near Malta?",
+    "question_text": "Where did the shipwrecked passengers learn the island’s name after reaching shore?",
     "options": [
       "Malta",
       "Miletus",
@@ -167,9 +167,9 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-timeline",
     "level": 42,
     "challenge_index": 4,
-    "question_text": "During which place or setting did this event in Paul's later ministry occur: Paul leaves Trophimus ill at Miletus?",
+    "question_text": "In which city did Paul teach daily in the hall of Tyrannus for two years?",
     "options": [
-      "Miletus",
+      "Ephesus",
       "Corinth",
       "Jerusalem",
       "Antipatris on the way to Caesarea"
@@ -827,7 +827,7 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-timeline",
     "level": 49,
     "challenge_index": 2,
-    "question_text": "During which place or setting did this event in Paul's later ministry occur: Paul says Erastus is the city's treasurer?",
+    "question_text": "In which city did Paul remain for a year and six months, teaching the word of God?",
     "options": [
       "Corinth",
       "Colossae",
