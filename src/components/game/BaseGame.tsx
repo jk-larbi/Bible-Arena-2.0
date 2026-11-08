@@ -664,8 +664,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const extraShared = extraIndex >= 0 ? acrossAns[extraIndex] : '';
       const extraDownIndex = extraShared ? extraAns.indexOf(extraShared) : 0;
       const hasExtra = Boolean(extraAns && extraIndex >= 0);
-      const gridSize = Math.max(12, acrossAns.length + 2, downAns.length + 2, extraAns.length + 2);
-      const centerRow = Math.max(downIndex, extraDownIndex, Math.floor(gridSize / 2));
+      const centerRow = Math.max(downIndex, hasExtra ? extraDownIndex : 0);
+      const gridSize = Math.max(
+        12,
+        acrossAns.length + 2,
+        centerRow + Math.max(downAns.length - downIndex, hasExtra ? extraAns.length - extraDownIndex : 0) + 2
+      );
       const acrossStart = Math.max(0, Math.floor((gridSize - acrossAns.length) / 2));
       const downCol = acrossStart + Math.max(0, acrossIndex);
       const extraCol = acrossStart + Math.max(0, extraIndex);
