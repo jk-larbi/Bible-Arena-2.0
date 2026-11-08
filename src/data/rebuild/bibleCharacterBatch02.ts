@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: cross-game duplicate corrections. */
+/** Staged batch 02: final duplicate-fact corrections. */
 export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-character-quest-rebuild-b02-001",
@@ -30,9 +30,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Bezalel's grandfather?",
     "options": [
       "Hur",
-      "Miriam",
-      "Jethro",
-      "Nadab"
+      "Nadab",
+      "Eleazar",
+      "Nun"
     ],
     "correct_answer": "Hur",
     "reference": "Exodus 31:2",
@@ -50,9 +50,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "What was the name of Oholiab's father?",
     "options": [
       "Ahisamach",
-      "Eleazar",
-      "Nun",
-      "Jephunneh"
+      "Elkanah",
+      "Abijah",
+      "Eli"
     ],
     "correct_answer": "Ahisamach",
     "reference": "Exodus 31:6",
@@ -70,9 +70,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the mother of Moses and Aaron?",
     "options": [
       "Jochebed",
-      "Hannah",
-      "Elkanah",
-      "Abijah"
+      "Jesse",
+      "Abishai",
+      "Joab"
     ],
     "correct_answer": "Jochebed",
     "reference": "Numbers 26:59",
@@ -90,9 +90,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Moses' sister who watched the basket?",
     "options": [
       "Miriam",
-      "Eli",
-      "Saul",
-      "Eliab"
+      "Tamar",
+      "Maacah",
+      "The child died"
     ],
     "correct_answer": "Miriam",
     "reference": "Exodus 2:4",
@@ -110,9 +110,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Moses' father-in-law, priest of Midian?",
     "options": [
       "Jethro",
-      "Jesse",
-      "Abishai",
-      "Joab"
+      "Jezebel",
+      "Elijah",
+      "The widow of Zarephath"
     ],
     "correct_answer": "Jethro",
     "reference": "Exodus 3:1",
@@ -130,9 +130,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the firstborn son of Aaron?",
     "options": [
       "Nadab",
-      "Nathan",
-      "The wise woman of Tekoa",
-      "Tamar"
+      "The mother of King Lemuel",
+      "Ahaz",
+      "Manasseh"
     ],
     "correct_answer": "Nadab",
     "reference": "Exodus 6:23",
@@ -150,9 +150,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Which son of Aaron became high priest after Aaron's death?",
     "options": [
       "Eleazar",
-      "Maacah",
-      "The child died",
-      "Hadad"
+      "Hilkiah",
+      "Huldah",
+      "Nebuchadnezzar"
     ],
     "correct_answer": "Eleazar",
     "reference": "Numbers 20:25-28",
@@ -170,9 +170,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the father of Joshua, son of Nun?",
     "options": [
       "Nun",
-      "The man of God from Judah",
-      "Jezebel",
-      "Elijah"
+      "Artaxerxes",
+      "Sanballat",
+      "Tobiah"
     ],
     "correct_answer": "Nun",
     "reference": "Exodus 33:11",
@@ -190,9 +190,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Caleb's father?",
     "options": [
       "Jephunneh",
-      "The widow of Zarephath",
-      "Gehazi",
-      "Joash"
+      "Zeresh",
+      "Ahasuerus",
+      "Belteshazzar"
     ],
     "correct_answer": "Jephunneh",
     "reference": "Numbers 13:6",
@@ -210,9 +210,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the mother of Samuel?",
     "options": [
       "Hannah",
-      "The mother of King Lemuel",
-      "Ahaz",
-      "Manasseh"
+      "Abednego",
+      "Gabriel",
+      "Darius"
     ],
     "correct_answer": "Hannah",
     "reference": "1 Samuel 1:20",
@@ -230,9 +230,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Samuel's father?",
     "options": [
       "Elkanah",
-      "Amon",
-      "Jedidah",
-      "Hilkiah"
+      "Elizabeth",
+      "Simeon",
+      "About eighty-four years"
     ],
     "correct_answer": "Elkanah",
     "reference": "1 Samuel 1:1",
@@ -250,9 +250,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Eli's wicked son whose name means \"my father is God\"?",
     "options": [
       "Abijah",
-      "Huldah",
-      "Nebuchadnezzar",
-      "Nehemiah"
+      "Annas",
+      "Cyrene",
+      "Arimathea"
     ],
     "correct_answer": "Abijah",
     "reference": "1 Samuel 2:12; 8:2",
@@ -270,9 +270,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the priest who raised Samuel at Shiloh?",
     "options": [
       "Eli",
-      "Seraiah",
-      "Artaxerxes",
-      "Sanballat"
+      "Jairus",
+      "Zacchaeus",
+      "The sinful woman"
     ],
     "correct_answer": "Eli",
     "reference": "1 Samuel 1:9",
@@ -290,9 +290,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Jonathan's father?",
     "options": [
       "Saul",
-      "Tobiah",
-      "Mordecai",
-      "Abihail"
+      "Thomas",
+      "James",
+      "The mother of Zebedee's sons"
     ],
     "correct_answer": "Saul",
     "reference": "1 Samuel 14:1",
@@ -310,9 +310,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was David's eldest brother?",
     "options": [
       "Eliab",
-      "Zeresh",
-      "Ahasuerus",
-      "Belteshazzar"
+      "Peter",
+      "Philip",
+      "Ananias"
     ],
     "correct_answer": "Eliab",
     "reference": "1 Samuel 17:13",
@@ -330,9 +330,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was David's father?",
     "options": [
       "Jesse",
-      "Shadrach",
-      "Meshach",
-      "Abednego"
+      "Timothy",
+      "Lydia",
+      "The Philippian jailer"
     ],
     "correct_answer": "Jesse",
     "reference": "1 Samuel 17:12",
@@ -350,9 +350,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the commander of David's army and Joab's brother?",
     "options": [
       "Abishai",
-      "Gabriel",
-      "Darius",
-      "The queen"
+      "Demetrius",
+      "Aristarchus",
+      "Festus"
     ],
     "correct_answer": "Abishai",
     "reference": "1 Chronicles 2:16; 2 Samuel 10:10",
@@ -370,9 +370,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was David's chief military commander?",
     "options": [
       "Joab",
-      "Zechariah",
-      "Elizabeth",
-      "Simeon"
+      "Publius",
+      "Luke",
+      "Useful"
     ],
     "correct_answer": "Joab",
     "reference": "2 Samuel 8:16",
@@ -390,9 +390,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Which prophet announced that David's house and kingdom would be established forever?",
     "options": [
       "Nathan",
-      "About eighty-four years",
-      "Pontius Pilate",
-      "Caiaphas"
+      "Titus",
+      "Demas",
+      "Alexander"
     ],
     "correct_answer": "Nathan",
     "reference": "2 Samuel 7:8-16",
@@ -410,9 +410,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the woman from Tekoa who told David a parable?",
     "options": [
       "The wise woman of Tekoa",
-      "Annas",
-      "Cyrene",
-      "Arimathea"
+      "Ahisamach",
+      "Jochebed",
+      "Miriam"
     ],
     "correct_answer": "The wise woman of Tekoa",
     "reference": "2 Samuel 14:2-20",
@@ -430,9 +430,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Absalom's sister?",
     "options": [
       "Tamar",
-      "Nicodemus",
-      "His cloak",
-      "Jairus"
+      "Eleazar",
+      "Nun",
+      "Jephunneh"
     ],
     "correct_answer": "Tamar",
     "reference": "2 Samuel 13:1",
@@ -450,9 +450,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Absalom's mother?",
     "options": [
       "Maacah",
-      "Zacchaeus",
-      "The sinful woman",
-      "Mary of Bethany"
+      "Abijah",
+      "Eli",
+      "Saul"
     ],
     "correct_answer": "Maacah",
     "reference": "2 Samuel 3:3",
@@ -470,9 +470,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "What happened to the first child born to David and Bathsheba?",
     "options": [
       "The child died",
-      "Simon the Zealot",
-      "Thomas",
-      "James"
+      "Abishai",
+      "Joab",
+      "Nathan"
     ],
     "correct_answer": "The child died",
     "reference": "2 Samuel 12:15-18",
@@ -490,9 +490,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Solomon's adversary from Edom?",
     "options": [
       "Hadad",
-      "The mother of Zebedee's sons",
-      "Zebedee",
-      "Matthias"
+      "Maacah",
+      "The child died",
+      "The man of God from Judah"
     ],
     "correct_answer": "Hadad",
     "reference": "1 Kings 11:14",
@@ -510,9 +510,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the prophet who rebuked Jeroboam at Bethel?",
     "options": [
       "The man of God from Judah",
-      "Peter",
-      "Philip",
-      "Ananias"
+      "The widow of Zarephath",
+      "Gehazi",
+      "Joash"
     ],
     "correct_answer": "The man of God from Judah",
     "reference": "1 Kings 13:1-2",
@@ -530,9 +530,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Ahab's wife who promoted Baal worship?",
     "options": [
       "Jezebel",
-      "Cornelius",
-      "Agabus",
-      "Timothy"
+      "Manasseh",
+      "Amon",
+      "Jedidah"
     ],
     "correct_answer": "Jezebel",
     "reference": "1 Kings 16:31",
@@ -550,9 +550,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the prophet who challenged Ahab on Mount Carmel?",
     "options": [
       "Elijah",
-      "Lydia",
-      "The Philippian jailer",
-      "Apollos"
+      "Nebuchadnezzar",
+      "Nehemiah",
+      "Seraiah"
     ],
     "correct_answer": "Elijah",
     "reference": "1 Kings 18:17-40",
@@ -570,9 +570,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the widow who fed Elijah at Zarephath?",
     "options": [
       "The widow of Zarephath",
-      "Aquila",
-      "Demetrius",
-      "Eutychus"
+      "Tobiah",
+      "Mordecai",
+      "Abihail"
     ],
     "correct_answer": "The widow of Zarephath",
     "reference": "1 Kings 17:8-16",
@@ -590,9 +590,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the servant of Elisha who took Naaman's gifts?",
     "options": [
       "Gehazi",
-      "Festus",
-      "Agrippa",
-      "Julius"
+      "Belteshazzar",
+      "Shadrach",
+      "Meshach"
     ],
     "correct_answer": "Gehazi",
     "reference": "2 Kings 5:20-27",
@@ -610,9 +610,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the king of Israel healed after Elisha told him to strike the ground?",
     "options": [
       "Joash",
-      "Publius",
-      "Luke",
-      "Useful"
+      "Darius",
+      "The queen",
+      "Zechariah"
     ],
     "correct_answer": "Joash",
     "reference": "2 Kings 13:14-19",
@@ -630,9 +630,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the mother of King Lemuel, who instructed him?",
     "options": [
       "The mother of King Lemuel",
-      "Phoebe",
-      "Priscilla and Aquila",
-      "Titus"
+      "About eighty-four years",
+      "Pontius Pilate",
+      "Caiaphas"
     ],
     "correct_answer": "The mother of King Lemuel",
     "reference": "Proverbs 31:1",
@@ -650,9 +650,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the father of King Hezekiah?",
     "options": [
       "Ahaz",
-      "Demas",
-      "Alexander",
-      "Uri"
+      "Arimathea",
+      "Nicodemus",
+      "His cloak"
     ],
     "correct_answer": "Ahaz",
     "reference": "2 Kings 18:1",
@@ -670,9 +670,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Hezekiah's son who reigned after him?",
     "options": [
       "Manasseh",
-      "Hur",
-      "Ahisamach",
-      "Jochebed"
+      "The sinful woman",
+      "Mary of Bethany",
+      "Simon the Zealot"
     ],
     "correct_answer": "Manasseh",
     "reference": "2 Kings 20:21",
@@ -690,9 +690,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Josiah's father?",
     "options": [
       "Amon",
-      "Miriam",
-      "Jethro",
-      "Nadab"
+      "The mother of Zebedee's sons",
+      "Zebedee",
+      "Matthias"
     ],
     "correct_answer": "Amon",
     "reference": "2 Kings 21:26",
@@ -710,9 +710,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Josiah's mother?",
     "options": [
       "Jedidah",
-      "Eleazar",
-      "Nun",
-      "Jephunneh"
+      "Ananias",
+      "Cornelius",
+      "Agabus"
     ],
     "correct_answer": "Jedidah",
     "reference": "2 Kings 22:1",
@@ -730,9 +730,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the high priest who found the Book of the Law in the temple?",
     "options": [
       "Hilkiah",
-      "Hannah",
-      "Elkanah",
-      "Abijah"
+      "The Philippian jailer",
+      "Apollos",
+      "Aquila"
     ],
     "correct_answer": "Hilkiah",
     "reference": "2 Kings 22:8",
@@ -750,9 +750,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the prophetess consulted during Josiah's reform?",
     "options": [
       "Huldah",
-      "Eli",
-      "Saul",
-      "Eliab"
+      "Festus",
+      "Agrippa",
+      "Julius"
     ],
     "correct_answer": "Huldah",
     "reference": "2 Kings 22:14",
@@ -770,9 +770,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Babylonian king who besieged Jerusalem and took captives?",
     "options": [
       "Nebuchadnezzar",
-      "Jesse",
-      "Abishai",
-      "Joab"
+      "Useful",
+      "Receive her and assist her with whatever she needed",
+      "Priscilla and Aquila"
     ],
     "correct_answer": "Nebuchadnezzar",
     "reference": "2 Kings 24:10-16",
@@ -790,9 +790,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Judean official who served as cupbearer to Artaxerxes?",
     "options": [
       "Nehemiah",
-      "Nathan",
-      "The wise woman of Tekoa",
-      "Tamar"
+      "Alexander",
+      "Uri",
+      "Hur"
     ],
     "correct_answer": "Nehemiah",
     "reference": "Nehemiah 1:11",
@@ -810,9 +810,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Ezra's father?",
     "options": [
       "Seraiah",
-      "Maacah",
-      "The child died",
-      "Hadad"
+      "Miriam",
+      "Jethro",
+      "Nadab"
     ],
     "correct_answer": "Seraiah",
     "reference": "Ezra 7:1",
@@ -830,9 +830,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Persian king who appointed Nehemiah governor?",
     "options": [
       "Artaxerxes",
-      "The man of God from Judah",
-      "Jezebel",
-      "Elijah"
+      "Jephunneh",
+      "Hannah",
+      "Elkanah"
     ],
     "correct_answer": "Artaxerxes",
     "reference": "Nehemiah 2:1-8",
@@ -850,9 +850,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the adversary who mocked Nehemiah's wall builders?",
     "options": [
       "Sanballat",
-      "The widow of Zarephath",
-      "Gehazi",
-      "Joash"
+      "Saul",
+      "Eliab",
+      "Jesse"
     ],
     "correct_answer": "Sanballat",
     "reference": "Nehemiah 4:1-3",
@@ -870,9 +870,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Sanballat's associate from Ammon?",
     "options": [
       "Tobiah",
-      "The mother of King Lemuel",
-      "Ahaz",
-      "Manasseh"
+      "Nathan",
+      "The wise woman of Tekoa",
+      "Tamar"
     ],
     "correct_answer": "Tobiah",
     "reference": "Nehemiah 4:3",
@@ -890,9 +890,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Esther's cousin and guardian?",
     "options": [
       "Mordecai",
-      "Amon",
-      "Jedidah",
-      "Hilkiah"
+      "Hadad",
+      "The man of God from Judah",
+      "Jezebel"
     ],
     "correct_answer": "Mordecai",
     "reference": "Esther 2:7",
@@ -910,9 +910,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Esther's father?",
     "options": [
       "Abihail",
-      "Huldah",
-      "Nebuchadnezzar",
-      "Nehemiah"
+      "Gehazi",
+      "Joash",
+      "The mother of King Lemuel"
     ],
     "correct_answer": "Abihail",
     "reference": "Esther 2:15",
@@ -930,9 +930,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Haman's wife?",
     "options": [
       "Zeresh",
-      "Seraiah",
-      "Artaxerxes",
-      "Sanballat"
+      "Amon",
+      "Jedidah",
+      "Hilkiah"
     ],
     "correct_answer": "Zeresh",
     "reference": "Esther 5:10",
@@ -950,9 +950,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the king of Persia who made Esther queen?",
     "options": [
       "Ahasuerus",
-      "Tobiah",
-      "Mordecai",
-      "Abihail"
+      "Nehemiah",
+      "Seraiah",
+      "Artaxerxes"
     ],
     "correct_answer": "Ahasuerus",
     "reference": "Esther 2:16-17",
@@ -970,9 +970,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Daniel's Babylonian name?",
     "options": [
       "Belteshazzar",
-      "Zeresh",
-      "Ahasuerus",
-      "Shadrach"
+      "Mordecai",
+      "Abihail",
+      "Zeresh"
     ],
     "correct_answer": "Belteshazzar",
     "reference": "Daniel 1:7",
@@ -1010,9 +1010,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Mishael's Babylonian name?",
     "options": [
       "Meshach",
-      "Darius",
-      "The queen",
-      "Zechariah"
+      "Zechariah",
+      "Elizabeth",
+      "Simeon"
     ],
     "correct_answer": "Meshach",
     "reference": "Daniel 1:7",
@@ -1030,9 +1030,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Azariah's Babylonian name?",
     "options": [
       "Abednego",
-      "Elizabeth",
-      "Simeon",
-      "About eighty-four years"
+      "Caiaphas",
+      "Annas",
+      "Cyrene"
     ],
     "correct_answer": "Abednego",
     "reference": "Daniel 1:7",
@@ -1050,9 +1050,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the angel who appeared to Daniel in chapter 8?",
     "options": [
       "Gabriel",
-      "Pontius Pilate",
-      "Caiaphas",
-      "Annas"
+      "His cloak",
+      "Jairus",
+      "Zacchaeus"
     ],
     "correct_answer": "Gabriel",
     "reference": "Daniel 8:15-16",
@@ -1070,9 +1070,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the king who threw Daniel into the lions' den?",
     "options": [
       "Darius",
-      "Cyrene",
-      "Arimathea",
-      "Nicodemus"
+      "Simon the Zealot",
+      "Thomas",
+      "James"
     ],
     "correct_answer": "Darius",
     "reference": "Daniel 6:16",
@@ -1090,9 +1090,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the queen present when Nehemiah asked the king for permission to travel?",
     "options": [
       "The queen",
-      "His cloak",
-      "Jairus",
-      "Zacchaeus"
+      "Matthias",
+      "Peter",
+      "Philip"
     ],
     "correct_answer": "The queen",
     "reference": "Nehemiah 2:6",
@@ -1110,9 +1110,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the father of John the Baptist?",
     "options": [
       "Zechariah",
-      "The sinful woman",
-      "Mary of Bethany",
-      "Simon the Zealot"
+      "Agabus",
+      "Timothy",
+      "Lydia"
     ],
     "correct_answer": "Zechariah",
     "reference": "Luke 1:13",
@@ -1130,9 +1130,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was John the Baptist's mother?",
     "options": [
       "Elizabeth",
-      "Thomas",
-      "James",
-      "The mother of Zebedee's sons"
+      "Aquila",
+      "Demetrius",
+      "Aristarchus"
     ],
     "correct_answer": "Elizabeth",
     "reference": "Luke 1:13",
@@ -1150,9 +1150,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the priest who blessed Mary and Joseph's child in the temple?",
     "options": [
       "Simeon",
-      "Zebedee",
-      "Matthias",
-      "Peter"
+      "Julius",
+      "Publius",
+      "Luke"
     ],
     "correct_answer": "Simeon",
     "reference": "Luke 2:25-35",
@@ -1170,9 +1170,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "For how long had Anna been a widow when she saw Jesus in the temple?",
     "options": [
       "About eighty-four years",
-      "Philip",
-      "Ananias",
-      "Cornelius"
+      "Priscilla and Aquila",
+      "Titus",
+      "Demas"
     ],
     "correct_answer": "About eighty-four years",
     "reference": "Luke 2:36-37",
@@ -1190,9 +1190,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Roman governor who sentenced Jesus to crucifixion?",
     "options": [
       "Pontius Pilate",
-      "Agabus",
-      "Timothy",
-      "Lydia"
+      "Hur",
+      "Ahisamach",
+      "Jochebed"
     ],
     "correct_answer": "Pontius Pilate",
     "reference": "Luke 23:24",
@@ -1210,9 +1210,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the high priest who questioned Jesus before the council?",
     "options": [
       "Caiaphas",
-      "The Philippian jailer",
-      "Apollos",
-      "Aquila"
+      "Nadab",
+      "Eleazar",
+      "Nun"
     ],
     "correct_answer": "Caiaphas",
     "reference": "Matthew 26:57",
@@ -1230,9 +1230,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the high priest who questioned Jesus first after his arrest?",
     "options": [
       "Annas",
-      "Demetrius",
-      "Eutychus",
-      "Festus"
+      "Elkanah",
+      "Abijah",
+      "Eli"
     ],
     "correct_answer": "Annas",
     "reference": "John 18:13-24",
@@ -1250,9 +1250,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "From which North African city was Simon, who carried Jesus' cross?",
     "options": [
       "Cyrene",
-      "Agrippa",
-      "Julius",
-      "Publius"
+      "Jesse",
+      "Abishai",
+      "Joab"
     ],
     "correct_answer": "Cyrene",
     "reference": "Luke 23:26",
@@ -1270,9 +1270,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "From which town was Joseph, who requested Jesus' body, originally?",
     "options": [
       "Arimathea",
-      "Luke",
-      "Useful",
-      "Phoebe"
+      "Tamar",
+      "Maacah",
+      "The child died"
     ],
     "correct_answer": "Arimathea",
     "reference": "Matthew 27:57",
@@ -1290,9 +1290,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Pharisee who came to Jesus by night?",
     "options": [
       "Nicodemus",
-      "Priscilla and Aquila",
-      "Titus",
-      "Demas"
+      "Jezebel",
+      "Elijah",
+      "The widow of Zarephath"
     ],
     "correct_answer": "Nicodemus",
     "reference": "John 3:1-2",
@@ -1310,9 +1310,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "What did Bartimaeus throw aside before coming to Jesus?",
     "options": [
       "His cloak",
-      "Alexander",
-      "Uri",
-      "Hur"
+      "The mother of King Lemuel",
+      "Ahaz",
+      "Manasseh"
     ],
     "correct_answer": "His cloak",
     "reference": "Mark 10:50",
@@ -1330,9 +1330,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the ruler whose daughter Jesus raised?",
     "options": [
       "Jairus",
-      "Ahisamach",
-      "Jochebed",
-      "Miriam"
+      "Hilkiah",
+      "Huldah",
+      "Nebuchadnezzar"
     ],
     "correct_answer": "Jairus",
     "reference": "Mark 5:22-43",
@@ -1350,9 +1350,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the tax collector who climbed a sycamore tree?",
     "options": [
       "Zacchaeus",
-      "Jethro",
-      "Nadab",
-      "Eleazar"
+      "Artaxerxes",
+      "Sanballat",
+      "Tobiah"
     ],
     "correct_answer": "Zacchaeus",
     "reference": "Luke 19:1-10",
@@ -1370,9 +1370,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the woman who anointed Jesus' feet in Simon's house?",
     "options": [
       "The sinful woman",
-      "Nun",
-      "Jephunneh",
-      "Hannah"
+      "Zeresh",
+      "Ahasuerus",
+      "Belteshazzar"
     ],
     "correct_answer": "The sinful woman",
     "reference": "Luke 7:36-50",
@@ -1390,9 +1390,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the woman from Bethany who anointed Jesus with costly ointment?",
     "options": [
       "Mary of Bethany",
-      "Elkanah",
-      "Abijah",
-      "Eli"
+      "Abednego",
+      "Gabriel",
+      "Darius"
     ],
     "correct_answer": "Mary of Bethany",
     "reference": "John 12:1-8",
@@ -1410,9 +1410,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the disciple known as the Zealot?",
     "options": [
       "Simon the Zealot",
-      "Saul",
-      "Eliab",
-      "Jesse"
+      "Elizabeth",
+      "Simeon",
+      "About eighty-four years"
     ],
     "correct_answer": "Simon the Zealot",
     "reference": "Luke 6:15",
@@ -1430,9 +1430,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the disciple called Didymus?",
     "options": [
       "Thomas",
-      "Abishai",
-      "Joab",
-      "Nathan"
+      "Annas",
+      "Cyrene",
+      "Arimathea"
     ],
     "correct_answer": "Thomas",
     "reference": "John 20:24",
@@ -1450,9 +1450,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the disciple whose father was Alphaeus?",
     "options": [
       "James",
-      "The wise woman of Tekoa",
-      "Tamar",
-      "Maacah"
+      "Jairus",
+      "Zacchaeus",
+      "The sinful woman"
     ],
     "correct_answer": "James",
     "reference": "Mark 3:18",
@@ -1470,9 +1470,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the mother of James and John who made a request to Jesus?",
     "options": [
       "The mother of Zebedee's sons",
-      "The child died",
-      "Hadad",
-      "The man of God from Judah"
+      "Thomas",
+      "James",
+      "Zebedee"
     ],
     "correct_answer": "The mother of Zebedee's sons",
     "reference": "Matthew 20:20-21",
@@ -1490,9 +1490,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the father of James and John?",
     "options": [
       "Zebedee",
-      "Jezebel",
-      "Elijah",
-      "The widow of Zarephath"
+      "Philip",
+      "Ananias",
+      "Cornelius"
     ],
     "correct_answer": "Zebedee",
     "reference": "Matthew 4:21",
@@ -1510,9 +1510,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the disciple who replaced Judas Iscariot?",
     "options": [
       "Matthias",
-      "Gehazi",
-      "Joash",
-      "The mother of King Lemuel"
+      "Lydia",
+      "The Philippian jailer",
+      "Apollos"
     ],
     "correct_answer": "Matthias",
     "reference": "Acts 1:26",
@@ -1530,9 +1530,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Which apostle preached to the crowd at Pentecost after the Holy Spirit came?",
     "options": [
       "Peter",
-      "Ahaz",
-      "Manasseh",
-      "Amon"
+      "Aristarchus",
+      "Festus",
+      "Agrippa"
     ],
     "correct_answer": "Peter",
     "reference": "Acts 2:14-36",
@@ -1550,9 +1550,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the deacon who preached in Samaria?",
     "options": [
       "Philip",
-      "Jedidah",
-      "Hilkiah",
-      "Huldah"
+      "Luke",
+      "Useful",
+      "Receive her and assist her with whatever she needed"
     ],
     "correct_answer": "Philip",
     "reference": "Acts 8:5",
@@ -1570,9 +1570,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the disciple sent to restore Saul's sight in Damascus?",
     "options": [
       "Ananias",
-      "Nebuchadnezzar",
-      "Nehemiah",
-      "Seraiah"
+      "Demas",
+      "Alexander",
+      "Uri"
     ],
     "correct_answer": "Ananias",
     "reference": "Acts 9:10-18",
@@ -1590,9 +1590,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Roman centurion who received Peter in Caesarea?",
     "options": [
       "Cornelius",
-      "Artaxerxes",
-      "Sanballat",
-      "Tobiah"
+      "Jochebed",
+      "Miriam",
+      "Jethro"
     ],
     "correct_answer": "Cornelius",
     "reference": "Acts 10:1-8",
@@ -1610,9 +1610,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the prophet who predicted a great famine under Claudius?",
     "options": [
       "Agabus",
-      "Mordecai",
-      "Abihail",
-      "Zeresh"
+      "Nun",
+      "Jephunneh",
+      "Hannah"
     ],
     "correct_answer": "Agabus",
     "reference": "Acts 11:27-28",
@@ -1630,9 +1630,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the church leader in Antioch who was called Niger?",
     "options": [
       "Simeon",
-      "Ahasuerus",
-      "Belteshazzar",
-      "Shadrach"
+      "Eli",
+      "Saul",
+      "Eliab"
     ],
     "correct_answer": "Simeon",
     "reference": "Acts 13:1",
@@ -1650,9 +1650,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Paul's companion from Lystra?",
     "options": [
       "Timothy",
-      "Meshach",
-      "Abednego",
-      "Gabriel"
+      "Joab",
+      "Nathan",
+      "The wise woman of Tekoa"
     ],
     "correct_answer": "Timothy",
     "reference": "Acts 16:1-3",
@@ -1670,9 +1670,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the seller of purple cloth from Thyatira?",
     "options": [
       "Lydia",
-      "Darius",
-      "The queen",
-      "Zechariah"
+      "The child died",
+      "Hadad",
+      "The man of God from Judah"
     ],
     "correct_answer": "Lydia",
     "reference": "Acts 16:14",
@@ -1690,9 +1690,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the jailer in Philippi who asked how to be saved?",
     "options": [
       "The Philippian jailer",
-      "Elizabeth",
-      "Simeon",
-      "About eighty-four years"
+      "The widow of Zarephath",
+      "Gehazi",
+      "Joash"
     ],
     "correct_answer": "The Philippian jailer",
     "reference": "Acts 16:27-34",
@@ -1710,9 +1710,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the eloquent Jewish teacher from Alexandria?",
     "options": [
       "Apollos",
-      "Pontius Pilate",
-      "Caiaphas",
-      "Annas"
+      "Manasseh",
+      "Amon",
+      "Jedidah"
     ],
     "correct_answer": "Apollos",
     "reference": "Acts 18:24",
@@ -1730,9 +1730,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the husband of Priscilla?",
     "options": [
       "Aquila",
-      "Cyrene",
-      "Arimathea",
-      "Nicodemus"
+      "Nebuchadnezzar",
+      "Nehemiah",
+      "Seraiah"
     ],
     "correct_answer": "Aquila",
     "reference": "Acts 18:2",
@@ -1750,9 +1750,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the silversmith who stirred up the riot in Ephesus?",
     "options": [
       "Demetrius",
-      "His cloak",
-      "Jairus",
-      "Zacchaeus"
+      "Tobiah",
+      "Mordecai",
+      "Abihail"
     ],
     "correct_answer": "Demetrius",
     "reference": "Acts 19:24-28",
@@ -1767,16 +1767,16 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 38,
     "challenge_index": 4,
-    "question_text": "Who was the young man who fell from the window at Troas?",
+    "question_text": "Which companion from Thessalonica travelled with Paul toward Jerusalem?",
     "options": [
-      "Eutychus",
-      "The sinful woman",
-      "Mary of Bethany",
-      "Simon the Zealot"
+      "Aristarchus",
+      "Belteshazzar",
+      "Shadrach",
+      "Meshach"
     ],
-    "correct_answer": "Eutychus",
-    "reference": "Acts 20:9",
-    "explanation": "The passage Acts 20:9 records this biblical detail.",
+    "correct_answer": "Aristarchus",
+    "reference": "Acts 20:4",
+    "explanation": "The passage Acts 20:4 records this distinct detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-character-quest-b02-fact-89"
@@ -1790,9 +1790,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the Roman official who heard Paul's case in Caesarea after Felix?",
     "options": [
       "Festus",
-      "Thomas",
-      "James",
-      "The mother of Zebedee's sons"
+      "Darius",
+      "The queen",
+      "Zechariah"
     ],
     "correct_answer": "Festus",
     "reference": "Acts 25:1-12",
@@ -1810,9 +1810,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the king who heard Paul's defence with Festus?",
     "options": [
       "Agrippa",
-      "Zebedee",
-      "Matthias",
-      "Peter"
+      "About eighty-four years",
+      "Pontius Pilate",
+      "Caiaphas"
     ],
     "correct_answer": "Agrippa",
     "reference": "Acts 25:13-26:32",
@@ -1830,9 +1830,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the centurion who escorted Paul to Rome?",
     "options": [
       "Julius",
-      "Philip",
-      "Ananias",
-      "Cornelius"
+      "Arimathea",
+      "Nicodemus",
+      "His cloak"
     ],
     "correct_answer": "Julius",
     "reference": "Acts 27:1",
@@ -1850,9 +1850,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the chief man of Malta who welcomed Paul?",
     "options": [
       "Publius",
-      "Agabus",
-      "Timothy",
-      "Lydia"
+      "The sinful woman",
+      "Mary of Bethany",
+      "Simon the Zealot"
     ],
     "correct_answer": "Publius",
     "reference": "Acts 28:7",
@@ -1870,9 +1870,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was Paul's fellow worker who was a physician?",
     "options": [
       "Luke",
-      "The Philippian jailer",
-      "Apollos",
-      "Aquila"
+      "The mother of Zebedee's sons",
+      "Zebedee",
+      "Matthias"
     ],
     "correct_answer": "Luke",
     "reference": "Colossians 4:14",
@@ -1890,9 +1890,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "What does the name Onesimus mean in Paul's letter to Philemon?",
     "options": [
       "Useful",
-      "Demetrius",
-      "Eutychus",
-      "Festus"
+      "Ananias",
+      "Cornelius",
+      "Agabus"
     ],
     "correct_answer": "Useful",
     "reference": "Philemon 10-11",
@@ -1907,16 +1907,16 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 40,
     "challenge_index": 1,
-    "question_text": "Who was the woman commended as a servant of the church at Cenchreae?",
+    "question_text": "What did Paul ask the Roman believers to do for Phoebe?",
     "options": [
-      "Phoebe",
-      "Agrippa",
-      "Julius",
-      "Publius"
+      "Receive her and assist her with whatever she needed",
+      "The Philippian jailer",
+      "Apollos",
+      "Aquila"
     ],
-    "correct_answer": "Phoebe",
+    "correct_answer": "Receive her and assist her with whatever she needed",
     "reference": "Romans 16:1-2",
-    "explanation": "The passage Romans 16:1-2 records this biblical detail.",
+    "explanation": "The passage Romans 16:1-2 records this distinct detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-character-quest-b02-fact-96"
@@ -1930,9 +1930,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the couple who explained God's way more accurately to Apollos?",
     "options": [
       "Priscilla and Aquila",
-      "Luke",
-      "Useful",
-      "Phoebe"
+      "Festus",
+      "Agrippa",
+      "Julius"
     ],
     "correct_answer": "Priscilla and Aquila",
     "reference": "Acts 18:26",
@@ -1950,9 +1950,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the young man Paul left in Crete to appoint elders?",
     "options": [
       "Titus",
-      "Priscilla and Aquila",
-      "Demas",
-      "Alexander"
+      "Useful",
+      "Receive her and assist her with whatever she needed",
+      "Priscilla and Aquila"
     ],
     "correct_answer": "Titus",
     "reference": "Titus 1:5",
@@ -1990,9 +1990,9 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the coppersmith who did Paul much harm?",
     "options": [
       "Alexander",
-      "Jochebed",
-      "Miriam",
-      "Jethro"
+      "Jethro",
+      "Nadab",
+      "Eleazar"
     ],
     "correct_answer": "Alexander",
     "reference": "2 Timothy 4:14",
