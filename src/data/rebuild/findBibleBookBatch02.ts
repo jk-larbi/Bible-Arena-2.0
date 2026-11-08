@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: 100 questions; not yet connected to live gameplay. */
+/** Staged batch 02: corrected for cross-game fact duplication. */
 export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
   {
     "id": "find-the-bible-book-rebuild-b02-001",
@@ -30,9 +30,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the Day of Atonement ritual involving two goats?",
     "options": [
       "Leviticus",
-      "Exodus",
-      "Numbers",
-      "Deuteronomy"
+      "Joshua",
+      "Judges",
+      "Ruth"
     ],
     "correct_answer": "Leviticus",
     "reference": "Leviticus 16:7-10",
@@ -50,9 +50,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the daughters of Zelophehad asking for an inheritance?",
     "options": [
       "Numbers",
-      "Exodus",
-      "Leviticus",
-      "Deuteronomy"
+      "1 Samuel",
+      "2 Samuel",
+      "2 Chronicles"
     ],
     "correct_answer": "Numbers",
     "reference": "Numbers 27:1-7",
@@ -70,9 +70,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book repeats the command to love the Lord with all one's heart, soul and might?",
     "options": [
       "Deuteronomy",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Kings",
+      "2 Kings",
+      "1 Chronicles"
     ],
     "correct_answer": "Deuteronomy",
     "reference": "Deuteronomy 6:4-5",
@@ -90,9 +90,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the division of the land among Israel's tribes?",
     "options": [
       "Joshua",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Ezra",
+      "Nehemiah",
+      "Esther"
     ],
     "correct_answer": "Joshua",
     "reference": "Joshua 13-21",
@@ -110,9 +110,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book tells of a left-handed judge who killed Eglon?",
     "options": [
       "Judges",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Job",
+      "Psalms",
+      "Proverbs"
     ],
     "correct_answer": "Judges",
     "reference": "Judges 3:15-23",
@@ -130,9 +130,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Ruth's request that Boaz spread his garment over her?",
     "options": [
       "Ruth",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Ecclesiastes",
+      "Song of Solomon",
+      "Isaiah"
     ],
     "correct_answer": "Ruth",
     "reference": "Ruth 3:9",
@@ -150,9 +150,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Jonathan tasting honey from the end of his staff?",
     "options": [
       "1 Samuel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Jeremiah",
+      "Lamentations",
+      "Ezekiel"
     ],
     "correct_answer": "1 Samuel",
     "reference": "1 Samuel 14:27",
@@ -170,9 +170,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records David's lament for Saul and Jonathan?",
     "options": [
       "2 Samuel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Daniel",
+      "Hosea",
+      "Joel"
     ],
     "correct_answer": "2 Samuel",
     "reference": "2 Samuel 1:17-27",
@@ -190,9 +190,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the dedication of Solomon's temple and the descent of fire?",
     "options": [
       "2 Chronicles",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Amos",
+      "Obadiah",
+      "Jonah"
     ],
     "correct_answer": "2 Chronicles",
     "reference": "2 Chronicles 7:1-3",
@@ -210,9 +210,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Elijah's contest with the prophets of Baal?",
     "options": [
       "1 Kings",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Micah",
+      "Nahum",
+      "Habakkuk"
     ],
     "correct_answer": "1 Kings",
     "reference": "1 Kings 18:20-40",
@@ -230,9 +230,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Naaman dipping seven times in the Jordan?",
     "options": [
       "2 Kings",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Zephaniah",
+      "Haggai",
+      "Zechariah"
     ],
     "correct_answer": "2 Kings",
     "reference": "2 Kings 5:10-14",
@@ -250,9 +250,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book lists David's mighty men and their deeds?",
     "options": [
       "2 Samuel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Malachi",
+      "Matthew",
+      "Mark"
     ],
     "correct_answer": "2 Samuel",
     "reference": "2 Samuel 23:8-39",
@@ -270,9 +270,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the census of David and the plague that followed?",
     "options": [
       "1 Chronicles",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Luke",
+      "John",
+      "Acts"
     ],
     "correct_answer": "1 Chronicles",
     "reference": "1 Chronicles 21:1-17",
@@ -287,16 +287,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 23,
     "challenge_index": 5,
-    "question_text": "Which book records the decree of Cyrus to rebuild the temple?",
+    "question_text": "Which book records the laying of the second temple's foundation amid praise and weeping?",
     "options": [
       "Ezra",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Romans",
+      "1 Corinthians",
+      "2 Corinthians"
     ],
     "correct_answer": "Ezra",
-    "reference": "Ezra 1:1-4",
-    "explanation": "The passage Ezra 1:1-4 records this biblical detail.",
+    "reference": "Ezra 3:8-13",
+    "explanation": "The passage Ezra 3:8-13 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-15"
@@ -310,9 +310,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the rebuilding of Jerusalem's wall in fifty-two days?",
     "options": [
       "Nehemiah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Galatians",
+      "Ephesians",
+      "Philippians"
     ],
     "correct_answer": "Nehemiah",
     "reference": "Nehemiah 6:15",
@@ -330,9 +330,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book tells how Mordecai uncovered a plot against the king?",
     "options": [
       "Esther",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Colossians",
+      "1 Thessalonians",
+      "2 Thessalonians"
     ],
     "correct_answer": "Esther",
     "reference": "Esther 2:21-23",
@@ -350,9 +350,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book includes Job's speech about the Redeemer living?",
     "options": [
       "Job",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Timothy",
+      "2 Timothy",
+      "Titus"
     ],
     "correct_answer": "Job",
     "reference": "Job 19:25-27",
@@ -370,9 +370,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book contains the prayer asking God to teach us to number our days?",
     "options": [
       "Psalms",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Philemon",
+      "Hebrews",
+      "James"
     ],
     "correct_answer": "Psalms",
     "reference": "Psalm 90:12",
@@ -390,9 +390,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book says a soft answer turns away wrath?",
     "options": [
       "Proverbs",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Peter",
+      "2 Peter",
+      "1 John"
     ],
     "correct_answer": "Proverbs",
     "reference": "Proverbs 15:1",
@@ -410,9 +410,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book asks what profit a person has from all labour under the sun?",
     "options": [
       "Ecclesiastes",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 John",
+      "3 John",
+      "Jude"
     ],
     "correct_answer": "Ecclesiastes",
     "reference": "Ecclesiastes 1:3",
@@ -430,9 +430,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book includes the phrase \"I am my beloved's, and my beloved is mine\"?",
     "options": [
       "Song of Solomon",
+      "Revelation",
       "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Leviticus"
     ],
     "correct_answer": "Song of Solomon",
     "reference": "Song of Solomon 6:3",
@@ -450,9 +450,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the vision of the Lord seated on a throne with seraphim?",
     "options": [
       "Isaiah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Numbers",
+      "Deuteronomy",
+      "Joshua"
     ],
     "correct_answer": "Isaiah",
     "reference": "Isaiah 6:1-7",
@@ -467,16 +467,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 25,
     "challenge_index": 4,
-    "question_text": "Which book describes Jeremiah buying a field while Jerusalem is under siege?",
+    "question_text": "Which book records Hanamel asking Jeremiah to buy his field at Anathoth?",
     "options": [
       "Jeremiah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Judges",
+      "Ruth",
+      "1 Samuel"
     ],
     "correct_answer": "Jeremiah",
-    "reference": "Jeremiah 32:6-15",
-    "explanation": "The passage Jeremiah 32:6-15 records this biblical detail.",
+    "reference": "Jeremiah 32:7-8",
+    "explanation": "The passage Jeremiah 32:7-8 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-24"
@@ -487,16 +487,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 25,
     "challenge_index": 5,
-    "question_text": "Which book contains the lament \"How doth the city sit solitary\"?",
+    "question_text": "Which book declares that God's mercies are new every morning?",
     "options": [
       "Lamentations",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Samuel",
+      "2 Chronicles",
+      "1 Kings"
     ],
     "correct_answer": "Lamentations",
-    "reference": "Lamentations 1:1",
-    "explanation": "The passage Lamentations 1:1 records this biblical detail.",
+    "reference": "Lamentations 3:22-23",
+    "explanation": "The passage Lamentations 3:22-23 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-25"
@@ -510,9 +510,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Ezekiel eating a scroll that tasted like honey?",
     "options": [
       "Ezekiel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Kings",
+      "1 Chronicles",
+      "Ezra"
     ],
     "correct_answer": "Ezekiel",
     "reference": "Ezekiel 3:1-3",
@@ -530,9 +530,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Daniel interpreting the writing on Belshazzar's wall?",
     "options": [
       "Daniel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Nehemiah",
+      "Esther",
+      "Job"
     ],
     "correct_answer": "Daniel",
     "reference": "Daniel 5:1-28",
@@ -550,9 +550,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book says \"I desire mercy, and not sacrifice\"?",
     "options": [
       "Hosea",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Psalms",
+      "Proverbs",
+      "Ecclesiastes"
     ],
     "correct_answer": "Hosea",
     "reference": "Hosea 6:6",
@@ -570,9 +570,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the promise that the Lord will pour out his Spirit on all flesh?",
     "options": [
       "Joel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Song of Solomon",
+      "Isaiah",
+      "Jeremiah"
     ],
     "correct_answer": "Joel",
     "reference": "Joel 2:28-29",
@@ -587,16 +587,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 26,
     "challenge_index": 5,
-    "question_text": "Which book asks that justice roll down like waters and righteousness like a mighty stream?",
+    "question_text": "Which prophetic book records the vision of a plumb line shown to a shepherd prophet?",
     "options": [
       "Amos",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Lamentations",
+      "Ezekiel",
+      "Daniel"
     ],
     "correct_answer": "Amos",
-    "reference": "Amos 5:24",
-    "explanation": "The passage Amos 5:24 records this biblical detail.",
+    "reference": "Amos 7:7-9",
+    "explanation": "The passage Amos 7:7-9 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-30"
@@ -610,9 +610,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book pronounces judgment on Edom for violence against his brother Jacob?",
     "options": [
       "Obadiah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Hosea",
+      "Joel",
+      "Amos"
     ],
     "correct_answer": "Obadiah",
     "reference": "Obadiah 1:10",
@@ -630,9 +630,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Jonah's prayer from inside the fish?",
     "options": [
       "Jonah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Obadiah",
+      "Micah",
+      "Nahum"
     ],
     "correct_answer": "Jonah",
     "reference": "Jonah 2:1-9",
@@ -647,16 +647,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 27,
     "challenge_index": 3,
-    "question_text": "Which book says the ruler of Israel will come from Bethlehem Ephrathah?",
+    "question_text": "Which prophetic book asks what the Lord requires: justice, mercy and humble walking with God?",
     "options": [
       "Micah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Habakkuk",
+      "Zephaniah",
+      "Haggai"
     ],
     "correct_answer": "Micah",
-    "reference": "Micah 5:2",
-    "explanation": "The passage Micah 5:2 records this biblical detail.",
+    "reference": "Micah 6:8",
+    "explanation": "The passage Micah 6:8 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-33"
@@ -667,16 +667,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 27,
     "challenge_index": 4,
-    "question_text": "Which book announces the destruction of Nineveh in a vision concerning the city?",
+    "question_text": "Which prophetic book describes the feet of one bringing good tidings on the mountains?",
     "options": [
       "Nahum",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Zechariah",
+      "Malachi",
+      "Matthew"
     ],
     "correct_answer": "Nahum",
-    "reference": "Nahum 1:1",
-    "explanation": "The passage Nahum 1:1 records this biblical detail.",
+    "reference": "Nahum 1:15",
+    "explanation": "The passage Nahum 1:15 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-34"
@@ -690,9 +690,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book contains the statement \"the just shall live by his faith\"?",
     "options": [
       "Habakkuk",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Mark",
+      "Luke",
+      "John"
     ],
     "correct_answer": "Habakkuk",
     "reference": "Habakkuk 2:4",
@@ -710,9 +710,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book warns that the day of the Lord is near and calls for humility?",
     "options": [
       "Zephaniah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Acts",
+      "Romans",
+      "1 Corinthians"
     ],
     "correct_answer": "Zephaniah",
     "reference": "Zephaniah 1:7; 2:3",
@@ -730,9 +730,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book urges the returned exiles to consider their ways and rebuild the temple?",
     "options": [
       "Haggai",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Corinthians",
+      "Galatians",
+      "Ephesians"
     ],
     "correct_answer": "Haggai",
     "reference": "Haggai 1:5-8",
@@ -750,9 +750,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the vision of Joshua the high priest standing before the angel of the Lord?",
     "options": [
       "Zechariah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Philippians",
+      "Colossians",
+      "1 Thessalonians"
     ],
     "correct_answer": "Zechariah",
     "reference": "Zechariah 3:1-5",
@@ -770,9 +770,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book rebukes people for offering blemished animals on the altar?",
     "options": [
       "Malachi",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Thessalonians",
+      "1 Timothy",
+      "2 Timothy"
     ],
     "correct_answer": "Malachi",
     "reference": "Malachi 1:6-8",
@@ -790,9 +790,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the visit of the Magi from the east?",
     "options": [
       "Matthew",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Titus",
+      "Philemon",
+      "Hebrews"
     ],
     "correct_answer": "Matthew",
     "reference": "Matthew 2:1-12",
@@ -810,9 +810,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the parable of the growing seed?",
     "options": [
       "Mark",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "James",
+      "1 Peter",
+      "2 Peter"
     ],
     "correct_answer": "Mark",
     "reference": "Mark 4:26-29",
@@ -830,9 +830,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the parable of the prodigal son?",
     "options": [
       "Luke",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 John",
+      "2 John",
+      "3 John"
     ],
     "correct_answer": "Luke",
     "reference": "Luke 15:11-32",
@@ -850,9 +850,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records Jesus turning water into wine at Cana?",
     "options": [
       "John",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Jude",
+      "Revelation",
+      "Exodus"
     ],
     "correct_answer": "John",
     "reference": "John 2:1-11",
@@ -870,9 +870,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the appointment of the seven to serve the daily distribution?",
     "options": [
       "Acts",
-      "Exodus",
       "Leviticus",
-      "Numbers"
+      "Numbers",
+      "Deuteronomy"
     ],
     "correct_answer": "Acts",
     "reference": "Acts 6:1-6",
@@ -890,9 +890,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter explains Abraham's faith being counted as righteousness?",
     "options": [
       "Romans",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Joshua",
+      "Judges",
+      "Ruth"
     ],
     "correct_answer": "Romans",
     "reference": "Romans 4:1-5",
@@ -910,9 +910,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter discusses the spiritual gifts and one body with many members?",
     "options": [
       "1 Corinthians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Samuel",
+      "2 Samuel",
+      "2 Chronicles"
     ],
     "correct_answer": "1 Corinthians",
     "reference": "1 Corinthians 12:4-27",
@@ -930,9 +930,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter describes Paul's thorn in the flesh?",
     "options": [
       "2 Corinthians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Kings",
+      "2 Kings",
+      "1 Chronicles"
     ],
     "correct_answer": "2 Corinthians",
     "reference": "2 Corinthians 12:7-10",
@@ -950,9 +950,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says believers are not justified by works of the law?",
     "options": [
       "Galatians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Ezra",
+      "Nehemiah",
+      "Esther"
     ],
     "correct_answer": "Galatians",
     "reference": "Galatians 2:16",
@@ -967,16 +967,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 30,
     "challenge_index": 4,
-    "question_text": "Which letter includes the instruction to put on the whole armour of God?",
+    "question_text": "Which letter says believers were sealed with the promised Holy Spirit?",
     "options": [
       "Ephesians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Job",
+      "Psalms",
+      "Proverbs"
     ],
     "correct_answer": "Ephesians",
-    "reference": "Ephesians 6:10-18",
-    "explanation": "The passage Ephesians 6:10-18 records this biblical detail.",
+    "reference": "Ephesians 1:13-14",
+    "explanation": "The passage Ephesians 1:13-14 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "find-the-bible-book-b02-fact-49"
@@ -990,9 +990,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter contains Paul's hymn about Christ humbling himself to death on a cross?",
     "options": [
       "Philippians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Ecclesiastes",
+      "Song of Solomon",
+      "Isaiah"
     ],
     "correct_answer": "Philippians",
     "reference": "Philippians 2:5-11",
@@ -1010,9 +1010,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter warns against being taken captive by philosophy and empty deceit?",
     "options": [
       "Colossians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Jeremiah",
+      "Lamentations",
+      "Ezekiel"
     ],
     "correct_answer": "Colossians",
     "reference": "Colossians 2:8",
@@ -1030,9 +1030,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter describes the Lord descending with a shout and the trumpet of God?",
     "options": [
       "1 Thessalonians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Daniel",
+      "Hosea",
+      "Joel"
     ],
     "correct_answer": "1 Thessalonians",
     "reference": "1 Thessalonians 4:16-17",
@@ -1050,9 +1050,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says the day of the Lord will not come before the rebellion and man of lawlessness?",
     "options": [
       "2 Thessalonians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Amos",
+      "Obadiah",
+      "Jonah"
     ],
     "correct_answer": "2 Thessalonians",
     "reference": "2 Thessalonians 2:1-4",
@@ -1070,9 +1070,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter lists qualifications for overseers and deacons?",
     "options": [
       "1 Timothy",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Micah",
+      "Nahum",
+      "Habakkuk"
     ],
     "correct_answer": "1 Timothy",
     "reference": "1 Timothy 3:1-13",
@@ -1090,9 +1090,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter urges Timothy to endure hardship as a good soldier of Christ Jesus?",
     "options": [
       "2 Timothy",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Zephaniah",
+      "Haggai",
+      "Zechariah"
     ],
     "correct_answer": "2 Timothy",
     "reference": "2 Timothy 2:3",
@@ -1107,16 +1107,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 32,
     "challenge_index": 1,
-    "question_text": "Which letter tells Titus to appoint elders in every town?",
+    "question_text": "Which letter tells believers to devote themselves to good works and avoid foolish controversies?",
     "options": [
       "Titus",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Malachi",
+      "Matthew",
+      "Mark"
     ],
     "correct_answer": "Titus",
-    "reference": "Titus 1:5",
-    "explanation": "The passage Titus 1:5 records this biblical detail.",
+    "reference": "Titus 3:8-9",
+    "explanation": "The passage Titus 3:8-9 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-56"
@@ -1130,9 +1130,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter asks its recipient to receive Onesimus as a beloved brother?",
     "options": [
       "Philemon",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Luke",
+      "John",
+      "Acts"
     ],
     "correct_answer": "Philemon",
     "reference": "Philemon 1:15-17",
@@ -1150,9 +1150,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter compares Jesus' priesthood with that of Melchizedek?",
     "options": [
       "Hebrews",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Romans",
+      "1 Corinthians",
+      "2 Corinthians"
     ],
     "correct_answer": "Hebrews",
     "reference": "Hebrews 7:1-28",
@@ -1170,9 +1170,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says faith without works is dead?",
     "options": [
       "James",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Galatians",
+      "Ephesians",
+      "Philippians"
     ],
     "correct_answer": "James",
     "reference": "James 2:17",
@@ -1190,9 +1190,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter calls believers a chosen race and royal priesthood?",
     "options": [
       "1 Peter",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Colossians",
+      "1 Thessalonians",
+      "2 Thessalonians"
     ],
     "correct_answer": "1 Peter",
     "reference": "1 Peter 2:9",
@@ -1210,9 +1210,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter warns that false teachers will secretly bring destructive heresies?",
     "options": [
       "2 Peter",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Timothy",
+      "2 Timothy",
+      "Titus"
     ],
     "correct_answer": "2 Peter",
     "reference": "2 Peter 2:1",
@@ -1230,9 +1230,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says God is love and commands believers to love one another?",
     "options": [
       "1 John",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Philemon",
+      "Hebrews",
+      "James"
     ],
     "correct_answer": "1 John",
     "reference": "1 John 4:7-8",
@@ -1250,9 +1250,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter warns about deceivers who do not confess Jesus Christ coming in the flesh?",
     "options": [
       "2 John",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Peter",
+      "2 Peter",
+      "1 John"
     ],
     "correct_answer": "2 John",
     "reference": "2 John 1:7",
@@ -1270,9 +1270,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter commends Gaius for walking in the truth?",
     "options": [
       "3 John",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 John",
+      "Jude",
+      "Revelation"
     ],
     "correct_answer": "3 John",
     "reference": "3 John 1:3-4",
@@ -1310,9 +1310,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the seven seals being opened by the Lamb?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Deuteronomy",
+      "Joshua",
+      "Judges"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 6:1-17",
@@ -1330,9 +1330,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the measuring of the temple and the two witnesses?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Ruth",
+      "1 Samuel",
+      "2 Samuel"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 11:1-12",
@@ -1350,9 +1350,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the woman clothed with the sun and a great red dragon?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Chronicles",
+      "1 Kings",
+      "2 Kings"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 12:1-9",
@@ -1370,9 +1370,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the marriage supper of the Lamb?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Chronicles",
+      "Ezra",
+      "Nehemiah"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 19:6-9",
@@ -1390,9 +1390,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes a new heaven, new earth and New Jerusalem?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Esther",
+      "Job",
+      "Psalms"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 21:1-2",
@@ -1410,9 +1410,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the bronze altar and the laver for the tabernacle?",
     "options": [
       "Exodus",
-      "Leviticus",
-      "Numbers",
-      "Deuteronomy"
+      "Ecclesiastes",
+      "Song of Solomon",
+      "Isaiah"
     ],
     "correct_answer": "Exodus",
     "reference": "Exodus 38:1-8",
@@ -1430,9 +1430,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book gives the laws concerning vows and dedicated things?",
     "options": [
       "Leviticus",
-      "Exodus",
-      "Numbers",
-      "Deuteronomy"
+      "Jeremiah",
+      "Lamentations",
+      "Ezekiel"
     ],
     "correct_answer": "Leviticus",
     "reference": "Leviticus 27:1-34",
@@ -1450,9 +1450,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the cities given to the Levites?",
     "options": [
       "Joshua",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Daniel",
+      "Hosea",
+      "Joel"
     ],
     "correct_answer": "Joshua",
     "reference": "Joshua 21:1-42",
@@ -1470,9 +1470,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book tells of Samson's riddle about the eater and the sweet?",
     "options": [
       "Judges",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Amos",
+      "Obadiah",
+      "Jonah"
     ],
     "correct_answer": "Judges",
     "reference": "Judges 14:12-18",
@@ -1490,9 +1490,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the ark being returned on a cart drawn by two milk cows?",
     "options": [
       "1 Samuel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Micah",
+      "Nahum",
+      "Habakkuk"
     ],
     "correct_answer": "1 Samuel",
     "reference": "1 Samuel 6:7-14",
@@ -1510,9 +1510,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the wise woman of Abel persuading Joab to spare her city?",
     "options": [
       "2 Samuel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Zephaniah",
+      "Haggai",
+      "Zechariah"
     ],
     "correct_answer": "2 Samuel",
     "reference": "2 Samuel 20:14-22",
@@ -1530,9 +1530,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Solomon's judgment concerning two women and one living child?",
     "options": [
       "1 Kings",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Malachi",
+      "Matthew",
+      "Mark"
     ],
     "correct_answer": "1 Kings",
     "reference": "1 Kings 3:16-28",
@@ -1550,9 +1550,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the floating axe head?",
     "options": [
       "2 Kings",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Luke",
+      "John",
+      "Acts"
     ],
     "correct_answer": "2 Kings",
     "reference": "2 Kings 6:1-7",
@@ -1570,9 +1570,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Jehoshaphat appointing singers before the army?",
     "options": [
       "2 Chronicles",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Romans",
+      "1 Corinthians",
+      "2 Corinthians"
     ],
     "correct_answer": "2 Chronicles",
     "reference": "2 Chronicles 20:20-23",
@@ -1590,9 +1590,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Ezra's public reading of the Law from a wooden platform?",
     "options": [
       "Nehemiah",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Galatians",
+      "Ephesians",
+      "Philippians"
     ],
     "correct_answer": "Nehemiah",
     "reference": "Nehemiah 8:1-8",
@@ -1610,9 +1610,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the four living creatures and wheels full of eyes?",
     "options": [
       "Ezekiel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Colossians",
+      "1 Thessalonians",
+      "2 Thessalonians"
     ],
     "correct_answer": "Ezekiel",
     "reference": "Ezekiel 1:15-21",
@@ -1630,9 +1630,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the ram and goat vision explained by Gabriel?",
     "options": [
       "Daniel",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Timothy",
+      "2 Timothy",
+      "Titus"
     ],
     "correct_answer": "Daniel",
     "reference": "Daniel 8:1-27",
@@ -1647,16 +1647,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 37,
     "challenge_index": 3,
-    "question_text": "Which book records the prophet marrying Gomer?",
+    "question_text": "Which prophetic book promises that God will betroth his people to him in righteousness and faithfulness?",
     "options": [
       "Hosea",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Philemon",
+      "Hebrews",
+      "James"
     ],
     "correct_answer": "Hosea",
-    "reference": "Hosea 1:2-3",
-    "explanation": "The passage Hosea 1:2-3 records this biblical detail.",
+    "reference": "Hosea 2:19-20",
+    "explanation": "The passage Hosea 2:19-20 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-83"
@@ -1667,16 +1667,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 37,
     "challenge_index": 4,
-    "question_text": "Which book records the vision of a basket of summer fruit?",
+    "question_text": "Which prophetic book records the vision of a basket of summer fruit?",
     "options": [
       "Amos",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "1 Peter",
+      "2 Peter",
+      "1 John"
     ],
     "correct_answer": "Amos",
     "reference": "Amos 8:1-3",
-    "explanation": "The passage Amos 8:1-3 records this biblical detail.",
+    "explanation": "The passage Amos 8:1-3 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-84"
@@ -1690,9 +1690,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records the prophet's complaint about violence and injustice?",
     "options": [
       "Habakkuk",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 John",
+      "3 John",
+      "Jude"
     ],
     "correct_answer": "Habakkuk",
     "reference": "Habakkuk 1:2-4",
@@ -1707,16 +1707,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 38,
     "challenge_index": 1,
-    "question_text": "Which Gospel records the raising of Lazarus?",
+    "question_text": "Which Gospel records Jesus washing his disciples' feet before the Passover feast?",
     "options": [
       "John",
+      "Revelation",
       "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Leviticus"
     ],
     "correct_answer": "John",
-    "reference": "John 11:1-44",
-    "explanation": "The passage John 11:1-44 records this biblical detail.",
+    "reference": "John 13:1-17",
+    "explanation": "The passage John 13:1-17 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-86"
@@ -1730,9 +1730,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the healing of the ten lepers?",
     "options": [
       "Luke",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Numbers",
+      "Deuteronomy",
+      "Joshua"
     ],
     "correct_answer": "Luke",
     "reference": "Luke 17:11-19",
@@ -1750,9 +1750,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the healing of the Syrophoenician woman's daughter?",
     "options": [
       "Mark",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Judges",
+      "Ruth",
+      "1 Samuel"
     ],
     "correct_answer": "Mark",
     "reference": "Mark 7:24-30",
@@ -1770,9 +1770,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which Gospel records the parable of the sheep and the goats?",
     "options": [
       "Matthew",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Samuel",
+      "2 Chronicles",
+      "1 Kings"
     ],
     "correct_answer": "Matthew",
     "reference": "Matthew 25:31-46",
@@ -1790,9 +1790,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book records Peter's vision of a sheet containing clean and unclean animals?",
     "options": [
       "Acts",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "2 Kings",
+      "1 Chronicles",
+      "Ezra"
     ],
     "correct_answer": "Acts",
     "reference": "Acts 10:9-16",
@@ -1807,16 +1807,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 1,
-    "question_text": "Which letter contains the list of the fruit of the Spirit?",
+    "question_text": "Which letter says a person is not justified by works of the law but through faith in Jesus Christ?",
     "options": [
       "Galatians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Nehemiah",
+      "Esther",
+      "Job"
     ],
     "correct_answer": "Galatians",
-    "reference": "Galatians 5:22-23",
-    "explanation": "The passage Galatians 5:22-23 records this biblical detail.",
+    "reference": "Galatians 2:16",
+    "explanation": "The passage Galatians 2:16 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-91"
@@ -1827,16 +1827,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 2,
-    "question_text": "Which letter explains reconciliation through Christ and the ministry of reconciliation?",
+    "question_text": "Which letter describes Paul's thorn in the flesh and the Lord's sufficient grace?",
     "options": [
       "2 Corinthians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Psalms",
+      "Proverbs",
+      "Ecclesiastes"
     ],
     "correct_answer": "2 Corinthians",
-    "reference": "2 Corinthians 5:18-21",
-    "explanation": "The passage 2 Corinthians 5:18-21 records this biblical detail.",
+    "reference": "2 Corinthians 12:7-10",
+    "explanation": "The passage 2 Corinthians 12:7-10 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-92"
@@ -1847,16 +1847,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 39,
     "challenge_index": 3,
-    "question_text": "Which letter describes Christ as the image of the invisible God?",
+    "question_text": "Which letter warns believers not to be taken captive by philosophy and empty deceit?",
     "options": [
       "Colossians",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Song of Solomon",
+      "Isaiah",
+      "Jeremiah"
     ],
     "correct_answer": "Colossians",
-    "reference": "Colossians 1:15-20",
-    "explanation": "The passage Colossians 1:15-20 records this biblical detail.",
+    "reference": "Colossians 2:8",
+    "explanation": "The passage Colossians 2:8 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-93"
@@ -1870,9 +1870,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter warns against love of money as a root of all kinds of evil?",
     "options": [
       "1 Timothy",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Lamentations",
+      "Ezekiel",
+      "Daniel"
     ],
     "correct_answer": "1 Timothy",
     "reference": "1 Timothy 6:9-10",
@@ -1890,9 +1890,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter describes the word of God as living and active, sharper than a two-edged sword?",
     "options": [
       "Hebrews",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Hosea",
+      "Joel",
+      "Amos"
     ],
     "correct_answer": "Hebrews",
     "reference": "Hebrews 4:12",
@@ -1910,9 +1910,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says believers should be doers of the word and not hearers only?",
     "options": [
       "James",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Obadiah",
+      "Jonah",
+      "Micah"
     ],
     "correct_answer": "James",
     "reference": "James 1:22",
@@ -1930,9 +1930,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter tells believers to cast all their anxieties on God?",
     "options": [
       "1 Peter",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Nahum",
+      "Habakkuk",
+      "Zephaniah"
     ],
     "correct_answer": "1 Peter",
     "reference": "1 Peter 5:7",
@@ -1950,9 +1950,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which letter says the Lord is not slow concerning his promise but is patient?",
     "options": [
       "2 Peter",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Haggai",
+      "Zechariah",
+      "Malachi"
     ],
     "correct_answer": "2 Peter",
     "reference": "2 Peter 3:9",
@@ -1967,16 +1967,16 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "game_slug": "find-the-bible-book",
     "level": 40,
     "challenge_index": 4,
-    "question_text": "Which letter says perfect love casts out fear?",
+    "question_text": "Which letter opens by declaring that God is light and there is no darkness in him?",
     "options": [
       "1 John",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "Matthew",
+      "Mark",
+      "Luke"
     ],
     "correct_answer": "1 John",
-    "reference": "1 John 4:18",
-    "explanation": "The passage 1 John 4:18 records this biblical detail.",
+    "reference": "1 John 1:5-7",
+    "explanation": "The passage 1 John 1:5-7 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "find-the-bible-book-b02-fact-99"
@@ -1990,9 +1990,9 @@ export const FIND_BIBLE_BOOK_BATCH_02: ChallengeItem[] = [
     "question_text": "Which book describes the river of the water of life flowing from God's throne?",
     "options": [
       "Revelation",
-      "Exodus",
-      "Leviticus",
-      "Numbers"
+      "John",
+      "Acts",
+      "Romans"
     ],
     "correct_answer": "Revelation",
     "reference": "Revelation 22:1-2",
