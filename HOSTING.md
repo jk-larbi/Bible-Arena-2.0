@@ -38,7 +38,7 @@ Expected backup URL:
 
 The workflow attempts to enable GitHub Pages automatically. If GitHub requires a one-time setting, open **Settings → Pages** and select **GitHub Actions** as the build and deployment source.
 
-GitHub Pages does not need Supabase secrets at build time because the app's public environment variables are not embedded from GitHub Actions. To make the backup fully functional, configure the same three `VITE_*` values as GitHub Actions repository variables and add them to the Pages build workflow before its first production deployment. Never put the service-role key in repository variables.
+For the backup to connect to Supabase, add the same public values under **Repository Settings → Secrets and variables → Actions → Variables** using these exact names: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and (if used) `VITE_VAPID_PUBLIC_KEY`. The Pages workflow reads these variables during its build. These are browser-facing public values; never put the Supabase service-role key in repository variables or in the frontend.
 
 ## Supabase authentication URLs
 
