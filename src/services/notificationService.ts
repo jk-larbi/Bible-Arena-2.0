@@ -374,19 +374,19 @@ export async function updateNotificationPreferences(
   userId: string,
   prefs: NotificationPreferences
 ): Promise<void> {
-  localStorage.setItem(`notif_prefs_${userId}`, JSON.stringify(prefs));
-  try {
-    await supabase.from('notification_preferences').upsert({
-      user_id: userId,
-      browser_push_enabled: prefs.browser_push_enabled,
-      daily_verse_enabled: prefs.daily_verse_enabled,
-      challenges_enabled: prefs.challenges_enabled,
-      live_games_enabled: prefs.live_games_enabled,
-      achievements_enabled: prefs.achievements_enabled,
-      sound_enabled: prefs.sound_enabled,
-      updated_at: new Date().toISOString()
-    });
-  } catch (err) {
-    console.error('Error saving notification preferences:', err);
+  const { error } = await supabase.from('notification_preferences').upsert({
+    user_id: userId,
+    browser_push_enabled: prefs.browser_push_enabled,
+    daily_verse_enabled: prefs.daily_verse_enabled,
+    challenges_enabled: prefs.challenges_enabled,
+    live_games_enabled: prefs.live_games_enabled,
+    achievements_enabled: prefs.achievements_enabled,
+    sound_enabled: prefs.sound_enabled,
+    updated_at: new Date().toISOString()
+  });
+  if (error) {
+    console.error('Error saving notification preferences:', error);
+    throw error;
   }
+  localStorage.setItem(`notif_prefs_${userId}`, JSON.stringify(prefs));
 }
