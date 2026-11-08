@@ -57,7 +57,7 @@ export function useMultiplayerSync(
   options: UseMultiplayerSyncOptions = {}
 ): UseMultiplayerSyncResult {
   const { pollIntervalMs = 1000, enabled = true, onPhaseChange } = options;
-  const { user } = useSession();
+  const { user, loading: authLoading } = useSession();
 
   const [room, setRoom] = useState<SyncRoom | null>(null);
   const [players, setPlayers] = useState<SyncPlayer[]>([]);
@@ -73,7 +73,7 @@ export function useMultiplayerSync(
 
   // Fast polling & RPC synchronization function
   const fetchSyncData = useCallback(async () => {
-    if (!roomId || !enabled || isFetchingRef.current) return;
+    if (!roomId || !enabled || authLoading || isFetchingRef.current) return;
     isFetchingRef.current = true;
 
     const t0 = Date.now();
@@ -170,7 +170,7 @@ export function useMultiplayerSync(
       setLoading(false);
       isFetchingRef.current = false;
     }
-  }, [roomId, enabled]);
+  }, [roomId, enabled, authLoading]);
 
   // High-frequency clock tick (every 150ms) to ensure smooth countdown without lag
   useEffect(() => {
@@ -183,7 +183,7 @@ export function useMultiplayerSync(
 
   // Main polling loop and visibility change management
   useEffect(() => {
-    if (!roomId || !enabled) return;
+    if (!roomId || !enabled || authLoading) return;
 
     fetchSyncData();
 
@@ -221,7 +221,7 @@ export function useMultiplayerSync(
       window.removeEventListener('focus', onVisibilityOrFocus);
       document.removeEventListener('visibilitychange', onVisibilityOrFocus);
     };
-  }, [roomId, enabled, pollIntervalMs, fetchSyncData]);
+  }, [roomId, enabled, authLoading, pollIntervalMs, fetchSyncData]);
 
   // Compute live synchronized phase, remaining seconds, and progress
   let phase: MultiplayerPhase = 'idle';
