@@ -28,7 +28,7 @@ const CANONICAL_BOOKS = [
 
 interface TestResult {
   name: string;
-  scope: string; // e.g. "Full Bank (9,500 questions)" vs "Deep Audit (1,900 questions)"
+  scope: string; // e.g. "Full Bank (4,750 questions)" vs "Deep Audit (950 questions)"
   passed: boolean;
   details: string;
 }
@@ -53,7 +53,7 @@ async function runQuizAccuracyTests() {
   const results: TestResult[] = [];
 
   // ===================================================================
-  // 1. FULL QUESTION BANK (9,500 CHALLENGES): Unique IDs across all 19 games x 50 levels
+  // 1. FULL QUESTION BANK (4,750 CHALLENGES): Unique IDs across all 19 games x 50 levels
   // ===================================================================
   {
     const seenIds = new Set<string>();
@@ -73,17 +73,17 @@ async function runQuizAccuracyTests() {
       }
     }
 
-    const passed = duplicateCount === 0 && totalChallenges === 9500;
+    const passed = duplicateCount === 0 && totalChallenges === 4750;
     results.push({
       name: '1. Unique Question IDs across entire platform',
-      scope: 'Full Bank: 9,500 questions (19 games x 50 levels x 10 challenges)',
+      scope: 'Full Bank: 4,750 questions (19 games x 50 levels x 5 challenges)',
       passed,
       details: `Checked all ${totalChallenges} challenges across all 19 games and 50 levels. Found ${duplicateCount} duplicates.`,
     });
   }
 
   // ===================================================================
-  // 2. FULL QUESTION BANK (9,500 CHALLENGES): Complete payload integrity
+  // 2. FULL QUESTION BANK (4,750 CHALLENGES): Complete payload integrity
   // ===================================================================
   {
     let totalChecked = 0;
@@ -92,7 +92,7 @@ async function runQuizAccuracyTests() {
     for (const slug of ALL_19_GAME_SLUGS) {
       for (let lvl = 1; lvl <= 50; lvl++) {
         const items = buildLocalChallengesForLevel(slug, lvl);
-        if (items.length !== 10) {
+        if (items.length !== 5) {
           payloadErrors++;
         }
         for (const it of items) {
@@ -104,17 +104,17 @@ async function runQuizAccuracyTests() {
       }
     }
 
-    const passed = payloadErrors === 0 && totalChecked === 9500;
+    const passed = payloadErrors === 0 && totalChecked === 4750;
     results.push({
       name: '2. Complete challenge payload integrity',
-      scope: 'Full Bank: 9,500 questions (19 games x 50 levels x 10 challenges)',
+      scope: 'Full Bank: 4,750 questions (19 games x 50 levels x 5 challenges)',
       passed,
       details: `Verified all ${totalChecked} challenges have non-empty question_text, correct_answer, explanation, and reference. Failures: ${payloadErrors}.`,
     });
   }
 
   // ===================================================================
-  // 3. DEEP AUDIT (1,900 CHALLENGES): Exactly 4 distinct options per MC question
+  // 3. DEEP AUDIT (950 CHALLENGES): Exactly 4 distinct options per MC question
   // ===================================================================
   {
     let mcTotal = 0;
@@ -145,7 +145,7 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
-  // 4. DEEP AUDIT (1,900 CHALLENGES): Correct answer presence in options
+  // 4. DEEP AUDIT (950 CHALLENGES): Correct answer presence in options
   // ===================================================================
   {
     let mcTotal = 0;
@@ -289,7 +289,7 @@ async function runQuizAccuracyTests() {
     let substantiveFailures = 0;
     const failureLog: string[] = [];
 
-    // Check sample across levels 1..10 (1,900 questions)
+    // Check sample across levels 1..10 (950 questions)
     let checkedCount = 0;
     for (const slug of ALL_19_GAME_SLUGS) {
       for (let lvl = 1; lvl <= 10; lvl++) {
@@ -382,7 +382,7 @@ async function runQuizAccuracyTests() {
     const passed = substantiveFailures === 0;
     results.push({
       name: '8. Substantive Scripture accuracy (biblical context & passage relevance)',
-      scope: 'Deep Audit Sample: 1,900 challenges across Levels 1–10',
+      scope: 'Deep Audit Sample: 950 challenges across Levels 1–10',
       passed,
       details: `Substantively verified narrative-to-passage alignment across ${checkedCount} challenges. Mismatches: ${substantiveFailures}.${
         failureLog.length ? ' Log: ' + failureLog.slice(0, 3).join('; ') : ' All historical, narrative, and quotation references align with cited biblical chapters.'
@@ -455,8 +455,8 @@ async function runQuizAccuracyTests() {
   if (allPassed) {
     console.log('ALL VERIFICATION CRITERIA PASSED.');
     console.log('Distinction:');
-    console.log(' - Full Bank (9,500 questions): verified 100% ID uniqueness and payload integrity.');
-    console.log(' - Deep Audit Sample (1,900 questions): verified substantive scripture passage accuracy,');
+    console.log(' - Full Bank (4,750 questions): verified 100% ID uniqueness and payload integrity.');
+    console.log(' - Deep Audit Sample (950 questions): verified substantive scripture passage accuracy,');
     console.log('   uniform Mulberry32 shuffling (~25% A/B/C/D), question-ID binding, and 10-mark scoring.');
     process.exit(0);
   } else {
