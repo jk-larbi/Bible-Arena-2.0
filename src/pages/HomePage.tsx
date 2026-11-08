@@ -123,21 +123,37 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
             </h3>
             <p className="text-sm text-[#171B24]/70">Explore illustrated Bible games in fixed editorial order</p>
           </div>
-          <button 
-            onClick={() => { setSelectedCategory('Trending'); setShowAllGames(true); }}
+          <button
+            onClick={() => {
+              if (showAllGames) {
+                setShowAllGames(false);
+                setSelectedCategory('Trending');
+              } else {
+                setSelectedCategory('Trending');
+                setShowAllGames(true);
+              }
+            }}
             className="text-xs font-bold text-[#D66B3D] flex items-center gap-1 hover:underline cursor-pointer"
           >
-            <span>View All 19 Games</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>{showAllGames ? 'View Less' : 'View All'}</span>
+            <ArrowRight className={`w-4 h-4 transition-transform ${showAllGames ? 'rotate-180' : ''}`} />
           </button>
         </div>
 
-        {/* Responsive game catalogue: show a preview until View All is selected */}
-        <div id="game-catalog" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pb-2">
-          {(showAllGames ? GAMES_LIST : filteredGames.slice(0, 4)).map((game) => (
-            <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
-          ))}
-        </div>
+        {/* Keep the swipeable game rail as the default; expand to the full 19-game grid on demand. */}
+        {showAllGames ? (
+          <div id="game-catalog" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pb-2">
+            {GAMES_LIST.map((game) => (
+              <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
+            ))}
+          </div>
+        ) : (
+          <div id="game-catalog" className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
+            {filteredGames.map((game) => (
+              <GameCard key={game.id} game={game} onPlay={onSelectGame} />
+            ))}
+          </div>
+        )}
       </div>
 
 
