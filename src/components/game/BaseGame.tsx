@@ -267,8 +267,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const HINT_COST = 5;
   const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search'].includes(gameId);
 
-  const getCurrentHint = (): string => {
-    if (!currentChallenge || hintLevel === 0) return '';
+  const getHintForLevel = (requestedLevel: number): string => {
+    if (!currentChallenge || requestedLevel === 0) return '';
     const metadata = currentChallenge.metadata || {};
 
     if (gameId === 'bible-crossword') {
@@ -277,7 +277,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const acrossIndex = [...across].findIndex((letter) => down.includes(letter));
       const shared = acrossIndex >= 0 ? across[acrossIndex] : '';
       const downIndex = shared ? down.indexOf(shared) : -1;
-      if (hintLevel === 1 && shared) {
+      if (requestedLevel === 1 && shared) {
         return `Crossing clue: the shared letter is “${shared}”. It is letter ${acrossIndex + 1} in Across and letter ${downIndex + 1} in Down.`;
       }
       return `Across begins with “${across[0]}”. Down begins with “${down[0]}”. Use the crossing letter to check where they meet.`;
@@ -285,7 +285,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
     if (gameId === 'bible-puzzles') {
       const fragments: string[] = metadata.tiles || [];
-      if (hintLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
+      if (requestedLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
       return fragments[1] ? `After the first fragment comes: “${fragments[1]}”` : 'Read the verse fragments for a natural sentence flow.';
     }
 
@@ -296,7 +296,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const size = Math.max(10, ...words.map((word) => word.replace(/[^A-Z]/gi, '').length + 2));
       const rowIndex = Math.max(0, words.indexOf(target));
       const offset = (rowIndex * 3 + 1) % Math.max(1, size - clean.length + 1);
-      if (hintLevel === 1) return `Look along row ${rowIndex + 1} for “${target}”. The word runs horizontally.`;
+      if (requestedLevel === 1) return `Look along row ${rowIndex + 1} for “${target}”. The word runs horizontally.`;
       return `“${target}” starts at row ${rowIndex + 1}, column ${offset + 1}, and ends at column ${offset + clean.length}.`;
     }
     return '';
@@ -851,8 +851,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               </button>
             </div>
             {hintLevel > 0 && (
-              <div className="mt-3 rounded-xl border border-[#D66B3D]/20 bg-white p-3 text-sm font-medium text-[#171B24]">
-                <span className="mr-2 font-bold text-[#D66B3D]">HINT {hintLevel}:</span>{getCurrentHint()}
+              <div className="mt-3 space-y-2">
+                {Array.from({ length: hintLevel }, (_, index) => (
+                  <div key={index} className="rounded-xl border border-[#D66B3D]/20 bg-white p-3 text-sm font-medium text-[#171B24]">
+                    <span className="mr-2 font-bold text-[#D66B3D]">HINT {index + 1}:</span>{getHintForLevel(index + 1)}
+                  </div>
+                ))}
               </div>
             )}
             <p className="mt-2 text-[11px] text-[#5A6275]">Your marks balance: {totalMarks}</p>
