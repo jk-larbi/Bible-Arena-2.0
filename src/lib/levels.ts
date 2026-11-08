@@ -118,6 +118,27 @@ export function getOverallTotalMarks(): number {
   return val ? parseInt(val, 10) || 0 : 0;
 }
 
+/** Spend earned career marks on an in-game hint. Returns false when the balance is insufficient. */
+export function spendOverallMarks(amount: number): { spent: boolean; newTotal: number } {
+  const cost = Math.max(0, Math.floor(amount));
+  const total = getOverallTotalMarks();
+  if (cost === 0) return { spent: true, newTotal: total };
+  if (total < cost) return { spent: false, newTotal: total };
+
+  const newTotal = total - cost;
+  safeStorageSet(TOTAL_MARKS_STORAGE_KEY, String(newTotal));
+  try {
+    const stats = JSON.parse(
+      safeStorageGet('biblearena_user_stats') ||
+        '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}'
+    );
+    safeStorageSet('biblearena_user_stats', JSON.stringify({ ...stats, total_marks: newTotal }));
+  } catch {
+    // The marks balance is already saved; profile stats can be refreshed separately.
+  }
+  return { spent: true, newTotal };
+}
+
 export function getAwardedChallenges(): Set<string> {
   const raw = safeStorageGet(AWARDED_CHALLENGES_KEY);
   return new Set(raw ? JSON.parse(raw) : []);
