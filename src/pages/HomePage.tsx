@@ -140,15 +140,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
       </div>
 
 
-      <DailyMissionsPanel
-        userId={user?.id ?? null}
-        onXpAwarded={(newXp) => setRemoteStats((current) => ({
-          xp: newXp,
-          level: Math.floor(newXp / 500) + 1,
-          gamesPlayed: current?.gamesPlayed ?? gamesPlayed,
-        }))}
-      />
-
       {/* Feedback and suggestions */}
       <section className="rounded-3xl border border-[#171B24]/10 bg-white p-6 shadow-sm sm:flex sm:items-center sm:justify-between sm:gap-6">
         <div className="flex items-start gap-3">
@@ -228,6 +219,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           </button>
         </div>
       </div>
+
+      <DailyMissionsPanel
+        userId={user?.id ?? null}
+        onXpAwarded={(newXp) => setRemoteStats((current) => ({
+          xp: newXp,
+          level: Math.floor(newXp / 500) + 1,
+          gamesPlayed: current?.gamesPlayed ?? gamesPlayed,
+        }))}
+      />
 
     </div>
   );
