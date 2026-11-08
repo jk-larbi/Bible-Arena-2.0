@@ -36,7 +36,7 @@ Expected backup URL:
 
 `https://jk-larbi.github.io/Bible-Arena-2.0/`
 
-The workflow attempts to enable GitHub Pages automatically. If GitHub requires a one-time setting, open **Settings → Pages** and select **GitHub Actions** as the build and deployment source.
+GitHub does not allow this repository connection to enable Pages through the workflow. Before the first deployment, open **Settings → Pages** and select **GitHub Actions** as the build and deployment source. This is a one-time setting; the workflow handles future deployments.
 
 For the backup to connect to Supabase, add the same public values under **Repository Settings → Secrets and variables → Actions → Variables** using these exact names: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, and (if used) `VITE_VAPID_PUBLIC_KEY`. The Pages workflow reads these variables during its build. These are browser-facing public values; never put the Supabase service-role key in repository variables or in the frontend.
 
