@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { GAMES_LIST, CATEGORIES, GameInfo } from '../data/gamesList';
 import { HeroBanner } from '../components/HeroBanner';
 import { Pill } from '../components/Pill';
@@ -143,30 +144,52 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           </button>
         </div>
 
-        {/* Render only the active layout. This prevents the carousel cards from being squeezed by a collapsing height wrapper. */}
-        <style>{`
-          @keyframes catalogue-enter {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .catalogue-enter { animation: catalogue-enter 260ms ease-out both; }
-          @media (prefers-reduced-motion: reduce) {
-            .catalogue-enter { animation: none; }
-          }
-        `}</style>
-        {showAllGames ? (
-          <div key="expanded-catalogue" id="game-catalog-expanded" className="catalogue-enter grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
-            {GAMES_LIST.map((game) => (
-              <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
-            ))}
-          </div>
-        ) : (
-          <div key="sliding-catalogue" id="game-catalog" className="catalogue-enter flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
-            {filteredGames.map((game) => (
-              <GameCard key={game.id} game={game} onPlay={onSelectGame} />
-            ))}
-          </div>
-        )}
+        {/* Spring-based layout transition: the catalogue container smoothly changes height while each view crossfades. */}
+        <motion.div
+          layout="size"
+          transition={{ layout: { type: 'spring', stiffness: 240, damping: 30, mass: 0.9 } }}
+          className="min-w-0"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {showAllGames ? (
+              <motion.div
+                key="expanded-catalogue"
+                id="game-catalog-expanded"
+                initial={{ opacity: 0, y: 18, scale: 0.985 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.99 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2"
+              >
+                {GAMES_LIST.map((game, index) => (
+                  <motion.div
+                    key={game.id}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.24, delay: Math.min(index * 0.025, 0.3), ease: [0.22, 1, 0.36, 1] }}
+                    className="min-w-0"
+                  >
+                    <GameCard game={game} onPlay={onSelectGame} layout="grid" />
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="sliding-catalogue"
+                id="game-catalog"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none"
+              >
+                {filteredGames.map((game) => (
+                  <GameCard key={game.id} game={game} onPlay={onSelectGame} />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
 
