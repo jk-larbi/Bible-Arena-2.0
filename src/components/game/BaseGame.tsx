@@ -458,34 +458,76 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 4. BIBLE WORD SEARCH (Select adjacent letters to find each hidden word)
+    // 4. BIBLE WORD SEARCH (8-direction grid with level-scaled complexity)
     if (gameId === 'bible-word-search') {
       const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
       const cleanWord = (value: string) => value.toUpperCase().replace(/[^A-Z]/g, '');
       const words = targetWords.map(cleanWord).filter(Boolean);
-      const columns = Math.max(12, ...words.map((word) => word.length));
-      const grid = words.map((word, row) => {
-        const cells = Array.from({ length: columns }, (_, col) =>
-          'ABCDEFGHJKLMNPQRSTUVWXYZ'[(row * 11 + col * 7 + 3) % 24]
-        );
-        const start = (row * 3) % Math.max(1, columns - word.length + 1);
-        [...word].forEach((letter, offset) => { cells[start + offset] = letter; });
-        return cells;
+      const difficultyTier = Number(currentChallenge.metadata?.difficultyTier || 0);
+      const size = Math.max(8 + difficultyTier * 2, ...words.map((word) => word.length + 2));
+      const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+      const seed = [...currentChallenge.id].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+      const grid = Array.from({ length: size }, (_, row) =>
+        Array.from({ length: size }, (_, col) => alphabet[(seed + row * 13 + col * 7 + row * col) % alphabet.length])
+      );
+      const directionSets = [
+        [[0, 1]],
+        [[0, 1], [0, -1]],
+        [[0, 1], [0, -1], [1, 0], [-1, 0]],
+        [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [-1, -1]],
+        [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [-1, -1], [1, -1], [-1, 1]],
+      ];
+      const directions = directionSets[difficultyTier] || directionSets[0];
+      words.forEach((word, wordIndex) => {
+        let placed = false;
+        for (let attempt = 0; attempt < size * size * directions.length && !placed; attempt++) {
+          const direction = directions[(seed + wordIndex + attempt) % directions.length];
+          const row = (seed + wordIndex * 5 + attempt * 3) % size;
+          const col = (seed * 3 + wordIndex * 7 + attempt * 11) % size;
+          const endRow = row + direction[0] * (word.length - 1);
+          const endCol = col + direction[1] * (word.length - 1);
+          if (endRow < 0 || endRow >= size || endCol < 0 || endCol >= size) continue;
+          const fits = [...word].every((letter, offset) => {
+            const existing = grid[row + direction[0] * offset][col + direction[1] * offset];
+            return existing === letter || existing === alphabet[(seed + row * 13 + (col + offset) * 7 + row * (col + offset)) % alphabet.length];
+          });
+          if (!fits) continue;
+          [...word].forEach((letter, offset) => {
+            grid[row + direction[0] * offset][col + direction[1] * offset] = letter;
+          });
+          placed = true;
+        }
+        if (!placed) {
+          const row = wordIndex % size;
+          [...word].forEach((letter, offset) => { grid[row][offset] = letter; });
+        }
       });
       const selectCell = (row: number, col: number) => {
         if (reveal !== null) return;
         const previous = wordSearchSelection[wordSearchSelection.length - 1];
-        if (previous && (previous.row !== row || Math.abs(previous.col - col) !== 1)) {
-          setWordSearchSelection([{ row, col }]);
-          return;
+        if (previous && wordSearchSelection.length >= 2) {
+          const first = wordSearchSelection[0];
+          const second = wordSearchSelection[1];
+          const rowStep = second.row - first.row;
+          const colStep = second.col - first.col;
+          if (row - previous.row !== rowStep || col - previous.col !== colStep) {
+            setWordSearchSelection([{ row, col }]);
+            return;
+          }
+        } else if (previous) {
+          const rowStep = row - previous.row;
+          const colStep = col - previous.col;
+          if (Math.abs(rowStep) > 1 || Math.abs(colStep) > 1 || (rowStep === 0 && colStep === 0)) {
+            setWordSearchSelection([{ row, col }]);
+            return;
+          }
         }
         if (wordSearchSelection.some((cell) => cell.row === row && cell.col === col)) return;
         const next = [...wordSearchSelection, { row, col }];
         const candidate = next.map(({ row: r, col: c }) => grid[r][c]).join('');
         const match = targetWords.find((word) => {
           const normalized = cleanWord(word);
-          return !wordSearchFound.includes(word) &&
-            (candidate === normalized || candidate === [...normalized].reverse().join(''));
+          return !wordSearchFound.includes(word) && (candidate === normalized || candidate === [...normalized].reverse().join(''));
         });
         if (match) {
           const found = [...wordSearchFound, match];
@@ -501,63 +543,25 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           <div className="flex flex-wrap gap-2 justify-center">
             {targetWords.map((word) => {
               const found = wordSearchFound.includes(word);
-              return (
-                <span
-                  key={word}
-                  className={`px-3 py-2 rounded-xl font-mono text-sm font-bold border ${
-                    found
-                      ? 'bg-emerald-700 text-white border-emerald-700 line-through'
-                      : 'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/20'
-                  }`}
-                >
-                  {found ? `✓ ${word}` : word}
-                </span>
-              );
+              return <span key={word} className={`px-3 py-2 rounded-xl font-mono text-sm font-bold border ${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/20'}`}>{found ? `✓ ${word}` : word}</span>;
             })}
           </div>
           <div className="bg-[#171B24] text-[#F3EBDD] p-4 rounded-2xl font-mono text-center select-none overflow-x-auto">
-            <div className="inline-grid gap-1.5" style={{ gridTemplateColumns: `repeat(${columns}, minmax(1.8rem, 1fr))` }}>
-              {grid.flatMap((row, rowIdx) =>
-                row.map((letter, colIdx) => {
-                  const selected = wordSearchSelection.some((cell) => cell.row === rowIdx && cell.col === colIdx);
-                  return (
-                    <button
-                      key={`${rowIdx}-${colIdx}`}
-                      type="button"
-                      disabled={reveal !== null || wordSearchFound.length === targetWords.length}
-                      onClick={() => selectCell(rowIdx, colIdx)}
-                      aria-label={`Row ${rowIdx + 1}, column ${colIdx + 1}, ${letter}`}
-                      className={`w-7 h-8 sm:w-8 sm:h-9 rounded flex items-center justify-center font-bold text-sm transition-colors ${
-                        selected ? 'bg-[#D66B3D] text-white' : 'bg-white/10 hover:bg-white/25'
-                      }`}
-                    >
-                      {letter}
-                    </button>
-                  );
-                })
-              )}
+            <div className="inline-grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(1.55rem, 1fr))` }}>
+              {grid.flatMap((row, rowIdx) => row.map((letter, colIdx) => {
+                const selected = wordSearchSelection.some((cell) => cell.row === rowIdx && cell.col === colIdx);
+                return <button key={`${rowIdx}-${colIdx}`} type="button" disabled={reveal !== null || wordSearchFound.length === targetWords.length} onClick={() => selectCell(rowIdx, colIdx)} aria-label={`Row ${rowIdx + 1}, column ${colIdx + 1}, ${letter}`} className={`w-6 h-7 sm:w-7 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm transition-colors ${selected ? 'bg-[#D66B3D] text-white' : 'bg-white/10 hover:bg-white/25'}`}>{letter}</button>;
+              }))}
             </div>
           </div>
           <div className="flex items-center justify-between gap-3">
-            <p className="text-xs text-[#5A6275]">
-              Select adjacent letters in a row, forwards or backwards, to find each word
-            </p>
-            <button
-              type="button"
-              disabled={wordSearchSelection.length === 0 || reveal !== null}
-              onClick={() => setWordSearchSelection([])}
-              className="shrink-0 px-3 py-2 rounded-lg border border-[#171B24]/20 text-xs font-semibold disabled:opacity-40"
-            >
-              Clear selection
-            </button>
+            <p className="text-xs text-[#5A6275]">Select consecutive letters in a straight horizontal, vertical or diagonal line, forwards or backwards.</p>
+            <button type="button" disabled={wordSearchSelection.length === 0 || reveal !== null} onClick={() => setWordSearchSelection([])} className="shrink-0 px-3 py-2 rounded-lg border border-[#171B24]/20 text-xs font-semibold disabled:opacity-40">Clear selection</button>
           </div>
-          <p className="text-xs text-center text-[#5A6275]">
-            {wordSearchFound.length} of {targetWords.length} words found
-          </p>
+          <p className="text-xs text-center text-[#5A6275]">{wordSearchFound.length} of {targetWords.length} words found · {size}×{size} grid</p>
         </div>
       );
     }
-
     // 5. BIBLE CROSSWORD (Intersecting Across & Down Clues)
     if (gameId === 'bible-crossword') {
       const acrossAns: string = currentChallenge.metadata?.acrossAnswer || currentChallenge.options[0] || '';
