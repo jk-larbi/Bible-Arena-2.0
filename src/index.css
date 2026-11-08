@@ -14,6 +14,8 @@
   html {
     height: 100dvh;
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -22,6 +24,7 @@
     font-family: 'Inter', sans-serif;
     min-height: 100dvh;
     overflow-x: hidden;
+    scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
     padding-bottom: env(safe-area-inset-bottom);
     padding-top: env(safe-area-inset-top);
@@ -36,6 +39,17 @@
     font-size: 16px !important;
   }
 }
+
+/* Smooth, touch-friendly horizontal rails on phones and desktops. */
+.smooth-horizontal-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.smooth-horizontal-scroll::-webkit-scrollbar { display: none; }
+.smooth-horizontal-scroll > * { scroll-snap-align: start; }
 
 /* Custom smooth scrollbar */
 ::-webkit-scrollbar {
