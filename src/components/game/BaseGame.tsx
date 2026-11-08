@@ -173,9 +173,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   async function handlePlay(lvl: number, restart: boolean) {
     setError(null);
     try {
+      const variationSeed = gameId === 'bible-chain-challenge'
+        ? Date.now() + Math.floor(Math.random() * 1_000_000)
+        : 0;
       const [started, loadedChallenges] = await Promise.all([
         startLevel(gameId, lvl, restart),
-        getLevelChallenges(gameId, lvl),
+        getLevelChallenges(gameId, lvl, variationSeed),
       ]);
       setAttempt(started);
       setLevel(lvl);
@@ -316,6 +319,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   }
 
   const HINT_COST = 5;
+  const hintCost = gameId === 'bible-chain-challenge' && hintLevel === 1 ? 10 : HINT_COST;
   const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search', 'bible-character-quest', 'bible-detective', 'bible-riddles', 'bible-geography-quest', 'find-the-bible-book', 'bible-chain-challenge', 'complete-the-scripture'].includes(gameId);
 
   const getHintForLevel = (requestedLevel: number): string => {
@@ -356,7 +360,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         : `Scripture reference: ${currentChallenge.reference}. Use the passage to identify the place.`;
     }
     if (gameId === 'bible-chain-challenge') {
-      return `The next Bible name must begin with the letter “${metadata.requiredLetter || ''}”.`;
+      const clues: string[] = metadata.clues || [];
+      return clues[requestedLevel - 1] || 'Review the chain rule and compare the Scripture dossier with each option.';
     }
 
     if (gameId === 'bible-word-search') {
@@ -374,9 +379,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const useHint = () => {
     if (!supportsHints || hintLevel >= 2 || reveal !== null) return;
-    const purchase = spendOverallMarks(HINT_COST);
+    const purchase = spendOverallMarks(hintCost);
     if (!purchase.spent) {
-      setError(`You need ${HINT_COST} marks for a hint. Your balance is ${purchase.newTotal}.`);
+      setError(`You need ${hintCost} marks for a hint. Your balance is ${purchase.newTotal}.`);
       return;
     }
     setError(null);
@@ -1166,7 +1171,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-bold text-[#171B24]">Need a clue?</p>
-                <p className="text-xs text-[#5A6275]">Use your earned marks to unlock a helpful hint. Each hint costs {HINT_COST} marks.</p>
+                <p className="text-xs text-[#5A6275]">Use your earned marks to unlock progressive clues. {gameId === 'bible-chain-challenge' ? 'First clue: 5 marks · Second clue: 10 marks.' : `Each hint costs ${HINT_COST} marks.`}</p>
               </div>
               <button
                 type="button"
@@ -1174,7 +1179,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                 disabled={reveal !== null || hintLevel >= 2}
                 className="rounded-xl bg-[#171B24] px-4 py-2.5 text-xs font-bold text-white hover:bg-[#3156C9] disabled:cursor-not-allowed disabled:opacity-40"
               >
-                {hintLevel >= 2 ? 'All clues unlocked' : `Reveal Hint · ${HINT_COST} marks`}
+                {hintLevel >= 2 ? 'All clues unlocked' : `Reveal Hint · ${hintCost} marks`}
               </button>
             </div>
             {hintLevel > 0 && (
