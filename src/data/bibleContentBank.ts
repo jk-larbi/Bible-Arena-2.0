@@ -588,12 +588,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-match-up': {
-        const pairs = [
-          BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 3) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 7) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 11) % BIBLE_CHARACTERS.length],
-        ].map((c) => ({
+        const pairOffsets = difficultyTier >= 4 ? [0, 3, 7, 11, 15, 19] : difficultyTier >= 2 ? [0, 3, 7, 11, 15] : [0, 3, 7, 11];
+        const pairs = pairOffsets.map((offset) => BIBLE_CHARACTERS[(globalSeed + offset) % BIBLE_CHARACTERS.length]).map((c) => ({
           left: c.name,
           right: difficultyTier <= 1 ? c.clue3 : difficultyTier <= 3 ? c.clue2 : c.clue1,
           ref: difficultyTier <= 1 ? c.clue3Ref : difficultyTier <= 3 ? c.clue2Ref : c.clue1Ref,
@@ -615,19 +611,15 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-timeline': {
         const spacing = 1 + difficultyTier;
-        const startBook = (globalSeed * 2) % (BOOKS_66.length - (spacing * 3) - 1);
-        const seq = [
-          BOOKS_66[startBook],
-          BOOKS_66[startBook + spacing],
-          BOOKS_66[startBook + spacing * 2],
-          BOOKS_66[startBook + spacing * 3],
-        ];
+        const sequenceCount = difficultyTier >= 4 ? 6 : difficultyTier >= 3 ? 5 : 4;
+        const startBook = (globalSeed * 2) % (BOOKS_66.length - (spacing * (sequenceCount - 1)) - 1);
+        const seq = Array.from({ length: sequenceCount }, (_, index) => BOOKS_66[startBook + spacing * index]);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: difficultyTier >= 3 ? 'Advanced chronology: arrange these four non-consecutive biblical books in canonical order. Do not assume adjacent books:' : 'Arrange these four biblical books and epochs in canonical order from earliest to latest:',
+          question_text: difficultyTier >= 3 ? `Advanced chronology: arrange these ${sequenceCount} non-consecutive biblical books in canonical order. Do not assume adjacent books:` : `Arrange these ${sequenceCount} biblical books and epochs in canonical order from earliest to latest:`,
           options: shuffleDeterministic(seq.map((s) => s.name), shuffleSeed),
           correct_answer: seq.map((s) => s.name).join(' -> '),
           explanation: `Canonical sequence: ${seq.map((s) => `${s.name} (${s.clue})`).join(' → ')}.`,
@@ -643,18 +635,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const puzzleVersePool = difficultyTier >= 2 ? [...VERSES_POOL].sort((a, b) => b.text.length - a.text.length) : VERSES_POOL;
         const v = puzzleVersePool[globalSeed % puzzleVersePool.length];
         const words = v.text.split(' ');
-        const third = Math.max(2, Math.floor(words.length / 3));
-        const tiles = [
-          words.slice(0, third).join(' '),
-          words.slice(third, third * 2).join(' '),
-          words.slice(third * 2).join(' '),
-        ];
+        const fragmentCount = difficultyTier >= 4 ? 5 : difficultyTier >= 2 ? 4 : 3;
+        const wordsPerFragment = Math.ceil(words.length / fragmentCount);
+        const tiles = Array.from({ length: fragmentCount }, (_, index) =>
+          words.slice(index * wordsPerFragment, (index + 1) * wordsPerFragment).join(' ')
+        ).filter(Boolean);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Reconstruct the exact wording of ${v.ref} by placing the three shuffled fragments in order. ${difficultyTier >= 3 ? 'The selected passage is longer and includes closely related phrases.' : ''}`,
+          question_text: `Reconstruct the exact wording of ${v.ref} by placing ${tiles.length} shuffled fragments in order. ${difficultyTier >= 3 ? 'The selected passage is longer and includes closely related phrases.' : ''}`,
           options: shuffleDeterministic([...tiles], shuffleSeed),
           correct_answer: tiles.join(' | '),
           explanation: `Completed inscription (${v.ref}): "${v.text}."`,
@@ -729,11 +720,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-memory-challenge': {
         const memoryBooks = difficultyTier >= 2 ? [...mixedBooks].sort((a, b) => a.ref.localeCompare(b.ref)) : mixedBooks;
-        const subset = [
-          memoryBooks[globalSeed % BOOKS_66.length],
-          memoryBooks[(globalSeed + 4) % BOOKS_66.length],
-          memoryBooks[(globalSeed + 9) % BOOKS_66.length],
-        ];
+        const memoryOffsets = [0, 4, 9, 13, 17];
+        const memoryCount = difficultyTier >= 4 ? 5 : difficultyTier >= 2 ? 4 : 3;
+        const subset = memoryOffsets.slice(0, memoryCount).map((offset) => memoryBooks[(globalSeed + offset) % BOOKS_66.length]);
         items.push({
           id,
           game_slug: gameSlug,
