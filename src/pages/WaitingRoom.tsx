@@ -6,6 +6,7 @@ import { RoomSharePanel } from '../components/RoomSharePanel';
 import {
   kickPlayerFromRoom,
   closeRoom,
+  createRoom,
   submitRoomAnswer,
   advanceRoomQuestion,
   finishRoomSession,
@@ -52,6 +53,7 @@ export default function WaitingRoom() {
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [rematchBusy, setRematchBusy] = useState(false);
   const [reveal, setReveal] = useState<Reveal | null>(null);
   const [myPick, setMyPick] = useState<string | null>(null);
 
@@ -173,6 +175,25 @@ export default function WaitingRoom() {
       nav('/multiplayer');
     } catch (err) {
       setError((err as Error).message);
+    }
+  }
+
+  async function handleRematch() {
+    if (!isHost || !room || rematchBusy) return;
+    setRematchBusy(true);
+    setError(null);
+    try {
+      const displayName = currentPlayer?.display_name
+        || user?.user_metadata?.username
+        || user?.user_metadata?.full_name
+        || user?.email?.split('@')[0]
+        || 'Host';
+      const nextRoom = await createRoom(room.game_slug, displayName);
+      nav(`/room/${nextRoom.id}`);
+    } catch (err) {
+      setError((err as Error).message || 'A new rematch room could not be created.');
+    } finally {
+      setRematchBusy(false);
     }
   }
 
@@ -643,14 +664,25 @@ export default function WaitingRoom() {
             </div>
           )}
 
-          <div className="flex justify-center gap-3">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
+            {isHost && (
+              <button
+                type="button"
+                disabled={rematchBusy}
+                onClick={handleRematch}
+                className="min-h-[48px] rounded-xl bg-[#D66B3D] px-6 font-semibold text-white hover:bg-[#c25a2c] transition-colors disabled:opacity-50"
+              >
+                {rematchBusy ? 'Creating Rematch…' : 'Start a Rematch'}
+              </button>
+            )}
             <button
               onClick={() => nav('/multiplayer')}
-              className="min-h-[48px] rounded-xl bg-[#D66B3D] px-6 font-semibold text-white hover:bg-[#c25a2c] transition-colors"
+              className="min-h-[48px] rounded-xl border border-[#171B24]/15 bg-white px-6 font-semibold text-[#171B24] hover:bg-[#F3EBDD] transition-colors"
             >
               Return to Multiplayer
             </button>
           </div>
+          {isHost && <p className="text-xs text-[#5A6275]">A fresh room PIN and QR code will be created so everyone can join the next match.</p>}
         </div>
       )}
 
