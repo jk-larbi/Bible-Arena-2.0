@@ -195,7 +195,7 @@ export default function App() {
             <Route path="/" element={<HomePage onSelectGame={handleSelectGame} onNavigateTab={handleSelectTab} />} />
             <Route path="/multiplayer" element={<MultiplayerPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/challenges" element={<ChallengesPage />} />
+            <Route path="/challenges" element={<ChallengesPage onSelectGame={handleSelectGame} />} />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/notification-settings" element={<NotificationSettingsPage />} />
             <Route path="/profile" element={<ProfilePage user={user} onLogout={() => {}} />} />
