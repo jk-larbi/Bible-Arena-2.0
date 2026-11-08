@@ -29,16 +29,14 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
 
 Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return json({ error: "Method not allowed" }, 405);
-  const { data: secrets, error: secretError } = await admin.rpc("get_daily_verse_secrets");
-  if (secretError || !secrets?.vapid_private_key || !secrets?.cron_secret) {
-    console.error("Push secrets unavailable", secretError);
-    return json({ error: "Push secrets have not been configured." }, 503);
-  }
-  if (req.headers.get("authorization") !== `Bearer ${secrets.cron_secret}`) return json({ error: "Unauthorized" }, 401);
-  webpush.setVapidDetails("mailto:support@biblearena.app", VAPID_PUBLIC_KEY, secrets.vapid_private_key);
-
   const body = await req.json().catch(() => ({}));
   if (body?.action === "dispatch_notification") {
+    const { data: secrets, error: secretError } = await admin.rpc("get_daily_verse_secrets");
+    if (secretError || !secrets?.vapid_private_key || !secrets?.cron_secret ||
+        req.headers.get("authorization") !== `Bearer ${secrets?.cron_secret}`) {
+      return json({ error: "Push delivery is not configured." }, 503);
+    }
+    webpush.setVapidDetails("mailto:support@biblearena.app", VAPID_PUBLIC_KEY, secrets.vapid_private_key);
     const n = body.notification;
     if (!n?.user_id || !n?.title || !n?.message) return json({ error: "Invalid notification payload" }, 400);
 
