@@ -2,8 +2,11 @@ import { BIBLE_RIDDLES_BATCH_01 } from '../src/data/rebuild/bibleRiddlesBatch01'
 import { BIBLE_DETECTIVE_BATCH_01 } from '../src/data/rebuild/bibleDetectiveBatch01';
 import { BIBLE_GEOGRAPHY_BATCH_01 } from '../src/data/rebuild/bibleGeographyBatch01';
 import { BIBLE_CHARACTER_BATCH_01 } from '../src/data/rebuild/bibleCharacterBatch01';
+import { WHO_SAID_IT_BATCH_01 } from '../src/data/rebuild/whoSaidItBatch01';
+import { BIBLE_TIMELINE_BATCH_01 } from '../src/data/rebuild/bibleTimelineBatch01';
+import { FIND_BIBLE_BOOK_BATCH_01 } from '../src/data/rebuild/findBibleBookBatch01';
 
-const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01, ...BIBLE_CHARACTER_BATCH_01];
+const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01, ...BIBLE_CHARACTER_BATCH_01, ...WHO_SAID_IT_BATCH_01, ...BIBLE_TIMELINE_BATCH_01, ...FIND_BIBLE_BOOK_BATCH_01];
 
 const normalize = (value: string) =>
   value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -45,7 +48,7 @@ for (const item of ALL_BATCHES) {
   }
 }
 
-for (const [game, maxLevel] of [['bible-riddles', 5], ['bible-detective', 5], ['bible-geography-quest', 20], ['bible-character-quest', 20]] as const) {
+for (const [game, maxLevel] of [['bible-riddles', 5], ['bible-detective', 5], ['bible-geography-quest', 20], ['bible-character-quest', 20], ['who-said-it', 20], ['bible-timeline', 20], ['find-the-bible-book', 20]] as const) {
   for (let level = 1; level <= maxLevel; level++) {
     const key = `${game}:${level}`;
     if (byGameLevel.get(key) !== 5) {
