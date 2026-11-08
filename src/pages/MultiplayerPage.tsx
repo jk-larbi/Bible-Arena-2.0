@@ -238,87 +238,43 @@ export const MultiplayerPage: React.FC = () => {
         </div>
       )}
 
-      {/* Primary 3 Action Cards */}
+      {/* Three clean, icon-led actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        
-        {/* 1. Host a Game Card */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
-          <div>
-            <div className="w-14 h-14 rounded-2xl bg-[#D66B3D] text-white flex items-center justify-center mb-5 shadow-md">
-              <Gamepad2 className="w-7 h-7" />
-            </div>
-            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Host a Game</h2>
-            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-6 leading-relaxed">
-              Select a Bible game, configure rules, and generate an instant live room with a scannable QR code and PIN.
-            </p>
-          </div>
+        <button
+          type="button"
+          onClick={() => setIsHostModalOpen(true)}
+          aria-label="Host a Game"
+          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#D66B3D]/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#D66B3D]/20 active:scale-[0.99]"
+        >
+          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#D66B3D] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+            <Gamepad2 className="h-12 w-12" strokeWidth={2.1} />
+          </span>
+          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Host a Game</span>
+        </button>
 
-          <Button
-            variant="primary"
-            size="lg"
-            className="w-full bg-[#D66B3D] hover:bg-[#c25a2c] text-white min-h-[48px] shadow-sm"
-            onClick={() => setIsHostModalOpen(true)}
-          >
-            <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap">Choose Game & Host <ArrowRight className="h-4 w-4 shrink-0" /></span>
-          </Button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setIsScanModalOpen(true)}
+          aria-label="Scan QR Code"
+          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#3156C9]/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3156C9]/20 active:scale-[0.99]"
+        >
+          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#3156C9] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+            <QrCode className="h-12 w-12" strokeWidth={2.1} />
+          </span>
+          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Scan QR Code</span>
+        </button>
 
-        {/* 2. Join with Camera QR Scanner Card */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
-          <div>
-            <div className="w-14 h-14 rounded-2xl bg-[#3156C9] text-white flex items-center justify-center mb-5 shadow-md">
-              <QrCode className="w-7 h-7" />
-            </div>
-            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Scan QR Code</h2>
-            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-6 leading-relaxed">
-              Use your smartphone camera or upload a QR image to scan and jump directly into a room.
-            </p>
-          </div>
-
-          <Button
-            variant="primary"
-            size="lg"
-            className="w-full bg-[#3156C9] hover:bg-[#2544A5] text-white min-h-[48px] shadow-sm"
-            onClick={() => setIsScanModalOpen(true)}
-          >
-            <span className="inline-flex items-center justify-center gap-2 whitespace-nowrap"><Camera className="h-4 w-4 shrink-0" />Open Camera Scanner</span>
-          </Button>
-        </div>
-
-        {/* 3. Join with PIN / Link Card */}
-        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171B24]/10 shadow-lg flex flex-col justify-between hover:shadow-xl transition-shadow">
-          <div>
-            <div className="w-14 h-14 rounded-2xl bg-[#171B24] text-white flex items-center justify-center mb-5 shadow-md">
-              <KeyRound className="w-7 h-7" />
-            </div>
-            <h2 className="font-serif font-bold text-2xl text-[#171B24] mb-2">Join with PIN</h2>
-            <p className="text-xs sm:text-sm text-[#171B24]/70 mb-4 leading-relaxed">
-              Enter a 6-character room code provided by your host to join the waiting lobby.
-            </p>
-
-            <div className="mb-4">
-              <input
-                type="text"
-                value={pinCode}
-                onChange={(e) => setPinCode(normalizeCode(e.target.value).slice(0, 6))}
-                placeholder="e.g. ABC123"
-                className="w-full px-4 py-3 rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 font-mono text-center uppercase text-xl tracking-[0.2em] text-[#171B24] focus:outline-none focus:ring-2 focus:ring-[#3156C9]"
-                autoCapitalize="characters"
-              />
-            </div>
-          </div>
-
-          <Button
-            variant="secondary"
-            size="lg"
-            className="w-full bg-[#171B24] hover:bg-[#2b3140] text-white min-h-[48px]"
-            onClick={handleJoinWithPin}
-            disabled={pinCode.length > 0 && !isValidCode(pinCode)}
-          >
-            <span>Enter Room</span>
-          </Button>
-        </div>
-
+        <button
+          type="button"
+          onClick={() => nav('/join')}
+          aria-label="Join with PIN"
+          className="group min-h-[250px] rounded-3xl border border-[#171B24]/10 bg-white p-8 sm:p-10 text-left shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[#171B24]/30 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#171B24]/15 active:scale-[0.99]"
+        >
+          <span className="mb-8 flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-[#171B24] text-white shadow-md transition-transform duration-300 group-hover:scale-105">
+            <KeyRound className="h-12 w-12" strokeWidth={2.1} />
+          </span>
+          <span className="block font-serif text-3xl font-bold text-[#171B24] sm:text-4xl">Join with PIN</span>
+        </button>
       </div>
 
       {/* Host Game Modal */}
