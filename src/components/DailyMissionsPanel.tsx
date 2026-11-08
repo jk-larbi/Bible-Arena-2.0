@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Award, BookOpen, CheckCircle2, Clock3, Flame, LockKeyhole, Sparkles, Target, Trophy, Zap } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
-type Attempt = { game_slug: string; percent: number | null; completed_at: string };
+type Attempt = { game_slug: string; level: number; percent: number | null; completed_at: string };
 type Mission = {
   id: string;
   title: string;
@@ -21,7 +21,7 @@ const MISSIONS: Mission[] = [
     reward: 50,
     target: 1,
     icon: <BookOpen className="h-5 w-5" />,
-    progress: (attempts) => Math.min(1, attempts.length),
+    progress: (attempts) => Math.min(1, new Set(attempts.map((a) => `${a.game_slug}:${a.level}`)).size),
   },
   {
     id: 'play-two-games',
@@ -48,7 +48,7 @@ const MISSIONS: Mission[] = [
     reward: 150,
     target: 3,
     icon: <Flame className="h-5 w-5" />,
-    progress: (attempts) => Math.min(3, attempts.length),
+    progress: (attempts) => Math.min(3, new Set(attempts.map((a) => `${a.game_slug}:${a.level}`)).size),
   },
   {
     id: 'perfect-level',
@@ -94,7 +94,7 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
     const [attemptResult, claimResult] = await Promise.all([
       supabase
         .from('level_attempts')
-        .select('game_slug, percent, completed_at')
+        .select('game_slug, level, percent, completed_at')
         .eq('user_id', userId)
         .eq('status', 'completed')
         .gte('completed_at', start),
