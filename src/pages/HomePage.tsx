@@ -7,7 +7,7 @@ import { SupabaseConfigNotice } from '../components/SupabaseConfigNotice';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { useSession } from '../lib/auth';
 import { DailyMissionsPanel } from '../components/DailyMissionsPanel';
-import { Sparkles, Trophy, Users, Flame, ArrowRight, Play, Plus } from 'lucide-react';
+import { Trophy, Users, Flame, ArrowRight, Plus, Mail } from 'lucide-react';
 
 interface HomePageProps {
   onSelectGame: (game: GameInfo) => void;
@@ -134,6 +134,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           ))}
         </div>
       </div>
+
+
+      {/* Feedback and suggestions */}
+      <section className="rounded-3xl border border-[#171B24]/10 bg-white p-6 shadow-sm sm:flex sm:items-center sm:justify-between sm:gap-6">
+        <div className="flex items-start gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#3156C9]/10 text-[#3156C9]">
+            <Mail className="h-5 w-5" />
+          </div>
+          <div>
+            <h3 className="font-serif text-lg font-bold text-[#171B24]">Have feedback or a suggestion?</h3>
+            <p className="mt-1 text-sm text-[#5A6275]">We'd love to hear how we can make BibleArena better. Send your feedback or ideas directly to us.</p>
+          </div>
+        </div>
+        <a href="mailto:jlarb43@gmail.com?subject=BibleArena%20Feedback" className="mt-4 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-[#171B24] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#3156C9] sm:mt-0">
+          <Mail className="h-4 w-4" /> Send feedback
+        </a>
+      </section>
 
       {/* Player Progress & Real Highlights Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
