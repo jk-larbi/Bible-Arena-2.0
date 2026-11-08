@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: corrected for cross-game fact duplication. */
+/** Staged batch 02: cross-game duplicate corrections. */
 export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-geography-quest-rebuild-b02-001",
@@ -70,9 +70,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Joseph serve in Pharaoh's administration?",
     "options": [
       "Egypt",
-      "Gibeon",
       "Ai",
-      "Shechem"
+      "Shechem",
+      "Gibeon"
     ],
     "correct_answer": "Egypt",
     "reference": "Genesis 41:41-46",
@@ -247,16 +247,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 23,
     "challenge_index": 3,
-    "question_text": "From which city did the Gibeonites come when they deceived Joshua?",
+    "question_text": "At which camp did the Gibeonites meet Joshua to seek a treaty?",
     "options": [
-      "Gibeon",
+      "Gilgal",
       "Jerusalem",
       "Tekoa",
       "Moresheth"
     ],
-    "correct_answer": "Gibeon",
-    "reference": "Joshua 9:3-15",
-    "explanation": "The passage Joshua 9:3-15 supports this distinct biblical detail.",
+    "correct_answer": "Gilgal",
+    "reference": "Joshua 9:6",
+    "explanation": "The passage Joshua 9:6 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-13"
@@ -592,7 +592,7 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
       "Fifty shekels of silver for the threshing floor and oxen",
       "Mount Nebo",
       "Gilgal",
-      "Gibeon"
+      "Ai"
     ],
     "correct_answer": "Fifty shekels of silver for the threshing floor and oxen",
     "reference": "2 Samuel 24:24",
@@ -610,8 +610,8 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Solomon build the temple?",
     "options": [
       "Mount Moriah in Jerusalem",
-      "Ai",
       "Shechem",
+      "Gibeon",
       "Between Ramah and Bethel"
     ],
     "correct_answer": "Mount Moriah in Jerusalem",
@@ -1130,9 +1130,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jesus raise Lazarus?",
     "options": [
       "Bethany",
-      "Gibeon",
       "Ai",
-      "Shechem"
+      "Shechem",
+      "Gibeon"
     ],
     "correct_answer": "Bethany",
     "reference": "John 11:1-44",
@@ -1651,8 +1651,8 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "options": [
       "Caesarea",
       "Gilgal",
-      "Gibeon",
-      "Ai"
+      "Ai",
+      "Shechem"
     ],
     "correct_answer": "Caesarea",
     "reference": "Acts 21:8-11",
@@ -1670,7 +1670,7 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Paul sent under guard after his arrest in Jerusalem?",
     "options": [
       "Caesarea",
-      "Shechem",
+      "Gibeon",
       "Between Ramah and Bethel",
       "Harod"
     ],
