@@ -17,6 +17,122 @@ interface Leader {
   avatar: string;
 }
 
+type WeeklyLeader = {
+  rank: number;
+  player_id: string;
+  username: string | null;
+  full_name: string | null;
+  player_level: number;
+  weekly_points: number;
+  levels_played: number;
+  games_played: number;
+};
+
+const getUtcWeekLabel = () => {
+  const now = new Date();
+  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const offset = (start.getUTCDay() + 6) % 7;
+  start.setUTCDate(start.getUTCDate() - offset);
+  const end = new Date(start);
+  end.setUTCDate(end.getUTCDate() + 6);
+  const fmt = (date: Date) => date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', timeZone: 'UTC' });
+  return `${fmt(start)} – ${fmt(end)} UTC`;
+};
+
+const WeeklyArenaPanel: React.FC<{ currentUserId: string | null }> = ({ currentUserId }) => {
+  const [rows, setRows] = useState<WeeklyLeader[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const load = useCallback(async () => {
+    if (!supabase || !isSupabaseConfigured) {
+      setError('Weekly Arena is unavailable right now.');
+      setLoading(false);
+      return;
+    }
+    const { data, error: rpcError } = await supabase.rpc('get_weekly_arena_standings');
+    if (rpcError) {
+      setError('Weekly standings could not be loaded. Please try again.');
+    } else {
+      setRows((data || []) as WeeklyLeader[]);
+      setError('');
+    }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    void load();
+    const interval = window.setInterval(() => void load(), 30000);
+    const onFocus = () => void load();
+    window.addEventListener('focus', onFocus);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener('focus', onFocus);
+    };
+  }, [load]);
+
+  return (
+    <section className="overflow-hidden rounded-3xl border border-[#171B24]/10 bg-white shadow-xl">
+      <div className="bg-[#171B24] px-5 py-5 text-white sm:px-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#F0B18D]">Weekly Competition</span>
+            <h3 className="mt-1 font-serif text-2xl font-extrabold">Weekly Arena Cup</h3>
+            <p className="mt-1 text-xs text-white/65">Best score per level counts once. Beat your personal best to climb.</p>
+          </div>
+          <div className="rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-right">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-white/55">This week's event</p>
+            <p className="text-xs font-bold">{getUtcWeekLabel()}</p>
+            <p className="mt-1 text-[10px] text-[#F0B18D]">Resets Monday · 00:00 UTC</p>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-3 p-4 sm:p-6">
+        {loading ? (
+          <div className="space-y-3">
+            {[1, 2, 3].map((item) => <div key={item} className="h-14 animate-pulse rounded-xl bg-[#171B24]/5" />)}
+          </div>
+        ) : error ? (
+          <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-700">{error}</p>
+        ) : rows.length === 0 ? (
+          <div className="py-6 text-center">
+            <Trophy className="mx-auto mb-3 h-9 w-9 text-[#D66B3D]" />
+            <p className="font-serif text-lg font-bold text-[#171B24]">The weekly contest is ready.</p>
+            <p className="mt-1 text-xs text-[#5A6275]">Complete a level this week to enter the standings automatically.</p>
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center justify-between px-1 text-[10px] font-bold uppercase tracking-wider text-[#7A8190]">
+              <span>{rows.length} competing scholars</span>
+              <span>Weekly points</span>
+            </div>
+            {rows.slice(0, 10).map((player) => {
+              const name = player.username || player.full_name || 'Bible Arena Scholar';
+              const isMe = player.player_id === currentUserId;
+              return (
+                <div key={player.player_id} className={`flex items-center justify-between gap-3 rounded-2xl border p-3 ${isMe ? 'border-[#3156C9] bg-[#EEF2FF] ring-1 ring-[#3156C9]/20' : 'border-[#171B24]/10 bg-[#FCFBF8]'}`}>
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black ${player.rank === 1 ? 'bg-amber-500 text-white' : player.rank === 2 ? 'bg-stone-300 text-[#171B24]' : player.rank === 3 ? 'bg-amber-800 text-white' : 'bg-[#171B24]/10 text-[#171B24]'}`}>#{player.rank}</span>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-bold text-[#171B24]">{name} {isMe && <span className="text-[10px] text-[#3156C9]">(YOU)</span>}</p>
+                      <p className="text-[10px] text-[#7A8190]">Level {player.player_level} · {player.levels_played} levels · {player.games_played} games</p>
+                    </div>
+                  </div>
+                  <p className="shrink-0 font-mono text-sm font-extrabold text-[#D66B3D]">{Number(player.weekly_points).toLocaleString()}</p>
+                </div>
+              );
+            })}
+            {currentUserId && !rows.some((player) => player.player_id === currentUserId) && (
+              <p className="rounded-xl bg-[#F3EBDD] p-3 text-xs text-[#5A6275]">You haven't posted a score in this week's competition yet. Play a level to enter.</p>
+            )}
+          </>
+        )}
+        <p className="text-[10px] text-[#7A8190]">Only registered players are ranked. Each level contributes its best completed score during the current week, preventing repeat attempts from inflating points.</p>
+      </div>
+    </section>
+  );
+};
+
 export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
   const [leaders, setLeaders] = useState<Leader[]>([]);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
@@ -119,6 +235,8 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
         </p>
         <p className="text-xs text-[#171B24]/50 mt-2">Ranked by total points earned across all games.</p>
       </div>
+
+      <WeeklyArenaPanel currentUserId={currentUserId} />
 
       <div className="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border border-[#171B24]/10 min-h-[260px]">
         {loading ? (
