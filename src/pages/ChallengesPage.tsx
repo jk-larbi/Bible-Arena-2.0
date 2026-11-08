@@ -91,6 +91,8 @@ export const ChallengesPage: React.FC = () => {
       const { data: inserted, error: insertErr } = await supabase
         .from('challenges')
         .insert({
+          challenger_id: user.id,
+          opponent_id: targetProfile.id,
           title: challengeTitle,
           description: `Score at least 1500 XP in Scripture Challenge to win 250 bonus XP!`,
           game_id: 'scripture-challenge',
@@ -123,8 +125,17 @@ export const ChallengesPage: React.FC = () => {
   const handleResponse = async (challenge: ChallengeItem, status: 'accepted' | 'declined') => {
     setActionBusy(challenge.id);
     try {
-      await supabase.from('challenges').update({ status }).eq('id', challenge.id);
-      
+      if (!user?.id || challenge.opponent_id !== user.id || challenge.status !== 'pending') {
+        throw new Error('Only the invited player can respond to a pending challenge.');
+      }
+      const { error: responseError } = await supabase
+        .from('challenges')
+        .update({ status })
+        .eq('id', challenge.id)
+        .eq('opponent_id', user.id)
+        .eq('status', 'pending');
+      if (responseError) throw responseError;
+
       if (challenge.challenger_id && user?.id) {
         const senderName = user.user_metadata?.username || user.user_metadata?.full_name || 'Scholar';
         await notifyChallengeResponse(challenge.challenger_id, user.id, senderName, challenge.id, status);
@@ -268,25 +279,27 @@ export const ChallengesPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 w-full sm:w-auto">
-                  <Button
-                    size="sm"
-                    disabled={actionBusy === c.id}
-                    onClick={() => handleResponse(c, 'accepted')}
-                    className="bg-[#3156C9] hover:bg-[#2544A5] text-white flex-1 sm:flex-initial"
-                  >
-                    <Check className="w-4 h-4 mr-1" /> Accept
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    disabled={actionBusy === c.id}
-                    onClick={() => handleResponse(c, 'declined')}
-                    className="text-red-600 border-red-200 hover:bg-red-50 flex-1 sm:flex-initial"
-                  >
-                    <X className="w-4 h-4 mr-1" /> Decline
-                  </Button>
-                </div>
+                {c.status === 'pending' && c.opponent_id === user?.id && (
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <Button
+                      size="sm"
+                      disabled={actionBusy === c.id}
+                      onClick={() => handleResponse(c, 'accepted')}
+                      className="bg-[#3156C9] hover:bg-[#2544A5] text-white flex-1 sm:flex-initial"
+                    >
+                      <Check className="w-4 h-4 mr-1" /> Accept
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      disabled={actionBusy === c.id}
+                      onClick={() => handleResponse(c, 'declined')}
+                      className="text-red-600 border-red-200 hover:bg-red-50 flex-1 sm:flex-initial"
+                    >
+                      <X className="w-4 h-4 mr-1" /> Decline
+                    </Button>
+                  </div>
+                )}
               </div>
             ))}
           </div>
