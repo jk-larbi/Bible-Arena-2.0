@@ -80,6 +80,49 @@ const BOOKS_66 = [
   { name: 'Revelation', testament: 'New Testament', section: 'Revelation', author: 'John the Apostle', chapters: 22, clue: 'Apocalyptic letters to seven churches and visions of the Lamb’s victory and the New Jerusalem', ref: 'Revelation 21:1' },
 ];
 
+// A stable but non-canonical order for book-based questions. The order is
+// re-seeded per game and level, and Old/New Testament books are interleaved
+// proportionally so players cannot infer answers from the canonical sequence.
+function seededBookShuffle<T>(items: T[], seed: number): T[] {
+  const result = [...items];
+  let state = seed >>> 0;
+  const random = () => {
+    state = (state + 0x6D2B79F5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function getMixedBookOrder(key: string) {
+  let hash = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    hash ^= key.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  const oldTestament = seededBookShuffle(BOOKS_66.filter((book) => book.testament === 'Old Testament'), hash ^ 0x0B1B1E);
+  const newTestament = seededBookShuffle(BOOKS_66.filter((book) => book.testament === 'New Testament'), hash ^ 0x4E455754);
+  const mixed: typeof BOOKS_66 = [];
+  let oldIndex = 0;
+  let newIndex = 0;
+  while (oldIndex < oldTestament.length || newIndex < newTestament.length) {
+    const oldProgress = oldIndex / oldTestament.length;
+    const newProgress = newIndex / newTestament.length;
+    if (oldIndex < oldTestament.length && (newIndex >= newTestament.length || oldProgress <= newProgress)) {
+      mixed.push(oldTestament[oldIndex++]);
+    } else {
+      mixed.push(newTestament[newIndex++]);
+    }
+  }
+  return mixed;
+}
+
 const BIBLE_CHARACTERS = [
   { name: 'Noah', testament: 'Old Testament', role: 'Patriarch', clue1: 'Walked faithfully with God when the earth was filled with violence', clue1Ref: 'Genesis 6:9-11', clue2: 'Built a three-story vessel of gopher wood to preserve life', clue2Ref: 'Genesis 6:14-16', clue3: 'Sent out a raven and a dove after forty days of rain', clue3Ref: 'Genesis 8:6-12', ref: 'Genesis 6:9' },
   { name: 'Abraham', testament: 'Old Testament', role: 'Patriarch', clue1: 'Called by God to leave Ur of the Chaldeans for a land he did not know', clue1Ref: 'Genesis 12:1-4', clue2: 'Promised descendants as numerous as the stars of heaven', clue2Ref: 'Genesis 15:5-6', clue3: 'Tested on Mount Moriah when offering his promised son Isaac', clue3Ref: 'Genesis 22:1-14', ref: 'Genesis 12:1-3' },
@@ -285,14 +328,58 @@ export function getDifficultyForLevel(level: number): string {
  * Deterministically builds 10 authentic, distinct challenges for any (gameSlug, level) pair
  * from 1..50+ so every level in all 19 games is genuinely playable and biblically accurate.
  */
+function getDifficultyTier(level: number): number {
+  return Math.max(0, Math.min(4, Math.floor((level - 1) / 10)));
+}
+
+function getDifficultyLabel(tier: number): string {
+  return ['Foundation', 'Intermediate', 'Advanced', 'Expert', 'Master'][tier] || 'Foundation';
+}
+
+function getCharacterClue(char: (typeof BIBLE_CHARACTERS)[number], tier: number): string {
+  if (tier <= 0) return char.clue3;
+  if (tier === 1) return char.clue2;
+  if (tier === 2) return char.clue1;
+  if (tier === 3) return `${char.clue1}; ${char.clue2}`;
+  return `${char.clue1}; ${char.clue2}; ${char.clue3}`;
+}
+
+function getQuoteOptions(q: (typeof QUOTES_POOL)[number], tier: number, seed: number): string[] {
+  if (tier < 2) return makeFourDistinctOptions(q.speaker, q.options, seed);
+  const testament = BIBLE_CHARACTERS.find((person) => person.name === q.speaker)?.testament;
+  const relatedSpeakers = [...new Set(QUOTES_POOL
+    .filter((quote) => quote.speaker !== q.speaker)
+    .filter((quote) => !testament || BIBLE_CHARACTERS.find((person) => person.name === quote.speaker)?.testament === testament)
+    .map((quote) => quote.speaker))];
+  return makeFourDistinctOptions(q.speaker, relatedSpeakers.length >= 3 ? relatedSpeakers : q.options, seed);
+}
+
+function getCharacterClueReference(char: (typeof BIBLE_CHARACTERS)[number], tier: number): string {
+  if (tier <= 0) return char.clue3Ref;
+  if (tier === 1) return char.clue2Ref;
+  if (tier === 2) return char.clue1Ref;
+  if (tier === 3) return `${char.clue1Ref}; ${char.clue2Ref}`;
+  return `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
+}
+
+function getBookClue(book: (typeof BOOKS_66)[number], tier: number): string {
+  if (tier <= 0) return book.clue;
+  if (tier === 1) return `${book.section} book of ${book.testament}`;
+  if (tier === 2) return `${book.author} is traditionally associated with this ${book.chapters}-chapter book`;
+  if (tier === 3) return `A ${book.chapters}-chapter work traditionally attributed to ${book.author}, in the ${book.section} collection`;
+  return `Identify the ${book.testament} writing traditionally associated with ${book.author}; it contains ${book.chapters} chapters and belongs to the ${book.section} collection`;
+}
+
 export function buildLocalChallengesForLevel(gameSlug: string, level: number): ChallengeItem[] {
   const items: ChallengeItem[] = [];
   const baseIdx = (level - 1) * 10;
+  const mixedBooks = getMixedBookOrder(`${gameSlug}:${level}`);
+  const difficultyTier = getDifficultyTier(level);
 
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
     const globalSeed = baseIdx + i;
-    const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + 1337;
+    const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + challengeIndex + 1337;
     const id = `${gameSlug}-l${level}-c${challengeIndex}`;
 
     switch (gameSlug) {
@@ -311,17 +398,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?`,
+            question_text: difficultyTier === 0 ? `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?` : `Identify the biblical figure from this evidence: ${getCharacterClue(char, difficultyTier)}.`,
             options,
             correct_answer: char.name,
-            explanation: `${char.name} (${char.role}): ${char.clue3}.`,
-            reference: char.clue3Ref,
+            explanation: `${char.name} (${char.role}): ${getCharacterClue(char, difficultyTier)}.`,
+            reference: getCharacterClueReference(char, difficultyTier),
           });
         } else if (mode === 1) {
-          const book = BOOKS_66[globalSeed % BOOKS_66.length];
+          const book = mixedBooks[globalSeed % BOOKS_66.length];
           const candidateBooks: string[] = [];
           for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
-            const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+            const b = mixedBooks[(globalSeed + off * 11) % BOOKS_66.length].name;
             if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
           }
           const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
@@ -330,7 +417,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which book of the ${book.testament} features: "${book.clue}"?`,
+            question_text: `Which book fits this evidence: "${getBookClue(book, difficultyTier)}"?`,
             options,
             correct_answer: book.name,
             explanation: `${book.name} is in the ${book.section} section of the ${book.testament} (${book.chapters} chapters).`,
@@ -349,7 +436,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which biblical location is described: "${loc.event}"?`,
+            question_text: difficultyTier < 2 ? `Which biblical location is described: "${loc.event}"?` : `Identify the precise biblical location from this historical-geographical evidence: ${loc.event}. Reference: ${loc.ref}.`,
             options,
             correct_answer: loc.place,
             explanation: `${loc.place} (${loc.region}): ${loc.event}.`,
@@ -372,11 +459,11 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Identify this ${char.testament} ${char.role} from the biblical record:`,
+          question_text: `Identify this ${char.testament} ${char.role} from the biblical record: ${getCharacterClue(char, difficultyTier)}.`,
           options,
           correct_answer: char.name,
-          explanation: `${char.name} is remembered as the ${char.role.toLowerCase()} who ${char.clue3.toLowerCase()}.`,
-          reference: char.clue3Ref,
+          explanation: `${char.name} is remembered as the ${char.role.toLowerCase()}: ${getCharacterClue(char, difficultyTier)}.`,
+          reference: getCharacterClueReference(char, difficultyTier),
           metadata: {
             clues: [char.clue1, char.clue2, char.clue3],
             role: char.role,
@@ -387,14 +474,15 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'scripture-scramble': {
-        const wordSource = BOOKS_66[globalSeed % BOOKS_66.length];
+        const scrambleBooks = difficultyTier >= 2 ? [...mixedBooks].sort((a, b) => b.name.replace(/[^a-z]/gi, '').length - a.name.replace(/[^a-z]/gi, '').length) : mixedBooks;
+        const wordSource = scrambleBooks[globalSeed % scrambleBooks.length];
         const cleanWord = wordSource.name.replace(/[^a-zA-Z]/g, '').toUpperCase();
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Unscramble the letters to form the name of this biblical book: "${wordSource.clue}"`,
+          question_text: `Unscramble the biblical book. ${difficultyTier >= 3 ? getBookClue(wordSource, difficultyTier) : wordSource.clue}`,
           options: shuffleDeterministic(cleanWord.split(''), shuffleSeed),
           correct_answer: cleanWord,
           explanation: `${wordSource.name} (${wordSource.section}): ${wordSource.clue}.`,
@@ -409,64 +497,74 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       case 'bible-word-search': {
         const c1 = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
         const c2 = BIBLE_CHARACTERS[(globalSeed + 5) % BIBLE_CHARACTERS.length];
-        const c3 = BOOKS_66[globalSeed % BOOKS_66.length];
+        const c3 = mixedBooks[globalSeed % BOOKS_66.length];
+        const c4 = BIBLE_CHARACTERS[(globalSeed + 13) % BIBLE_CHARACTERS.length];
+        const c5 = BIBLE_CHARACTERS[(globalSeed + 19) % BIBLE_CHARACTERS.length];
+        const wordSearchRefs = [c1.clue3Ref, c2.clue3Ref, c3.ref, ...(difficultyTier >= 2 ? [c4.clue3Ref] : []), ...(difficultyTier >= 4 ? [c5.clue3Ref] : [])];
         const words = [
           c1.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
           c2.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
           c3.name.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8),
+          ...(difficultyTier >= 2 ? [c4.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase()] : []),
+          ...(difficultyTier >= 4 ? [c5.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase()] : []),
         ];
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Locate the hidden sacred words in the letter grid: ${words.join(', ')}`,
+          question_text: `Locate ${words.length} hidden biblical terms in the ${8 + difficultyTier * 2}×${8 + difficultyTier * 2} letter grid. ${difficultyTier >= 3 ? 'Some terms are long and may intersect in any direction.' : ''} Targets: ${words.join(', ')}`,
           options: words,
           correct_answer: words.join(','),
-          explanation: `Key terms from ${c1.clue3Ref}, ${c2.clue3Ref}, and ${c3.ref}: ${words.join(', ')}.`,
-          reference: `${c1.clue3Ref}; ${c2.clue3Ref}; ${c3.ref}`,
+          explanation: `Key terms drawn from these biblical passages: ${wordSearchRefs.join('; ')}. Find each term: ${words.join(', ')}.`,
+          reference: wordSearchRefs.join('; '),
           metadata: {
             words,
-            gridSize: 8,
+            gridSize: 8 + difficultyTier * 2,
           },
         });
         break;
       }
 
       case 'bible-crossword': {
-        const book = BOOKS_66[(globalSeed * 3) % BOOKS_66.length];
+        const book = mixedBooks[(globalSeed * 3) % BOOKS_66.length];
         const char = BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
+        const downClue = difficultyTier === 0 ? char.clue2 : getCharacterClue(char, difficultyTier);
+        const downReference = difficultyTier === 0 ? char.clue2Ref : getCharacterClueReference(char, difficultyTier);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${book.clue}" • Down (${downWord.length} letters): "${char.clue2}"`,
+          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${getBookClue(book, difficultyTier)}" • Down (${downWord.length} letters): "${downClue}"`,
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
-          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.clue2Ref}).`,
-          reference: `${book.ref}; ${char.clue2Ref}`,
+          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${downReference}).`,
+          reference: `${book.ref}; ${downReference}`,
           metadata: {
-            acrossClue: book.clue,
+            acrossClue: getBookClue(book, difficultyTier),
             acrossAnswer: acrossWord,
-            downClue: char.clue2,
+            acrossReference: book.ref,
+            downClue,
             downAnswer: downWord,
+            downReference,
           },
         });
         break;
       }
 
       case 'who-said-it': {
-        const q = QUOTES_POOL[globalSeed % QUOTES_POOL.length];
-        const options = makeFourDistinctOptions(q.speaker, q.options, shuffleSeed);
+        const quotePool = difficultyTier >= 3 ? [...QUOTES_POOL].sort((a, b) => b.quote.length - a.quote.length) : QUOTES_POOL;
+        const q = quotePool[globalSeed % quotePool.length];
+        const options = getQuoteOptions(q, difficultyTier, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Who spoke these words in Scripture: "${q.quote}"?`,
+          question_text: difficultyTier >= 3 ? `Identify the speaker of this exact biblical quotation. Beware of similar speakers and parallel accounts: "${q.quote}"` : `Who spoke these words in Scripture: "${q.quote}"?`,
           options,
           correct_answer: q.speaker,
           explanation: q.context,
@@ -476,7 +574,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'complete-the-scripture': {
-        const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
+        const versePool = difficultyTier >= 2 ? [...VERSES_POOL].sort((a, b) => b.text.length - a.text.length) : VERSES_POOL;
+        const v = versePool[globalSeed % versePool.length];
         const masked = v.text.replace(new RegExp(`\\b${v.missing}\\b`, 'i'), '_____');
         const options = makeFourDistinctOptions(v.missing, v.distractors, shuffleSeed);
         items.push({
@@ -484,7 +583,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Complete the verse (${v.ref}): "${masked}"`,
+          question_text: difficultyTier >= 3 ? `Complete the exact wording of this longer passage (${v.ref}): "${masked}"` : `Complete the verse (${v.ref}): "${masked}"`,
           options,
           correct_answer: v.missing,
           explanation: `Full verse (${v.ref}): "${v.text}."`,
@@ -494,12 +593,12 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-match-up': {
-        const pairs = [
-          BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 3) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 7) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 11) % BIBLE_CHARACTERS.length],
-        ].map((c) => ({ left: c.name, right: c.clue3, ref: c.clue3Ref }));
+        const pairOffsets = difficultyTier >= 4 ? [0, 3, 7, 11, 15, 19] : difficultyTier >= 2 ? [0, 3, 7, 11, 15] : [0, 3, 7, 11];
+        const pairs = pairOffsets.map((offset) => BIBLE_CHARACTERS[(globalSeed + offset) % BIBLE_CHARACTERS.length]).map((c) => ({
+          left: c.name,
+          right: difficultyTier <= 1 ? c.clue3 : difficultyTier <= 3 ? c.clue2 : c.clue1,
+          ref: difficultyTier <= 1 ? c.clue3Ref : difficultyTier <= 3 ? c.clue2Ref : c.clue1Ref,
+        }));
         items.push({
           id,
           game_slug: gameSlug,
@@ -516,19 +615,16 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-timeline': {
-        const startBook = (globalSeed * 2) % (BOOKS_66.length - 4);
-        const seq = [
-          BOOKS_66[startBook],
-          BOOKS_66[startBook + 1],
-          BOOKS_66[startBook + 2],
-          BOOKS_66[startBook + 3],
-        ];
+        const spacing = 1 + difficultyTier;
+        const sequenceCount = difficultyTier >= 4 ? 6 : difficultyTier >= 3 ? 5 : 4;
+        const startBook = (globalSeed * 2) % (BOOKS_66.length - (spacing * (sequenceCount - 1)) - 1);
+        const seq = Array.from({ length: sequenceCount }, (_, index) => BOOKS_66[startBook + spacing * index]);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: 'Arrange these four biblical books and epochs in canonical order from earliest to latest:',
+          question_text: difficultyTier >= 3 ? `Advanced chronology: arrange these ${sequenceCount} non-consecutive biblical books in canonical order. Do not assume adjacent books:` : `Arrange these ${sequenceCount} biblical books and epochs in canonical order from earliest to latest:`,
           options: shuffleDeterministic(seq.map((s) => s.name), shuffleSeed),
           correct_answer: seq.map((s) => s.name).join(' -> '),
           explanation: `Canonical sequence: ${seq.map((s) => `${s.name} (${s.clue})`).join(' → ')}.`,
@@ -541,20 +637,20 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-puzzles': {
-        const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
+        const puzzleVersePool = difficultyTier >= 2 ? [...VERSES_POOL].sort((a, b) => b.text.length - a.text.length) : VERSES_POOL;
+        const v = puzzleVersePool[globalSeed % puzzleVersePool.length];
         const words = v.text.split(' ');
-        const third = Math.max(2, Math.floor(words.length / 3));
-        const tiles = [
-          words.slice(0, third).join(' '),
-          words.slice(third, third * 2).join(' '),
-          words.slice(third * 2).join(' '),
-        ];
+        const fragmentCount = difficultyTier >= 4 ? 5 : difficultyTier >= 2 ? 4 : 3;
+        const wordsPerFragment = Math.ceil(words.length / fragmentCount);
+        const tiles = Array.from({ length: fragmentCount }, (_, index) =>
+          words.slice(index * wordsPerFragment, (index + 1) * wordsPerFragment).join(' ')
+        ).filter(Boolean);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Reconstruct the sacred tablet mosaic for ${v.ref} by placing the three carved stone fragments in order:`,
+          question_text: `Reconstruct the exact wording of ${v.ref} by placing ${tiles.length} shuffled fragments in order. ${difficultyTier >= 3 ? 'The selected passage is longer and includes closely related phrases.' : ''}`,
           options: shuffleDeterministic([...tiles], shuffleSeed),
           correct_answer: tiles.join(' | '),
           explanation: `Completed inscription (${v.ref}): "${v.text}."`,
@@ -565,10 +661,10 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'find-the-bible-book': {
-        const book = BOOKS_66[globalSeed % BOOKS_66.length];
+        const book = mixedBooks[globalSeed % BOOKS_66.length];
         const candidateBooks: string[] = [];
         for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
-          const b = BOOKS_66[(globalSeed + off * 11) % BOOKS_66.length].name;
+          const b = mixedBooks[(globalSeed + off * 11) % BOOKS_66.length].name;
           if (b !== book.name && !candidateBooks.includes(b)) candidateBooks.push(b);
         }
         const options = makeFourDistinctOptions(book.name, candidateBooks, shuffleSeed);
@@ -577,7 +673,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Clue: "${book.clue}" (${book.testament} • ${book.section}, ${book.chapters} chapters). Which book is this?`,
+          question_text: `Clue: "${getBookClue(book, difficultyTier)}". Which biblical book is this?`,
           options,
           correct_answer: book.name,
           explanation: `${book.name} was written by ${book.author} and belongs to the ${book.section} section. Key scripture: ${book.ref}.`,
@@ -587,14 +683,15 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-riddles': {
-        const r = RIDDLES_POOL[globalSeed % RIDDLES_POOL.length];
+        const riddlePool = difficultyTier >= 2 ? [...RIDDLES_POOL].sort((a, b) => b.riddle.length - a.riddle.length) : RIDDLES_POOL;
+        const r = riddlePool[globalSeed % riddlePool.length];
         const options = makeFourDistinctOptions(r.answer, r.options, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: r.riddle,
+          question_text: difficultyTier >= 3 ? `${r.riddle} Consider the exact detail and its scriptural context before choosing.` : r.riddle,
           options,
           correct_answer: r.answer,
           explanation: r.explanation,
@@ -616,7 +713,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Sacred Atlas (${loc.region}): Identify the location where "${loc.event}".`,
+          question_text: difficultyTier >= 3 ? `Advanced Sacred Atlas: Identify the exact location from the event, regional setting and cross-reference: "${loc.event}" (${loc.region}; ${loc.ref}).` : `Sacred Atlas (${loc.region}): Identify the location where "${loc.event}".`,
           options,
           correct_answer: loc.place,
           explanation: `${loc.place} is located in ${loc.region}. ${loc.event}.`,
@@ -627,17 +724,16 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-memory-challenge': {
-        const subset = [
-          BOOKS_66[globalSeed % BOOKS_66.length],
-          BOOKS_66[(globalSeed + 4) % BOOKS_66.length],
-          BOOKS_66[(globalSeed + 9) % BOOKS_66.length],
-        ];
+        const memoryBooks = difficultyTier >= 2 ? [...mixedBooks].sort((a, b) => a.ref.localeCompare(b.ref)) : mixedBooks;
+        const memoryOffsets = [0, 4, 9, 13, 17];
+        const memoryCount = difficultyTier >= 4 ? 5 : difficultyTier >= 2 ? 4 : 3;
+        const subset = memoryOffsets.slice(0, memoryCount).map((offset) => memoryBooks[(globalSeed + offset) % BOOKS_66.length]);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: 'Flip and match each Bible book card with its key scriptural reference:',
+          question_text: difficultyTier >= 3 ? 'Memory trial: match each Bible book to its exact reference. Several references are from closely related sections; rely on precise recall.' : 'Flip and match each Bible book card with its key scriptural reference:',
           options: subset.map((s) => `${s.name}|${s.ref}`),
           correct_answer: subset.map((s) => `${s.name}=${s.ref}`).join(','),
           explanation: subset.map((s) => `${s.name} (${s.ref}): ${s.clue}`).join(' • '),
@@ -650,13 +746,13 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'old-vs-new-testament': {
-        const book = BOOKS_66[globalSeed % BOOKS_66.length];
+        const book = mixedBooks[globalSeed % BOOKS_66.length];
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Classify "${book.name}" (${book.clue}): Does it belong to the Old Testament or the New Testament?`,
+          question_text: difficultyTier < 2 ? `Classify "${book.name}" (${book.clue}): Does it belong to the Old Testament or the New Testament?` : `Testament classification: A ${book.chapters}-chapter ${book.section.toLowerCase()} writing traditionally associated with ${book.author}. Is this writing from the Old Testament or New Testament?`,
           options: ['Old Testament', 'New Testament'],
           correct_answer: book.testament,
           explanation: `${book.name} is part of the ${book.section} section in the ${book.testament}.`,
@@ -673,32 +769,33 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `${c.title} — Examine the evidence and identify the biblical account:`,
+          question_text: `${c.title} — Examine the evidence and identify the biblical account. ${difficultyTier >= 3 ? "Distinguish the decisive detail from the misleading clues." : ""}`,
           options,
           correct_answer: c.answer,
           explanation: c.explanation,
           reference: c.ref,
           metadata: {
-            clues: [c.clue1, c.clue2, c.clue3],
+            clues: difficultyTier >= 3 ? [c.clue3, c.clue2, c.clue1] : [c.clue1, c.clue2, c.clue3],
+            clueOrder: difficultyTier >= 3 ? "most-specific-first" : "progressive",
           },
         });
         break;
       }
 
       case 'bible-chain-challenge': {
-        const bookA = BOOKS_66[globalSeed % BOOKS_66.length];
+        const bookA = mixedBooks[globalSeed % BOOKS_66.length];
         const lastChar = bookA.name.slice(-1).toUpperCase();
         const matching = BOOKS_66.find((b) => b.name.toUpperCase().startsWith(lastChar))
           || BIBLE_CHARACTERS.find((c) => c.name.toUpperCase().startsWith(lastChar))
           || { name: 'Samuel', ref: '1 Samuel 3:10', clue: 'Prophet who anointed David' };
-        const distractor1 = BOOKS_66[(globalSeed + 5) % BOOKS_66.length].name;
-        const distractor2 = BOOKS_66[(globalSeed + 13) % BOOKS_66.length].name;
+        const distractor1 = mixedBooks[(globalSeed + 5) % BOOKS_66.length].name;
+        const distractor2 = mixedBooks[(globalSeed + 13) % BOOKS_66.length].name;
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
+          question_text: difficultyTier >= 3 ? `Expert chain link: "${bookA.name.toUpperCase()}" ends with "${lastChar}". Supply a valid biblical book or figure beginning with that exact letter; check spelling carefully.` : `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
           options: shuffleDeterministic([matching.name, distractor1, distractor2], shuffleSeed),
           correct_answer: matching.name,
           explanation: `"${bookA.name}" ends with "${lastChar}", linking directly to "${matching.name}" (${matching.ref}).`,
@@ -719,7 +816,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Tap the word tiles in order to assemble ${v.ref}:`,
+          question_text: `Reconstruct the exact wording of ${v.ref} from the shuffled word tiles. Pay attention to sequence and every word:`,
           options: shuffleDeterministic([...words], shuffleSeed),
           correct_answer: v.text,
           explanation: `Completed verse (${v.ref}): "${v.text}."`,
@@ -746,24 +843,29 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           { emojis: '🍷 🏺 💧 💒', answer: 'Water into Wine at Cana', opts: ['Water into Wine at Cana', 'The Last Supper', 'Woman at the Well', 'Waters of Marah'], exp: 'Jesus turned water into choice wine at the wedding in Cana of Galilee.', ref: 'John 2:1-11' },
         ];
         const em = emojiList[globalSeed % emojiList.length];
+        const emojiParts = em.emojis.split(' ');
+        const displayedEmojis = difficultyTier >= 4 ? emojiParts.slice(0, 2).join(' ') : difficultyTier >= 2 ? emojiParts.slice(0, 3).join(' ') : em.emojis;
         const options = makeFourDistinctOptions(em.answer, em.opts, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: em.emojis,
+          question_text: displayedEmojis,
           options,
           correct_answer: em.answer,
           explanation: em.exp,
           reference: em.ref,
-          metadata: { emojis: em.emojis },
+          metadata: { emojis: displayedEmojis, fullClueSet: em.emojis },
         });
         break;
       }
     }
   }
 
+  for (const item of items) {
+    item.metadata = { ...(item.metadata || {}), difficultyTier, difficultyLabel: getDifficultyLabel(difficultyTier), levelBand: `${Math.floor((level - 1) / 10) * 10 + 1}-${Math.floor((level - 1) / 10) * 10 + 10}` };
+  }
   return items;
 }
 
@@ -799,7 +901,11 @@ export function makeFourDistinctOptions(
       if (distinct.length === 4) break;
     }
   }
-  return shuffleDeterministic(distinct, seed);
+  const correctIndex = ((seed % 4) + 4) % 4;
+  const distractors = shuffleDeterministic(distinct.slice(1), seed);
+  const balanced = [...distractors];
+  balanced.splice(correctIndex, 0, correct);
+  return balanced;
 }
 
 /**

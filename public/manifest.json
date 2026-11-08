@@ -1,15 +1,16 @@
 {
   "name": "BibleArena 2.0",
   "short_name": "BibleArena",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#F3EBDD",
   "theme_color": "#171B24",
   "icons": [
     {
-      "src": "/vite.svg",
-      "sizes": "192x192 512x512",
-      "type": "image/svg+xml"
+      "src": "./assets/bible-arena-logo.png",
+      "sizes": "any",
+      "type": "image/png"
     }
   ]
 }

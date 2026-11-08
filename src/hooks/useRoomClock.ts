@@ -1,6 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
+// Scripture-focused and non-ABCD mechanics need a shorter, focused answer window.
+const FIFTEEN_SECOND_GAMES = new Set([
+  'scripture-challenge',
+  'complete-the-scripture',
+  'scripture-scramble',
+  'verse-builder',
+  'bible-timeline',
+  'bible-puzzles',
+  'bible-word-search',
+  'bible-crossword',
+  'bible-match-up',
+  'bible-memory-challenge',
+]);
+
+export function getQuestionDurationSeconds(gameSlug: string): number {
+  return FIFTEEN_SECOND_GAMES.has(gameSlug) ? 15 : 35;
+}
+
 export type RoomState = {
   id: string; status: 'waiting' | 'playing' | 'finished';
   current_question_index: number; question_started_at: string | null;
@@ -45,23 +63,46 @@ export function useRoomPhase(room: RoomState | null, offsetMs: number) {
   return { phase: 'advancing' as const, secondsLeft: 0, progress: 0 };
 }
 
-/** Every device asks the server to advance once time is up. The server ignores duplicates. */
+/** Every device asks the server to advance once time is up. The server serializes
+ * duplicate requests and records final multiplayer marks in one transaction. */
 export function useAutoAdvance(room: RoomState | null, phase: string) {
   const asked = useRef('');
+  const roomId = room?.id;
+  const questionIndex = room?.current_question_index;
   useEffect(() => {
-    if (!room || phase !== 'advancing') return;
-    const key = `${room.id}:${room.current_question_index}`;
-    const fire = async () => {
-      try {
-        const { data } = await supabase.rpc('advance_question', { p_room: room.id, p_from_index: room.current_question_index });
-        if (data && (data as RoomState).current_question_index === room.current_question_index && (data as RoomState).status === 'playing')
-          setTimeout(fire, 500);
-      } catch {
-        // Retry
-      }
-    };
+    if (!roomId || questionIndex === undefined || phase !== 'advancing') return;
+    const key = `${roomId}:${questionIndex}`;
     if (asked.current === key) return;
     asked.current = key;
-    setTimeout(fire, Math.random() * 300);   // small random delay so 30 phones don't all hit at once
-  }, [room, phase]);
+
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const schedule = (delay: number) => {
+      if (!cancelled) timer = setTimeout(fire, delay);
+    };
+    const fire = async () => {
+      if (cancelled) return;
+      try {
+        const { data, error } = await supabase.rpc('advance_room_question', {
+          p_room: roomId,
+          p_from_index: questionIndex,
+        });
+        if (error) throw error;
+        const updated = data as RoomState | null;
+        // The round may not have elapsed on the server yet. Retry without
+        // resetting the timer or issuing duplicate transitions.
+        if (updated?.status === 'playing' && updated.current_question_index === questionIndex) {
+          schedule(500);
+        }
+      } catch {
+        schedule(1000);
+      }
+    };
+
+    schedule(Math.random() * 300);
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
+  }, [roomId, questionIndex, phase]);
 }

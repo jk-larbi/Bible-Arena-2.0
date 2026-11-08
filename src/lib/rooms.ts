@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { supabase, isBackendConfigured } from './supabase';
 
 export type Room = {
   id: string;
@@ -12,11 +12,13 @@ export type Room = {
 // Room codes avoid look-alike characters (no I, O, 0, 1)
 export const normalizeCode = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '');
 export const isValidCode = (c: string) => /^[ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6}$/.test(c);
+// Build the invite from the active host and Vite base path. This keeps QR
+// joins on the same domain when players use Cloudflare Pages or GitHub Pages.
 export const inviteLink = (code: string) => {
-  const origin = typeof window !== 'undefined' && window.location?.origin
-    ? window.location.origin
-    : 'https://biblearena.app';
-  return `${origin}/join/${code}`;
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.invalid';
+  const basePath = typeof import.meta.env !== 'undefined' && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/';
+  const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
+  return `${origin}${normalizedBase}join/${normalizeCode(code)}`;
 };
 
 export async function createRoom(gameSlug: string, displayName: string, settings = {}) {
@@ -54,16 +56,11 @@ export async function joinWithCode(rawCode: string, displayName: string) {
 
 export async function leaveRoom(roomId: string) {
   const { error } = await supabase.rpc('leave_room', { p_room: roomId });
-  if (error) {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user?.id) {
-      await supabase.from('room_players').delete().eq('room_id', roomId).eq('user_id', session.user.id);
-    }
-  }
+  if (error) throw new Error(error.message);
 }
 
 export async function kickPlayerFromRoom(roomId: string, playerId: string) {
-  const { error } = await supabase.from('room_players').delete().eq('room_id', roomId).eq('id', playerId);
+  const { error } = await supabase.rpc('kick_room_player', { p_room: roomId, p_player: playerId });
   if (error) throw new Error(error.message);
 }
 
@@ -110,7 +107,6 @@ export function subscribeToRoom(roomId: string, onChange: () => void) {
   const ch = supabase.channel(`room:${roomId}`)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'room_players', filter: `room_id=eq.${roomId}` }, onChange)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms', filter: `id=eq.${roomId}` }, onChange)
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'room_answers', filter: `room_id=eq.${roomId}` }, onChange)
     .subscribe();
   return () => { supabase.removeChannel(ch); };
 }
@@ -124,94 +120,77 @@ export interface RoomAnswerResult {
   current_score: number;
 }
 
-// Memory store for local/offline simulation fallback (test runners and offline guests)
+// Deterministic in-memory helpers are used only by the isolated unit-test suite.
 const localRoomSubmissions: Record<string, Set<string>> = {};
 const localRoomScores: Record<string, number> = {};
+
+export function simulateRoomAnswer(
+  roomId: string,
+  questionId: string,
+  answer: string,
+  clientQuestion: { correct_answer: string; explanation: string; reference: string },
+  playerId: string
+): RoomAnswerResult {
+  const subKey = `${roomId}:${playerId}:${questionId}`;
+  if (!localRoomSubmissions[roomId]) localRoomSubmissions[roomId] = new Set();
+  if (localRoomSubmissions[roomId].has(subKey)) throw new Error('Answer already submitted for this challenge');
+  localRoomSubmissions[roomId].add(subKey);
+  const expected = clientQuestion.correct_answer.trim();
+  const isCorrect = expected.length > 0 && answer.trim().toLowerCase() === expected.toLowerCase();
+  const marks = isCorrect ? 10 : 0;
+  const scoreKey = `${roomId}:${playerId}`;
+  localRoomScores[scoreKey] = (localRoomScores[scoreKey] || 0) + marks;
+  return {
+    is_correct: isCorrect,
+    correct_answer: expected,
+    explanation: clientQuestion.explanation || '',
+    reference: clientQuestion.reference || '',
+    marks_awarded: marks,
+    current_score: localRoomScores[scoreKey],
+  };
+}
+
+export function simulateRoomAdvance(_roomId: string, _fromIndex: number): void {}
+export function simulateRoomFinish(_roomId: string): void {}
 
 export async function submitRoomAnswer(
   roomId: string,
   questionId: string,
   answer: string,
   durationMs: number = 0,
-  clientQuestion?: { correct_answer: string; explanation: string; reference: string },
-  playerId?: string
+  _clientQuestion?: { correct_answer: string; explanation: string; reference: string }
 ): Promise<RoomAnswerResult> {
-  const normAnswer = answer.trim();
-
-  try {
-    const { data, error } = await supabase.rpc('submit_room_answer', {
-      p_room: roomId,
-      p_question_id: questionId,
-      p_answer: normAnswer,
-      p_duration_ms: durationMs,
-    });
-
-    if (!error && data?.[0]) {
-      const row = data[0];
-      return {
-        is_correct: Boolean(row.is_correct),
-        correct_answer: row.correct_answer || clientQuestion?.correct_answer || '',
-        explanation: row.explanation || clientQuestion?.explanation || '',
-        reference: row.reference || clientQuestion?.reference || '',
-        marks_awarded: Number(row.marks_awarded) || (row.is_correct ? 10 : 0),
-        current_score: Number(row.current_score) || 0,
-      };
-    }
-  } catch {
-    // Fallthrough to deterministic local evaluation
-  }
-
-  // Local/offline evaluation fallback per player per question
-  const playerKey = playerId || 'player-self';
-  const subKey = `${roomId}:${playerKey}:${questionId}`;
-  if (!localRoomSubmissions[roomId]) localRoomSubmissions[roomId] = new Set();
-  if (localRoomSubmissions[roomId].has(subKey)) {
-    throw new Error('Answer already submitted for this challenge');
-  }
-  localRoomSubmissions[roomId].add(subKey);
-
-  const expected = clientQuestion?.correct_answer?.trim() || '';
-  const isCorrect = expected.length > 0 && normAnswer.toLowerCase() === expected.toLowerCase();
-  const marks = isCorrect ? 10 : 0;
-  const scoreKey = `${roomId}:${playerKey}`;
-  localRoomScores[scoreKey] = (localRoomScores[scoreKey] || 0) + marks;
-
+  if (!isBackendConfigured) throw new Error('Live multiplayer requires the connected Supabase backend.');
+  const { data, error } = await supabase.rpc('submit_room_answer', {
+    p_room: roomId,
+    p_question_id: questionId,
+    p_answer: answer.trim(),
+    p_duration_ms: durationMs,
+  });
+  if (error) throw new Error(error.message);
+  if (!data?.[0]) throw new Error('The server did not confirm your answer.');
+  const row = data[0];
   return {
-    is_correct: isCorrect,
-    correct_answer: expected,
-    explanation: clientQuestion?.explanation || '',
-    reference: clientQuestion?.reference || '',
-    marks_awarded: marks,
-    current_score: localRoomScores[roomId],
+    is_correct: Boolean(row.is_correct),
+    correct_answer: row.correct_answer || '',
+    explanation: row.explanation || '',
+    reference: row.reference || '',
+    marks_awarded: Number(row.marks_awarded) || 0,
+    current_score: Number(row.current_score) || 0,
   };
 }
 
 export async function advanceRoomQuestion(roomId: string, fromIndex: number): Promise<void> {
-  try {
-    const { error } = await supabase.rpc('advance_room_question', {
-      p_room: roomId,
-      p_from_index: fromIndex,
-    });
-    if (error) {
-      // Fallback direct update
-      await supabase.from('rooms').update({
-        current_question_index: fromIndex + 1,
-        question_started_at: new Date().toISOString(),
-      }).eq('id', roomId);
-    }
-  } catch {
-    // Non-blocking
-  }
+  if (!isBackendConfigured) throw new Error('Live multiplayer requires the connected Supabase backend.');
+  const { error } = await supabase.rpc('advance_room_question', {
+    p_room: roomId,
+    p_from_index: fromIndex,
+  });
+  if (error) throw new Error(error.message);
 }
 
 export async function finishRoomSession(roomId: string): Promise<void> {
-  try {
-    const { error } = await supabase.rpc('finish_room_session', { p_room: roomId });
-    if (error) {
-      await supabase.from('rooms').update({ status: 'finished' }).eq('id', roomId);
-    }
-  } catch {
-    await supabase.from('rooms').update({ status: 'finished' }).eq('id', roomId);
-  }
+  if (!isBackendConfigured) throw new Error('Live multiplayer requires the connected Supabase backend.');
+  const { error } = await supabase.rpc('finish_room_session', { p_room: roomId });
+  if (error) throw new Error(error.message);
 }
-

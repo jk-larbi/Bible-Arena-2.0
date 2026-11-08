@@ -4,7 +4,7 @@ import { useCountdown } from '../hooks/useCountdown';
 import { AutoAdvanceBar } from './AutoAdvanceBar';
 import { AnswerFeedback, type Reveal } from './AnswerFeedback';
 
-const QUESTION_SECONDS = 20;
+const QUESTION_SECONDS = 15;
 const REVEAL_SECONDS = 5;   // change this one number to adjust the pause
 
 export type Q = { id: string; prompt: string; options: string[]; explanation?: string; reference?: string; correctAnswer?: string };
@@ -24,27 +24,51 @@ export function SoloQuestionRunner({ questions, onFinish }: { questions: Q[]; on
     setError('');
 
     let isCorrect = false;
-    let correctAnswer = q.correctAnswer || q.options[0];
+    let correctAnswer = q.correctAnswer || '';
     let explanation = q.explanation || null;
     let reference = q.reference || null;
+
+    if (!correctAnswer && !(isBackendConfigured && supabase)) {
+      locked.current = false;
+      setError('This question is missing its answer key. Please refresh or report this question.');
+      return;
+    }
 
     if (isBackendConfigured && supabase) {
       try {
         const { data, error } = await supabase.rpc('check_answer', { p_question_id: q.id, p_answer: picked ?? '' });
         if (!error && data?.[0]) {
           const row = data[0];
-          isCorrect = row.is_correct;
-          correctAnswer = row.correct_answer;
-          explanation = row.explanation ?? explanation;
-          reference = row.reference ?? reference;
+          const serverAnswer = String(row.correct_answer ?? '').trim();
+          const localAnswer = String(q.correctAnswer ?? '').trim();
+          if (serverAnswer && localAnswer && serverAnswer.toLowerCase() !== localAnswer.toLowerCase()) {
+            // Never grade the displayed question against a stale server answer key.
+            correctAnswer = localAnswer;
+            explanation = q.explanation || null;
+            reference = q.reference || null;
+            isCorrect = picked !== null && picked.trim().toLowerCase() === localAnswer.toLowerCase();
+          } else if (serverAnswer) {
+            correctAnswer = serverAnswer;
+            explanation = row.explanation ?? explanation;
+            reference = row.reference ?? reference;
+            isCorrect = Boolean(row.is_correct);
+          } else {
+            isCorrect = picked !== null && Boolean(localAnswer) && picked.trim().toLowerCase() === localAnswer.toLowerCase();
+          }
         } else {
-          isCorrect = picked !== null && picked === (q.correctAnswer || q.options[0]);
+          isCorrect = picked !== null && Boolean(correctAnswer) && picked.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
         }
       } catch {
-        isCorrect = picked !== null && picked === (q.correctAnswer || q.options[0]);
+        isCorrect = picked !== null && Boolean(correctAnswer) && picked.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
       }
     } else {
-      isCorrect = picked !== null && picked === (q.correctAnswer || q.options[0]);
+      isCorrect = picked !== null && Boolean(correctAnswer) && picked.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
+    }
+
+    if (!correctAnswer.trim()) {
+      locked.current = false;
+      setError('This question has no verified answer key. Please refresh or report this question.');
+      return;
     }
 
     if (picked !== null && isCorrect) setCorrect((c) => c + 1);

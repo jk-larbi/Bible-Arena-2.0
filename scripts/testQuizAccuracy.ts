@@ -214,6 +214,35 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 5B. PER-LEVEL ANSWER POSITION ROTATION (no all-A levels)
+  // ===================================================================
+  {
+    let failures = 0;
+    let audited = 0;
+    for (const slug of MULTIPLE_CHOICE_GAMES) {
+      for (let lvl = 1; lvl <= 50; lvl++) {
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        const positionCounts = [0, 0, 0, 0];
+        for (const item of items) {
+          const idx = item.options.findIndex(
+            (option) => option.trim().toLowerCase() === item.correct_answer.trim().toLowerCase()
+          );
+          if (idx < 0 || idx > 3) failures++;
+          else positionCounts[idx]++;
+          audited++;
+        }
+        if (Math.max(...positionCounts) > 3 || Math.min(...positionCounts) < 2) failures++;
+      }
+    }
+    results.push({
+      name: '5B. Balanced A/B/C/D answer positions within every level',
+      scope: 'All multiple-choice games, levels 1–50',
+      passed: failures === 0 && audited > 0,
+      details: `Audited ${audited} questions. Each 10-question level must use every answer position 2–3 times; failures: ${failures}.`,
+    });
+  }
+
+  // ===================================================================
   // 6. ANSWER GRADING LOGIC: Accurate scoring (+10 correct, 0 incorrect)
   // ===================================================================
   {
@@ -300,13 +329,18 @@ async function runQuizAccuracyTests() {
           if (item.game_slug === 'bible-timeline') continue;
 
           const ref = item.reference;
-          const qText = item.question_text.toLowerCase();
+          // Crossword prompts contain two independent clues and two independent
+          // references. Audit the character narrative against its own passage,
+          // rather than mixing the Across book clue into the Down character audit.
+          const isCrossword = item.game_slug === 'bible-crossword';
+          const auditRef = isCrossword ? String(item.metadata?.downReference || '') : ref;
+          const qText = (isCrossword ? String(item.metadata?.downClue || '') : item.question_text).toLowerCase();
           const ans = item.correct_answer.toLowerCase();
-          const exp = item.explanation.toLowerCase();
+          const exp = (isCrossword ? '' : item.explanation).toLowerCase();
 
           // Substantive Check A: Noah's raven and dove must cite Genesis 8
           if (qText.includes('raven') && qText.includes('dove')) {
-            if (!ref.includes('Genesis 8')) {
+            if (!auditRef.includes('Genesis 8')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Noah raven/dove asked but ref is "${ref}" (must cite Genesis 8)`);
             }
@@ -314,7 +348,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check B: Abraham's test on Mount Moriah must cite Genesis 22
           if (qText.includes('moriah') || exp.includes('moriah')) {
-            if (!ref.includes('Genesis 22') && !ref.includes('2 Chronicles 3')) {
+            if (!auditRef.includes('Genesis 22') && !auditRef.includes('2 Chronicles 3')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Mount Moriah test asked but ref is "${ref}" (must cite Genesis 22)`);
             }
@@ -322,7 +356,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check C: David defeating Goliath must cite 1 Samuel 17
           if (qText.includes('goliath') || ans.includes('goliath') || exp.includes('goliath')) {
-            if (!ref.includes('1 Samuel 17')) {
+            if (!auditRef.includes('1 Samuel 17')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Goliath narrative asked but ref is "${ref}" (must cite 1 Samuel 17)`);
             }
@@ -330,7 +364,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check D: Solomon's wisdom prayer must cite 1 Kings 3 or 2 Chronicles 1
           if (qText.includes('wisdom') && ans === 'solomon') {
-            if (!ref.includes('1 Kings 3') && !ref.includes('1 Kings 10')) {
+            if (!auditRef.includes('1 Kings 3') && !auditRef.includes('1 Kings 10')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Solomon wisdom asked but ref is "${ref}" (must cite 1 Kings 3/10)`);
             }
@@ -338,7 +372,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check E: Elijah on Mount Carmel / fire from heaven must cite 1 Kings 18
           if (qText.includes('carmel') || exp.includes('carmel')) {
-            if (!ref.includes('1 Kings 18')) {
+            if (!auditRef.includes('1 Kings 18')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Mount Carmel asked but ref is "${ref}" (must cite 1 Kings 18)`);
             }
@@ -346,7 +380,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check F: Naaman washing in the Jordan must cite 2 Kings 5
           if (qText.includes('naaman') || exp.includes('naaman')) {
-            if (!ref.includes('2 Kings 5')) {
+            if (!auditRef.includes('2 Kings 5')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Naaman healing asked but ref is "${ref}" (must cite 2 Kings 5)`);
             }
@@ -354,7 +388,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check G: "Am I my brother's keeper?" must cite Genesis 4
           if (qText.includes('brother’s keeper') || qText.includes("brother's keeper")) {
-            if (!ref.includes('Genesis 4')) {
+            if (!auditRef.includes('Genesis 4')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Cain quote asked but ref is "${ref}" (must cite Genesis 4)`);
             }
@@ -362,7 +396,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check H: "If I perish, I perish" must cite Esther 4
           if (qText.includes('if i perish') || exp.includes('if i perish')) {
-            if (!ref.includes('Esther 4')) {
+            if (!auditRef.includes('Esther 4')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Esther quote asked but ref is "${ref}" (must cite Esther 4)`);
             }
@@ -370,7 +404,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check I: Pentecost sermon must cite Acts 2
           if (qText.includes('pentecost') || exp.includes('pentecost')) {
-            if (!ref.includes('Acts 2')) {
+            if (!auditRef.includes('Acts 2')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Pentecost narrative asked but ref is "${ref}" (must cite Acts 2)`);
             }
@@ -438,6 +472,103 @@ async function runQuizAccuracyTests() {
     });
   }
 
+  // ===================================================================
+  // 11. BIBLE BOOK ORDER: Mixed Old/New Testament selection, not canonical order
+  // ===================================================================
+  {
+    let failures = 0;
+    const failureLog: string[] = [];
+
+    for (let lvl = 1; lvl <= 50; lvl++) {
+      const classification = buildLocalChallengesForLevel('old-vs-new-testament', lvl);
+      const testaments = classification.map((item) => item.correct_answer);
+      const hasOld = testaments.includes('Old Testament');
+      const hasNew = testaments.includes('New Testament');
+      let longestRun = 1;
+      let currentRun = 1;
+      for (let i = 1; i < testaments.length; i++) {
+        currentRun = testaments[i] === testaments[i - 1] ? currentRun + 1 : 1;
+        longestRun = Math.max(longestRun, currentRun);
+      }
+      if (!hasOld || !hasNew || longestRun > 3) {
+        failures++;
+        failureLog.push(`Level ${lvl}: OT=${hasOld}, NT=${hasNew}, longest same-testament run=${longestRun}`);
+      }
+
+      const bookQuestions = buildLocalChallengesForLevel('find-the-bible-book', lvl);
+      const sequence = bookQuestions.map((item) => CANONICAL_BOOKS.indexOf(item.correct_answer));
+      const hasOutOfOrderStep = sequence.some((value, index) => index > 0 && value < sequence[index - 1]);
+      const mixedQuestionTestaments = new Set(sequence.filter((index) => index >= 0).map((index) =>
+        index < 39 ? 'Old Testament' : 'New Testament'
+      ));
+      if (!hasOutOfOrderStep || mixedQuestionTestaments.size !== 2) {
+        failures++;
+        failureLog.push(`Level ${lvl}: book sequence was not sufficiently mixed (${sequence.join(', ')}); testaments=${[...mixedQuestionTestaments].join('/')}`);
+      }
+    }
+
+    results.push({
+      name: '11. Old/New Testament book order is mixed and non-predictable',
+      scope: 'All 50 levels of book classification and book-identification games',
+      passed: failures === 0,
+      details: failures === 0
+        ? 'All 50 levels include both Testaments, avoid long same-Testament runs, and present book-identification answers outside canonical order.'
+        : `${failures} ordering failures. ${failureLog.slice(0, 5).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
+  // 12. PROGRESSIVE DIFFICULTY ACROSS ALL 19 GAMES AND 50 LEVELS
+  // ===================================================================
+  {
+    let metadataFailures = 0;
+    let missingHardModeCoverage = 0;
+    const tierCoverage = new Set<number>();
+    for (const slug of ALL_19_GAME_SLUGS) {
+      for (let lvl = 1; lvl <= 50; lvl++) {
+        const expectedTier = Math.min(4, Math.floor((lvl - 1) / 10));
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        for (const item of items) {
+          if (item.metadata?.difficultyTier !== expectedTier) metadataFailures++;
+          tierCoverage.add(item.metadata?.difficultyTier);
+          if (expectedTier >= 3 && !item.question_text.trim()) missingHardModeCoverage++;
+        }
+      }
+    }
+    const passed = metadataFailures === 0 && missingHardModeCoverage === 0 && tierCoverage.size === 5;
+    results.push({
+      name: '12. Progressive difficulty metadata across every game and level',
+      scope: 'All 9,500 questions: 19 games x 50 levels x 10 challenges',
+      passed,
+      details: `Difficulty tiers found: ${[...tierCoverage].sort().join(', ')}. Metadata failures: ${metadataFailures}; missing expert/master prompts: ${missingHardModeCoverage}.`,
+    });
+  }
+
+  // ===================================================================
+  // 13. ADVANCED CONTENT AND MIXED TESTAMENT COVERAGE
+  // ===================================================================
+  {
+    let failures = 0;
+    for (let lvl = 31; lvl <= 50; lvl++) {
+      for (const slug of ALL_19_GAME_SLUGS) {
+        const items = buildLocalChallengesForLevel(slug, lvl);
+        if (items.some((item) => item.metadata?.difficultyTier < 3)) failures++;
+        if (items.some((item) => !item.reference || !item.explanation || !item.correct_answer)) failures++;
+      }
+      const classify = buildLocalChallengesForLevel('old-vs-new-testament', lvl);
+      const answers = new Set(classify.map((item) => item.correct_answer));
+      if (!answers.has('Old Testament') || !answers.has('New Testament')) failures++;
+      const bookNames = buildLocalChallengesForLevel('find-the-bible-book', lvl).map((item) => item.correct_answer);
+      const canonical = bookNames.map((name) => CANONICAL_BOOKS.indexOf(name));
+      if (!canonical.some((value, index) => index > 0 && value < canonical[index - 1])) failures++;
+    }
+    results.push({
+      name: '13. Expert/Master levels preserve content integrity and mixed Testament selection',
+      scope: 'Levels 31-50 across all 19 games',
+      passed: failures === 0,
+      details: `Expert/Master levels checked across all games, with scripture references, explanations, answer integrity, both Testaments and non-canonical book ordering. Failures: ${failures}.`,
+    });
+  }
   // ===================================================================
   // SUMMARY REPORT
   // ===================================================================

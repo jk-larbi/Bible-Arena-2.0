@@ -1,0 +1,35 @@
+name: Bible Arena verification
+
+on:
+  push:
+    branches:
+      - fix/gameplay-and-level-system-integrated
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+      - name: TypeScript checks
+        run: bun run lint
+      - name: Production build
+        run: bun run build
+      - name: Validate game content
+        run: bun run validate:content
+      - name: Test quiz scoring and progression
+        run: bun run test:quiz
+      - name: Test multiplayer rules and game bank
+        run: bun run test:multiplayer

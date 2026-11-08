@@ -1,0 +1,49 @@
+name: Seed Bible Arena question bank
+
+on:
+  push:
+    branches:
+      - fix/gameplay-and-level-system-integrated
+    paths:
+      - 'scripts/seedGameContent.ts'
+      - '.github/workflows/seed-game-content.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bible-arena-question-bank-seed
+  cancel-in-progress: false
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Validate all 19 games and 50 levels locally
+        run: bun run seed:game-content:check
+
+      - name: Check required secret is configured
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "::error::Repository secret SUPABASE_SERVICE_ROLE_KEY is missing. Add it in GitHub Settings > Secrets and variables > Actions, then rerun this workflow."
+            exit 1
+          fi
+
+      - name: Upload and verify all questions and levels
+        env:
+          SUPABASE_URL: https://cbbtqsjcsttguukfgnvw.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: bun run seed:game-content
