@@ -196,7 +196,7 @@ function buildLocalLevelMap(game: string, totalLevels = DEFAULT_TOTAL_LEVELS): L
       name: getStageTitleForLevel(lvl),
       difficulty: getDifficultyForLevel(lvl),
       challenge_count: CHALLENGES_PER_LEVEL,
-      is_published: game !== 'bible-riddles' || lvl <= 25,
+      is_published: game !== 'bible-riddles' || lvl <= 30,
       unlocked,
       completed: Boolean(p?.completed),
       best_stars: p?.best_stars ?? 0,
@@ -248,8 +248,8 @@ export async function startLevel(
   level: number,
   restart = false
 ): Promise<{ attemptId: string; startIndex: number }> {
-  if (game === 'bible-riddles' && level > 25) {
-    throw new Error(`Bible Riddles Level ${level} is coming soon. Please try Levels 1–25 for now.`);
+  if (game === 'bible-riddles' && level > 30) {
+    throw new Error(`Bible Riddles Level ${level} is coming soon. Please try Levels 1–30 for now.`);
   }
   const allProgress = loadAllLocalProgress();
   const gameProg = allProgress[game] || {};
