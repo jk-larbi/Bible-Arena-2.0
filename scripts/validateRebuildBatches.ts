@@ -15,6 +15,7 @@ const errors: string[] = [];
 const ids = new Set<string>();
 const questions = new Set<string>();
 const facts = new Set<string>();
+const referenceAnswerFacts = new Set<string>();
 const byGameLevel = new Map<string, number>();
 const challengeIndexes = new Map<string, Set<number>>();
 
@@ -38,6 +39,9 @@ for (const item of ALL_BATCHES) {
   facts.add(factKey);
 
   if (!item.reference.trim()) errors.push(`Missing Bible reference: ${item.id}`);
+  const referenceAnswerFact = `${normalize(item.reference)}|${normalize(item.correct_answer)}`;
+  if (referenceAnswerFacts.has(referenceAnswerFact)) errors.push(`Repeated reference-and-answer fact: ${item.id} (${referenceAnswerFact})`);
+  referenceAnswerFacts.add(referenceAnswerFact);
   if (!item.explanation.trim()) errors.push(`Missing explanation: ${item.id}`);
   if (!item.correct_answer.trim()) errors.push(`Missing answer: ${item.id}`);
   if (item.options.length !== 4 || new Set(item.options.map(normalize)).size !== 4) {
