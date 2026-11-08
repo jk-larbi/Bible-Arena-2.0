@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Award, BookOpen, CheckCircle2, Clock3, Flame, LockKeyhole, Sparkles, Target, Trophy, Zap } from 'lucide-react';
+import { BookOpen, CalendarCheck, CheckCircle2, Clock3, Flame, LockKeyhole, Sparkles, Target, Trophy, Zap } from 'lucide-react';
 import { isSupabaseConfigured, supabase } from '../lib/supabase';
 
 type Attempt = { game_slug: string; level: number; percent: number | null; completed_at: string };
@@ -14,6 +14,15 @@ type Mission = {
 };
 
 const MISSIONS: Mission[] = [
+  {
+    id: 'daily-check-in',
+    title: 'Daily Check-in',
+    description: 'Claim your daily welcome reward and keep your Arena journey moving.',
+    reward: 25,
+    target: 1,
+    icon: <CalendarCheck className="h-5 w-5" />,
+    progress: () => 1,
+  },
   {
     id: 'finish-one-level',
     title: 'First Victory',
