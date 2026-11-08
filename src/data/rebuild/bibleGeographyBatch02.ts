@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: 100 distinct questions; not wired to live gameplay. */
+/** Staged batch 02: corrected for cross-game fact duplication. */
 export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-geography-quest-rebuild-b02-001",
@@ -10,9 +10,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jacob set up a pillar after his dream of the ladder?",
     "options": [
       "Bethel",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "Peniel",
+      "Dothan",
+      "Egypt"
     ],
     "correct_answer": "Bethel",
     "reference": "Genesis 28:18-19",
@@ -30,9 +30,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jacob wrestle with the mysterious man and receive the name Israel?",
     "options": [
       "Peniel",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "Mount Sinai",
+      "Rephidim",
+      "The road"
     ],
     "correct_answer": "Peniel",
     "reference": "Genesis 32:30",
@@ -50,9 +50,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Joseph's brothers sell him to passing merchants?",
     "options": [
       "Dothan",
-      "The Valley of Elah",
-      "Mount Sinai",
-      "From heaven"
+      "Kadesh",
+      "Mount Nebo",
+      "Gilgal"
     ],
     "correct_answer": "Dothan",
     "reference": "Genesis 37:17-28",
@@ -70,9 +70,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Joseph serve in Pharaoh's administration?",
     "options": [
       "Egypt",
-      "The region of the Gerasenes",
-      "Rephidim",
-      "The road"
+      "Gibeon",
+      "Ai",
+      "Shechem"
     ],
     "correct_answer": "Egypt",
     "reference": "Genesis 41:41-46",
@@ -90,9 +90,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Moses born and hidden as an infant?",
     "options": [
       "Egypt",
+      "Between Ramah and Bethel",
       "Harod",
-      "Ramah",
-      "Horeb"
+      "Hebron"
     ],
     "correct_answer": "Egypt",
     "reference": "Exodus 2:1-3",
@@ -110,9 +110,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which mountain did Moses receive the covenant law?",
     "options": [
       "Mount Sinai",
-      "The wilderness",
-      "Sea of Galilee",
-      "Jericho"
+      "Bethlehem",
+      "Ramah",
+      "Ebenezer"
     ],
     "correct_answer": "Mount Sinai",
     "reference": "Exodus 19:1-20",
@@ -131,8 +131,8 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "options": [
       "Rephidim",
       "Gath",
-      "Susa",
-      "Rome"
+      "The Valley of Elah",
+      "Ziklag"
     ],
     "correct_answer": "Rephidim",
     "reference": "Exodus 17:1-7",
@@ -150,9 +150,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which place did the Israelites make the golden calf?",
     "options": [
       "Mount Sinai",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "The Philistines",
+      "Fifty shekels of silver for the threshing floor and oxen",
+      "Mount Moriah in Jerusalem"
     ],
     "correct_answer": "Mount Sinai",
     "reference": "Exodus 32:1-6",
@@ -170,9 +170,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Balaam's donkey turn aside and lie down?",
     "options": [
       "The road",
-      "Mount Nebo",
-      "The Jordan",
-      "Gethsemane"
+      "Samaria",
+      "The wilderness near Beersheba",
+      "Horeb"
     ],
     "correct_answer": "The road",
     "reference": "Numbers 22:21-27",
@@ -187,16 +187,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 22,
     "challenge_index": 5,
-    "question_text": "At which mountain did Aaron die?",
+    "question_text": "From which place did Israel set out before arriving at Mount Hor?",
     "options": [
-      "Mount Hor",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "Kadesh",
+      "Jezreel",
+      "The Jordan",
+      "The Jordan River"
     ],
-    "correct_answer": "Mount Hor",
-    "reference": "Numbers 20:22-29",
-    "explanation": "The passage Numbers 20:22-29 records this biblical detail.",
+    "correct_answer": "Kadesh",
+    "reference": "Numbers 20:22",
+    "explanation": "The passage Numbers 20:22 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-10"
@@ -210,9 +210,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "From which place did Moses view the promised land before his death?",
     "options": [
       "Mount Nebo",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "Nineveh",
+      "East of Nineveh",
+      "Babylon"
     ],
     "correct_answer": "Mount Nebo",
     "reference": "Deuteronomy 34:1-4",
@@ -230,9 +230,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Joshua set up twelve stones after crossing the Jordan?",
     "options": [
       "Gilgal",
-      "Bethel",
-      "Peniel",
-      "Dothan"
+      "The plain of Dura",
+      "Susa",
+      "Chebar canal"
     ],
     "correct_answer": "Gilgal",
     "reference": "Joshua 4:19-24",
@@ -247,16 +247,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 23,
     "challenge_index": 3,
-    "question_text": "Which city was the first major conquest after crossing the Jordan?",
+    "question_text": "From which city did the Gibeonites come when they deceived Joshua?",
     "options": [
-      "Jericho",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "Gibeon",
+      "Jerusalem",
+      "Tekoa",
+      "Moresheth"
     ],
-    "correct_answer": "Jericho",
-    "reference": "Joshua 6:1-20",
-    "explanation": "The passage Joshua 6:1-20 records this biblical detail.",
+    "correct_answer": "Gibeon",
+    "reference": "Joshua 9:3-15",
+    "explanation": "The passage Joshua 9:3-15 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-13"
@@ -270,9 +270,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which city did Achan's sin lead to Israel's defeat?",
     "options": [
       "Ai",
-      "Between Ramah and Bethel",
-      "Egypt",
-      "Harod"
+      "Nazareth",
+      "Jordan River",
+      "The wilderness"
     ],
     "correct_answer": "Ai",
     "reference": "Joshua 7:2-26",
@@ -290,9 +290,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Joshua renew the covenant with Israel?",
     "options": [
       "Shechem",
-      "Ai",
-      "The wilderness",
-      "Sea of Galilee"
+      "Sea of Galilee",
+      "A mountain in Galilee",
+      "Capernaum"
     ],
     "correct_answer": "Shechem",
     "reference": "Joshua 24:1-28",
@@ -310,9 +310,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city did the Gibeonites come from?",
     "options": [
       "Gibeon",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "Bethany",
+      "Jacob's well at Sychar",
+      "The region of the Gerasenes"
     ],
     "correct_answer": "Gibeon",
     "reference": "Joshua 9:3-15",
@@ -330,9 +330,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Deborah judge Israel under a palm tree?",
     "options": [
       "Between Ramah and Bethel",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "A remote place near Bethsaida",
+      "Emmaus",
+      "Gethsemane"
     ],
     "correct_answer": "Between Ramah and Bethel",
     "reference": "Judges 4:4-5",
@@ -350,9 +350,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which spring did Gideon test his men before fighting Midian?",
     "options": [
       "Harod",
-      "The wilderness near Beersheba",
-      "A remote place near Bethsaida",
-      "Mount Nebo"
+      "The garden near the tomb",
+      "Outside Jerusalem",
+      "The road from Jerusalem to Gaza"
     ],
     "correct_answer": "Harod",
     "reference": "Judges 7:1",
@@ -370,9 +370,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Samson carry the gates after escaping the Philistines?",
     "options": [
       "Hebron",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "Damascus",
+      "Simon the tanner",
+      "Caesarea"
     ],
     "correct_answer": "Hebron",
     "reference": "Judges 16:1-3",
@@ -390,9 +390,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Ruth glean in the field of Boaz?",
     "options": [
       "Bethlehem",
-      "The Jordan River",
+      "Antioch",
       "Antioch in Syria",
-      "Mount Hor"
+      "Paphos"
     ],
     "correct_answer": "Bethlehem",
     "reference": "Ruth 2:1-3",
@@ -410,9 +410,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which town was Samuel born?",
     "options": [
       "Ramah",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Iconium",
+      "Lystra",
+      "Philippi"
     ],
     "correct_answer": "Ramah",
     "reference": "1 Samuel 1:19-20",
@@ -430,9 +430,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did the Philistines capture the ark after defeating Israel?",
     "options": [
       "Ebenezer",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "Thessalonica",
+      "The marketplace",
+      "Corinth"
     ],
     "correct_answer": "Ebenezer",
     "reference": "1 Samuel 4:1-11",
@@ -450,9 +450,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Goliath from?",
     "options": [
       "Gath",
-      "Mount Gilboa",
-      "Mount Carmel",
-      "Chebar canal"
+      "Ephesus",
+      "Miletus",
+      "Malta"
     ],
     "correct_answer": "Gath",
     "reference": "1 Samuel 17:4",
@@ -470,9 +470,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which valley did David confront Goliath?",
     "options": [
       "The Valley of Elah",
-      "A mountain in Galilee",
-      "Ai",
-      "The wilderness"
+      "Rome",
+      "The word of God and the testimony of Jesus",
+      "Eye salve"
     ],
     "correct_answer": "The Valley of Elah",
     "reference": "1 Samuel 17:2-3",
@@ -490,9 +490,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did David take refuge from Saul among the Philistines?",
     "options": [
       "Ziklag",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "Pergamum",
+      "Smyrna",
+      "Thyatira"
     ],
     "correct_answer": "Ziklag",
     "reference": "1 Samuel 27:5-6",
@@ -507,16 +507,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 26,
     "challenge_index": 1,
-    "question_text": "At which mountain did Saul die in battle?",
+    "question_text": "Which enemy nation fought Israel at Mount Gilboa when Saul died?",
     "options": [
-      "Mount Gilboa",
-      "Rephidim",
-      "The road",
-      "Ebenezer"
+      "The Philistines",
+      "Sardis",
+      "The key of David",
+      "From heaven"
     ],
-    "correct_answer": "Mount Gilboa",
-    "reference": "1 Samuel 31:1-6",
-    "explanation": "The passage 1 Samuel 31:1-6 records this biblical detail.",
+    "correct_answer": "The Philistines",
+    "reference": "1 Samuel 31:1",
+    "explanation": "The passage 1 Samuel 31:1 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-26"
@@ -530,9 +530,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was David first anointed king over Judah?",
     "options": [
       "Hebron",
-      "The plain of Dura",
-      "Outside Jerusalem",
-      "The wilderness near Beersheba"
+      "Ophrah",
+      "Bethel",
+      "Peniel"
     ],
     "correct_answer": "Hebron",
     "reference": "2 Samuel 2:1-4",
@@ -547,16 +547,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 26,
     "challenge_index": 3,
-    "question_text": "Which city did David capture and make his capital?",
+    "question_text": "At which city were David's men anointed king over all Israel?",
     "options": [
-      "Jerusalem",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "Hebron",
+      "Dothan",
+      "Egypt",
+      "Mount Sinai"
     ],
-    "correct_answer": "Jerusalem",
-    "reference": "2 Samuel 5:6-9",
-    "explanation": "The passage 2 Samuel 5:6-9 records this biblical detail.",
+    "correct_answer": "Hebron",
+    "reference": "2 Samuel 5:1-3",
+    "explanation": "The passage 2 Samuel 5:1-3 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-28"
@@ -570,9 +570,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Absalom set up his rebellion against David?",
     "options": [
       "Hebron",
-      "Gath",
-      "Susa",
-      "Rome"
+      "Rephidim",
+      "The road",
+      "Kadesh"
     ],
     "correct_answer": "Hebron",
     "reference": "2 Samuel 15:7-10",
@@ -587,16 +587,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 26,
     "challenge_index": 5,
-    "question_text": "At which threshing floor did David build an altar after the plague?",
+    "question_text": "What price did David pay for Araunah's threshing floor and oxen?",
     "options": [
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel",
-      "Peniel"
+      "Fifty shekels of silver for the threshing floor and oxen",
+      "Mount Nebo",
+      "Gilgal",
+      "Gibeon"
     ],
-    "correct_answer": "Araunah's threshing floor",
-    "reference": "2 Samuel 24:18-25",
-    "explanation": "The passage 2 Samuel 24:18-25 records this biblical detail.",
+    "correct_answer": "Fifty shekels of silver for the threshing floor and oxen",
+    "reference": "2 Samuel 24:24",
+    "explanation": "The passage 2 Samuel 24:24 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-30"
@@ -610,9 +610,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Solomon build the temple?",
     "options": [
       "Mount Moriah in Jerusalem",
-      "Jacob's well at Sychar",
-      "East of Nineveh",
-      "The region of the Gerasenes"
+      "Ai",
+      "Shechem",
+      "Between Ramah and Bethel"
     ],
     "correct_answer": "Mount Moriah in Jerusalem",
     "reference": "2 Chronicles 3:1",
@@ -627,16 +627,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 27,
     "challenge_index": 2,
-    "question_text": "Where did Elijah confront the prophets of Baal?",
+    "question_text": "In which city was Elijah when Obadiah met him and told Ahab he had returned?",
     "options": [
-      "Mount Carmel",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Chebar canal"
+      "Samaria",
+      "Harod",
+      "Hebron",
+      "Bethlehem"
     ],
-    "correct_answer": "Mount Carmel",
-    "reference": "1 Kings 18:19-40",
-    "explanation": "The passage 1 Kings 18:19-40 records this biblical detail.",
+    "correct_answer": "Samaria",
+    "reference": "1 Kings 18:2",
+    "explanation": "The passage 1 Kings 18:2 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-32"
@@ -650,9 +650,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Elijah flee and receive food from an angel?",
     "options": [
       "The wilderness near Beersheba",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "Ramah",
+      "Ebenezer",
+      "Gath"
     ],
     "correct_answer": "The wilderness near Beersheba",
     "reference": "1 Kings 19:3-8",
@@ -671,8 +671,8 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "options": [
       "Horeb",
       "The Valley of Elah",
-      "Mount Sinai",
-      "From heaven"
+      "Ziklag",
+      "The Philistines"
     ],
     "correct_answer": "Horeb",
     "reference": "1 Kings 19:8-13",
@@ -690,9 +690,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Naboth own the vineyard coveted by Ahab?",
     "options": [
       "Jezreel",
-      "The region of the Gerasenes",
-      "Rephidim",
-      "The road"
+      "Fifty shekels of silver for the threshing floor and oxen",
+      "Mount Moriah in Jerusalem",
+      "Samaria"
     ],
     "correct_answer": "Jezreel",
     "reference": "1 Kings 21:1",
@@ -710,9 +710,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Elisha make the iron axe head float?",
     "options": [
       "The Jordan",
-      "Egypt",
-      "Harod",
-      "Ramah"
+      "The wilderness near Beersheba",
+      "Horeb",
+      "Jezreel"
     ],
     "correct_answer": "The Jordan",
     "reference": "2 Kings 6:1-7",
@@ -730,9 +730,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Naaman wash to be cleansed?",
     "options": [
       "The Jordan River",
-      "The wilderness",
-      "Sea of Galilee",
-      "Jericho"
+      "The Jordan",
+      "Nineveh",
+      "East of Nineveh"
     ],
     "correct_answer": "The Jordan River",
     "reference": "2 Kings 5:10-14",
@@ -750,9 +750,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city did Jonah preach to after leaving the fish?",
     "options": [
       "Nineveh",
-      "Gath",
-      "Susa",
-      "Rome"
+      "Babylon",
+      "The plain of Dura",
+      "Susa"
     ],
     "correct_answer": "Nineveh",
     "reference": "Jonah 3:1-5",
@@ -770,9 +770,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jonah sit east of Nineveh to watch the city?",
     "options": [
       "East of Nineveh",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Chebar canal",
+      "Jerusalem",
+      "Tekoa"
     ],
     "correct_answer": "East of Nineveh",
     "reference": "Jonah 4:5",
@@ -790,9 +790,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Daniel taken as an exile?",
     "options": [
       "Babylon",
-      "Mount Nebo",
-      "The Jordan",
-      "Gethsemane"
+      "Moresheth",
+      "Nazareth",
+      "Jordan River"
     ],
     "correct_answer": "Babylon",
     "reference": "Daniel 1:1-6",
@@ -810,9 +810,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which plain was Nebuchadnezzar's golden image erected?",
     "options": [
       "The plain of Dura",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "The wilderness",
+      "Sea of Galilee",
+      "A mountain in Galilee"
     ],
     "correct_answer": "The plain of Dura",
     "reference": "Daniel 3:1",
@@ -830,9 +830,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Daniel when he received the vision by the river Ulai?",
     "options": [
       "Susa",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "Capernaum",
+      "Bethany",
+      "Jacob's well at Sychar"
     ],
     "correct_answer": "Susa",
     "reference": "Daniel 8:2",
@@ -850,9 +850,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "By which river did Ezekiel receive visions among the exiles?",
     "options": [
       "Chebar canal",
-      "Bethel",
-      "Peniel",
-      "Dothan"
+      "The region of the Gerasenes",
+      "A remote place near Bethsaida",
+      "Emmaus"
     ],
     "correct_answer": "Chebar canal",
     "reference": "Ezekiel 1:1-3",
@@ -870,9 +870,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Esther become queen of Persia?",
     "options": [
       "Susa",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "Gethsemane",
+      "The garden near the tomb",
+      "Outside Jerusalem"
     ],
     "correct_answer": "Susa",
     "reference": "Esther 2:5-17",
@@ -890,9 +890,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Nehemiah serve the Persian king?",
     "options": [
       "Susa",
-      "Between Ramah and Bethel",
-      "Egypt",
-      "Harod"
+      "The road from Jerusalem to Gaza",
+      "Damascus",
+      "Simon the tanner"
     ],
     "correct_answer": "Susa",
     "reference": "Nehemiah 1:1",
@@ -910,9 +910,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city did Nehemiah travel to rebuild its walls?",
     "options": [
       "Jerusalem",
-      "Ai",
-      "The wilderness",
-      "Sea of Galilee"
+      "Caesarea",
+      "Antioch",
+      "Antioch in Syria"
     ],
     "correct_answer": "Jerusalem",
     "reference": "Nehemiah 2:11-18",
@@ -930,9 +930,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Ezra teach the law after the return from exile?",
     "options": [
       "Jerusalem",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "Paphos",
+      "Iconium",
+      "Lystra"
     ],
     "correct_answer": "Jerusalem",
     "reference": "Nehemiah 8:1-8",
@@ -950,9 +950,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which region was the home of the prophet Amos?",
     "options": [
       "Tekoa",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Philippi",
+      "Thessalonica",
+      "The marketplace"
     ],
     "correct_answer": "Tekoa",
     "reference": "Amos 1:1",
@@ -970,9 +970,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "From which town did Micah come?",
     "options": [
       "Moresheth",
-      "The wilderness near Beersheba",
-      "A remote place near Bethsaida",
-      "Mount Nebo"
+      "Corinth",
+      "Ephesus",
+      "Miletus"
     ],
     "correct_answer": "Moresheth",
     "reference": "Micah 1:1",
@@ -987,16 +987,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 30,
     "challenge_index": 5,
-    "question_text": "Where did Jesus grow up after returning from Egypt?",
+    "question_text": "In which town did Gabriel visit Mary to announce Jesus' birth?",
     "options": [
       "Nazareth",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "Malta",
+      "Rome",
+      "The word of God and the testimony of Jesus"
     ],
     "correct_answer": "Nazareth",
-    "reference": "Matthew 2:19-23",
-    "explanation": "The passage Matthew 2:19-23 records this biblical detail.",
+    "reference": "Luke 1:26-27",
+    "explanation": "The passage Luke 1:26-27 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-quest-b02-fact-50"
@@ -1010,9 +1010,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Jesus born?",
     "options": [
       "Bethlehem",
-      "The Jordan River",
-      "Antioch in Syria",
-      "Mount Hor"
+      "Eye salve",
+      "Pergamum",
+      "Smyrna"
     ],
     "correct_answer": "Bethlehem",
     "reference": "Matthew 2:1",
@@ -1030,9 +1030,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which river was Jesus baptised?",
     "options": [
       "Jordan River",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Thyatira",
+      "Sardis",
+      "The key of David"
     ],
     "correct_answer": "Jordan River",
     "reference": "Matthew 3:13-17",
@@ -1050,9 +1050,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jesus fast for forty days?",
     "options": [
       "The wilderness",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "From heaven",
+      "Ophrah",
+      "Bethel"
     ],
     "correct_answer": "The wilderness",
     "reference": "Matthew 4:1-2",
@@ -1070,9 +1070,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which lake did Jesus call fishermen as disciples?",
     "options": [
       "Sea of Galilee",
-      "Mount Gilboa",
-      "Mount Carmel",
-      "Chebar canal"
+      "Peniel",
+      "Dothan",
+      "Egypt"
     ],
     "correct_answer": "Sea of Galilee",
     "reference": "Matthew 4:18-22",
@@ -1090,9 +1090,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jesus deliver the Sermon on the Mount?",
     "options": [
       "A mountain in Galilee",
-      "Ai",
-      "The wilderness",
-      "Sea of Galilee"
+      "Mount Sinai",
+      "Rephidim",
+      "The road"
     ],
     "correct_answer": "A mountain in Galilee",
     "reference": "Matthew 5:1",
@@ -1110,9 +1110,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which town did Jesus raise Jairus's daughter?",
     "options": [
       "Capernaum",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "Kadesh",
+      "Mount Nebo",
+      "Gilgal"
     ],
     "correct_answer": "Capernaum",
     "reference": "Mark 5:21-43",
@@ -1130,9 +1130,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jesus raise Lazarus?",
     "options": [
       "Bethany",
-      "Rephidim",
-      "The road",
-      "Ebenezer"
+      "Gibeon",
+      "Ai",
+      "Shechem"
     ],
     "correct_answer": "Bethany",
     "reference": "John 11:1-44",
@@ -1150,9 +1150,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which well did Jesus speak with the Samaritan woman?",
     "options": [
       "Jacob's well at Sychar",
-      "The plain of Dura",
-      "Outside Jerusalem",
-      "The wilderness near Beersheba"
+      "Between Ramah and Bethel",
+      "Harod",
+      "Hebron"
     ],
     "correct_answer": "Jacob's well at Sychar",
     "reference": "John 4:5-7",
@@ -1170,9 +1170,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which region did Jesus visit where the man among the tombs lived?",
     "options": [
       "The region of the Gerasenes",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "Bethlehem",
+      "Ramah",
+      "Ebenezer"
     ],
     "correct_answer": "The region of the Gerasenes",
     "reference": "Mark 5:1-2",
@@ -1191,8 +1191,8 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "options": [
       "A remote place near Bethsaida",
       "Gath",
-      "Susa",
-      "Rome"
+      "The Valley of Elah",
+      "Ziklag"
     ],
     "correct_answer": "A remote place near Bethsaida",
     "reference": "Luke 9:10-17",
@@ -1210,9 +1210,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which village did two disciples meet the risen Jesus on the road?",
     "options": [
       "Emmaus",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "The Philistines",
+      "Fifty shekels of silver for the threshing floor and oxen",
+      "Mount Moriah in Jerusalem"
     ],
     "correct_answer": "Emmaus",
     "reference": "Luke 24:13-35",
@@ -1230,9 +1230,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Jesus pray before his arrest?",
     "options": [
       "Gethsemane",
-      "Jacob's well at Sychar",
-      "East of Nineveh",
-      "The region of the Gerasenes"
+      "Samaria",
+      "The wilderness near Beersheba",
+      "Horeb"
     ],
     "correct_answer": "Gethsemane",
     "reference": "Matthew 26:36",
@@ -1247,16 +1247,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 33,
     "challenge_index": 3,
-    "question_text": "Where was Jesus crucified?",
+    "question_text": "In what setting did Mary Magdalene first mistake the risen Jesus for the gardener?",
     "options": [
-      "Golgotha",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "The garden near the tomb",
+      "Jezreel",
+      "The Jordan",
+      "The Jordan River"
     ],
-    "correct_answer": "Golgotha",
-    "reference": "John 19:17-18",
-    "explanation": "The passage John 19:17-18 records this biblical detail.",
+    "correct_answer": "The garden near the tomb",
+    "reference": "John 20:14-16",
+    "explanation": "The passage John 20:14-16 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-63"
@@ -1270,9 +1270,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did the disciples receive the Holy Spirit at Pentecost?",
     "options": [
       "Jerusalem",
-      "Mount Hor",
-      "Bethlehem",
-      "Moresheth"
+      "Nineveh",
+      "East of Nineveh",
+      "Babylon"
     ],
     "correct_answer": "Jerusalem",
     "reference": "Acts 2:1-4",
@@ -1290,9 +1290,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Stephen stoned?",
     "options": [
       "Outside Jerusalem",
-      "The Valley of Elah",
-      "Mount Sinai",
-      "From heaven"
+      "The plain of Dura",
+      "Susa",
+      "Chebar canal"
     ],
     "correct_answer": "Outside Jerusalem",
     "reference": "Acts 7:58-60",
@@ -1310,9 +1310,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Philip meet the Ethiopian official?",
     "options": [
       "The road from Jerusalem to Gaza",
-      "The region of the Gerasenes",
-      "Rephidim",
-      "The road"
+      "Jerusalem",
+      "Tekoa",
+      "Moresheth"
     ],
     "correct_answer": "The road from Jerusalem to Gaza",
     "reference": "Acts 8:26-29",
@@ -1330,9 +1330,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which city did Saul receive his sight after meeting Jesus?",
     "options": [
       "Damascus",
-      "Egypt",
-      "Harod",
-      "Ramah"
+      "Nazareth",
+      "Jordan River",
+      "The wilderness"
     ],
     "correct_answer": "Damascus",
     "reference": "Acts 9:10-18",
@@ -1347,16 +1347,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 34,
     "challenge_index": 3,
-    "question_text": "Where was Tabitha raised from the dead through Peter?",
+    "question_text": "At whose house did Peter stay in Joppa after raising Tabitha?",
     "options": [
-      "Joppa",
-      "The wilderness",
+      "Simon the tanner",
       "Sea of Galilee",
-      "Jericho"
+      "A mountain in Galilee",
+      "Capernaum"
     ],
-    "correct_answer": "Joppa",
-    "reference": "Acts 9:36-42",
-    "explanation": "The passage Acts 9:36-42 records this biblical detail.",
+    "correct_answer": "Simon the tanner",
+    "reference": "Acts 9:43",
+    "explanation": "The passage Acts 9:43 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-68"
@@ -1370,9 +1370,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which city did Peter visit Cornelius?",
     "options": [
       "Caesarea",
-      "Gath",
-      "Susa",
-      "Rome"
+      "Bethany",
+      "Jacob's well at Sychar",
+      "The region of the Gerasenes"
     ],
     "correct_answer": "Caesarea",
     "reference": "Acts 10:1-24",
@@ -1390,9 +1390,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where were believers first called Christians?",
     "options": [
       "Antioch",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "A remote place near Bethsaida",
+      "Emmaus",
+      "Gethsemane"
     ],
     "correct_answer": "Antioch",
     "reference": "Acts 11:26",
@@ -1410,9 +1410,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul and Barnabas begin their first missionary journey?",
     "options": [
       "Antioch in Syria",
-      "Mount Nebo",
-      "The Jordan",
-      "Gethsemane"
+      "The garden near the tomb",
+      "Outside Jerusalem",
+      "The road from Jerusalem to Gaza"
     ],
     "correct_answer": "Antioch in Syria",
     "reference": "Acts 13:1-4",
@@ -1430,9 +1430,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which city was Elymas the sorcerer confronted by Paul?",
     "options": [
       "Paphos",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "Damascus",
+      "Simon the tanner",
+      "Caesarea"
     ],
     "correct_answer": "Paphos",
     "reference": "Acts 13:6-12",
@@ -1450,9 +1450,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul preach in the synagogue and many believed after hearing him?",
     "options": [
       "Iconium",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "Antioch",
+      "Antioch in Syria",
+      "Paphos"
     ],
     "correct_answer": "Iconium",
     "reference": "Acts 14:1",
@@ -1470,9 +1470,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which city was Paul stoned and left for dead?",
     "options": [
       "Lystra",
-      "Bethel",
-      "Peniel",
-      "Dothan"
+      "Iconium",
+      "Philippi",
+      "Thessalonica"
     ],
     "correct_answer": "Lystra",
     "reference": "Acts 14:19",
@@ -1490,9 +1490,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did the Jerusalem council meet?",
     "options": [
       "Jerusalem",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "The marketplace",
+      "Corinth",
+      "Ephesus"
     ],
     "correct_answer": "Jerusalem",
     "reference": "Acts 15:1-6",
@@ -1510,9 +1510,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which city did Paul meet Lydia?",
     "options": [
       "Philippi",
-      "Between Ramah and Bethel",
-      "Egypt",
-      "Harod"
+      "Miletus",
+      "Malta",
+      "Rome"
     ],
     "correct_answer": "Philippi",
     "reference": "Acts 16:11-15",
@@ -1530,9 +1530,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where were Paul and Silas imprisoned after the slave girl was delivered?",
     "options": [
       "Philippi",
-      "Ai",
-      "The wilderness",
-      "Sea of Galilee"
+      "The word of God and the testimony of Jesus",
+      "Eye salve",
+      "Pergamum"
     ],
     "correct_answer": "Philippi",
     "reference": "Acts 16:19-24",
@@ -1550,9 +1550,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul reason in the synagogue for three Sabbaths?",
     "options": [
       "Thessalonica",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "Smyrna",
+      "Thyatira",
+      "Sardis"
     ],
     "correct_answer": "Thessalonica",
     "reference": "Acts 17:1-4",
@@ -1567,16 +1567,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 36,
     "challenge_index": 4,
-    "question_text": "Where did Paul speak at the Areopagus?",
+    "question_text": "Where did Paul reason daily with those who happened to be there in Athens?",
     "options": [
-      "Athens",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "The marketplace",
+      "The key of David",
+      "From heaven",
+      "Ophrah"
     ],
-    "correct_answer": "Athens",
-    "reference": "Acts 17:16-22",
-    "explanation": "The passage Acts 17:16-22 records this biblical detail.",
+    "correct_answer": "The marketplace",
+    "reference": "Acts 17:17",
+    "explanation": "The passage Acts 17:17 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-79"
@@ -1590,9 +1590,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul stay with Aquila and Priscilla for a year and six months?",
     "options": [
       "Corinth",
-      "The wilderness near Beersheba",
-      "A remote place near Bethsaida",
-      "Mount Nebo"
+      "Bethel",
+      "Peniel",
+      "Dothan"
     ],
     "correct_answer": "Corinth",
     "reference": "Acts 18:1-11",
@@ -1610,9 +1610,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "In which city did the riot over Artemis occur?",
     "options": [
       "Ephesus",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "Egypt",
+      "Mount Sinai",
+      "Rephidim"
     ],
     "correct_answer": "Ephesus",
     "reference": "Acts 19:23-29",
@@ -1630,9 +1630,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul meet the elders from Ephesus?",
     "options": [
       "Miletus",
-      "The Jordan River",
-      "Antioch in Syria",
-      "Mount Hor"
+      "The road",
+      "Kadesh",
+      "Mount Nebo"
     ],
     "correct_answer": "Miletus",
     "reference": "Acts 20:15-17",
@@ -1650,9 +1650,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "At which city did Agabus take Paul's belt and bind himself?",
     "options": [
       "Caesarea",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Gilgal",
+      "Gibeon",
+      "Ai"
     ],
     "correct_answer": "Caesarea",
     "reference": "Acts 21:8-11",
@@ -1670,9 +1670,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where was Paul sent under guard after his arrest in Jerusalem?",
     "options": [
       "Caesarea",
-      "East of Nineveh",
-      "The region of the Gerasenes",
-      "Rephidim"
+      "Shechem",
+      "Between Ramah and Bethel",
+      "Harod"
     ],
     "correct_answer": "Caesarea",
     "reference": "Acts 23:23-35",
@@ -1690,9 +1690,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "On which island was Paul shipwrecked?",
     "options": [
       "Malta",
-      "Mount Gilboa",
-      "Mount Carmel",
-      "Chebar canal"
+      "Hebron",
+      "Bethlehem",
+      "Ramah"
     ],
     "correct_answer": "Malta",
     "reference": "Acts 28:1",
@@ -1710,9 +1710,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Paul live under guard while awaiting trial?",
     "options": [
       "Rome",
-      "A mountain in Galilee",
-      "Ai",
-      "The wilderness"
+      "Ebenezer",
+      "Gath",
+      "The Valley of Elah"
     ],
     "correct_answer": "Rome",
     "reference": "Acts 28:16-31",
@@ -1727,16 +1727,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 38,
     "challenge_index": 2,
-    "question_text": "Which island did John receive the Revelation?",
+    "question_text": "For what two reasons did John say he was on Patmos?",
     "options": [
-      "Patmos",
-      "Mount Sinai",
-      "From heaven",
-      "Gath"
+      "The word of God and the testimony of Jesus",
+      "Ziklag",
+      "The Philistines",
+      "Fifty shekels of silver for the threshing floor and oxen"
     ],
-    "correct_answer": "Patmos",
+    "correct_answer": "The word of God and the testimony of Jesus",
     "reference": "Revelation 1:9",
-    "explanation": "The passage Revelation 1:9 records this biblical detail.",
+    "explanation": "The passage Revelation 1:9 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-87"
@@ -1750,9 +1750,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city was the church addressed as having left its first love?",
     "options": [
       "Ephesus",
-      "Rephidim",
-      "The road",
-      "Ebenezer"
+      "Mount Moriah in Jerusalem",
+      "Samaria",
+      "The wilderness near Beersheba"
     ],
     "correct_answer": "Ephesus",
     "reference": "Revelation 2:1-4",
@@ -1767,16 +1767,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 38,
     "challenge_index": 4,
-    "question_text": "Which city was the church described as lukewarm?",
+    "question_text": "What did the Laodicean church need to buy to anoint its eyes?",
     "options": [
-      "Laodicea",
-      "The plain of Dura",
-      "Outside Jerusalem",
-      "The wilderness near Beersheba"
+      "Eye salve",
+      "Horeb",
+      "Jezreel",
+      "The Jordan"
     ],
-    "correct_answer": "Laodicea",
-    "reference": "Revelation 3:14-16",
-    "explanation": "The passage Revelation 3:14-16 records this biblical detail.",
+    "correct_answer": "Eye salve",
+    "reference": "Revelation 3:18",
+    "explanation": "The passage Revelation 3:18 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-89"
@@ -1790,9 +1790,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city was praised for holding fast Jesus' name where Antipas was killed?",
     "options": [
       "Pergamum",
-      "Jericho",
-      "Shechem",
-      "Jezreel"
+      "The Jordan River",
+      "Nineveh",
+      "East of Nineveh"
     ],
     "correct_answer": "Pergamum",
     "reference": "Revelation 2:12-13",
@@ -1810,9 +1810,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city was commended for its poverty yet spiritual riches?",
     "options": [
       "Smyrna",
-      "Gath",
-      "Susa",
-      "Rome"
+      "Babylon",
+      "The plain of Dura",
+      "Susa"
     ],
     "correct_answer": "Smyrna",
     "reference": "Revelation 2:8-9",
@@ -1830,9 +1830,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city was warned about the teaching of Balaam?",
     "options": [
       "Pergamum",
-      "Araunah's threshing floor",
-      "Mount Moriah in Jerusalem",
-      "Bethel"
+      "Chebar canal",
+      "Jerusalem",
+      "Tekoa"
     ],
     "correct_answer": "Pergamum",
     "reference": "Revelation 2:14",
@@ -1850,9 +1850,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city was rebuked for tolerating Jezebel's teaching?",
     "options": [
       "Thyatira",
-      "Jacob's well at Sychar",
-      "East of Nineveh",
-      "The region of the Gerasenes"
+      "Moresheth",
+      "Nazareth",
+      "Jordan River"
     ],
     "correct_answer": "Thyatira",
     "reference": "Revelation 2:18-20",
@@ -1870,9 +1870,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Which city had a reputation for being alive but was dead?",
     "options": [
       "Sardis",
-      "The road from Jerusalem to Gaza",
-      "Mount Gilboa",
-      "Mount Carmel"
+      "The wilderness",
+      "Sea of Galilee",
+      "A mountain in Galilee"
     ],
     "correct_answer": "Sardis",
     "reference": "Revelation 3:1-2",
@@ -1887,16 +1887,16 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 39,
     "challenge_index": 5,
-    "question_text": "Which city had an open door that no one could shut?",
+    "question_text": "Which key did the speaker say he held in the message to Philadelphia?",
     "options": [
-      "Philadelphia",
-      "Mount Hor",
-      "Bethlehem",
-      "Jerusalem"
+      "The key of David",
+      "Capernaum",
+      "Bethany",
+      "Jacob's well at Sychar"
     ],
-    "correct_answer": "Philadelphia",
-    "reference": "Revelation 3:7-8",
-    "explanation": "The passage Revelation 3:7-8 records this biblical detail.",
+    "correct_answer": "The key of David",
+    "reference": "Revelation 3:7",
+    "explanation": "The passage Revelation 3:7 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-geography-quest-b02-fact-95"
@@ -1910,9 +1910,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where does Revelation picture the New Jerusalem coming down?",
     "options": [
       "From heaven",
-      "The Valley of Elah",
-      "Mount Sinai",
-      "Gath"
+      "The region of the Gerasenes",
+      "A remote place near Bethsaida",
+      "Emmaus"
     ],
     "correct_answer": "From heaven",
     "reference": "Revelation 21:2",
@@ -1930,9 +1930,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Gideon tear down his father's altar to Baal?",
     "options": [
       "Ophrah",
-      "The region of the Gerasenes",
-      "Rephidim",
-      "The road"
+      "Gethsemane",
+      "The garden near the tomb",
+      "Outside Jerusalem"
     ],
     "correct_answer": "Ophrah",
     "reference": "Judges 6:11,25-27",
@@ -1950,9 +1950,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did Abimelech's supporters make him king?",
     "options": [
       "Shechem",
-      "Egypt",
-      "Harod",
-      "Ramah"
+      "Damascus",
+      "Simon the tanner",
+      "Caesarea"
     ],
     "correct_answer": "Shechem",
     "reference": "Judges 9:6",
@@ -1970,9 +1970,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Near which town was Ai located?",
     "options": [
       "Bethel",
-      "The wilderness",
-      "Sea of Galilee",
-      "Jericho"
+      "Antioch",
+      "Antioch in Syria",
+      "Paphos"
     ],
     "correct_answer": "Bethel",
     "reference": "Joshua 7:2",
@@ -1990,9 +1990,9 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "question_text": "Where did David purchase Araunah's threshing floor?",
     "options": [
       "Jerusalem",
-      "Gath",
-      "Susa",
-      "Rome"
+      "Iconium",
+      "Lystra",
+      "Philippi"
     ],
     "correct_answer": "Jerusalem",
     "reference": "2 Samuel 24:18-25",
