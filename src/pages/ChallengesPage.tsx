@@ -47,7 +47,10 @@ export const ChallengesPage: React.FC = () => {
         try {
           // Fetch existing challenges
           if (!user?.id) {
-            if (isMounted) setChallenges([]);
+            if (isMounted) {
+              setChallenges([]);
+              setLoading(false);
+            }
             return;
           }
           const { data: challengeData, error: challengeError } = await supabase
