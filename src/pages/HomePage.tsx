@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { GAMES_LIST, CATEGORIES, GameInfo } from '../data/gamesList';
 import { HeroBanner } from '../components/HeroBanner';
@@ -16,6 +17,7 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab }) => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('Trending');
   const [showAllGames, setShowAllGames] = useState(false);
   const { user } = useSession();
@@ -96,6 +98,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           onAction={() => onNavigateTab('multiplayer')}
         />
       </div>
+
+      {/* Community-created Scripture Challenges */}
+      <section className="overflow-hidden rounded-3xl border border-[#3156C9]/15 bg-white p-5 shadow-sm sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-7">
+        <div className="flex items-start gap-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#3156C9]/10 text-[#3156C9]">
+            <Users className="h-6 w-6" />
+          </div>
+          <div>
+            <span className="text-xs font-extrabold uppercase tracking-wider text-[#B58A2A]">Community Corner</span>
+            <h3 className="mt-1 text-xl font-extrabold text-[#171B24]">Create & Share Scripture Challenges</h3>
+            <p className="mt-1 max-w-xl text-sm text-[#5A6275]">Set your own Bible questions, challenge friends, and play together using a private link or code. You can also publish challenges for everyone.</p>
+          </div>
+        </div>
+        <button type="button" onClick={() => navigate('/community-challenges')} className="mt-4 inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-xl bg-[#3156C9] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#2445A8] sm:mt-0 sm:w-auto">
+          Explore Challenges <ArrowRight className="ml-2 h-4 w-4" />
+        </button>
+      </section>
 
       {/* Category Pills Rail */}
       <div>
