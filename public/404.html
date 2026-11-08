@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BibleArena</title>
+    <script>
+      // GitHub Pages does not natively rewrite React Router deep links.
+      (function () {
+        var base = '/Bible-Arena-2.0';
+        var path = window.location.pathname;
+        var appPath = path.startsWith(base) ? path.slice(base.length) : path;
+        var redirect = appPath + window.location.search + window.location.hash;
+        window.location.replace(window.location.origin + base + '/?p=' + encodeURIComponent(redirect));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
