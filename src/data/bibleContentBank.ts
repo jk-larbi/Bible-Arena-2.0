@@ -355,7 +355,8 @@ function getQuoteOptions(q: (typeof QUOTES_POOL)[number], tier: number, seed: nu
 }
 
 function getCharacterClueReference(char: (typeof BIBLE_CHARACTERS)[number], tier: number): string {
-  if (tier <= 1) return char.clue3Ref;
+  if (tier <= 0) return char.clue3Ref;
+  if (tier === 1) return char.clue2Ref;
   if (tier === 2) return char.clue1Ref;
   if (tier === 3) return `${char.clue1Ref}; ${char.clue2Ref}`;
   return `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
@@ -531,7 +532,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
         const downClue = difficultyTier === 0 ? char.clue2 : getCharacterClue(char, difficultyTier);
-        const downReference = difficultyTier <= 1 ? char.clue2Ref : difficultyTier === 2 ? char.clue1Ref : difficultyTier === 3 ? `${char.clue1Ref}; ${char.clue2Ref}` : `${char.clue1Ref}; ${char.clue2Ref}; ${char.clue3Ref}`;
+        const downReference = getCharacterClueReference(char, difficultyTier);
         items.push({
           id,
           game_slug: gameSlug,
