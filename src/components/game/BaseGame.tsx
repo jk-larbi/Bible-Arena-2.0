@@ -34,6 +34,51 @@ interface BaseGameProps {
 
 const QUESTION_SECONDS = 35;
 const REVEAL_SECONDS = 5;
+function buildWordSearchGrid(words: string[], size: number, seed: number): string[][] {
+  const grid = Array.from({ length: size }, () => Array.from({ length: size }, () => ''));
+  const directions = [
+    [0, 1], [0, -1], [1, 0], [-1, 0],
+    [1, 1], [1, -1], [-1, 1], [-1, -1],
+  ];
+  let state = seed >>> 0;
+  const random = () => {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    return state / 4294967296;
+  };
+
+  [...words]
+    .map((word) => word.replace(/[^A-Z]/gi, '').toUpperCase())
+    .sort((a, b) => b.length - a.length)
+    .forEach((word, wordIndex) => {
+      let placed = false;
+      for (let attempt = 0; attempt < 500 && !placed; attempt++) {
+        const [dr, dc] = directions[Math.floor(random() * directions.length)];
+        const row = Math.floor(random() * size);
+        const col = Math.floor(random() * size);
+        const endRow = row + dr * (word.length - 1);
+        const endCol = col + dc * (word.length - 1);
+        if (endRow < 0 || endRow >= size || endCol < 0 || endCol >= size) continue;
+        let fits = true;
+        for (let i = 0; i < word.length; i++) {
+          const existing = grid[row + dr * i][col + dc * i];
+          if (existing && existing !== word[i]) { fits = false; break; }
+        }
+        if (!fits) continue;
+        for (let i = 0; i < word.length; i++) grid[row + dr * i][col + dc * i] = word[i];
+        placed = true;
+      }
+      // Safe fallback for unusually dense word sets.
+      if (!placed) {
+        const word = words[wordIndex].replace(/[^A-Z]/gi, '').toUpperCase();
+        const row = wordIndex % size;
+        for (let col = 0; col < Math.min(size, word.length); col++) grid[row][col] = word[col];
+      }
+    });
+
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return grid.map((row) => row.map((letter) => letter || alphabet[Math.floor(random() * alphabet.length)]));
+}
+
 
 export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) => {
   const [levels, setLevels] = useState<LevelNode[]>([]);
@@ -272,7 +317,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   }
 
   const HINT_COST = 5;
-  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search'].includes(gameId);
+  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search', 'bible-character-quest', 'bible-detective', 'bible-riddles', 'bible-geography-quest', 'find-the-bible-book', 'bible-chain-challenge', 'complete-the-scripture'].includes(gameId);
 
   const getHintForLevel = (requestedLevel: number): string => {
     if (!currentChallenge || requestedLevel === 0) return '';
@@ -294,6 +339,25 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const fragments: string[] = metadata.tiles || [];
       if (requestedLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
       return fragments[1] ? `After the first fragment comes: “${fragments[1]}”` : 'Read the verse fragments for a natural sentence flow.';
+    }
+
+    if (gameId === 'bible-character-quest' || gameId === 'bible-detective') {
+      const clues: string[] = metadata.clues || [];
+      return clues[requestedLevel] ? `Additional evidence: ${clues[requestedLevel]}` : 'Study the evidence already revealed and compare the details with the options.';
+    }
+    if (gameId === 'bible-riddles' || gameId === 'complete-the-scripture' || gameId === 'find-the-bible-book') {
+      const answer = String(currentChallenge.correct_answer || '');
+      return requestedLevel === 1
+        ? `The answer begins with “${answer.charAt(0)}” and contains ${answer.length} characters.`
+        : `The answer is “${answer}”. Use this final clue carefully.`;
+    }
+    if (gameId === 'bible-geography-quest') {
+      return requestedLevel === 1
+        ? `Region clue: ${metadata.region || 'Read the event in the question carefully'}.`
+        : `Scripture reference: ${currentChallenge.reference}. Use the passage to identify the place.`;
+    }
+    if (gameId === 'bible-chain-challenge') {
+      return `The next Bible name must begin with the letter “${metadata.requiredLetter || ''}”.`;
     }
 
     if (gameId === 'bible-word-search') {
@@ -518,69 +582,71 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 4. BIBLE WORD SEARCH — select the first and last letter of each hidden word.
+    // 4. BIBLE WORD SEARCH — tap the first and last letters in any straight direction.
     if (gameId === 'bible-word-search') {
       const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
-      const size = Math.max(10, ...targetWords.map((word) => word.replace(/[^A-Z]/gi, '').length + 2));
-      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const grid = Array.from({ length: size }, (_, row) => {
-        const word = targetWords[row % targetWords.length].replace(/[^A-Z]/gi, '').toUpperCase();
-        const offset = (row * 3 + 1) % Math.max(1, size - word.length + 1);
-        const cells = Array.from({ length: size }, (_, col) => alphabet[(row * 7 + col * 11 + 5) % alphabet.length]);
-        [...word].forEach((letter, i) => { cells[offset + i] = letter; });
-        return cells;
-      });
+      const cleanWords = targetWords.map((word) => word.replace(/[^A-Z]/gi, '').toUpperCase());
+      const size = Math.max(10, ...cleanWords.map((word) => word.length + 2));
+      const grid = buildWordSearchGrid(cleanWords, size, (currentChallenge.level * 10007) + (currentChallenge.challenge_index * 997));
       const selectCell = (row: number, col: number) => {
         if (!wordSearchStart) {
           setWordSearchStart({ row, col });
+          setError(null);
           return;
         }
         const first = wordSearchStart;
         setWordSearchStart(null);
-        if (first.row !== row) return;
-        const low = Math.min(first.col, col);
-        const high = Math.max(first.col, col);
-        const selected = grid[row].slice(low, high + 1).join('');
-        const match = targetWords.find((word) =>
-          !wordSearchFound.includes(word) &&
-          word.replace(/[^A-Z]/g, '').toUpperCase() === selected
+        const rowDelta = row - first.row;
+        const colDelta = col - first.col;
+        const steps = Math.max(Math.abs(rowDelta), Math.abs(colDelta));
+        if (steps === 0) return;
+        const straightLine = rowDelta === 0 || colDelta === 0 || Math.abs(rowDelta) === Math.abs(colDelta);
+        if (!straightLine) {
+          setError('Choose a straight horizontal, vertical or diagonal line.');
+          return;
+        }
+        const stepRow = rowDelta === 0 ? 0 : rowDelta / steps;
+        const stepCol = colDelta === 0 ? 0 : colDelta / steps;
+        const selected = Array.from({ length: steps + 1 }, (_, index) =>
+          grid[first.row + stepRow * index][first.col + stepCol * index]
+        ).join('');
+        const foundWord = cleanWords.find((word) =>
+          !wordSearchFound.includes(word) && word === selected
+        ) || cleanWords.find((word) =>
+          !wordSearchFound.includes(word) && word === selected.split('').reverse().join('')
         );
-        const reverseMatch = targetWords.find((word) =>
-          !wordSearchFound.includes(word) &&
-          word.replace(/[^A-Z]/g, '').toUpperCase() === selected.split('').reverse().join('')
-        );
-        const foundWord = match || reverseMatch;
         if (foundWord) {
           const next = [...wordSearchFound, foundWord];
           setWordSearchFound(next);
-          if (next.length === targetWords.length) settleAnswer(targetWords.join(','));
+          setError(null);
+          if (next.length === cleanWords.length) settleAnswer(targetWords.join(','));
         } else {
-          setError('Not a word on the list. Select the first and last letters in the same row.');
+          setError('That line does not match a hidden word. Try another direction.');
         }
       };
       return (
         <div className="space-y-5">
           <div className="rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 p-4">
-            <p className="text-sm font-bold text-[#171B24] mb-1">Find all the hidden Bible words</p>
-            <p className="text-xs text-[#171B24]/65">Tap the first letter, then tap the last letter of a word. Words run left-to-right or right-to-left.</p>
+            <p className="text-sm font-bold text-[#171B24] mb-1">Find every hidden Bible word</p>
+            <p className="text-xs text-[#171B24]/65">Tap the first letter, then the last letter. Words can run across, up, down or diagonally — forwards or backwards.</p>
             <div className="flex flex-wrap gap-2 mt-3">
-              {targetWords.map((word) => {
+              {cleanWords.map((word) => {
                 const found = wordSearchFound.includes(word);
-                return <span key={word} className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}`}>{found ? '✓ ' : ''}{word}</span>;
+                return <span key={word} className={\`px-3 py-1.5 rounded-lg text-xs font-bold border \${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}\`}>{found ? '✓ ' : ''}{word}</span>;
               })}
             </div>
           </div>
-          <div className="mx-auto max-w-[420px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
-            <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
+          <div className="mx-auto max-w-[460px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
+            <div className="grid gap-1" style={{ gridTemplateColumns: \`repeat(\${size}, minmax(0, 1fr))\` }}>
               {grid.flatMap((row, rowIndex) => row.map((letter, colIndex) => {
                 const active = wordSearchStart?.row === rowIndex && wordSearchStart?.col === colIndex;
-                return <button key={`${rowIndex}-${colIndex}`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors ${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}`}>{letter}</button>;
+                return <button key={\`\${rowIndex}-\${colIndex}\`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={\`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors \${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}\`}>{letter}</button>;
               }))}
             </div>
           </div>
           <div className="flex items-center justify-between gap-3">
-            <p className="text-xs text-[#5A6275]">{wordSearchFound.length} of {targetWords.length} words found</p>
-            <button type="button" onClick={() => setWordSearchStart(null)} className="px-4 py-2 rounded-xl border border-[#171B24]/20 text-xs font-bold">Clear selection</button>
+            <p className="text-xs text-[#5A6275]">{wordSearchFound.length} of {cleanWords.length} words found</p>
+            <button type="button" onClick={() => { setWordSearchStart(null); setError(null); }} className="px-4 py-2 rounded-xl border border-[#171B24]/20 text-xs font-bold">Clear selection</button>
           </div>
         </div>
       );
