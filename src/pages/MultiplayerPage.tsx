@@ -219,6 +219,11 @@ export const MultiplayerPage: React.FC = () => {
         <BackButton fallback="/" />
       </div>
 
+      <div className="mb-6 rounded-2xl border border-[#3156C9]/15 bg-white p-4 shadow-sm sm:flex sm:items-center sm:justify-between">
+        <div><p className="font-extrabold text-[#171B24]">Create your own Scripture Challenge</p><p className="mt-1 text-sm text-[#5A6275]">Write Bible questions and invite friends with a link or code.</p></div>
+        <button type="button" onClick={() => nav('/community-challenges')} className="mt-3 rounded-xl bg-[#3156C9] px-4 py-2.5 text-sm font-bold text-white sm:mt-0">Community Challenges</button>
+      </div>
+
       {/* Hero Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3 mb-8">
         <span className="px-3.5 py-1.5 rounded-full bg-[#D66B3D]/10 text-xs font-extrabold text-[#D66B3D] uppercase tracking-wider">
