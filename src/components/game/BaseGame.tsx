@@ -632,15 +632,15 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             <div className="flex flex-wrap gap-2 mt-3">
               {cleanWords.map((word) => {
                 const found = wordSearchFound.includes(word);
-                return <span key={word} className={\`px-3 py-1.5 rounded-lg text-xs font-bold border \${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}\`}>{found ? '✓ ' : ''}{word}</span>;
+                return <span key={word} className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}`}>{found ? '✓ ' : ''}{word}</span>;
               })}
             </div>
           </div>
           <div className="mx-auto max-w-[460px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
-            <div className="grid gap-1" style={{ gridTemplateColumns: \`repeat(\${size}, minmax(0, 1fr))\` }}>
+            <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
               {grid.flatMap((row, rowIndex) => row.map((letter, colIndex) => {
                 const active = wordSearchStart?.row === rowIndex && wordSearchStart?.col === colIndex;
-                return <button key={\`\${rowIndex}-\${colIndex}\`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={\`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors \${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}\`}>{letter}</button>;
+                return <button key={`${rowIndex}-${colIndex}`} type="button" disabled={reveal !== null} onClick={() => selectCell(rowIndex, colIndex)} className={`aspect-square rounded-md text-xs sm:text-sm font-black font-mono transition-colors ${active ? 'bg-[#D66B3D] text-white ring-2 ring-white' : 'bg-white/10 text-[#F3EBDD] hover:bg-[#3156C9]'}`}>{letter}</button>;
               }))}
             </div>
           </div>
@@ -922,7 +922,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               const picked = reveal?.picked === option;
               return (
                 <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
-                  className={\`min-h-28 rounded-2xl border-2 p-5 text-center font-serif text-lg font-bold transition \${reveal !== null ? (correct ? 'border-emerald-600 bg-emerald-100 text-emerald-900' : picked ? 'border-rose-500 bg-rose-100 text-rose-900' : 'border-stone-200 bg-stone-50 text-stone-400') : old ? 'border-[#D66B3D]/30 bg-[#FFF5EA] text-[#171B24] hover:border-[#D66B3D]' : 'border-[#3156C9]/30 bg-[#EEF2FF] text-[#171B24] hover:border-[#3156C9]'}\`}>
+                  className={`min-h-28 rounded-2xl border-2 p-5 text-center font-serif text-lg font-bold transition ${reveal !== null ? (correct ? 'border-emerald-600 bg-emerald-100 text-emerald-900' : picked ? 'border-rose-500 bg-rose-100 text-rose-900' : 'border-stone-200 bg-stone-50 text-stone-400') : old ? 'border-[#D66B3D]/30 bg-[#FFF5EA] text-[#171B24] hover:border-[#D66B3D]' : 'border-[#3156C9]/30 bg-[#EEF2FF] text-[#171B24] hover:border-[#3156C9]'}`}>
                   <span className="mb-2 block text-3xl">{old ? '📜' : '✝️'}</span>{option}
                 </button>
               );
