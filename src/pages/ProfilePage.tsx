@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2, Target, Star, Layers, Flame } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2, Target, Star, Layers, Flame, Camera, Loader2 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { BackButton } from '../components/BackButton';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -20,6 +20,10 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
   const [achievements, setAchievements] = useState<{ id: string; title: string; desc: string; icon: string }[]>([]);
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(localStats.achievements || []);
   const [statsLoading, setStatsLoading] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>(user?.user_metadata?.avatar_url || '');
+  const [avatarUploading, setAvatarUploading] = useState(false);
+  const [avatarMessage, setAvatarMessage] = useState('');
+  const avatarInputRef = useRef<HTMLInputElement>(null);
   const [performance, setPerformance] = useState({ accuracy: 0, gamesExplored: 0, levelsCompleted: 0, bestGame: '', currentStreak: 0, bestStreak: 0 });
 
   useEffect(() => {
@@ -128,8 +132,64 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
 
       {/* Profile Header */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#171B24]/10 flex flex-col sm:flex-row items-center gap-6">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-[#171B24] text-[#F3EBDD] font-serif font-extrabold text-3xl flex items-center justify-center shadow-md shrink-0">
-          {user?.email?.[0]?.toUpperCase() || user?.user_metadata?.username?.[0]?.toUpperCase() || 'P'}
+        <div className="relative h-20 w-20 shrink-0 sm:h-24 sm:w-24">
+          <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-3xl bg-[#171B24] text-3xl font-serif font-extrabold text-[#F3EBDD] shadow-md">
+            {avatarUrl
+              ? <img src={avatarUrl} alt="Your profile" className="h-full w-full object-cover" />
+              : (user?.email?.[0]?.toUpperCase() || user?.user_metadata?.username?.[0]?.toUpperCase() || 'P')}
+          </div>
+          <button
+            type="button"
+            onClick={() => avatarInputRef.current?.click()}
+            disabled={avatarUploading || !user?.id || !isSupabaseConfigured}
+            aria-label="Change profile picture"
+            title="Change profile picture"
+            className="absolute -bottom-2 -right-2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-[#3156C9] text-white shadow-md transition hover:bg-[#2444a7] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {avatarUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Camera className="h-4 w-4" />}
+          </button>
+          <input
+            ref={avatarInputRef}
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif"
+            className="hidden"
+            onChange={async (event) => {
+              const file = event.target.files?.[0];
+              event.target.value = '';
+              if (!file || !user?.id || !supabase) return;
+              if (!['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.type)) {
+                setAvatarMessage('Choose a JPG, PNG, WEBP or GIF image.');
+                return;
+              }
+              if (file.size > 5 * 1024 * 1024) {
+                setAvatarMessage('Your profile picture must be 5 MB or smaller.');
+                return;
+              }
+              setAvatarUploading(true);
+              setAvatarMessage('');
+              try {
+                const extension = file.type === 'image/jpeg' ? 'jpg' : file.type.split('/')[1];
+                const path = `${user.id}/avatar.${extension}`;
+                const { error: uploadError } = await supabase.storage
+                  .from('avatars')
+                  .upload(path, file, { upsert: true, contentType: file.type, cacheControl: '3600' });
+                if (uploadError) throw uploadError;
+                const { data } = supabase.storage.from('avatars').getPublicUrl(path);
+                const publicUrl = `${data.publicUrl}?v=${Date.now()}`;
+                const { error: metadataError } = await supabase.auth.updateUser({
+                  data: { avatar_url: publicUrl },
+                });
+                if (metadataError) throw metadataError;
+                setAvatarUrl(publicUrl);
+                setAvatarMessage('Profile picture updated successfully.');
+              } catch (error) {
+                console.error('Profile picture upload failed:', error);
+                setAvatarMessage(error instanceof Error ? error.message : 'Could not update your profile picture. Please try again.');
+              } finally {
+                setAvatarUploading(false);
+              }
+            }}
+          />
         </div>
 
         <div className="text-center sm:text-left flex-1">
@@ -140,6 +200,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
             {user?.user_metadata?.username || user?.email?.split('@')[0] || 'Player Account'}
           </h2>
           <p className="text-xs sm:text-sm text-[#171B24]/70">{user?.email || 'Guest Session'}</p>
+          {avatarMessage && <p role="status" className="mt-2 text-xs font-medium text-[#3156C9]">{avatarMessage}</p>}
+          <p className="mt-1 text-[11px] text-[#5A6275]">Tap the camera to change your profile picture · JPG, PNG, WEBP or GIF · Max 5 MB</p>
 
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mt-4">
             <span className="text-xs font-bold bg-[#F3EBDD] px-3.5 py-1.5 rounded-xl text-[#171B24] font-mono">
