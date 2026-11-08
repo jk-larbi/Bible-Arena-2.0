@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2, Target, Star, Layers } from 'lucide-react';
+import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2, Target, Star, Layers, Flame } from 'lucide-react';
 import { Button } from '../components/Button';
 import { BackButton } from '../components/BackButton';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -20,7 +20,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
   const [achievements, setAchievements] = useState<{ id: string; title: string; desc: string; icon: string }[]>([]);
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(localStats.achievements || []);
   const [statsLoading, setStatsLoading] = useState(false);
-  const [performance, setPerformance] = useState({ accuracy: 0, gamesExplored: 0, levelsCompleted: 0, bestGame: '' });
+  const [performance, setPerformance] = useState({ accuracy: 0, gamesExplored: 0, levelsCompleted: 0, bestGame: '', currentStreak: 0, bestStreak: 0 });
 
   useEffect(() => {
     let active = true;
@@ -29,7 +29,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
       setStatsLoading(true);
       const [profileResult, attemptsResult, definitionsResult, unlockedResult] = await Promise.all([
         supabase.from('profiles').select('xp, level').eq('id', user.id).maybeSingle(),
-        supabase.from('level_attempts').select('game_slug, level, percent').eq('user_id', user.id).eq('status', 'completed'),
+        supabase.from('level_attempts').select('game_slug, level, percent, completed_at').eq('user_id', user.id).eq('status', 'completed'),
         supabase.from('achievement_definitions').select('id, title, description, icon_emoji').order('title'),
         supabase.from('achievements').select('achievement_id').eq('user_id', user.id),
       ]);
@@ -48,6 +48,32 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
         return counts;
       }, {});
       const bestGameSlug = Object.entries(gameCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
+      const activityDays = [...new Set(completedAttempts
+        .map((item: any) => item.completed_at ? new Date(item.completed_at).toISOString().slice(0, 10) : '')
+        .filter(Boolean))].sort();
+      let bestStreak = 0;
+      let runStreak = 0;
+      let previousDay = '';
+      for (const day of activityDays) {
+        const consecutive = previousDay
+          ? (Date.parse(`${day}T00:00:00.000Z`) - Date.parse(`${previousDay}T00:00:00.000Z`)) === 86400000
+          : false;
+        runStreak = consecutive ? runStreak + 1 : 1;
+        bestStreak = Math.max(bestStreak, runStreak);
+        previousDay = day;
+      }
+      const todayUtc = new Date().toISOString().slice(0, 10);
+      const yesterdayUtc = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      let currentStreak = 0;
+      if (activityDays.length && [todayUtc, yesterdayUtc].includes(activityDays[activityDays.length - 1])) {
+        currentStreak = 1;
+        for (let i = activityDays.length - 1; i > 0; i--) {
+          const gap = Date.parse(`${activityDays[i]}T00:00:00.000Z`) - Date.parse(`${activityDays[i - 1]}T00:00:00.000Z`);
+          if (gap !== 86400000) break;
+          currentStreak++;
+        }
+      }
+
       const gameTitles: Record<string, string> = {
         'scripture-challenge': 'Scripture Challenge', 'bible-character-quest': 'Bible Character Quest',
         'scripture-scramble': 'Scripture Scramble', 'bible-word-search': 'Bible Word Search',
@@ -65,6 +91,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
         gamesExplored: Object.keys(gameCounts).length,
         levelsCompleted: completedAttempts.length,
         bestGame: gameTitles[bestGameSlug] || '',
+        currentStreak,
+        bestStreak,
       });
       if (definitionsResult.data) {
         setAchievements(definitionsResult.data.map((item: any) => ({
@@ -134,7 +162,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
         </Button>
       </div>
 
-      <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <section className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
           <Target className="mb-2 h-5 w-5 text-[#D66B3D]" />
           <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.accuracy}%</p>
@@ -149,6 +177,11 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
           <BookOpen className="mb-2 h-5 w-5 text-emerald-700" />
           <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.gamesExplored}/19</p>
           <p className="text-[11px] font-semibold text-[#5A6275]">Games explored</p>
+        </div>
+        <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
+          <Flame className="mb-2 h-5 w-5 text-orange-600" />
+          <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.currentStreak} days</p>
+          <p className="text-[11px] font-semibold text-[#5A6275]">Current streak · Best {performance.bestStreak}</p>
         </div>
         <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
           <Star className="mb-2 h-5 w-5 text-amber-600" />
