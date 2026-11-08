@@ -532,7 +532,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
         const downClue = difficultyTier === 0 ? char.clue2 : getCharacterClue(char, difficultyTier);
-        const downReference = getCharacterClueReference(char, difficultyTier);
+        const downReference = difficultyTier === 0 ? char.clue2Ref : getCharacterClueReference(char, difficultyTier);
         items.push({
           id,
           game_slug: gameSlug,
