@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: corrected for cross-game fact duplication. */
+/** Staged batch 02: cross-game duplicate corrections. */
 export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-character-quest-rebuild-b02-001",
@@ -411,8 +411,8 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "options": [
       "The wise woman of Tekoa",
       "Annas",
-      "Simon of Cyrene",
-      "Joseph of Arimathea"
+      "Cyrene",
+      "Arimathea"
     ],
     "correct_answer": "The wise woman of Tekoa",
     "reference": "2 Samuel 14:2-20",
@@ -431,7 +431,7 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "options": [
       "Tamar",
       "Nicodemus",
-      "Bartimaeus",
+      "His cloak",
       "Jairus"
     ],
     "correct_answer": "Tamar",
@@ -1070,8 +1070,8 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the king who threw Daniel into the lions' den?",
     "options": [
       "Darius",
-      "Simon of Cyrene",
-      "Joseph of Arimathea",
+      "Cyrene",
+      "Arimathea",
       "Nicodemus"
     ],
     "correct_answer": "Darius",
@@ -1090,7 +1090,7 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the queen present when Nehemiah asked the king for permission to travel?",
     "options": [
       "The queen",
-      "Bartimaeus",
+      "His cloak",
       "Jairus",
       "Zacchaeus"
     ],
@@ -1247,16 +1247,16 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 33,
     "challenge_index": 3,
-    "question_text": "Who was the man compelled to carry Jesus' cross?",
+    "question_text": "From which North African city was Simon, who carried Jesus' cross?",
     "options": [
-      "Simon of Cyrene",
+      "Cyrene",
       "Agrippa",
       "Julius",
       "Publius"
     ],
-    "correct_answer": "Simon of Cyrene",
+    "correct_answer": "Cyrene",
     "reference": "Luke 23:26",
-    "explanation": "The passage Luke 23:26 records this biblical detail.",
+    "explanation": "The passage Luke 23:26 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-character-quest-b02-fact-63"
@@ -1267,16 +1267,16 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 33,
     "challenge_index": 4,
-    "question_text": "Who was the owner of the tomb in which Jesus was buried?",
+    "question_text": "From which town was Joseph, who requested Jesus' body, originally?",
     "options": [
-      "Joseph of Arimathea",
+      "Arimathea",
       "Luke",
       "Useful",
       "Phoebe"
     ],
-    "correct_answer": "Joseph of Arimathea",
-    "reference": "Matthew 27:57-60",
-    "explanation": "The passage Matthew 27:57-60 records this biblical detail.",
+    "correct_answer": "Arimathea",
+    "reference": "Matthew 27:57",
+    "explanation": "The passage Matthew 27:57 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-character-quest-b02-fact-64"
@@ -1307,16 +1307,16 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 34,
     "challenge_index": 1,
-    "question_text": "Who was the blind beggar healed near Jericho?",
+    "question_text": "What did Bartimaeus throw aside before coming to Jesus?",
     "options": [
-      "Bartimaeus",
+      "His cloak",
       "Alexander",
       "Uri",
       "Hur"
     ],
-    "correct_answer": "Bartimaeus",
-    "reference": "Mark 10:46-52",
-    "explanation": "The passage Mark 10:46-52 records this biblical detail.",
+    "correct_answer": "His cloak",
+    "reference": "Mark 10:50",
+    "explanation": "The passage Mark 10:50 supports this distinct biblical detail.",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-character-quest-b02-fact-66"
@@ -1730,8 +1730,8 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the husband of Priscilla?",
     "options": [
       "Aquila",
-      "Simon of Cyrene",
-      "Joseph of Arimathea",
+      "Cyrene",
+      "Arimathea",
       "Nicodemus"
     ],
     "correct_answer": "Aquila",
@@ -1750,7 +1750,7 @@ export const BIBLE_CHARACTER_BATCH_02: ChallengeItem[] = [
     "question_text": "Who was the silversmith who stirred up the riot in Ephesus?",
     "options": [
       "Demetrius",
-      "Bartimaeus",
+      "His cloak",
       "Jairus",
       "Zacchaeus"
     ],
