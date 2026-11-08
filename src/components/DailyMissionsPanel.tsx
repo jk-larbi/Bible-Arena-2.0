@@ -100,28 +100,32 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
     setLoading(true);
     setMessage('');
     const start = `${today}T00:00:00.000Z`;
-    const [attemptResult, claimResult] = await Promise.all([
-      supabase
-        .from('level_attempts')
-        .select('game_slug, level, percent, completed_at')
-        .eq('user_id', userId)
-        .eq('status', 'completed')
-        .gte('completed_at', start),
-      supabase
-        .from('daily_mission_claims')
-        .select('mission_id')
-        .eq('user_id', userId)
-        .eq('mission_date', today),
-    ]);
+    try {
+      const [attemptResult, claimResult] = await Promise.all([
+        supabase
+          .from('level_attempts')
+          .select('game_slug, level, percent, completed_at')
+          .eq('user_id', userId)
+          .eq('status', 'completed')
+          .gte('completed_at', start),
+        supabase
+          .from('daily_mission_claims')
+          .select('mission_id')
+          .eq('user_id', userId)
+          .eq('mission_date', today),
+      ]);
 
-    if (attemptResult.error || claimResult.error) {
-      setMessage('Daily missions could not be loaded. Please refresh and try again.');
-    } else {
+      if (attemptResult.error) throw attemptResult.error;
+      if (claimResult.error) throw claimResult.error;
       setAttempts((attemptResult.data || []) as Attempt[]);
       setClaimed((claimResult.data || []).map((row: any) => row.mission_id));
+    } catch (error) {
+      console.error('Daily mission load failed:', error);
+      setMessage('We could not refresh your missions. Check your connection and try again.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-  }, [userId]);
+  }, [userId]);;
 
   useEffect(() => {
     void loadMissions();
@@ -138,17 +142,27 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
     if (!supabase || !userId || claiming) return;
     setClaiming(mission.id);
     setMessage('');
-    const { data, error } = await supabase.rpc('claim_daily_mission', { p_mission_id: mission.id });
-    if (error) {
-      setMessage(error.message.includes('already been claimed') ? 'You have already claimed that reward.' : error.message);
-      await loadMissions();
-    } else {
+    try {
+      const { data, error } = await supabase.rpc('claim_daily_mission', { p_mission_id: mission.id });
+      if (error) throw error;
+
       const row = Array.isArray(data) ? data[0] : data;
+      if (!row || Number(row.reward_xp) !== mission.reward || row.total_xp === undefined) {
+        throw new Error('The server did not confirm this reward. Please refresh and try again.');
+      }
+
       setClaimed((current) => current.includes(mission.id) ? current : [...current, mission.id]);
-      if (row?.total_xp !== undefined) onXpAwarded?.(Number(row.total_xp));
-      setMessage(`You earned ${mission.reward} XP for ${mission.title}!`);
+      onXpAwarded?.(Number(row.total_xp));
+      setMessage(`Reward claimed! +${Number(row.reward_xp)} XP added to your account.`);
+      await loadMissions();
+    } catch (error) {
+      console.error('Daily mission claim failed:', error);
+      const detail = error instanceof Error ? error.message : 'Please check your connection and try again.';
+      setMessage(detail.toLowerCase().includes('already') ? 'You have already claimed this reward today.' : detail);
+      await loadMissions();
+    } finally {
+      setClaiming(null);
     }
-    setClaiming(null);
   };
 
   return (
