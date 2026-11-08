@@ -25,7 +25,7 @@ app.use("/api/auth", rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHe
 const asyncRoute = (fn: (req: AuthRequest, res: express.Response) => Promise<unknown>) =>
   (req: AuthRequest, res: express.Response, next: express.NextFunction) => { Promise.resolve(fn(req, res)).catch(next); };
 const cleanUser = (row: any): AuthUser => ({ id: row.id, email: row.email, username: row.username });
-const registerSchema = z.object({ email: z.string().email().max(254), username: z.string().trim().min(3).max(24).regex(/^[a-zA-Z0-9_]+$/), password: z.string().min(10).max(72), displayName: z.string().trim().min(1).max(60).optional() });
+const registerSchema = z.object({ email: z.string().email().max(254), username: z.string().trim().min(3).max(20).regex(/^[a-zA-Z0-9_]+$/), password: z.string().min(8).max(72), displayName: z.string().trim().min(1).max(60).optional() });
 const loginSchema = z.object({ email: z.string().email().max(254), password: z.string().min(1).max(72) });
 
 app.get("/api/health", asyncRoute(async (_req, res) => {
@@ -119,7 +119,7 @@ app.post("/api/scores", authenticate, asyncRoute(async (req, res) => {
 
 app.post("/api/rooms", authenticate, asyncRoute(async (req, res) => {
   const input = z.object({ gameId: z.string().min(1).max(80), maxRounds: z.number().int().min(1).max(100).default(5), questionDurationSeconds: z.number().int().min(5).max(180).default(20), settings: z.record(z.unknown()).default({}) }).parse(req.body);
-  const code = crypto.randomInt(0,1000000).toString().padStart(6,"0");
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";\n  const code = Array.from({ length: 6 }, () => alphabet[crypto.randomInt(0, alphabet.length)]).join("");
   const client = await pool.connect();
   try {
     await client.query("begin");
