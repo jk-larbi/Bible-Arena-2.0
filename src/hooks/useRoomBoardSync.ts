@@ -13,15 +13,20 @@ export function useRoomBoardSync(roomId: string | undefined) {
   const refresh = useCallback(async () => {
     if (!roomId) return;
     try {
-      const [snapshot, privateResult] = await Promise.all([
-        fetchRoomBoard(roomId),
-        user?.id
-          ? supabase.from('room_board_player_state').select('private_state').eq('room_id', roomId).eq('user_id', user.id).maybeSingle()
-          : Promise.resolve({ data: null, error: null }),
-      ]);
-      if (privateResult.error) throw new Error(privateResult.error.message);
+      const snapshot = await fetchRoomBoard(roomId);
+      let privateState: Record<string, unknown> = {};
+      if (user?.id) {
+        const { data, error: privateError } = await supabase
+          .from('room_board_player_state')
+          .select('private_state')
+          .eq('room_id', roomId)
+          .eq('user_id', user.id)
+          .maybeSingle();
+        if (privateError) throw new Error(privateError.message);
+        privateState = (data?.private_state as Record<string, unknown>) || {};
+      }
       setBoard(snapshot);
-      setMyPrivateState((privateResult.data?.private_state as Record<string, unknown>) || {});
+      setMyPrivateState(privateState);
       setError(null);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not sync the game board.');
