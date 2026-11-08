@@ -16,7 +16,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Trending');
-  const [showAllGames, setShowAllGames] = useState(true);
+  const [showAllGames, setShowAllGames] = useState(false);
   const { user } = useSession();
   const localStats = (() => {
     try {
@@ -114,7 +114,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
         </div>
       </div>
 
-      {/* Trending / Category Section with Horizontal Rail */}
+      {/* Trending / Category Section */}
       <div>
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -124,15 +124,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
             <p className="text-sm text-[#171B24]/70">Explore illustrated Bible games in fixed editorial order</p>
           </div>
           <button 
-            onClick={() => { setSelectedCategory('Trending'); setShowAllGames(true); }}
+            onClick={() => setShowAllGames((current) => !current)}
             className="text-xs font-bold text-[#D66B3D] flex items-center gap-1 hover:underline cursor-pointer"
           >
-            <span>View All</span>
+            <span>{showAllGames ? 'View Less' : 'View All'}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Horizontal Rail of Poster Game Cards */}
+        {/* Responsive game catalogue: show a preview until View All is selected */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pb-2">
           {(showAllGames ? filteredGames : filteredGames.slice(0, 4)).map((game) => (
             <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
