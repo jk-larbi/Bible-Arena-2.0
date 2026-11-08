@@ -434,30 +434,39 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-crossword': {
-        const book = BOOKS_66[(globalSeed * 3) % BOOKS_66.length];
-        const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
-        const compatibleCharacters = BIBLE_CHARACTERS.filter((candidate) => {
-          const candidateWord = candidate.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
-          return [...acrossWord].some((letter) => candidateWord.includes(letter));
-        });
-        const char = compatibleCharacters.length
-          ? compatibleCharacters[(globalSeed * 5) % compatibleCharacters.length]
-          : BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
-        const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
+        // Curated clue pairs: every clue has one clear answer and the answers
+        // share at least one letter, so the crossword intersection is real.
+        const crosswordPairs = [
+          { across: 'NOAH', acrossClue: 'The man God told to build an ark before the flood', down: 'ARK', downClue: 'The large vessel Noah built to survive the flood', acrossRef: 'Genesis 6:13-22', downRef: 'Genesis 6:14' },
+          { across: 'EDEN', acrossClue: 'The garden where Adam and Eve first lived', down: 'EVE', downClue: 'The first woman, formed from Adam’s side', acrossRef: 'Genesis 2:8', downRef: 'Genesis 2:21-23' },
+          { across: 'MOSES', acrossClue: 'The leader God used to bring Israel out of Egypt', down: 'SEA', downClue: 'The body of water God parted for Israel to cross', acrossRef: 'Exodus 3:10', downRef: 'Exodus 14:21-22' },
+          { across: 'RUTH', acrossClue: 'The Moabite woman who stayed loyal to Naomi', down: 'THOMAS', downClue: 'The disciple who doubted Jesus had risen until he saw Him', acrossRef: 'Ruth 1:16-17', downRef: 'John 20:24-29' },
+          { across: 'JONAH', acrossClue: 'The prophet who was swallowed by a great fish', down: 'JOHN', downClue: 'The apostle traditionally associated with the fourth Gospel', acrossRef: 'Jonah 1:17', downRef: 'John 21:20-24' },
+          { across: 'DAVID', acrossClue: 'The young shepherd who defeated Goliath', down: 'DANIEL', downClue: 'The prophet who was thrown into the lions’ den', acrossRef: '1 Samuel 17:49-50', downRef: 'Daniel 6:16-23' },
+          { across: 'MARY', acrossClue: 'The mother of Jesus', down: 'MARK', downClue: 'The Gospel writer whose account begins with John the Baptist', acrossRef: 'Luke 1:30-31', downRef: 'Mark 1:1-4' },
+          { across: 'PETER', acrossClue: 'The disciple who denied Jesus three times', down: 'TEMPLE', downClue: 'The holy place in Jerusalem where Jesus taught', acrossRef: 'Luke 22:54-62', downRef: 'Luke 19:45-47' },
+          { across: 'ESTHER', acrossClue: 'The Jewish queen who risked her life to save her people', down: 'STAR', downClue: 'The sign that led the wise men to Jesus', acrossRef: 'Esther 4:14-16', downRef: 'Matthew 2:1-2' },
+          { across: 'ISAAC', acrossClue: 'The son God promised to Abraham and Sarah', down: 'CAIN', downClue: 'Adam and Eve’s first son, who killed Abel', acrossRef: 'Genesis 21:1-3', downRef: 'Genesis 4:1-8' },
+          { across: 'JACOB', acrossClue: 'The son of Isaac whose name was changed to Israel', down: 'JOB', downClue: 'The righteous man who endured great suffering and remained faithful', acrossRef: 'Genesis 32:28', downRef: 'Job 1:1-22' },
+          { across: 'SAMUEL', acrossClue: 'The prophet who anointed Saul and David as kings', down: 'SAUL', downClue: 'Israel’s first king, anointed by Samuel', acrossRef: '1 Samuel 10:1; 16:13', downRef: '1 Samuel 10:1' },
+        ];
+        const pair = crosswordPairs[globalSeed % crosswordPairs.length];
+        const acrossWord = pair.across;
+        const downWord = pair.down;
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${book.clue}" • Down (${downWord.length} letters): "${char.clue2}"`,
+          question_text: 'Solve the two Bible clues. Their answers cross at a shared letter.',
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
-          explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.clue2Ref}).`,
-          reference: `${book.ref}; ${char.clue2Ref}`,
+          explanation: `Across: ${acrossWord} — ${pair.acrossClue} (${pair.acrossRef}). Down: ${downWord} — ${pair.downClue} (${pair.downRef}).`,
+          reference: `${pair.acrossRef}; ${pair.downRef}`,
           metadata: {
-            acrossClue: book.clue,
+            acrossClue: pair.acrossClue,
             acrossAnswer: acrossWord,
-            downClue: char.clue2,
+            downClue: pair.downClue,
             downAnswer: downWord,
           },
         });
