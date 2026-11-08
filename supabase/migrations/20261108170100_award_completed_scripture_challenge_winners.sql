@@ -1,4 +1,7 @@
 alter table public.challenges add column if not exists reward_awarded boolean not null default false;
+alter table public.challenges drop constraint if exists challenges_status_check;
+alter table public.challenges add constraint challenges_status_check
+  check (status = any (array['pending'::text, 'accepted'::text, 'declined'::text, 'cancelled'::text, 'completed'::text]));
 
 create or replace function public.finish_level(p_attempt uuid)
 returns table(result_percent numeric, result_stars smallint, result_points integer, total_ms integer, fully_correct integer, prev_best_stars smallint, new_best_stars smallint, is_new_best boolean, first_completion boolean, completed_levels integer)
