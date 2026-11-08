@@ -46,7 +46,7 @@ export const TopNav: React.FC<TopNavProps> = ({
           aria-label="BibleArena home"
         >
           <img 
-            src="/assets/bible-arena-logo.png" 
+            src={`${import.meta.env.BASE_URL}assets/bible-arena-logo.png`} 
             alt="" 
             className="h-6 w-6 shrink-0 object-contain rounded group-hover:scale-105 transition-transform" 
           />
