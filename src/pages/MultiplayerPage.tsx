@@ -351,7 +351,7 @@ export const MultiplayerPage: React.FC = () => {
                   >
                     <div className="w-[76px] h-[62px] rounded-xl overflow-hidden shrink-0 bg-[#171B24]/10 border border-black/5">
                       <img
-                        src={`${import.meta.env.BASE_URL}assets/games/${game.imageFile.replace(/\\.(png|jpe?g)$/i, '.webp')}`}
+                        src={`${import.meta.env.BASE_URL}assets/games/${game.imageFile.replace(/\.(png|jpe?g)$/i, '.webp')}`}
                         alt={`${game.title} game artwork`}
                         loading="lazy"
                         className="w-full h-full object-cover"
@@ -375,7 +375,7 @@ export const MultiplayerPage: React.FC = () => {
             </div>
             <div className="flex items-center gap-3 rounded-2xl border border-[#3156C9]/20 bg-[#3156C9]/5 p-3">
               <img
-                src={`${import.meta.env.BASE_URL}assets/games/${selectedGame.imageFile.replace(/\\.(png|jpe?g)$/i, '.webp')}`}
+                src={`${import.meta.env.BASE_URL}assets/games/${selectedGame.imageFile.replace(/\.(png|jpe?g)$/i, '.webp')}`}
                 alt={`${selectedGame.title} selected artwork`}
                 className="h-16 w-24 rounded-xl object-cover bg-white"
                 onError={(event) => {
