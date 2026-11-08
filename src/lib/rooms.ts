@@ -16,7 +16,7 @@ export const isValidCode = (c: string) => /^[ABCDEFGHJKLMNPQRSTUVWXYZ2-9]{6}$/.t
 // joins on the same domain when players use Cloudflare Pages or GitHub Pages.
 export const inviteLink = (code: string) => {
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://example.invalid';
-  const basePath = import.meta.env.BASE_URL || '/';
+  const basePath = typeof import.meta.env !== 'undefined' && import.meta.env.BASE_URL ? import.meta.env.BASE_URL : '/';
   const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
   return `${origin}${normalizedBase}join/${normalizeCode(code)}`;
 };
