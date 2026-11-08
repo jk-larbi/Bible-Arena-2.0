@@ -69,7 +69,6 @@ function buildWordSearchGrid(words: string[], size: number, seed: number): strin
       }
       // Safe fallback for unusually dense word sets.
       if (!placed) {
-        const word = words[wordIndex].replace(/[^A-Z]/gi, '').toUpperCase();
         const row = wordIndex % size;
         for (let col = 0; col < Math.min(size, word.length); col++) grid[row][col] = word[col];
       }
