@@ -287,7 +287,9 @@ export function getDifficultyForLevel(level: number): string {
  */
 export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
   const items: ChallengeItem[] = [];
-  const baseIdx = (level - 1) * 5;
+  // Keep the original 10-slot level stride so the first five generated items
+  // stay aligned with the five published rows retained for each level.
+  const baseIdx = (level - 1) * 10;
 
   for (let i = 0; i < 5; i++) {
     const challengeIndex = i + 1;
