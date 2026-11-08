@@ -8,7 +8,6 @@ import {
   NotificationPreferences
 } from '../services/notificationService';
 import {
-  requestNotificationPermission,
   subscribeUserToPush,
   unsubscribeUserFromPush
 } from '../services/pushNotificationService';
@@ -70,17 +69,16 @@ export const NotificationSettingsPage: React.FC = () => {
     setSaving(true);
     setStatusMsg(null);
     try {
-      const granted = await requestNotificationPermission();
+      const subscribed = await subscribeUserToPush(user.id);
       if (typeof Notification !== 'undefined') {
         setBrowserPermission(Notification.permission);
       }
-      if (granted) {
-        await subscribeUserToPush(user.id);
+      if (subscribed) {
         setPrefs((p) => ({ ...p, browser_push_enabled: true }));
-        setStatusMsg({ type: 'success', text: 'Browser push notifications successfully enabled!' });
+        setStatusMsg({ type: 'success', text: 'Browser push notifications successfully enabled on this device!' });
       } else {
         setPrefs((p) => ({ ...p, browser_push_enabled: false }));
-        setStatusMsg({ type: 'error', text: 'Browser permission was denied or blocked by your browser.' });
+        setStatusMsg({ type: 'error', text: 'Push notifications could not be enabled. Check browser permission and support, then try again.' });
       }
     } catch (err) {
       setStatusMsg({ type: 'error', text: (err as Error).message });
