@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Flame, Search, UserCheck, Check, X, Swords, Send, Trophy } from 'lucide-react';
 import { Button } from '../components/Button';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
@@ -29,6 +30,7 @@ type ChallengeItem = {
 
 export const ChallengesPage: React.FC = () => {
   const { user } = useSession();
+  const navigate = useNavigate();
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -44,14 +46,18 @@ export const ChallengesPage: React.FC = () => {
       if (isSupabaseConfigured && supabase) {
         try {
           // Fetch existing challenges
-          const { data: challengeData } = await supabase
+          if (!user?.id) {
+            if (isMounted) setChallenges([]);
+            return;
+          }
+          const { data: challengeData, error: challengeError } = await supabase
             .from('challenges')
             .select('*')
+            .or(`challenger_id.eq.${user.id},opponent_id.eq.${user.id}`)
             .order('created_at', { ascending: false });
 
-          if (isMounted && challengeData) {
-            setChallenges(challengeData);
-          }
+          if (challengeError) throw challengeError;
+          if (isMounted && challengeData) setChallenges(challengeData);
 
           // Fetch profiles to allow peer search
           const { data: profileData } = await supabase
@@ -70,7 +76,7 @@ export const ChallengesPage: React.FC = () => {
     }
     loadData();
     return () => { isMounted = false; };
-  }, []);
+  }, [user?.id]);
 
   const handleSendChallenge = async (targetProfile: Profile) => {
     if (!user?.id) {
@@ -128,12 +134,10 @@ export const ChallengesPage: React.FC = () => {
       if (!user?.id || challenge.opponent_id !== user.id || challenge.status !== 'pending') {
         throw new Error('Only the invited player can respond to a pending challenge.');
       }
-      const { error: responseError } = await supabase
-        .from('challenges')
-        .update({ status })
-        .eq('id', challenge.id)
-        .eq('opponent_id', user.id)
-        .eq('status', 'pending');
+      const { error: responseError } = await supabase.rpc('respond_to_challenge', {
+        p_challenge_id: challenge.id,
+        p_status: status,
+      });
       if (responseError) throw responseError;
 
       if (challenge.challenger_id && user?.id) {
@@ -279,6 +283,15 @@ export const ChallengesPage: React.FC = () => {
                   </div>
                 </div>
 
+                {c.status === 'accepted' && (
+                  <Button
+                    size="sm"
+                    onClick={() => navigate('/game/scripture-challenge')}
+                    className="bg-[#3156C9] hover:bg-[#2544A5] text-white w-full sm:w-auto"
+                  >
+                    Play Challenge
+                  </Button>
+                )}
                 {c.status === 'pending' && c.opponent_id === user?.id && (
                   <div className="flex items-center gap-2 w-full sm:w-auto">
                     <Button
