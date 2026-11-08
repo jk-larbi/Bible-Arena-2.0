@@ -38,6 +38,17 @@ export default function JoinRoom() {
       setLoadingRoom(true);
       setError('');
       try {
+        // Room lookup policies require an authenticated session. QR/PIN guests
+        // may arrive without one, so establish their anonymous session first.
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+          const guestName = name.trim() || 'Player';
+          const { error: authError } = await supabase.auth.signInAnonymously({
+            options: { data: { full_name: guestName } },
+          });
+          if (authError) throw new Error(`Could not prepare your guest session: ${authError.message}`);
+        }
+
         const { data, error: fetchErr } = await supabase
           .from('rooms')
           .select('id, room_code, game_id, host_id, status')
@@ -125,9 +136,18 @@ export default function JoinRoom() {
 
       <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#171B24]/10 shadow-xl space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-[#3156C9] text-white flex items-center justify-center mx-auto shadow-md">
-            <Gamepad2 className="w-7 h-7" />
-          </div>
+          {gameInfo?.imageFile ? (
+            <img
+              src={`${import.meta.env.BASE_URL}assets/games/${gameInfo.imageFile.replace(/\\.(png|jpe?g)$/i, '.webp')}`}
+              alt={`${gameInfo.title} game artwork`}
+              className="mx-auto h-36 w-full max-w-xs rounded-2xl object-cover shadow-md"
+              onError={(event) => { event.currentTarget.src = `${import.meta.env.BASE_URL}assets/games/${gameInfo.imageFile}`; }}
+            />
+          ) : (
+            <div className="w-14 h-14 rounded-2xl bg-[#3156C9] text-white flex items-center justify-center mx-auto shadow-md">
+              <Gamepad2 className="w-7 h-7" />
+            </div>
+          )}
           <h1 className="font-serif font-extrabold text-2xl sm:text-3xl text-[#171B24]">
             {gameInfo ? gameInfo.title : 'Join BibleArena Game'}
           </h1>
