@@ -344,6 +344,16 @@ function getCharacterClue(char: (typeof BIBLE_CHARACTERS)[number], tier: number)
   return `${char.clue1}; ${char.clue2}; ${char.clue3}`;
 }
 
+function getQuoteOptions(q: (typeof QUOTES_POOL)[number], tier: number, seed: number): string[] {
+  if (tier < 2) return makeFourDistinctOptions(q.speaker, q.options, seed);
+  const testament = BIBLE_CHARACTERS.find((person) => person.name === q.speaker)?.testament;
+  const relatedSpeakers = QUOTES_POOL
+    .filter((quote) => quote.speaker !== q.speaker)
+    .filter((quote) => !testament || BIBLE_CHARACTERS.find((person) => person.name === quote.speaker)?.testament === testament)
+    .map((quote) => quote.speaker);
+  return makeFourDistinctOptions(q.speaker, relatedSpeakers.length >= 3 ? relatedSpeakers : q.options, seed);
+}
+
 function getBookClue(book: (typeof BOOKS_66)[number], tier: number): string {
   if (tier <= 0) return book.clue;
   if (tier === 1) return `${book.section} book of ${book.testament}`;
@@ -533,14 +543,15 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'who-said-it': {
-        const q = QUOTES_POOL[globalSeed % QUOTES_POOL.length];
-        const options = makeFourDistinctOptions(q.speaker, q.options, shuffleSeed);
+        const quotePool = difficultyTier >= 3 ? [...QUOTES_POOL].sort((a, b) => b.quote.length - a.quote.length) : QUOTES_POOL;
+        const q = quotePool[globalSeed % quotePool.length];
+        const options = getQuoteOptions(q, difficultyTier, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Who spoke these words in Scripture: "${q.quote}"?`,
+          question_text: difficultyTier >= 3 ? `Identify the speaker of this exact biblical quotation. Beware of similar speakers and parallel accounts: "${q.quote}"` : `Who spoke these words in Scripture: "${q.quote}"?`,
           options,
           correct_answer: q.speaker,
           explanation: q.context,
@@ -550,7 +561,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'complete-the-scripture': {
-        const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
+        const versePool = difficultyTier >= 2 ? [...VERSES_POOL].sort((a, b) => b.text.length - a.text.length) : VERSES_POOL;
+        const v = versePool[globalSeed % versePool.length];
         const masked = v.text.replace(new RegExp(`\\b${v.missing}\\b`, 'i'), '_____');
         const options = makeFourDistinctOptions(v.missing, v.distractors, shuffleSeed);
         items.push({
@@ -558,7 +570,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Complete the verse (${v.ref}): "${masked}"`,
+          question_text: difficultyTier >= 3 ? `Complete the exact wording of this longer passage (${v.ref}): "${masked}"` : `Complete the verse (${v.ref}): "${masked}"`,
           options,
           correct_answer: v.missing,
           explanation: `Full verse (${v.ref}): "${v.text}."`,
@@ -781,7 +793,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
+          question_text: difficultyTier >= 3 ? `Expert chain link: "${bookA.name.toUpperCase()}" ends with "${lastChar}". Supply a valid biblical book or figure beginning with that exact letter; check spelling carefully.` : `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
           options: shuffleDeterministic([matching.name, distractor1, distractor2], shuffleSeed),
           correct_answer: matching.name,
           explanation: `"${bookA.name}" ends with "${lastChar}", linking directly to "${matching.name}" (${matching.ref}).`,
