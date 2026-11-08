@@ -27,16 +27,16 @@ export const BIBLE_TIMELINE_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-timeline",
     "level": 41,
     "challenge_index": 2,
-    "question_text": "Where did the shipwrecked passengers learn the island’s name after reaching shore?",
+    "question_text": "What did the people of Malta show Paul and the other survivors after the shipwreck?",
     "options": [
-      "Malta",
-      "Miletus",
-      "Corinth",
-      "Jerusalem"
+      "Unusual kindness",
+      "Hostility",
+      "Indifference",
+      "Fear"
     ],
-    "correct_answer": "Malta",
-    "explanation": "Acts 28:1 says the survivors learned that the island was called Malta.",
-    "reference": "Acts 28:1",
+    "correct_answer": "Unusual kindness",
+    "explanation": "The islanders kindled a fire and welcomed everyone because of the rain and cold, showing unusual kindness.",
+    "reference": "Acts 28:2",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "bible-timeline-b03-fact-2"
