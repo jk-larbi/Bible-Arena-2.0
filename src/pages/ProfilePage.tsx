@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { BackButton } from '../components/BackButton';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 interface ProfilePageProps {
   user: any;
@@ -10,23 +11,53 @@ interface ProfilePageProps {
 }
 
 export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavigateTab }) => {
-  // Read real stats from local storage or user object
   const localStats = JSON.parse(localStorage.getItem('biblearena_user_stats') || '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}');
+  const [profileStats, setProfileStats] = useState({
+    xp: Number(localStats.xp) || 0,
+    level: Number(localStats.level) || 1,
+    gamesPlayed: Number(localStats.gamesPlayed) || 0,
+  });
+  const [achievements, setAchievements] = useState<{ id: string; title: string; desc: string; icon: string }[]>([]);
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(localStats.achievements || []);
+  const [statsLoading, setStatsLoading] = useState(false);
 
-  const xp = user?.user_metadata?.xp ?? localStats.xp ?? 0;
-  const level = user?.user_metadata?.level ?? localStats.level ?? 1;
+  useEffect(() => {
+    let active = true;
+    const loadProfile = async () => {
+      if (!user?.id || !isSupabaseConfigured || !supabase) return;
+      setStatsLoading(true);
+      const [profileResult, attemptsResult, definitionsResult, unlockedResult] = await Promise.all([
+        supabase.from('profiles').select('xp, level').eq('id', user.id).maybeSingle(),
+        supabase.from('level_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'completed'),
+        supabase.from('achievement_definitions').select('id, title, description, icon_emoji').order('title'),
+        supabase.from('achievements').select('achievement_id').eq('user_id', user.id),
+      ]);
+      if (!active) return;
+      setProfileStats({
+        xp: Number(profileResult.data?.xp ?? localStats.xp ?? 0),
+        level: Number(profileResult.data?.level ?? localStats.level ?? 1),
+        gamesPlayed: Number(attemptsResult.count ?? localStats.gamesPlayed ?? 0),
+      });
+      if (definitionsResult.data) {
+        setAchievements(definitionsResult.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          desc: item.description,
+          icon: item.icon_emoji || '🏅',
+        })));
+      }
+      if (unlockedResult.data) setUnlockedAchievements(unlockedResult.data.map((item: any) => item.achievement_id));
+      setStatsLoading(false);
+    };
+    void loadProfile();
+    return () => { active = false; };
+  }, [user?.id]);
+
+  const xp = profileStats.xp;
+  const level = profileStats.level;
   const totalMarks = user?.user_metadata?.total_marks ?? localStats.total_marks ?? 0;
-  const gamesPlayed = localStats.gamesPlayed ?? 0;
-  const unlockedAchievements: string[] = localStats.achievements || [];
-
-  const achievements = [
-    { id: 'gen-scholar', title: 'Genesis Scholar', desc: 'Complete Level 10 on Scripture Scramble', icon: '📜' },
-    { id: 'prophetic-voice', title: 'Prophetic Voice', desc: 'Score 100% on 5 consecutive Quiz rounds', icon: '👑' },
-    { id: 'timeline-master', title: 'Timeline Master', desc: 'Sort Bible Timeline from Creation to Revelation', icon: '🗺️' },
-    { id: 'emoji-decoder', title: 'Emoji Decoder', desc: 'Solve 10 Emoji Puzzles without hints', icon: '🧩' }
-  ];
-
-  const unlockedCount = achievements.filter(a => unlockedAchievements.includes(a.id)).length;
+  const gamesPlayed = profileStats.gamesPlayed;
+  const unlockedCount = achievements.filter((a) => unlockedAchievements.includes(a.id)).length;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -115,6 +146,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
           <span className="text-xs font-bold text-[#171B24]/60 font-mono">{unlockedCount} / {achievements.length} Unlocked</span>
         </div>
 
+        {statsLoading && <p className="mb-3 text-xs text-[#5A6275]">Refreshing your player record…</p>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {achievements.map((ach) => {
             const isUnlocked = unlockedAchievements.includes(ach.id);
