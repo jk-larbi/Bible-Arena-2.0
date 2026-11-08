@@ -17,7 +17,20 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Trending');
   const { user } = useSession();
-  const localStats = JSON.parse(localStorage.getItem('biblearena_user_stats') || '{"xp": 0, "gamesPlayed": 0, "level": 1}');
+  const localStats = (() => {
+    try {
+      const raw = localStorage.getItem('biblearena_user_stats');
+      const parsed = raw ? JSON.parse(raw) : {};
+      return {
+        xp: Number.isFinite(Number(parsed?.xp)) ? Number(parsed.xp) : 0,
+        gamesPlayed: Number.isFinite(Number(parsed?.gamesPlayed)) ? Number(parsed.gamesPlayed) : 0,
+        level: Number.isFinite(Number(parsed?.level)) && Number(parsed.level) > 0 ? Number(parsed.level) : 1,
+      };
+    } catch (error) {
+      console.warn('Ignoring invalid local BibleArena stats:', error);
+      return { xp: 0, gamesPlayed: 0, level: 1 };
+    }
+  })();
   const [remoteStats, setRemoteStats] = useState<{ xp: number; level: number; gamesPlayed: number } | null>(null);
 
   useEffect(() => {
