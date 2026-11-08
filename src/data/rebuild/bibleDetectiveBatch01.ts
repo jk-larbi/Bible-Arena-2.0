@@ -467,19 +467,19 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 5,
     "challenge_index": 4,
-    "question_text": "A young man fell asleep during a long message and fell from a third-storey window. In which city did this happen?",
-    "correct_answer": "Troas",
-    "reference": "Acts 20:7-12",
-    "explanation": "Eutychus fell during Paul’s extended message in Troas; Paul embraced him and he was restored.",
+    "question_text": "A court official was reading Isaiah while travelling home. A preacher joined his chariot, explained the passage, and baptised him. Which official was this?",
+    "correct_answer": "The Ethiopian eunuch",
+    "reference": "Acts 8:26-39",
+    "explanation": "Philip met an Ethiopian eunuch who was reading Isaiah, explained the good news about Jesus, and baptised him after they came to water.",
     "options": [
-      "Troas",
-      "Paul",
-      "Peter",
-      "Silas"
+      "The Ethiopian eunuch",
+      "Cornelius",
+      "Sergius Paulus",
+      "The jailer at Philippi"
     ],
     "metadata": {
       "difficulty": "expert",
-      "fact_key": "detective-eutychus-troas"
+      "fact_key": "detective-ethiopian-eunuch-isaiah"
     }
   },
   {
