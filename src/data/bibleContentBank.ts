@@ -285,13 +285,13 @@ export function getDifficultyForLevel(level: number): string {
  * Deterministically builds 10 authentic, distinct challenges for any (gameSlug, level) pair
  * from 1..50+ so every level in all 19 games is genuinely playable and biblically accurate.
  */
-export function buildLocalChallengesForLevel(gameSlug: string, level: number): ChallengeItem[] {
+export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
   const items: ChallengeItem[] = [];
   const baseIdx = (level - 1) * 10;
 
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
-    const globalSeed = baseIdx + i;
+    const globalSeed = baseIdx + i + variationSeed;
     const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + 1337;
     const id = `${gameSlug}-l${level}-c${challengeIndex}`;
 
@@ -704,26 +704,55 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
       }
 
       case 'bible-chain-challenge': {
-        const bookA = BOOKS_66[globalSeed % BOOKS_66.length];
-        const lastChar = bookA.name.slice(-1).toUpperCase();
-        const matching = BOOKS_66.find((b) => b.name.toUpperCase().startsWith(lastChar))
-          || BIBLE_CHARACTERS.find((c) => c.name.toUpperCase().startsWith(lastChar))
-          || { name: 'Samuel', ref: '1 Samuel 3:10', clue: 'Prophet who anointed David' };
-        const distractor1 = BOOKS_66[(globalSeed + 5) % BOOKS_66.length].name;
-        const distractor2 = BOOKS_66[(globalSeed + 13) % BOOKS_66.length].name;
+        const entries = [
+          ...BOOKS_66.map((entry) => ({
+            name: entry.name,
+            clue: entry.clue,
+            testament: entry.testament,
+            hintOne: `It is in the ${entry.section} section of the ${entry.testament}.`,
+            hintTwo: `Its key passage is ${entry.ref}; consider the events surrounding that passage.`,
+            ref: entry.ref,
+          })),
+          ...BIBLE_CHARACTERS.map((entry) => ({
+            name: entry.name,
+            clue: entry.clue1,
+            testament: entry.testament,
+            hintOne: `This figure is classed as a ${entry.role} in the ${entry.testament}.`,
+            hintTwo: `Read ${entry.clue2Ref}: ${entry.clue2}.`,
+            ref: entry.clue1Ref,
+          })),
+        ];
+        const eligibleStarts = entries.filter((entry) => {
+          const letter = entry.name.slice(-1).toUpperCase();
+          return entries.filter((candidate) =>
+            candidate.name !== entry.name && candidate.name.toUpperCase().startsWith(letter)
+          ).length >= 4;
+        });
+        const source = eligibleStarts[globalSeed % eligibleStarts.length];
+        const requiredLetter = source.name.slice(-1).toUpperCase();
+        const candidates = entries.filter((entry) =>
+          entry.name !== source.name && entry.name.toUpperCase().startsWith(requiredLetter)
+        );
+        const orderedCandidates = shuffleDeterministic(candidates, shuffleSeed + 71);
+        const matching = orderedCandidates[0];
+        const options = shuffleDeterministic(
+          [matching.name, ...orderedCandidates.slice(1, 4).map((entry) => entry.name)],
+          shuffleSeed
+        );
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Chain Link: "${bookA.name.toUpperCase()}" ends with the letter "${lastChar}". Which biblical name or book begins with "${lastChar}"?`,
-          options: shuffleDeterministic([matching.name, distractor1, distractor2], shuffleSeed),
+          question_text: `CHAIN LINK: "${source.name.toUpperCase()}" ends in "${requiredLetter}". Your next entry must begin with that letter. A sealed Scripture dossier describes it: ${matching.clue}. Which entry completes the chain?`,
+          options,
           correct_answer: matching.name,
-          explanation: `"${bookA.name}" ends with "${lastChar}", linking directly to "${matching.name}" (${matching.ref}).`,
+          explanation: `The chain runs from ${source.name} to ${matching.name}. The dossier points to ${matching.name} (${matching.ref}).`,
           reference: matching.ref,
           metadata: {
-            previousWord: bookA.name.toUpperCase(),
-            requiredLetter: lastChar,
+            previousWord: source.name.toUpperCase(),
+            requiredLetter,
+            clues: [matching.hintOne, matching.hintTwo],
           },
         });
         break;
