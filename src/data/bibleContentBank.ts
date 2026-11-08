@@ -435,8 +435,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
       case 'bible-crossword': {
         const book = BOOKS_66[(globalSeed * 3) % BOOKS_66.length];
-        const char = BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const acrossWord = book.name.replace(/[^A-Za-z]/g, '').toUpperCase();
+        const compatibleCharacters = BIBLE_CHARACTERS.filter((candidate) => {
+          const candidateWord = candidate.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
+          return [...acrossWord].some((letter) => candidateWord.includes(letter));
+        });
+        const char = compatibleCharacters.length
+          ? compatibleCharacters[(globalSeed * 5) % compatibleCharacters.length]
+          : BIBLE_CHARACTERS[(globalSeed * 5) % BIBLE_CHARACTERS.length];
         const downWord = char.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase();
         items.push({
           id,
