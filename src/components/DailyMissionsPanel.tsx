@@ -151,9 +151,24 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
         throw new Error('The server did not confirm this reward. Please refresh and try again.');
       }
 
+      // The RPC is the source of truth: it inserts the claim and credits
+      // profiles.xp in one database transaction. Re-read the profile so the
+      // visible XP total reflects the persisted account balance, not a local guess.
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('xp, level')
+        .eq('id', userId)
+        .maybeSingle();
+      if (profileError) throw profileError;
+
+      const persistedXp = Number(profile?.xp ?? row.total_xp);
+      if (!Number.isFinite(persistedXp) || persistedXp < Number(row.total_xp)) {
+        throw new Error('Your reward was processed, but your account balance has not refreshed yet. Please reload your profile.');
+      }
+
       setClaimed((current) => current.includes(mission.id) ? current : [...current, mission.id]);
-      onXpAwarded?.(Number(row.total_xp));
-      setMessage(`Reward claimed! +${Number(row.reward_xp)} XP added to your account.`);
+      onXpAwarded?.(persistedXp);
+      setMessage(`Reward claimed! +${Number(row.reward_xp)} XP credited. Your account now has ${persistedXp} XP.`);
     } catch (error) {
       console.error('Daily mission claim failed:', error);
       const detail = error instanceof Error ? error.message : 'Please check your connection and try again.';
