@@ -38,6 +38,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
     const { data, error } = await supabase
       .from('profiles')
       .select('id, username, full_name, level, xp, created_at')
+      .eq('is_guest', false)
       .order('xp', { ascending: false })
       .order('level', { ascending: false })
       .order('created_at', { ascending: true })
@@ -49,13 +50,9 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
       return;
     }
 
-    // Guest accounts are automatically assigned usernames like player_a1b2c3d4.
-    // Keep registered accounts (their chosen usernames) on the public leaderboard.
-    const registeredPlayers = (data || []).filter((player: any) =>
-      !/^player_[0-9a-f]{8}$/i.test(player.username || '')
-    );
-
-    setLeaders(registeredPlayers.map((player: any, index: number) => {
+    // The database flag distinguishes registered players from guest sessions.
+    // Include every registered player, even when they have not earned points yet.
+    setLeaders((data || []).map((player: any, index: number) => {
       const name = player.username || player.full_name || 'Bible Arena Player';
       return {
         id: player.id,
