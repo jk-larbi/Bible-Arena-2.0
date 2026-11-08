@@ -613,7 +613,7 @@ export default function WaitingRoom() {
           </div>
 
           {/* Interactive Mechanic */}
-          {sharedBoardType && roomId && currentChallenge ? <RoomBoardPanel roomId={roomId} gameSlug={room.game_slug} challenge={currentChallenge} players={players} /> : renderInteractiveMechanic()}
+          {sharedBoardType && roomId && currentChallenge ? <RoomBoardPanel roomId={roomId} gameSlug={room.game_slug} challenge={currentChallenge} players={players} isHost={isHost} /> : renderInteractiveMechanic()}
 
           {/* Submission status banner */}
           {phase === 'answering' && myPick !== null && (
