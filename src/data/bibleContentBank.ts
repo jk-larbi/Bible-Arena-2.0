@@ -287,9 +287,9 @@ export function getDifficultyForLevel(level: number): string {
  */
 export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
   const items: ChallengeItem[] = [];
-  const baseIdx = (level - 1) * 10;
+  const baseIdx = (level - 1) * 5;
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     const challengeIndex = i + 1;
     const globalSeed = baseIdx + i + variationSeed;
     const shuffleSeed = (level * 10007) + (challengeIndex * 997) + (globalSeed * 31) + 1337;
