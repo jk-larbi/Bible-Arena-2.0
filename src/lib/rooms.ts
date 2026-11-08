@@ -126,15 +126,6 @@ export interface RoomAnswerResult {
   current_score: number;
 }
 
-export interface RoomAnswerResult {
-  is_correct: boolean;
-  correct_answer: string;
-  explanation: string;
-  reference: string;
-  marks_awarded: number;
-  current_score: number;
-}
-
 /**
  * Room answers must be graded and recorded by the database.
  * Never fall back to client-side grading: it can create divergent scores
@@ -180,4 +171,43 @@ export async function advanceRoomQuestion(roomId: string, fromIndex: number): Pr
 export async function finishRoomSession(roomId: string): Promise<void> {
   const { error } = await supabase.rpc('finish_room_session', { p_room: roomId });
   if (error) throw new Error(error.message);
+}
+
+export type RoomBoardType = 'scramble' | 'crossword' | 'word_search' | 'verse_builder' | 'complete_scripture';
+export interface RoomBoardSnapshot {
+  room_id: string;
+  board_type: RoomBoardType;
+  board_state: Record<string, unknown>;
+  player_order: string[];
+  current_turn_index: number;
+  turn_number: number;
+  revision: number;
+  status: 'active' | 'completed';
+  updated_at: string;
+}
+export async function startRoomBoard(roomId: string, boardType: RoomBoardType, initialState: Record<string, unknown>, privateStates: Record<string, unknown> = {}) {
+  const { data, error } = await supabase.rpc('start_room_board', {
+    p_room: roomId, p_board_type: boardType, p_initial_state: initialState, p_player_private_states: privateStates,
+  });
+  if (error) throw new Error(error.message);
+  return data;
+}
+export async function submitRoomBoardMove(roomId: string, revision: number, moveType: string, payload: Record<string, unknown>, privateState?: Record<string, unknown>) {
+  const { data, error } = await supabase.rpc('submit_room_board_move', {
+    p_room: roomId, p_expected_revision: revision, p_move_type: moveType, p_move_payload: payload, p_private_state: privateState ?? null,
+  });
+  if (error) throw new Error(error.message);
+  return data;
+}
+export async function fetchRoomBoard(roomId: string): Promise<RoomBoardSnapshot | null> {
+  const { data, error } = await supabase.from('room_board_states').select('*').eq('room_id', roomId).maybeSingle();
+  if (error) throw new Error(error.message);
+  return data as RoomBoardSnapshot | null;
+}
+export function subscribeToRoomBoard(roomId: string, onChange: () => void) {
+  const channel = supabase.channel(`room-board:${roomId}`)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'room_board_states', filter: `room_id=eq.${roomId}` }, onChange)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'room_board_moves', filter: `room_id=eq.${roomId}` }, onChange)
+    .subscribe();
+  return () => { supabase.removeChannel(channel); };
 }
