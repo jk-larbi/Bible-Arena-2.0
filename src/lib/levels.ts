@@ -196,7 +196,7 @@ function buildLocalLevelMap(game: string, totalLevels = DEFAULT_TOTAL_LEVELS): L
       name: getStageTitleForLevel(lvl),
       difficulty: getDifficultyForLevel(lvl),
       challenge_count: CHALLENGES_PER_LEVEL,
-      is_published: game !== 'bible-riddles' || lvl <= 50,
+      is_published: lvl <= 30,
       unlocked,
       completed: Boolean(p?.completed),
       best_stars: p?.best_stars ?? 0,
@@ -214,7 +214,7 @@ export async function getLevelMap(game: string): Promise<LevelNode[]> {
     try {
       const { data, error } = await supabase.rpc('get_level_map', { p_game: game });
       if (!error && Array.isArray(data) && data.length > 0) {
-        // Merge remote progress with local progress so levels 1..50 are always playable
+        // Merge remote progress while respecting the 30-level publication boundary for every game
         return localNodes.map((localNode) => {
           const remote = (data as LevelNode[]).find((r) => r.level === localNode.level);
           if (!remote) return localNode;
@@ -225,7 +225,7 @@ export async function getLevelMap(game: string): Promise<LevelNode[]> {
             ...localNode,
             name: remote.name || localNode.name,
             difficulty: remote.difficulty || localNode.difficulty,
-            is_published: game === 'bible-riddles' ? localNode.is_published && Boolean(remote.is_published) : true,
+            is_published: localNode.is_published && Boolean(remote.is_published),
             unlocked: localNode.level === 1 || completed || Boolean(remote.unlocked || localNode.unlocked),
             completed,
             best_stars,
@@ -248,8 +248,8 @@ export async function startLevel(
   level: number,
   restart = false
 ): Promise<{ attemptId: string; startIndex: number }> {
-  if (game === 'bible-riddles' && level > 50) {
-    throw new Error(`Bible Riddles Level ${level} is coming soon. Please try Levels 1–50 for now.`);
+  if (level > 30) {
+    throw new Error(`Level ${level} is coming soon. Please try Levels 1–30 for now.`);
   }
   const allProgress = loadAllLocalProgress();
   const gameProg = allProgress[game] || {};
