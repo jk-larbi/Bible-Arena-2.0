@@ -493,8 +493,8 @@ async function runQuizAccuracyTests() {
       const bookQuestions = buildLocalChallengesForLevel('find-the-bible-book', lvl);
       const sequence = bookQuestions.map((item) => CANONICAL_BOOKS.indexOf(item.correct_answer));
       const hasOutOfOrderStep = sequence.some((value, index) => index > 0 && value < sequence[index - 1]);
-      const mixedQuestionTestaments = new Set(bookQuestions.map((item) =>
-        item.question_text.includes('(Old Testament') ? 'Old Testament' : 'New Testament'
+      const mixedQuestionTestaments = new Set(sequence.filter((index) => index >= 0).map((index) =>
+        index < 39 ? 'Old Testament' : 'New Testament'
       ));
       if (!hasOutOfOrderStep || mixedQuestionTestaments.size !== 2) {
         failures++;
