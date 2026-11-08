@@ -55,7 +55,7 @@ self.addEventListener('notificationclick', (event) => {
   const scopeUrl = new URL(self.registration.scope);
   const targetUrl = new URL(rawLink, self.registration.scope);
   if (targetUrl.origin === scopeUrl.origin && !targetUrl.pathname.startsWith(scopeUrl.pathname)) {
-    targetUrl.pathname = scopeUrl.pathname + targetUrl.pathname.replace(/^\\/+/, '');
+    targetUrl.pathname = scopeUrl.pathname + targetUrl.pathname.replace(/^\/+/, '');
   }
   const targetLink = targetUrl.href;
 
