@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged batch 02: cross-game duplicate corrections. */
+/** Staged Bible Detective batch 02: 100 questions, levels 6–25. */
 export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-detective-rebuild-b02-001",
@@ -927,16 +927,16 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 15,
     "challenge_index": 2,
-    "question_text": "A man was compelled to carry Jesus' cross. Where was he from?",
+    "question_text": "What were the names of Simon of Cyrene's sons mentioned by Mark?",
     "options": [
-      "Cyrene",
-      "Silas",
-      "Elijah",
-      "A small cake"
+      "Alexander and Rufus",
+      "Samson",
+      "Saul",
+      "Elisha"
     ],
-    "correct_answer": "Cyrene",
-    "reference": "Luke 23:26",
-    "explanation": "The passage Luke 23:26 records this biblical detail.",
+    "correct_answer": "Alexander and Rufus",
+    "reference": "Mark 15:21",
+    "explanation": "Mark identifies Simon as the father of Alexander and Rufus.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-detective-b02-fact-47"
