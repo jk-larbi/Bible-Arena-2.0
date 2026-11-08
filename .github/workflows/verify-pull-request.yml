@@ -1,0 +1,36 @@
+name: Verify Bible Arena Pull Requests
+
+on:
+  pull_request:
+    branches:
+      - hosting/cloudflare-github-pages
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out proposed changes
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.12.0
+      - name: Install dependencies
+        run: npm install
+      - name: TypeScript check
+        run: npm run lint
+      - name: Validate Bible content
+        run: npm run validate:content
+      - name: Test quiz accuracy and scoring
+        run: npm run test:quiz
+      - name: Test multiplayer and 19-game catalogue
+        run: npm run test:multiplayer
+      - name: Build production site for GitHub Pages
+        run: npm run build
+        env:
+          VITE_BASE_PATH: /Bible-Arena-2.0/
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}

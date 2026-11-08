@@ -1,7 +1,8 @@
-import React from 'react';
-import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { User, Trophy, Award, BookOpen, Shield, LogOut, Play, Gamepad2, Target, Star, Layers } from 'lucide-react';
 import { Button } from '../components/Button';
 import { BackButton } from '../components/BackButton';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
 interface ProfilePageProps {
   user: any;
@@ -10,23 +11,85 @@ interface ProfilePageProps {
 }
 
 export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavigateTab }) => {
-  // Read real stats from local storage or user object
   const localStats = JSON.parse(localStorage.getItem('biblearena_user_stats') || '{"xp": 0, "gamesPlayed": 0, "level": 1, "achievements": []}');
+  const [profileStats, setProfileStats] = useState({
+    xp: Number(localStats.xp) || 0,
+    level: Number(localStats.level) || 1,
+    gamesPlayed: Number(localStats.gamesPlayed) || 0,
+  });
+  const [achievements, setAchievements] = useState<{ id: string; title: string; desc: string; icon: string }[]>([]);
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>(localStats.achievements || []);
+  const [statsLoading, setStatsLoading] = useState(false);
+  const [performance, setPerformance] = useState({ accuracy: 0, gamesExplored: 0, levelsCompleted: 0, bestGame: '' });
 
-  const xp = user?.user_metadata?.xp ?? localStats.xp ?? 0;
-  const level = user?.user_metadata?.level ?? localStats.level ?? 1;
+  useEffect(() => {
+    let active = true;
+    const loadProfile = async () => {
+      if (!user?.id || !isSupabaseConfigured || !supabase) return;
+      setStatsLoading(true);
+      const [profileResult, attemptsResult, definitionsResult, unlockedResult] = await Promise.all([
+        supabase.from('profiles').select('xp, level').eq('id', user.id).maybeSingle(),
+        supabase.from('level_attempts').select('game_slug, level, percent').eq('user_id', user.id).eq('status', 'completed'),
+        supabase.from('achievement_definitions').select('id, title, description, icon_emoji').order('title'),
+        supabase.from('achievements').select('achievement_id').eq('user_id', user.id),
+      ]);
+      if (!active) return;
+      setProfileStats({
+        xp: Number(profileResult.data?.xp ?? localStats.xp ?? 0),
+        level: Number(profileResult.data?.level ?? localStats.level ?? 1),
+        gamesPlayed: Number(attemptsResult.data?.length ?? localStats.gamesPlayed ?? 0),
+      });
+      const completedAttempts = attemptsResult.data || [];
+      const averageAccuracy = completedAttempts.length
+        ? Math.round(completedAttempts.reduce((sum: number, item: any) => sum + Number(item.percent || 0), 0) / completedAttempts.length)
+        : 0;
+      const gameCounts = completedAttempts.reduce((counts: Record<string, number>, item: any) => {
+        counts[item.game_slug] = (counts[item.game_slug] || 0) + 1;
+        return counts;
+      }, {});
+      const bestGameSlug = Object.entries(gameCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
+      const gameTitles: Record<string, string> = {
+        'scripture-challenge': 'Scripture Challenge', 'bible-character-quest': 'Bible Character Quest',
+        'scripture-scramble': 'Scripture Scramble', 'bible-word-search': 'Bible Word Search',
+        'bible-crossword': 'Bible Crossword', 'who-said-it': 'Who Said It?',
+        'complete-the-scripture': 'Complete the Scripture', 'bible-match-up': 'Bible Match-Up',
+        'bible-timeline': 'Bible Timeline', 'bible-puzzles': 'Bible Puzzles',
+        'find-the-bible-book': 'Find the Bible Book', 'bible-riddles': 'Bible Riddles',
+        'bible-geography-quest': 'Bible Geography Quest', 'bible-memory-challenge': 'Bible Memory Challenge',
+        'old-vs-new-testament': 'Old vs New Testament', 'bible-detective': 'Bible Detective',
+        'bible-chain-challenge': 'Bible Chain Challenge', 'verse-builder': 'Verse Builder',
+        'guess-the-emoji': 'Guess the Emoji',
+      };
+      setPerformance({
+        accuracy: averageAccuracy,
+        gamesExplored: Object.keys(gameCounts).length,
+        levelsCompleted: completedAttempts.length,
+        bestGame: gameTitles[bestGameSlug] || '',
+      });
+      if (definitionsResult.data) {
+        setAchievements(definitionsResult.data.map((item: any) => ({
+          id: item.id,
+          title: item.title,
+          desc: item.description,
+          icon: item.icon_emoji || '🏅',
+        })));
+      }
+      if (unlockedResult.data) setUnlockedAchievements(unlockedResult.data.map((item: any) => item.achievement_id));
+      setStatsLoading(false);
+    };
+    void loadProfile();
+    return () => { active = false; };
+  }, [user?.id]);
+
+  const xp = profileStats.xp;
+  const level = profileStats.level;
   const totalMarks = user?.user_metadata?.total_marks ?? localStats.total_marks ?? 0;
-  const gamesPlayed = localStats.gamesPlayed ?? 0;
-  const unlockedAchievements: string[] = localStats.achievements || [];
+  const gamesPlayed = profileStats.gamesPlayed;
+  const unlockedCount = achievements.filter((a) => unlockedAchievements.includes(a.id)).length;
+  const rankTitle = xp >= 20000 ? 'Hall of Fame Scholar' : xp >= 10000 ? 'Bible Champion' : xp >= 5000 ? 'Scripture Master' : xp >= 3000 ? 'Kingdom Scholar' : xp >= 1500 ? 'Word Seeker' : xp >= 500 ? 'Scripture Explorer' : 'Bible Beginner';
+  const rankFloor = Math.floor(xp / 500) * 500;
+  const rankProgress = Math.round(((xp - rankFloor) / 500) * 100);
 
-  const achievements = [
-    { id: 'gen-scholar', title: 'Genesis Scholar', desc: 'Complete Level 10 on Scripture Scramble', icon: '📜' },
-    { id: 'prophetic-voice', title: 'Prophetic Voice', desc: 'Score 100% on 5 consecutive Quiz rounds', icon: '👑' },
-    { id: 'timeline-master', title: 'Timeline Master', desc: 'Sort Bible Timeline from Creation to Revelation', icon: '🗺️' },
-    { id: 'emoji-decoder', title: 'Emoji Decoder', desc: 'Solve 10 Emoji Puzzles without hints', icon: '🧩' }
-  ];
-
-  const unlockedCount = achievements.filter(a => unlockedAchievements.includes(a.id)).length;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -70,6 +133,43 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
           Sign Out
         </Button>
       </div>
+
+      <section className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
+          <Target className="mb-2 h-5 w-5 text-[#D66B3D]" />
+          <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.accuracy}%</p>
+          <p className="text-[11px] font-semibold text-[#5A6275]">Average accuracy</p>
+        </div>
+        <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
+          <Layers className="mb-2 h-5 w-5 text-[#3156C9]" />
+          <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.levelsCompleted}</p>
+          <p className="text-[11px] font-semibold text-[#5A6275]">Levels completed</p>
+        </div>
+        <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
+          <BookOpen className="mb-2 h-5 w-5 text-emerald-700" />
+          <p className="text-2xl font-serif font-bold text-[#171B24]">{performance.gamesExplored}/19</p>
+          <p className="text-[11px] font-semibold text-[#5A6275]">Games explored</p>
+        </div>
+        <div className="rounded-2xl border border-[#171B24]/10 bg-white p-4">
+          <Star className="mb-2 h-5 w-5 text-amber-600" />
+          <p className="truncate text-sm font-bold text-[#171B24]">{performance.bestGame || 'Not yet set'}</p>
+          <p className="text-[11px] font-semibold text-[#5A6275]">Most played game</p>
+        </div>
+      </section>
+
+      <section className="rounded-3xl border border-[#171B24]/10 bg-white p-5 shadow-sm sm:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">Your Scholar Rank</p>
+            <h3 className="mt-1 font-serif text-2xl font-bold text-[#171B24]">{rankTitle}</h3>
+          </div>
+          <span className="rounded-xl bg-[#171B24] px-3 py-2 text-xs font-bold text-white">Level {level}</span>
+        </div>
+        <div className="mt-4 h-3 overflow-hidden rounded-full bg-[#171B24]/10">
+          <div className="h-full rounded-full bg-[#D66B3D] transition-all" style={{ width: `${rankProgress}%` }} />
+        </div>
+        <p className="mt-2 text-right text-xs text-[#5A6275]">{xp.toLocaleString()} XP · {500 - (xp % 500)} XP to next level</p>
+      </section>
 
       {/* Recently Played Section */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#171B24]/10">
@@ -115,6 +215,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onLogout, onNavi
           <span className="text-xs font-bold text-[#171B24]/60 font-mono">{unlockedCount} / {achievements.length} Unlocked</span>
         </div>
 
+        {statsLoading && <p className="mb-3 text-xs text-[#5A6275]">Refreshing your player record…</p>}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {achievements.map((ach) => {
             const isUnlocked = unlockedAchievements.includes(ach.id);

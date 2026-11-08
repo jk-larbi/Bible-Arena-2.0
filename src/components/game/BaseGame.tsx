@@ -34,6 +34,50 @@ interface BaseGameProps {
 
 const QUESTION_SECONDS = 35;
 const REVEAL_SECONDS = 5;
+function buildWordSearchGrid(words: string[], size: number, seed: number): string[][] {
+  const grid = Array.from({ length: size }, () => Array.from({ length: size }, () => ''));
+  const directions = [
+    [0, 1], [0, -1], [1, 0], [-1, 0],
+    [1, 1], [1, -1], [-1, 1], [-1, -1],
+  ];
+  let state = seed >>> 0;
+  const random = () => {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    return state / 4294967296;
+  };
+
+  [...words]
+    .map((word) => word.replace(/[^A-Z]/gi, '').toUpperCase())
+    .sort((a, b) => b.length - a.length)
+    .forEach((word, wordIndex) => {
+      let placed = false;
+      for (let attempt = 0; attempt < 500 && !placed; attempt++) {
+        const [dr, dc] = directions[Math.floor(random() * directions.length)];
+        const row = Math.floor(random() * size);
+        const col = Math.floor(random() * size);
+        const endRow = row + dr * (word.length - 1);
+        const endCol = col + dc * (word.length - 1);
+        if (endRow < 0 || endRow >= size || endCol < 0 || endCol >= size) continue;
+        let fits = true;
+        for (let i = 0; i < word.length; i++) {
+          const existing = grid[row + dr * i][col + dc * i];
+          if (existing && existing !== word[i]) { fits = false; break; }
+        }
+        if (!fits) continue;
+        for (let i = 0; i < word.length; i++) grid[row + dr * i][col + dc * i] = word[i];
+        placed = true;
+      }
+      // Safe fallback for unusually dense word sets.
+      if (!placed) {
+        const row = wordIndex % size;
+        for (let col = 0; col < Math.min(size, word.length); col++) grid[row][col] = word[col];
+      }
+    });
+
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  return grid.map((row) => row.map((letter) => letter || alphabet[Math.floor(random() * alphabet.length)]));
+}
+
 
 export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) => {
   const [levels, setLevels] = useState<LevelNode[]>([]);
@@ -272,7 +316,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   }
 
   const HINT_COST = 5;
-  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search'].includes(gameId);
+  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search', 'bible-character-quest', 'bible-detective', 'bible-riddles', 'bible-geography-quest', 'find-the-bible-book', 'bible-chain-challenge', 'complete-the-scripture'].includes(gameId);
 
   const getHintForLevel = (requestedLevel: number): string => {
     if (!currentChallenge || requestedLevel === 0) return '';
@@ -294,6 +338,25 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const fragments: string[] = metadata.tiles || [];
       if (requestedLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
       return fragments[1] ? `After the first fragment comes: “${fragments[1]}”` : 'Read the verse fragments for a natural sentence flow.';
+    }
+
+    if (gameId === 'bible-character-quest' || gameId === 'bible-detective') {
+      const clues: string[] = metadata.clues || [];
+      return clues[requestedLevel] ? `Additional evidence: ${clues[requestedLevel]}` : 'Study the evidence already revealed and compare the details with the options.';
+    }
+    if (gameId === 'bible-riddles' || gameId === 'complete-the-scripture' || gameId === 'find-the-bible-book') {
+      const answer = String(currentChallenge.correct_answer || '');
+      return requestedLevel === 1
+        ? `The answer begins with “${answer.charAt(0)}” and contains ${answer.length} characters.`
+        : `The answer is “${answer}”. Use this final clue carefully.`;
+    }
+    if (gameId === 'bible-geography-quest') {
+      return requestedLevel === 1
+        ? `Region clue: ${metadata.region || 'Read the event in the question carefully'}.`
+        : `Scripture reference: ${currentChallenge.reference}. Use the passage to identify the place.`;
+    }
+    if (gameId === 'bible-chain-challenge') {
+      return `The next Bible name must begin with the letter “${metadata.requiredLetter || ''}”.`;
     }
 
     if (gameId === 'bible-word-search') {
@@ -518,59 +581,61 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 4. BIBLE WORD SEARCH — select the first and last letter of each hidden word.
+    // 4. BIBLE WORD SEARCH — tap the first and last letters in any straight direction.
     if (gameId === 'bible-word-search') {
       const targetWords: string[] = currentChallenge.metadata?.words || currentChallenge.options;
-      const size = Math.max(10, ...targetWords.map((word) => word.replace(/[^A-Z]/gi, '').length + 2));
-      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const grid = Array.from({ length: size }, (_, row) => {
-        const word = targetWords[row % targetWords.length].replace(/[^A-Z]/gi, '').toUpperCase();
-        const offset = (row * 3 + 1) % Math.max(1, size - word.length + 1);
-        const cells = Array.from({ length: size }, (_, col) => alphabet[(row * 7 + col * 11 + 5) % alphabet.length]);
-        [...word].forEach((letter, i) => { cells[offset + i] = letter; });
-        return cells;
-      });
+      const cleanWords = targetWords.map((word) => word.replace(/[^A-Z]/gi, '').toUpperCase());
+      const size = Math.max(10, ...cleanWords.map((word) => word.length + 2));
+      const grid = buildWordSearchGrid(cleanWords, size, (currentChallenge.level * 10007) + (currentChallenge.challenge_index * 997));
       const selectCell = (row: number, col: number) => {
         if (!wordSearchStart) {
           setWordSearchStart({ row, col });
+          setError(null);
           return;
         }
         const first = wordSearchStart;
         setWordSearchStart(null);
-        if (first.row !== row) return;
-        const low = Math.min(first.col, col);
-        const high = Math.max(first.col, col);
-        const selected = grid[row].slice(low, high + 1).join('');
-        const match = targetWords.find((word) =>
-          !wordSearchFound.includes(word) &&
-          word.replace(/[^A-Z]/g, '').toUpperCase() === selected
+        const rowDelta = row - first.row;
+        const colDelta = col - first.col;
+        const steps = Math.max(Math.abs(rowDelta), Math.abs(colDelta));
+        if (steps === 0) return;
+        const straightLine = rowDelta === 0 || colDelta === 0 || Math.abs(rowDelta) === Math.abs(colDelta);
+        if (!straightLine) {
+          setError('Choose a straight horizontal, vertical or diagonal line.');
+          return;
+        }
+        const stepRow = rowDelta === 0 ? 0 : rowDelta / steps;
+        const stepCol = colDelta === 0 ? 0 : colDelta / steps;
+        const selected = Array.from({ length: steps + 1 }, (_, index) =>
+          grid[first.row + stepRow * index][first.col + stepCol * index]
+        ).join('');
+        const foundWord = cleanWords.find((word) =>
+          !wordSearchFound.includes(word) && word === selected
+        ) || cleanWords.find((word) =>
+          !wordSearchFound.includes(word) && word === selected.split('').reverse().join('')
         );
-        const reverseMatch = targetWords.find((word) =>
-          !wordSearchFound.includes(word) &&
-          word.replace(/[^A-Z]/g, '').toUpperCase() === selected.split('').reverse().join('')
-        );
-        const foundWord = match || reverseMatch;
         if (foundWord) {
           const next = [...wordSearchFound, foundWord];
           setWordSearchFound(next);
-          if (next.length === targetWords.length) settleAnswer(targetWords.join(','));
+          setError(null);
+          if (next.length === cleanWords.length) settleAnswer(targetWords.join(','));
         } else {
-          setError('Not a word on the list. Select the first and last letters in the same row.');
+          setError('That line does not match a hidden word. Try another direction.');
         }
       };
       return (
         <div className="space-y-5">
           <div className="rounded-2xl bg-[#F3EBDD] border border-[#171B24]/15 p-4">
-            <p className="text-sm font-bold text-[#171B24] mb-1">Find all the hidden Bible words</p>
-            <p className="text-xs text-[#171B24]/65">Tap the first letter, then tap the last letter of a word. Words run left-to-right or right-to-left.</p>
+            <p className="text-sm font-bold text-[#171B24] mb-1">Find every hidden Bible word</p>
+            <p className="text-xs text-[#171B24]/65">Tap the first letter, then the last letter. Words can run across, up, down or diagonally — forwards or backwards.</p>
             <div className="flex flex-wrap gap-2 mt-3">
-              {targetWords.map((word) => {
+              {cleanWords.map((word) => {
                 const found = wordSearchFound.includes(word);
                 return <span key={word} className={`px-3 py-1.5 rounded-lg text-xs font-bold border ${found ? 'bg-emerald-700 text-white border-emerald-700 line-through' : 'bg-white text-[#171B24] border-[#171B24]/20'}`}>{found ? '✓ ' : ''}{word}</span>;
               })}
             </div>
           </div>
-          <div className="mx-auto max-w-[420px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
+          <div className="mx-auto max-w-[460px] rounded-2xl bg-[#171B24] p-2 sm:p-3">
             <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
               {grid.flatMap((row, rowIndex) => row.map((letter, colIndex) => {
                 const active = wordSearchStart?.row === rowIndex && wordSearchStart?.col === colIndex;
@@ -579,8 +644,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             </div>
           </div>
           <div className="flex items-center justify-between gap-3">
-            <p className="text-xs text-[#5A6275]">{wordSearchFound.length} of {targetWords.length} words found</p>
-            <button type="button" onClick={() => setWordSearchStart(null)} className="px-4 py-2 rounded-xl border border-[#171B24]/20 text-xs font-bold">Clear selection</button>
+            <p className="text-xs text-[#5A6275]">{wordSearchFound.length} of {cleanWords.length} words found</p>
+            <button type="button" onClick={() => { setWordSearchStart(null); setError(null); }} className="px-4 py-2 rounded-xl border border-[#171B24]/20 text-xs font-bold">Clear selection</button>
           </div>
         </div>
       );
@@ -598,8 +663,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const extraShared = extraIndex >= 0 ? acrossAns[extraIndex] : '';
       const extraDownIndex = extraShared ? extraAns.indexOf(extraShared) : 0;
       const hasExtra = Boolean(extraAns && extraIndex >= 0);
-      const gridSize = Math.max(12, acrossAns.length + 2, downAns.length + 2, extraAns.length + 2);
-      const centerRow = Math.max(downIndex, extraDownIndex, Math.floor(gridSize / 2));
+      const centerRow = Math.max(downIndex, hasExtra ? extraDownIndex : 0);
+      const gridSize = Math.max(
+        12,
+        acrossAns.length + 2,
+        centerRow + Math.max(downAns.length - downIndex, hasExtra ? extraAns.length - extraDownIndex : 0) + 2
+      );
       const acrossStart = Math.max(0, Math.floor((gridSize - acrossAns.length) / 2));
       const downCol = acrossStart + Math.max(0, acrossIndex);
       const extraCol = acrossStart + Math.max(0, extraIndex);
@@ -837,6 +906,167 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
+    // 8. OLD VS NEW TESTAMENT — a direct two-choice classification round.
+    if (gameId === 'old-vs-new-testament') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#F3EBDD] p-4 text-center">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">Testament Classification</p>
+            <p className="mt-2 font-serif text-xl font-bold text-[#171B24]">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => {
+              const old = option === 'Old Testament';
+              const correct = reveal?.correct_answer === option;
+              const picked = reveal?.picked === option;
+              return (
+                <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                  className={`min-h-28 rounded-2xl border-2 p-5 text-center font-serif text-lg font-bold transition ${reveal !== null ? (correct ? 'border-emerald-600 bg-emerald-100 text-emerald-900' : picked ? 'border-rose-500 bg-rose-100 text-rose-900' : 'border-stone-200 bg-stone-50 text-stone-400') : old ? 'border-[#D66B3D]/30 bg-[#FFF5EA] text-[#171B24] hover:border-[#D66B3D]' : 'border-[#3156C9]/30 bg-[#EEF2FF] text-[#171B24] hover:border-[#3156C9]'}`}>
+                  <span className="mb-2 block text-3xl">{old ? '📜' : '✝️'}</span>{option}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    // 9. BIBLE CHAIN CHALLENGE — continue the chain using the required opening letter.
+    if (gameId === 'bible-chain-challenge') {
+      const previous = String(currentChallenge.metadata?.previousWord || '');
+      const required = String(currentChallenge.metadata?.requiredLetter || '');
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#171B24] p-5 text-center text-white">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">Continue the Scripture Chain</p>
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <span className="rounded-xl bg-white/10 px-4 py-3 font-serif text-xl font-bold">{previous}</span>
+              <span className="text-2xl text-[#F0B18D]">→</span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D66B3D] text-2xl font-black">{required}</span>
+              <span className="text-2xl text-[#F0B18D]">…</span>
+            </div>
+            <p className="mt-3 text-xs text-white/65">Choose a Bible name or book that begins with the highlighted letter.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-4 text-left font-bold text-[#171B24] hover:border-[#D66B3D] disabled:opacity-50">
+                <span className="mr-2 inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#D66B3D]/15 text-sm font-black text-[#D66B3D]">{option.charAt(0)}</span>
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 10. WHO SAID IT — put the quotation at the centre of the round.
+    if (gameId === 'who-said-it') {
+      const quote = currentChallenge.question_text.match(/"([^"]+)"/)?.[1] || currentChallenge.question_text;
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-6 text-center">
+            <span className="text-4xl text-[#D66B3D]">“</span>
+            <blockquote className="font-serif text-xl font-bold leading-relaxed text-[#171B24]">{quote}</blockquote>
+            <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#7A8190]">Who spoke these words?</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-4 text-left font-bold text-[#171B24] hover:bg-[#3156C9] hover:text-white disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 11. COMPLETE THE SCRIPTURE — select the missing word from the verse.
+    if (gameId === 'complete-the-scripture') {
+      const verse = currentChallenge.question_text.replace(/^Complete the verse\s*\([^)]*\):\s*/i, '');
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-5">
+            <p className="mb-2 text-xs font-bold uppercase tracking-wider text-[#3156C9]">Restore the Missing Word</p>
+            <p className="font-serif text-lg font-semibold leading-relaxed text-[#171B24]">{verse}</p>
+            <p className="mt-3 text-xs font-bold text-[#5A6275]">Reference: {currentChallenge.reference}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-white p-4 text-center font-serif text-lg font-bold text-[#171B24] hover:border-[#D66B3D] disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 12. FIND THE BIBLE BOOK — choose the correct book from the library shelves.
+    if (gameId === 'find-the-bible-book') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl bg-[#171B24] p-5 text-white">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">The Bible Library</p>
+            <p className="mt-2 font-serif text-lg font-semibold leading-relaxed">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {currentChallenge.options.map((option, index) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-24 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-3 text-center font-serif font-bold text-[#171B24] shadow-sm hover:-translate-y-0.5 hover:border-[#D66B3D] disabled:opacity-50">
+                <span className="mb-2 block text-2xl">{['📕', '📗', '📘', '📙'][index % 4]}</span>{option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 13. BIBLE GEOGRAPHY QUEST — identify the sacred place from its historical event.
+    if (gameId === 'bible-geography-quest') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-emerald-800/15 bg-emerald-50 p-5">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <span className="text-2xl">🧭</span> Sacred Atlas · {currentChallenge.metadata?.region || 'Biblical Lands'}
+            </div>
+            <p className="mt-3 font-serif text-lg font-semibold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+            <p className="mt-2 text-xs text-[#5A6275]">Choose the place where this event happened.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-emerald-900/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-emerald-700 disabled:opacity-50">
+                📍 {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // 14. BIBLE RIDDLES — solve the riddle before selecting the answer.
+    if (gameId === 'bible-riddles') {
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-amber-700/20 bg-amber-50 p-6 text-center">
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-800">A Biblical Mystery</p>
+            <p className="mt-3 font-serif text-xl font-bold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-amber-900/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-amber-700 disabled:opacity-50">
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
     // 8. Biblical Record Scenarios + Multiple Choice / Standard Games
     const scenarioPoints: string[] | undefined = currentChallenge.metadata?.clues;
     return (
@@ -846,11 +1076,13 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             <span className="text-xs font-bold uppercase tracking-wider text-[#171B24]/70">
               Biblical Record &amp; Testimony
             </span>
-            {scenarioPoints.map((point, idx) => (
-              <p key={idx} className="text-sm text-[#171B24] font-medium">
-                • {point}
-              </p>
-            ))}
+            {scenarioPoints
+              .filter((_, idx) => !['bible-character-quest', 'bible-detective'].includes(gameId) || idx <= hintLevel)
+              .map((point, idx) => (
+                <p key={idx} className="text-sm text-[#171B24] font-medium">
+                  • {point}
+                </p>
+              ))}
           </div>
         )}
 

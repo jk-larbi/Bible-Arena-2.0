@@ -16,7 +16,7 @@ export const inviteLink = (code: string) => {
   const origin = typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
     : 'https://biblearena.app';
-  const basePath = import.meta.env.BASE_URL || '/';
+  const basePath = import.meta.env?.BASE_URL || '/';
   const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
   return `${origin}${normalizedBase}join/${code}`;
 };

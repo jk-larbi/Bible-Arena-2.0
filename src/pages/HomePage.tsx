@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GAMES_LIST, CATEGORIES, GameInfo } from '../data/gamesList';
 import { HeroBanner } from '../components/HeroBanner';
 import { Pill } from '../components/Pill';
 import { GameCard } from '../components/GameCard';
 import { SupabaseConfigNotice } from '../components/SupabaseConfigNotice';
-import { isSupabaseConfigured } from '../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../lib/supabase';
+import { useSession } from '../lib/auth';
+import { DailyMissionsPanel } from '../components/DailyMissionsPanel';
 import { Sparkles, Trophy, Users, Flame, ArrowRight, Play, Plus } from 'lucide-react';
 
 interface HomePageProps {
@@ -14,12 +16,35 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Trending');
-
-  // Read real local user stats
+  const { user } = useSession();
   const localStats = JSON.parse(localStorage.getItem('biblearena_user_stats') || '{"xp": 0, "gamesPlayed": 0, "level": 1}');
-  const xp = localStats.xp || 0;
-  const level = localStats.level || 1;
-  const gamesPlayed = localStats.gamesPlayed || 0;
+  const [remoteStats, setRemoteStats] = useState<{ xp: number; level: number; gamesPlayed: number } | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    const loadStats = async () => {
+      if (!user?.id || !isSupabaseConfigured || !supabase) {
+        setRemoteStats(null);
+        return;
+      }
+      const [profileResult, attemptsResult] = await Promise.all([
+        supabase.from('profiles').select('xp, level').eq('id', user.id).maybeSingle(),
+        supabase.from('level_attempts').select('id', { count: 'exact', head: true }).eq('user_id', user.id).eq('status', 'completed'),
+      ]);
+      if (!active) return;
+      setRemoteStats({
+        xp: Number(profileResult.data?.xp ?? localStats.xp ?? 0),
+        level: Number(profileResult.data?.level ?? localStats.level ?? 1),
+        gamesPlayed: Number(attemptsResult.count ?? localStats.gamesPlayed ?? 0),
+      });
+    };
+    void loadStats();
+    return () => { active = false; };
+  }, [user?.id]);
+
+  const xp = remoteStats?.xp ?? localStats.xp ?? 0;
+  const level = remoteStats?.level ?? localStats.level ?? 1;
+  const gamesPlayed = remoteStats?.gamesPlayed ?? localStats.gamesPlayed ?? 0;
 
   const filteredGames = selectedCategory === 'Trending'
     ? GAMES_LIST
@@ -56,6 +81,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           onAction={() => onNavigateTab('multiplayer')}
         />
       </div>
+
+      <DailyMissionsPanel
+        userId={user?.id ?? null}
+        onXpAwarded={(newXp) => setRemoteStats((current) => ({
+          xp: newXp,
+          level: Math.floor(newXp / 500) + 1,
+          gamesPlayed: current?.gamesPlayed ?? gamesPlayed,
+        }))}
+      />
 
       {/* Category Pills Rail */}
       <div>
