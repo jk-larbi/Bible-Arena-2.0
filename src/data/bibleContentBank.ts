@@ -328,10 +328,35 @@ export function getDifficultyForLevel(level: number): string {
  * Deterministically builds 10 authentic, distinct challenges for any (gameSlug, level) pair
  * from 1..50+ so every level in all 19 games is genuinely playable and biblically accurate.
  */
+function getDifficultyTier(level: number): number {
+  return Math.max(0, Math.min(4, Math.floor((level - 1) / 10)));
+}
+
+function getDifficultyLabel(tier: number): string {
+  return ['Foundation', 'Intermediate', 'Advanced', 'Expert', 'Master'][tier] || 'Foundation';
+}
+
+function getCharacterClue(char: (typeof BIBLE_CHARACTERS)[number], tier: number): string {
+  if (tier <= 0) return char.clue3;
+  if (tier === 1) return char.clue2;
+  if (tier === 2) return char.clue1;
+  if (tier === 3) return `${char.clue1}; ${char.clue2}`;
+  return `${char.clue1}; ${char.clue2}; ${char.clue3}`;
+}
+
+function getBookClue(book: (typeof BOOKS_66)[number], tier: number): string {
+  if (tier <= 0) return book.clue;
+  if (tier === 1) return `${book.section} book of ${book.testament}`;
+  if (tier === 2) return `${book.author} is traditionally associated with this ${book.chapters}-chapter book`;
+  if (tier === 3) return `A ${book.chapters}-chapter work traditionally attributed to ${book.author}, in the ${book.section} collection`;
+  return `Identify the ${book.testament} writing traditionally associated with ${book.author}; it contains ${book.chapters} chapters and belongs to the ${book.section} collection`;
+}
+
 export function buildLocalChallengesForLevel(gameSlug: string, level: number): ChallengeItem[] {
   const items: ChallengeItem[] = [];
   const baseIdx = (level - 1) * 10;
   const mixedBooks = getMixedBookOrder(`${gameSlug}:${level}`);
+  const difficultyTier = getDifficultyTier(level);
 
   for (let i = 0; i < 10; i++) {
     const challengeIndex = i + 1;
@@ -355,7 +380,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?`,
+            question_text: difficultyTier === 0 ? `Which biblical figure ${char.clue3.charAt(0).toLowerCase() + char.clue3.slice(1)}?` : `Identify the biblical figure from this evidence: ${getCharacterClue(char, difficultyTier)}.`,
             options,
             correct_answer: char.name,
             explanation: `${char.name} (${char.role}): ${char.clue3}.`,
@@ -374,7 +399,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which book of the ${book.testament} features: "${book.clue}"?`,
+            question_text: `Which book fits this evidence: "${getBookClue(book, difficultyTier)}"?`,
             options,
             correct_answer: book.name,
             explanation: `${book.name} is in the ${book.section} section of the ${book.testament} (${book.chapters} chapters).`,
@@ -393,7 +418,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             game_slug: gameSlug,
             level,
             challenge_index: challengeIndex,
-            question_text: `Which biblical location is described: "${loc.event}"?`,
+            question_text: difficultyTier < 2 ? `Which biblical location is described: "${loc.event}"?` : `Identify the precise biblical location from this historical-geographical evidence: ${loc.event}. Reference: ${loc.ref}.`,
             options,
             correct_answer: loc.place,
             explanation: `${loc.place} (${loc.region}): ${loc.event}.`,
@@ -416,7 +441,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Identify this ${char.testament} ${char.role} from the biblical record:`,
+          question_text: `Identify this ${char.testament} ${char.role} from the biblical record: ${getCharacterClue(char, difficultyTier)}.`,
           options,
           correct_answer: char.name,
           explanation: `${char.name} is remembered as the ${char.role.toLowerCase()} who ${char.clue3.toLowerCase()}.`,
@@ -438,7 +463,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Unscramble the letters to form the name of this biblical book: "${wordSource.clue}"`,
+          question_text: `Unscramble the biblical book. ${difficultyTier >= 3 ? getBookClue(wordSource, difficultyTier) : wordSource.clue}`,
           options: shuffleDeterministic(cleanWord.split(''), shuffleSeed),
           correct_answer: cleanWord,
           explanation: `${wordSource.name} (${wordSource.section}): ${wordSource.clue}.`,
@@ -487,7 +512,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${book.clue}" • Down (${downWord.length} letters): "${char.clue2}"`,
+          question_text: `Solve the intersecting clues: Across (${acrossWord.length} letters): "${getBookClue(book, difficultyTier)}" • Down (${downWord.length} letters): "${getCharacterClue(char, difficultyTier)}"`,
           options: [acrossWord, downWord],
           correct_answer: `${acrossWord}|${downWord}`,
           explanation: `Across is ${acrossWord} (${book.ref}); Down is ${downWord} (${char.clue2Ref}).`,
@@ -621,7 +646,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Clue: "${book.clue}" (${book.testament} • ${book.section}, ${book.chapters} chapters). Which book is this?`,
+          question_text: `Clue: "${getBookClue(book, difficultyTier)}". Which biblical book is this?`,
           options,
           correct_answer: book.name,
           explanation: `${book.name} was written by ${book.author} and belongs to the ${book.section} section. Key scripture: ${book.ref}.`,
@@ -660,7 +685,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Sacred Atlas (${loc.region}): Identify the location where "${loc.event}".`,
+          question_text: difficultyTier >= 3 ? `Advanced Sacred Atlas: Identify the exact location from the event, regional setting and cross-reference: "${loc.event}" (${loc.region}; ${loc.ref}).` : `Sacred Atlas (${loc.region}): Identify the location where "${loc.event}".`,
           options,
           correct_answer: loc.place,
           explanation: `${loc.place} is located in ${loc.region}. ${loc.event}.`,
@@ -700,7 +725,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Classify "${book.name}" (${book.clue}): Does it belong to the Old Testament or the New Testament?`,
+          question_text: difficultyTier < 2 ? `Classify "${book.name}" (${book.clue}): Does it belong to the Old Testament or the New Testament?` : `Testament classification: "${book.name}" is traditionally associated with ${book.author} and contains ${book.chapters} chapters. Is it part of the Old Testament or the New Testament?`,
           options: ['Old Testament', 'New Testament'],
           correct_answer: book.testament,
           explanation: `${book.name} is part of the ${book.section} section in the ${book.testament}.`,
@@ -717,13 +742,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `${c.title} — Examine the evidence and identify the biblical account:`,
+          question_text: `${c.title} — Examine the evidence and identify the biblical account. ${difficultyTier >= 3 ? "Distinguish the decisive detail from the misleading clues." : ""}`,
           options,
           correct_answer: c.answer,
           explanation: c.explanation,
           reference: c.ref,
           metadata: {
-            clues: [c.clue1, c.clue2, c.clue3],
+            clues: difficultyTier >= 3 ? [c.clue3, c.clue2, c.clue1] : [c.clue1, c.clue2, c.clue3],
+            clueOrder: difficultyTier >= 3 ? "most-specific-first" : "progressive",
           },
         });
         break;
@@ -763,7 +789,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Tap the word tiles in order to assemble ${v.ref}:`,
+          question_text: `Reconstruct the exact wording of ${v.ref} from the shuffled word tiles. Pay attention to sequence and every word:`,
           options: shuffleDeterministic([...words], shuffleSeed),
           correct_answer: v.text,
           explanation: `Completed verse (${v.ref}): "${v.text}."`,
@@ -808,6 +834,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
     }
   }
 
+  for (const item of items) {
+    item.metadata = { ...(item.metadata || {}), difficultyTier, difficultyLabel: getDifficultyLabel(difficultyTier), levelBand: `${Math.floor((level - 1) / 10) * 10 + 1}-${Math.floor((level - 1) / 10) * 10 + 10}` };
+  }
   return items;
 }
 
