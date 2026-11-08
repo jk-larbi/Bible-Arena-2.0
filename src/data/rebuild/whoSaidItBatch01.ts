@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged who-said-it batch 01: 100 questions across levels 1–20. */
+/** Staged Who Said It batch 01: 100 questions across levels 1–20. */
 export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
   {
     "id": "who-said-it-rebuild-001",
@@ -11,8 +11,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "options": [
       "Cain",
       "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "David",
+      "Peter"
     ],
     "correct_answer": "Cain",
     "explanation": "The biblical account in Genesis 4:9 supports this identification.",
@@ -30,9 +30,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Am I in the place of God?\"",
     "options": [
       "Joseph",
-      "Job",
-      "God",
-      "Eli"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Joseph",
     "explanation": "The biblical account in Genesis 50:19 supports this identification.",
@@ -50,9 +50,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Here am I; send me.\"",
     "options": [
       "Isaiah",
-      "Joseph",
-      "Samuel",
-      "Nathan"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Isaiah",
     "explanation": "The biblical account in Isaiah 6:8 supports this identification.",
@@ -70,9 +70,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Speak, Lord; for thy servant heareth.\"",
     "options": [
       "Samuel",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Joseph",
+      "Isaiah",
+      "Nathan"
     ],
     "correct_answer": "Samuel",
     "explanation": "The biblical account in 1 Samuel 3:9-10 supports this identification.",
@@ -90,9 +90,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How can I go? If Saul hear it, he will kill me.\"",
     "options": [
       "Samuel",
-      "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Samuel",
     "explanation": "The biblical account in 1 Samuel 16:2 supports this identification.",
@@ -110,9 +110,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Thou art the man.\"",
     "options": [
       "Nathan",
-      "David",
-      "Peter",
-      "Naomi"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Nathan",
     "explanation": "The biblical account in 2 Samuel 12:7 supports this identification.",
@@ -130,9 +130,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Give therefore thy servant an understanding heart.\"",
     "options": [
       "Solomon",
-      "Judas son of James",
-      "Crowd at Pentecost",
-      "Heavenly host"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Solomon",
     "explanation": "The biblical account in 1 Kings 3:9 supports this identification.",
@@ -150,9 +150,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"The Lord, he is the God; the Lord, he is the God.\"",
     "options": [
       "Elijah",
-      "Cain",
-      "Mary",
-      "John"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Elijah",
     "explanation": "The biblical account in 1 Kings 18:39 supports this identification.",
@@ -170,9 +170,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Is it well with thee? is it well with thy husband? is it well with the child?\"",
     "options": [
       "Gehazi",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "John the Baptist",
+      "Elizabeth",
+      "Nathanael"
     ],
     "correct_answer": "Gehazi",
     "explanation": "The biblical account in 2 Kings 4:26 supports this identification.",
@@ -190,9 +190,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let not the king's heart be troubled.\"",
     "options": [
       "Nehemiah",
-      "David",
-      "Peter",
-      "Naomi"
+      "Judas son of James",
+      "Crowd at Pentecost",
+      "Cain"
     ],
     "correct_answer": "Nehemiah",
     "explanation": "The biblical account in Nehemiah 2:2 supports this identification.",
@@ -211,8 +211,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "options": [
       "Job",
       "Heavenly host",
-      "Nehemiah",
-      "Preacher"
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Job",
     "explanation": "The biblical account in Job 13:15 supports this identification.",
@@ -230,9 +230,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"The Lord is my shepherd; I shall not want.\"",
     "options": [
       "David",
-      "Cain",
-      "Mary",
-      "John"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "David",
     "explanation": "The biblical account in Psalm 23:1 supports this identification.",
@@ -250,9 +250,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Create in me a clean heart, O God.\"",
     "options": [
       "David",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "Peter",
+      "Naomi",
+      "Moses"
     ],
     "correct_answer": "David",
     "explanation": "The biblical account in Psalm 51:10 supports this identification.",
@@ -270,9 +270,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How long, O Lord? wilt thou forget me for ever?\"",
     "options": [
       "David",
-      "Peter",
-      "Naomi",
-      "Moses"
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
     "correct_answer": "David",
     "explanation": "The biblical account in Psalm 13:1 supports this identification.",
@@ -290,9 +290,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Vanity of vanities; all is vanity.\"",
     "options": [
       "Preacher",
-      "Heavenly host",
-      "Nehemiah",
-      "The Lord"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "Preacher",
     "explanation": "The biblical account in Ecclesiastes 1:2 supports this identification.",
@@ -310,9 +310,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Behold, I am the handmaid of the Lord.\"",
     "options": [
       "Mary",
-      "John the Baptist",
-      "Joseph",
-      "Isaiah"
+      "Cain",
+      "John",
+      "Ruth"
     ],
     "correct_answer": "Mary",
     "explanation": "The biblical account in Luke 1:38 supports this identification.",
@@ -330,9 +330,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"My soul doth magnify the Lord.\"",
     "options": [
       "Mary",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Mary",
     "explanation": "The biblical account in Luke 1:46 supports this identification.",
@@ -350,9 +350,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How shall this be, seeing I know not a man?\"",
     "options": [
       "Mary",
-      "David",
-      "Peter",
-      "Naomi"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Mary",
     "explanation": "The biblical account in Luke 1:34 supports this identification.",
@@ -370,9 +370,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Blessed art thou among women.\"",
     "options": [
       "Elizabeth",
-      "Nehemiah",
-      "Preacher",
-      "The Lord"
+      "David",
+      "Peter",
+      "Naomi"
     ],
     "correct_answer": "Elizabeth",
     "explanation": "The biblical account in Luke 1:42 supports this identification.",
@@ -390,9 +390,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Now lettest thou thy servant depart in peace.\"",
     "options": [
       "Simeon",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
     "correct_answer": "Simeon",
     "explanation": "The biblical account in Luke 2:29 supports this identification.",
@@ -410,9 +410,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Prepare ye the way of the Lord.\"",
     "options": [
       "John the Baptist",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "John the Baptist",
     "explanation": "The biblical account in Matthew 3:3 supports this identification.",
@@ -430,9 +430,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I have need to be baptized of thee, and comest thou to me?\"",
     "options": [
       "John the Baptist",
-      "David",
-      "Peter",
-      "Naomi"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "John the Baptist",
     "explanation": "The biblical account in Matthew 3:14 supports this identification.",
@@ -450,9 +450,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Behold the Lamb of God.\"",
     "options": [
       "John the Baptist",
-      "Nehemiah",
-      "Preacher",
-      "The Lord"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "John the Baptist",
     "explanation": "The biblical account in John 1:29 supports this identification.",
@@ -470,9 +470,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Thou art the Christ, the Son of the living God.\"",
     "options": [
       "Peter",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Peter",
     "explanation": "The biblical account in Matthew 16:16 supports this identification.",
@@ -490,9 +490,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Lord, to whom shall we go? thou hast the words of eternal life.\"",
     "options": [
       "Peter",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Angel of the Lord",
+      "Job",
+      "God"
     ],
     "correct_answer": "Peter",
     "explanation": "The biblical account in John 6:68 supports this identification.",
@@ -510,9 +510,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Yea, Lord: I believe that thou art the Christ, the Son of God.\"",
     "options": [
       "Martha",
-      "Angel of the Lord",
       "Wise virgins",
-      "Solomon"
+      "David",
+      "Peter"
     ],
     "correct_answer": "Martha",
     "explanation": "The biblical account in John 11:27 supports this identification.",
@@ -530,9 +530,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Lord, if it be thou, bid me come unto thee on the water.\"",
     "options": [
       "Peter",
-      "Job",
-      "God",
-      "Eli"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Peter",
     "explanation": "The biblical account in Matthew 14:28 supports this identification.",
@@ -550,9 +550,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Rabbi, thou art the Son of God; thou art the King of Israel.\"",
     "options": [
       "Nathanael",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Nathanael",
     "explanation": "The biblical account in John 1:49 supports this identification.",
@@ -570,9 +570,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let us also go, that we may die with him.\"",
     "options": [
       "Thomas",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
     "correct_answer": "Thomas",
     "explanation": "The biblical account in John 11:16 supports this identification.",
@@ -590,9 +590,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"My Lord and my God.\"",
     "options": [
       "Thomas",
-      "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Thomas",
     "explanation": "The biblical account in John 20:28 supports this identification.",
@@ -630,9 +630,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Lord, why is it that thou wilt manifest thyself unto us, and not unto the world?\"",
     "options": [
       "Judas son of James",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Judas son of James",
     "explanation": "The biblical account in John 14:22 supports this identification.",
@@ -650,9 +650,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Be it far from thee, Lord: this shall not be unto thee.\"",
     "options": [
       "Peter",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Peter",
     "explanation": "The biblical account in Matthew 16:22 supports this identification.",
@@ -670,9 +670,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Even so, come, Lord Jesus.\"",
     "options": [
       "John",
-      "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "Cain",
+      "Mary",
+      "Ruth"
     ],
     "correct_answer": "John",
     "explanation": "The biblical account in Revelation 22:20 supports this identification.",
@@ -690,9 +690,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Am I a dog, that thou comest to me with staves?\"",
     "options": [
       "Goliath",
-      "David",
-      "Peter",
-      "Naomi"
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
     "correct_answer": "Goliath",
     "explanation": "The biblical account in 1 Samuel 17:43 supports this identification.",
@@ -710,9 +710,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Thy people shall be my people, and thy God my God.\"",
     "options": [
       "Ruth",
-      "Judas son of James",
-      "Crowd at Pentecost",
-      "Heavenly host"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Ruth",
     "explanation": "The biblical account in Ruth 1:16 supports this identification.",
@@ -730,9 +730,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Call me not Naomi, call me Mara.\"",
     "options": [
       "Naomi",
-      "Cain",
-      "Mary",
-      "John"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Naomi",
     "explanation": "The biblical account in Ruth 1:20 supports this identification.",
@@ -750,9 +750,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How can I do this great wickedness, and sin against God?\"",
     "options": [
       "Joseph",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Joseph",
     "explanation": "The biblical account in Genesis 39:9 supports this identification.",
@@ -770,9 +770,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let my people go.\"",
     "options": [
       "Moses",
-      "David",
-      "Peter",
-      "Naomi"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Moses",
     "explanation": "The biblical account in Exodus 5:1 supports this identification.",
@@ -790,9 +790,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Who am I, that I should go unto Pharaoh?\"",
     "options": [
       "Moses",
-      "Heavenly host",
-      "Nehemiah",
-      "Preacher"
+      "John the Baptist",
+      "Elizabeth",
+      "Nathanael"
     ],
     "correct_answer": "Moses",
     "explanation": "The biblical account in Exodus 3:11 supports this identification.",
@@ -810,9 +810,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"If thy presence go not with me, carry us not up hence.\"",
     "options": [
       "Moses",
-      "Cain",
-      "Mary",
-      "John"
+      "Judas son of James",
+      "Crowd at Pentecost",
+      "Cain"
     ],
     "correct_answer": "Moses",
     "explanation": "The biblical account in Exodus 33:15 supports this identification.",
@@ -830,9 +830,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Choose you this day whom ye will serve.\"",
     "options": [
       "Joshua",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Joshua",
     "explanation": "The biblical account in Joshua 24:15 supports this identification.",
@@ -850,9 +850,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"As for me and my house, we will serve the Lord.\"",
     "options": [
       "Joshua",
-      "David",
-      "Peter",
-      "Naomi"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Joshua",
     "explanation": "The biblical account in Joshua 24:15 supports this identification.",
@@ -870,9 +870,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Am I not sending you?\"",
     "options": [
       "Angel of the Lord",
-      "Heavenly host",
-      "Nehemiah",
-      "Preacher"
+      "David",
+      "Peter",
+      "Naomi"
     ],
     "correct_answer": "Angel of the Lord",
     "explanation": "The biblical account in Judges 6:14 supports this identification.",
@@ -890,9 +890,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Where thou goest, I will go.\"",
     "options": [
       "Ruth",
-      "John the Baptist",
-      "Joseph",
-      "Isaiah"
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
     "correct_answer": "Ruth",
     "explanation": "The biblical account in Ruth 1:16 supports this identification.",
@@ -910,9 +910,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Thy servant is listening.\"",
     "options": [
       "Samuel",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "Samuel",
     "explanation": "The biblical account in 1 Samuel 3:10 supports this identification.",
@@ -930,9 +930,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Is there not a cause?\"",
     "options": [
       "David",
-      "Peter",
-      "Naomi",
-      "Moses"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "David",
     "explanation": "The biblical account in 1 Samuel 17:29 supports this identification.",
@@ -950,9 +950,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How are the mighty fallen!\"",
     "options": [
       "David",
-      "Nehemiah",
-      "Preacher",
-      "The Lord"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "David",
     "explanation": "The biblical account in 2 Samuel 1:19 supports this identification.",
@@ -970,9 +970,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let him take my life, for my life is not better than my fathers.\"",
     "options": [
       "Elijah",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Elijah",
     "explanation": "The biblical account in 1 Kings 19:4 supports this identification.",
@@ -990,9 +990,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I know that my redeemer liveth.\"",
     "options": [
       "Job",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "David",
+      "Peter",
+      "Naomi"
     ],
     "correct_answer": "Job",
     "explanation": "The biblical account in Job 19:25 supports this identification.",
@@ -1010,9 +1010,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Here am I; for thou didst call me.\"",
     "options": [
       "Samuel",
-      "David",
-      "Peter",
-      "Naomi"
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
     "correct_answer": "Samuel",
     "explanation": "The biblical account in 1 Samuel 3:8 supports this identification.",
@@ -1030,9 +1030,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Behold, I am vile; what shall I answer thee?\"",
     "options": [
       "Job",
-      "Nehemiah",
-      "Preacher",
-      "The Lord"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "Job",
     "explanation": "The biblical account in Job 40:4 supports this identification.",
@@ -1050,9 +1050,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Should not I have pity on Nineveh?\"",
     "options": [
       "God",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "God",
     "explanation": "The biblical account in Jonah 4:11 supports this identification.",
@@ -1070,9 +1070,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Yet forty days, and Nineveh shall be overthrown.\"",
     "options": [
       "Jonah",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Jonah",
     "explanation": "The biblical account in Jonah 3:4 supports this identification.",
@@ -1090,9 +1090,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Remember me, O my God, for good.\"",
     "options": [
       "Nehemiah",
-      "Angel of the Lord",
-      "Wise virgins",
-      "Solomon"
+      "Preacher",
+      "Habakkuk",
+      "The Lord"
     ],
     "correct_answer": "Nehemiah",
     "explanation": "The biblical account in Nehemiah 13:31 supports this identification.",
@@ -1110,9 +1110,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let the king live for ever.\"",
     "options": [
       "Nehemiah",
+      "Angel of the Lord",
       "Job",
-      "God",
-      "Eli"
+      "God"
     ],
     "correct_answer": "Nehemiah",
     "explanation": "The biblical account in Nehemiah 2:3 supports this identification.",
@@ -1130,9 +1130,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I am a Hebrew; and I fear the Lord.\"",
     "options": [
       "Jonah",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Jonah",
     "explanation": "The biblical account in Jonah 1:9 supports this identification.",
@@ -1150,9 +1150,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Is not this great Babylon, that I have built?\"",
     "options": [
       "Nebuchadnezzar",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Penitent thief",
+      "Paul and Silas",
+      "Solomon"
     ],
     "correct_answer": "Nebuchadnezzar",
     "explanation": "The biblical account in Daniel 4:30 supports this identification.",
@@ -1170,9 +1170,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"My God hath sent his angel, and hath shut the lions' mouths.\"",
     "options": [
       "Daniel",
-      "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Daniel",
     "explanation": "The biblical account in Daniel 6:22 supports this identification.",
@@ -1187,16 +1187,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 12,
     "challenge_index": 5,
-    "question_text": "\"Here am I; for thou didst call me.\"",
+    "question_text": "\"The just shall live by his faith.\"",
     "options": [
-      "Samuel",
-      "Job",
-      "God",
-      "Eli"
+      "Habakkuk",
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
-    "correct_answer": "Samuel",
-    "explanation": "The biblical account in 1 Samuel 3:8 supports this identification.",
-    "reference": "1 Samuel 3:8",
+    "correct_answer": "Habakkuk",
+    "explanation": "The biblical account in Habakkuk 2:4 identifies Habakkuk as the speaker.",
+    "reference": "Habakkuk 2:4",
     "metadata": {
       "difficulty": "intermediate",
       "fact_key": "who-said-it-fact-60"
@@ -1210,9 +1210,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let me die with the Philistines.\"",
     "options": [
       "Samson",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Samson",
     "explanation": "The biblical account in Judges 16:30 supports this identification.",
@@ -1230,9 +1230,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Go in peace; and the God of Israel grant thee thy petition.\"",
     "options": [
       "Eli",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Job",
+      "God",
+      "Nehemiah"
     ],
     "correct_answer": "Eli",
     "explanation": "The biblical account in 1 Samuel 1:17 supports this identification.",
@@ -1251,8 +1251,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "options": [
       "Rachel",
       "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "David",
+      "Peter"
     ],
     "correct_answer": "Rachel",
     "explanation": "The biblical account in Genesis 30:1 supports this identification.",
@@ -1270,9 +1270,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Am I my brother's keeper?\"",
     "options": [
       "Cain",
-      "David",
-      "Peter",
-      "Naomi"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Cain",
     "explanation": "The biblical account in Genesis 4:9 supports this identification.",
@@ -1290,9 +1290,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Is anything too hard for the Lord?\"",
     "options": [
       "The Lord",
-      "Judas son of James",
-      "Crowd at Pentecost",
-      "Heavenly host"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Genesis 18:14 supports this identification.",
@@ -1310,9 +1310,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Where is the lamb for a burnt offering?\"",
     "options": [
       "Isaac",
-      "Cain",
-      "Mary",
-      "John"
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
     "correct_answer": "Isaac",
     "explanation": "The biblical account in Genesis 22:7 supports this identification.",
@@ -1330,9 +1330,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"God will provide himself a lamb.\"",
     "options": [
       "Abraham",
-      "Solomon",
-      "Goliath",
-      "Stephen"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Abraham",
     "explanation": "The biblical account in Genesis 22:8 supports this identification.",
@@ -1350,9 +1350,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Whom shall I send, and who will go for us?\"",
     "options": [
       "The Lord",
-      "David",
-      "Peter",
-      "Naomi"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Isaiah 6:8 supports this identification.",
@@ -1370,9 +1370,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Woe is me! for I am undone.\"",
     "options": [
       "Isaiah",
-      "Heavenly host",
-      "Nehemiah",
-      "Preacher"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Isaiah",
     "explanation": "The biblical account in Isaiah 6:5 supports this identification.",
@@ -1390,9 +1390,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"How beautiful upon the mountains are the feet of him that bringeth good tidings.\"",
     "options": [
       "Isaiah",
-      "Cain",
-      "Mary",
-      "John"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Isaiah",
     "explanation": "The biblical account in Isaiah 52:7 supports this identification.",
@@ -1410,9 +1410,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Is there no balm in Gilead?\"",
     "options": [
       "Jeremiah",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "John the Baptist",
+      "Elizabeth",
+      "Nathanael"
     ],
     "correct_answer": "Jeremiah",
     "explanation": "The biblical account in Jeremiah 8:22 supports this identification.",
@@ -1430,9 +1430,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Ah, Lord God! behold, I cannot speak: for I am a child.\"",
     "options": [
       "Jeremiah",
-      "David",
-      "Peter",
-      "Naomi"
+      "Judas son of James",
+      "Crowd at Pentecost",
+      "Cain"
     ],
     "correct_answer": "Jeremiah",
     "explanation": "The biblical account in Jeremiah 1:6 supports this identification.",
@@ -1451,8 +1451,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "options": [
       "Jeremiah",
       "Heavenly host",
-      "Nehemiah",
-      "Preacher"
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Jeremiah",
     "explanation": "The biblical account in Jeremiah 15:16 supports this identification.",
@@ -1470,9 +1470,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Great is thy faithfulness.\"",
     "options": [
       "Jeremiah",
-      "John the Baptist",
-      "Joseph",
-      "Isaiah"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Jeremiah",
     "explanation": "The biblical account in Lamentations 3:23 supports this identification.",
@@ -1490,9 +1490,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Can these bones live?\"",
     "options": [
       "The Lord",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "David",
+      "Peter",
+      "Naomi"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Ezekiel 37:3 supports this identification.",
@@ -1510,9 +1510,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Son of man, can these bones live?\"",
     "options": [
       "The Lord",
-      "David",
-      "Peter",
-      "Naomi"
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Ezekiel 37:3 supports this identification.",
@@ -1530,9 +1530,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I will go and return to my first husband.\"",
     "options": [
       "Gomer",
-      "Nehemiah",
-      "Preacher",
-      "The Lord"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "Gomer",
     "explanation": "The biblical account in Hosea 2:7 supports this identification.",
@@ -1550,9 +1550,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Let justice roll down like waters.\"",
     "options": [
       "Amos",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Amos",
     "explanation": "The biblical account in Amos 5:24 supports this identification.",
@@ -1570,9 +1570,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Though the fig tree shall not blossom...\"",
     "options": [
       "Habakkuk",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Habakkuk",
     "explanation": "The biblical account in Habakkuk 3:17-18 supports this identification.",
@@ -1590,9 +1590,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Not by might, nor by power, but by my spirit.\"",
     "options": [
       "The Lord",
-      "David",
-      "Peter",
-      "Naomi"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Zechariah 4:6 supports this identification.",
@@ -1610,9 +1610,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Bring ye all the tithes into the storehouse.\"",
     "options": [
       "The Lord",
-      "Nehemiah",
-      "Preacher",
-      "Jeremiah"
+      "David",
+      "Peter",
+      "Naomi"
     ],
     "correct_answer": "The Lord",
     "explanation": "The biblical account in Malachi 3:10 supports this identification.",
@@ -1627,16 +1627,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 17,
     "challenge_index": 2,
-    "question_text": "\"Behold, I am the handmaid of the Lord.\"",
+    "question_text": "\"When he hath tried me, I shall come forth as gold.\"",
     "options": [
-      "Mary",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Job",
+      "Solomon",
+      "Goliath",
+      "Abraham"
     ],
-    "correct_answer": "Mary",
-    "explanation": "The biblical account in Luke 1:38 supports this identification.",
-    "reference": "Luke 1:38",
+    "correct_answer": "Job",
+    "explanation": "The biblical account in Job 23:10 identifies Job as the speaker.",
+    "reference": "Job 23:10",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "who-said-it-fact-82"
@@ -1650,9 +1650,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Fear not: for, behold, I bring you good tidings of great joy.\"",
     "options": [
       "Angel of the Lord",
-      "Nebuchadnezzar",
-      "Penitent thief",
-      "Paul and Silas"
+      "Elizabeth",
+      "Nathanael",
+      "Centurion"
     ],
     "correct_answer": "Angel of the Lord",
     "explanation": "The biblical account in Luke 2:10 supports this identification.",
@@ -1670,9 +1670,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Glory to God in the highest.\"",
     "options": [
       "Heavenly host",
-      "Angel of the Lord",
-      "Wise virgins",
-      "Solomon"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Heavenly host",
     "explanation": "The biblical account in Luke 2:14 supports this identification.",
@@ -1690,9 +1690,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Behold, the bridegroom cometh.\"",
     "options": [
       "Wise virgins",
-      "Job",
-      "God",
-      "Eli"
+      "Heavenly host",
+      "Joseph",
+      "Isaiah"
     ],
     "correct_answer": "Wise virgins",
     "explanation": "The biblical account in Matthew 25:6 supports this identification.",
@@ -1710,9 +1710,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Truly this was the Son of God.\"",
     "options": [
       "Centurion",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Centurion",
     "explanation": "The biblical account in Matthew 27:54 supports this identification.",
@@ -1730,9 +1730,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Remember me when thou comest into thy kingdom.\"",
     "options": [
       "Penitent thief",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Angel of the Lord",
+      "Job",
+      "God"
     ],
     "correct_answer": "Penitent thief",
     "explanation": "The biblical account in Luke 23:42 supports this identification.",
@@ -1751,8 +1751,8 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "options": [
       "Jesus",
       "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "David",
+      "Peter"
     ],
     "correct_answer": "Jesus",
     "explanation": "The biblical account in John 19:26 supports this identification.",
@@ -1770,9 +1770,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"It is finished.\"",
     "options": [
       "Jesus",
-      "Job",
-      "God",
-      "Eli"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Jesus",
     "explanation": "The biblical account in John 19:30 supports this identification.",
@@ -1790,9 +1790,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Peace be unto you.\"",
     "options": [
       "Jesus",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Jesus",
     "explanation": "The biblical account in John 20:19 supports this identification.",
@@ -1810,9 +1810,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Lord, what wilt thou have me to do?\"",
     "options": [
       "Saul",
-      "Elizabeth",
-      "Nathanael",
-      "Centurion"
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
     "correct_answer": "Saul",
     "explanation": "The biblical account in Acts 9:6 supports this identification.",
@@ -1830,9 +1830,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Men and brethren, what shall we do?\"",
     "options": [
       "Crowd at Pentecost",
-      "Wise virgins",
-      "Solomon",
-      "Goliath"
+      "Nehemiah",
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Crowd at Pentecost",
     "explanation": "The biblical account in Acts 2:37 supports this identification.",
@@ -1850,9 +1850,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Silver and gold have I none.\"",
     "options": [
       "Peter",
-      "David",
-      "Naomi",
-      "Moses"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Peter",
     "explanation": "The biblical account in Acts 3:6 supports this identification.",
@@ -1870,9 +1870,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Behold, I see the heavens opened.\"",
     "options": [
       "Stephen",
-      "Judas son of James",
-      "Crowd at Pentecost",
-      "Heavenly host"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Stephen",
     "explanation": "The biblical account in Acts 7:56 supports this identification.",
@@ -1890,9 +1890,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Lord, lay not this sin to their charge.\"",
     "options": [
       "Stephen",
-      "Cain",
-      "Mary",
-      "John"
+      "Nebuchadnezzar",
+      "Penitent thief",
+      "Paul and Silas"
     ],
     "correct_answer": "Stephen",
     "explanation": "The biblical account in Acts 7:60 supports this identification.",
@@ -1910,9 +1910,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Who art thou, Lord?\"",
     "options": [
       "Saul",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "Cain",
+      "Mary",
+      "John"
     ],
     "correct_answer": "Saul",
     "explanation": "The biblical account in Acts 9:5 supports this identification.",
@@ -1930,9 +1930,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Almost thou persuadest me to be a Christian.\"",
     "options": [
       "Agrippa",
-      "David",
-      "Peter",
-      "Naomi"
+      "Joseph",
+      "Isaiah",
+      "Samuel"
     ],
     "correct_answer": "Agrippa",
     "explanation": "The biblical account in Acts 26:28 supports this identification.",
@@ -1950,9 +1950,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"Believe on the Lord Jesus Christ, and thou shalt be saved.\"",
     "options": [
       "Paul and Silas",
-      "Heavenly host",
       "Nehemiah",
-      "Preacher"
+      "Preacher",
+      "Habakkuk"
     ],
     "correct_answer": "Paul and Silas",
     "explanation": "The biblical account in Acts 16:31 supports this identification.",
@@ -1970,9 +1970,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I am not ashamed of the gospel of Christ.\"",
     "options": [
       "Paul",
-      "Cain",
-      "Mary",
-      "John"
+      "Job",
+      "God",
+      "Eli"
     ],
     "correct_answer": "Paul",
     "explanation": "The biblical account in Romans 1:16 supports this identification.",
@@ -1990,9 +1990,9 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "question_text": "\"I have fought a good fight, I have finished my course.\"",
     "options": [
       "Paul",
-      "Solomon",
-      "Goliath",
-      "Abraham"
+      "Wise virgins",
+      "David",
+      "Peter"
     ],
     "correct_answer": "Paul",
     "explanation": "The biblical account in 2 Timothy 4:7 supports this identification.",
