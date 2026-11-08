@@ -12,6 +12,7 @@ import {
   getLevelChallenges,
   submitChallengeAnswer,
   getOverallTotalMarks,
+  spendOverallMarks,
   CHALLENGES_PER_LEVEL,
   type LevelNode,
   type LevelResult,
@@ -55,6 +56,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [wordSearchStart, setWordSearchStart] = useState<{ row: number; col: number } | null>(null);
   const [crosswordAcross, setCrosswordAcross] = useState('');
   const [crosswordDown, setCrosswordDown] = useState('');
+  const [hintLevel, setHintLevel] = useState(0);
   const [matchSelectedLeft, setMatchSelectedLeft] = useState<string | null>(null);
   const [matchedPairs, setMatchedPairs] = useState<Record<string, string>>({});
   const [memoryFlipped, setMemoryFlipped] = useState<number[]>([]);
@@ -91,6 +93,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setWordSearchStart(null);
     setCrosswordAcross('');
     setCrosswordDown('');
+    setHintLevel(0);
     setMatchSelectedLeft(null);
     setMatchedPairs({});
     setMemoryFlipped([]);
@@ -260,6 +263,56 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       </div>
     );
   }
+
+  const HINT_COST = 5;
+  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search'].includes(gameId);
+
+  const getHintForLevel = (requestedLevel: number): string => {
+    if (!currentChallenge || requestedLevel === 0) return '';
+    const metadata = currentChallenge.metadata || {};
+
+    if (gameId === 'bible-crossword') {
+      const across = String(metadata.acrossAnswer || currentChallenge.options[0] || '').replace(/[^A-Z]/gi, '').toUpperCase();
+      const down = String(metadata.downAnswer || currentChallenge.options[1] || '').replace(/[^A-Z]/gi, '').toUpperCase();
+      const acrossIndex = [...across].findIndex((letter) => down.includes(letter));
+      const shared = acrossIndex >= 0 ? across[acrossIndex] : '';
+      const downIndex = shared ? down.indexOf(shared) : -1;
+      if (requestedLevel === 1 && shared) {
+        return `Crossing clue: the shared letter is “${shared}”. It is letter ${acrossIndex + 1} in Across and letter ${downIndex + 1} in Down.`;
+      }
+      return `Across begins with “${across[0]}”. Down begins with “${down[0]}”. Use the crossing letter to check where they meet.`;
+    }
+
+    if (gameId === 'bible-puzzles') {
+      const fragments: string[] = metadata.tiles || [];
+      if (requestedLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
+      return fragments[1] ? `After the first fragment comes: “${fragments[1]}”` : 'Read the verse fragments for a natural sentence flow.';
+    }
+
+    if (gameId === 'bible-word-search') {
+      const words: string[] = metadata.words || currentChallenge.options;
+      const target = words.find((word) => !wordSearchFound.includes(word)) || words[0];
+      const clean = target.replace(/[^A-Z]/gi, '').toUpperCase();
+      const size = Math.max(10, ...words.map((word) => word.replace(/[^A-Z]/gi, '').length + 2));
+      const rowIndex = Math.max(0, words.indexOf(target));
+      const offset = (rowIndex * 3 + 1) % Math.max(1, size - clean.length + 1);
+      if (requestedLevel === 1) return `Look along row ${rowIndex + 1} for “${target}”. The word runs horizontally.`;
+      return `“${target}” starts at row ${rowIndex + 1}, column ${offset + 1}, and ends at column ${offset + clean.length}.`;
+    }
+    return '';
+  };
+
+  const useHint = () => {
+    if (!supportsHints || hintLevel >= 2 || reveal !== null) return;
+    const purchase = spendOverallMarks(HINT_COST);
+    if (!purchase.spent) {
+      setError(`You need ${HINT_COST} marks for a hint. Your balance is ${purchase.newTotal}.`);
+      return;
+    }
+    setError(null);
+    setTotalMarks(purchase.newTotal);
+    setHintLevel((current) => current + 1);
+  };
 
   // Render mechanic-specific interactive body
   const renderMechanicUI = () => {
@@ -780,6 +833,35 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         >
           {currentChallenge.question_text}
         </h2>
+
+        {supportsHints && (
+          <div className="mb-5 rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-bold text-[#171B24]">Need a clue?</p>
+                <p className="text-xs text-[#5A6275]">Use your earned marks to unlock a helpful hint. Each hint costs {HINT_COST} marks.</p>
+              </div>
+              <button
+                type="button"
+                onClick={useHint}
+                disabled={reveal !== null || hintLevel >= 2}
+                className="rounded-xl bg-[#171B24] px-4 py-2.5 text-xs font-bold text-white hover:bg-[#3156C9] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {hintLevel >= 2 ? 'All clues unlocked' : `Reveal Hint · ${HINT_COST} marks`}
+              </button>
+            </div>
+            {hintLevel > 0 && (
+              <div className="mt-3 space-y-2">
+                {Array.from({ length: hintLevel }, (_, index) => (
+                  <div key={index} className="rounded-xl border border-[#D66B3D]/20 bg-white p-3 text-sm font-medium text-[#171B24]">
+                    <span className="mr-2 font-bold text-[#D66B3D]">HINT {index + 1}:</span>{getHintForLevel(index + 1)}
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="mt-2 text-[11px] text-[#5A6275]">Your marks balance: {totalMarks}</p>
+          </div>
+        )}
 
         {renderMechanicUI()}
 
