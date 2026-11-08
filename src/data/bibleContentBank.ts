@@ -437,18 +437,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
         // Curated clue pairs: every clue has one clear answer and the answers
         // share at least one letter, so the crossword intersection is real.
         const crosswordPairs = [
-          { across: 'NOAH', acrossClue: 'The man God told to build an ark before the flood', down: 'ARK', downClue: 'The large vessel Noah built to survive the flood', acrossRef: 'Genesis 6:13-22', downRef: 'Genesis 6:14' },
-          { across: 'EDEN', acrossClue: 'The garden where Adam and Eve first lived', down: 'EVE', downClue: 'The first woman, formed from Adam’s side', acrossRef: 'Genesis 2:8', downRef: 'Genesis 2:21-23' },
-          { across: 'MOSES', acrossClue: 'The leader God used to bring Israel out of Egypt', down: 'SEA', downClue: 'The body of water God parted for Israel to cross', acrossRef: 'Exodus 3:10', downRef: 'Exodus 14:21-22' },
-          { across: 'RUTH', acrossClue: 'The Moabite woman who stayed loyal to Naomi', down: 'THOMAS', downClue: 'The disciple who doubted Jesus had risen until he saw Him', acrossRef: 'Ruth 1:16-17', downRef: 'John 20:24-29' },
-          { across: 'JONAH', acrossClue: 'The prophet who was swallowed by a great fish', down: 'JOHN', downClue: 'The apostle traditionally associated with the fourth Gospel', acrossRef: 'Jonah 1:17', downRef: 'John 21:20-24' },
-          { across: 'DAVID', acrossClue: 'The young shepherd who defeated Goliath', down: 'DANIEL', downClue: 'The prophet who was thrown into the lions’ den', acrossRef: '1 Samuel 17:49-50', downRef: 'Daniel 6:16-23' },
-          { across: 'MARY', acrossClue: 'The mother of Jesus', down: 'MARK', downClue: 'The Gospel writer whose account begins with John the Baptist', acrossRef: 'Luke 1:30-31', downRef: 'Mark 1:1-4' },
-          { across: 'PETER', acrossClue: 'The disciple who denied Jesus three times', down: 'TEMPLE', downClue: 'The holy place in Jerusalem where Jesus taught', acrossRef: 'Luke 22:54-62', downRef: 'Luke 19:45-47' },
-          { across: 'ESTHER', acrossClue: 'The Jewish queen who risked her life to save her people', down: 'STAR', downClue: 'The sign that led the wise men to Jesus', acrossRef: 'Esther 4:14-16', downRef: 'Matthew 2:1-2' },
-          { across: 'ISAAC', acrossClue: 'The son God promised to Abraham and Sarah', down: 'CAIN', downClue: 'Adam and Eve’s first son, who killed Abel', acrossRef: 'Genesis 21:1-3', downRef: 'Genesis 4:1-8' },
-          { across: 'JACOB', acrossClue: 'The son of Isaac whose name was changed to Israel', down: 'JOB', downClue: 'The righteous man who endured great suffering and remained faithful', acrossRef: 'Genesis 32:28', downRef: 'Job 1:1-22' },
-          { across: 'SAMUEL', acrossClue: 'The prophet who anointed Saul and David as kings', down: 'SAUL', downClue: 'Israel’s first king, anointed by Samuel', acrossRef: '1 Samuel 10:1; 16:13', downRef: '1 Samuel 10:1' },
+          { across: 'NOAH', acrossClue: 'The man God told to build an ark before the flood', down: 'ARK', downClue: 'The large vessel Noah built to survive the flood', acrossRef: 'Genesis 6:13-22', downRef: 'Genesis 6:14', extraDown: 'HAM', extraDownClue: 'One of Noah’s sons who entered the ark with his wife', extraDownRef: 'Genesis 7:13' },
+          { across: 'EDEN', acrossClue: 'The garden where Adam and Eve first lived', down: 'EVE', downClue: 'The first woman, formed from Adam’s side', acrossRef: 'Genesis 2:8', downRef: 'Genesis 2:21-23', extraDown: 'NEHEMIAH', extraDownClue: 'The cupbearer who led the rebuilding of Jerusalem’s wall', extraDownRef: 'Nehemiah 2:17-18' },
+          { across: 'MOSES', acrossClue: 'The leader God used to bring Israel out of Egypt', down: 'SEA', downClue: 'The body of water God parted for Israel to cross', acrossRef: 'Exodus 3:10', downRef: 'Exodus 14:21-22', extraDown: 'JOSHUA', extraDownClue: 'The leader who succeeded Moses and led Israel into Canaan', extraDownRef: 'Joshua 1:1-6' },
+          { across: 'RUTH', acrossClue: 'The Moabite woman who stayed loyal to Naomi', down: 'THOMAS', downClue: 'The disciple who doubted Jesus had risen until he saw Him', acrossRef: 'Ruth 1:16-17', downRef: 'John 20:24-29', extraDown: 'RACHEL', extraDownClue: 'The wife of Jacob and mother of Joseph and Benjamin', extraDownRef: 'Genesis 35:24' },
+          { across: 'JONAH', acrossClue: 'The prophet who was swallowed by a great fish', down: 'JOHN', downClue: 'The apostle traditionally associated with the fourth Gospel', acrossRef: 'Jonah 1:17', downRef: 'John 21:20-24', extraDown: 'NOAH', extraDownClue: 'The man who built the ark before the flood', extraDownRef: 'Genesis 6:13-22' },
+          { across: 'DAVID', acrossClue: 'The young shepherd who defeated Goliath', down: 'DANIEL', downClue: 'The prophet who was thrown into the lions’ den', acrossRef: '1 Samuel 17:49-50', downRef: 'Daniel 6:16-23', extraDown: 'ISAIAH', extraDownClue: 'The prophet who foretold that a child would be called Immanuel', extraDownRef: 'Isaiah 7:14' },
+          { across: 'MARY', acrossClue: 'The mother of Jesus', down: 'MARK', downClue: 'The Gospel writer whose account begins with John the Baptist', acrossRef: 'Luke 1:30-31', downRef: 'Mark 1:1-4', extraDown: 'RUTH', extraDownClue: 'The loyal Moabite woman who became an ancestor of David', extraDownRef: 'Ruth 4:13-17' },
+          { across: 'PETER', acrossClue: 'The disciple who denied Jesus three times', down: 'TEMPLE', downClue: 'The holy place in Jerusalem where Jesus taught', acrossRef: 'Luke 22:54-62', downRef: 'Luke 19:45-47', extraDown: 'RUTH', extraDownClue: 'The Moabite woman who stayed with Naomi', extraDownRef: 'Ruth 1:16-17' },
+          { across: 'ESTHER', acrossClue: 'The Jewish queen who risked her life to save her people', down: 'STAR', downClue: 'The sign that led the wise men to Jesus', acrossRef: 'Esther 4:14-16', downRef: 'Matthew 2:1-2', extraDown: 'JESUS', extraDownClue: 'The promised Messiah born in Bethlehem', extraDownRef: 'Matthew 2:1' },
+          { across: 'ISAAC', acrossClue: 'The son God promised to Abraham and Sarah', down: 'CAIN', downClue: 'Adam and Eve’s first son, who killed Abel', acrossRef: 'Genesis 21:1-3', downRef: 'Genesis 4:1-8', extraDown: 'SARAH', extraDownClue: 'Abraham’s wife and the mother of Isaac', extraDownRef: 'Genesis 21:1-3' },
+          { across: 'JACOB', acrossClue: 'The son of Isaac whose name was changed to Israel', down: 'JOB', downClue: 'The righteous man who endured great suffering and remained faithful', acrossRef: 'Genesis 32:28', downRef: 'Job 1:1-22', extraDown: 'RACHEL', extraDownClue: 'The wife of Jacob whom he loved deeply', extraDownRef: 'Genesis 29:18' },
+          { across: 'SAMUEL', acrossClue: 'The prophet who anointed Saul and David as kings', down: 'SAUL', downClue: 'Israel’s first king, anointed by Samuel', acrossRef: '1 Samuel 10:1; 16:13', downRef: '1 Samuel 10:1', extraDown: 'DAVID', extraDownClue: 'The shepherd boy who became king after Saul', extraDownRef: '1 Samuel 16:13' },
         ];
         const pair = crosswordPairs[globalSeed % crosswordPairs.length];
         const acrossWord = pair.across;
@@ -468,6 +468,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
             acrossAnswer: acrossWord,
             downClue: pair.downClue,
             downAnswer: downWord,
+            extraDownAnswer: pair.extraDown,
+            extraDownClue: pair.extraDownClue,
+            extraDownReference: pair.extraDownRef,
           },
         });
         break;
