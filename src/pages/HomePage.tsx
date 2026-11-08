@@ -143,35 +143,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onSelectGame, onNavigateTab 
           </button>
         </div>
 
-        {/* Both layouts stay mounted so the catalogue can expand and collapse smoothly. */}
-        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out motion-reduce:transition-none ${showAllGames ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}>
-          <div className="min-h-0 overflow-hidden">
-            <div
-              className={`transition-opacity duration-300 ease-in-out ${showAllGames ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-              aria-hidden={showAllGames}
-            >
-              <div id="game-catalog" className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
-                {filteredGames.map((game) => (
-                  <GameCard key={game.id} game={game} onPlay={onSelectGame} />
-                ))}
-              </div>
-            </div>
+        {/* Keep both layouts mounted and animate their actual height so View Less does not snap. */}
+        <div
+          className={`overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out motion-reduce:transition-none ${showAllGames ? 'max-h-0 opacity-0 pointer-events-none' : 'max-h-[5000px] opacity-100'}`}
+          aria-hidden={showAllGames}
+        >
+          <div id="game-catalog" className="flex gap-6 overflow-x-auto pb-4 pt-1 scrollbar-none">
+            {filteredGames.map((game) => (
+              <GameCard key={game.id} game={game} onPlay={onSelectGame} />
+            ))}
           </div>
         </div>
 
-        <div className={`grid transition-[grid-template-rows] duration-500 ease-in-out motion-reduce:transition-none ${showAllGames ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-          <div className="min-h-0 overflow-hidden">
-            <div
-              id="game-catalog-expanded"
-              className={`transition-opacity duration-300 ease-in-out ${showAllGames ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-              aria-hidden={!showAllGames}
-            >
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
-                {GAMES_LIST.map((game) => (
-                  <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
-                ))}
-              </div>
-            </div>
+        <div
+          className={`overflow-hidden transition-[max-height,opacity] duration-700 ease-in-out motion-reduce:transition-none ${showAllGames ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}
+          aria-hidden={!showAllGames}
+        >
+          <div id="game-catalog-expanded" className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 pb-2">
+            {GAMES_LIST.map((game) => (
+              <GameCard key={game.id} game={game} onPlay={onSelectGame} layout="grid" />
+            ))}
           </div>
         </div>
       </div>
