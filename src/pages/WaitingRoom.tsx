@@ -179,39 +179,34 @@ export default function WaitingRoom() {
   async function handleStartGame() {
     if (!roomId || !isHost || busy) return;
     setBusy(true);
+    setError(null);
     try {
+      if (challenges.length !== 10) {
+        throw new Error(`This game has ${challenges.length} of 10 questions loaded. Please refresh the room and try again.`);
+      }
+
       const questionIds = challenges.map((q) => q.id);
-      const { error: err } = await supabase.rpc('start_game', {
+      const { error: startError } = await supabase.rpc('start_game', {
         p_room: roomId,
         p_question_ids: questionIds,
       });
-      if (err) {
-        await supabase
-          .from('rooms')
-          .update({
-            status: 'playing',
-            question_started_at: new Date().toISOString(),
-            current_question_index: 0,
-            question_ids: questionIds,
-          })
-          .eq('id', roomId);
-      }
+      if (startError) throw new Error(startError.message);
 
-      // Notify other players
+      // Notify other players after the database confirms the game has started.
       const hostName = currentPlayer?.display_name || 'Host';
       for (const p of players) {
         if (p.user_id && p.user_id !== user?.id) {
           try {
             await notifyGameStarted(p.user_id, hostName, roomId);
           } catch {
-            // Non-blocking
+            // Notifications are non-blocking; room state is already authoritative.
           }
         }
       }
 
       await refetch();
     } catch (err) {
-      setError((err as Error).message);
+      setError((err as Error).message || 'The game could not be started. Please try again.');
     } finally {
       setBusy(false);
     }
