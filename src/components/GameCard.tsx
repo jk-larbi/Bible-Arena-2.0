@@ -10,7 +10,7 @@ interface GameCardProps {
 
 export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'poster' }) => {
   const [imgError, setImgError] = useState(false);
-  const imagePath = `/assets/games/${game.imageFile}`;
+  const imagePath = `${import.meta.env.BASE_URL}assets/games/${game.imageFile}`;
 
   if (layout === 'horizontal') {
     return (
