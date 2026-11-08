@@ -119,7 +119,8 @@ app.post("/api/scores", authenticate, asyncRoute(async (req, res) => {
 
 app.post("/api/rooms", authenticate, asyncRoute(async (req, res) => {
   const input = z.object({ gameId: z.string().min(1).max(80), maxRounds: z.number().int().min(1).max(100).default(5), questionDurationSeconds: z.number().int().min(5).max(180).default(20), settings: z.record(z.unknown()).default({}) }).parse(req.body);
-  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";\n  const code = Array.from({ length: 6 }, () => alphabet[crypto.randomInt(0, alphabet.length)]).join("");
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const code = Array.from({ length: 6 }, () => alphabet[crypto.randomInt(0, alphabet.length)]).join("");
   const client = await pool.connect();
   try {
     await client.query("begin");
@@ -130,14 +131,14 @@ app.post("/api/rooms", authenticate, asyncRoute(async (req, res) => {
   } catch(e) { await client.query("rollback"); throw e; } finally { client.release(); }
 }));
 app.get("/api/rooms/:code", asyncRoute(async (req,res) => {
-  const code = z.string().regex(/^\d{4,6}$/).parse(req.params.code);
+  const code = z.string().regex(/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/).parse(req.params.code);
   const room = await pool.query("select id,room_code,game_id,settings,status,current_round,max_rounds,question_duration_seconds,created_at from rooms where room_code=$1 and status<>'finished'",[code]);
   if (!room.rowCount) return res.status(404).json({error:"Room not found or already finished."});
   const players = await pool.query("select id,display_name,score,is_ready,is_host from room_players where room_id=$1 order by created_at",[room.rows[0].id]);
   res.json({room:room.rows[0],players:players.rows});
 }));
 app.post("/api/rooms/:code/join", authenticate, asyncRoute(async (req,res) => {
-  const code=z.string().regex(/^\d{4,6}$/).parse(req.params.code);
+  const code=z.string().regex(/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/).parse(req.params.code);
   const displayName=z.string().trim().min(1).max(40).parse(req.body.displayName || req.user!.username);
   const room=(await pool.query("select id,status from rooms where room_code=$1",[code])).rows[0];
   if(!room || room.status!=="waiting") return res.status(409).json({error:"This room is unavailable or has already started."});
@@ -194,7 +195,7 @@ io.use((socket,next)=>{
 io.on("connection",(socket)=>{
   socket.on("room:join",async({code}:{code:string},ack?:(v:any)=>void)=>{
     try {
-      if(!/^\d{4,6}$/.test(code)) throw new Error("Invalid room code");
+      if(!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) throw new Error("Invalid room code");
       const room=(await pool.query("select id,room_code,status from rooms where room_code=$1 and status<>'finished'",[code])).rows[0];
       if(!room) throw new Error("Room not found");
       const member=await pool.query("select 1 from room_players where room_id=$1 and user_id=$2",[room.id,socket.data.userId]);
