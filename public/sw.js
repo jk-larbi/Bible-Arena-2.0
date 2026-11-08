@@ -13,8 +13,8 @@ self.addEventListener('push', (event) => {
   let payload = {
     title: 'BibleArena Notification',
     body: 'You have a new update in BibleArena.',
-    link: '/notifications',
-    icon: '/assets/bible-arena-logo.png'
+    link: new URL('notifications', self.registration.scope).href,
+    icon: new URL('assets/bible-arena-logo.png', self.registration.scope).href
   };
 
   if (event.data) {
@@ -51,7 +51,13 @@ self.addEventListener('push', (event) => {
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
-  const targetLink = event.notification.data?.link || '/notifications';
+  const rawLink = event.notification.data?.link || new URL('notifications', self.registration.scope).href;
+  const scopeUrl = new URL(self.registration.scope);
+  const targetUrl = new URL(rawLink, self.registration.scope);
+  if (targetUrl.origin === scopeUrl.origin && !targetUrl.pathname.startsWith(scopeUrl.pathname)) {
+    targetUrl.pathname = scopeUrl.pathname + targetUrl.pathname.replace(/^\\/+/, '');
+  }
+  const targetLink = targetUrl.href;
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
