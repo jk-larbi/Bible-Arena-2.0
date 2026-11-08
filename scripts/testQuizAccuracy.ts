@@ -329,13 +329,18 @@ async function runQuizAccuracyTests() {
           if (item.game_slug === 'bible-timeline') continue;
 
           const ref = item.reference;
-          const qText = item.question_text.toLowerCase();
+          // Crossword prompts contain two independent clues and two independent
+          // references. Audit the character narrative against its own passage,
+          // rather than mixing the Across book clue into the Down character audit.
+          const isCrossword = item.game_slug === 'bible-crossword';
+          const auditRef = isCrossword ? String(item.metadata?.downReference || '') : ref;
+          const qText = (isCrossword ? String(item.metadata?.downClue || '') : item.question_text).toLowerCase();
           const ans = item.correct_answer.toLowerCase();
-          const exp = item.explanation.toLowerCase();
+          const exp = (isCrossword ? '' : item.explanation).toLowerCase();
 
           // Substantive Check A: Noah's raven and dove must cite Genesis 8
           if (qText.includes('raven') && qText.includes('dove')) {
-            if (!ref.includes('Genesis 8')) {
+            if (!auditRef.includes('Genesis 8')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Noah raven/dove asked but ref is "${ref}" (must cite Genesis 8)`);
             }
@@ -343,7 +348,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check B: Abraham's test on Mount Moriah must cite Genesis 22
           if (qText.includes('moriah') || exp.includes('moriah')) {
-            if (!ref.includes('Genesis 22') && !ref.includes('2 Chronicles 3')) {
+            if (!auditRef.includes('Genesis 22') && !auditRef.includes('2 Chronicles 3')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Mount Moriah test asked but ref is "${ref}" (must cite Genesis 22)`);
             }
@@ -351,7 +356,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check C: David defeating Goliath must cite 1 Samuel 17
           if (qText.includes('goliath') || ans.includes('goliath') || exp.includes('goliath')) {
-            if (!ref.includes('1 Samuel 17')) {
+            if (!auditRef.includes('1 Samuel 17')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Goliath narrative asked but ref is "${ref}" (must cite 1 Samuel 17)`);
             }
@@ -359,7 +364,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check D: Solomon's wisdom prayer must cite 1 Kings 3 or 2 Chronicles 1
           if (qText.includes('wisdom') && ans === 'solomon') {
-            if (!ref.includes('1 Kings 3') && !ref.includes('1 Kings 10')) {
+            if (!auditRef.includes('1 Kings 3') && !auditRef.includes('1 Kings 10')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Solomon wisdom asked but ref is "${ref}" (must cite 1 Kings 3/10)`);
             }
@@ -367,7 +372,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check E: Elijah on Mount Carmel / fire from heaven must cite 1 Kings 18
           if (qText.includes('carmel') || exp.includes('carmel')) {
-            if (!ref.includes('1 Kings 18')) {
+            if (!auditRef.includes('1 Kings 18')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Mount Carmel asked but ref is "${ref}" (must cite 1 Kings 18)`);
             }
@@ -375,7 +380,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check F: Naaman washing in the Jordan must cite 2 Kings 5
           if (qText.includes('naaman') || exp.includes('naaman')) {
-            if (!ref.includes('2 Kings 5')) {
+            if (!auditRef.includes('2 Kings 5')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Naaman healing asked but ref is "${ref}" (must cite 2 Kings 5)`);
             }
@@ -383,7 +388,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check G: "Am I my brother's keeper?" must cite Genesis 4
           if (qText.includes('brother’s keeper') || qText.includes("brother's keeper")) {
-            if (!ref.includes('Genesis 4')) {
+            if (!auditRef.includes('Genesis 4')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Cain quote asked but ref is "${ref}" (must cite Genesis 4)`);
             }
@@ -391,7 +396,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check H: "If I perish, I perish" must cite Esther 4
           if (qText.includes('if i perish') || exp.includes('if i perish')) {
-            if (!ref.includes('Esther 4')) {
+            if (!auditRef.includes('Esther 4')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Esther quote asked but ref is "${ref}" (must cite Esther 4)`);
             }
@@ -399,7 +404,7 @@ async function runQuizAccuracyTests() {
 
           // Substantive Check I: Pentecost sermon must cite Acts 2
           if (qText.includes('pentecost') || exp.includes('pentecost')) {
-            if (!ref.includes('Acts 2')) {
+            if (!auditRef.includes('Acts 2')) {
               substantiveFailures++;
               failureLog.push(`${item.id}: Pentecost narrative asked but ref is "${ref}" (must cite Acts 2)`);
             }
