@@ -771,7 +771,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       case 'bible-crossword': {
         // Original Scripture-checked clue bank. Answers are normalized for grid entry;
         // references and explanations remain visible after submission.
-        const crosswordClues = [
+        const originalCrosswordClues = [
           ['JEHOIAKIM','The king who cut Jeremiah’s scroll with a knife and burned it','Jeremiah 36:20-26'],
           ['EHUD','The left-handed judge who killed Eglon','Judges 3:15-22'],
           ['EBEDMELECH','The Ethiopian official who rescued Jeremiah from the cistern','Jeremiah 38:7-13'],
@@ -833,35 +833,54 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           ['GAMALIEL','The Pharisee who advised the council to leave the apostles alone','Acts 5:34-39'],
           ['EPAPHRAS','The servant of Christ who laboured in prayer for the Colossians','Colossians 4:12'],
         ] as const;
-        const count = 10;
-        // Generate a deterministic, non-repeating set of ten clues for each of
-        // the 250 level challenges. C(60, 10) gives ample unique combinations.
-        const chooseCount = (n: number, k: number): number => {
-          if (k < 0 || k > n) return 0;
-          let result = 1;
-          for (let i = 1; i <= Math.min(k, n - k); i++) {
-            result = result * (n - Math.min(k, n - k) + i) / i;
-          }
-          return Math.round(result);
-        };
-        const combinationCount = chooseCount(crosswordClues.length, count);
-        const combinationStep = 301576111; // Coprime to C(60, 10).
-        const rank = (((globalSeed % combinationCount) * combinationStep) % combinationCount + combinationCount) % combinationCount;
-        const selectedIndices: number[] = [];
-        let remainingRank = rank;
-        let nextCandidate = 0;
-        for (let position = 0; position < count; position++) {
-          for (let candidate = nextCandidate; candidate < crosswordClues.length; candidate++) {
-            const combinationsAfter = chooseCount(crosswordClues.length - candidate - 1, count - position - 1);
-            if (remainingRank < combinationsAfter) {
-              selectedIndices.push(candidate);
-              nextCandidate = candidate + 1;
-              break;
-            }
-            remainingRank -= combinationsAfter;
+        // Grow the bank with additional, independently referenced facts already
+        // curated in the Bible content catalogue: character episodes, book identities,
+        // biblical geography, and detective-case evidence.
+        const derivedCrosswordClues: Array<[string, string, string]> = [];
+        for (const person of BIBLE_CHARACTERS) {
+          const answer = person.name.replace(/[^A-Za-z]/g, '').toUpperCase();
+          if (person.clue1 && person.clue1Ref) derivedCrosswordClues.push([answer, person.clue1, person.clue1Ref]);
+          if (person.clue2 && person.clue2Ref) derivedCrosswordClues.push([answer, person.clue2, person.clue2Ref]);
+          if (person.clue3 && person.clue3Ref) derivedCrosswordClues.push([answer, person.clue3, person.clue3Ref]);
+        }
+        for (const book of BOOKS_66) {
+          derivedCrosswordClues.push([book.name.replace(/[^A-Za-z]/g, '').toUpperCase(), book.clue, book.ref]);
+        }
+        for (const place of GEOGRAPHY_LOCATIONS) {
+          derivedCrosswordClues.push([place.place.replace(/[^A-Za-z]/g, '').toUpperCase(), place.event, place.ref]);
+        }
+        for (const item of DETECTIVE_CASES) {
+          derivedCrosswordClues.push([item.answer.replace(/[^A-Za-z]/g, '').toUpperCase(), item.clue1, item.ref]);
+          derivedCrosswordClues.push([item.answer.replace(/[^A-Za-z]/g, '').toUpperCase(), item.clue2, item.ref]);
+          derivedCrosswordClues.push([item.answer.replace(/[^A-Za-z]/g, '').toUpperCase(), item.clue3, item.ref]);
+        }
+        const clueMap = new Map<string, [string, string, string]>();
+        for (const clue of [...originalCrosswordClues, ...derivedCrosswordClues]) {
+          const [answer, prompt, reference] = clue;
+          if (answer.length >= 3 && prompt?.trim() && reference?.trim()) {
+            const key = answer + '|' + prompt.trim().toLowerCase();
+            if (!clueMap.has(key)) clueMap.set(key, [answer, prompt.trim(), reference.trim()]);
           }
         }
-        const chosen = selectedIndices.map((index) => crosswordClues[index]);
+        const crosswordClues = [...clueMap.values()];
+        const count = 10;
+        // Each seed creates a distinct ten-answer crossword. We shuffle the expanded
+        // clue bank deterministically, then reject duplicate answer entries in a grid.
+        const chosen = (() => {
+          for (let attempt = 0; attempt < 500; attempt++) {
+            const shuffled = shuffleDeterministic(crosswordClues, globalSeed * 7919 + attempt * 104729 + 37);
+            const selected: typeof crosswordClues = [];
+            const answers = new Set<string>();
+            for (const clue of shuffled) {
+              if (answers.has(clue[0])) continue;
+              selected.push(clue);
+              answers.add(clue[0]);
+              if (selected.length === count) break;
+            }
+            if (selected.length === count) return selected;
+          }
+          throw new Error('Crossword bank could not produce ten distinct answer entries.');
+        })();
         const entries = chosen.map(([answer, clue, reference], index) => ({
           number: index + 1,
           answer,
@@ -876,7 +895,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           correct_answer: entries.map((entry) => entry.answer).join('|'),
           explanation: entries.map((entry) => `${entry.number}. ${entry.answer}: ${entry.clue} (${entry.reference})`).join(' '),
           reference: [...new Set(entries.map((entry) => entry.reference))].join('; '),
-          metadata: { entries, crosswordVersion: 3, category: 'Mixed Bible knowledge', uniquePuzzleRank: rank, clueCount: entries.length },
+          metadata: { entries, crosswordVersion: 4, category: 'Mixed Bible knowledge', clueBankSize: crosswordClues.length, clueCount: entries.length },
         });
         break;
       }
