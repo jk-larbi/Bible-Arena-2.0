@@ -8,6 +8,10 @@ import {
 
 export const CHALLENGES_PER_LEVEL = 5;
 export const DEFAULT_TOTAL_LEVELS = 50;
+
+// These games intentionally use client-generated content. Keep their attempts local
+// so the server never grades a different question bank than the one shown to players.
+const LOCAL_CONTENT_GAMES = new Set(['bible-crossword', 'bible-chain-challenge', 'complete-the-scripture']);
 export type Stars = 0 | 1 | 2 | 3 | 4 | 5;
 
 /** Preview & local fallback calculation matching the server stars_for_percent function. */
@@ -257,7 +261,7 @@ export async function startLevel(
   if (level > 1 && !gameProg[level - 1]?.completed) {
     // Also check if remote says unlocked when backend configured
     let remoteUnlocked = false;
-    if (game !== 'bible-crossword' && isBackendConfigured && supabase) {
+    if (!LOCAL_CONTENT_GAMES.has(game) && isBackendConfigured && supabase) {
       try {
         const { data } = await supabase.rpc('start_level', {
           p_game: game,
@@ -444,7 +448,7 @@ export async function submitChallengeAnswer(
 
   const challengeKey = `${gameSlug}-l${level}-c${challengeIndex}`;
 
-  if (!attemptId.startsWith('local-') && gameSlug !== 'bible-crossword' && isBackendConfigured && supabase) {
+  if (!attemptId.startsWith('local-') && !LOCAL_CONTENT_GAMES.has(gameSlug) && isBackendConfigured && supabase) {
     const { data, error } = await supabase.rpc('submit_challenge_answer', {
       p_attempt: attemptId,
       p_challenge_index: challengeIndex,
@@ -671,7 +675,7 @@ export async function getLevelChallenges(
   variationSeed = 0
 ): Promise<ChallengeItem[]> {
   // Bible Chain is generated per attempt so players never receive a fixed replay set.
-  if (gameSlug === 'bible-chain-challenge' || gameSlug === 'bible-crossword') {
+  if (LOCAL_CONTENT_GAMES.has(gameSlug)) {
     return buildLocalChallengesForLevel(gameSlug, level, variationSeed);
   }
 
