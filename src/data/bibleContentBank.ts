@@ -374,7 +374,13 @@ const WHO_SAID_IT_AUDIENCES: WhoSaidItAudience[] = [
 {quote:'What doth hinder me to be baptized?',speaker:'The Ethiopian eunuch',audience:'Philip',ref:'Acts 8:35-38',explanation:'The eunuch asked Philip this after Philip explained the Scripture he was reading.',options:['Philip','Peter','Ananias','The angel']},
 {quote:'Why callest thou me good?',speaker:'Jesus',audience:'The rich young ruler',ref:'Mark 10:17-18',explanation:'Jesus replied to the man who asked what he must do to inherit eternal life.',options:['The rich young ruler','Peter','The scribes','The disciples']},
 {quote:'Lord, if thou wilt, thou canst make me clean.',speaker:'A leper',audience:'Jesus',ref:'Matthew 8:1-3',explanation:'The leper approached Jesus and expressed confidence in His power to cleanse him.',options:['Jesus','The disciples','The priests','The crowd']},
-{quote:'How shall this be, seeing I know not a man?',speaker:'Mary',audience:'Gabriel',ref:'Luke 1:26-38',explanation:'Mary asked Gabriel how the announcement of her child would take place.',options:['Gabriel','Elizabeth','Joseph','Zechariah']}
+{quote:'How shall this be, seeing I know not a man?',speaker:'Mary',audience:'Gabriel',ref:'Luke 1:26-38',explanation:'Mary asked Gabriel how the announcement of her child would take place.',options:['Gabriel','Elizabeth','Joseph','Zechariah']},
+{quote:'Lord, dost thou wash my feet?',speaker:'Peter',audience:'Jesus',ref:'John 13:5-8',explanation:'Peter questioned Jesus when He began washing the disciples’ feet.',options:['Jesus','John','The other disciples','Judas']},
+{quote:'Whence knowest thou me?',speaker:'Nathanael',audience:'Jesus',ref:'John 1:47-49',explanation:'Nathanael asked Jesus how He knew him before they had met.',options:['Jesus','Philip','Andrew','John the Baptist']},
+{quote:'Lord, if thou hadst been here, my brother had not died.',speaker:'Martha',audience:'Jesus',ref:'John 11:20-22',explanation:'Martha said this when she met Jesus after Lazarus had died.',options:['Jesus','Mary','Lazarus','The disciples']},
+{quote:'What shall we do?',speaker:'The crowds',audience:'John the Baptist',ref:'Luke 3:7-10',explanation:'The crowds asked John what they should do in response to his call to repentance.',options:['John the Baptist','Jesus','The Pharisees','The tax collectors']},
+{quote:'I am not worthy that thou shouldest come under my roof.',speaker:'The Roman centurion',audience:'Jesus',ref:'Matthew 8:5-13',explanation:'The centurion addressed Jesus in Capernaum while asking Him to heal his servant.',options:['Jesus','Peter','The elders of the Jews','The servant']},
+{quote:'What shall I do that I may inherit eternal life?',speaker:'The rich young ruler',audience:'Jesus',ref:'Mark 10:17-22',explanation:'The man ran to Jesus and asked what he must do to inherit eternal life.',options:['Jesus','Peter','The scribes','The disciples']}
 ];
 type WhoSaidItDialogue = { prompt: string; answer: string; ref: string; explanation: string; options: string[] };
 const WHO_SAID_IT_DIALOGUES: WhoSaidItDialogue[] = [
@@ -407,7 +413,13 @@ const WHO_SAID_IT_DIALOGUES: WhoSaidItDialogue[] = [
 {prompt:'The LORD asked Jonah whether he did well to be angry. Who answered that he did?',answer:'Jonah',ref:'Jonah 4:8-9',explanation:'Jonah defended his anger after the plant withered.',options:['Jonah','Nahum','Micah','Obadiah']},
 {prompt:'Jesus asked the man born blind what he believed about the Son of God. Who asked who He was?',answer:'The man born blind',ref:'John 9:35-38',explanation:'The healed man asked Jesus to identify the Son of God so he could believe.',options:['The man born blind','Nicodemus','Bartimaeus','The man at Bethesda']},
 {prompt:'The LORD asked Moses who made man’s mouth. Who had just explained that he was slow of speech?',answer:'Moses',ref:'Exodus 4:10-12',explanation:'Moses had protested that he was not eloquent, and the LORD answered his objection.',options:['Moses','Aaron','Joshua','Caleb']},
-{prompt:'The LORD asked the prophet what he saw. Who answered that he saw an almond branch?',answer:'Jeremiah',ref:'Jeremiah 1:11-12',explanation:'Jeremiah answered the LORD during his call as a prophet.',options:['Jeremiah','Isaiah','Ezekiel','Amos']}
+{prompt:'The LORD asked the prophet what he saw. Who answered that he saw an almond branch?',answer:'Jeremiah',ref:'Jeremiah 1:11-12',explanation:'Jeremiah answered the LORD during his call as a prophet.',options:['Jeremiah','Isaiah','Ezekiel','Amos']},
+{prompt:'Eli asked Hannah how long she would remain drunk. Who explained that she was pouring out her soul before the LORD?',answer:'Hannah',ref:'1 Samuel 1:12-16',explanation:'Hannah explained that she had not been drinking but was praying in deep distress.',options:['Hannah','Peninnah','Ruth','Abigail']},
+{prompt:'Joseph asked his brothers whether their father was still alive. Who answered, “Thy servant our father is in good health”?',answer:'Judah',ref:'Genesis 43:26-28',explanation:'Judah answered Joseph’s inquiry about their father Jacob.',options:['Judah','Reuben','Benjamin','Simeon']},
+{prompt:'Jesus asked the disciples who they said He was. Who answered, “Thou art the Christ”?',answer:'Peter',ref:'Mark 8:27-30',explanation:'Peter confessed Jesus as the Christ near Caesarea Philippi.',options:['Peter','Andrew','James','John']},
+{prompt:'The angel told Cornelius to send for Peter. Who asked the messengers why they had come?',answer:'Peter',ref:'Acts 10:17-21',explanation:'Peter went down to meet the men and asked the purpose of their visit.',options:['Peter','Cornelius','Philip','John']},
+{prompt:'Paul asked the Galatians who had bewitched them. Which church was he addressing?',answer:'The churches of Galatia',ref:'Galatians 3:1',explanation:'Paul addressed the believers in the churches of Galatia.',options:['The churches of Galatia','The church at Corinth','The church at Ephesus','The church at Philippi']},
+{prompt:'Jesus asked the man at Bethesda whether he wanted to be made whole. Who replied that he had no one to help him into the pool?',answer:'The man at Bethesda',ref:'John 5:1-7',explanation:'The man explained that others entered the water before he could reach it.',options:['The man at Bethesda','Bartimaeus','The man born blind','The paralytic at Capernaum']}
 ];
 type WhoSaidItNotScripture = { saying: string; ref: string; status: 'not-scripture' | 'paraphrase' | 'scripture'; explanation: string };
 const WHO_SAID_IT_NOT_SCRIPTURE: WhoSaidItNotScripture[] = [
@@ -440,7 +452,13 @@ const WHO_SAID_IT_NOT_SCRIPTURE: WhoSaidItNotScripture[] = [
 { saying:'Be in the world but not of the world.',ref:'John 17:14-16',status:'paraphrase',explanation:'This is a common summary of Jesus’ prayer, not the exact wording of John 17.'},
 { saying:'God does not call the qualified; He qualifies the called.',ref:'Exodus 4:10-12',status:'not-scripture',explanation:'This popular motivational saying is not a Bible verse. Exodus records God answering Moses’ concern about his speech.'},
 { saying:'The battle is not yours, but God’s.',ref:'2 Chronicles 20:15',status:'scripture',explanation:'This statement is based on the words spoken by Jahaziel to Judah in 2 Chronicles 20:15.'},
-{ saying:'Faith can move mountains.',ref:'Matthew 17:20',status:'paraphrase',explanation:'This is a shortened paraphrase of Jesus’ teaching about faith like a grain of mustard seed.'}
+{ saying:'Faith can move mountains.',ref:'Matthew 17:20',status:'paraphrase',explanation:'This is a shortened paraphrase of Jesus’ teaching about faith like a grain of mustard seed.'},
+{ saying:'God works all things together for good.',ref:'Romans 8:28',status:'paraphrase',explanation:'This is a shortened rendering of Romans 8:28, not its full wording.'},
+{ saying:'The spirit is willing, but the flesh is weak.',ref:'Matthew 26:41',status:'scripture',explanation:'Jesus said this to the disciples in Gethsemane.'},
+{ saying:'As iron sharpens iron, so one person sharpens another.',ref:'Proverbs 27:17',status:'scripture',explanation:'This is a direct rendering of Proverbs 27:17.'},
+{ saying:'The wages of sin is death.',ref:'Romans 6:23',status:'scripture',explanation:'This is a direct biblical statement from Romans 6:23.'},
+{ saying:'The meek shall inherit the earth.',ref:'Matthew 5:5',status:'scripture',explanation:'Jesus taught this in the Beatitudes.'},
+{ saying:'Pride goeth before a fall.',ref:'Proverbs 16:18',status:'paraphrase',explanation:'This short form paraphrases Proverbs 16:18, which says pride goes before destruction and a haughty spirit before a fall.'}
 ];
 const WHO_SAID_IT_MODES = ['Identify the Speaker','Who Was Being Addressed?','Complete the Conversation','The Unexpected Speaker','Who Said It and Where?','The Misattributed Quote','Scripture or Not?'] as const;
 
@@ -865,7 +883,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           reference = d.ref;
           metadata = { ...metadata, dialogue: d.prompt, responseSpeaker: d.answer };
         } else if (modeIndex === 3) {
-          const unexpected = UNIQUE_QUOTES_POOL.filter((entry) => ['Cain','Balaam','Judas Iscariot','King Agrippa','The Roman Centurion','The Philippian Jailer','The Ethiopian eunuch','Saul','Naaman','King Belshazzar','The repentant thief','Pharaoh'].includes(entry.speaker));
+          const unexpected = UNIQUE_QUOTES_POOL.filter((entry) => ['Cain','Balaam','Judas Iscariot','King Agrippa','The Roman Centurion','The Philippian Jailer','The Ethiopian eunuch','Saul','Naaman','King Belshazzar','The repentant thief','Pharaoh','Nathanael','Martha','Thomas','The Samaritan woman','The Shunammite woman','The widow of Zarephath','Hazael','Laban','Eli','A Hebrew man','The crowds','The rich young ruler','The leper','Naboth','Mephibosheth','Mordecai','The chief priests and elders','The king of Israel','The captain of the LORD’s host','The people of Israel','The disciples','Mary','Elizabeth','Zechariah','The Preacher','Habakkuk','Micah','Amos','Nahum','Jonah','Nehemiah','Stephen','The repentant thief'].includes(entry.speaker));
           const u = unexpected[slot % unexpected.length] || q;
           const candidates = QUOTE_SPEAKER_GROUPS[u.speaker] || QUOTE_SPEAKERS;
           options = makeFourDistinctOptions(u.speaker, candidates, shuffleSeed);
