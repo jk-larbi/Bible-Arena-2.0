@@ -43,22 +43,64 @@ for (const game of ALL_19_GAME_SLUGS) {
         if (layout.placed.length !== 10) failures.push(`${item.id}: only ${layout.placed.length}/10 clues fit in the intersecting grid`);
         if (!entries.every((entry) => entry.clue && entry.reference)) failures.push(`${item.id}: crossword clue missing its reference`);
       } else if (game === 'bible-chain-challenge') {
-        const chain = item.metadata?.chain as string[] | undefined;
-        const required = String(item.metadata?.requiredLetter || '').toUpperCase();
-        const answer = normalize(item.correct_answer);
-        if (!chain || chain.length !== 4 || !required || !answer.startsWith(required.toLowerCase())) failures.push(`${item.id}: invalid Bible name chain`);
-        if (chain && new Set(chain.map(normalize)).size !== chain.length) failures.push(`${item.id}: repeated name inside chain`);
+        if (item.metadata?.curated) {
+          if (!item.question_text || !item.correct_answer || !item.reference) {
+            failures.push(`${item.id}: missing required chain fields`);
+          }
+          if (!item.metadata?.is_typed) {
+            if (!Array.isArray(item.options) || item.options.length !== 4 || !item.options.includes(item.correct_answer)) {
+              failures.push(`${item.id}: invalid multiple choice chain options`);
+            }
+          }
+        } else {
+          const chain = item.metadata?.chain as string[] | undefined;
+          const required = String(item.metadata?.requiredLetter || '').toUpperCase();
+          const answer = normalize(item.correct_answer);
+          if (!chain || chain.length !== 4 || !required || !answer.startsWith(required.toLowerCase())) failures.push(`${item.id}: invalid Bible name chain`);
+          if (chain && new Set(chain.map(normalize)).size !== chain.length) failures.push(`${item.id}: repeated name inside chain`);
+        }
       } else if (game === 'complete-the-scripture') {
         const meta = item.metadata || {};
         if (!meta.verseText || !meta.maskedText || !Array.isArray(meta.targetWords) || !meta.targetWords.length || !Number.isInteger(meta.mode) || meta.mode < 0 || meta.mode > 5) {
           failures.push(`${item.id}: incomplete Scripture mode metadata`);
         }
       } else if (game === 'scripture-scramble') {
-        const answer = normalize(item.correct_answer);
-        const letters = item.options.map(normalize);
-        if (!sameMultiset(letters, [...answer])) failures.push(`${item.id}: scrambled letters do not exactly match the answer`);
+        const isWordScramble = item.options.some((opt) => normalize(opt).length > 1);
+        if (isWordScramble) {
+          const words = item.correct_answer.split(/\s+/).map(normalize);
+          const tiles = item.options.map(normalize);
+          if (!sameMultiset(tiles, words)) failures.push(`${item.id}: scrambled words do not match the answer`);
+        } else {
+          const answer = normalize(item.correct_answer);
+          const letters = item.options.map(normalize);
+          if (!sameMultiset(letters, [...answer])) failures.push(`${item.id}: scrambled letters do not exactly match the answer`);
+        }
       } else if (game === 'verse-builder') {
-        if (!sameMultiset(item.options.map(normalize), item.correct_answer.split(/\s+/).map(normalize))) failures.push(`${item.id}: word tiles do not match the complete verse`);
+        if (item.metadata?.curated) {
+          if (!item.question_text || !item.correct_answer || !item.reference) {
+            failures.push(`${item.id}: curated verse builder item is missing required fields`);
+          }
+          if (item.metadata.is_typed) {
+            if (item.options.length > 0) failures.push(`${item.id}: typed challenge should have empty options`);
+          } else if (item.metadata.is_tiles) {
+            if (!item.options || item.options.length === 0) failures.push(`${item.id}: word tiles missing options`);
+          } else {
+            if (item.options.length !== 4 || new Set(item.options.map(normalize)).size !== 4 || !item.options.some((opt) => normalize(opt) === normalize(item.correct_answer))) {
+              failures.push(`${item.id}: expected 4 distinct options including correct answer`);
+            }
+          }
+        } else {
+          if (!sameMultiset(item.options.map(normalize), item.correct_answer.split(/\s+/).map(normalize))) failures.push(`${item.id}: word tiles do not match the complete verse`);
+        }
+      } else if (game === 'guess-the-emoji') {
+        if (item.metadata?.is_typed) {
+          if (item.options.length > 0) failures.push(`${item.id}: typed challenge should have empty options`);
+          if (!item.correct_answer) failures.push(`${item.id}: typed challenge missing correct_answer`);
+        } else {
+          if (item.options.length !== 4 || new Set(item.options.map(normalize)).size !== 4 || !item.options.some((opt) => normalize(opt) === normalize(item.correct_answer))) {
+            failures.push(`${item.id}: expected 4 distinct options including correct answer`);
+          }
+        }
       } else if (game === 'bible-word-search') {
         const words = (item.metadata?.words || item.options) as string[];
         if (words.length < 2 || words.some((word) => !normalize(word))) failures.push(`${item.id}: invalid word-search target list`);
@@ -69,8 +111,9 @@ for (const game of ALL_19_GAME_SLUGS) {
         const pairs = (item.metadata?.memoryPairs || []) as Array<{a:string;b:string}>;
         if (pairs.length < 2 || pairs.some((pair) => !pair.a || !pair.b)) failures.push(`${item.id}: memory pairs are incomplete`);
       } else if (game === 'bible-puzzles') {
-        const tiles = (item.metadata?.tiles || []) as string[];
-        if (tiles.length !== 3 || !sameMultiset(item.options.map(normalize), tiles.map(normalize))) failures.push(`${item.id}: puzzle fragments are incomplete or inconsistent`);
+        if (item.options.length !== 4 || new Set(item.options.map(normalize)).size !== 4 || !item.options.some((option) => normalize(option) === normalize(item.correct_answer))) {
+          failures.push(`${item.id}: expected four distinct options including the answer`);
+        }
       } else if (game === 'bible-timeline') {
         if (item.options.length !== 4 || item.correct_answer.split(' -> ').length !== 4) failures.push(`${item.id}: timeline does not contain four ordered entries`);
       } else if (game === 'old-vs-new-testament') {

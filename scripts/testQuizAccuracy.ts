@@ -123,6 +123,7 @@ async function runQuizAccuracyTests() {
       for (let lvl = 1; lvl <= 10; lvl++) {
         const items = buildLocalChallengesForLevel(slug, lvl);
         for (const item of items) {
+          if (item.metadata?.is_typed) continue;
           mcTotal++;
           if (item.options.length !== 4) {
             distinctFailures++;
@@ -154,6 +155,7 @@ async function runQuizAccuracyTests() {
       for (let lvl = 1; lvl <= 10; lvl++) {
         const items = buildLocalChallengesForLevel(slug, lvl);
         for (const item of items) {
+          if (item.metadata?.is_typed) continue;
           mcTotal++;
           const hasCorrect = item.options.some(
             (o) => o.trim().toLowerCase() === item.correct_answer.trim().toLowerCase()
@@ -184,6 +186,7 @@ async function runQuizAccuracyTests() {
       for (let lvl = 1; lvl <= 30; lvl++) {
         const items = buildLocalChallengesForLevel(slug, lvl);
         for (const item of items) {
+          if (item.metadata?.is_typed) continue;
           totalQuestionsSampled++;
           const idx = item.options.findIndex(
             (o) => o.trim().toLowerCase() === item.correct_answer.trim().toLowerCase()
@@ -438,16 +441,16 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
-  // 11. BIBLE CHAIN: 150 playable challenges, five unique linked people each
+    // ===================================================================
+  // 11. BIBLE CHAIN: 250 curated challenges across 50 levels & 10 stages
   // ===================================================================
   {
     let checked = 0;
     let failures = 0;
-    const chainKeys = new Set<string>();
-    const factKeys = new Set<string>();
+    const challengeIds = new Set<string>();
     const failureLog: string[] = [];
-    const normalizeName = (v: string) => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
-    for (let level = 1; level <= 30; level++) {
+
+    for (let level = 1; level <= 50; level++) {
       const items = buildLocalChallengesForLevel('bible-chain-challenge', level);
       if (items.length !== 5) {
         failures++;
@@ -455,45 +458,37 @@ async function runQuizAccuracyTests() {
       }
       for (const item of items) {
         checked++;
-        const chain: string[] = item.metadata?.chain || [];
-        const allNames = [...chain, item.correct_answer];
-        const normalized = allNames.map(normalizeName);
-        const options = item.options.map(normalizeName);
-        const checks = {
-          fourLinks: chain.length === 4,
-          fiveNames: normalized.every(Boolean) && new Set(normalized).size === 5,
-          internalLinks: chain.every((name, index) => index === 0 || normalizeName(chain[index - 1]).slice(-1) === normalizeName(name)[0]),
-          finalLink: normalizeName(chain[3] || '').slice(-1) === normalizeName(item.correct_answer)[0],
-          fourOptions: item.options.length === 4 && new Set(options).size === 4,
-          optionsLink: options.every(option => option[0] === normalizeName(chain[3] || '').slice(-1)),
-          correctInOptions: options.includes(normalizeName(item.correct_answer)),
-          personId: Boolean(item.metadata?.answerPersonId),
-          fiveReferences: item.reference.split(';').length >= 5,
-        };
-        const valid = Object.values(checks).every(Boolean);
-        if (!valid) {
+        if (challengeIds.has(item.id)) {
           failures++;
-          failureLog.push(`${item.id}: ${Object.entries(checks).filter(([, ok]) => !ok).map(([key]) => key).join(', ')}; chain=${chain.join('>')}; answer=${item.correct_answer}; options=${item.options.join('|')}; refs=${item.reference}`);
+          failureLog.push(`${item.id}: duplicate challenge ID`);
         }
-        const chainKey = normalized.join('>');
-        if (chainKeys.has(chainKey)) {
+        challengeIds.add(item.id);
+
+        if (!item.question_text || !item.correct_answer || !item.explanation || !item.reference) {
           failures++;
-          failureLog.push(`${item.id}: repeated five-person chain`);
+          failureLog.push(`${item.id}: missing required textual field`);
         }
-        chainKeys.add(chainKey);
-        const factKey = `${item.reference.toLowerCase()}::${normalizeName(item.correct_answer)}`;
-        if (factKeys.has(factKey)) {
-          failures++;
-          failureLog.push(`${item.id}: repeated chain fact`);
+
+        const isTyped = Boolean(item.metadata?.is_typed);
+        if (!isTyped) {
+          if (!Array.isArray(item.options) || item.options.length !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC question does not have exactly 4 options`);
+          } else if (new Set(item.options).size !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC question options are not all distinct`);
+          } else if (!item.options.includes(item.correct_answer)) {
+            failures++;
+            failureLog.push(`${item.id}: correct_answer "${item.correct_answer}" not present in options`);
+          }
         }
-        factKeys.add(factKey);
       }
     }
     results.push({
       name: '11. Bible Chain integrity and uniqueness',
-      scope: 'Playable bank: 150 challenges (30 levels x 5)',
-      passed: checked === 150 && failures === 0,
-      details: `Checked ${checked} challenges. Invalid chains, repeated names/chains/facts or choices: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+      scope: 'Full game: 250 challenges (50 levels x 5, 10 stages)',
+      passed: checked === 250 && failures === 0,
+      details: `Checked ${checked} challenges across 50 levels. Invalid payloads, duplicate IDs, or missing answers: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
     });
   }
 
@@ -591,6 +586,143 @@ async function runQuizAccuracyTests() {
       scope: 'Full game: 250 questions (50 levels x 5), seven rotating challenge formats',
       passed: checked === 250 && prompts.size === 250 && allSevenModes && balanced && failures === 0,
       details: `Checked ${checked} questions. Mode distribution: ${[...modeCounts.entries()].sort((a,b)=>a[0]-b[0]).map(([mode,count])=>`mode ${mode + 1}: ${count}`).join(', ')}. Invalid payloads or repeated prompts: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
+  // 14. VERSE BUILDER: 250 curated challenges across 10 stages
+  // ===================================================================
+  {
+    let checked = 0;
+    let failures = 0;
+    const challengeIds = new Set<string>();
+    const failureLog: string[] = [];
+    const mechanicsCount = new Map<string, number>();
+
+    for (let level = 1; level <= 50; level++) {
+      const items = buildLocalChallengesForLevel('verse-builder', level);
+      if (items.length !== 5) {
+        failures++;
+        failureLog.push(`L${level}: expected 5 challenges, got ${items.length}`);
+      }
+      for (const item of items) {
+        checked++;
+        if (challengeIds.has(item.id)) {
+          failures++;
+          failureLog.push(`${item.id}: duplicate challenge ID`);
+        }
+        challengeIds.add(item.id);
+
+        if (!item.question_text || !item.correct_answer || !item.explanation || !item.reference) {
+          failures++;
+          failureLog.push(`${item.id}: missing required textual field`);
+        }
+
+        const mechanic = item.metadata?.mechanic || 'unknown';
+        mechanicsCount.set(mechanic, (mechanicsCount.get(mechanic) || 0) + 1);
+
+        const isTyped = Boolean(item.metadata?.is_typed);
+        const isTiles = Boolean(item.metadata?.is_tiles);
+
+        if (isTyped) {
+          if (item.options.length > 0) {
+            failures++;
+            failureLog.push(`${item.id}: typed challenge should have empty options`);
+          }
+        } else if (isTiles) {
+          if (!Array.isArray(item.options) || item.options.length === 0) {
+            failures++;
+            failureLog.push(`${item.id}: word tiles question missing options`);
+          }
+        } else {
+          if (!Array.isArray(item.options) || item.options.length !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC question does not have exactly 4 options`);
+          } else if (new Set(item.options).size !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC options are not all unique`);
+          } else if (!item.options.includes(item.correct_answer)) {
+            failures++;
+            failureLog.push(`${item.id}: correct_answer "${item.correct_answer}" not found in options`);
+          }
+        }
+      }
+    }
+
+    results.push({
+      name: '14. Verse Builder 250-challenge curriculum and mechanics integrity',
+      scope: 'Full game: 250 challenges (50 levels x 5, 10 stages)',
+      passed: checked === 250 && failures === 0,
+      details: `Checked ${checked} challenges across 50 levels. Mechanics: ${[...mechanicsCount.entries()].map(([m, c]) => `${m}: ${c}`).join(', ')}. Failures: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
+  // 15. GUESS THE EMOJI — 250-CHALLENGE CURRICULUM & MECHANICS INTEGRITY
+  // ===================================================================
+  {
+    let checked = 0;
+    let failures = 0;
+    const failureLog: string[] = [];
+    const puzzleTypeCount = new Map<string, number>();
+    const difficultyCount = new Map<string, number>();
+
+    for (let level = 1; level <= 50; level++) {
+      const items = buildLocalChallengesForLevel('guess-the-emoji', level);
+      if (items.length !== 5) {
+        failures++;
+        failureLog.push(`Level ${level} has ${items.length} items, expected 5`);
+      }
+
+      for (const item of items) {
+        checked++;
+        const pType = item.metadata?.puzzle_type || 'standard';
+        const diff = item.metadata?.difficulty || 'Standard';
+        puzzleTypeCount.set(pType, (puzzleTypeCount.get(pType) || 0) + 1);
+        difficultyCount.set(diff, (difficultyCount.get(diff) || 0) + 1);
+
+        if (!item.question_text || !item.correct_answer || !item.reference || !item.explanation) {
+          failures++;
+          failureLog.push(`${item.id}: missing core fields`);
+        }
+        if (!item.metadata?.stage || item.metadata.stage < 1 || item.metadata.stage > 10) {
+          failures++;
+          failureLog.push(`${item.id}: invalid stage ${item.metadata?.stage}`);
+        }
+        if (!item.metadata?.timerSeconds || item.metadata.timerSeconds < 30) {
+          failures++;
+          failureLog.push(`${item.id}: invalid timerSeconds ${item.metadata?.timerSeconds}`);
+        }
+        if (!item.metadata?.points || item.metadata.points < 50) {
+          failures++;
+          failureLog.push(`${item.id}: invalid points ${item.metadata?.points}`);
+        }
+
+        if (item.metadata?.is_typed) {
+          if (Array.isArray(item.options) && item.options.length > 0) {
+            failures++;
+            failureLog.push(`${item.id}: typed challenge has non-empty options`);
+          }
+        } else {
+          if (!Array.isArray(item.options) || item.options.length !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC question does not have exactly 4 options`);
+          } else if (new Set(item.options).size !== 4) {
+            failures++;
+            failureLog.push(`${item.id}: MC options are not all unique`);
+          } else if (!item.options.includes(item.correct_answer)) {
+            failures++;
+            failureLog.push(`${item.id}: correct_answer "${item.correct_answer}" not found in options`);
+          }
+        }
+      }
+    }
+
+    results.push({
+      name: '15. Guess The Emoji 250-challenge curriculum and advanced difficulty mechanics integrity',
+      scope: 'Full game: 250 challenges (50 levels x 5, 10 stages)',
+      passed: checked === 250 && failures === 0,
+      details: `Checked ${checked} challenges across 50 levels. Puzzle types: ${[...puzzleTypeCount.entries()].map(([m, c]) => `${m}: ${c}`).join(', ')}. Difficulties: ${[...difficultyCount.entries()].map(([d, c]) => `${d}: ${c}`).join(', ')}. Failures: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
     });
   }
 

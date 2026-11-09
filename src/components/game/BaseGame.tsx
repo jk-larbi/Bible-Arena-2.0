@@ -142,6 +142,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [memorySolved, setMemorySolved] = useState<number[]>([]);
   const [memoryCards, setMemoryCards] = useState<{ id: number; text: string; pairKey: string }[]>([]);
   const [scriptureTyped, setScriptureTyped] = useState('');
+  const [typedBook, setTypedBook] = useState('');
+  const [riddleTyped, setRiddleTyped] = useState('');
+  const [memoryTyped, setMemoryTyped] = useState('');
+  const [chainTyped, setChainTyped] = useState('');
+  const [verseTyped, setVerseTyped] = useState('');
+  const [emojiTyped, setEmojiTyped] = useState('');
   const [scripturePicked, setScripturePicked] = useState<string[]>([]);
   const [scriptureHidden, setScriptureHidden] = useState(false);
 
@@ -185,16 +191,22 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setMemoryFlipped([]);
     setMemorySolved([]);
     setScriptureTyped('');
+    setTypedBook('');
+    setRiddleTyped('');
+    setMemoryTyped('');
+    setChainTyped('');
+    setVerseTyped('');
+    setEmojiTyped('');
     setScripturePicked([]);
     setScriptureHidden(false);
     locked.current = false;
     challengeStart.current = Date.now();
 
     if (currentChallenge) {
-      if (gameId === 'bible-timeline' || gameId === 'bible-puzzles') {
+      if (gameId === 'bible-timeline') {
         setTimelineOrder([...currentChallenge.options]);
       }
-      if (gameId === 'bible-memory-challenge') {
+      if (gameId === 'bible-memory-challenge' && !currentChallenge.metadata?.curated) {
         const pairs: { a: string; b: string }[] = currentChallenge.metadata?.memoryPairs || [];
         const deck: { id: number; text: string; pairKey: string }[] = [];
         pairs.forEach((p, idx) => {
@@ -216,10 +228,14 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       // The Scripture Challenge question bank changed in this release. Restart
       // one unfinished attempt once so players do not resume an old question
       // sequence. Completed-level records and earned marks remain untouched.
-      const contentVersion = 'scripture-challenge-questions-v2';
-      const versionKey = 'biblearena-scripture-challenge-content-version';
+      const contentVersion = gameId === 'bible-character-quest'
+        ? 'bible-character-quest-v2'
+        : 'scripture-challenge-questions-v2';
+      const versionKey = gameId === 'bible-character-quest'
+        ? 'biblearena-character-quest-content-version'
+        : 'biblearena-scripture-challenge-content-version';
       let needsContentRefresh = false;
-      if (gameId === 'scripture-challenge') {
+      if (gameId === 'scripture-challenge' || gameId === 'bible-character-quest') {
         try {
           needsContentRefresh = localStorage.getItem(versionKey) !== contentVersion;
         } catch {
@@ -242,7 +258,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setReveal(null);
       setSessionMarks(0);
       setTotalMarks(getOverallTotalMarks());
-      if (gameId === 'scripture-challenge' && needsContentRefresh) {
+      if ((gameId === 'scripture-challenge' || gameId === 'bible-character-quest') && needsContentRefresh) {
         try { localStorage.setItem(versionKey, contentVersion); } catch { /* session can continue */ }
       }
       playBibleArenaSound('start', soundEnabled);
@@ -288,9 +304,15 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     }
   }
 
+  const roundTimerSeconds = currentChallenge?.metadata?.timerSeconds ?? (
+    gameId === 'bible-character-quest'
+      ? (level === 50 ? 15 : (level ?? 1) >= 46 ? 20 : (level ?? 1) >= 31 ? 25 : 30)
+      : (gameId === 'bible-crossword' ? 240 : (gameId === 'who-said-it' || gameId === 'complete-the-scripture') ? WHO_SAID_IT_SECONDS : QUESTION_SECONDS)
+  );
+
   const answering = useCountdown(
     Boolean(attempt && !result && reveal === null && currentChallenge),
-    gameId === 'bible-crossword' ? 240 : (gameId === 'who-said-it' || gameId === 'complete-the-scripture') ? WHO_SAID_IT_SECONDS : QUESTION_SECONDS,
+    roundTimerSeconds,
     () => settleAnswer(null),
     currentChallenge?.id ?? currentIdx,
     gameId === 'bible-crossword' ? crosswordBonusSeconds : 0
@@ -400,6 +422,43 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             <p className="mt-3 text-xs leading-relaxed text-[#687386]">Translation: King James Version (KJV). Match the exact wording, including the original spelling.</p>
           </section>
         )}
+        {gameId === 'verse-builder' && (
+          <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
+              <HelpCircle className="h-5 w-5 text-[#3156C9]" />
+              How to play — Verse Builder
+            </div>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm leading-relaxed text-[#394150]">
+              <li>Each level has five Scripture reconstruction challenges across 10 structured stages.</li>
+              <li><strong>Arrange the Words:</strong> tap the word tiles in sequence to reconstruct verses. Tap placed tiles to remove them.</li>
+              <li><strong>The Word Trap:</strong> detect incorrect and substituted words within familiar and unfamiliar verses.</li>
+              <li><strong>Scripture Continuation:</strong> supply what comes next in famous and less familiar passages.</li>
+              <li><strong>Passage Reconstruction:</strong> reorder scrambled clauses and sections into biblical sequence.</li>
+              <li><strong>Manual Typed Answers:</strong> type missing words, phrases, or references directly with punctuation and case tolerance.</li>
+              <li><strong>Deep Scripture Study:</strong> master multi-verse passages from James, Romans, Isaiah, Psalm 119, and Hebrews.</li>
+              <li>Read the explanation and full verse after each answer. Hints cost marks.</li>
+            </ol>
+            <p className="mt-3 text-xs leading-relaxed text-[#687386]">Translation: King James Version (KJV). Match the exact wording, including original spelling.</p>
+          </section>
+        )}
+        {gameId === 'guess-the-emoji' && (
+          <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
+              <HelpCircle className="h-5 w-5 text-[#3156C9]" />
+              How to play — Guess The Emoji (Advanced)
+            </div>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm leading-relaxed text-[#394150]">
+              <li>Each level features five forensic emoji puzzles across 10 challenging stages.</li>
+              <li><strong>No Obvious Clues:</strong> Decipher non-obvious, indirect, and overlooked details from Scripture.</li>
+              <li><strong>Similar Story Traps:</strong> Watch out for stories with overlapping elements (e.g. Elijah vs Elisha, Jordan vs Red Sea).</li>
+              <li><strong>Forgotten Biblical People:</strong> Recognize unsung servants, faithful women, and lesser-known historical figures.</li>
+              <li><strong>Five-Detail Mysteries:</strong> Trace crime scenes and prophetic object lessons with investigative dossiers.</li>
+              <li><strong>Typed &amp; Multiple Choice:</strong> Later stages require precise typed names and terms (case and punctuation tolerant).</li>
+              <li>Read the biblical explanation and reference after every answer. Progressive hints cost marks.</li>
+            </ol>
+            <p className="mt-3 text-xs leading-relaxed text-[#687386]">Translation: King James Version (KJV). Exact biblical details and canonical accuracy.</p>
+          </section>
+        )}
         {gameId === 'who-said-it' && (
           <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
@@ -445,38 +504,84 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const HINT_COST = 5;
   const hintCost = gameId === 'bible-chain-challenge' && hintLevel === 1 ? 10 : HINT_COST;
-  const supportsHints = ['bible-crossword', 'bible-puzzles', 'bible-word-search', 'bible-character-quest', 'bible-detective', 'bible-riddles', 'bible-geography-quest', 'find-the-bible-book', 'bible-chain-challenge', 'complete-the-scripture'].includes(gameId);
+  const supportsHints = ['verse-builder', 'guess-the-emoji', 'bible-crossword', 'bible-puzzles', 'bible-word-search', 'bible-character-quest', 'bible-detective', 'bible-riddles', 'bible-geography-quest', 'find-the-bible-book', 'bible-chain-challenge', 'complete-the-scripture', 'scripture-scramble', 'bible-memory-challenge'].includes(gameId);
 
   const getHintForLevel = (requestedLevel: number): string => {
     if (!currentChallenge || requestedLevel === 0) return '';
     const metadata = currentChallenge.metadata || {};
+
+    if (gameId === 'guess-the-emoji') {
+      if (metadata.hint1 && requestedLevel === 1) return metadata.hint1;
+      if (metadata.hint2 && requestedLevel >= 2) return metadata.hint2;
+      return requestedLevel === 1
+        ? 'Scripture reference: ' + currentChallenge.reference + '. Look for key objects and actions.'
+        : 'Second clue: ' + currentChallenge.explanation;
+    }
+
+    if (gameId === 'verse-builder') {
+      if (metadata.hint1 && requestedLevel === 1) return metadata.hint1;
+      if (metadata.hint2 && requestedLevel >= 2) return metadata.hint2;
+      return requestedLevel === 1
+        ? 'Scripture reference: ' + currentChallenge.reference + '. Examine the exact wording.'
+        : 'Second clue: ' + currentChallenge.explanation;
+    }
+
+    if (gameId === 'scripture-scramble') {
+      if (requestedLevel === 1) {
+        return metadata.hint1 || `First clue: The answer begins with "${currentChallenge.correct_answer[0]}" (${currentChallenge.reference}).`;
+      }
+      return metadata.hint2 || `Second clue: ${currentChallenge.explanation}`;
+    }
 
     if (gameId === 'bible-crossword') {
       return 'One correct letter has been revealed in the crossword grid. Use the crossing clues to work out the remaining answers.';
     }
 
     if (gameId === 'bible-puzzles') {
-      const fragments: string[] = metadata.tiles || [];
-      if (requestedLevel === 1) return fragments[0] ? `The first fragment is: “${fragments[0]}”` : 'Look for the opening words of the verse.';
-      return fragments[1] ? `After the first fragment comes: “${fragments[1]}”` : 'Read the verse fragments for a natural sentence flow.';
+      if (metadata.hint) return `Puzzle Clue: ${metadata.hint}`;
+      return `Scripture Reference: ${currentChallenge.reference}. Examine the biblical testimony and clues carefully.`;
     }
 
     if (gameId === 'bible-character-quest' || gameId === 'bible-detective') {
       const clues: string[] = metadata.clues || [];
       return clues[requestedLevel] ? `Additional evidence: ${clues[requestedLevel]}` : 'Study the evidence already revealed and compare the details with the options.';
     }
-    if (gameId === 'bible-riddles' || gameId === 'complete-the-scripture' || gameId === 'find-the-bible-book') {
+    if (gameId === 'find-the-bible-book') {
+      if (metadata.hint) return `Book Clue: ${metadata.hint}`;
+      const answer = String(currentChallenge.correct_answer || '');
+      return requestedLevel === 1
+        ? `The book starts with “${answer.charAt(0)}” and has ${answer.length} characters.`
+        : `Testament: ${metadata.testament || 'Bible'} • Reference: ${currentChallenge.reference}.`;
+    }
+    if (gameId === 'bible-riddles') {
+      if (metadata.hint) return `Riddle Clue: ${metadata.hint}`;
+      const answer = String(currentChallenge.correct_answer || '');
+      return requestedLevel === 1
+        ? `The answer begins with “${answer.charAt(0)}” and contains ${answer.length} characters.`
+        : `Scripture Reference: ${currentChallenge.reference}. Study the biblical clues carefully.`;
+    }
+    if (gameId === 'complete-the-scripture') {
       const answer = String(currentChallenge.correct_answer || '');
       return requestedLevel === 1
         ? `The answer begins with “${answer.charAt(0)}” and contains ${answer.length} characters.`
         : `The answer is “${answer}”. Use this final clue carefully.`;
     }
+    if (gameId === 'bible-memory-challenge') {
+      if (metadata.hint) return `Memory Clue: ${metadata.hint}`;
+      const answer = String(currentChallenge.correct_answer || '');
+      return requestedLevel === 1
+        ? `The answer begins with “${answer.charAt(0)}” and contains ${answer.length} characters.`
+        : `Scripture Reference: ${currentChallenge.reference}. Translation: ${metadata.translation || 'KJV'}.`;
+    }
+
     if (gameId === 'bible-geography-quest') {
       return requestedLevel === 1
         ? `Region clue: ${metadata.region || 'Read the event in the question carefully'}.`
         : `Scripture reference: ${currentChallenge.reference}. Use the passage to identify the place.`;
     }
-    if (gameId === 'bible-chain-challenge') {
+        if (gameId === 'bible-chain-challenge') {
+      if (metadata.hint1 && requestedLevel === 1) return metadata.hint1;
+      if (metadata.hint2 && requestedLevel === 2) return metadata.hint2;
       const clues: string[] = metadata.clues || [];
       return clues[requestedLevel - 1] || 'Review the chain rule and compare the Scripture dossier with each option.';
     }
@@ -573,22 +678,26 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         </div>
       );
     }
-    // 1. SCRIPTURE SCRAMBLE (Letter tile rearranging)
+    // 1. SCRIPTURE SCRAMBLE (Letter tile rearranging & Word order assembly)
     if (gameId === 'scripture-scramble') {
       const letters = currentChallenge.options;
-      const builtWord = scramblePicked.map((idx) => letters[idx]).join('');
+      const isWordPuzzle = letters.some((l) => l.length > 1);
+      const separator = isWordPuzzle ? ' ' : '';
+      const builtWord = scramblePicked.map((idx) => letters[idx]).join(separator);
       return (
         <div className="space-y-6">
           <div className="min-h-[64px] p-4 rounded-2xl bg-[#F3EBDD] border-2 border-dashed border-[#171B24]/20 flex flex-wrap items-center justify-center gap-2">
             {scramblePicked.length === 0 ? (
-              <span className="text-sm text-[#171B24]/50">Tap scrambled letters below to spell the biblical word</span>
+              <span className="text-sm text-[#171B24]/50">
+                {isWordPuzzle ? 'Tap scrambled words below to arrange the phrase in order' : 'Tap scrambled letters below to spell the biblical answer'}
+              </span>
             ) : (
               scramblePicked.map((letterIdx, pos) => (
                 <button
                   key={`picked-${pos}`}
                   disabled={reveal !== null}
                   onClick={() => setScramblePicked(scramblePicked.filter((_, i) => i !== pos))}
-                  className="w-11 h-12 rounded-xl bg-[#171B24] text-white font-serif font-bold text-lg flex items-center justify-center shadow cursor-pointer"
+                  className="min-w-11 h-12 px-2.5 rounded-xl bg-[#171B24] text-white font-serif font-bold text-lg flex items-center justify-center shadow cursor-pointer"
                 >
                   {letters[letterIdx]}
                 </button>
@@ -606,12 +715,12 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
                   onClick={() => {
                     const next = [...scramblePicked, idx];
                     setScramblePicked(next);
-                    const candidate = next.map((i) => letters[i]).join('');
-                    if (candidate.length === letters.length) {
+                    if (next.length === letters.length) {
+                      const candidate = next.map((i) => letters[i]).join(separator);
                       settleAnswer(candidate);
                     }
                   }}
-                  className={`w-11 h-12 rounded-xl font-serif font-bold text-lg flex items-center justify-center border transition-all cursor-pointer ${
+                  className={`min-w-11 h-12 px-2.5 rounded-xl font-serif font-bold text-lg flex items-center justify-center border transition-all cursor-pointer ${
                     used
                       ? 'bg-stone-200 text-stone-400 opacity-40 cursor-not-allowed'
                       : 'bg-white text-[#171B24] border-[#171B24]/20 hover:bg-[#D66B3D] hover:text-white shadow-sm'
@@ -629,91 +738,330 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               onClick={() => setScramblePicked([])}
               className="px-4 py-2.5 rounded-xl border border-[#171B24]/20 text-xs font-semibold hover:bg-[#F3EBDD] inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-40"
             >
-              <RotateCcw className="w-3.5 h-3.5" /> Clear Letters
+              <RotateCcw className="w-3.5 h-3.5" /> {isWordPuzzle ? 'Clear Words' : 'Clear Letters'}
             </button>
             <button
               disabled={reveal !== null || builtWord.length === 0}
               onClick={() => settleAnswer(builtWord)}
               className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white text-sm font-bold hover:bg-[#c25a2c] cursor-pointer disabled:opacity-40"
             >
-              Check Word
+              {isWordPuzzle ? 'Check Phrase' : 'Check Word'}
             </button>
           </div>
         </div>
       );
     }
 
-    // 2. VERSE BUILDER (Word tile assembly)
-    if (gameId === 'verse-builder') {
-      const words = currentChallenge.options;
-      const builtSentence = versePicked.map((idx) => words[idx]).join(' ');
-      return (
-        <div className="space-y-6">
-          <div className="min-h-[88px] p-4 rounded-2xl bg-[#F3EBDD] border-2 border-dashed border-[#171B24]/20 flex flex-wrap items-center justify-center gap-2">
-            {versePicked.length === 0 ? (
-              <span className="text-sm text-[#171B24]/50">Tap word tiles in sequence to assemble the verse</span>
-            ) : (
-              versePicked.map((wIdx, pos) => (
-                <button
-                  key={`vb-picked-${pos}`}
-                  disabled={reveal !== null}
-                  onClick={() => setVersePicked(versePicked.filter((_, i) => i !== pos))}
-                  className="px-3.5 py-2 rounded-xl bg-[#171B24] text-white text-sm font-semibold shadow cursor-pointer"
-                >
-                  {words[wIdx]}
-                </button>
-              ))
-            )}
-          </div>
+    // 2. GUESS THE EMOJI (Forensic Multi-mechanic: Case Dossiers, Typed & MC Options)
+    if (gameId === 'guess-the-emoji') {
+      const isTyped = Boolean(currentChallenge.metadata?.is_typed);
+      const prompt = currentChallenge.metadata?.prompt;
+      const dossier = currentChallenge.metadata?.dossier;
+      const puzzleType = currentChallenge.metadata?.puzzle_type;
+      const testament = currentChallenge.metadata?.testament;
 
-          <div className="flex flex-wrap justify-center gap-2">
-            {words.map((word, idx) => {
-              const used = versePicked.includes(idx);
-              return (
-                <button
-                  key={`vb-pool-${idx}`}
-                  disabled={used || reveal !== null}
-                  onClick={() => {
-                    const next = [...versePicked, idx];
-                    setVersePicked(next);
-                    if (next.length === words.length) {
-                      settleAnswer(next.map((i) => words[i]).join(' '));
+      return (
+        <div className="space-y-5">
+          {prompt && (
+            <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-4 text-center">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#3156C9]">
+                {puzzleType ? String(puzzleType).replace(/_/g, ' ') : 'Scripture Investigation'} • {testament || 'Biblical Account'}
+              </p>
+              <p className="mt-1 font-serif text-base sm:text-lg font-semibold text-[#171B24]">
+                {prompt}
+              </p>
+            </div>
+          )}
+
+          {dossier && (
+            <div className="rounded-2xl border border-amber-900/15 bg-amber-50/70 p-4">
+              <p className="text-xs font-bold uppercase tracking-wider text-amber-900 mb-1.5 flex items-center gap-1.5">
+                <span>🔍</span> Case Dossier &amp; Evidence
+              </p>
+              <p className="text-sm font-medium text-[#171B24] leading-relaxed">
+                {dossier}
+              </p>
+            </div>
+          )}
+
+          {isTyped ? (
+            <div className="space-y-3">
+              <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-4 text-center">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">
+                  Exact Name or Canonical Term Required
+                </span>
+                <p className="mt-1 text-xs text-[#5A6275]">
+                  Type the exact biblical name or term. Punctuation, capitalization, and minor spacing differences are accepted.
+                </p>
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={emojiTyped}
+                  disabled={reveal !== null}
+                  onChange={(e) => setEmojiTyped(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && emojiTyped.trim() && reveal === null) {
+                      settleAnswer(emojiTyped.trim());
                     }
                   }}
-                  className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold border transition-all cursor-pointer ${
-                    used
-                      ? 'bg-stone-200 text-stone-400 opacity-40 cursor-not-allowed'
-                      : 'bg-white text-[#171B24] border-[#171B24]/20 hover:bg-[#3156C9] hover:text-white'
-                  }`}
+                  placeholder="Type your biblical answer..."
+                  className="flex-1 rounded-xl border border-[#171B24]/20 bg-white px-4 py-3 text-base font-semibold text-[#171B24] placeholder:text-[#5A6275]/50 focus:border-[#3156C9] focus:outline-none focus:ring-2 focus:ring-[#3156C9]/20 disabled:bg-stone-100"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  disabled={!emojiTyped.trim() || reveal !== null}
+                  onClick={() => settleAnswer(emojiTyped.trim())}
+                  className="rounded-xl bg-[#171B24] px-6 py-3 font-bold text-white hover:bg-[#3156C9] disabled:cursor-not-allowed disabled:opacity-40 transition cursor-pointer"
                 >
-                  {word}
+                  Submit
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {currentChallenge.options.map((opt, idx) => {
+                const letter = ['A', 'B', 'C', 'D'][idx] || '';
+                let btnStyle =
+                  'bg-[#F3EBDD] text-[#171B24] border-[#171B24]/15 hover:bg-[#D66B3D] hover:text-white';
+                if (reveal !== null) {
+                  if (opt.toLowerCase() === reveal.correct_answer.toLowerCase()) {
+                    btnStyle = 'bg-emerald-600 text-white border-emerald-600 font-bold';
+                  } else if (opt === reveal.picked && !reveal.is_correct) {
+                    btnStyle = 'bg-rose-600 text-white border-rose-600';
+                  } else {
+                    btnStyle = 'bg-stone-100 text-stone-400 opacity-50';
+                  }
+                }
+                return (
+                  <button
+                    key={opt}
+                    disabled={reveal !== null}
+                    onClick={() => settleAnswer(opt)}
+                    className={`min-h-[56px] p-4 rounded-2xl font-semibold text-left border transition-all cursor-pointer disabled:cursor-default flex items-start gap-3 ${btnStyle}`}
+                  >
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-black/10 flex items-center justify-center text-xs font-bold">
+                      {letter}
+                    </span>
+                    <span className="flex-1">{opt}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (gameId === 'verse-builder') {
+      const isTyped = Boolean(currentChallenge.metadata?.is_typed);
+      const isTiles = Boolean(currentChallenge.metadata?.is_tiles);
+      const words = currentChallenge.options;
+      const sections: string[] = Array.isArray(currentChallenge.metadata?.sections)
+        ? currentChallenge.metadata.sections
+        : [];
+
+      // A. TYPED INPUT MODE
+      if (isTyped) {
+        return (
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-5 text-center">
+              <p className="text-xs font-bold uppercase tracking-wider text-[#3156C9]">King James Version (KJV)</p>
+              {currentChallenge.metadata?.verse_text && (
+                <p className="mt-3 font-serif text-lg sm:text-xl font-semibold leading-relaxed text-[#171B24]">
+                  {currentChallenge.metadata.verse_text}
+                </p>
+              )}
+              <p className="mt-2 text-xs font-bold text-[#5A6275]">Reference: {currentChallenge.reference}</p>
+            </div>
+
+            <div className="space-y-3">
+              <input
+                type="text"
+                value={verseTyped}
+                disabled={reveal !== null}
+                onChange={(e) => setVerseTyped(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && verseTyped.trim() && reveal === null) {
+                    settleAnswer(verseTyped.trim());
+                  }
+                }}
+                placeholder="Type the exact missing word(s), phrase, or reference..."
+                className="w-full rounded-xl border border-[#171B24]/20 bg-white px-4 py-3.5 text-base font-medium text-[#171B24] outline-none focus:border-[#3156C9] focus:ring-2 focus:ring-[#3156C9]/20"
+              />
+              <button
+                type="button"
+                disabled={reveal !== null || !verseTyped.trim()}
+                onClick={() => settleAnswer(verseTyped.trim())}
+                className="w-full rounded-xl bg-[#D66B3D] px-6 py-3 font-bold text-white hover:bg-[#c25a2c] disabled:opacity-40 transition-colors shadow-sm cursor-pointer"
+              >
+                Submit Answer
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      // B. WORD TILE ASSEMBLY MODE
+      if (isTiles || words.length > 4) {
+        const builtSentence = versePicked.map((idx) => words[idx]).join(' ');
+        return (
+          <div className="space-y-6">
+            <div className="min-h-[88px] p-4 rounded-2xl bg-[#F3EBDD] border-2 border-dashed border-[#171B24]/20 flex flex-wrap items-center justify-center gap-2">
+              {versePicked.length === 0 ? (
+                <span className="text-sm text-[#171B24]/50">Tap word tiles in sequence to assemble the verse</span>
+              ) : (
+                versePicked.map((wIdx, pos) => (
+                  <button
+                    key={`vb-picked-${pos}`}
+                    disabled={reveal !== null}
+                    onClick={() => setVersePicked(versePicked.filter((_, i) => i !== pos))}
+                    className="px-3.5 py-2 rounded-xl bg-[#171B24] text-white text-sm font-semibold shadow cursor-pointer hover:bg-red-900 transition-colors"
+                    title="Tap to remove"
+                  >
+                    {words[wIdx]}
+                  </button>
+                ))
+              )}
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-2">
+              {words.map((word, idx) => {
+                const used = versePicked.includes(idx);
+                return (
+                  <button
+                    key={`vb-pool-${idx}`}
+                    disabled={used || reveal !== null}
+                    onClick={() => {
+                      const next = [...versePicked, idx];
+                      setVersePicked(next);
+                      if (next.length === words.length) {
+                        settleAnswer(next.map((i) => words[i]).join(' '));
+                      }
+                    }}
+                    className={`px-3.5 py-2.5 rounded-xl text-sm font-semibold border transition-all cursor-pointer ${
+                      used
+                        ? 'bg-stone-200 text-stone-400 opacity-40 cursor-not-allowed'
+                        : 'bg-white text-[#171B24] border-[#171B24]/20 hover:bg-[#3156C9] hover:text-white'
+                    }`}
+                  >
+                    {word}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex justify-center gap-3">
+              <button
+                disabled={reveal !== null || versePicked.length === 0}
+                onClick={() => setVersePicked([])}
+                className="px-4 py-2.5 rounded-xl border border-[#171B24]/20 text-xs font-semibold hover:bg-[#F3EBDD] cursor-pointer disabled:opacity-40"
+              >
+                Reset Tiles
+              </button>
+              <button
+                disabled={reveal !== null || versePicked.length === 0}
+                onClick={() => settleAnswer(builtSentence)}
+                className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white text-sm font-bold cursor-pointer disabled:opacity-40"
+              >
+                Submit Verse
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      // C. MULTIPLE CHOICE MODE (with optional section/trap notice)
+      return (
+        <div className="space-y-4">
+          {sections.length > 0 && (
+            <div className="p-4 rounded-2xl bg-[#EEF2FF] border border-[#3156C9]/20 space-y-2">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#3156C9]">Passage Sections to Sequence</div>
+              {sections.map((sec, idx) => (
+                <div key={idx} className="text-sm text-[#171B24] font-medium pl-3 border-l-2 border-[#3156C9]">
+                  <span className="font-bold text-[#3156C9] mr-2">[{idx + 1}]</span> "{sec}"
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {words.map((option, idx) => {
+              const letter = ['A', 'B', 'C', 'D'][idx] || '';
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={reveal !== null}
+                  onClick={() => settleAnswer(option)}
+                  className="min-h-14 rounded-xl border border-[#171B24]/15 bg-white p-4 text-left font-semibold text-[#171B24] hover:border-[#D66B3D] hover:bg-[#FFF8F0] disabled:opacity-50 transition-all flex items-start gap-3 shadow-sm cursor-pointer"
+                >
+                  <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-[#F3EBDD] text-[#171B24] font-bold text-xs flex items-center justify-center">
+                    {letter}
+                  </span>
+                  <span className="text-sm leading-snug">{option}</span>
                 </button>
               );
             })}
           </div>
+        </div>
+      );
+    }
 
-          <div className="flex justify-center gap-3">
-            <button
-              disabled={reveal !== null || versePicked.length === 0}
-              onClick={() => setVersePicked([])}
-              className="px-4 py-2.5 rounded-xl border border-[#171B24]/20 text-xs font-semibold hover:bg-[#F3EBDD] cursor-pointer disabled:opacity-40"
-            >
-              Reset Tiles
-            </button>
-            <button
-              disabled={reveal !== null || versePicked.length === 0}
-              onClick={() => settleAnswer(builtSentence)}
-              className="px-6 py-2.5 rounded-xl bg-[#D66B3D] text-white text-sm font-bold cursor-pointer disabled:opacity-40"
-            >
-              Submit Verse
-            </button>
+    // BIBLE PUZZLES — Brain teasers, forensic clues, logic deductions, odd one out
+    if (gameId === 'bible-puzzles') {
+      const puzzleType = currentChallenge.metadata?.puzzle_type || 'Bible Brain Teaser';
+      const levelTheme = currentChallenge.metadata?.level_theme || 'Puzzle Challenge';
+      const clues = currentChallenge.metadata?.clues as string[] | undefined;
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#3156C9]/20 bg-[#F3EBDD] p-5 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="inline-block rounded-full bg-[#3156C9]/10 px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-[#3156C9]">
+                🧩 {puzzleType}
+              </span>
+              <span className="text-xs font-semibold text-[#5A6275]">
+                {levelTheme}
+              </span>
+            </div>
+            <p className="font-serif text-lg font-bold leading-relaxed text-[#171B24] whitespace-pre-line">
+              {currentChallenge.question_text}
+            </p>
+            {clues && clues.length > 0 && (
+              <div className="pt-2 border-t border-[#171B24]/10 space-y-1.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#5A6275]">
+                  Investigation Clues:
+                </span>
+                {clues.map((clue, idx) => (
+                  <p key={idx} className="text-sm font-medium text-[#171B24] flex items-start gap-2">
+                    <span className="text-[#3156C9] font-bold">•</span>
+                    <span>{clue}</span>
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {currentChallenge.options.map((option) => (
+              <button
+                key={option}
+                type="button"
+                disabled={reveal !== null}
+                onClick={() => settleAnswer(option)}
+                className="min-h-14 rounded-xl border border-[#171B24]/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-[#3156C9] hover:bg-blue-50/50 disabled:opacity-50 transition-all cursor-pointer shadow-sm"
+              >
+                {option}
+              </button>
+            ))}
           </div>
         </div>
       );
     }
 
-    // 3. BIBLE TIMELINE & BIBLE PUZZLES (Chronological / Fragment Ordering)
-    if (gameId === 'bible-timeline' || gameId === 'bible-puzzles') {
+    // 3. BIBLE TIMELINE (Chronological Ordering)
+    if (gameId === 'bible-timeline') {
       const separator = gameId === 'bible-timeline' ? ' -> ' : ' | ';
       const moveItem = (idx: number, dir: -1 | 1) => {
         const target = idx + dir;
@@ -924,7 +1272,111 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 7. BIBLE MEMORY CHALLENGE (Flip-card pair matching)
+    // 7A. BIBLE MEMORY CHALLENGE (Curated Scripture Memory & Study Quest)
+    if (gameId === 'bible-memory-challenge' && currentChallenge.metadata?.curated) {
+      const meta = currentChallenge.metadata || {};
+      const isTyped = meta.is_typed;
+      const studyMode = meta.study_mode;
+      const passage = meta.passage;
+
+      const handleMemorySubmit = (answerStr: string) => {
+        const clean = answerStr.trim().toLowerCase();
+        const correct = String(currentChallenge.correct_answer || '').trim().toLowerCase();
+        const alts = ((meta.acceptedAlternatives || []) as string[]).map((a) => a.trim().toLowerCase());
+        const isMatch = clean === correct || alts.includes(clean);
+        settleAnswer(isMatch ? currentChallenge.correct_answer : answerStr.trim());
+      };
+
+      return (
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-emerald-800/15 bg-emerald-50 p-5 shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold uppercase tracking-wider text-emerald-800">
+              <span className="flex items-center gap-1.5">
+                <span className="text-xl">🧠</span>
+                Stage {meta.stage || 1} · {meta.stage_title || 'Memory Foundations'}
+              </span>
+              {studyMode ? (
+                <span className="rounded-full bg-emerald-700/15 px-2.5 py-0.5 text-[11px] font-bold text-emerald-900 flex items-center gap-1">
+                  📖 Deep Scripture Study · {meta.timerSeconds || 60}s
+                </span>
+              ) : (
+                <span className="text-[11px] font-medium text-emerald-800/70">
+                  {meta.level_theme || 'Scripture Memory'}
+                </span>
+              )}
+            </div>
+
+            {passage && passage !== currentChallenge.question_text && (
+              <div className="mt-3 rounded-xl border border-emerald-900/10 bg-white/80 p-4 font-serif text-base italic leading-relaxed text-[#171B24]">
+                “{passage}”
+              </div>
+            )}
+
+            <p className="mt-3 font-serif text-lg font-semibold leading-relaxed text-[#171B24] whitespace-pre-line">
+              {currentChallenge.question_text}
+            </p>
+
+            <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-[#5A6275]">
+              <span>Translation: <strong className="text-emerald-900 font-semibold">{meta.translation || 'KJV'}</strong></span>
+              <span>•</span>
+              <span>{isTyped ? 'Type exact wording from memory' : 'Choose the exact Scripture wording'}</span>
+            </div>
+          </div>
+
+          {isTyped ? (
+            <div className="rounded-2xl border border-emerald-800/15 bg-white p-4 shadow-sm space-y-3">
+              <label htmlFor="memory-typed-input" className="block text-xs font-bold uppercase tracking-wider text-emerald-800">
+                ✍️ Type Scripture Answer From Memory:
+              </label>
+              <div className="flex gap-2">
+                <input
+                  id="memory-typed-input"
+                  type="text"
+                  disabled={reveal !== null}
+                  value={memoryTyped}
+                  onChange={(e) => setMemoryTyped(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && memoryTyped.trim() && reveal === null) {
+                      handleMemorySubmit(memoryTyped);
+                    }
+                  }}
+                  placeholder="Type missing word, phrase, or reference..."
+                  className="flex-1 rounded-xl border border-emerald-800/20 bg-emerald-50/50 px-4 py-3 font-serif text-base font-semibold text-[#171B24] placeholder-slate-400 focus:border-emerald-700 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  disabled={reveal !== null || !memoryTyped.trim()}
+                  onClick={() => handleMemorySubmit(memoryTyped)}
+                  className="rounded-xl bg-emerald-800 px-6 py-3 font-bold text-white hover:bg-emerald-900 disabled:opacity-40 transition-colors"
+                >
+                  Submit
+                </button>
+              </div>
+              <p className="text-[11px] text-slate-500">
+                Tip: Press Enter to submit. Exact Scripture wording verified against KJV.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {currentChallenge.options.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={reveal !== null}
+                  onClick={() => settleAnswer(option)}
+                  className="min-h-14 rounded-xl border border-emerald-900/15 bg-white p-4 text-left font-serif font-bold text-[#171B24] hover:border-emerald-700 hover:bg-emerald-50/40 disabled:opacity-50 transition-all flex items-center gap-2"
+                >
+                  <span className="text-emerald-700 text-sm">✦</span>
+                  <span>{option}</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // 7B. BIBLE MEMORY CHALLENGE (Flip-card pair matching)
     if (gameId === 'bible-memory-challenge' && memoryCards.length > 0) {
       return (
         <div className="space-y-4">
@@ -1074,22 +1526,80 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 12. FIND THE BIBLE BOOK — choose the correct book from the library shelves.
+    // 12. FIND THE BIBLE BOOK — choose the correct book from the library shelves, or type the name.
     if (gameId === 'find-the-bible-book') {
+      const isTyped = Boolean(currentChallenge.metadata?.is_typed);
+      const clues: string[] = currentChallenge.metadata?.clues || [];
+      const stageTitle = currentChallenge.metadata?.stage_title;
+      const levelTheme = currentChallenge.metadata?.level_theme;
+      const qType = currentChallenge.metadata?.question_type;
+
       return (
         <div className="space-y-4">
           <div className="rounded-2xl bg-[#171B24] p-5 text-white">
-            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">The Bible Library</p>
-            <p className="mt-2 font-serif text-lg font-semibold leading-relaxed">{currentChallenge.question_text}</p>
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[#F0B18D]">
+              <span>The Bible Library {stageTitle ? `• ${stageTitle}` : ''}</span>
+              {qType && <span className="rounded bg-[#F0B18D]/20 px-2 py-0.5 text-[10px] text-[#F0B18D] font-mono">{qType}</span>}
+            </div>
+            {levelTheme && <p className="mt-1 text-xs text-[#E8C29D]/80 font-medium">{levelTheme}</p>}
+            <p className="mt-3 font-serif text-lg font-semibold leading-relaxed whitespace-pre-line">{currentChallenge.question_text}</p>
+            {clues.length > 0 && (
+              <div className="mt-4 space-y-1.5 border-t border-white/10 pt-3">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#A2B4E8]">Forensic Dossier Clues:</p>
+                {clues.map((clue, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs text-white/90">
+                    <span className="text-[#F0B18D]">•</span>
+                    <span>{clue}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {currentChallenge.options.map((option, index) => (
-              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
-                className="min-h-24 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-3 text-center font-serif font-bold text-[#171B24] shadow-sm hover:-translate-y-0.5 hover:border-[#D66B3D] disabled:opacity-50">
-                <span className="mb-2 block text-2xl">{['📕', '📗', '📘', '📙'][index % 4]}</span>{option}
+
+          {isTyped ? (
+            <div className="space-y-3 rounded-2xl border border-[#171B24]/15 bg-[#F3EBDD] p-5">
+              <label className="block text-sm font-bold text-[#171B24]">
+                Type the name of the Bible Book:
+                <input
+                  type="text"
+                  value={typedBook}
+                  disabled={reveal !== null}
+                  onChange={(e) => setTypedBook(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && typedBook.trim() && reveal === null) {
+                      settleAnswer(typedBook.trim());
+                    }
+                  }}
+                  placeholder="e.g. Genesis, Habakkuk, Philemon, 1 Peter..."
+                  className="mt-2 w-full rounded-xl border border-[#171B24]/20 bg-white px-4 py-3 font-serif text-lg font-bold text-[#171B24] outline-none transition focus:border-[#3156C9] focus:ring-2 focus:ring-[#3156C9]/20"
+                  autoFocus
+                />
+              </label>
+              <button
+                type="button"
+                disabled={reveal !== null || !typedBook.trim()}
+                onClick={() => settleAnswer(typedBook.trim())}
+                className="w-full rounded-xl bg-[#D66B3D] px-5 py-3 font-bold text-white shadow transition hover:bg-[#c25e34] disabled:opacity-40"
+              >
+                Submit Book
               </button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              {currentChallenge.options.map((option, index) => (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={reveal !== null}
+                  onClick={() => settleAnswer(option)}
+                  className="min-h-24 rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] p-3 text-center font-serif font-bold text-[#171B24] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D66B3D] hover:shadow-md disabled:opacity-50"
+                >
+                  <span className="mb-2 block text-2xl">{['📕', '📗', '📘', '📙'][index % 4]}</span>
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       );
     }
@@ -1117,22 +1627,85 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 14. BIBLE RIDDLES — solve the riddle before selecting the answer.
+    // 14. BIBLE RIDDLES — solve the riddle before selecting or typing the answer.
     if (gameId === 'bible-riddles') {
+      const isTyped = Boolean(currentChallenge.metadata?.is_typed);
+      const clues: string[] = currentChallenge.metadata?.clues || [];
+      const stageTitle = currentChallenge.metadata?.stage_title;
+      const levelTheme = currentChallenge.metadata?.level_theme;
+      const rType = currentChallenge.metadata?.riddle_type;
+
       return (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-amber-700/20 bg-amber-50 p-6 text-center">
-            <p className="text-xs font-bold uppercase tracking-wider text-amber-800">A Biblical Mystery</p>
-            <p className="mt-3 font-serif text-xl font-bold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+          <div className="rounded-2xl border border-amber-700/20 bg-amber-50 p-6 text-left">
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-amber-800">
+              <span>A Biblical Mystery {stageTitle ? `• ${stageTitle}` : ''}</span>
+              {rType && (
+                <span className="rounded bg-amber-800/10 px-2 py-0.5 text-[10px] text-amber-900 font-mono font-semibold">
+                  {rType}
+                </span>
+              )}
+            </div>
+            {levelTheme && <p className="mt-1 text-xs text-amber-900/70 font-medium">{levelTheme}</p>}
+            <p className="mt-3 font-serif text-lg font-bold leading-relaxed text-[#171B24] whitespace-pre-line">
+              {currentChallenge.question_text}
+            </p>
+            {clues.length > 0 && (
+              <div className="mt-4 space-y-1.5 border-t border-amber-900/15 pt-3">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-amber-900">Progressive Riddle Clues:</p>
+                {clues.map((clue, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs text-[#171B24]">
+                    <span className="text-amber-700 font-bold">•</span>
+                    <span>{clue}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {currentChallenge.options.map((option) => (
-              <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
-                className="min-h-14 rounded-xl border border-amber-900/15 bg-white p-4 text-left font-bold text-[#171B24] hover:border-amber-700 disabled:opacity-50">
-                {option}
+
+          {isTyped ? (
+            <div className="space-y-3 rounded-2xl border border-amber-700/20 bg-amber-50/80 p-5">
+              <label className="block text-sm font-bold text-[#171B24]">
+                Enter your biblical answer:
+                <input
+                  type="text"
+                  value={riddleTyped}
+                  disabled={reveal !== null}
+                  onChange={(e) => setRiddleTyped(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && riddleTyped.trim() && reveal === null) {
+                      settleAnswer(riddleTyped.trim());
+                    }
+                  }}
+                  placeholder="Type name, place, object, event, or two answers..."
+                  className="mt-2 w-full rounded-xl border border-amber-900/20 bg-white px-4 py-3 font-serif text-lg font-bold text-[#171B24] outline-none transition focus:border-amber-700 focus:ring-2 focus:ring-amber-700/20"
+                  autoFocus
+                />
+              </label>
+              <button
+                type="button"
+                disabled={reveal !== null || !riddleTyped.trim()}
+                onClick={() => settleAnswer(riddleTyped.trim())}
+                className="w-full rounded-xl bg-amber-800 px-5 py-3 font-bold text-white shadow transition hover:bg-amber-900 disabled:opacity-40"
+              >
+                Submit Riddle Answer
               </button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {currentChallenge.options.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  disabled={reveal !== null}
+                  onClick={() => settleAnswer(option)}
+                  className="min-h-14 rounded-xl border border-amber-900/15 bg-white p-4 text-left font-bold text-[#171B24] transition hover:-translate-y-0.5 hover:border-amber-700 hover:shadow-sm disabled:opacity-50"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       );
     }
@@ -1233,6 +1806,28 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           </span>
         </div>
 
+        {(gameId === 'verse-builder' || gameId === 'guess-the-emoji') && currentChallenge.metadata?.stage_title && (
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <span className="px-2.5 py-1 rounded-lg bg-[#3156C9]/10 text-[#3156C9] font-bold text-xs uppercase tracking-wider">
+              Stage {currentChallenge.metadata.stage}: {currentChallenge.metadata.stage_title}
+            </span>
+            {currentChallenge.metadata.level_title && (
+              <span className="px-2.5 py-1 rounded-lg bg-[#D66B3D]/10 text-[#D66B3D] font-bold text-xs">
+                {currentChallenge.metadata.level_title}
+              </span>
+            )}
+            {currentChallenge.metadata.difficulty && (
+              <span className="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-bold text-xs">
+                ⚡ {currentChallenge.metadata.difficulty}
+              </span>
+            )}
+            {currentChallenge.metadata.study_passage && (
+              <span className="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-900 font-bold text-xs">
+                📖 Study: {currentChallenge.metadata.study_passage}
+              </span>
+            )}
+          </div>
+        )}
         {gameId === 'complete-the-scripture' && currentChallenge.metadata?.modeLabel && (
           <p className="mb-2 text-xs font-extrabold uppercase tracking-wider text-[#3156C9]">
             Challenge format: {String(currentChallenge.metadata.modeLabel)}

@@ -2,6 +2,19 @@ import { BIBLE_CHAIN_PEOPLE_SEED, normalizeBiblePersonName } from './bibleChainP
 import { COMPLETE_SCRIPTURE_VERSES } from './completeScriptureVerses';
 import { getMatchUpChallenge } from './bibleMatchUpBank';
 import { SCRIPTURE_CHALLENGE_QUESTIONS } from './scriptureChallengeQuestions';
+import { BIBLE_CHARACTER_QUEST_QUESTIONS } from './bibleCharacterQuestQuestions';
+import { SCRIPTURE_SCRAMBLE_QUESTIONS } from './scriptureScrambleQuestions';
+import { BIBLE_CROSSWORD_QUESTIONS } from './bibleCrosswordQuestions';
+import { COMPLETE_THE_SCRIPTURE_QUESTIONS } from './completeScriptureQuestions';
+import { BIBLE_MATCH_UP_QUESTIONS } from './bibleMatchUpQuestions';
+import { BIBLE_TIMELINE_QUESTIONS } from './bibleTimelineQuestions';
+import { BIBLE_PUZZLES_QUESTIONS } from './biblePuzzlesQuestions';
+import { FIND_THE_BIBLE_BOOK_QUESTIONS } from './findTheBibleBookQuestions';
+import { BIBLE_RIDDLES_QUESTIONS } from './bibleRiddlesQuestions';
+import { BIBLE_MEMORY_QUESTIONS } from './bibleMemoryQuestions';
+import { BIBLE_CHAIN_QUESTIONS } from './bibleChainQuestions';
+import { VERSE_BUILDER_QUESTIONS } from './verseBuilderQuestions';
+import { GUESS_THE_EMOJI_QUESTIONS } from './guessTheEmojiQuestions';
 
 export interface ChallengeItem {
   id: string;
@@ -707,6 +720,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-character-quest': {
+        const curated = BIBLE_CHARACTER_QUEST_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: shuffleDeterministic(curated.options, shuffleSeed),
+          });
+          break;
+        }
         const char = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
         const candidateChars: string[] = [];
         for (let off = 1; candidateChars.length < 3 && off < BIBLE_CHARACTERS.length; off++) {
@@ -734,6 +758,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'scripture-scramble': {
+        const curated = SCRIPTURE_SCRAMBLE_QUESTIONS.find(
+          (q) => q.level === level && q.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const wordSource = BOOKS_66[globalSeed % BOOKS_66.length];
         const cleanWord = wordSource.name.replace(/[^a-zA-Z]/g, '').toUpperCase();
         items.push({
@@ -781,6 +817,16 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-crossword': {
+        const curated = BIBLE_CROSSWORD_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+          });
+          break;
+        }
         // Original Scripture-checked clue bank. Answers are normalized for grid entry;
         // references and explanations remain visible after submission.
         const originalCrosswordClues = [
@@ -995,6 +1041,19 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'complete-the-scripture': {
+        const curated = COMPLETE_THE_SCRIPTURE_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: curated.metadata?.mode === 0 || curated.metadata?.mode === 5
+              ? shuffleDeterministic([...curated.options], shuffleSeed)
+              : [...curated.options],
+          });
+          break;
+        }
         const verse = COMPLETE_SCRIPTURE_VERSES[globalSeed % COMPLETE_SCRIPTURE_VERSES.length];
         const words = verse.text.split(/\s+/);
         const candidates = words.map((word, index) => ({ word: word.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, ''), index }))
@@ -1039,6 +1098,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-match-up': {
+        const curated = BIBLE_MATCH_UP_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+          });
+          break;
+        }
+
         const matchSet = getMatchUpChallenge(globalSeed);
         const pairs = matchSet.pairs;
         items.push({
@@ -1057,6 +1127,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-timeline': {
+        const curated = BIBLE_TIMELINE_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+          });
+          break;
+        }
+
         const startBook = (globalSeed * 2) % (BOOKS_66.length - 4);
         const seq = [
           BOOKS_66[startBook],
@@ -1082,6 +1163,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-puzzles': {
+        const curated = BIBLE_PUZZLES_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
         const words = v.text.split(' ');
         const third = Math.max(2, Math.floor(words.length / 3));
@@ -1106,6 +1199,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'find-the-bible-book': {
+        const curated = FIND_THE_BIBLE_BOOK_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const book = BOOKS_66[globalSeed % BOOKS_66.length];
         const candidateBooks: string[] = [];
         for (let off = 1; candidateBooks.length < 3 && off < BOOKS_66.length; off++) {
@@ -1128,6 +1233,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-riddles': {
+        const curated = BIBLE_RIDDLES_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const r = RIDDLES_POOL[globalSeed % RIDDLES_POOL.length];
         const options = makeFourDistinctOptions(r.answer, r.options, shuffleSeed);
         items.push({
@@ -1168,6 +1285,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-memory-challenge': {
+        const curated = BIBLE_MEMORY_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            game_slug: gameSlug,
+          });
+          break;
+        }
         const subset = [
           BOOKS_66[globalSeed % BOOKS_66.length],
           BOOKS_66[(globalSeed + 4) % BOOKS_66.length],
@@ -1227,10 +1355,22 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-chain-challenge': {
+        const curated = BIBLE_CHAIN_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          items.push({
+            ...curated,
+            id,
+            options: curated.metadata?.is_typed ? [] : shuffleDeterministic(curated.options, shuffleSeed)
+          });
+          break;
+        }
+
         // Combine the curated rare-name catalogue with the established character
         // reference bank. Only single people are eligible; Bible book titles and
         // group/couple labels are excluded.
-        const curated = BIBLE_CHAIN_PEOPLE_SEED.map((p) => ({
+        const curatedPeople = BIBLE_CHAIN_PEOPLE_SEED.map((p) => ({
           id: p.id, name: p.displayName, aliases: p.aliases, reference: p.reference,
           identity: p.identity, category: p.category, difficulty: p.difficulty,
         }));
@@ -1246,7 +1386,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
             difficulty: 2,
           }));
         const uniquePeople = new Map<string, { id: string; name: string; reference: string; identity: string; category: string; difficulty: number }>();
-        for (const person of [...curated, ...established]) {
+        for (const person of [...curatedPeople, ...established]) {
           const key = normalizeBiblePersonName(person.name);
           if (key.length < 2 || !person.reference || !person.identity) continue;
           if (!uniquePeople.has(key)) uniquePeople.set(key, person);
@@ -1320,6 +1460,24 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'verse-builder': {
+        const curated = VERSE_BUILDER_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          const isTyped = Boolean(curated.metadata?.is_typed);
+          const isTiles = Boolean(curated.metadata?.is_tiles);
+          items.push({
+            ...curated,
+            id,
+            options: isTyped
+              ? []
+              : isTiles
+              ? shuffleDeterministic([...curated.options], shuffleSeed)
+              : shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const v = VERSES_POOL[globalSeed % VERSES_POOL.length];
         const words = v.text.split(' ');
         items.push({
@@ -1339,8 +1497,20 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         break;
       }
 
-      case 'guess-the-emoji':
-      default: {
+      case 'guess-the-emoji': {
+        const curated = GUESS_THE_EMOJI_QUESTIONS.find(
+          (entry) => entry.level === level && entry.challenge_index === challengeIndex
+        );
+        if (curated) {
+          const isTyped = Boolean(curated.metadata?.is_typed);
+          items.push({
+            ...curated,
+            id,
+            options: isTyped ? [] : shuffleDeterministic([...curated.options], shuffleSeed),
+          });
+          break;
+        }
+
         const emojiList = [
           { emojis: '🌧️ 🛶 🦒 🌈', answer: 'Noah’s Ark', opts: ['Noah’s Ark', 'Red Sea Crossing', 'Jonah’s Ship', 'Creation'], exp: 'Noah built the ark to preserve his family and creatures through the flood.', ref: 'Genesis 6:14' },
           { emojis: '🐟 🙏 🌊 🏙️', answer: 'Jonah and the Great Fish', opts: ['Jonah and the Great Fish', 'Miraculous Catch', 'Walking on Water', 'Paul’s Shipwreck'], exp: 'Jonah prayed three days inside the great fish before preaching to Nineveh.', ref: 'Jonah 1:17' },

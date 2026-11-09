@@ -1,0 +1,1887 @@
+// Bible Chain Challenge — Stages 9 & 10 (Levels 41–50: 50 Challenges)
+import type { ChainChallengeItem } from './generateChain1to2';
+
+export const CHAIN_STAGES_9_TO_10: ChainChallengeItem[] = [
+  {
+    "id": "bible-chain-l41-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 41,
+    "challenge_index": 1,
+    "question_text": "Follow the Ethiopian rescuer chain: In Jeremiah 38, the princes of Judah cast prophet Jeremiah into the dungeon of Malchiah where he sank in the mire. Which royal Ethiopian eunuch obtained permission from King Zedekiah to rescue Jeremiah using thirty men and old cast clouts and rotten rags?",
+    "options": [
+      "Ebed-melech",
+      "Pashur",
+      "Seraiah",
+      "Gedaliah"
+    ],
+    "correct_answer": "Ebed-melech",
+    "explanation": "Jeremiah in miry dungeon → Ebed-melech the Ethiopian appeals to King Zedekiah at the gate of Benjamin → Uses 30 men and old cords with rotten rags under armholes to draw Jeremiah up → God promises Ebed-melech his life for a prey because he put his trust in the LORD (Jeremiah 38:7-13; 39:15-18).",
+    "reference": "Jeremiah 38:7-13; 39:15-18",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure Old Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Miry dungeon of Malchiah",
+        "Old rags under armholes",
+        "Promise of life for a prey",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "Old Testament",
+      "hint1": "His name means \"servant of the king\".",
+      "hint2": "Jeremiah 38:7: \"Now when Ebed-melech the Ethiopian, one of the eunuchs which was in the king’s house, heard that they had put Jeremiah in the dungeon...\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l41-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 41,
+    "challenge_index": 2,
+    "question_text": "Follow the Tabernacle master craftsmen chain: The LORD called by name a master artisan from the tribe of Judah and filled him with the Spirit of God in wisdom and workmanship to design the sanctuary. What was the name of this son of Uri, the son of Hur?",
+    "options": [
+      "Bezaleel (Bezalel)",
+      "Aholiab",
+      "Hiram",
+      "Eleazar"
+    ],
+    "correct_answer": "Bezaleel (Bezalel)",
+    "explanation": "Exodus 31:1-6 reveals the master artisan of the Tabernacle: Bezaleel the son of Uri, the son of Hur, of the tribe of Judah, assisted by Aholiab the son of Ahisamach, of the tribe of Dan.",
+    "reference": "Exodus 31:1-6; 35:30-35",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure Old Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Tribe of Judah",
+        "Son of Uri, son of Hur",
+        "Spirit-filled craftsman of Ark",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "His name means \"in the shadow of God\".",
+      "hint2": "Exodus 31:2: \"See, I have called by name Bezaleel the son of Uri, the son of Hur, of the tribe of Judah.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l41-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 41,
+    "challenge_index": 3,
+    "question_text": "Type the name of Bezaleel’s chief assistant from the tribe of Dan, appointed by God to engrave and embroider in blue, purple, scarlet, and fine linen:",
+    "options": [
+      "Aholiab",
+      "Ahisamach",
+      "Hur",
+      "Ephron"
+    ],
+    "correct_answer": "Aholiab",
+    "explanation": "Exodus 31:6 and 35:34: God appointed with Bezaleel \"Aholiab, the son of Ahisamach, of the tribe of Dan: and in the hearts of all that are wise hearted I have put wisdom, that they may make all that I have commanded thee.\"",
+    "reference": "Exodus 31:6; 35:34; 38:23",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure Old Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Bezaleel of Judah",
+        "Tribe of Dan assistant",
+        "Son of Ahisamach",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Oholiab"
+      ],
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "Old Testament",
+      "hint1": "Seven-letter name beginning with A (or O in modern translations).",
+      "hint2": "Exodus 31:6: \"And I, behold, I have given with him Aholiab, the son of Ahisamach, of the tribe of Dan.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l41-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 41,
+    "challenge_index": 4,
+    "question_text": "Follow the prophetess consultation chain: In 2 Kings 22, when Hilkiah the high priest found the Book of the Law in the temple, King Josiah commanded him to inquire of the LORD. Which prophetess, wife of Shallum keeper of the wardrobe, who dwelt in Jerusalem in the college, delivered the divine oracle?",
+    "options": [
+      "Huldah",
+      "Deborah",
+      "Miriam",
+      "Noadiah"
+    ],
+    "correct_answer": "Huldah",
+    "explanation": "2 Kings 22:14-20: Hilkiah, Ahikam, Achbor, Shaphan, and Asahiah went unto Huldah the prophetess, the wife of Shallum keeper of the wardrobe (she dwelt in Jerusalem in the college). She prophesied judgment upon Jerusalem, but promised Josiah peace because his heart was tender and he humbled himself before God.",
+    "reference": "2 Kings 22:14-20; 2 Chronicles 34:22-28",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure Old Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Book of the Law found",
+        "Hilkiah consults college",
+        "Wife of Shallum keeper of wardrobe",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "Six-letter name beginning with H.",
+      "hint2": "2 Kings 22:14: \"went unto Huldah the prophetess, the wife of Shallum.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l41-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 41,
+    "challenge_index": 5,
+    "question_text": "Follow the heroic midwives chain: In Exodus 1:15-21, Pharaoh ordered the Hebrew midwives to kill all newborn Hebrew boys on the birthstools. Name these two courageous midwives who feared God and preserved the male infants alive:",
+    "options": [
+      "Shiphrah and Puah",
+      "Jochebed and Miriam",
+      "Zilpah and Bilhah",
+      "Mahlah and Noah"
+    ],
+    "correct_answer": "Shiphrah and Puah",
+    "explanation": "Exodus 1:15-21: The king of Egypt spake to the Hebrew midwives, of which the name of the one was Shiphrah, and the name of the other Puah. Because they feared God and obeyed Him rather than Pharaoh, God dealt well with them and made them houses.",
+    "reference": "Exodus 1:15-21",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure Old Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Pharaoh’s murderous decree",
+        "Birthstools defied",
+        "God makes them houses",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "Their names mean \"brightness/beauty\" and \"splendid/blooming\".",
+      "hint2": "Exodus 1:15: \"the name of the one was Shiphrah, and the name of the other Puah.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l42-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 42,
+    "challenge_index": 1,
+    "question_text": "Follow the maternal vigil chain: In 2 Samuel 21, the Gibeonites demanded seven sons of Saul to hang them for Saul’s slaughter. Which concubine of Saul took sackcloth and spread it upon the rock, keeping vigil day and night to keep the birds of the air and beasts of the field from touching the bodies of her sons?",
+    "options": [
+      "Rizpah daughter of Aiah",
+      "Tamar daughter of David",
+      "Michal daughter of Saul",
+      "Abigail"
+    ],
+    "correct_answer": "Rizpah daughter of Aiah",
+    "explanation": "2 Samuel 21:8-14: Rizpah the daughter of Aiah took sackcloth, and spread it for her upon the rock, from the beginning of harvest until water dropped upon them out of heaven, suffering neither birds of the air to rest on them by day, nor the beasts of the field by night. David heard of her devotion and buried the bones honourably with Saul and Jonathan.",
+    "reference": "2 Samuel 21:8-14; 3:7",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Forgotten Women of Faith & Valor",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Gibeonite vengeance",
+        "Seven sons hanged on hill",
+        "Sackcloth on rock vigil",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "Old Testament",
+      "hint1": "Daughter of Aiah and mother of Armoni and Mephibosheth.",
+      "hint2": "2 Samuel 21:10: \"And Rizpah the daughter of Aiah took sackcloth, and spread it for her upon the rock.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l42-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 42,
+    "challenge_index": 2,
+    "question_text": "Follow the inheritance precedent chain: In Numbers 27, five sisters stood before Moses, Eleazar the priest, the princes, and all the congregation, arguing that their father’s name should not be done away because he had no son. Who was their father of the tribe of Manasseh?",
+    "options": [
+      "Zelophehad",
+      "Hepher",
+      "Gilead",
+      "Machir"
+    ],
+    "correct_answer": "Zelophehad",
+    "explanation": "Numbers 27:1-7: The daughters of Zelophehad, the son of Hepher, the son of Gilead, the son of Machir, the son of Manasseh (Mahlah, Noah, Hoglah, Milcah, and Tirzah) pleaded their case. The LORD told Moses: \"The daughters of Zelophehad speak right: thou shalt surely give them a possession of an inheritance.\"",
+    "reference": "Numbers 27:1-7; Joshua 17:3-4",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Forgotten Women of Faith & Valor",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Mahlah, Noah, Hoglah, Milcah, Tirzah",
+        "Plea before door of tabernacle",
+        "God commands inheritance law",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "A Manassite father whose five daughters established land rights for women in Israel.",
+      "hint2": "Numbers 27:7: \"The daughters of Zelophehad speak right.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l42-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 42,
+    "challenge_index": 3,
+    "question_text": "Type the name of the northern city of Beth-maachah where a wise woman called out from the wall to General Joab, negotiating peace by delivering the head of the rebel Sheba son of Bichri:",
+    "options": [
+      "Abel",
+      "Dan",
+      "Hazor",
+      "Tirzah"
+    ],
+    "correct_answer": "Abel",
+    "explanation": "2 Samuel 20:14-22: Joab besieged Abel of Beth-maachah and battered the wall. A wise woman cried out: \"They were wont to speak in old time, saying, They shall surely ask counsel at Abel: and so they ended the matter.\" She persuaded the city to cut off Sheba’s head and throw it over the wall, saving the entire city.",
+    "reference": "2 Samuel 20:15-22",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Forgotten Women of Faith & Valor",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Rebellion of Sheba",
+        "Joab batters ramparts",
+        "Wise woman negotiates head thrown over wall",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Abel of Beth-maachah",
+        "Abel-beth-maachah"
+      ],
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "Old Testament",
+      "hint1": "Four-letter city name: A-B-E-L.",
+      "hint2": "2 Samuel 20:15: \"and they came and besieged him in Abel of Beth-maachah.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l42-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 42,
+    "challenge_index": 4,
+    "question_text": "Follow the hospitable Shunammite chain: In 2 Kings 4, a prominent woman of Shunem urged her husband to build a small upper room on the wall for Elisha the holy man of God. Which four furnishings did she provide in that room?",
+    "options": [
+      "A bed, a table, a stool, and a candlestick",
+      "An altar, an ark, a lamp, and incense",
+      "A couch, a basin, a robe, and sandals",
+      "A tent, a waterpot, an oven, and oil"
+    ],
+    "correct_answer": "A bed, a table, a stool, and a candlestick",
+    "explanation": "2 Kings 4:9-10: \"Let us make a little chamber, I pray thee, on the wall; and let us set for him there a bed, and a table, and a stool, and a candlestick: and it shall be, when he cometh to us, that he shall turn in thither.\"",
+    "reference": "2 Kings 4:8-10",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Forgotten Women of Faith & Valor",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Great woman of Shunem",
+        "Chamber on the wall",
+        "Four furnishings for Elisha",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "Four basic household items for rest, writing, sitting, and light.",
+      "hint2": "2 Kings 4:10: \"a bed, and a table, and a stool, and a candlestick.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l42-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 42,
+    "challenge_index": 5,
+    "question_text": "Follow the Kenite tent deliverance: Sisera fled on foot to the tent of Jael, wife of Heber the Kenite. What drink did Jael give Sisera when he asked only for water, before driving the tent peg through his temples?",
+    "options": [
+      "Milk in a lordly dish (bottle of milk)",
+      "Wine of Lebanon",
+      "Honey and vinegar",
+      "Olive oil"
+    ],
+    "correct_answer": "Milk in a lordly dish (bottle of milk)",
+    "explanation": "Judges 4:19 and 5:25: \"He asked water, and she gave him milk; she brought forth butter in a lordly dish.\" She then covered him with a mantle, took a nail of the tent and a hammer, and smote the nail into his temples.",
+    "reference": "Judges 4:17-21; 5:24-27",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Forgotten Women of Faith & Valor",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Sisera flees battle",
+        "Tent of Heber the Kenite",
+        "Bottle of milk and mantle",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Easy",
+      "timerSeconds": 30,
+      "points": 50,
+      "testament": "Old Testament",
+      "hint1": "Opened a bottle of milk and gave him drink.",
+      "hint2": "Judges 4:19: \"And she opened a bottle of milk, and gave him drink, and covered him.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l43-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 43,
+    "challenge_index": 1,
+    "question_text": "Follow Paul’s Roman imprisonment refreshment chain: In 2 Timothy 1:16-18, all who were in Asia turned away from Paul. Which faithful believer did Paul pray mercy upon, testifying: \"he oft refreshed me, and was not ashamed of my chain: but, when he was in Rome, he sought me out very diligently, and found me\"?",
+    "options": [
+      "Onesiphorus",
+      "Epaphras",
+      "Tychicus",
+      "Philemon"
+    ],
+    "correct_answer": "Onesiphorus",
+    "explanation": "2 Timothy 1:16-18: \"The Lord give mercy unto the house of Onesiphorus; for he oft refreshed me, and was not ashamed of my chain: But, when he was in Rome, he sought me out very diligently, and found me. The Lord grant unto him that he may find mercy of the Lord in that day.\"",
+    "reference": "2 Timothy 1:16-18; 4:19",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure New Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Asian believers turn away",
+        "Not ashamed of Paul’s chain",
+        "Sought Paul diligently in Rome",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "His name means \"profit-bringer\", not to be confused with Onesimus.",
+      "hint2": "2 Timothy 1:16: \"The Lord give mercy unto the house of Onesiphorus.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l43-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 43,
+    "challenge_index": 2,
+    "question_text": "Follow the intercessory giant chain: In Colossians 4:12, Paul commends a Colossian brother: \"who is one of you, a servant of Christ, saluteth you, always labouring fervently for you in prayers, that ye may stand perfect and complete in all the will of God.\" What was his name?",
+    "options": [
+      "Epaphras",
+      "Tychicus",
+      "Archippus",
+      "Aristarchus"
+    ],
+    "correct_answer": "Epaphras",
+    "explanation": "Colossians 1:7; 4:12-13 and Philemon 23 praise Epaphras, Paul’s dear fellowservant and fellowprisoner, who had great zeal for believers in Colosse, Laodicea, and Hierapolis.",
+    "reference": "Colossians 1:7; 4:12-13; Philemon 23",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure New Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Founder of Colossian church",
+        "Labouring fervently in prayers",
+        "Zeal for Laodicea & Hierapolis",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Eight-letter Greek name starting with E.",
+      "hint2": "Colossians 4:12: \"Epaphras, who is one of you, a servant of Christ, saluteth you.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l43-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 43,
+    "challenge_index": 3,
+    "question_text": "Type the name of the faithful amanuensis (scribe) who personally penned the Epistle to the Romans as Paul dictated it, adding his own greeting in Romans 16:22: \"I [ ? ], who wrote this epistle, salute you in the Lord\":",
+    "options": [
+      "Tertius",
+      "Quartus",
+      "Erastus",
+      "Gaius"
+    ],
+    "correct_answer": "Tertius",
+    "explanation": "Romans 16:22 preserves the unique personal voice of Paul’s secretary: \"I Tertius, who wrote this epistle, salute you in the Lord.\" His Latin name means \"third\".",
+    "reference": "Romans 16:22",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure New Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Dictation of Romans in Corinth",
+        "Personal greeting inserted",
+        "Scribe of the epistle",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Tertiou"
+      ],
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Latin name meaning \"the third\", seven letters: T-E-R-T-I-U-S.",
+      "hint2": "Romans 16:22: \"I Tertius, who wrote this epistle, salute you in the Lord.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l43-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 43,
+    "challenge_index": 4,
+    "question_text": "Follow the Corinthian city official chain: In Romans 16:23, Paul sends greetings from his host Gaius and adds: \"[ ? ] the chamberlain (treasurer) of the city saluteth you, and Quartus a brother.\" Who was this civic official whose name was discovered in an ancient paving inscription in Corinth?",
+    "options": [
+      "Erastus",
+      "Gallioc",
+      "Crispus",
+      "Sosthenes"
+    ],
+    "correct_answer": "Erastus",
+    "explanation": "Romans 16:23 mentions \"Erastus the chamberlain of the city\" (public treasurer / aedile of Corinth). In 1929, an inscription was excavated at Corinth reading: \"Erastus in return for his aedileship laid this pavement at his own expense\" (confirming Romans 16:23; Acts 19:22; 2 Timothy 4:20).",
+    "reference": "Romans 16:23; Acts 19:22; 2 Timothy 4:20",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure New Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Host Gaius in Corinth",
+        "Chamberlain of the city",
+        "Pavement inscription discovered",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Seven-letter Greek name starting with E.",
+      "hint2": "Romans 16:23: \"Erastus the chamberlain of the city saluteth you, and Quartus a brother.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l43-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 43,
+    "challenge_index": 5,
+    "question_text": "Follow the Antioch prophets and teachers chain: In Acts 13:1, five leaders are named in the church at Antioch: Barnabas, Simeon that was called Niger, Lucius of Cyrene, and Saul. Who was the fifth leader, noted as having been brought up with Herod the tetrarch?",
+    "options": [
+      "Manaen",
+      "Agabus",
+      "Barsabas",
+      "Alexander"
+    ],
+    "correct_answer": "Manaen",
+    "explanation": "Acts 13:1 lists: \"Barnabas, and Simeon that was called Niger, and Lucius of Cyrene, and Manaen, which had been brought up with Herod the tetrarch, and Saul.\" Manaen (foster brother / childhood companion of Herod Antipas) turned to Christ while Herod murdered John the Baptist!",
+    "reference": "Acts 13:1",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Obscure New Testament Figures",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Church at Antioch",
+        "Five prophets & teachers",
+        "Brought up with Herod Antipas",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Six-letter name beginning with M: M-A-N-A-E-N.",
+      "hint2": "Acts 13:1: \"and Manaen, which had been brought up with Herod the tetrarch.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l44-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 44,
+    "challenge_index": 1,
+    "question_text": "Follow the Macedonian companion chain: A faithful Christian of Thessalonica accompanied Paul on his third journey, was dragged into the violent mob in the theater at Ephesus, sailed with Paul on the voyage to Rome, and is called Paul’s \"fellowprisoner\" in Colossians 4:10. Who was he?",
+    "options": [
+      "Aristarchus",
+      "Secundus",
+      "Gaius of Derbe",
+      "Trophimus"
+    ],
+    "correct_answer": "Aristarchus",
+    "explanation": "Acts 19:29; 20:4; 27:2; Colossians 4:10 and Philemon 24 track Aristarchus: A Macedonian of Thessalonica seized during the Ephesian silversmith riot, sailed with Paul toward Rome, and shared Paul’s imprisonment.",
+    "reference": "Acts 19:29; 20:4; 27:2; Colossians 4:10",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Apostolic Co-Laborers & Witnesses",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Thessalonian believer",
+        "Ephesian theater riot victim",
+        "Voyage to Rome companion",
+        "Colossians fellowprisoner",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Eleven-letter Greek name starting with Ar.",
+      "hint2": "Colossians 4:10: \"Aristarchus my fellowprisoner saluteth you.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l44-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 44,
+    "challenge_index": 2,
+    "question_text": "Follow the Roman sisterhood of ministry chain: In Romans 16:12, Paul sends personal greetings to three hardworking women in the church at Rome. Two share rhyming names and \"labour in the Lord\", while the third is commended as \"the beloved [ ? ], which laboured much in the Lord.\" Who was she?",
+    "options": [
+      "Persis",
+      "Tryphena",
+      "Tryphosa",
+      "Phoebe"
+    ],
+    "correct_answer": "Persis",
+    "explanation": "Romans 16:12: \"Salute Tryphena and Tryphosa, who labour in the Lord. Salute the beloved Persis, which laboured much in the Lord.\" While Tryphena and Tryphosa laboured in the present, Persis is praised for having laboured much (past tense, indicating heroic long-term service).",
+    "reference": "Romans 16:12",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Apostolic Co-Laborers & Witnesses",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Tryphena & Tryphosa",
+        "Labour in the Lord",
+        "The beloved who laboured much",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Six-letter name meaning \"a Persian woman\".",
+      "hint2": "Romans 16:12: \"Salute the beloved Persis, which laboured much in the Lord.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l44-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 44,
+    "challenge_index": 3,
+    "question_text": "Type the name of the ruler of the synagogue at Corinth who was beaten by the Greeks before the judgment seat of proconsul Gallio in Acts 18:17, and later appears as Paul’s co-sender in 1 Corinthians 1:1:",
+    "options": [
+      "Sosthenes",
+      "Crispus",
+      "Alexander",
+      "Jason"
+    ],
+    "correct_answer": "Sosthenes",
+    "explanation": "Acts 18:17 records that Greeks took Sosthenes, the chief ruler of the synagogue, and beat him before the judgment seat while Gallio cared for none of those things. In 1 Corinthians 1:1, this same Sosthenes is now a Christian brother co-sending the letter: \"Paul, called to be an apostle... and Sosthenes our brother.\"",
+    "reference": "Acts 18:17; 1 Corinthians 1:1",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Apostolic Co-Laborers & Witnesses",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Corinthian synagogue ruler",
+        "Beaten before Gallio’s judgment seat",
+        "Co-sender of 1 Corinthians",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Sosthenes our brother"
+      ],
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Nine-letter Greek name starting with S.",
+      "hint2": "1 Corinthians 1:1: \"Paul... and Sosthenes our brother.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l44-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 44,
+    "challenge_index": 4,
+    "question_text": "Follow the false accusation chain: In Acts 21, hostile Asian Jews stirred up the multitude in Jerusalem, crying out that Paul had brought Greeks into the temple and polluted the holy place. Which Ephesian disciple had they previously seen with Paul in the city and assumed was brought into the temple?",
+    "options": [
+      "Trophimus",
+      "Tychicus",
+      "Erastus",
+      "Aristarchus"
+    ],
+    "correct_answer": "Trophimus",
+    "explanation": "Acts 21:29: \"(For they had seen before with him in the city Trophimus an Ephesian, whom they supposed that Paul had brought into the temple.)\" Later in 2 Timothy 4:20, Paul notes: \"Trophimus have I left at Miletum sick.\"",
+    "reference": "Acts 20:4; 21:29; 2 Timothy 4:20",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Apostolic Co-Laborers & Witnesses",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Ephesian traveling companion",
+        "Seen in Jerusalem streets",
+        "Temple pollution accusation",
+        "Left at Miletum sick",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Nine-letter name starting with Tr: T-R-O-P-H-I-M-U-S.",
+      "hint2": "Acts 21:29: \"Trophimus an Ephesian, whom they supposed that Paul had brought into the temple.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l44-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 44,
+    "challenge_index": 5,
+    "question_text": "Follow the prophetic sign chain: A prophet from Judea named Agabus came to Antioch foretelling a worldwide drought. Years later at Caesarea, which dramatic prophetic act did Agabus perform using Paul’s girdle (belt)?",
+    "options": [
+      "Bound his own hands and feet, declaring the Jews at Jerusalem would so bind the owner of the girdle",
+      "Cast it into the sea",
+      "Burned it with fire on the hearth",
+      "Cut it into twelve pieces"
+    ],
+    "correct_answer": "Bound his own hands and feet, declaring the Jews at Jerusalem would so bind the owner of the girdle",
+    "explanation": "Acts 21:10-11: \"there came down from Judaea a certain prophet, named Agabus. And when he was come unto us, he took Paul’s girdle, and bound his own hands and feet, and said, Thus saith the Holy Ghost, So shall the Jews at Jerusalem bind the man that owneth this girdle, and shall deliver him into the hands of the Gentiles.\"",
+    "reference": "Acts 11:27-28; 21:10-11",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Apostolic Co-Laborers & Witnesses",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Antioch famine foretold",
+        "Caesarea visit",
+        "Takes Paul’s girdle",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Acted out the binding of hands and feet.",
+      "hint2": "Acts 21:11: \"he took Paul’s girdle, and bound his own hands and feet.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l45-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 45,
+    "challenge_index": 1,
+    "question_text": "DEEP SCRIPTURE STUDY: Read Acts 8:26-39.\nAn angel commands Philip to leave Samaria and go south to the desert road from Jerusalem to Gaza. Who was the high royal official in the chariot, who was chief treasurer under which Ethiopian queen?",
+    "options": [
+      "Candace",
+      "Sheba",
+      "Jezebel",
+      "Athaliah"
+    ],
+    "correct_answer": "Candace",
+    "explanation": "Acts 8:27 identifies the royal office: \"a man of Ethiopia, an eunuch of great authority under Candace queen of the Ethiopians, who had the charge of all her treasure, and had come to Jerusalem for to worship.\"",
+    "reference": "Acts 8:27",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Deep Scripture Study: The Ethiopian Eunuch",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Samaria revival departed",
+        "Desert road to Gaza",
+        "Chief treasurer of queen",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 90,
+      "points": 100,
+      "testament": "New Testament",
+      "dossier": "Acts 8:26-39 records the Spirit-led divine appointment between Philip the evangelist and the Ethiopian royal treasurer.",
+      "study_mode": true,
+      "hint1": "Seven-letter dynastic title/name of the queen of the Ethiopians: C-A-N-D-A-C-E.",
+      "hint2": "Acts 8:27: \"under Candace queen of the Ethiopians.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l45-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 45,
+    "challenge_index": 2,
+    "question_text": "DEEP SCRIPTURE STUDY: In Acts 8:29-30, what did the Holy Spirit command Philip, and what question did Philip ask when he heard the eunuch reading Esaias (Isaiah)?",
+    "options": [
+      "\"Go near, and join thyself to this chariot\" — \"Understandest thou what thou readest?\"",
+      "\"Flee into the desert\" — \"Who gave thee this book?\"",
+      "\"Command him to halt\" — \"Why weepest thou?\"",
+      "\"Anoint him with oil\" — \"Art thou a Hebrew?\""
+    ],
+    "correct_answer": "\"Go near, and join thyself to this chariot\" — \"Understandest thou what thou readest?\"",
+    "explanation": "Acts 8:29-30: \"Then the Spirit said unto Philip, Go near, and join thyself to this chariot. And Philip ran thither to him, and heard him read the prophet Esaias, and said, Understandest thou what thou readest? And he said, How can I, except some man should guide me?\"",
+    "reference": "Acts 8:29-31",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Deep Scripture Study: The Ethiopian Eunuch",
+      "chain_type": "scripture_chain",
+      "chain_nodes": [
+        "Spirit speaks",
+        "Chariot overtaken",
+        "First question asked",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 75,
+      "points": 100,
+      "testament": "New Testament",
+      "dossier": "Acts 8:30: \"Understandest thou what thou readest? And he said, How can I, except some man should guide me?\"",
+      "study_mode": true,
+      "hint1": "A four-word Greek question inquiring about comprehension.",
+      "hint2": "Acts 8:30: \"and said, Understandest thou what thou readest?\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l45-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 45,
+    "challenge_index": 3,
+    "question_text": "Type the famous confession of faith made by the Ethiopian eunuch in Acts 8:37 before Philip baptized him in the water: \"I believe that Jesus Christ is the [ ? ]\":",
+    "options": [
+      "Son of God",
+      "Lord of all",
+      "King of Israel",
+      "Savior of the world"
+    ],
+    "correct_answer": "Son of God",
+    "explanation": "Acts 8:37 preserves the great baptismal confession: \"And Philip said, If thou believest with all thine heart, thou mayest. And he answered and said, I believe that Jesus Christ is the Son of God.\"",
+    "reference": "Acts 8:36-37",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Deep Scripture Study: The Ethiopian Eunuch",
+      "chain_type": "scripture_chain",
+      "chain_nodes": [
+        "See, here is water",
+        "If thou believest with all thine heart",
+        "Confession of faith",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "son of God",
+        "Son of God."
+      ],
+      "difficulty": "Easy",
+      "timerSeconds": 45,
+      "points": 50,
+      "testament": "New Testament",
+      "hint1": "Three words: Son of ____.",
+      "hint2": "Acts 8:37: \"I believe that Jesus Christ is the Son of God.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l45-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 45,
+    "challenge_index": 4,
+    "question_text": "DEEP SCRIPTURE STUDY: In Acts 8:39-40, when they came up out of the water, the Spirit of the Lord caught away Philip so that the eunuch saw him no more and went on his way rejoicing. At which coastal city (ancient Philistine Ashdod) was Philip next found preaching?",
+    "options": [
+      "Azotus",
+      "Caesarea",
+      "Joppa",
+      "Gaza"
+    ],
+    "correct_answer": "Azotus",
+    "explanation": "Acts 8:39-40: \"And when they were come up out of the water, the Spirit of the Lord caught away Philip, that the eunuch saw him no more: and he went on his way rejoicing. But Philip was found at Azotus: and passing through he preached in all the cities, till he came to Caesarea.\"",
+    "reference": "Acts 8:39-40",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Deep Scripture Study: The Ethiopian Eunuch",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Water baptism in desert",
+        "Caught away by the Spirit",
+        "Eunuch rejoices",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "dossier": "Acts 8:40: \"But Philip was found at Azotus: and passing through he preached in all the cities, till he came to Caesarea.\"",
+      "study_mode": true,
+      "hint1": "The Greek name for ancient Philistine Ashdod.",
+      "hint2": "Acts 8:40: \"But Philip was found at Azotus.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l45-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 45,
+    "challenge_index": 5,
+    "question_text": "DEEP SCRIPTURE STUDY: Decades later in Acts 21:8-9, when Paul and Luke arrived at Caesarea, they entered into the house of this same Philip the evangelist. What remarkable prophetic gift is recorded concerning Philip’s four unmarried daughters?",
+    "options": [
+      "They were virgins who did prophesy",
+      "They built a church in Antioch",
+      "They spoke in Latin and Hebrew",
+      "They were deaconesses in Rome"
+    ],
+    "correct_answer": "They were virgins who did prophesy",
+    "explanation": "Acts 21:8-9: \"we that were of Paul’s company departed, and came unto Caesarea: and we entered into the house of Philip the evangelist, which was one of the seven; and abode with him. And the same man had four daughters, virgins, which did prophesy.\"",
+    "reference": "Acts 21:8-9",
+    "metadata": {
+      "stage": 9,
+      "stage_title": "Expert Chain Challenge",
+      "level_title": "Deep Scripture Study: The Ethiopian Eunuch",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Philip the deacon (Acts 6)",
+        "Philip the evangelist (Acts 8)",
+        "Caesarea household (Acts 21)",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "dossier": "Acts 21:8-9 brings Philip’s journey full circle, showcasing his godly household in Caesarea.",
+      "study_mode": true,
+      "hint1": "Four daughters possessed the spiritual gift of prophecy.",
+      "hint2": "Acts 21:9: \"four daughters, virgins, which did prophesy.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l46-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 46,
+    "challenge_index": 1,
+    "question_text": "Type the missing fifth link in this royal coronation chain from 1 Kings 1–2:\nDavid aged → Adonijah exalts himself → Nathan & Bathsheba intervene → Solomon anointed at Gihon spring on king’s mule → [ ? ] (David’s mighty commander who had supported Adonijah and is executed at the horns of the altar):",
+    "options": [
+      "Joab",
+      "Benaiah",
+      "Zadok",
+      "Abiathar"
+    ],
+    "correct_answer": "Joab",
+    "explanation": "1 Kings 1–2: Adonijah usurped the throne with Joab and Abiathar. Nathan and Bathsheba urged David to crown Solomon. Solomon rode David’s mule to Gihon and was anointed by Zadok. Solomon then dispatched Benaiah to slay Joab at the horns of the altar for the murders of Abner and Amasa (1 Kings 2:28-34).",
+    "reference": "1 Kings 1:5, 33-39; 2:28-34",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Five-Link Royal Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Adonijah rebellion",
+        "Nathan & Bathsheba plea",
+        "Solomon at Gihon spring",
+        "Benaiah dispatched",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "General Joab"
+      ],
+      "difficulty": "Expert",
+      "timerSeconds": 75,
+      "points": 250,
+      "testament": "Old Testament",
+      "hint1": "David’s sister Zeruiah’s eldest son, commander of Israel’s armies.",
+      "hint2": "1 Kings 2:28: \"Then tidings came to Joab... and Joab fled unto the tabernacle of the LORD, and caught hold on the horns of the altar.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l46-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 46,
+    "challenge_index": 2,
+    "question_text": "Follow the five-link southern reformation chain:\nAsa deposes idol-making grandmother Maachah → Jehoshaphat sends Levites with Book of Law through all cities → Hezekiah reopens temple doors and cleanses sanctuary → Josiah repairs temple and rediscovery of Law → Which final tragic king watched his sons slain before his eyes at Riblah and had his eyes put out by the king of Babylon?",
+    "options": [
+      "Zedekiah (Mattaniah)",
+      "Jehoiakim",
+      "Jehoiachin",
+      "Jehoahaz"
+    ],
+    "correct_answer": "Zedekiah (Mattaniah)",
+    "explanation": "Reformation chain culminates in the final tragic collapse: Asa → Jehoshaphat → Hezekiah → Josiah → Zedekiah, whose rebellion against Babylon resulted in the destruction of Solomon’s temple, the slaughter of his sons at Riblah, and his blinding (2 Kings 25:6-7; Jeremiah 52:10-11).",
+    "reference": "2 Kings 25:6-7; Jeremiah 52:10-11",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Five-Link Royal Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Asa",
+        "Jehoshaphat",
+        "Hezekiah",
+        "Josiah",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Very Difficult",
+      "timerSeconds": 90,
+      "points": 200,
+      "testament": "Old Testament",
+      "hint1": "The last king of Judah before the Babylonian captivity.",
+      "hint2": "2 Kings 25:7: \"And they slew the sons of Zedekiah before his eyes, and put out the eyes of Zedekiah.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l46-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 46,
+    "challenge_index": 3,
+    "question_text": "Type the missing link in this 5-link Northern Kingdom regicide chain from 2 Kings 15:\nZechariah (slain by Shallum) → Shallum (slain after one month by Menahem) → Menahem → Pekahiah (slain by his captain Pekah) → [ ? ] (conspired against Pekah, slew him, and became the final king of Israel when Samaria fell to Assyria):",
+    "options": [
+      "Hoshea",
+      "Jehu",
+      "Omri",
+      "Jeroboam II"
+    ],
+    "correct_answer": "Hoshea",
+    "explanation": "2 Kings 15:30: \"And Hoshea the son of Elah made a conspiracy against Pekah the son of Remaliah, and smote him, and slew him, and reigned in his stead.\" Hoshea was the nineteenth and final king of the northern kingdom, imprisoned when Shalmaneser and Sargon captured Samaria in 722 BC (2 Kings 17:1-6).",
+    "reference": "2 Kings 15:30; 17:1-6",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Five-Link Royal Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Shallum",
+        "Menahem",
+        "Pekahiah",
+        "Pekah",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Hosea"
+      ],
+      "difficulty": "Expert",
+      "timerSeconds": 75,
+      "points": 250,
+      "testament": "Old Testament",
+      "hint1": "Six-letter name starting with H, son of Elah.",
+      "hint2": "2 Kings 17:1: \"began Hoshea the son of Elah to reign in Samaria over Israel nine years.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l46-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 46,
+    "challenge_index": 4,
+    "question_text": "Complete the five-link Messianic Kingly title chain:\nSeed of the woman (Genesis 3:15) → Ruler from Judah’s sceptre (Genesis 49:10) → Star out of Jacob (Numbers 24:17) → Rod out of the stem of Jesse (Isaiah 11:1) → Which apocalyptic title is given to Jesus Christ in Revelation 5:5?",
+    "options": [
+      "The Lion of the tribe of Juda, the Root of David",
+      "The bright and morning star",
+      "The Prince of the kings of the earth",
+      "The Amen, the faithful and true witness"
+    ],
+    "correct_answer": "The Lion of the tribe of Juda, the Root of David",
+    "explanation": "Revelation 5:5 unites this entire 5-link Messianic chain: \"Weep not: behold, the Lion of the tribe of Juda, the Root of David, hath prevailed to open the book, and to loose the seven seals thereof.\"",
+    "reference": "Genesis 49:9-10; Isaiah 11:1, 10; Revelation 5:5",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Five-Link Royal Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Genesis 3:15",
+        "Genesis 49:10 (Shiloh & Sceptre)",
+        "Numbers 24:17 (Star of Jacob)",
+        "Isaiah 11:1 (Stem of Jesse)",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Combining the lion imagery of Judah and the root of King David.",
+      "hint2": "Revelation 5:5: \"the Lion of the tribe of Juda, the Root of David, hath prevailed.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l46-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 46,
+    "challenge_index": 5,
+    "question_text": "Follow the five-link chain of royal advisors:\nAhithophel’s counsel considered as the oracle of God → Joins Absalom’s rebellion → David prays: \"O LORD, I pray thee, turn the counsel of Ahithophel into foolishness\" → Hushai the Archite sent to defeat the counsel → What did Ahithophel do when he saw that his counsel was not followed?",
+    "options": [
+      "Put his household in order and hanged himself",
+      "Fled to Egypt",
+      "Fell upon his sword in battle",
+      "Pleaded for mercy before David"
+    ],
+    "correct_answer": "Put his household in order and hanged himself",
+    "explanation": "2 Samuel 15:31; 16:23; 17:14, 23: When Ahithophel saw that Hushai’s advice was chosen over his, he saddled his ass, arose, went home to his city, put his household in order, and hanged himself, and died, and was buried in the sepulchre of his father (a profound Old Testament type of Judas Iscariot).",
+    "reference": "2 Samuel 15:31; 17:14, 23; Matthew 27:5",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Five-Link Royal Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Ahithophel joins Absalom",
+        "David prays on Olivet",
+        "Hushai defeats counsel",
+        "Absalom delays",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "He set his affairs in order and committed suicide by hanging.",
+      "hint2": "2 Samuel 17:23: \"and put his household in order, and hanged himself, and died.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l47-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 47,
+    "challenge_index": 1,
+    "question_text": "Type the missing covenant location in this five-link sacrifice chain across redemptive history:\nAbraham offers Isaac on Mount Moriah (Genesis 22) → David buys threshingfloor of Araunah the Jebusite (2 Samuel 24) → Solomon builds Temple on Mount Moriah (2 Chronicles 3:1) → Jesus crucified at [ ? ] outside the gate (Hebrews 13:12) → New Jerusalem descends from God:",
+    "options": [
+      "Golgotha",
+      "Calvary",
+      "Mount of Olives",
+      "Gethsemane"
+    ],
+    "correct_answer": "Golgotha",
+    "explanation": "The redemptive topography connects Mount Moriah through Araunah’s threshingfloor and Solomon’s temple to Golgotha (Calvary, \"the place of a skull\"), where Christ suffered outside the city gate (2 Chronicles 3:1; Matthew 27:33; John 19:17; Hebrews 13:12).",
+    "reference": "Genesis 22:2; 2 Chronicles 3:1; John 19:17; Hebrews 13:12",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Prophetic & Redemptive Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Mount Moriah",
+        "Araunah’s threshingfloor",
+        "Solomon’s Temple",
+        "?",
+        "Heavenly Jerusalem"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Calvary",
+        "Place of a skull"
+      ],
+      "difficulty": "Expert",
+      "timerSeconds": 75,
+      "points": 250,
+      "testament": "New Testament",
+      "hint1": "Aramaic name meaning \"the place of a skull\", eight letters: G-O-L-G-O-T-H-A.",
+      "hint2": "John 19:17: \"went forth into a place called the place of a skull, which is called in the Hebrew Golgotha.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l47-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 47,
+    "challenge_index": 2,
+    "question_text": "Follow the five-link Holy Spirit descent chain:\nSpirit moves upon the face of the waters (Genesis 1:2) → Spirit comes upon Eldad and Medad prophesying in camp (Numbers 11) → Spirit departs from Saul and rushes upon David (1 Samuel 16) → Spirit descends like a dove upon Jesus at Jordan (Matthew 3) → What visible miraculous form did the Holy Spirit take upon the 120 disciples on the Day of Pentecost in Acts 2:3?",
+    "options": [
+      "Cloven tongues like as of fire sitting upon each of them",
+      "A rushing cloud of incense",
+      "A pillar of smoke",
+      "A great earthquake shaking the room"
+    ],
+    "correct_answer": "Cloven tongues like as of fire sitting upon each of them",
+    "explanation": "Acts 2:1-4: On Pentecost, \"there appeared unto them cloven tongues like as of fire, and it sat upon each of them. And they were all filled with the Holy Ghost, and began to speak with other tongues, as the Spirit gave them utterance.\"",
+    "reference": "Genesis 1:2; Matthew 3:16; Acts 2:1-4",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Prophetic & Redemptive Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Creation hovering",
+        "Old Testament prophets",
+        "Jordan dove",
+        "?",
+        "Universal indwelling of believers"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Divided flames resting visibly upon their heads.",
+      "hint2": "Acts 2:3: \"And there appeared unto them cloven tongues like as of fire, and it sat upon each of them.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l47-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 47,
+    "challenge_index": 3,
+    "question_text": "Type the missing prophetic animal in this five-link Daniel 7 & 8 prophetic empire chain:\nBabylon: Lion with eagle’s wings → Medo-Persia: Bear with 3 ribs / Ram with two horns → Greece: Leopard with 4 wings / He-goat with notable horn → Rome: Diverse beast with ten iron teeth → [ ? ] (The everlasting kingdom that shall never be destroyed):",
+    "options": [
+      "Kingdom of God",
+      "Ancient of days",
+      "Son of man",
+      "Stone cut without hands"
+    ],
+    "correct_answer": "Kingdom of God",
+    "explanation": "Daniel 2 and 7 trace the four world empires (Babylon, Medo-Persia, Greece, Rome) culminating in Daniel 7:13-14 & 27: the Son of man receiving an everlasting dominion and kingdom which shall not pass away — the Kingdom of God.",
+    "reference": "Daniel 2:44; 7:13-14, 27",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Prophetic & Redemptive Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Lion (Babylon)",
+        "Bear (Medo-Persia)",
+        "Leopard (Greece)",
+        "Beast with iron teeth (Rome)",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Kingdom of Christ",
+        "The Kingdom of God",
+        "Kingdom of heaven"
+      ],
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "Old Testament",
+      "hint1": "The divine kingdom proclaimed by Jesus in Mark 1:15.",
+      "hint2": "Daniel 7:27: \"whose kingdom is an everlasting kingdom, and all dominions shall serve and obey him.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l47-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 47,
+    "challenge_index": 4,
+    "question_text": "Follow the five-link resurrection appearances chain in 1 Corinthians 15:3-8:\nChrist died for our sins → Buried → Rose third day → Seen of Cephas (Peter) → Seen of the twelve → Seen of above five hundred brethren at once → Seen of James → Seen of all the apostles → Last of all, as of one born out of due time, he was seen of whom?",
+    "options": [
+      "Paul himself on the road to Damascus",
+      "Stephen before the Sanhedrin",
+      "John on the isle of Patmos",
+      "Timothy in Ephesus"
+    ],
+    "correct_answer": "Paul himself on the road to Damascus",
+    "explanation": "1 Corinthians 15:8: \"And last of all he was seen of me also, as of one born out of due time. For I am the least of the apostles, that am not meet to be called an apostle, because I persecuted the church of God.\"",
+    "reference": "1 Corinthians 15:5-9; Acts 9:3-5",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Prophetic & Redemptive Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Cephas",
+        "The Twelve",
+        "500 brethren",
+        "James & all apostles",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Easy",
+      "timerSeconds": 30,
+      "points": 50,
+      "testament": "New Testament",
+      "hint1": "The author of 1 Corinthians who met the risen Christ near Damascus.",
+      "hint2": "1 Corinthians 15:8: \"And last of all he was seen of me also, as of one born out of due time.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l47-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 47,
+    "challenge_index": 5,
+    "question_text": "Follow the five-link golden chain of redemption in Romans 8:29-30:\n\"For whom he did foreknow, he also did predestinate... Moreover whom he did predestinate, them he also called: and whom he called, them he also justified: and whom he justified, them he also [ ? ]\":",
+    "options": [
+      "glorified",
+      "sanctified",
+      "preserved",
+      "crowned"
+    ],
+    "correct_answer": "glorified",
+    "explanation": "Romans 8:30 articulates the unbroken 5-link golden chain of salvation: Foreknown → Predestinated → Called → Justified → Glorified: \"and whom he justified, them he also glorified.\"",
+    "reference": "Romans 8:29-30",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Prophetic & Redemptive Master Chains",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Foreknown",
+        "Predestinated",
+        "Called",
+        "Justified",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Past-tense assurance of ultimate celestial glory, nine letters: g-l-o-r-i-f-i-e-d.",
+      "hint2": "Romans 8:30: \"and whom he justified, them he also glorified.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l48-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 48,
+    "challenge_index": 1,
+    "question_text": "BROKEN CHAIN MASTER: Inspect this 5-link Genesis covenant blessing transmission:\nAbraham (Gen 12) → Isaac (Gen 26) → Jacob (Gen 28) → Esau (Gen 27) → Judah (Gen 49)\nWhich link broke the covenant succession by selling his birthright for a bowl of red pottage?",
+    "options": [
+      "Esau (Jacob received the covenant blessing; Esau was rejected as profane)",
+      "Judah",
+      "Jacob",
+      "Isaac"
+    ],
+    "correct_answer": "Esau (Jacob received the covenant blessing; Esau was rejected as profane)",
+    "explanation": "Hebrews 12:16-17 denounces Esau as a profane person who for one morsel of meat sold his birthright. When he would have inherited the blessing, he was rejected. The true covenant line flowed from Abraham to Isaac, to Jacob, and to Judah. Esau is the broken link!",
+    "reference": "Genesis 25:29-34; 27:33-40; Hebrews 12:16-17",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Wrong Chain Master Gauntlet",
+      "chain_type": "wrong_chain",
+      "chain_nodes": [
+        "Abraham",
+        "Isaac",
+        "Jacob",
+        "Esau [BROKEN]",
+        "Judah"
+      ],
+      "broken_link_index": 3,
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "The twin brother who wept bitterly but found no place of repentance.",
+      "hint2": "Hebrews 12:16: \"Lest there be any fornicator, or profane person, as Esau.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l48-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 48,
+    "challenge_index": 2,
+    "question_text": "BROKEN CHAIN MASTER: Inspect this post-exilic Jerusalem restoration chain:\nCyrus decree → Zerubbabel builds temple → Ezra teaches law → Alexander the Great rebuilds city walls → Nehemiah governors Jerusalem\nWhich link falsely attributes the rebuilding of Jerusalem’s broken-down walls?",
+    "options": [
+      "Alexander the Great (Nehemiah rebuilt the walls with trowel and sword, not Alexander)",
+      "Zerubbabel",
+      "Ezra",
+      "Nehemiah"
+    ],
+    "correct_answer": "Alexander the Great (Nehemiah rebuilt the walls with trowel and sword, not Alexander)",
+    "explanation": "Nehemiah was cupbearer to Artaxerxes and journeyed to Jerusalem specifically to rebuild the ruined walls and burnt gates in 52 days (Nehemiah 2–6). Alexander the Great was a Greek conqueror who entered Jerusalem over a century later in 332 BC. Alexander is the false link!",
+    "reference": "Nehemiah 1:3; 2:1-18; 6:15",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Wrong Chain Master Gauntlet",
+      "chain_type": "wrong_chain",
+      "chain_nodes": [
+        "Cyrus decree",
+        "Zerubbabel temple",
+        "Ezra law",
+        "Alexander the Great [BROKEN]",
+        "Nehemiah"
+      ],
+      "broken_link_index": 3,
+      "is_typed": false,
+      "difficulty": "Easy",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "The Macedonian conqueror who had no part in Nehemiah’s wall project.",
+      "hint2": "Nehemiah 2:17: \"Come, and let us build up the wall of Jerusalem, that we be no more a reproach.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l48-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 48,
+    "challenge_index": 3,
+    "question_text": "Type the name of the false companion who broke his chain by abandoning Paul in 2 Timothy 4:10:\nPaul’s final imprisonment → Luke with him → Tychicus sent to Ephesus → [ ? ] (loved this present world and departed unto Thessalonica) → Mark requested as profitable:",
+    "options": [
+      "Demas",
+      "Titus",
+      "Crescens",
+      "Carpus"
+    ],
+    "correct_answer": "Demas",
+    "explanation": "2 Timothy 4:10: \"For Demas hath forsaken me, having loved this present world, and is departed unto Thessalonica.\" Demas had previously been praised in Colossians 4:14 and Philemon 24 as a fellowlabourer, but backslid under pressure in Paul’s final trial.",
+    "reference": "2 Timothy 4:10; Colossians 4:14; Philemon 24",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Wrong Chain Master Gauntlet",
+      "chain_type": "wrong_chain",
+      "chain_nodes": [
+        "Paul in chains",
+        "Luke alone with me",
+        "?",
+        "Forsakes Paul for present world",
+        "Mark summoned"
+      ],
+      "broken_link_index": 2,
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Damas"
+      ],
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Five-letter name: D-E-M-A-S.",
+      "hint2": "2 Timothy 4:10: \"For Demas hath forsaken me, having loved this present world.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l48-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 48,
+    "challenge_index": 4,
+    "question_text": "BROKEN CHAIN MASTER: Inspect this Old Testament translation/death chain (those who were taken without dying or had unusual deaths):\nEnoch (translated) → Elijah (whirlwind in chariot of fire) → Moses (died on Mount Nebo and God buried him) → Aaron (died on Mount Hor) → Methuselah (translated to heaven without dying)\nWhich link is factually false concerning his end in Genesis 5:27?",
+    "options": [
+      "Methuselah (Methuselah died in the year of the Flood at age 969; he was never translated)",
+      "Enoch",
+      "Elijah",
+      "Moses"
+    ],
+    "correct_answer": "Methuselah (Methuselah died in the year of the Flood at age 969; he was never translated)",
+    "explanation": "Genesis 5:27 states: \"And all the days of Methuselah were nine hundred sixty and nine years: and he died.\" Only Enoch and Elijah were translated without seeing death (Genesis 5:24; 2 Kings 2:11; Hebrews 11:5). Methuselah is the broken link!",
+    "reference": "Genesis 5:24, 27; 2 Kings 2:11; Hebrews 11:5",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Wrong Chain Master Gauntlet",
+      "chain_type": "wrong_chain",
+      "chain_nodes": [
+        "Enoch",
+        "Elijah",
+        "Moses",
+        "Aaron",
+        "Methuselah translated [BROKEN]"
+      ],
+      "broken_link_index": 4,
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "The oldest man in Scripture, who died at age 969.",
+      "hint2": "Genesis 5:27: \"and he died.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l48-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 48,
+    "challenge_index": 5,
+    "question_text": "BROKEN CHAIN MASTER: Inspect this chain of Paul’s trials before Roman authorities:\nArrested in Temple court → Before the Sanhedrin → Before Governor Felix in Caesarea → Before Governor Festus → Before King Herod the Great in Jericho → Before Emperor Nero in Rome\nWhich ruler died decades before Paul’s conversion and could never have tried Paul?",
+    "options": [
+      "Herod the Great (He died shortly after Jesus was born in 4 BC; Paul appeared before King Agrippa II)",
+      "Felix",
+      "Festus",
+      "Nero"
+    ],
+    "correct_answer": "Herod the Great (He died shortly after Jesus was born in 4 BC; Paul appeared before King Agrippa II)",
+    "explanation": "Acts 25–26 records that Festus conferred with King Agrippa II (great-grandson of Herod the Great) and his sister Bernice. Herod the Great died over 60 years earlier in 4 BC after the slaughter of the innocents in Bethlehem (Matthew 2:19). Herod the Great is the broken link!",
+    "reference": "Matthew 2:1-19; Acts 24:24; 25:13; 26:1-28",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Wrong Chain Master Gauntlet",
+      "chain_type": "wrong_chain",
+      "chain_nodes": [
+        "Sanhedrin",
+        "Felix",
+        "Festus",
+        "Herod the Great [BROKEN]",
+        "Nero in Rome"
+      ],
+      "broken_link_index": 3,
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "The king who ordered the slaughter of the children in Bethlehem in Matthew 2.",
+      "hint2": "Acts 25:13: \"king Agrippa and Bernice came unto Caesarea to salute Festus.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l49-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 49,
+    "challenge_index": 1,
+    "question_text": "FORENSIC CHAIN: Connect the three biblical appearances of the mysterious King of Salem across 1,500 years:\nGenesis 14:18 (Blesses Abram with bread and wine) → Psalm 110:4 (Messianic Priest forever) → Hebrews 7:1-3 (Without father, mother, or descent, having neither beginning of days nor end of life). To whom did Abram give a tenth part (tithe) of all the spoils?",
+    "options": [
+      "Melchizedek",
+      "The King of Sodom",
+      "Eliezer of Damascus",
+      "Amraphel king of Shinar"
+    ],
+    "correct_answer": "Melchizedek",
+    "explanation": "Genesis 14:20 and Hebrews 7:2 record: \"And he gave him tithes of all... to whom also Abraham gave a tenth part of all; first being by interpretation King of righteousness, and after that also King of Salem, which is, King of peace.\"",
+    "reference": "Genesis 14:18-20; Hebrews 7:1-4",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Cross-Canon Forensic Investigation",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Slaughter of the kings",
+        "Valley of Shaveh",
+        "Bread and wine brought",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "His royal priesthood preceded Aaron and continues forever in Christ.",
+      "hint2": "Hebrews 7:1: \"Melchisedec, king of Salem, priest of the most high God, who met Abraham.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l49-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 49,
+    "challenge_index": 2,
+    "question_text": "FORENSIC CHAIN: Follow the scarlet cord of redemption through three biblical books:\nJoshua 2:18 (Rahab binds scarlet thread in window) → Joshua 6:25 (Rahab and her father’s household saved alive) → Matthew 1:5 (Rachab marries Salmon of Judah and bears Boaz). In James 2:25 and Hebrews 11:31, what two virtues is Rahab commemorated for?",
+    "options": [
+      "Faith and justified works",
+      "Patience and fasting",
+      "Prophecy and wisdom",
+      "Almsgiving and prayer"
+    ],
+    "correct_answer": "Faith and justified works",
+    "explanation": "Hebrews 11:31 commends her faith (\"By faith the harlot Rahab perished not\"), while James 2:25 commends her works (\"Likewise also was not Rahab the harlot justified by works, when she had received the messengers, and had sent them out another way?\").",
+    "reference": "Joshua 2:18; Hebrews 11:31; James 2:25",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Cross-Canon Forensic Investigation",
+      "chain_type": "scripture_chain",
+      "chain_nodes": [
+        "Joshua 2 (Scarlet thread)",
+        "Matthew 1:5 (Mother of Boaz)",
+        "Hebrews 11:31 (By faith)",
+        "James 2:25 (By works)",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Faith in Hebrews 11 and works in James 2.",
+      "hint2": "James 2:25: \"justified by works\"; Hebrews 11:31: \"By faith the harlot Rahab perished not.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l49-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 49,
+    "challenge_index": 3,
+    "question_text": "Type the name of the valley where David slew Goliath with a sling and a stone (1 Samuel 17), which provided five smooth stones from the brook:",
+    "options": [
+      "Elah",
+      "Eshcol",
+      "Sorek",
+      "Achor"
+    ],
+    "correct_answer": "Elah",
+    "explanation": "1 Samuel 17:2, 19, 40: \"And Saul and the men of Israel were gathered together, and pitched by the valley of Elah, and set the battle in array against the Philistines.\" David chose five smooth stones out of the brook in the valley of Elah.",
+    "reference": "1 Samuel 17:2, 40",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Cross-Canon Forensic Investigation",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Philistines on one mountain",
+        "Israel on other mountain",
+        "Brook with five smooth stones",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Valley of Elah"
+      ],
+      "difficulty": "Easy",
+      "timerSeconds": 30,
+      "points": 50,
+      "testament": "Old Testament",
+      "hint1": "Four-letter valley name: E-L-A-H.",
+      "hint2": "1 Samuel 17:2: \"pitched by the valley of Elah.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l49-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 49,
+    "challenge_index": 4,
+    "question_text": "FORENSIC CHAIN: Follow the Nehushtan destruction chain:\nNumbers 21:8-9 (Moses makes serpent of brass on pole) → Israel burns incense to it for centuries like an idol → In 2 Kings 18:4, which godly king of Judah broke in pieces the brazen serpent that Moses had made and called it \"Nehushtan\" (a piece of brass)?",
+    "options": [
+      "Hezekiah",
+      "Josiah",
+      "Asa",
+      "Jehoshaphat"
+    ],
+    "correct_answer": "Hezekiah",
+    "explanation": "2 Kings 18:4: King Hezekiah \"removed the high places, and brake the images, and cut down the groves, and brake in pieces the brasen serpent that Moses had made: for unto those days the children of Israel did burn incense to it: and he called it Nehushtan.\"",
+    "reference": "Numbers 21:8-9; 2 Kings 18:4; John 3:14",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Cross-Canon Forensic Investigation",
+      "chain_type": "name_to_event",
+      "chain_nodes": [
+        "Wilderness serpent of brass",
+        "Centuries of idolatrous incense",
+        "Broken in pieces as Nehushtan",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "Son of Ahaz and father of Manasseh who trusted in the LORD God of Israel.",
+      "hint2": "2 Kings 18:4: \"and brake in pieces the brasen serpent that Moses had made... and he called it Nehushtan.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l49-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 49,
+    "challenge_index": 5,
+    "question_text": "FORENSIC CHAIN: Follow the prophetic martyrdom chain in Matthew 23:35:\nJesus charges the religious leaders with all the righteous blood shed upon the earth: from the blood of righteous Abel in Genesis 4 unto the blood of which priest’s son who was slain between the temple and the altar in 2 Chronicles 24?",
+    "options": [
+      "Zacharias son of Barachias (Zechariah son of Jehoiada)",
+      "Uriah son of Shemaiah",
+      "Isaiah son of Amoz",
+      "John the Baptist"
+    ],
+    "correct_answer": "Zacharias son of Barachias (Zechariah son of Jehoiada)",
+    "explanation": "Matthew 23:35 spans the entire Hebrew Old Testament canon (Genesis to 2 Chronicles, the first and last books in the Hebrew Bible order): from the murder of Abel (Genesis 4:8) to the martyrdom of Zechariah the son of Jehoiada (2 Chronicles 24:20-22), stoned in the court of the house of the LORD.",
+    "reference": "Genesis 4:8; 2 Chronicles 24:20-22; Matthew 23:35; Luke 11:51",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "Cross-Canon Forensic Investigation",
+      "chain_type": "scripture_chain",
+      "chain_nodes": [
+        "Genesis 4:8 (Abel)",
+        "Canon of martyrdoms",
+        "Between the temple and the altar",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
+      "testament": "New Testament",
+      "hint1": "Stoned at the commandment of King Joash in the temple court.",
+      "hint2": "Matthew 23:35: \"unto the blood of Zacharias son of Barachias, whom ye slew between the temple and the altar.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l50-c1",
+    "game_slug": "bible-chain-challenge",
+    "level": 50,
+    "challenge_index": 1,
+    "question_text": "MASTER CHAIN GAUNTLET: Type the missing name in this five-link Davidic fugitive network from 1 Samuel 22:\nDavid flees to cave of Adullam → 400 distressed men join him → Priest Ahimelech gives David shewbread and Goliath’s sword at Nob → Edomite chief herdsman [ ? ] slays eighty-five priests of Nob on Saul’s command → Abiathar escapes with ephod to David:",
+    "options": [
+      "Doeg",
+      "Cush",
+      "Shimei",
+      "Nabal"
+    ],
+    "correct_answer": "Doeg",
+    "explanation": "1 Samuel 21:7; 22:9-19: Doeg the Edomite, chiefest of the herdmen that belonged to Saul, informed Saul of Ahimelech’s assistance to David. When Saul’s footmen refused to fall upon the priests of the LORD, Doeg turned and fell upon the priests, slaying in that day fourscore and five persons that did wear a linen ephod (Psalm 52 inscription).",
+    "reference": "1 Samuel 21:7; 22:9-19; Psalm 52:1-7",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Master Bible Detective Gauntlet",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Cave of Adullam",
+        "Priests of Nob",
+        "?",
+        "85 priests slain",
+        "Abiathar escapes to David"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "Doeg the Edomite"
+      ],
+      "difficulty": "Expert",
+      "timerSeconds": 90,
+      "points": 250,
+      "testament": "Old Testament",
+      "hint1": "Four-letter name: D-O-E-G.",
+      "hint2": "1 Samuel 22:18: \"And the king said to Doeg, Turn thou, and fall upon the priests. And Doeg the Edomite turned, and he fell upon the priests.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l50-c2",
+    "game_slug": "bible-chain-challenge",
+    "level": 50,
+    "challenge_index": 2,
+    "question_text": "MASTER CHAIN GAUNTLET: Follow the five-link resurrection authority chain:\nJonah in the whale 3 days (Jonah 1) → Psalm 16:10 Holy One sees no corruption → Christ declares: \"Destroy this temple, and in three days I will raise it up\" (John 2:19) → Peter proclaims resurrection at Pentecost (Acts 2) → In Revelation 1:18, what two keys does the glorified living Christ hold in His hand?",
+    "options": [
+      "The keys of hell and of death",
+      "The keys of heaven and earth",
+      "The keys of David and Solomon",
+      "The keys of paradise and life"
+    ],
+    "correct_answer": "The keys of hell and of death",
+    "explanation": "Revelation 1:18 crowns the triumphant chain of resurrection victory: \"I am he that liveth, and was dead; and, behold, I am alive for evermore, Amen; and have the keys of hell and of death.\"",
+    "reference": "Jonah 1:17; Psalm 16:10; John 2:19; Revelation 1:18",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Master Bible Detective Gauntlet",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Jonah 3 days",
+        "Psalm 16:10",
+        "Empty tomb",
+        "Pentecost witness",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Expert",
+      "timerSeconds": 90,
+      "points": 250,
+      "testament": "New Testament",
+      "hint1": "Authority over hades/the grave and mortality.",
+      "hint2": "Revelation 1:18: \"and have the keys of hell and of death.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l50-c3",
+    "game_slug": "bible-chain-challenge",
+    "level": 50,
+    "challenge_index": 3,
+    "question_text": "MASTER CHAIN GAUNTLET: Type the missing five-letter name of the companion in Paul’s final letter:\n\"Only Luke is with me. Take [ ? ], and bring him with thee: for he is profitable to me for the ministry\" (2 Timothy 4:11):",
+    "options": [
+      "Mark",
+      "John Mark",
+      "Timothy",
+      "Titus"
+    ],
+    "correct_answer": "Mark",
+    "explanation": "In Acts 13:13, John Mark departed at Perga, causing sharp separation between Paul and Barnabas in Acts 15:37-39. But in 2 Timothy 4:11, Paul gloriously completes the reconciliation chain: \"Take Mark, and bring him with thee: for he is profitable to me for the ministry.\"",
+    "reference": "Acts 13:13; 15:37-39; 2 Timothy 4:11",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Master Bible Detective Gauntlet",
+      "chain_type": "character_chain",
+      "chain_nodes": [
+        "Perga abandonment (Acts 13)",
+        "Sharp dispute with Barnabas (Acts 15)",
+        "Restored sister’s son (Col 4)",
+        "Profitable for ministry (2 Tim 4)",
+        "?"
+      ],
+      "is_typed": true,
+      "acceptedAlternatives": [
+        "John Mark",
+        "Marcus"
+      ],
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "Four-letter name: M-A-R-K.",
+      "hint2": "2 Timothy 4:11: \"Take Mark, and bring him with thee: for he is profitable to me for the ministry.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l50-c4",
+    "game_slug": "bible-chain-challenge",
+    "level": 50,
+    "challenge_index": 4,
+    "question_text": "MASTER CHAIN GAUNTLET: Connect the seven churches of Asia in Revelation 2–3 in their exact geographical and textual sequence:\nEphesus (First Love) → Smyrna (Faithful unto Death) → Pergamos (Balaam’s doctrine) → Thyatira (Jezebel tolerated) → Sardis (Name that thou livest, but art dead) → Philadelphia (Open Door) → Which lukewarm church is spued out of Christ’s mouth?",
+    "options": [
+      "Laodicea",
+      "Colosse",
+      "Hierapolis",
+      "Troas"
+    ],
+    "correct_answer": "Laodicea",
+    "explanation": "Revelation 2–3 traces the circular postal route through the seven churches of Asia: Ephesus → Smyrna → Pergamos → Thyatira → Sardis → Philadelphia → Laodicea. Laodicea was neither cold nor hot, claiming to be rich and increased with goods, but wretched, miserable, poor, blind, and naked (Revelation 3:14-17).",
+    "reference": "Revelation 1:11; 2:1–3:22",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Master Bible Detective Gauntlet",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Ephesus",
+        "Smyrna",
+        "Pergamos",
+        "Thyatira & Sardis",
+        "Philadelphia",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Easy",
+      "timerSeconds": 30,
+      "points": 50,
+      "testament": "New Testament",
+      "hint1": "The city neighboring Colosse and Hierapolis.",
+      "hint2": "Revelation 3:14: \"And unto the angel of the church of the Laodiceans write.\"",
+      "curated": true
+    }
+  },
+  {
+    "id": "bible-chain-l50-c5",
+    "game_slug": "bible-chain-challenge",
+    "level": 50,
+    "challenge_index": 5,
+    "question_text": "MASTER CHAIN GAUNTLET: Connect the entire Canon of Scripture from Alpha to Omega:\nGenesis 1:1: \"In the beginning God created the heaven and the earth.\"\nGenesis 3: Tree of life lost through sin in Eden.\nRevelation 22:2: Tree of life restored bearing twelve manner of fruits by the river of water of life.\nWhat are the very last words of the New Testament canon in Revelation 22:21?",
+    "options": [
+      "The grace of our Lord Jesus Christ be with you all. Amen.",
+      "Even so, come, Lord Jesus.",
+      "He which testifieth these things saith, Surely I come quickly.",
+      "Holy, holy, holy, Lord God Almighty, which was, and is, and is to come."
+    ],
+    "correct_answer": "The grace of our Lord Jesus Christ be with you all. Amen.",
+    "explanation": "Revelation 22:21 seals the entire 66 books of the Bible with the triumphant final benediction: \"The grace of our Lord Jesus Christ be with you all. Amen.\" The chain that began with creation and the fall in Genesis culminates in grace and eternal life in Revelation.",
+    "reference": "Genesis 1:1; 3:22-24; Revelation 22:2, 20-21",
+    "metadata": {
+      "stage": 10,
+      "stage_title": "Ultimate Bible Chain",
+      "level_title": "The Master Bible Detective Gauntlet",
+      "chain_type": "five_link",
+      "chain_nodes": [
+        "Genesis 1:1 Creation",
+        "Genesis 3 Fall & Tree lost",
+        "Gospels Redemptive Cross",
+        "Revelation 22 Tree restored",
+        "?"
+      ],
+      "is_typed": false,
+      "difficulty": "Moderate",
+      "timerSeconds": 60,
+      "points": 100,
+      "testament": "New Testament",
+      "hint1": "The apostolic benediction of grace with \"Amen\".",
+      "hint2": "Revelation 22:21: \"The grace of our Lord Jesus Christ be with you all. Amen.\"",
+      "curated": true
+    }
+  }
+];

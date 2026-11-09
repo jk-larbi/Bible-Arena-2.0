@@ -1,0 +1,1656 @@
+// Bible Riddles — Stages 3 & 4 (Levels 11–20, 50 Riddles)
+import type { RawRiddleQuestion } from './riddlesStages1to2';
+
+export const RIDDLES_STAGES_3_TO_4: RawRiddleQuestion[] = [
+  {
+    "level": 11,
+    "challengeIndex": 1,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Priestly Vestments & Sanctuary Symbols",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an ornate garment of gold, blue, purple, and scarlet yarns, and fine twisted linen, worn over the blue robe of the high priest. On my shoulder pieces were two onyx stones engraved with the names of the twelve sons of Israel, six on each stone according to their birth, so that the high priest bore their remembrance before the Lord continually. What am I?",
+    "clues": [
+      "Worn specifically by the Aaronic high priest.",
+      "Girded with a skillfully woven band of the same materials.",
+      "The breastplate of judgment was attached to me with gold rings and blue cords."
+    ],
+    "options": [
+      "The Ephod",
+      "The Tunic",
+      "The Turban",
+      "The Sash"
+    ],
+    "correctAnswer": "The Ephod",
+    "acceptedAlternatives": [
+      "Ephod",
+      "The Priestly Ephod"
+    ],
+    "reference": "Exodus 28:6–14; 39:2–7",
+    "explanation": "The Ephod was the sacred vestment of the high priest made of gold and colorful twisted linen bearing two onyx shoulder stones with the twelve tribal names.",
+    "hint": "Sacred vestment bearing two engraved onyx shoulder stones.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 11,
+    "challengeIndex": 2,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Priestly Vestments & Sanctuary Symbols",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nWe were two mysterious sacred lots or stones placed inside the breastplate of judgment over Aaron’s heart when he went in before the Lord. Our names translate from Hebrew as \"Lights\" and \"Perfections,\" and we were consulted by the high priest to discern the divine will on national questions. What are we?",
+    "clues": [
+      "Placed inside the square pouch of the breastpiece.",
+      "King Saul complained that the Lord answered him neither by dreams, nor by us, nor by prophets (1 Samuel 28:6).",
+      "Ezra ruled that returning priests with uncertain genealogies could not eat holy food until a priest stood up with us."
+    ],
+    "options": [
+      "The Urim and Thummim",
+      "The Two Stone Tablets",
+      "The Onyx Stones",
+      "The Golden Bells and Pomegranates"
+    ],
+    "correctAnswer": "The Urim and Thummim",
+    "acceptedAlternatives": [
+      "Urim and Thummim",
+      "Urim & Thummim",
+      "The Urim and the Thummim"
+    ],
+    "reference": "Exodus 28:30; Leviticus 8:8; 1 Samuel 28:6; Ezra 2:63",
+    "explanation": "The Urim and Thummim were placed inside the high priest’s breastplate to determine God’s decisions and judgments.",
+    "hint": "Sacred lots in Aaron’s breastplate meaning Lights and Perfections.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 11,
+    "challengeIndex": 3,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Priestly Vestments & Sanctuary Symbols",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an intricately woven hem ornament alternating with golden bells along the lower edge of the blue robe of the ephod worn by the high priest. As Aaron ministered in the Holy Place, the bells chimed between me so that his sound would be heard when he went into the holy place before the Lord and when he came out, so that he would not die. What am I?",
+    "clues": [
+      "Made of blue, purple, and scarlet yarns.",
+      "Shaped like a fruit with many seeds.",
+      "Alternated one-for-one with golden bells."
+    ],
+    "options": [
+      "Pomegranates of Yarn",
+      "Golden Cherubim",
+      "Almond Blossoms",
+      "Acacia Knots"
+    ],
+    "correctAnswer": "Pomegranates of Yarn",
+    "acceptedAlternatives": [
+      "Pomegranates",
+      "The Pomegranates",
+      "Priestly Pomegranates"
+    ],
+    "reference": "Exodus 28:33–35; 39:24–26",
+    "explanation": "Pomegranates of blue, purple, and scarlet yarn alternated with golden bells on the hem of the high priest’s robe to sound his movements in the sanctuary.",
+    "hint": "Fruit-shaped yarn ornaments alternating with bells on Aaron’s robe.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 11,
+    "challengeIndex": 4,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Priestly Vestments & Sanctuary Symbols",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a pure gold plate attached by a blue cord to the forefront of Aaron’s turban, shining prominently on his forehead. Engraved on me like the engravings of a signet were the solemn words: \"HOLY TO THE LORD.\" Through me, Aaron bore any guilt involved in the holy gifts that Israel consecrated. What am I?",
+    "clues": [
+      "Also called the golden diadem or holy crown.",
+      "Engraved with: \"HOLY TO THE LORD\" (Qodesh Le-Yahweh).",
+      "Fastened with a blue lace on the high priest’s mitre/turban."
+    ],
+    "options": [
+      "The Golden Plate on the Turban",
+      "The Breastplate of Judgment",
+      "The Golden Censer",
+      "The Mercy Seat"
+    ],
+    "correctAnswer": "The Golden Plate on the Turban",
+    "acceptedAlternatives": [
+      "The Golden Plate",
+      "Golden Plate",
+      "The Golden Diadem",
+      "Holy Crown"
+    ],
+    "reference": "Exodus 28:36–38; 39:30–31",
+    "explanation": "The golden plate engraved \"HOLY TO THE LORD\" was fastened to the front of the high priest’s turban so the gifts of Israel would be accepted.",
+    "hint": "Forehead gold plate engraved with \"HOLY TO THE LORD\".",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 11,
+    "challengeIndex": 5,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Priestly Vestments & Sanctuary Symbols",
+    "riddleType": "Type the Object",
+    "isTyped": true,
+    "questionText": "TYPE THE OBJECT — MINI-BOSS RIDDLE:\nI was a gold-plated square pouch, nine inches by nine inches (a span), adorned with four rows of three precious stones each—twelve unique gems mounted in gold filigree settings, each engraved with the name of one of the twelve tribes of Israel. Two gold cords and blue ribbons fastened me securely to the ephod. What am I?",
+    "clues": [
+      "Contained the Urim and Thummim within my fold.",
+      "Row 1: carnelian, chrysolite, emerald; Row 4: beryl, onyx, jasper.",
+      "Designated the \"Breastpiece of Judgment\" (Choshen Mishpat)."
+    ],
+    "options": [
+      "The Breastplate of Judgment",
+      "The Ephod",
+      "The Ark of the Covenant",
+      "The Table of Showbread"
+    ],
+    "correctAnswer": "The Breastplate of Judgment",
+    "acceptedAlternatives": [
+      "Breastplate of Judgment",
+      "The Breastplate",
+      "Breastplate",
+      "Breastpiece",
+      "The Breastpiece"
+    ],
+    "reference": "Exodus 28:15–29; 39:8–21",
+    "explanation": "The Breastpiece (Breastplate) of Judgment held twelve engraved gemstones representing the twelve tribes of Israel over the high priest’s heart.",
+    "hint": "Twelve-gem vestment worn over the high priest’s heart.",
+    "testament": "Old Testament",
+    "difficulty": "master",
+    "timerSeconds": 25
+  },
+  {
+    "level": 12,
+    "challengeIndex": 1,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Instruments of War & Deliverance",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nWe were three hundred ordinary household vessels of clay, each containing a burning torch hidden within our hollow interior. At the beginning of the middle watch, when Gideon gave the signal around the Midianite camp in the valley of Jezreel, our owners shattered all of us simultaneously, held the blazing torches in their left hands, blew trumpets in their right hands, and shouted, \"A sword for the Lord and for Gideon!\" What are we?",
+    "clues": [
+      "Clay jars or pitchers used by Gideon’s 300 men.",
+      "Shattering created a sudden explosion of noise and light.",
+      "Caused the vast Midianite army to panic and turn their swords against one another."
+    ],
+    "options": [
+      "Gideon’s Pitchers and Jars",
+      "Elijah’s Water Pots",
+      "The Jars of Cana",
+      "Jeremiah’s Clay Flask"
+    ],
+    "correctAnswer": "Gideon’s Pitchers and Jars",
+    "acceptedAlternatives": [
+      "Gideons Pitchers",
+      "Clay Pitchers",
+      "Pitchers and Torches",
+      "Gideons Jars"
+    ],
+    "reference": "Judges 7:16–22",
+    "explanation": "Gideon equipped 300 men with trumpets, empty pitchers, and torches inside the pitchers to rout Midian.",
+    "hint": "Clay jars shattered by Gideon’s 300 warriors to reveal hidden torches.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 12,
+    "challengeIndex": 2,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Instruments of War & Deliverance",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an unlikely, freshly discarded skeletal bone of a beast of burden that Samson grabbed from the ground at Lehi when the Spirit of the Lord rushed upon him. With me in his hand, he struck down one thousand Philistines and proclaimed a poetic riddle: \"With the jawbone of a donkey, heaps upon heaps, with the jawbone of a donkey have I struck down a thousand men.\" What am I?",
+    "clues": [
+      "A fresh jawbone (not dried or brittle).",
+      "After the slaughter, Samson threw me away and named the place Ramath-lehi.",
+      "God split open a hollow basin at Lehi and water gushed out to revive Samson’s thirst."
+    ],
+    "options": [
+      "The Jawbone of a Donkey",
+      "Shamgar’s Oxgoad",
+      "David’s Sling",
+      "Jael’s Tent Peg"
+    ],
+    "correctAnswer": "The Jawbone of a Donkey",
+    "acceptedAlternatives": [
+      "Jawbone of an Ass",
+      "Jawbone of a Donkey",
+      "Donkey’s Jawbone",
+      "The Jawbone"
+    ],
+    "reference": "Judges 15:14–19",
+    "explanation": "Samson slew 1,000 Philistines with a fresh jawbone of a donkey at Lehi and God quenched his thirst with spring water from the hollow place.",
+    "hint": "Bone weapon used by Samson to slay 1,000 Philistine soldiers.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 12,
+    "challengeIndex": 3,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Instruments of War & Deliverance",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a secret projectile used in an open field near the stone Ezel by the crown prince of Israel to deliver life-or-death intelligence to David while King Saul sought his life. When I was shot beyond a boy, the prince called out, \"Is not the arrow beyond you? Hurry! Stay not!\", which was the prearranged code that David had to flee. What am I?",
+    "clues": [
+      "Shot by Jonathan with his bow.",
+      "Retrieved by a young boy who knew nothing of the matter.",
+      "Signaled that Saul had determined to kill David."
+    ],
+    "options": [
+      "Jonathan’s Signal Arrow",
+      "Jehu’s Arrow",
+      "Ahab’s Stray Arrow",
+      "David’s Spear"
+    ],
+    "correctAnswer": "Jonathan’s Signal Arrow",
+    "acceptedAlternatives": [
+      "Jonathans Arrow",
+      "The Arrow of Jonathan",
+      "Jonathan’s Arrow"
+    ],
+    "reference": "1 Samuel 20:18–42",
+    "explanation": "Jonathan shot three arrows past a boy as a prearranged signal to warn David that King Saul was determined to put him to death.",
+    "hint": "Arrow shot by Jonathan as a code to warn David to flee.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 12,
+    "challengeIndex": 4,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Instruments of War & Deliverance",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was the massive, nine-foot-long weapon of a Philistine giant from Gath whose iron head weighed six hundred shekels (about fifteen pounds), and whose shaft was described as being like a weaver’s beam. Later, after my owner was beheaded, my blade was wrapped in a cloth behind the priestly ephod at Nob until David claimed me, declaring: \"There is none like that; give it to me.\" What am I?",
+    "clues": [
+      "Weapon of Goliath the Philistine champion.",
+      "David took Goliath’s own sword from its sheath to cut off his head.",
+      "Given to David by the priest Ahimelech at Nob."
+    ],
+    "options": [
+      "Goliath’s Sword",
+      "Saul’s Spear",
+      "Joab’s Dagger",
+      "Benaiah’s Spear"
+    ],
+    "correctAnswer": "Goliath’s Sword",
+    "acceptedAlternatives": [
+      "The Sword of Goliath",
+      "Goliaths Sword"
+    ],
+    "reference": "1 Samuel 17:7, 51; 21:8–9",
+    "explanation": "The sword of Goliath was kept wrapped in a cloth behind the ephod at Nob until Ahimelech gave it to David.",
+    "hint": "Giant’s blade kept at Nob and claimed by David.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 12,
+    "challengeIndex": 5,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Instruments of War & Deliverance",
+    "riddleType": "Type the Object",
+    "isTyped": true,
+    "questionText": "TYPE THE OBJECT — MINI-BOSS RIDDLE:\nSelected by a young shepherd from the bed of the brook Elah, we were five smooth items placed carefully into a shepherd’s pouch. One of us was seated into a leather sling, hurled with lethal accuracy, and sank deep into the forehead of the nine-foot champion of the Philistines, causing him to fall face down on the earth. What are we?",
+    "clues": [
+      "Picked from the valley brook by David before facing Goliath.",
+      "Sank into Goliath’s forehead.",
+      "Symbol of divine victory without sword or spear."
+    ],
+    "options": [
+      "Five Smooth Stones",
+      "Five Barley Loaves",
+      "Five Shekels of Silver",
+      "Five Golden Tumors"
+    ],
+    "correctAnswer": "Five Smooth Stones",
+    "acceptedAlternatives": [
+      "Smooth Stones",
+      "David’s Stones",
+      "Davids Stones",
+      "Five Stones"
+    ],
+    "reference": "1 Samuel 17:40–49",
+    "explanation": "David chose five smooth stones from the brook; the first stone struck Goliath’s forehead and brought down the giant.",
+    "hint": "Five smooth brook projectiles picked by David to face Goliath.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 25
+  },
+  {
+    "level": 13,
+    "challengeIndex": 1,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Royal Relics & Prophetic Emblems",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an awe-inspiring royal seat built of pure ivory overlaid with the finest gold. I had six ascending steps, a rounded back, armrests flanked by two sculpted lions, and twelve carved lions standing on the six steps—one on each end of every step. Scripture notes that \"nothing like it was ever made for any other kingdom.\" What am I?",
+    "clues": [
+      "Built by King Solomon in Jerusalem.",
+      "Featured twelve lions guarding six steps.",
+      "Footstool of gold was attached to it."
+    ],
+    "options": [
+      "Solomon’s Ivory Throne",
+      "Saul’s Seat at the Banquet",
+      "David’s Couch",
+      "Ahasuerus’ Golden Scepter"
+    ],
+    "correctAnswer": "Solomon’s Ivory Throne",
+    "acceptedAlternatives": [
+      "The Great Ivory Throne",
+      "Solomons Throne",
+      "Ivory Throne"
+    ],
+    "reference": "1 Kings 10:18–20; 2 Chronicles 9:17–19",
+    "explanation": "Solomon’s great throne of ivory and gold had six steps flanked by twelve lions, unique in the ancient world.",
+    "hint": "Solomon’s majestic throne guarded by twelve carved lions on six steps.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 13,
+    "challengeIndex": 2,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Royal Relics & Prophetic Emblems",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a visual theatrical prop forged by the court prophet Zedekiah son of Chenaanah before the combined armies of King Ahab of Israel and King Jehoshaphat of Judah. My owner pushed through the crowd wearing me, declaring: \"With these you shall push the Syrians until they are destroyed!\"—only for Ahab to be struck by a random arrow shortly after. What am I?",
+    "clues": [
+      "Forged of iron.",
+      "Worn or brandished by false prophet Zedekiah.",
+      "Represented false military horns of victory."
+    ],
+    "options": [
+      "Horns of Iron",
+      "Golden Calves",
+      "Bronze Shields",
+      "Iron Chariot Wheels"
+    ],
+    "correctAnswer": "Horns of Iron",
+    "acceptedAlternatives": [
+      "Iron Horns",
+      "Zedekiah’s Iron Horns",
+      "The Horns of Iron"
+    ],
+    "reference": "1 Kings 22:11; 2 Chronicles 18:10",
+    "explanation": "Zedekiah son of Chenaanah made horns of iron to falsely prophesy that Ahab would gore the Syrians to destruction.",
+    "hint": "Iron horns made by false prophet Zedekiah to deceive King Ahab.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 13,
+    "challengeIndex": 3,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Royal Relics & Prophetic Emblems",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an earthenware flask purchased from a potter that the prophet Jeremiah was commanded to take into the Valley of the Son of Hinnom before the elders of the people and the priests. There, in Topheth, Jeremiah shattered me into irreparable pieces, announcing that Yahweh would break Jerusalem and its inhabitants just as one breaks a potter’s vessel so that it can never be mended again. What am I?",
+    "clues": [
+      "A potter’s earthen flask (bottle).",
+      "Broken at the Potsherd Gate (Harsith Gate).",
+      "Prophesied the total destruction of Jerusalem by the Babylonians."
+    ],
+    "options": [
+      "The Broken Earthenware Flask",
+      "The Golden Censer",
+      "The Bronze Basin",
+      "The Widow’s Oil Jar"
+    ],
+    "correctAnswer": "The Broken Earthenware Flask",
+    "acceptedAlternatives": [
+      "Potter’s Flask",
+      "Earthen Flask",
+      "The Broken Jar",
+      "Potter’s Earthen Bottle"
+    ],
+    "reference": "Jeremiah 19:1–13",
+    "explanation": "Jeremiah bought an earthenware flask and smashed it in the Valley of Ben-Hinnom to enact the irreversible judgment on Jerusalem.",
+    "hint": "Potter’s jar smashed by Jeremiah in the valley of Ben-Hinnom.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 13,
+    "challengeIndex": 4,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Royal Relics & Prophetic Emblems",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a linen waistband (girdle) that the prophet Jeremiah was instructed to buy, wear on his loins without putting into water, and then take on a long journey to the river Euphrates (Perath) to bury in a cleft of the rock. When Jeremiah returned many days later to dig me up, I was ruined, spoiled, and completely profitable for nothing—symbolizing how God would ruin the pride of Judah. What am I?",
+    "clues": [
+      "Made of fine linen.",
+      "Hidden in a rock crevice by the Euphrates.",
+      "Showed that Israel was meant to cling to Yahweh as a belt clings to a man’s waist."
+    ],
+    "options": [
+      "Jeremiah’s Linen Belt",
+      "Elijah’s Leather Belt",
+      "John the Baptist’s Girdle",
+      "Aaron’s Sash"
+    ],
+    "correctAnswer": "Jeremiah’s Linen Belt",
+    "acceptedAlternatives": [
+      "Linen Belt",
+      "Jeremiahs Linen Belt",
+      "The Linen Girdle",
+      "Jeremiah’s Girdle"
+    ],
+    "reference": "Jeremiah 13:1–11",
+    "explanation": "Jeremiah hid a linen belt by the Euphrates; when retrieved spoiled, it demonstrated how pride had corrupted Judah.",
+    "hint": "Linen belt buried by the Euphrates until it was ruined and worthless.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 13,
+    "challengeIndex": 5,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Royal Relics & Prophetic Emblems",
+    "riddleType": "Type the Object",
+    "isTyped": true,
+    "questionText": "TYPE THE OBJECT — MINI-BOSS RIDDLE:\nI was a common construction brick (clay tablet) upon which the prophet Ezekiel was commanded to engrave a detailed diagram of the city of Jerusalem. The prophet then built miniature siege works, threw up an assault ramp, set camps around it, placed battering rams against it on all sides, and held an iron griddle (plate) between himself and the brick as an iron wall—serving as a dramatic prophetic sign to the house of Israel. What am I?",
+    "clues": [
+      "A clay brick or tile engraved with the blueprint of Jerusalem.",
+      "Besieged with miniature ramps, camps, and battering rams.",
+      "Prophet lay on his left side for 390 days and right side for 40 days."
+    ],
+    "options": [
+      "Ezekiel’s Engraved Brick",
+      "Solomon’s Foundation Stone",
+      "Zerubbabel’s Capstone",
+      "The Plumb Line"
+    ],
+    "correctAnswer": "Ezekiel’s Engraved Brick",
+    "acceptedAlternatives": [
+      "Engraved Brick",
+      "Ezekiel’s Brick",
+      "Ezekiels Brick",
+      "The Clay Brick",
+      "Clay Tablet"
+    ],
+    "reference": "Ezekiel 4:1–3",
+    "explanation": "Ezekiel engraved Jerusalem on a clay brick and staged a miniature siege against it to signify the coming Babylonian destruction.",
+    "hint": "Clay building brick upon which Ezekiel engraved Jerusalem under miniature siege.",
+    "testament": "Old Testament",
+    "difficulty": "master",
+    "timerSeconds": 25
+  },
+  {
+    "level": 14,
+    "challengeIndex": 1,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "New Testament Sacred Objects",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an exquisite vessel made of soft white stone, filled with a pound of pure nard of extraordinary value—worth more than three hundred denarii (a full year’s wages for a laborer). Brought into a banquet in Bethany, my owner broke my neck and poured my fragrant contents upon the head and feet of Jesus, wiping His feet with her hair until the entire house was filled with the fragrance. What am I?",
+    "clues": [
+      "Crafted from translucent white alabaster.",
+      "Broke open by Mary of Bethany (sister of Martha and Lazarus).",
+      "Jesus defended the woman: \"She has done it for my burial.\""
+    ],
+    "options": [
+      "The Alabaster Flask of Nard",
+      "The Golden Censer",
+      "The Water Jar of Cana",
+      "The Cup of Blessing"
+    ],
+    "correctAnswer": "The Alabaster Flask of Nard",
+    "acceptedAlternatives": [
+      "Alabaster Flask",
+      "Alabaster Box",
+      "Alabaster Jar of Perfume",
+      "Alabaster Jar"
+    ],
+    "reference": "Matthew 26:6–13; Mark 14:3–9; John 12:1–8",
+    "explanation": "The alabaster flask containing costly pure nard was broken by Mary of Bethany to anoint Jesus beforehand for His burial.",
+    "hint": "White stone jar of costly perfume broken over Jesus’ head and feet.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 14,
+    "challengeIndex": 2,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "New Testament Sacred Objects",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nWe were thirty silver coins paid from the temple treasury to an apostle who agreed to betray his Master in a secluded olive grove. Consumed with remorse after Jesus was condemned, the traitor flung us across the sanctuary floor before hanging himself. Because we were blood money, the chief priests refused to put us into the treasury and used us to buy the Potter’s Field as a burial place for foreigners. What are we?",
+    "clues": [
+      "Thirty pieces of silver (Tyrian shekels/tetradrachms).",
+      "Fulfilled Zechariah 11:12–13: \"They weighed out as my price thirty pieces of silver.\"",
+      "Bought the field called Akeldama, the Field of Blood."
+    ],
+    "options": [
+      "The Thirty Pieces of Silver",
+      "The Temple Shekel",
+      "The Widow’s Two Mites",
+      "The Stater in the Fish’s Mouth"
+    ],
+    "correctAnswer": "The Thirty Pieces of Silver",
+    "acceptedAlternatives": [
+      "Thirty Pieces of Silver",
+      "30 Pieces of Silver",
+      "The Blood Money"
+    ],
+    "reference": "Matthew 26:14–16; 27:3–10; Zechariah 11:12–13",
+    "explanation": "Judas Iscariot betrayed Jesus for thirty pieces of silver; cast into the temple, the money purchased the Potter’s Field.",
+    "hint": "Thirty silver coins paid to Judas to betray Christ.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 14,
+    "challengeIndex": 3,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "New Testament Sacred Objects",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an inner undergarment (chiton) worn by Jesus on the day of His crucifixion. Woven in one piece from the top down without any seam, the four Roman executioners chose not to tear me into four pieces like His other garments, but cast lots for me, fulfilling the ancient prophecy of Psalm 22:18: \"They divided my garments among them, and for my clothing they cast lots.\" What am I?",
+    "clues": [
+      "Woven seamless throughout.",
+      "Sought intact by the Roman quaternion of soldiers at Golgotha.",
+      "Regarded as a symbol of the undivided unity of Christ’s church."
+    ],
+    "options": [
+      "The Seamless Tunic of Christ",
+      "The Purple Robe",
+      "The Linen Shroud",
+      "The Veil of the Temple"
+    ],
+    "correctAnswer": "The Seamless Tunic of Christ",
+    "acceptedAlternatives": [
+      "The Seamless Tunic",
+      "Seamless Robe",
+      "Seamless Garment",
+      "Seamless Tunic"
+    ],
+    "reference": "John 19:23–24; Psalm 22:18",
+    "explanation": "Jesus’ seamless tunic was not torn by the soldiers at the cross; they cast lots to decide who would get it.",
+    "hint": "Seamless woven tunic of Jesus for which Roman soldiers cast lots.",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 14,
+    "challengeIndex": 4,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "New Testament Sacred Objects",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a massive, sixty-foot-high, beautifully woven curtain of blue, purple, and scarlet yarns that hung inside the Jerusalem Temple, dividing the Holy Place from the Holy of Holies. At the exact moment Jesus breathed His last on the cross and cried, \"It is finished!\", an invisible power tore me in two from top to bottom, demonstrating that the way into God’s presence was now thrown wide open to all believers. What am I?",
+    "clues": [
+      "The veil of the temple (katapetasma).",
+      "Torn from top to bottom (indicating divine action, not human hands).",
+      "Hebrews 10:19–20 describes Jesus’ flesh as this veil opened for us."
+    ],
+    "options": [
+      "The Veil of the Temple",
+      "The High Priest’s Robe",
+      "The Tabernacle Curtains",
+      "The Linen Shroud"
+    ],
+    "correctAnswer": "The Veil of the Temple",
+    "acceptedAlternatives": [
+      "The Temple Veil",
+      "Veil of the Temple",
+      "The Veil"
+    ],
+    "reference": "Matthew 27:51; Mark 15:38; Hebrews 10:19–20",
+    "explanation": "The veil of the temple separating the Holy of Holies was torn in two from top to bottom when Jesus died, opening access to God.",
+    "hint": "Temple curtain torn in two from top to bottom at Jesus’ death.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 14,
+    "challengeIndex": 5,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "New Testament Sacred Objects",
+    "riddleType": "Type the Object",
+    "isTyped": true,
+    "questionText": "TYPE THE OBJECT — MINI-BOSS RIDDLE:\nI was a vision seen three times by the Apostle Peter while praying in a rooftop trance in Joppa at the sixth hour. Descending from heaven like a great linen sail held by four corners, I contained all kinds of four-footed animals, reptiles of the earth, and birds of the air. A voice commanded, \"Rise, Peter; kill and eat.\" When Peter protested that he had never eaten anything common or unclean, the voice answered: \"What God has made clean, do not call common.\" What am I?",
+    "clues": [
+      "A great sheet let down from heaven by its four corners.",
+      "Prepared Peter to receive the Gentile messengers from Cornelius in Caesarea.",
+      "Signified that Gentiles were admitted into the covenant people of God without kosher dietary restrictions."
+    ],
+    "options": [
+      "The Great Sheet Let Down by Four Corners",
+      "The Ark of the Covenant",
+      "The Cloud of Glory",
+      "The Net Full of Fish"
+    ],
+    "correctAnswer": "The Great Sheet Let Down by Four Corners",
+    "acceptedAlternatives": [
+      "Great Sheet",
+      "The Great Sheet",
+      "Sheet with Four Corners",
+      "The Great Sheet with Animals"
+    ],
+    "reference": "Acts 10:9–16; 11:5–10",
+    "explanation": "Peter saw a great sheet descending from heaven containing unclean animals, teaching that God has cleansed the Gentiles for salvation.",
+    "hint": "Great linen sheet let down from heaven by its four corners with animals.",
+    "testament": "New Testament",
+    "difficulty": "hard",
+    "timerSeconds": 25
+  },
+  {
+    "level": 15,
+    "challengeIndex": 1,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Apocalyptic Symbols & Heavenly Vessels",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nIn Revelation 5, we are golden vessels held by the twenty-four elders as they fall down before the Lamb on the heavenly throne. We are full of aromatic burning incense, which the Apostle John explicitly interprets as the prayers of the saints ascending before God. What are we?",
+    "clues": [
+      "Golden bowls (or golden vials in the KJV).",
+      "Filled with incense symbolizing the intercessions of God’s people.",
+      "Held by the 24 elders along with harps."
+    ],
+    "options": [
+      "Golden Bowls Full of Incense",
+      "Seven Golden Lampstands",
+      "Seven Golden Trumpets",
+      "Seven Golden Vials of Wrath"
+    ],
+    "correctAnswer": "Golden Bowls Full of Incense",
+    "acceptedAlternatives": [
+      "Golden Bowls",
+      "Golden Vials",
+      "Bowls of Incense",
+      "Golden Bowls of Incense"
+    ],
+    "reference": "Revelation 5:8; 8:3–4",
+    "explanation": "The twenty-four elders held golden bowls full of incense, which represent the prayers of the saints before the throne of God.",
+    "hint": "Golden bowls filled with incense representing the prayers of the saints.",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 15,
+    "challengeIndex": 2,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Apocalyptic Symbols & Heavenly Vessels",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nIn Revelation 1, the glorified Son of Man walks in the midst of seven of us, holding seven stars in His right hand. His eyes are like a flame of fire, His voice is like the roar of many waters, and He explicitly reveals our mystery: \"The seven stars are the angels of the seven churches, and the seven [...] are the seven churches.\" What are we?",
+    "clues": [
+      "Seven golden lampstands (or candlesticks).",
+      "Represent the seven churches of Asia Minor (Ephesus, Smyrna, Pergamum, etc.).",
+      "Christ warns Ephesus that He will remove their lampstand if they do not repent."
+    ],
+    "options": [
+      "Seven Golden Lampstands",
+      "Seven Golden Candlesticks",
+      "Seven Stars",
+      "Seven Golden Crowns"
+    ],
+    "correctAnswer": "Seven Golden Lampstands",
+    "acceptedAlternatives": [
+      "Seven Golden Lampstands",
+      "Seven Golden Candlesticks",
+      "Golden Lampstands",
+      "Seven Lampstands"
+    ],
+    "reference": "Revelation 1:12–20; 2:1, 5",
+    "explanation": "The seven golden lampstands represent the seven historical churches of Asia Minor among whom the glorified Christ walks.",
+    "hint": "Seven golden light-bearing stands representing the seven churches.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 15,
+    "challengeIndex": 3,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Apocalyptic Symbols & Heavenly Vessels",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was an open document held in the hand of a mighty angel who came down from heaven wrapped in a cloud with a rainbow over his head, whose right foot was on the sea and left foot on the land. When the Apostle John was told to take me from the angel’s hand and eat me, I tasted sweet as honey in his mouth, but made his stomach bitterly sour. What am I?",
+    "clues": [
+      "The \"little scroll\" (biblaridion) in Revelation 10.",
+      "Echoes Ezekiel eating the scroll of lamentations (Ezekiel 3:1–3).",
+      "Followed by the command: \"You must prophesy again about many peoples and nations and languages and kings.\""
+    ],
+    "options": [
+      "The Little Scroll",
+      "The Seven-Sealed Book",
+      "The Lamb’s Book of Life",
+      "The Measuring Rod"
+    ],
+    "correctAnswer": "The Little Scroll",
+    "acceptedAlternatives": [
+      "Little Scroll",
+      "The Little Book",
+      "Little Book"
+    ],
+    "reference": "Revelation 10:1–11",
+    "explanation": "John took the little scroll from the mighty angel and ate it; it tasted sweet as honey in his mouth but became bitter in his stomach.",
+    "hint": "Little scroll eaten by John that was sweet as honey but bitter in his stomach.",
+    "testament": "New Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 15,
+    "challengeIndex": 4,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Apocalyptic Symbols & Heavenly Vessels",
+    "riddleType": "What Am I?",
+    "isTyped": false,
+    "questionText": "WHAT AM I?\nI was a scroll in the right hand of Him who sat on the heavenly throne, written within and on the back, and sealed with seven unbroken wax seals. When a mighty angel proclaimed with a loud voice, \"Who is worthy to open the scroll and break its seals?\", no one in heaven or on earth or under the earth was able to open me or look into me, causing John to weep loudly until the Lion of the tribe of Judah prevailed to open me. What am I?",
+    "clues": [
+      "Written inside and on the back (opisthograph).",
+      "Sealed with seven seals.",
+      "Opened exclusively by the Lamb standing as though slain."
+    ],
+    "options": [
+      "The Seven-Sealed Scroll",
+      "The Lamb’s Book of Life",
+      "The Little Scroll",
+      "The Title Deed of the Earth"
+    ],
+    "correctAnswer": "The Seven-Sealed Scroll",
+    "acceptedAlternatives": [
+      "Seven Sealed Scroll",
+      "The Scroll with Seven Seals",
+      "The Seven-Sealed Book",
+      "Seven-Sealed Scroll"
+    ],
+    "reference": "Revelation 5:1–7; 6:1",
+    "explanation": "The seven-sealed scroll in God’s right hand contained divine redemptive judgments and could only be opened by the slain Lamb.",
+    "hint": "Heavenly scroll sealed with seven seals opened only by the Lamb.",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 15,
+    "challengeIndex": 5,
+    "stage": 3,
+    "stageTitle": "Objects and Symbols",
+    "levelTitle": "Apocalyptic Symbols & Heavenly Vessels",
+    "riddleType": "Type the Object",
+    "isTyped": true,
+    "questionText": "TYPE THE OBJECT — MINI-BOSS RIDDLE:\nIn Revelation 2:17, Christ promises to the overcomer in the compromised church of Pergamum: \"To the one who conquers I will give some of the hidden manna, and I will give him a [...], with a new name written on the [...] that no one knows except the one who receives it.\" What is this reward object?",
+    "clues": [
+      "In Greco-Roman courts, a white stone symbolized acquittal, whereas a black stone signaled condemnation.",
+      "Used as an admission token (tessera) to celebratory banquets.",
+      "Inscribed with a secret new name known only to the recipient."
+    ],
+    "options": [
+      "A White Stone",
+      "A Golden Crown",
+      "A White Robe",
+      "An Iron Rod"
+    ],
+    "correctAnswer": "A White Stone",
+    "acceptedAlternatives": [
+      "White Stone",
+      "The White Stone"
+    ],
+    "reference": "Revelation 2:17",
+    "explanation": "Christ promises the overcomer in Pergamum a white stone engraved with a new, secret name, symbolizing acquittal, honor, and intimacy.",
+    "hint": "Reward given to the overcomer in Pergamum inscribed with a secret new name.",
+    "testament": "New Testament",
+    "difficulty": "hard",
+    "timerSeconds": 25
+  },
+  {
+    "level": 16,
+    "challengeIndex": 1,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Ancient Waters & Wilderness Waypoints",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was an oasis in the wilderness of Shur where the thirsty Israelites arrived after three days of marching without water from the Red Sea. They could not drink my waters because they were bitterly foul, causing the people to grumble against Moses. When Moses cried to the Lord, God showed him a specific tree; when he threw it into the water, my bitter springs became sweet. What place am I?",
+    "clues": [
+      "Name literally means \"bitterness\" in Hebrew.",
+      "Directly preceded Elim, where there were twelve springs and seventy palm trees.",
+      "God revealed Himself here as Yahweh-Rapha: \"I am the Lord, your healer.\""
+    ],
+    "options": [
+      "Marah",
+      "Elim",
+      "Massah",
+      "Rephidim"
+    ],
+    "correctAnswer": "Marah",
+    "acceptedAlternatives": [
+      "Waters of Marah"
+    ],
+    "reference": "Exodus 15:22–26; Numbers 33:8–9",
+    "explanation": "Marah’s bitter waters were sweetened when Moses threw a tree shown by God into the spring, and God revealed Himself as Yahweh-Rapha.",
+    "hint": "Wilderness oasis whose bitter waters were sweetened by a tree.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 16,
+    "challengeIndex": 2,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Ancient Waters & Wilderness Waypoints",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a remote, steep ravine east of the Jordan River where the prophet Elijah was commanded to hide during the three-and-a-half-year drought he had declared over Israel. There, ravens brought the prophet bread and meat every morning and evening, and he drank from my bubbling brook until the water dried up because there was no rain in the land. What brook am I?",
+    "clues": [
+      "Brook that flows into the Jordan from the east.",
+      "Elijah hid here before being directed to the widow of Zarephath in Sidon.",
+      "Miraculous ravens served as God’s couriers here."
+    ],
+    "options": [
+      "Brook Cherith",
+      "Brook Kishon",
+      "Brook Kidron",
+      "River Jabbok"
+    ],
+    "correctAnswer": "Brook Cherith",
+    "acceptedAlternatives": [
+      "Cherith",
+      "The Brook Cherith",
+      "Wadi Cherith"
+    ],
+    "reference": "1 Kings 17:2–7",
+    "explanation": "Brook Cherith was the secluded wadi where Elijah was sustained by ravens and brook water until the stream dried up.",
+    "hint": "Secluded brook where ravens fed Elijah bread and meat.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 16,
+    "challengeIndex": 3,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Ancient Waters & Wilderness Waypoints",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a freshwater spring and pool in lower Jerusalem fed by the waters of the Gihon Spring via King Hezekiah’s underground tunnel. Jesus spat on the ground, made clay with the saliva, anointed the eyes of a man blind from birth, and said to him: \"Go, wash in the pool of [...].\" The man went, washed, and came back seeing. What pool am I?",
+    "clues": [
+      "John’s Gospel notes that my name translates as \"Sent\" (Shiloach).",
+      "Fed by the Gihon Spring through a 1,750-foot rock tunnel.",
+      "Water was drawn from me during the Feast of Tabernacles for the water libation ceremony."
+    ],
+    "options": [
+      "Pool of Siloam",
+      "Pool of Bethesda",
+      "Pool of Gibeon",
+      "Pool of Samaria"
+    ],
+    "correctAnswer": "Pool of Siloam",
+    "acceptedAlternatives": [
+      "Siloam",
+      "The Pool of Siloam",
+      "Shiloah"
+    ],
+    "reference": "John 9:6–11; Isaiah 8:6",
+    "explanation": "The Pool of Siloam (meaning \"Sent\") was where the blind man washed off Jesus’ clay and received his sight.",
+    "hint": "Jerusalem pool meaning \"Sent\" where a blind man washed and received sight.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 16,
+    "challengeIndex": 4,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Ancient Waters & Wilderness Waypoints",
+    "riddleType": "The Three-Clue Riddle",
+    "isTyped": false,
+    "questionText": "THE THREE-CLUE RIDDLE:\nClue 1: I was a spring at the foot of Mount Gilboa where Gideon and his army camped.\nClue 2: My name in Hebrew translates to \"Trembling\" or \"Spring of Trembling.\"\nClue 3: At my waters, Gideon tested his men by watching how they drank—twenty-two thousand left because they were afraid, and from the remaining ten thousand, only three hundred who lapped water like a dog were selected. What spring am I?",
+    "clues": [
+      "Located opposite the hill of Moreh.",
+      "Sifted Gideon’s army from 32,000 down to 300.",
+      "Known as the Spring of Harod (Well of Harod)."
+    ],
+    "options": [
+      "Spring of Harod",
+      "Waters of Megiddo",
+      "Brook Kishon",
+      "Well of Beersheba"
+    ],
+    "correctAnswer": "Spring of Harod",
+    "acceptedAlternatives": [
+      "Well of Harod",
+      "Harod",
+      "The Well of Harod",
+      "En-harod"
+    ],
+    "reference": "Judges 7:1–7",
+    "explanation": "The Spring of Harod (\"Spring of Trembling\") was where Gideon sifted his army down to 300 men based on how they lapped water.",
+    "hint": "Spring of Trembling where Gideon chose his 300 men who lapped water.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 16,
+    "challengeIndex": 5,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Ancient Waters & Wilderness Waypoints",
+    "riddleType": "Type the Place",
+    "isTyped": true,
+    "questionText": "TYPE THE PLACE — MINI-BOSS RIDDLE:\nI was a double-pool near the Sheep Gate in Jerusalem surrounded by five roofed colonnades (porches). In my waters lay a multitude of invalids—blind, lame, and paralyzed—waiting for the stirring of the water, believing the first one in would be healed. Jesus walked in on the Sabbath, encountered a man who had been an invalid for thirty-eight years, and said: \"Get up, take up your bed, and walk.\" What is the Hebrew name of this five-porched pool?",
+    "clues": [
+      "Aramaic name means \"House of Mercy\" (Bethesda) or \"House of Olives\" (Bethzatha).",
+      "Excavations near St. Anne’s Church in Jerusalem confirmed its five porticoes.",
+      "Contrasted with the Pool of Siloam in John’s Gospel."
+    ],
+    "options": [
+      "Pool of Bethesda",
+      "Pool of Siloam",
+      "Pool of Hezekiah",
+      "Pool of Solomon"
+    ],
+    "correctAnswer": "Pool of Bethesda",
+    "acceptedAlternatives": [
+      "Bethesda",
+      "Pool of Bethzatha",
+      "Bethzatha",
+      "The Pool of Bethesda"
+    ],
+    "reference": "John 5:1–9",
+    "explanation": "The Pool of Bethesda with five porticoes by the Sheep Gate was where Jesus healed the man paralyzed for 38 years on the Sabbath.",
+    "hint": "Five-porched pool by the Sheep Gate in Jerusalem where Jesus healed a 38-year invalid.",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 25
+  },
+  {
+    "level": 17,
+    "challengeIndex": 1,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Sacred Mountains & Heights",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was the mountain ridge in the land of Moriah where Abraham was directed by God to journey for three days to offer his only beloved son Isaac as a burnt offering. On my summit, the angel of the Lord halted the raised knife, a ram caught in a thicket by its horns was sacrificed instead, and Abraham named me Yahweh-Jireh (\"The Lord will provide\"). A millennium later, Solomon built the Temple upon my threshing floor. What mountain am I?",
+    "clues": [
+      "Site of the Akedah (binding of Isaac).",
+      "Purchased by David as the threshing floor of Araunah the Jebusite.",
+      "Site of Solomon’s Temple (2 Chronicles 3:1)."
+    ],
+    "options": [
+      "Mount Moriah",
+      "Mount Sinai",
+      "Mount Carmel",
+      "Mount Zion"
+    ],
+    "correctAnswer": "Mount Moriah",
+    "acceptedAlternatives": [
+      "Moriah",
+      "Mount of the Lord"
+    ],
+    "reference": "Genesis 22:1–14; 2 Chronicles 3:1",
+    "explanation": "Mount Moriah was where Abraham prepared to sacrifice Isaac, God provided the ram, and Solomon later constructed the Temple.",
+    "hint": "Mountain where Abraham offered Isaac and Solomon built the Temple.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 17,
+    "challengeIndex": 2,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Sacred Mountains & Heights",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a prominent mountain on the border of the land of Edom where Moses was commanded to bring Aaron and his son Eleazar before the eyes of all the congregation. On my summit, Moses stripped Aaron of his sacred high priestly vestments and placed them upon Eleazar. Aaron died there on the mountain peak at the age of one hundred and twenty-three, and Israel mourned thirty days. What mountain am I?",
+    "clues": [
+      "Burial site of Aaron, Israel’s first high priest.",
+      "Located on the frontier of Edom.",
+      "Elevation where the high priesthood passed from Aaron to Eleazar."
+    ],
+    "options": [
+      "Mount Hor",
+      "Mount Nebo",
+      "Mount Pisgah",
+      "Mount Seir"
+    ],
+    "correctAnswer": "Mount Hor",
+    "acceptedAlternatives": [
+      "Hor",
+      "Hor ha-Har"
+    ],
+    "reference": "Numbers 20:22–29; 33:38–39",
+    "explanation": "Mount Hor on the border of Edom was where Aaron was stripped of his priestly robes, died, and was buried.",
+    "hint": "Mountain on the border of Edom where Aaron died and was buried.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 17,
+    "challengeIndex": 3,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Sacred Mountains & Heights",
+    "riddleType": "The Double-Meaning Riddle",
+    "isTyped": false,
+    "questionText": "THE DOUBLE-MEANING RIDDLE:\nWe were two facing mountains in central Canaan framing the ancient city of Shechem. Six tribes stood on one mountain to pronounce blessings for obedience, while six tribes stood on the other to shout solemn curses for disobedience. Joshua built an altar of unhewn stones and wrote a copy of the Law on the mountain of the curse. What are the names of these twin covenant mountains?",
+    "clues": [
+      "Mount Gerizim for blessing (Simeon, Levi, Judah, Issachar, Joseph, Benjamin).",
+      "Mount Ebal for cursing (Reuben, Gad, Asher, Zebulun, Dan, Naphtali).",
+      "Located in the heart of Samaria."
+    ],
+    "options": [
+      "Mount Gerizim and Mount Ebal",
+      "Mount Sinai and Mount Horeb",
+      "Mount Carmel and Mount Tabor",
+      "Mount Zion and Mount Moriah"
+    ],
+    "correctAnswer": "Mount Gerizim and Mount Ebal",
+    "acceptedAlternatives": [
+      "Gerizim and Ebal",
+      "Mount Ebal and Mount Gerizim",
+      "Ebal and Gerizim",
+      "Gerizim & Ebal"
+    ],
+    "reference": "Deuteronomy 11:29; 27:11–13; Joshua 8:30–35",
+    "explanation": "Mount Gerizim was designated for blessings and Mount Ebal for curses as Israel entered the Promised Land.",
+    "hint": "Twin mountains of blessing and curse framing Shechem.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 17,
+    "challengeIndex": 4,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Sacred Mountains & Heights",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was an olive-tree-covered ridge east of Jerusalem, separated from the Temple Mount by the steep Kidron Valley. David wept barefoot with his head covered as he climbed me while fleeing Absalom. Jesus wept over Jerusalem from my crest during His triumphal entry, agonized in Gethsemane at my base, ascended into heaven from my slopes, and Zechariah prophesies that His feet will stand on me in the day of the Lord, splitting me in two from east to west. What ridge am I?",
+    "clues": [
+      "The Mount of Olives (Olivet).",
+      "Site of the Olivet Discourse (Matthew 24).",
+      "Zechariah 14:4 foretells it will split in two creating a great valley."
+    ],
+    "options": [
+      "Mount of Olives",
+      "Mount Zion",
+      "Mount Moriah",
+      "Mount of Offense"
+    ],
+    "correctAnswer": "Mount of Olives",
+    "acceptedAlternatives": [
+      "Mount Olivet",
+      "The Mount of Olives",
+      "Olivet"
+    ],
+    "reference": "2 Samuel 15:30; Zechariah 14:4; Luke 19:37–41; Acts 1:9–12",
+    "explanation": "The Mount of Olives overlooks Jerusalem, witnessed David’s flight, Christ’s agony and ascension, and is prophesied to split at His return.",
+    "hint": "Olive-covered ridge east of Jerusalem where Jesus ascended.",
+    "testament": "Both",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 17,
+    "challengeIndex": 5,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Sacred Mountains & Heights",
+    "riddleType": "Type the Place",
+    "isTyped": true,
+    "questionText": "TYPE THE PLACE — MINI-BOSS RIDDLE:\nI was the highest snow-capped mountain ridge in the far north of Israel, towering over nine thousand feet above sea level at the headwaters of the Jordan River. Psalm 133 compares fraternal unity among brethren to my sweet, heavy morning dew descending upon the mountains of Zion. Christian tradition often identifies my majestic heights as the probable location of the Transfiguration of Jesus Christ. What mountain am I?",
+    "clues": [
+      "Known as Sirion by the Sidonians and Senir by the Amorites (Deuteronomy 3:9).",
+      "Northern boundary of the Promised Land conquered by Joshua.",
+      "Snowy peaks visible throughout Galilee and the Decapolis."
+    ],
+    "options": [
+      "Mount Hermon",
+      "Mount Tabor",
+      "Mount Carmel",
+      "Mount Lebanon"
+    ],
+    "correctAnswer": "Mount Hermon",
+    "acceptedAlternatives": [
+      "Hermon",
+      "The Mount Hermon"
+    ],
+    "reference": "Deuteronomy 3:8–9; Psalm 133:3; Matthew 17:1–2",
+    "explanation": "Mount Hermon is the northern snow-capped mountain famed for its heavy dew in Psalm 133:3 and the probable site of the Transfiguration.",
+    "hint": "Snowy northern mountain famed in Psalm 133 for its refreshing dew.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 25
+  },
+  {
+    "level": 18,
+    "challengeIndex": 1,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Conquered Cities & Ruins",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a small Canaanite hill town east of Bethel whose name literally means \"The Ruin.\" When Joshua sent only three thousand men to capture me after the fall of Jericho, my defenders routed them and killed thirty-six Israelites, because Achan had stolen devoted treasures in secret. After Achan was stoned in the valley of Achor, Joshua set an ambush behind me, burned me to the ground, and turned me into a permanent heap of ruins. What city am I?",
+    "clues": [
+      "Joshua’s second military target in Canaan.",
+      "Capture involved setting five thousand men in ambush between Bethel and me.",
+      "City’s king was hanged on a tree until evening."
+    ],
+    "options": [
+      "Ai",
+      "Jericho",
+      "Bethel",
+      "Gibeon"
+    ],
+    "correctAnswer": "Ai",
+    "acceptedAlternatives": [
+      "The City of Ai",
+      "Hai"
+    ],
+    "reference": "Joshua 7:1–5; 8:1–29",
+    "explanation": "Ai was the city where Israel was initially defeated due to Achan’s sin, and subsequently conquered through an ambush strategy.",
+    "hint": "Small city where Israel was defeated before Joshua ambushed and burned it.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 18,
+    "challengeIndex": 2,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Conquered Cities & Ruins",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was the city in Ephraim where the Tabernacle was pitched and the Ark of the Covenant rested for over three centuries after the conquest of Canaan. Hannah prayed silently here for a child, Samuel heard God’s call here at night while lying near the Ark, and Eli fell backward from his seat and broke his neck when news arrived that my Ark had been captured by Philistines. Jeremiah later warned Jerusalem: \"Go now to my place that was in [...], and see what I did to it for the evil of my people Israel.\" What city am I?",
+    "clues": [
+      "First permanent religious center for the Tabernacle in the Promised Land.",
+      "Hophni and Phinehas corrupted the offerings here.",
+      "Destroyed by Philistines after the battle of Ebenezer."
+    ],
+    "options": [
+      "Shiloh",
+      "Shechem",
+      "Bethel",
+      "Mizpah"
+    ],
+    "correctAnswer": "Shiloh",
+    "acceptedAlternatives": [
+      "Silo"
+    ],
+    "reference": "Joshua 18:1; 1 Samuel 1:3; 3:1–21; 4:12–18; Jeremiah 7:12–14",
+    "explanation": "Shiloh was the sanctuary home of the Tabernacle during the Judges until the Ark was captured and God abandoned the city.",
+    "hint": "City where Samuel grew up in the Tabernacle and Eli died; later destroyed.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 18,
+    "challengeIndex": 3,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Conquered Cities & Ruins",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nOriginally called Luz, I was the place where Jacob slept on a stone pillow and dreamed of a ladder set up on earth with its top reaching to heaven, and the angels of God ascending and descending on it. Awaking in awe, Jacob exclaimed, \"How awesome is this place! This is none other than the house of God, and this is the gate of heaven,\" and poured oil upon the stone. Centuries later, Jeroboam turned me into a center of apostasy by erecting one of his golden calves here. What city am I?",
+    "clues": [
+      "Name means \"House of God\" in Hebrew.",
+      "Jacob returned here by God’s command in Genesis 35.",
+      "Condemned by the prophets as Beth-aven (\"House of Iniquity\") due to Jeroboam’s calf."
+    ],
+    "options": [
+      "Bethel",
+      "Peniel",
+      "Shechem",
+      "Beersheba"
+    ],
+    "correctAnswer": "Bethel",
+    "acceptedAlternatives": [
+      "Beth-el",
+      "House of God"
+    ],
+    "reference": "Genesis 28:10–22; 35:1–7; 1 Kings 12:28–33",
+    "explanation": "Bethel (\"House of God\"), formerly Luz, was where Jacob saw the ladder to heaven and Jeroboam later erected a golden calf.",
+    "hint": "City where Jacob saw the ladder to heaven, meaning \"House of God.\"",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 18,
+    "challengeIndex": 4,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Conquered Cities & Ruins",
+    "riddleType": "The Three-Clue Riddle",
+    "isTyped": false,
+    "questionText": "THE THREE-CLUE RIDDLE:\nClue 1: I was an ancient Hivite royal city whose inhabitants sent ambassadors to Joshua disguised in worn-out sacks, patched sandals, and moldy bread.\nClue 2: We tricked Israel into making a binding covenant of peace without inquiring of the Lord.\nClue 3: When the deception was discovered, Joshua spared our lives but made us woodcutters and water carriers for the house of God forever; later, the sun stood still over me during battle. What city am I?",
+    "clues": [
+      "City of the crafty Gibeonites.",
+      "Five Amorite kings banded together to attack me for making peace with Joshua.",
+      "Site of the legendary miraculous long day when the sun stood still."
+    ],
+    "options": [
+      "Gibeon",
+      "Beeroth",
+      "Kiriath-jearim",
+      "Chephirah"
+    ],
+    "correctAnswer": "Gibeon",
+    "acceptedAlternatives": [
+      "City of Gibeon"
+    ],
+    "reference": "Joshua 9:3–27; 10:1–14",
+    "explanation": "Gibeon tricked Joshua into a covenant of peace using moldy bread and worn sandals, and was the site where the sun stood still in battle.",
+    "hint": "City that deceived Joshua with moldy bread; where the sun stood still.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 18,
+    "challengeIndex": 5,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Conquered Cities & Ruins",
+    "riddleType": "Type the Place",
+    "isTyped": true,
+    "questionText": "TYPE THE PLACE — MINI-BOSS RIDDLE:\nI was the capital city of the ruthless Assyrian Empire on the east bank of the Tigris River, described by the prophet Nahum as \"the bloody city, all full of lies and plunder.\" An ancient metropolis requiring three days to cross on foot, my king and people repented in sackcloth and ashes at the eight-word warning of a reluctant Hebrew prophet. However, a century later, Nahum and Zephaniah prophesied my final inundation and desolate ruin. What city am I?",
+    "clues": [
+      "Spared in the book of Jonah when 120,000 who could not discern their right hand from their left repented.",
+      "Destroyed in 612 BC by a coalition of Medes and Babylonians fulfilling Nahum.",
+      "Located opposite modern Mosul, Iraq."
+    ],
+    "options": [
+      "Nineveh",
+      "Babylon",
+      "Susa",
+      "Calneh"
+    ],
+    "correctAnswer": "Nineveh",
+    "acceptedAlternatives": [
+      "Nineve"
+    ],
+    "reference": "Jonah 3:1–10; Nahum 1:1; 3:1–7; Zephaniah 2:13–15",
+    "explanation": "Nineveh was the Assyrian capital that repented under Jonah’s preaching, but was later completely destroyed as prophesied by Nahum.",
+    "hint": "Assyrian capital city that repented in sackcloth under Jonah’s preaching.",
+    "testament": "Old Testament",
+    "difficulty": "medium",
+    "timerSeconds": 25
+  },
+  {
+    "level": 19,
+    "challengeIndex": 1,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "New Testament Waypoints & Ports",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a Roman administrative city located at the foot of Mount Hermon near the headwaters of the Jordan River, rebuilt and renamed by the tetrarch Herod Philip in honor of Caesar. In our district, Jesus asked His disciples, \"Who do people say that the Son of Man is?\", prompting Simon Peter’s famous confession: \"You are the Christ, the Son of the living God.\" What city am I?",
+    "clues": [
+      "Not to be confused with Caesarea Maritima on the Mediterranean coast.",
+      "Site where Jesus declared: \"On this rock I will build my church, and the gates of hell shall not prevail against it.\"",
+      "Ancient center of Pan worship (Paneas)."
+    ],
+    "options": [
+      "Caesarea Philippi",
+      "Caesarea Maritima",
+      "Capernaum",
+      "Bethsaida"
+    ],
+    "correctAnswer": "Caesarea Philippi",
+    "acceptedAlternatives": [
+      "Caesarea-Philippi",
+      "Cesarea Philippi"
+    ],
+    "reference": "Matthew 16:13–20; Mark 8:27–30",
+    "explanation": "Caesarea Philippi was the northern district where Peter confessed Jesus as the Christ, the Son of the Living God.",
+    "hint": "Northern city where Peter declared: \"You are the Christ, the Son of the living God.\"",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 19,
+    "challengeIndex": 2,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "New Testament Waypoints & Ports",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a major port city on the Aegean Sea in northwest Asia Minor (Mysia) near ancient Troy. In this city, the Apostle Paul received his famous night vision of a man standing and urging him, \"Come over to Macedonia and help us,\" prompting the first European missionary journey. On a later visit, Paul preached here until midnight and raised the young man Eutychus from the dead. What port am I?",
+    "clues": [
+      "Full name: Alexandria Troas.",
+      "Luke joins the narrative here as indicated by the \"we\" passage in Acts 16:10.",
+      "Paul left his winter cloak and parchments here with Carpus (2 Timothy 4:13)."
+    ],
+    "options": [
+      "Troas",
+      "Miletus",
+      "Ephesus",
+      "Pergamum"
+    ],
+    "correctAnswer": "Troas",
+    "acceptedAlternatives": [
+      "Alexandria Troas"
+    ],
+    "reference": "Acts 16:8–10; 20:5–12; 2 Timothy 4:13",
+    "explanation": "Troas was the Aegean port where Paul saw the Macedonian vision and later raised Eutychus from the dead.",
+    "hint": "Aegean seaport where Paul saw the vision of the Macedonian man calling for help.",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 19,
+    "challengeIndex": 3,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "New Testament Waypoints & Ports",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a rocky hill northwest of the Acropolis in Athens where the supreme judicial council of the city convened. Epicurean and Stoic philosophers brought Paul to me, asking, \"May we know what this new teaching is that you are presenting?\" Standing in my midst, Paul addressed the council, declaring that he had found an altar with the inscription: \"TO THE UNKNOWN GOD.\" What place am I?",
+    "clues": [
+      "Known in Greek as the Areopagus (Hill of Ares) and in Latin as Mars Hill.",
+      "Paul quoted Greek poets here: \"In him we live and move and have our being.\"",
+      "Dionysius the Areopagite and a woman named Damaris were converted here."
+    ],
+    "options": [
+      "The Areopagus / Mars Hill",
+      "The Acropolis",
+      "The Agora",
+      "The Pnyx"
+    ],
+    "correctAnswer": "The Areopagus / Mars Hill",
+    "acceptedAlternatives": [
+      "Areopagus",
+      "Mars Hill",
+      "Mars’ Hill",
+      "The Areopagus"
+    ],
+    "reference": "Acts 17:19–34",
+    "explanation": "The Areopagus (Mars Hill) in Athens was the council where Paul preached about the \"Unknown God\" and the resurrection of Christ.",
+    "hint": "Athenian council hill where Paul preached concerning the \"Unknown God.\"",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 19,
+    "challengeIndex": 4,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "New Testament Waypoints & Ports",
+    "riddleType": "The Three-Clue Riddle",
+    "isTyped": false,
+    "questionText": "THE THREE-CLUE RIDDLE:\nClue 1: I was an island in the central Mediterranean south of Sicily where a grain ship carrying 276 passengers was shipwrecked in a violent northeastern storm (Euroclydon).\nClue 2: My native inhabitants showed extraordinary kindness by kindling a fire in the rain and cold.\nClue 3: When a deadly viper latched onto Paul’s hand as he gathered sticks, he shook it into the fire unharmed; Paul then healed the father of Publius, the chief man of our island. What island am I?",
+    "clues": [
+      "Known in Acts as Melita (modern Malta).",
+      "Island inhabitants first thought Paul was a murderer, then decided he was a god.",
+      "Ship spent three months wintering here before boarding the Castor and Pollux."
+    ],
+    "options": [
+      "Malta / Melita",
+      "Crete",
+      "Cyprus",
+      "Patmos"
+    ],
+    "correctAnswer": "Malta / Melita",
+    "acceptedAlternatives": [
+      "Malta",
+      "Melita",
+      "Island of Malta",
+      "Island of Melita"
+    ],
+    "reference": "Acts 27:39–44; 28:1–11",
+    "explanation": "Melita (modern Malta) was the island where Paul was shipwrecked, shook off a poisonous viper into the fire, and healed Publius’ father.",
+    "hint": "Island where Paul was shipwrecked and shook off a viper into the fire.",
+    "testament": "New Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 19,
+    "challengeIndex": 5,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "New Testament Waypoints & Ports",
+    "riddleType": "Type the Place",
+    "isTyped": true,
+    "questionText": "TYPE THE PLACE — MINI-BOSS RIDDLE:\nI was a prominent Greco-Roman metropolis on the Orontes River in Syria, the third largest city of the Roman Empire. When believers scattered after Stephen’s martyrdom began preaching the Lord Jesus to Greek-speaking Gentiles here, a great number believed. Barnabas brought Saul from Tarsus to teach the church for a whole year. In this city, the disciples were for the very first time called \"Christians.\" What city am I?",
+    "clues": [
+      "Antioch in Syria (Antioch on the Orontes).",
+      "The home sending base for all three of Paul’s missionary journeys.",
+      "Site of the dispute where Paul confronted Peter to his face over table fellowship with Gentiles (Galatians 2:11)."
+    ],
+    "options": [
+      "Antioch in Syria",
+      "Antioch of Pisidia",
+      "Damascus",
+      "Alexandria"
+    ],
+    "correctAnswer": "Antioch in Syria",
+    "acceptedAlternatives": [
+      "Antioch",
+      "Syrian Antioch",
+      "Antioch on the Orontes"
+    ],
+    "reference": "Acts 11:19–26; 13:1–3; Galatians 2:11",
+    "explanation": "Antioch in Syria was the multicultural city where disciples were first called Christians and the launching pad for foreign missions.",
+    "hint": "Syrian city where the followers of Jesus were first called \"Christians.\"",
+    "testament": "New Testament",
+    "difficulty": "medium",
+    "timerSeconds": 25
+  },
+  {
+    "level": 20,
+    "challengeIndex": 1,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Mysterious Valleys & Graves",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a valley near Jericho whose name means \"Trouble.\" Here, Achan, who took devoted gold, silver, and a beautiful mantle from Shinar from Jericho, was stoned and burned with his household under a great heap of stones. In Hosea 2:15, God promises a future redemption, transforming me from a place of judgment into \"a door of hope.\" What valley am I?",
+    "clues": [
+      "Joshua said to Achan: \"Why have you brought trouble on us? The Lord will trouble you today.\"",
+      "Named the Valley of Achor.",
+      "Isaiah 65:10 promises it will become a resting place for herds."
+    ],
+    "options": [
+      "Valley of Achor",
+      "Valley of Hinnom",
+      "Valley of Elah",
+      "Valley of Jezreel"
+    ],
+    "correctAnswer": "Valley of Achor",
+    "acceptedAlternatives": [
+      "Achor",
+      "The Valley of Achor"
+    ],
+    "reference": "Joshua 7:24–26; Hosea 2:15; Isaiah 65:10",
+    "explanation": "The Valley of Achor (\"Valley of Trouble\") was where Achan was stoned, and which Hosea prophesied would become a \"door of hope.\"",
+    "hint": "Valley of Trouble where Achan was stoned, prophesied as a \"door of hope.\"",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 20,
+    "challengeIndex": 2,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Mysterious Valleys & Graves",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was an ominous valley in exile into which the hand of the Lord transported the prophet Ezekiel in the Spirit. The valley floor was covered with a vast multitude of skeletal bones that were \"very dry.\" When the prophet was commanded to prophesy to the dry bones and then to the four winds, breath entered them, and they came to life, standing on their feet as an exceedingly great army symbolizing the restoration of the house of Israel. What valley am I?",
+    "clues": [
+      "The valley of dry bones in Ezekiel 37.",
+      "The bones cried: \"Our bones are dried up, and our hope is lost; we are indeed cut off.\"",
+      "God promised: \"I will open your graves and raise you from your graves, O my people.\""
+    ],
+    "options": [
+      "Valley of Dry Bones",
+      "Valley of Vision",
+      "Valley of Decision",
+      "Valley of the Shadow of Death"
+    ],
+    "correctAnswer": "Valley of Dry Bones",
+    "acceptedAlternatives": [
+      "The Valley of Dry Bones",
+      "Valley of the Dry Bones"
+    ],
+    "reference": "Ezekiel 37:1–14",
+    "explanation": "The Valley of Dry Bones was where Ezekiel prophesied life and the Spirit of God into a field of dry bones representing dead Israel.",
+    "hint": "Valley where Ezekiel saw dry skeletal bones come together and revive.",
+    "testament": "Old Testament",
+    "difficulty": "easy",
+    "timerSeconds": 30
+  },
+  {
+    "level": 20,
+    "challengeIndex": 3,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Mysterious Valleys & Graves",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was a broad valley in the desert of Tekoa where King Jehoshaphat and the people of Judah gathered after God miraculously threw the invading confederacy of Moab, Ammon, and Mount Seir into mutual self-destruction before a choir singing praises. It took three days to collect all the plunder of jewels, clothing, and precious vessels, and on the fourth day they assembled in me to bless Yahweh, giving me a name that means \"The Valley of Blessing.\" What valley am I?",
+    "clues": [
+      "The Valley of Beracah (Berakah).",
+      "The choir sang: \"Give thanks to the Lord, for his steadfast love endures forever.\"",
+      "Located in the Judean wilderness south of Bethlehem."
+    ],
+    "options": [
+      "Valley of Beracah",
+      "Valley of Achor",
+      "Valley of Rephaim",
+      "Valley of Jehoshaphat"
+    ],
+    "correctAnswer": "Valley of Beracah",
+    "acceptedAlternatives": [
+      "Beracah",
+      "Valley of Berakah",
+      "The Valley of Blessing"
+    ],
+    "reference": "2 Chronicles 20:20–26",
+    "explanation": "The Valley of Beracah (\"Valley of Blessing\") was named because Judah assembled there to bless the Lord after the miraculous defeat of Moab and Ammon.",
+    "hint": "Valley of Blessing where Jehoshaphat’s army praised God after three days of gathering spoil.",
+    "testament": "Old Testament",
+    "difficulty": "hard",
+    "timerSeconds": 30
+  },
+  {
+    "level": 20,
+    "challengeIndex": 4,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Mysterious Valleys & Graves",
+    "riddleType": "Where Am I?",
+    "isTyped": false,
+    "questionText": "WHERE AM I?\nI was an ominous ravine south and west of Jerusalem associated with child sacrifices by fire to Molech during the apostasy of Ahaz and Manasseh. King Josiah thoroughly defiled my high places of Topheth with human bones so no one could pass their child through the fire. Because perpetual fires burned city refuse and carcasses here, my Greek name Gehenna became the vivid New Testament metaphor used by Jesus for hellfire. What valley am I?",
+    "clues": [
+      "The Valley of Hinnom (Gei-Hinnom / Gehenna).",
+      "Jeremiah prophesied it would be renamed the Valley of Slaughter.",
+      "Jesus spoke of Gehenna as a place where \"their worm does not die and the fire is not quenched.\""
+    ],
+    "options": [
+      "Valley of Hinnom / Gehenna",
+      "Valley of Kidron",
+      "Valley of Achor",
+      "Valley of Elah"
+    ],
+    "correctAnswer": "Valley of Hinnom / Gehenna",
+    "acceptedAlternatives": [
+      "Valley of Hinnom",
+      "Gehenna",
+      "Valley of Ben Hinnom",
+      "Valley of Ben-Hinnom"
+    ],
+    "reference": "Joshua 15:8; 2 Kings 23:10; Jeremiah 7:31–32; Mark 9:43–48",
+    "explanation": "The Valley of the Son of Hinnom (Gehenna) was the site of Topheth and child sacrifice, which Jesus used to depict the final judgment.",
+    "hint": "Jerusalem valley of child sacrifice to Molech whose name became Gehenna (hell).",
+    "testament": "Both",
+    "difficulty": "medium",
+    "timerSeconds": 30
+  },
+  {
+    "level": 20,
+    "challengeIndex": 5,
+    "stage": 4,
+    "stageTitle": "Places of Mystery",
+    "levelTitle": "Mysterious Valleys & Graves",
+    "riddleType": "Type the Place",
+    "isTyped": true,
+    "questionText": "TYPE THE PLACE — MINI-BOSS RIDDLE:\nI was a plot of clay land just outside Jerusalem originally known as the Potter’s Field. Purchased by the chief priests using the thirty pieces of silver that Judas Iscariot threw into the temple sanctuary, I was designated as a burial place for destitute strangers and foreigners who died in the holy city. What is my Aramaic name, explicitly recorded in Matthew 27:8 and Acts 1:19, which translates as \"The Field of Blood\"?",
+    "clues": [
+      "Aramaic: Ἁκελδαμάχ (Akeldama).",
+      "Acts 1:18–19 records that Judas bought a field and falling headlong, burst open in the middle.",
+      "Matthew 27:7–10 links me to the prophecy of Jeremiah/Zechariah."
+    ],
+    "options": [
+      "Akeldama",
+      "Golgotha",
+      "Gethsemane",
+      "Bethany"
+    ],
+    "correctAnswer": "Akeldama",
+    "acceptedAlternatives": [
+      "Aceldama",
+      "Hakeldama",
+      "Field of Blood"
+    ],
+    "reference": "Matthew 27:7–8; Acts 1:18–19",
+    "explanation": "Akeldama (meaning \"Field of Blood\" in Aramaic) was the Potter’s Field bought with Judas’ betrayal money as a cemetery for foreigners.",
+    "hint": "Aramaic name for the Field of Blood bought with Judas’ thirty pieces of silver.",
+    "testament": "New Testament",
+    "difficulty": "hard",
+    "timerSeconds": 25
+  }
+];

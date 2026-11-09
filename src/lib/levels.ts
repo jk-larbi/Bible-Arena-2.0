@@ -11,7 +11,7 @@ export const DEFAULT_TOTAL_LEVELS = 50;
 
 // These games intentionally use client-generated content. Keep their attempts local
 // so the server never grades a different question bank than the one shown to players.
-const LOCAL_CONTENT_GAMES = new Set(['bible-crossword', 'bible-chain-challenge', 'complete-the-scripture']);
+const LOCAL_CONTENT_GAMES = new Set(['bible-crossword', 'bible-chain-challenge', 'verse-builder', 'guess-the-emoji', 'complete-the-scripture', 'bible-character-quest', 'scripture-scramble', 'bible-match-up', 'bible-timeline', 'bible-puzzles', 'find-the-bible-book', 'bible-riddles', 'bible-geography-quest', 'bible-memory-challenge']);
 export type Stars = 0 | 1 | 2 | 3 | 4 | 5;
 
 /** Preview & local fallback calculation matching the server stars_for_percent function. */
@@ -504,9 +504,21 @@ export async function submitChallengeAnswer(
     };
   }
 
-  const normUser = answer.trim().toLowerCase();
-  const normCorrect = localItem.correct_answer.trim().toLowerCase();
-  const isCorrect = normUser.length > 0 && normUser === normCorrect;
+  const normUserRaw = answer.trim().toLowerCase();
+  const normCorrectRaw = localItem.correct_answer.trim().toLowerCase();
+  const normUserAlphanum = normUserRaw.replace(/[^a-z0-9]/g, '');
+  const normCorrectAlphanum = normCorrectRaw.replace(/[^a-z0-9]/g, '');
+
+  const acceptedList: string[] = Array.isArray(localItem.metadata?.acceptedAlternatives)
+    ? localItem.metadata.acceptedAlternatives.map((a: string) => a.trim().toLowerCase())
+    : [];
+
+  const isCorrect =
+    normUserRaw.length > 0 &&
+    (normUserRaw === normCorrectRaw ||
+     normUserAlphanum === normCorrectAlphanum ||
+     acceptedList.includes(normUserRaw) ||
+     acceptedList.some((alt) => alt.replace(/[^a-z0-9]/g, '') === normUserAlphanum));
 
   // Anti-farming check: only add to persistent overall total if this challenge wasn't awarded before
   const { isNew, newTotal } = isCorrect

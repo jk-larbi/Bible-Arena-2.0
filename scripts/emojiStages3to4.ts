@@ -1,0 +1,1510 @@
+// Stage 3 & 4: Difficult Similar Stories, Forgotten Figures & Priestly Forensics (L11-20)
+// 50 challenges: 10 levels x 5 challenges
+
+import { EmojiChallengeItem } from './emojiStages1to2';
+
+export const EMOJI_STAGES_3_4: EmojiChallengeItem[] = [
+  // ==========================================
+  // STAGE 3: SIMILAR STORIES & FORGOTTEN FIGURES (Levels 11-15)
+  // Difficulty: Difficult (60s, 150 pts)
+  // ==========================================
+
+  // Level 11: Similar Story Traps
+  {
+    id: 'guess-the-emoji-l11-c1',
+    game_slug: 'guess-the-emoji',
+    level: 11,
+    challenge_index: 1,
+    question_text: '🏺 🫗 🛢️ 🚪 🪙',
+    options: [
+      "Elisha multiplying the widow's vessels of oil behind closed doors",
+      "Elijah providing inexhaustible flour and jar of oil at Zarephath",
+      "Woman pouring alabaster jar of costly ointment on Jesus",
+      "Wise virgins carrying extra oil in vessels with lamps"
+    ],
+    correct_answer: "Elisha multiplying the widow's vessels of oil behind closed doors",
+    explanation: '2 Kings 4:1–7 recounts the prophet’s widow who gathered empty vessels from all her neighbours, shut the door, and poured oil until every jar was filled to pay the creditor.',
+    reference: '2 Kings 4:1–7',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Similar Story Traps',
+      puzzle_type: 'similar_story_trap',
+      emojis: '🏺 🫗 🛢️ 🚪 🪙',
+      prompt: 'Beware similar widow miracles! Identify the exact miracle depicted.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Notice the shut door and multiple vessels gathered from neighbours.',
+      hint2: 'This prophet told her to sell the oil and live off the rest.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l11-c2',
+    game_slug: 'guess-the-emoji',
+    level: 11,
+    challenge_index: 2,
+    question_text: '🌊 🧺 🥖 🫗 💀',
+    options: [
+      "Elijah sustaining the widow of Zarephath with cake and cruse",
+      "Elisha multiplying twenty barley loaves at Gilgal",
+      "Abigail bringing bread, wine, and sheep to David",
+      "Ruth gathering leftover barley sheaves in Boaz's field"
+    ],
+    correct_answer: "Elijah sustaining the widow of Zarephath with cake and cruse",
+    explanation: '1 Kings 17:8–16 records Elijah asking the destitute widow of Zarephath to bake him a little cake first, promising the barrel of meal and cruse of oil would not fail.',
+    reference: '1 Kings 17:8–16',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Similar Story Traps',
+      puzzle_type: 'similar_story_trap',
+      emojis: '🌊 🧺 🥖 🫗 💀',
+      prompt: 'Do not confuse with Elisha! Which prophet and widow are these?',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'She had only a handful of meal in a barrel and a little oil in a cruse.',
+      hint2: 'Occurred during the severe drought in the territory of Sidon.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l11-c3',
+    game_slug: 'guess-the-emoji',
+    level: 11,
+    challenge_index: 3,
+    question_text: '🌊 🚶‍♂️🚶‍♀️ 📦 👣 🪨',
+    options: [
+      "Priests carrying the Ark standing firm while Jordan river parts",
+      "Moses stretching his rod over the Red Sea to divide waters",
+      "Elijah striking the waters of Jordan with his folded mantle",
+      "Peter stepping out onto the stormy Sea of Galilee"
+    ],
+    correct_answer: "Priests carrying the Ark standing firm while Jordan river parts",
+    explanation: 'Joshua 3:14–17 describes the priests bearing the Ark of the Covenant stepping into Jordan, and the waters cut off in a heap while all Israel passed on dry ground.',
+    reference: 'Joshua 3:14–17',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Similar Story Traps',
+      puzzle_type: 'similar_story_trap',
+      emojis: '🌊 🚶‍♂️🚶‍♀️ 📦 👣 🪨',
+      prompt: 'Water dividing miracle: Look closely at the priests bearing the Ark.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'The priests feet dipped in the brim of the overflowing water during harvest.',
+      hint2: 'Twelve stones were later set up as a memorial of the crossing.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l11-c4',
+    game_slug: 'guess-the-emoji',
+    level: 11,
+    challenge_index: 4,
+    question_text: '🦯 🧙‍♂️ 👁️‍🗨️ 🌑 🏝️',
+    options: [
+      "Paul pronouncing blindness upon Elymas the sorcerer in Paphos",
+      "Paul being blinded by the heavenly light on Damascus road",
+      "Samson grinding grain in Gaza prison after eyes gouged",
+      "King Zedekiah blinded by Nebuchadnezzar at Riblah"
+    ],
+    correct_answer: "Paul pronouncing blindness upon Elymas the sorcerer in Paphos",
+    explanation: 'Acts 13:6–12 records Paul rebuking Elymas (Bar-Jesus) for turning the proconsul Sergius Paulus from the faith: a mist and darkness fell on him, and he sought someone to lead him by the hand.',
+    reference: 'Acts 13:6–12',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Similar Story Traps',
+      puzzle_type: 'similar_story_trap',
+      emojis: '🦯 🧙‍♂️ 👁️‍🗨️ 🌑 🏝️',
+      prompt: 'A New Testament blindness event: Is this Paul or someone Paul rebuked?',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Took place on the island of Cyprus before governor Sergius Paulus.',
+      hint2: 'The sorcerer was struck blind for a season.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l11-c5',
+    game_slug: 'guess-the-emoji',
+    level: 11,
+    challenge_index: 5,
+    question_text: '🪨 🦯 💥 💧 😠',
+    options: [
+      "Moses striking the rock twice in anger at Kadesh (Meribah)",
+      "Moses striking the rock in Horeb with divine command",
+      "Samson quenching thirst with water from Ramath-lehi jawbone",
+      "Elijah calling down fire on Mount Carmel stones"
+    ],
+    correct_answer: "Moses striking the rock twice in anger at Kadesh (Meribah)",
+    explanation: 'Numbers 20:8–12 records God commanding Moses to speak to the rock, but Moses struck the rock twice with his rod and rebuked the rebels, forfeiting entry into Canaan.',
+    reference: 'Numbers 20:8–12',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Similar Story Traps',
+      puzzle_type: 'similar_story_trap',
+      emojis: '🪨 🦯 💥 💧 😠',
+      prompt: 'Notice the anger and repeated strike—which exact rock incident is this?',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Moses said: "Hear now, ye rebels; must we fetch you water out of this rock?"',
+      hint2: 'God told Moses and Aaron they would not lead the congregation into the promised land.'
+    }
+  },
+
+  // Level 12: Forgotten Old Testament Women
+  {
+    id: 'guess-the-emoji-l12-c1',
+    game_slug: 'guess-the-emoji',
+    level: 12,
+    challenge_index: 1,
+    question_text: '👩‍👧‍👧 📜 🏞️ ⚖️ ⛺',
+    options: [
+      "Daughters of Zelophehad petitioning for inheritance",
+      "Daughters of Job receiving inheritances among brethren",
+      "Daughters of Philip prophesying in Caesarea",
+      "Daughters of Jerusalem mourning on the Via Dolorosa"
+    ],
+    correct_answer: "Daughters of Zelophehad petitioning for inheritance",
+    explanation: 'Numbers 27:1–7 tells how Mahlah, Noah, Hoglah, Milcah, and Tirzah approached Moses and Eleazar to claim their deceased father’s possession, establishing biblical inheritance law.',
+    reference: 'Numbers 27:1–7',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Forgotten Old Testament Women',
+      puzzle_type: 'forgotten_person',
+      emojis: '👩‍👧‍👧 📜 🏞️ ⚖️ ⛺',
+      prompt: 'Five sisters who changed Israelite legal precedence regarding family land.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Their father died in the wilderness without leaving sons.',
+      hint2: 'The Lord ruled: "The daughters of Zelophehad speak right."'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l12-c2',
+    game_slug: 'guess-the-emoji',
+    level: 12,
+    challenge_index: 2,
+    question_text: '🪨 🦅 🦁 🌾 😭',
+    options: [
+      "Rizpah guarding sons' hanged bodies from birds and beasts",
+      "Ruth sleeping at the feet of Boaz on the threshing floor",
+      "Hannah weeping at Shiloh tabernacle before Eli",
+      "Naomi returning bitter to Bethlehem with Ruth"
+    ],
+    correct_answer: "Rizpah guarding sons' hanged bodies from birds and beasts",
+    explanation: '2 Samuel 21:8–14 records Rizpah daughter of Aiah spreading sackcloth upon the rock from harvest until rain, suffering neither the birds of the air nor beasts of the field to touch the corpses.',
+    reference: '2 Samuel 21:8–14',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Forgotten Old Testament Women',
+      puzzle_type: 'forgotten_person',
+      emojis: '🪨 🦅 🦁 🌾 😭',
+      prompt: 'A mother on sackcloth guarding the bodies of executed royal descendants.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'She protected the seven sons and grandsons of Saul executed by the Gibeonites.',
+      hint2: 'David was moved by her devotion and gave the bones honourable burial.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l12-c3',
+    game_slug: 'guess-the-emoji',
+    level: 12,
+    challenge_index: 3,
+    question_text: '🍞 🍇 🥩 🫏 🙇‍♀️',
+    options: [
+      "Abigail intercepting David with provisions to avert bloodshed",
+      "The Queen of Sheba bringing spices and gold to Solomon",
+      "Esther preparing a banquet of wine for King Ahasuerus",
+      "Ziba bringing asses loaded with bread and summer fruit"
+    ],
+    correct_answer: "Abigail intercepting David with provisions to avert bloodshed",
+    explanation: '1 Samuel 25:18–24 recounts Abigail hastening with two hundred loaves, wine, sheep, parched corn, raisins, and figs to pacify David after Nabal insulted his men.',
+    reference: '1 Samuel 25:18–24',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Forgotten Old Testament Women',
+      puzzle_type: 'forgotten_person',
+      emojis: '🍞 🍇 🥩 🫏 🙇‍♀️',
+      prompt: 'A wise wife riding an ass to stop an imminent massacre.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Her churlish husband was named Nabal.',
+      hint2: 'David praised her advice for keeping him from shedding blood.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l12-c4',
+    game_slug: 'guess-the-emoji',
+    level: 12,
+    challenge_index: 4,
+    question_text: '👶 🏛️ 🛏️ 🗡️ 👑',
+    options: [
+      "Jehosheba hiding infant Joash in the bedchamber from Athaliah",
+      "Jochebed hiding baby Moses in the bulrush ark",
+      "Michal putting an idol in David's bed to deceive Saul's messengers",
+      "Bathsheba securing Solomon's succession before elderly David"
+    ],
+    correct_answer: "Jehosheba hiding infant Joash in the bedchamber from Athaliah",
+    explanation: '2 Kings 11:1–3 records Jehosheba taking Joash the son of Ahaziah and stealing him from among the king’s slain sons, hiding him and his nurse in the bedchamber for six years.',
+    reference: '2 Kings 11:1–3',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Forgotten Old Testament Women',
+      puzzle_type: 'forgotten_person',
+      emojis: '👶 🏛️ 🛏️ 🗡️ 👑',
+      prompt: 'Identify the brave princess who saved the Davidic royal lineage from eradication.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Daughter of King Joram and wife of Jehoiada the priest.',
+      hint2: 'She hid infant Joash in the temple while Queen Athaliah reigned.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l12-c5',
+    game_slug: 'guess-the-emoji',
+    level: 12,
+    challenge_index: 5,
+    question_text: '👶 ⚖️ 👑 🚫 🏠',
+    options: [
+      "Shiphrah and Puah defying Pharaoh's infanticide decree",
+      "Rachel weeping for her children in Ramah",
+      "Potiphar's wife framing Joseph with his garment",
+      "Manoah's wife receiving angel's dietary instructions"
+    ],
+    correct_answer: "Shiphrah and Puah defying Pharaoh's infanticide decree",
+    explanation: 'Exodus 1:15–21 records the Hebrew midwives Shiphrah and Puah fearing God and refusing to drown male Hebrew babies, so God established households for them.',
+    reference: 'Exodus 1:15–21',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Forgotten Old Testament Women',
+      puzzle_type: 'forgotten_person',
+      emojis: '👶 ⚖️ 👑 🚫 🏠',
+      prompt: 'Two midwives whose sacred civil disobedience preserved a generation.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'They told Pharaoh the Hebrew women delivered quickly before midwives arrived.',
+      hint2: 'Because they feared God, He made them houses.'
+    }
+  },
+
+  // Level 13: Unsung Apostolic Companions
+  {
+    id: 'guess-the-emoji-l13-c1',
+    game_slug: 'guess-the-emoji',
+    level: 13,
+    challenge_index: 1,
+    question_text: '✍️ 📜 🏛️ 🕊️ 👤',
+    options: [],
+    correct_answer: 'Tertius',
+    explanation: 'Romans 16:22 states: "I Tertius, who wrote this epistle, salute you in the Lord." He was Paul’s amanuensis (scribe) for the Epistle to the Romans.',
+    reference: 'Romans 16:22',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Unsung Apostolic Companions',
+      puzzle_type: 'exact_person',
+      emojis: '✍️ 📜 🏛️ 🕊️ 👤',
+      prompt: 'Type the exact name of the scribe who penned the Epistle to the Romans.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['tertius'],
+      curated: true,
+      hint1: 'His personal greeting appears in Romans 16:22.',
+      hint2: 'His Latin name translates to "Third".'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l13-c2',
+    game_slug: 'guess-the-emoji',
+    level: 13,
+    challenge_index: 2,
+    question_text: '🙏 ⛓️ 🏔️ 💌 🏛️',
+    options: ['Epaphras', 'Tychicus', 'Aristarchus', 'Onesimus'],
+    correct_answer: 'Epaphras',
+    explanation: 'Colossians 4:12 describes Epaphras as "a servant of Christ, saluteth you, always labouring fervently for you in prayers, that ye may stand perfect and complete in all the will of God."',
+    reference: 'Colossians 4:12; Philemon 1:23',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Unsung Apostolic Companions',
+      puzzle_type: 'forgotten_person',
+      emojis: '🙏 ⛓️ 🏔️ 💌 🏛️',
+      prompt: 'A Colossian leader noted for agonising, fervent prayers for his home assembly.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Paul called him "my fellow-prisoner in Christ Jesus" in Philemon.',
+      hint2: 'He had a great zeal for believers in Colossae, Laodicea, and Hierapolis.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l13-c3',
+    game_slug: 'guess-the-emoji',
+    level: 13,
+    challenge_index: 3,
+    question_text: '🚢 ⛓️ 🏛️ 🗣️ 👥',
+    options: ['Aristarchus of Thessalonica', 'Erastus of Corinth', 'Demas of Thessalonica', 'Gaius of Derbe'],
+    correct_answer: 'Aristarchus of Thessalonica',
+    explanation: 'Acts 19:29; 27:2; Colossians 4:10 identify Aristarchus, a Macedonian from Thessalonica, who was seized in Ephesus, accompanied Paul on his voyage to Rome, and shared his imprisonment.',
+    reference: 'Acts 27:2; Colossians 4:10',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Unsung Apostolic Companions',
+      puzzle_type: 'forgotten_person',
+      emojis: '🚢 ⛓️ 🏛️ 🗣️ 👥',
+      prompt: 'Paul’s Macedonian companion who braved the Ephesus mob and shared Roman chains.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Traveled with Paul on the voyage that ended in Malta shipwreck.',
+      hint2: 'Paul explicitly calls him "my fellowprisoner" in Colossians 4:10.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l13-c4',
+    game_slug: 'guess-the-emoji',
+    level: 13,
+    challenge_index: 4,
+    question_text: '💌 🚶‍♂️ 🏛️ 🤝 🛡️',
+    options: ['Tychicus', 'Epaphroditus', 'Silvanus', 'Titus'],
+    correct_answer: 'Tychicus',
+    explanation: 'Ephesians 6:21–22 and Colossians 4:7–8 describe Tychicus as "a beloved brother and faithful minister and fellowservant in the Lord," sent to carry Paul’s epistles and comfort their hearts.',
+    reference: 'Ephesians 6:21–22; Colossians 4:7',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Unsung Apostolic Companions',
+      puzzle_type: 'forgotten_person',
+      emojis: '💌 🚶‍♂️ 🏛️ 🤝 🛡️',
+      prompt: 'The trusted Asian messenger chosen to carry the letters to Ephesus and Colossae.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Also sent by Paul to relieve Titus in Crete and Timothy in Ephesus.',
+      hint2: 'Described as "a beloved brother, and a faithful minister and fellowservant".'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l13-c5',
+    game_slug: 'guess-the-emoji',
+    level: 13,
+    challenge_index: 5,
+    question_text: '4️⃣ 👨 🏛️ 📜 🤝',
+    options: [],
+    correct_answer: 'Quartus',
+    explanation: 'Romans 16:23 records: "Erastus the chamberlain of the city saluteth you, and Quartus a brother." Quartus’s name means "Fourth" in Latin.',
+    reference: 'Romans 16:23',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Unsung Apostolic Companions',
+      puzzle_type: 'exact_person',
+      emojis: '4️⃣ 👨 🏛️ 📜 🤝',
+      prompt: 'Type the name of the brother mentioned alongside Erastus in Romans 16:23.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['quartus'],
+      curated: true,
+      hint1: 'His name means "fourth" in Latin, just as Tertius means "third".',
+      hint2: 'Greeted immediately after Erastus the chamberlain of Corinth.'
+    }
+  },
+
+  // Level 14: Overlooked & Strange Incidents
+  {
+    id: 'guess-the-emoji-l14-c1',
+    game_slug: 'guess-the-emoji',
+    level: 14,
+    challenge_index: 1,
+    question_text: '🐂 📦 🖐️ ⚡ 💀',
+    options: [
+      "Uzzah touching the Ark of the Covenant at Perez-uzzah",
+      "Nadab and Abihu offering profane incense fire",
+      "Philistines placing gold tumors on the cart returning Ark",
+      "David dancing with all his might before the Ark"
+    ],
+    correct_answer: "Uzzah touching the Ark of the Covenant at Perez-uzzah",
+    explanation: '2 Samuel 6:6–7 recounts how the oxen stumbled at Nachon’s threshing floor, and Uzzah put forth his hand to the ark of God; God struck him dead for his error.',
+    reference: '2 Samuel 6:6–7',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Overlooked & Strange Incidents',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🐂 📦 🖐️ ⚡ 💀',
+      prompt: 'An unauthorized hand reaches out to steady a sacred object when oxen stumble.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Took place near Nachon’s threshing floor.',
+      hint2: 'The place was named Perez-uzzah because the Lord made a breach upon him.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l14-c2',
+    game_slug: 'guess-the-emoji',
+    level: 14,
+    challenge_index: 2,
+    question_text: '🌿 🏃‍♂️ 🪢 👕 🌑',
+    options: [
+      "Young man fleeing naked leaving linen sheet in Gethsemane",
+      "Joseph leaving his cloak in Potiphar's wife's hand",
+      "Peter shedding his fisher's coat and diving into Galilee",
+      "Paul shaking the viper from his hand into the fire"
+    ],
+    correct_answer: "Young man fleeing naked leaving linen sheet in Gethsemane",
+    explanation: 'Mark 14:51–52 mentions a young follower with a linen cloth cast about his naked body; when the arresting mob seized him, he left the linen cloth and fled naked.',
+    reference: 'Mark 14:51–52',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Overlooked & Strange Incidents',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🌿 🏃‍♂️ 🪢 👕 🌑',
+      prompt: 'A mysterious Gethsemane escape recorded only in the Gospel of Mark.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Happened immediately after the arrest of Jesus in the garden.',
+      hint2: 'Tradition often associates this anonymous youth with John Mark himself.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l14-c3',
+    game_slug: 'guess-the-emoji',
+    level: 14,
+    challenge_index: 3,
+    question_text: '🪟 😴 🗣️ 🪜 💀',
+    options: [
+      "Eutychus falling from 3rd-story window during Paul's sermon",
+      "Ahaziah falling through the lattice in his upper chamber",
+      "Jezebel thrown down from the palace window by eunuchs",
+      "Rahab letting the Hebrew spies down by a cord through window"
+    ],
+    correct_answer: "Eutychus falling from 3rd-story window during Paul's sermon",
+    explanation: 'Acts 20:9–12 tells of a young man named Eutychus sitting in a window in Troas who fell into a deep sleep while Paul preached until midnight, fell from the third loft, and was taken up dead.',
+    reference: 'Acts 20:9–12',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Overlooked & Strange Incidents',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🪟 😴 🗣️ 🪜 💀',
+      prompt: 'A midnight sermon, a third-story window, a heavy slumber, and a fatal fall.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Paul went down, fell on him, and said "Trouble not yourselves; for his life is in him."',
+      hint2: 'Occurred in an upper chamber in Troas where many lights were burning.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l14-c4',
+    game_slug: 'guess-the-emoji',
+    level: 14,
+    challenge_index: 4,
+    question_text: '7️⃣ 👨‍👦 👹 🩸 🏃‍♂️',
+    options: [
+      "Seven sons of Sceva overpowered and stripped by demoniac",
+      "Seven sons of Jesse passing before Samuel at Bethlehem",
+      "Seven sons of Saul hanged before the Lord at Gibeah",
+      "Seven sons of Job feasting in their elder brother's house"
+    ],
+    correct_answer: "Seven sons of Sceva overpowered and stripped by demoniac",
+    explanation: 'Acts 19:14–16 recounts the seven sons of Jewish chief priest Sceva trying to cast out demons by "Jesus whom Paul preacheth"; the evil spirit replied "Jesus I know, and Paul I know; but who are ye?" and beat them naked.',
+    reference: 'Acts 19:14–16',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Overlooked & Strange Incidents',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '7️⃣ 👨‍👦 👹 🩸 🏃‍♂️',
+      prompt: 'Seven fraudulent exorcists in Ephesus fleeing wounded and naked.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'The evil spirit claimed acquaintance with Jesus and Paul, but denied theirs.',
+      hint2: 'Their father was a Jewish chief priest named Sceva.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l14-c5',
+    game_slug: 'guess-the-emoji',
+    level: 14,
+    challenge_index: 5,
+    question_text: '🏛️ 👨‍⚖️ 👊 📜 🤷‍♂️',
+    options: [
+      "Sosthenes beaten before Gallio's judgment seat in Corinth",
+      "Paul and Silas beaten with rods in Philippi marketplace",
+      "Stephen stoned outside Jerusalem gates by the council",
+      "Paul struck on the mouth by order of Ananias high priest"
+    ],
+    correct_answer: "Sosthenes beaten before Gallio's judgment seat in Corinth",
+    explanation: 'Acts 18:12–17 records the Greeks seizing Sosthenes, the chief ruler of the synagogue, and beating him before the judgment seat, while Gallio proconsul of Achaia cared for none of these things.',
+    reference: 'Acts 18:12–17',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Overlooked & Strange Incidents',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🏛️ 👨‍⚖️ 👊 📜 🤷‍♂️',
+      prompt: 'A synagogue ruler assaulted in court while an indifferent Roman governor looked away.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      curated: true,
+      hint1: 'Took place before the proconsul Gallio in Corinth.',
+      hint2: 'Gallio dismissed the Jewish complaint as a dispute of words and names.'
+    }
+  },
+
+  // Level 15: Exact Person Investigations
+  {
+    id: 'guess-the-emoji-l15-c1',
+    game_slug: 'guess-the-emoji',
+    level: 15,
+    challenge_index: 1,
+    question_text: '🏰 🪢 🧺 🕳️ 👤',
+    options: [],
+    correct_answer: 'Ebed-Melech',
+    explanation: 'Jeremiah 38:7–13 records Ebed-Melech the Ethiopian official appealing to King Zedekiah and lowering old rotten rags and cord ropes under Jeremiah’s armpits to haul him out of the muddy pit.',
+    reference: 'Jeremiah 38:7–13',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Exact Person Investigations',
+      puzzle_type: 'exact_person',
+      emojis: '🏰 🪢 🧺 🕳️ 👤',
+      prompt: 'Type the exact name of the Ethiopian royal official who rescued Jeremiah from the cistern.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['ebedmelech', 'ebed-melech', 'ebed melech'],
+      curated: true,
+      hint1: 'His name translates to "servant of the king".',
+      hint2: 'God promised him protection from the Babylonian conquerors because he put his trust in Him.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l15-c2',
+    game_slug: 'guess-the-emoji',
+    level: 15,
+    challenge_index: 2,
+    question_text: '🏕️ 🪙 🔨 🧵 🕊️',
+    options: [],
+    correct_answer: 'Bezalel',
+    explanation: 'Exodus 31:1–5 tells how the Lord called Bezalel son of Uri and filled him with the Spirit of God in wisdom, understanding, and knowledge to design gold, silver, bronze, and stone for the Tabernacle.',
+    reference: 'Exodus 31:1–5; 36:1',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Exact Person Investigations',
+      puzzle_type: 'exact_person',
+      emojis: '🏕️ 🪙 🔨 🧵 🕊️',
+      prompt: 'Type the name of the master craftsman of Judah chosen to construct the Tabernacle.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['bezaleel', 'bezalel'],
+      curated: true,
+      hint1: 'Son of Uri, son of Hur, of the tribe of Judah.',
+      hint2: 'Appointed alongside Oholiab of Dan.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l15-c3',
+    game_slug: 'guess-the-emoji',
+    level: 15,
+    challenge_index: 3,
+    question_text: '📜 🏛️ 👵 👑 🔮',
+    options: [],
+    correct_answer: 'Huldah',
+    explanation: '2 Kings 22:14–20 recounts King Josiah sending Hilkiah the priest and Shaphan the scribe to Huldah the prophetess, who resided in the second quarter of Jerusalem, to inquire regarding the discovered Law scroll.',
+    reference: '2 Kings 22:14–20',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Exact Person Investigations',
+      puzzle_type: 'exact_person',
+      emojis: '📜 🏛️ 👵 👑 🔮',
+      prompt: 'Type the name of the prophetess consulted by King Josiah’s delegation in Jerusalem.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['huldah'],
+      curated: true,
+      hint1: 'Wife of Shallum son of Tikvah, keeper of the wardrobe.',
+      hint2: 'Prophesied judgment on Judah but peace for King Josiah in his grave.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l15-c4',
+    game_slug: 'guess-the-emoji',
+    level: 15,
+    challenge_index: 4,
+    question_text: '⛓️ 🏛️ 🔍 💧 👤',
+    options: [],
+    correct_answer: 'Onesiphorus',
+    explanation: '2 Timothy 1:16–18 mentions Onesiphorus, who "often refreshed me, and was not ashamed of my chain: but, when he was in Rome, he sought me out very diligently, and found me."',
+    reference: '2 Timothy 1:16–18',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Exact Person Investigations',
+      puzzle_type: 'exact_person',
+      emojis: '⛓️ 🏛️ 🔍 💧 👤',
+      prompt: 'Type the name of the faithful brother who searched Rome diligently to refresh Paul in chains.',
+      testament: 'New Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['onesiphorus'],
+      curated: true,
+      hint1: 'Paul prayed that the Lord would show mercy unto his household.',
+      hint2: 'Contrasted with all in Asia who turned away from Paul.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l15-c5',
+    game_slug: 'guess-the-emoji',
+    level: 15,
+    challenge_index: 5,
+    question_text: '👑 🧠 🪢 🏠 💀',
+    options: [],
+    correct_answer: 'Ahithophel',
+    explanation: '2 Samuel 16:23; 17:23 records that the counsel of Ahithophel was as if a man inquired at the oracle of God; when his advice was rejected for Hushai’s, he put his house in order and hanged himself.',
+    reference: '2 Samuel 17:23',
+    metadata: {
+      stage: 3,
+      stage_title: 'Similar Stories & Forgotten Figures',
+      level_title: 'Exact Person Investigations',
+      puzzle_type: 'exact_person',
+      emojis: '👑 🧠 🪢 🏠 💀',
+      prompt: 'Type the name of David’s esteemed counselor who defected to Absalom and hanged himself.',
+      testament: 'Old Testament',
+      difficulty: 'Difficult',
+      timerSeconds: 60,
+      points: 150,
+      is_typed: true,
+      acceptedAlternatives: ['ahithophel', 'achitophel'],
+      curated: true,
+      hint1: 'Grandfather of Bathsheba (daughter of Eliam).',
+      hint2: 'David prayed: "O Lord, I pray thee, turn the counsel of Ahithophel into foolishness."'
+    }
+  },
+
+  // ==========================================
+  // STAGE 4: PRIESTS, PROPHETS & STRANGE JUDGMENTS (Levels 16-20)
+  // Difficulty: Very Difficult (90s, 200 pts)
+  // ==========================================
+
+  // Level 16: Ancient Judges & Neglected Leaders
+  {
+    id: 'guess-the-emoji-l16-c1',
+    game_slug: 'guess-the-emoji',
+    level: 16,
+    challenge_index: 1,
+    question_text: '🐂 🦯 ⚔️ 6️⃣0️⃣0️⃣ 🛡️',
+    options: ['Shamgar son of Anath', 'Samson of Zorah', 'Gideon son of Joash', 'Barak son of Abinoam'],
+    correct_answer: 'Shamgar son of Anath',
+    explanation: 'Judges 3:31 records Shamgar the son of Anath who slew 600 Philistines with an ox goad and also delivered Israel.',
+    reference: 'Judges 3:31',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Ancient Judges & Neglected Leaders',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🐂 🦯 ⚔️ 6️⃣0️⃣0️⃣ 🛡️',
+      prompt: 'Which deliverer single-handedly eliminated 600 invaders using an agricultural tool?',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Weapon was an ox goad (sharp cattle spike).',
+      hint2: 'Mentioned in the Song of Deborah (Judges 5:6).'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l16-c2',
+    game_slug: 'guess-the-emoji',
+    level: 16,
+    challenge_index: 2,
+    question_text: '🏰 🪨 👩 💥 👑',
+    options: [
+      "Abimelech crushed by millstone dropped by a woman at Thebez",
+      "Sisera killed by Jael driving tent peg into his temple",
+      "Saul falling upon his own sword on Mount Gilboa",
+      "Goliath struck in forehead by David's slung stone"
+    ],
+    correct_answer: "Abimelech crushed by millstone dropped by a woman at Thebez",
+    explanation: 'Judges 9:53–54 relates that an unnamed woman of Thebez cast an upper millstone upon Abimelech’s head and broke his skull; he commanded his armourbearer to run him through so men would not say a woman slew him.',
+    reference: 'Judges 9:53–54',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Ancient Judges & Neglected Leaders',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🏰 🪨 👩 💥 👑',
+      prompt: 'A violent usurper fatally injured by domestic stone hurled from a fortress wall.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Son of Gideon who murdered his seventy brothers on one stone.',
+      hint2: 'Ordered his armourbearer to finish him with a sword.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l16-c3',
+    game_slug: 'guess-the-emoji',
+    level: 16,
+    challenge_index: 3,
+    question_text: '🌊 🗣️ 🌾 👂 🗡️',
+    options: [
+      "Gileadites executing Ephraimites over the password Shibboleth",
+      "Ehud presenting tribute before assassinating King Eglon",
+      "Samson tying foxes with firebrands through wheat fields",
+      "Jonathan and his armourbearer climbing between steep rocks"
+    ],
+    correct_answer: "Gileadites executing Ephraimites over the password Shibboleth",
+    explanation: 'Judges 12:5–6 recounts the Gileadites holding Jordan river passages; Ephraimite fugitives unable to frame the sound correctly said "Sibboleth", and 42,000 were slaughtered.',
+    reference: 'Judges 12:5–6',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Ancient Judges & Neglected Leaders',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🌊 🗣️ 🌾 👂 🗡️',
+      prompt: 'A deadly linguistic pronunciation test at river fords that cost thousands their lives.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'The fugitive Ephraimites said "Sibboleth" instead of "Shibboleth".',
+      hint2: 'Took place under the judgeship of Jephthah.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l16-c4',
+    game_slug: 'guess-the-emoji',
+    level: 16,
+    challenge_index: 4,
+    question_text: '👑 🦶 🩺 🚫 ⚰️',
+    options: ['King Asa of Judah', 'King Hezekiah of Judah', 'King Jeroboam of Israel', 'King Jehoash of Israel'],
+    correct_answer: 'King Asa of Judah',
+    explanation: '2 Chronicles 16:12 records that Asa in the thirty-ninth year of his reign was diseased in his feet until his disease was exceedingly great; yet in his disease he sought not to the Lord, but to the physicians.',
+    reference: '2 Chronicles 16:12',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Ancient Judges & Neglected Leaders',
+      puzzle_type: 'exact_person',
+      emojis: '👑 🦶 🩺 🚫 ⚰️',
+      prompt: 'A reforming king who suffered a severe foot disease and sought physicians rather than God.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Reigned in Judah after Abijah.',
+      hint2: 'Imprisoned Hanani the seer who rebuked his alliance with Syria.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l16-c5',
+    game_slug: 'guess-the-emoji',
+    level: 16,
+    challenge_index: 5,
+    question_text: '👑 🏛️ 🪔 ⚡ 🤍',
+    options: ['King Uzziah (Azariah)', 'King Ahaz', 'King Manasseh', 'King Jeroboam'],
+    correct_answer: 'King Uzziah (Azariah)',
+    explanation: '2 Chronicles 26:16–21 states that King Uzziah’s heart was lifted up to trespass; he entered the temple to burn incense, and when rebuked by Azariah the priest, leprosy rose up in his forehead.',
+    reference: '2 Chronicles 26:16–21',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Ancient Judges & Neglected Leaders',
+      puzzle_type: 'exact_person',
+      emojis: '👑 🏛️ 🪔 ⚡ 🤍',
+      prompt: 'A powerful king who presumed to burn incense and was instantly struck with forehead leprosy.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Eighty priests opposed his unlawful entrance into the Holy Place.',
+      hint2: 'Lived in an isolated house as a leper until his death.'
+    }
+  },
+
+  // Level 17: Exile Prophets & Silent Signs
+  {
+    id: 'guess-the-emoji-l17-c1',
+    game_slug: 'guess-the-emoji',
+    level: 17,
+    challenge_index: 1,
+    question_text: '🛏️ 3️⃣9️⃣0️⃣ 💩 🥖 🧱',
+    options: [
+      "Ezekiel lying on his side and baking defiled bread over dung",
+      "Jeremiah wearing a wooden yoke through Jerusalem streets",
+      "Isaiah walking barefoot and stripped for three years",
+      "Hosea marrying Gomer as a sign of Israel's unfaithfulness"
+    ],
+    correct_answer: "Ezekiel lying on his side and baking defiled bread over dung",
+    explanation: 'Ezekiel 4:9–15 describes Ezekiel commanded to lie 390 days on his left side for Israel’s iniquity, measure out famine bread, and bake it over animal dung as a prophetic sign.',
+    reference: 'Ezekiel 4:9–15',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Exile Prophets & Silent Signs',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🛏️ 3️⃣9️⃣0️⃣ 💩 🥖 🧱',
+      prompt: 'A prophet performing a 390-day physical siege enacted with coarse famine rations.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'He pled with God not to use human waste, so cow dung was granted.',
+      hint2: 'Portrayed the siege of Jerusalem with an iron pan and an engraved tile.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l17-c2',
+    game_slug: 'guess-the-emoji',
+    level: 17,
+    challenge_index: 2,
+    question_text: '📯 🦏 4️⃣ 🔨 4️⃣',
+    options: [
+      "Zechariah's vision of four horns and four carpenters",
+      "Daniel's vision of four great beasts rising from the sea",
+      "Ezekiel's vision of four living creatures with four wheels",
+      "Revelation's vision of four angels holding four winds"
+    ],
+    correct_answer: "Zechariah's vision of four horns and four carpenters",
+    explanation: 'Zechariah 1:18–21 records the prophet seeing four horns that scattered Judah, and four carpenters (craftsmen) sent to fray them and cast down the horns of the Gentiles.',
+    reference: 'Zechariah 1:18–21',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Exile Prophets & Silent Signs',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '📯 🦏 4️⃣ 🔨 4️⃣',
+      prompt: 'Four oppressive horns scattered the nation, but four divine workmen come to smash them.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'The angel told the prophet: "These are the horns which have scattered Judah."',
+      hint2: 'The craftsmen came to cast down the horns of the nations.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l17-c3',
+    game_slug: 'guess-the-emoji',
+    level: 17,
+    challenge_index: 3,
+    question_text: '🥩 👗 🚫 💀 🌾',
+    options: [
+      "Haggai questioning priests on ceremonial holiness versus defilement",
+      "Malachi condemning diseased animal sacrifices on the altar",
+      "Levitical priests inspecting leprosy in woven garments",
+      "Amos beholding a basket of summer fruit in the sanctuary"
+    ],
+    correct_answer: "Haggai questioning priests on ceremonial holiness versus defilement",
+    explanation: 'Haggai 2:11–14 presents Haggai asking the priests whether holy flesh in a skirt makes touching other foods holy (no), but touching an unclean dead body defiles it (yes).',
+    reference: 'Haggai 2:11–14',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Exile Prophets & Silent Signs',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🥩 👗 🚫 💀 🌾',
+      prompt: 'A post-exilic prophetic inquiry concerning ritual transmission of holiness and pollution.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'The prophet deduced that unholy hands defiled the work of the temple builders.',
+      hint2: 'Contrasted holy meat in a skirt with uncleanness from touching a dead body.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l17-c4',
+    game_slug: 'guess-the-emoji',
+    level: 17,
+    challenge_index: 4,
+    question_text: '🐴 🌑 🧱 🏰 🔍',
+    options: [
+      "Nehemiah inspecting the broken Jerusalem walls by night on his beast",
+      "Jeremiah buying the field of Anathoth during the siege",
+      "Balaam riding his ass along the narrow vineyard wall",
+      "Solomon riding the king's mule down to Gihon spring"
+    ],
+    correct_answer: "Nehemiah inspecting the broken Jerusalem walls by night on his beast",
+    explanation: 'Nehemiah 2:12–15 relates Nehemiah arising in the night with a few men, riding through the Valley Gate to inspect the charred and breached walls without telling anyone his mission.',
+    reference: 'Nehemiah 2:12–15',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Exile Prophets & Silent Signs',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🐴 🌑 🧱 🏰 🔍',
+      prompt: 'A clandestine nighttime reconnaissance ride along charred and ruined fortifications.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'He viewed the walls of Jerusalem which were broken down and gates consumed with fire.',
+      hint2: 'There was no place for the beast that was under him to pass.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l17-c5',
+    game_slug: 'guess-the-emoji',
+    level: 17,
+    challenge_index: 5,
+    question_text: '🧔 ✂️ 😭 🏛️ 📜',
+    options: [
+      "Ezra tearing his garment and plucking out hair over intermarriages",
+      "Job shaving his head and falling upon the ground worshiping",
+      "Samson losing his seven locks of hair to Delilah's shears",
+      "Absalom caught by his heavy hair in the boughs of an oak"
+    ],
+    correct_answer: "Ezra tearing his garment and plucking out hair over intermarriages",
+    explanation: 'Ezra 9:3 records: "And when I heard this thing, I rent my garment and my mantle, and plucked off the hair of my head and of my beard, and sat down astonied."',
+    reference: 'Ezra 9:3–5',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Exile Prophets & Silent Signs',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🧔 ✂️ 😭 🏛️ 📜',
+      prompt: 'A priest-scribe reacting with grief by tearing his robes and plucking out his hair.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Occurred upon learning that princes and rulers had intermarried with pagan nations.',
+      hint2: 'He fell upon his knees at the evening sacrifice with hands spread unto God.'
+    }
+  },
+
+  // Level 18: Paul's Final Circuit & Companions
+  {
+    id: 'guess-the-emoji-l18-c1',
+    game_slug: 'guess-the-emoji',
+    level: 18,
+    challenge_index: 1,
+    question_text: '🤒 🏝️ 🚢 🏛️ 👤',
+    options: ['Trophimus', 'Erastus', 'Carpus', 'Crescens'],
+    correct_answer: 'Trophimus',
+    explanation: '2 Timothy 4:20 states: "Erastus abode at Corinth: but Trophimus have I left at Miletum sick." Trophimus was an Ephesian Gentile companion of Paul.',
+    reference: '2 Timothy 4:20; Acts 20:4; 21:29',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: "Paul's Final Circuit & Companions",
+      puzzle_type: 'exact_person',
+      emojis: '🤒 🏝️ 🚢 🏛️ 👤',
+      prompt: 'Identify the Ephesian disciple whom Paul had to leave behind sick at Miletus.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Earlier in Jerusalem, Jews mistakenly thought Paul brought him into the temple.',
+      hint2: 'Mentioned in Paul’s poignant farewell letter to Timothy.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l18-c2',
+    game_slug: 'guess-the-emoji',
+    level: 18,
+    challenge_index: 2,
+    question_text: '🔨 🪙 🗡️ 👿 👤',
+    options: ['Alexander the coppersmith', 'Demetrius the silversmith', 'Simon Magus', 'Bar-Jesus the sorcerer'],
+    correct_answer: 'Alexander the coppersmith',
+    explanation: '2 Timothy 4:14–15 warns: "Alexander the coppersmith did me much evil: the Lord reward him according to his works: of whom be thou ware also; for he hath greatly withstood our words."',
+    reference: '2 Timothy 4:14–15',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: "Paul's Final Circuit & Companions",
+      puzzle_type: 'exact_person',
+      emojis: '🔨 🪙 🗡️ 👿 👤',
+      prompt: 'Identify the metalworker who vigorously opposed apostolic preaching and harmed Paul.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Not the Ephesus silversmith Demetrius.',
+      hint2: 'Paul warned Timothy to beware of him because he withstood their words.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l18-c3',
+    game_slug: 'guess-the-emoji',
+    level: 18,
+    challenge_index: 3,
+    question_text: '💔 🌍 🚶‍♂️ 🏛️ 👤',
+    options: ['Demas', 'John Mark', 'Barnabas', 'Phygellus'],
+    correct_answer: 'Demas',
+    explanation: '2 Timothy 4:10 records Paul’s sorrowful note: "For Demas hath forsaken me, having loved this present world, and is departed unto Thessalonica."',
+    reference: '2 Timothy 4:10',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: "Paul's Final Circuit & Companions",
+      puzzle_type: 'exact_person',
+      emojis: '💔 🌍 🚶‍♂️ 🏛️ 👤',
+      prompt: 'Identify the co-laborer who abandoned Paul in his final imprisonment out of worldly love.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Departed unto Thessalonica.',
+      hint2: 'Earlier sent greetings as Paul’s fellow-worker in Colossians and Philemon.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l18-c4',
+    game_slug: 'guess-the-emoji',
+    level: 18,
+    challenge_index: 4,
+    question_text: '🤒 💀 🕊️ 🎁 💌',
+    options: ['Epaphroditus', 'Epaphras', 'Timothy', 'Onesimus'],
+    correct_answer: 'Epaphroditus',
+    explanation: 'Philippians 2:25–30 describes Epaphroditus as Paul’s brother, companion in labour, and fellow-soldier, who was sick nigh unto death for the work of Christ but God had mercy on him.',
+    reference: 'Philippians 2:25–30',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: "Paul's Final Circuit & Companions",
+      puzzle_type: 'exact_person',
+      emojis: '🤒 💀 🕊️ 🎁 💌',
+      prompt: 'Identify the Philippian messenger who risked his life carrying financial relief to Paul.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Distressed because the Philippians heard he had been near death.',
+      hint2: 'Paul instructed the church to hold such in reputation.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l18-c5',
+    game_slug: 'guess-the-emoji',
+    level: 18,
+    challenge_index: 5,
+    question_text: '👴 🏝️ 🏠 🚶‍♂️ 🏛️',
+    options: ['Mnason of Cyprus', 'Gaius of Macedonia', 'Jason of Thessalonica', 'Pudens of Rome'],
+    correct_answer: 'Mnason of Cyprus',
+    explanation: 'Acts 21:16 records: "There went with us also certain of the disciples of Caesarea, and brought with them one Mnason of Cyprus, an old disciple, with whom we should lodge."',
+    reference: 'Acts 21:16',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: "Paul's Final Circuit & Companions",
+      puzzle_type: 'exact_person',
+      emojis: '👴 🏝️ 🏠 🚶‍♂️ 🏛️',
+      prompt: 'Identify the senior Cypriot believer with whom Paul and his company lodged in Jerusalem.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Specifically introduced in Scripture as "an old disciple".',
+      hint2: 'A native of Cyprus like Barnabas.'
+    }
+  },
+
+  // Level 19: Strange Judgments & Instant Deaths
+  {
+    id: 'guess-the-emoji-l19-c1',
+    game_slug: 'guess-the-emoji',
+    level: 19,
+    challenge_index: 1,
+    question_text: '🍲 🌿 ☠️ 🌾 😋',
+    options: [
+      "Elisha purifying deadly wild gourd stew with flour",
+      "Esau selling his birthright for Jacob's red lentil pottage",
+      "Ezekiel cooking food over animal dung fuel",
+      "Daniel and companions refusing royal meat for pulse"
+    ],
+    correct_answer: "Elisha purifying deadly wild gourd stew with flour",
+    explanation: '2 Kings 4:38–41 records that someone shred wild gourds into the pot during famine; the sons of the prophets cried "there is death in the pot!" Elisha cast meal into the pot and neutralized the poison.',
+    reference: '2 Kings 4:38–41',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Strange Judgments & Instant Deaths',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🍲 🌿 ☠️ 🌾 😋',
+      prompt: 'A poisonous cauldron during famine made safe by throwing meal into the stew.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'The diners shouted: "O thou man of God, there is death in the pot!"',
+      hint2: 'Cast meal (flour) into the pot and there was no harm.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l19-c2',
+    game_slug: 'guess-the-emoji',
+    level: 19,
+    challenge_index: 2,
+    question_text: '⛺ 🗣️ ☁️ 🤍 7️⃣',
+    options: [
+      "Miriam struck with leprous white skin and shut out for 7 days",
+      "Gehazi cursed with Naaman's leprosy forever",
+      "King Uzziah afflicted with leprosy before altar of incense",
+      "Moses putting his hand into his bosom and pulling it out leprous"
+    ],
+    correct_answer: "Miriam struck with leprous white skin and shut out for 7 days",
+    explanation: 'Numbers 12:1–15 tells of Miriam and Aaron murmuring against Moses because of his Ethiopian wife; the cloud departed from the tabernacle, Miriam became leprous as snow, and was shut out of the camp seven days.',
+    reference: 'Numbers 12:10–15',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Strange Judgments & Instant Deaths',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '⛺ 🗣️ ☁️ 🤍 7️⃣',
+      prompt: 'A murmuring prophetess struck white with leprosy and quarantined outside camp for a week.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Moses cried unto the Lord: "Heal her now, O God, I beseech thee."',
+      hint2: 'The camp journeyed not until she was brought in again.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l19-c3',
+    game_slug: 'guess-the-emoji',
+    level: 19,
+    challenge_index: 3,
+    question_text: '🛕 🖐️ 💥 🍂 🦁',
+    options: [
+      "Jeroboam's hand withering as he pointed against the man of God",
+      "Uzziah's hand holding censer stricken with leprosy",
+      "Belshazzar seeing fingers of a hand writing on palace wall",
+      "Adoni-bezek having his thumbs and great toes cut off"
+    ],
+    correct_answer: "Jeroboam's hand withering as he pointed against the man of God",
+    explanation: '1 Kings 13:4–6 recounts King Jeroboam putting forth his hand from the altar at Bethel, crying "Lay hold on him," and his hand dried up so that he could not pull it in again until the prophet prayed.',
+    reference: '1 Kings 13:4–6',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Strange Judgments & Instant Deaths',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🛕 🖐️ 💥 🍂 🦁',
+      prompt: 'A royal hand outstretched to arrest a prophet instantly dries up like wood.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Took place at the golden calf altar in Bethel.',
+      hint2: 'The altar was also rent and ashes poured out according to the sign.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l19-c4',
+    game_slug: 'guess-the-emoji',
+    level: 19,
+    challenge_index: 4,
+    question_text: '💰 📜 🤥 ⚡ 💀',
+    options: [
+      "Ananias and Sapphira dropping dead for lying to the Holy Spirit",
+      "Judas Iscariot casting down thirty silver pieces in temple",
+      "Achan burying silver and gold under his tent in Jericho",
+      "Gehazi taking two talents of silver from Naaman"
+    ],
+    correct_answer: "Ananias and Sapphira dropping dead for lying to the Holy Spirit",
+    explanation: 'Acts 5:1–11 records Ananias and Sapphira keeping back part of the land’s price while pretending to surrender all; Peter confronted their deceit, and both fell down dead instantly.',
+    reference: 'Acts 5:1–11',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Strange Judgments & Instant Deaths',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '💰 📜 🤥 ⚡ 💀',
+      prompt: 'A husband and wife buried within three hours of each other for spiritual deception.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Peter said: "Thou hast not lied unto men, but unto God."',
+      hint2: 'Great fear came upon all the church and as many as heard these things.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l19-c5',
+    game_slug: 'guess-the-emoji',
+    level: 19,
+    challenge_index: 5,
+    question_text: '👑 🗣️ 🪑 🪱 💀',
+    options: [
+      "Herod Agrippa I eaten of worms after accepting divine praise",
+      "Nebuchadnezzar driven to eat grass like oxen for seven years",
+      "King Jehoram stricken with incurable disease of the bowels",
+      "King Antiochus Epiphanes plagued with foul worms in chariot"
+    ],
+    correct_answer: "Herod Agrippa I eaten of worms after accepting divine praise",
+    explanation: 'Acts 12:21–23 recounts Herod arrayed in royal apparel making an oration; the people shouted "It is the voice of a god, and not of a man!" Immediately the angel of the Lord smote him, and he was eaten of worms and gave up the ghost.',
+    reference: 'Acts 12:21–23',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Strange Judgments & Instant Deaths',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '👑 🗣️ 🪑 🪱 💀',
+      prompt: 'A glittering king accepts blasphemous adoration and is smitten from within by worms.',
+      testament: 'New Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Took place at Caesarea during an embassy with Tyre and Sidon.',
+      hint2: 'Smitten because he gave not God the glory.'
+    }
+  },
+
+  // Level 20: Tabernacle & Priestly Forensics
+  {
+    id: 'guess-the-emoji-l20-c1',
+    game_slug: 'guess-the-emoji',
+    level: 20,
+    challenge_index: 1,
+    question_text: '🪔 🔥 🚫 ⚡ 💀',
+    options: [
+      "Nadab and Abihu consumed by fire for offering strange fire",
+      "Korah and 250 princes swallowed or consumed with fire",
+      "Elijah consuming captain and fifty men with fire from heaven",
+      "Solomon offering sacrifices as fire came down at temple dedication"
+    ],
+    correct_answer: "Nadab and Abihu consumed by fire for offering strange fire",
+    explanation: 'Leviticus 10:1–2 relates that Nadab and Abihu, the sons of Aaron, took their censers, put incense thereon, and offered strange fire before the Lord which He commanded them not; fire went out from the Lord and devoured them.',
+    reference: 'Leviticus 10:1–2',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Tabernacle & Priestly Forensics',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🪔 🔥 🚫 ⚡ 💀',
+      prompt: 'Two newly consecrated priests obliterated by fire before the sanctuary for unauthorized incense.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Aaron held his peace when Moses explained God must be sanctified.',
+      hint2: 'Their cousins carried their bodies in their coats outside the camp.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l20-c2',
+    game_slug: 'guess-the-emoji',
+    level: 20,
+    challenge_index: 2,
+    question_text: '🦯 🌸 🥜 📦 ⛺',
+    options: [
+      "Aaron's dry almond rod budding, blossoming, and yielding nuts",
+      "Moses' rod turning into a serpent before Pharaoh",
+      "Elisha's staff laid upon the face of the dead child",
+      "Jacob peeling white strakes in green poplar rods at troughs"
+    ],
+    correct_answer: "Aaron's dry almond rod budding, blossoming, and yielding nuts",
+    explanation: 'Numbers 17:8 records that on the morrow Moses entered the tabernacle of witness, and behold, the rod of Aaron for the house of Levi was budded, brought forth buds, bloomed blossoms, and yielded almonds.',
+    reference: 'Numbers 17:8–10',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Tabernacle & Priestly Forensics',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🦯 🌸 🥜 📦 ⛺',
+      prompt: 'A dead wooden tribal staff miraculous sprouting flowers and ripe almonds overnight.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Settled the rebellion regarding who held God’s choice for the priesthood.',
+      hint2: 'Kept before the testimony in the ark as a token against rebels.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l20-c3',
+    game_slug: 'guess-the-emoji',
+    level: 20,
+    challenge_index: 3,
+    question_text: '🔔 🍎 👗 🏛️ 👂',
+    options: [
+      "Golden bells and pomegranates hemmed on high priest's robe",
+      "Gideon making a gold ephod in Ophrah that became a snare",
+      "Samuel's mother making him a little coat year by year",
+      "King David dancing in a linen ephod before the Ark"
+    ],
+    correct_answer: "Golden bells and pomegranates hemmed on high priest's robe",
+    explanation: 'Exodus 28:33–35 specifies that on the hem of Aaron’s blue robe of the ephod were bells of gold and pomegranates of blue, purple, and scarlet, so his sound would be heard when entering the holy place lest he die.',
+    reference: 'Exodus 28:33–35',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Tabernacle & Priestly Forensics',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🔔 🍎 👗 🏛️ 👂',
+      prompt: 'Audible acoustic safeguards woven along the skirt hem of Israel’s high priest.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'A golden bell and a pomegranate alternating around the entire hem.',
+      hint2: 'Sound was heard when he went into the holy place before the Lord.'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l20-c4',
+    game_slug: 'guess-the-emoji',
+    level: 20,
+    challenge_index: 4,
+    question_text: '💎 1️⃣2️⃣ 📦 ⚖️ 💡',
+    options: [
+      "Urim and Thummim set within the breastplate of judgment",
+      "Twelve precious foundation stones of the New Jerusalem",
+      "Twelve stones gathered from Jordan river bed by twelve men",
+      "Breastplate worn by the King of Tyre described in Ezekiel"
+    ],
+    correct_answer: "Urim and Thummim set within the breastplate of judgment",
+    explanation: 'Exodus 28:30 commands: "And thou shalt put in the breastplate of judgment the Urim and the Thummim; and they shall be upon Aaron\'s heart, when he goeth in before the Lord: and Aaron shall bear the judgment of the children of Israel."',
+    reference: 'Exodus 28:30; Leviticus 8:8',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Tabernacle & Priestly Forensics',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '💎 1️⃣2️⃣ 📦 ⚖️ 💡',
+      prompt: 'Sacred oracular stones of Lights and Perfections deposited inside the high priest’s breastplate.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Used to discern divine judgment and guidance for Israel’s leadership.',
+      hint2: 'Their Hebrew names mean "Lights" and "Perfections".'
+    }
+  },
+  {
+    id: 'guess-the-emoji-l20-c5',
+    game_slug: 'guess-the-emoji',
+    level: 20,
+    challenge_index: 5,
+    question_text: '🐐 🖐️ 🏜️ 🏃‍♂️ ⛺',
+    options: [
+      "Scapegoat bearing Israel's sins led into the uninhabited wilderness",
+      "Abraham offering ram caught in thicket instead of Isaac",
+      "Passover lamb blood applied to doorposts and lintel in Egypt",
+      "Gideon preparing young goat and unleavened cakes for the angel"
+    ],
+    correct_answer: "Scapegoat bearing Israel's sins led into the uninhabited wilderness",
+    explanation: 'Leviticus 16:21–22 instructs Aaron to lay both hands upon the head of the live goat (Azazel), confess all Israel’s iniquities, and send it away by a suitable man into the wilderness to a land not inhabited.',
+    reference: 'Leviticus 16:21–22',
+    metadata: {
+      stage: 4,
+      stage_title: 'Priests, Prophets & Strange Judgments',
+      level_title: 'Tabernacle & Priestly Forensics',
+      puzzle_type: 'no_obvious_clues',
+      emojis: '🐐 🖐️ 🏜️ 🏃‍♂️ ⛺',
+      prompt: 'The Day of Atonement ritual where one animal carries all corporate transgressions away forever.',
+      testament: 'Old Testament',
+      difficulty: 'Very Difficult',
+      timerSeconds: 90,
+      points: 200,
+      curated: true,
+      hint1: 'Chosen by lot between two goats: one for a sin offering, one for Azazel.',
+      hint2: 'Sent away by the hand of a fit man into the uninhabited wilderness.'
+    }
+  }
+];
