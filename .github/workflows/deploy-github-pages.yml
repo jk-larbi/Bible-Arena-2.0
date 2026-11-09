@@ -38,6 +38,9 @@ jobs:
       - name: Test quiz accuracy and scoring
         run: npm run test:quiz
 
+      - name: Validate staged Bible rebuild batches
+        run: npm run validate:rebuild
+
       - name: Test multiplayer and 19-game catalogue
         run: npm run test:multiplayer
 
