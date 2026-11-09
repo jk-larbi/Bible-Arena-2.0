@@ -414,7 +414,7 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
       "Othniel"
     ],
     "correct_answer": "Caleb",
-    "explanation": "The passage names Eleazar, Joshua and tribal leaders; Caleb is not actually one of the listed leaders.",
+    "explanation": "Caleb son of Jephunneh was named among the tribal leaders appointed to help divide the land of Canaan.",
     "reference": "Numbers 34:17-19",
     "metadata": {
       "difficulty": "master",
@@ -511,16 +511,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 45,
     "challenge_index": 5,
-    "question_text": "Which commander killed Abner after Abner had made peace with David?",
+    "question_text": "Which brother of Joab was killed by Abner after pursuing him in battle?",
     "options": [
+      "Asahel",
       "Abishai",
-      "Joab",
-      "Benaiah",
-      "Asahel"
+      "Amasa",
+      "Benaiah"
     ],
-    "correct_answer": "Joab",
-    "explanation": "Joab killed Abner, avenging the death of his brother Asahel.",
-    "reference": "2 Samuel 3:26-30",
+    "correct_answer": "Asahel",
+    "explanation": "Asahel pursued Abner and was struck in the belly with the butt of Abner's spear.",
+    "reference": "2 Samuel 2:18-23",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -658,16 +658,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 47,
     "challenge_index": 2,
-    "question_text": "Who rescued Jeremiah from the muddy cistern?",
+    "question_text": "Who was appointed governor over the people left in Judah after Jerusalem fell?",
     "options": [
+      "Gedaliah",
       "Baruch",
       "Ebed-melech",
-      "Gedaliah",
       "Pashhur"
     ],
-    "correct_answer": "Ebed-melech",
-    "explanation": "Ebed-melech appealed to the king and helped lift Jeremiah out.",
-    "reference": "Jeremiah 38:7-13",
+    "correct_answer": "Gedaliah",
+    "explanation": "Nebuchadnezzar appointed Gedaliah son of Ahikam over the people who remained in Judah.",
+    "reference": "Jeremiah 40:5-7",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -679,16 +679,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 47,
     "challenge_index": 3,
-    "question_text": "Which scribe wrote Jeremiah's words on a scroll and read them publicly?",
+    "question_text": "Which priest struck Jeremiah and put him in the stocks at the upper gate of Benjamin?",
     "options": [
-      "Ezra",
+      "Pashhur",
+      "Gedaliah",
       "Baruch",
-      "Shaphan",
-      "Seraiah"
+      "Ebed-melech"
     ],
-    "correct_answer": "Baruch",
-    "explanation": "Baruch wrote the words dictated by Jeremiah and read the scroll.",
-    "reference": "Jeremiah 36:4-10",
+    "correct_answer": "Pashhur",
+    "explanation": "Pashhur the priest heard Jeremiah's prophecy, struck him and placed him in the stocks.",
+    "reference": "Jeremiah 20:1-2",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -826,16 +826,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 48,
     "challenge_index": 5,
-    "question_text": "Who was the sorcerer in Samaria who offered money for the power to give the Holy Spirit?",
+    "question_text": "Which magician opposed Paul and Barnabas before the proconsul Sergius Paulus?",
     "options": [
       "Elymas",
       "Simon",
-      "Bar-Jesus",
-      "Demetrius"
+      "Demetrius",
+      "Tertullus"
     ],
-    "correct_answer": "Simon",
-    "explanation": "Simon tried to buy the authority he saw the apostles exercising.",
-    "reference": "Acts 8:9-24",
+    "correct_answer": "Elymas",
+    "explanation": "Elymas the sorcerer opposed the apostles and tried to turn the proconsul away from the faith.",
+    "reference": "Acts 13:6-12",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -889,16 +889,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 49,
     "challenge_index": 3,
-    "question_text": "Which physician is named in Paul's letter to the Colossians?",
+    "question_text": "Which fellow worker did Paul describe as the beloved brother and faithful minister whom he sent to the Ephesians?",
     "options": [
-      "Demas",
-      "Luke",
-      "Titus",
-      "Mark"
+      "Tychicus",
+      "Onesimus",
+      "Epaphras",
+      "Archippus"
     ],
-    "correct_answer": "Luke",
-    "explanation": "Paul calls Luke the beloved physician.",
-    "reference": "Colossians 4:14",
+    "correct_answer": "Tychicus",
+    "explanation": "Paul sent Tychicus to inform the Ephesians about his circumstances and comfort their hearts.",
+    "reference": "Ephesians 6:21-22",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -1015,16 +1015,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 50,
     "challenge_index": 4,
-    "question_text": "Who was commended as a servant of the church at Cenchreae?",
+    "question_text": "Which woman hosted a church in her house, according to Paul's greeting to the Colossians?",
     "options": [
+      "Nympha",
       "Phoebe",
       "Persis",
-      "Junia",
-      "Tryphena"
+      "Priscilla"
     ],
-    "correct_answer": "Phoebe",
-    "explanation": "Paul commended Phoebe and asked the believers to assist her.",
-    "reference": "Romans 16:1-2",
+    "correct_answer": "Nympha",
+    "explanation": "Paul greeted the brethren in Laodicea, Nympha and the church that met in her house.",
+    "reference": "Colossians 4:15",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
