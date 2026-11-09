@@ -88,26 +88,26 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 26,
     "challenge_index": 4,
-    "question_text": "CASE FILE 129: The Rebellion of Korah. Examine the evidence and identify the biblical account.",
-    "correct_answer": "Korah's Rebellion",
+    "question_text": "CASE FILE 129: Hezekiah Reopens the Temple. Examine the evidence and identify the biblical account.",
+    "correct_answer": "Hezekiah Restores Temple Worship",
     "options": [
-      "Korah's Rebellion",
-      "Absalom's Rebellion",
-      "Sheba's Rebellion",
-      "Adonijah's Rebellion"
+      "Hezekiah Restores Temple Worship",
+      "Josiah Repairs the Temple",
+      "Joash Collects Temple Donations",
+      "Ezra Rebuilds the Temple"
     ],
-    "reference": "Numbers 16:1-35",
-    "explanation": "Korah and his company rebelled against Moses and Aaron; the ground opened and fire consumed the incense-offering rebels.",
+    "reference": "2 Chronicles 29:3-36",
+    "explanation": "Hezekiah reopened the temple, consecrated the priests and Levites, and restored sacrifices and worship.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Rebellion of Korah",
+      "case_title": "Hezekiah Reopens the Temple",
       "clues": [
-        "A group challenged the authority of Moses and Aaron in the wilderness.",
-        "Two hundred and fifty men offered incense before the LORD.",
-        "The ground opened and swallowed some rebels, while fire consumed the men offering incense."
+        "Evidence A — Early in his reign, a king opened the doors of the LORD's house and repaired them.",
+        "Evidence B — Priests and Levites were summoned to consecrate themselves and cleanse the sanctuary.",
+        "Evidence C — Sacrifices and songs of praise marked the restoration of temple worship."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-129"
+      "fact_key": "detective-expert-129-hezekiah-temple"
     }
   },
   {
