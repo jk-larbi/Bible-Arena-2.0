@@ -20,7 +20,7 @@ import {
 import type { ChallengeItem } from '../../data/bibleContentBank';
 import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX, HelpCircle } from 'lucide-react';
 import { BibleCrosswordBoard } from './BibleCrosswordBoard';
-import { installBibleArenaAudioUnlock, playBibleArenaSound, playLevelCelebration, unlockBibleArenaAudio } from '../../lib/gameAudio';
+import { installBibleArenaAudioUnlock, playBibleArenaSound, unlockBibleArenaAudio } from '../../lib/gameAudio';
 
 interface BaseGameProps {
   gameId: string;
@@ -300,7 +300,6 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         try {
           const finalRes = await finishLevel(attempt.attemptId);
           playBibleArenaSound('complete', soundEnabled);
-          playLevelCelebration(soundEnabled);
           setResult(finalRes);
           await refreshMap();
         } catch (e) {
