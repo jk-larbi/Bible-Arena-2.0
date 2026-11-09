@@ -299,7 +299,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       if (isLastChallenge) {
         try {
           const finalRes = await finishLevel(attempt.attemptId);
-          playBibleArenaSound('complete', soundEnabled);\n          playLevelCelebration(soundEnabled);
+          playBibleArenaSound('complete', soundEnabled);
+          playLevelCelebration(soundEnabled);
           setResult(finalRes);
           await refreshMap();
         } catch (e) {
