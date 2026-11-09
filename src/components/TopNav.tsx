@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Search, Bell, Trophy, Gamepad2, Users, Flame, Volume2, VolumeX } from 'lucide-react';
-import { installBibleArenaAudioUnlock, playBibleArenaSound } from '../lib/gameAudio';
+import { Search, Bell, Trophy, Gamepad2, Users, Flame, Volume2, VolumeX, SlidersHorizontal } from 'lucide-react';
+import { getBibleArenaVolume, installBibleArenaAudioUnlock, playBibleArenaSound, setBibleArenaVolume } from '../lib/gameAudio';
 
 interface TopNavProps {
   currentTab: string;
@@ -26,6 +26,8 @@ export const TopNav: React.FC<TopNavProps> = ({
   onToggleNotif
 }) => {
   const [logoFailed, setLogoFailed] = useState(false);
+  const [volume, setVolume] = useState(() => getBibleArenaVolume());
+  const [showVolumeControl, setShowVolumeControl] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(() => {
     try { return localStorage.getItem('biblearena-game-sound') !== 'off'; } catch { return true; }
   });
@@ -123,6 +125,49 @@ export const TopNav: React.FC<TopNavProps> = ({
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
+
+          {/* Master volume control for background music and game effects */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setShowVolumeControl((open) => !open)}
+              aria-label="Adjust music and sound volume"
+              aria-expanded={showVolumeControl}
+              title="Volume settings"
+              className="w-10 h-10 min-h-[44px] min-w-[44px] rounded-full bg-[#171B24]/5 hover:bg-[#171B24]/10 text-[#171B24] flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <SlidersHorizontal className="w-4 h-4" />
+            </button>
+            {showVolumeControl && (
+              <div className="absolute right-0 top-12 z-50 w-64 rounded-2xl border border-[#171B24]/15 bg-[#F3EBDD] p-4 shadow-xl">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-sm font-bold text-[#171B24]">Music & effects</span>
+                  <span className="text-xs font-semibold tabular-nums text-[#171B24]/65">{Math.round(volume * 100)}%</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={volume}
+                  aria-label="Master volume"
+                  onChange={(event) => {
+                    const next = Number(event.target.value);
+                    setVolume(next);
+                    setBibleArenaVolume(next);
+                  }}
+                  className="w-full cursor-pointer accent-[#3156C9]"
+                />
+                <div className="mt-1 flex justify-between text-[10px] text-[#171B24]/55">
+                  <span>Silent</span>
+                  <span>Maximum</span>
+                </div>
+                <p className="mt-3 text-[11px] leading-relaxed text-[#171B24]/65">
+                  This adjusts the background instrumental and all game sounds together.
+                </p>
+              </div>
+            )}
+          </div>
 
           {/* Search Button */}
           <button
