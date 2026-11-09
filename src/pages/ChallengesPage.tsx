@@ -82,7 +82,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
 
   useEffect(() => {
     let active = true;
-    const term = searchQuery.trim().replace(/[,%()]/g, '').slice(0, 40);
+    const term = searchQuery.trim().replace(/[^a-zA-Z0-9 _-]/g, '').slice(0, 40);
     if (!term || !supabase || !isSupabaseConfigured) { setProfiles([]); return; }
     const findPlayers = async () => {
       const { data, error } = await supabase
@@ -348,7 +348,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                 {c.status === 'completed' && (
                   <Button size="sm" onClick={() => void handleRematch(c)} disabled={!!sendingChallenge} className="bg-[#D66B3D] text-white hover:bg-[#c25a2c]">Rematch</Button>
                 )}
-                {c.status === 'pending' && c.opponent_id === user?.id && (
+                {c.status === 'pending' && c.opponent_id === user?.id && (!c.expires_at || new Date(c.expires_at).getTime() > Date.now()) && (
                   <div className="flex items-center gap-2 w-full sm:w-auto">
                     <Button
                       size="sm"
