@@ -1,505 +1,680 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Staged Bible Detective rebuild: five distinct investigations at each of levels 1–5. */
+/** Original, evidence-led Bible Detective cases. Five cases per level, Levels 1–5. */
 export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
   {
-    "id": "bible-detective-rebuild-l1-c1",
+    "id": "bible-detective-case-l1-c1",
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 1,
-    "question_text": "A king was attacked by a woman who dropped an upper millstone from a tower. Which king was it?",
-    "correct_answer": "Abimelech",
-    "reference": "Judges 9:50-54",
-    "explanation": "A woman at Thebez dropped an upper millstone on Abimelech. He then asked his armour-bearer to kill him.",
+    "question_text": "CASE FILE 01: The Broken Alabaster Jar\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Sinful Woman Who Anointed Jesus' Feet",
     "options": [
-      "Abimelech",
-      "Saul",
-      "Joram",
-      "Sisera"
+      "The Sinful Woman Who Anointed Jesus' Feet",
+      "Mary of Bethany at Bethany",
+      "The Woman with the Issue of Blood",
+      "The Samaritan Woman"
     ],
+    "reference": "Luke 7:36-50",
+    "explanation": "Jesus contrasted the woman's love with Simon's lack of hospitality and declared her sins forgiven.",
     "metadata": {
-      "difficulty": "beginner",
-      "fact_key": "detective-thebez-millstone"
+      "difficulty": "intermediate",
+      "case_title": "The Broken Alabaster Jar",
+      "clues": [
+        "Evidence A — A woman entered a Pharisee's house while Jesus was reclining at the table.",
+        "Evidence B — She stood behind him weeping; her tears wet his feet, which she wiped with her hair.",
+        "Evidence C — The host silently questioned how Jesus could accept her touch; Jesus answered with a story about two debtors."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-1"
     }
   },
   {
-    "id": "bible-detective-rebuild-l1-c2",
+    "id": "bible-detective-case-l1-c2",
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 2,
-    "question_text": "A prophet was killed by a lion on the road, but the lion did not eat the body or attack the donkey. Who was the victim?",
-    "correct_answer": "The man of God from Judah",
-    "reference": "1 Kings 13:24-28",
-    "explanation": "The unnamed man of God from Judah disobeyed the word he had received; a lion killed him, while the lion and donkey stood beside the body.",
+    "question_text": "CASE FILE 02: The Missing Body and the Unburned Clothes\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Healing of the Royal Official's Son",
     "options": [
-      "The man of God from Judah",
-      "Elijah",
-      "Micaiah",
-      "Hanani"
+      "The Healing of the Royal Official's Son",
+      "The Centurion's Servant",
+      "Jairus' Daughter",
+      "The Widow of Nain's Son"
     ],
+    "reference": "John 4:46-54",
+    "explanation": "The royal official's son was healed at the seventh hour, and the household believed.",
     "metadata": {
-      "difficulty": "beginner",
-      "fact_key": "detective-judah-prophet-lion"
+      "difficulty": "intermediate",
+      "case_title": "The Missing Body and the Unburned Clothes",
+      "clues": [
+        "Evidence A — A royal official's servant died, yet the official was told to go home because his son lived.",
+        "Evidence B — The healing happened at the exact hour Jesus said the fever had left.",
+        "Evidence C — The official learned the time from his servants and connected it to Jesus' word."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-2"
     }
   },
   {
-    "id": "bible-detective-rebuild-l1-c3",
+    "id": "bible-detective-case-l1-c3",
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 3,
-    "question_text": "A prisoner interpreted a baker’s dream about birds eating food from baskets on his head. What happened to the baker?",
-    "correct_answer": "He was executed",
-    "reference": "Genesis 40:16-22",
-    "explanation": "Joseph interpreted the three baskets as three days; Pharaoh executed the baker.",
+    "question_text": "CASE FILE 03: The Unusual Witness at the City Gate\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Four Lepers Discover the Aramean Camp",
     "options": [
-      "He was executed",
-      "He was restored",
-      "He escaped",
-      "He became cupbearer"
+      "The Four Lepers Discover the Aramean Camp",
+      "The Spies Return from Canaan",
+      "Gideon's Night Raid",
+      "The Gibeonites' Deception"
     ],
+    "reference": "2 Kings 7:3-11",
+    "explanation": "The four men with leprosy found the Aramean camp deserted and reported it to Samaria.",
     "metadata": {
-      "difficulty": "beginner",
-      "fact_key": "detective-baker-dream"
+      "difficulty": "intermediate",
+      "case_title": "The Unusual Witness at the City Gate",
+      "clues": [
+        "Evidence A — A famine-stricken capital had four men excluded from ordinary society at its gate.",
+        "Evidence B — They discovered the enemy camp abandoned, with food and valuables left behind.",
+        "Evidence C — They first hid supplies, then returned to report the news instead of keeping it secret."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-3"
     }
   },
   {
-    "id": "bible-detective-rebuild-l1-c4",
+    "id": "bible-detective-case-l1-c4",
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 4,
-    "question_text": "A military commander was told to wash seven times in the Jordan. What condition was healed?",
-    "correct_answer": "Leprosy",
-    "reference": "2 Kings 5:9-14",
-    "explanation": "Naaman obeyed Elisha’s instruction and his skin was restored.",
+    "question_text": "CASE FILE 04: The Unclaimed Inheritance\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Daughters of Zelophehad",
     "options": [
-      "Leprosy",
-      "Blindness",
-      "A fever",
-      "A wound"
+      "The Daughters of Zelophehad",
+      "The Daughters of Job",
+      "The Daughters of Jethro",
+      "The Daughters of Caleb"
     ],
+    "reference": "Numbers 27:1-11; 36:1-12",
+    "explanation": "Mahlah, Noah, Hoglah, Milcah and Tirzah received an inheritance ruling from the LORD.",
     "metadata": {
-      "difficulty": "beginner",
-      "fact_key": "detective-naaman-healing"
+      "difficulty": "intermediate",
+      "case_title": "The Unclaimed Inheritance",
+      "clues": [
+        "Evidence A — A man died without sons, and his daughters approached the entrance of the tent of meeting.",
+        "Evidence B — They asked why their father's name should disappear because he had no son.",
+        "Evidence C — Moses brought their case before the LORD, and the ruling changed Israel's inheritance law."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-4"
     }
   },
   {
-    "id": "bible-detective-rebuild-l1-c5",
+    "id": "bible-detective-case-l1-c5",
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 5,
-    "question_text": "A woman hid two Israelite spies under stalks of flax. What sign was placed in her window?",
-    "correct_answer": "A scarlet cord",
-    "reference": "Joshua 2:1-21",
-    "explanation": "Rahab was instructed to tie a scarlet cord in the window through which she had let the spies down.",
+    "question_text": "CASE FILE 05: The Unusual Census Payment\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Half-Shekel Census Offering",
     "options": [
-      "A scarlet cord",
-      "A white cloth",
-      "A palm branch",
-      "A bronze lamp"
+      "The Half-Shekel Census Offering",
+      "The Temple Tax in Jesus' Day",
+      "The Widow's Offering",
+      "David's Census of Israel"
     ],
+    "reference": "Exodus 30:11-16",
+    "explanation": "Exodus prescribes a half-shekel ransom for each person counted in the census.",
     "metadata": {
-      "difficulty": "beginner",
-      "fact_key": "detective-rahab-cord"
+      "difficulty": "intermediate",
+      "case_title": "The Unusual Census Payment",
+      "clues": [
+        "Evidence A — A census was ordered among Israel's men eligible for military service.",
+        "Evidence B — Each counted person was to give the same half-shekel amount, regardless of wealth.",
+        "Evidence C — The payment was called atonement money and was assigned to the service of the tent of meeting."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-5"
     }
   },
   {
-    "id": "bible-detective-rebuild-l2-c1",
+    "id": "bible-detective-case-l2-c1",
     "game_slug": "bible-detective",
     "level": 2,
     "challenge_index": 1,
-    "question_text": "A prophet confronted a king with a story about a rich man who took a poor man’s only ewe lamb. Who was the king?",
-    "correct_answer": "David",
-    "reference": "2 Samuel 12:1-13",
-    "explanation": "Nathan’s parable exposed David’s sin; David admitted he had sinned against the Lord.",
+    "question_text": "CASE FILE 06: The King Who Cut Up a Prophetic Message\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Jehoiakim Burns Jeremiah's Scroll",
     "options": [
-      "David",
-      "Saul",
-      "Solomon",
-      "Ahab"
+      "Jehoiakim Burns Jeremiah's Scroll",
+      "Josiah Finds the Book of the Law",
+      "Zedekiah Breaks the Covenant",
+      "Manasseh Destroys the Altar"
     ],
+    "reference": "Jeremiah 36:20-26",
+    "explanation": "King Jehoiakim burned the scroll containing Jeremiah's words as Jehudi read it.",
     "metadata": {
-      "difficulty": "easy",
-      "fact_key": "detective-nathan-ewe-lamb"
+      "difficulty": "advanced",
+      "case_title": "The King Who Cut Up a Prophetic Message",
+      "clues": [
+        "Evidence A — A scroll dictated by Jeremiah was read before a king during a winter session.",
+        "Evidence B — After hearing several columns, the king cut them with a scribe's knife and threw them into the fire.",
+        "Evidence C — The king's officials urged him not to burn the scroll, but he did not listen."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-6"
     }
   },
   {
-    "id": "bible-detective-rebuild-l2-c2",
+    "id": "bible-detective-case-l2-c2",
     "game_slug": "bible-detective",
     "level": 2,
     "challenge_index": 2,
-    "question_text": "A city’s water was harmful. A prophet placed salt in a new bowl and cast it into the spring. Which city was healed?",
-    "correct_answer": "Jericho",
-    "reference": "2 Kings 2:19-22",
-    "explanation": "The men of Jericho reported the bad water to Elisha, who healed the spring.",
+    "question_text": "CASE FILE 07: The Prophetic Sign of Two Sticks\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Ezekiel's Two Sticks",
     "options": [
-      "Jericho",
-      "Bethel",
-      "Gilgal",
-      "Samaria"
+      "Ezekiel's Two Sticks",
+      "Aaron's Rod That Budded",
+      "Moses' Two Tablets",
+      "Zechariah's Two Olive Trees"
     ],
+    "reference": "Ezekiel 37:15-28",
+    "explanation": "The joined sticks symbolised the reunification of Israel under one king.",
     "metadata": {
-      "difficulty": "easy",
-      "fact_key": "detective-jericho-spring"
+      "difficulty": "advanced",
+      "case_title": "The Prophetic Sign of Two Sticks",
+      "clues": [
+        "Evidence A — A prophet was told to write two names on separate pieces of wood.",
+        "Evidence B — One stick represented Judah and its companions; the other represented Joseph/Ephraim.",
+        "Evidence C — The pieces were joined in the prophet's hand as a sign of one reunited people."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-7"
     }
   },
   {
-    "id": "bible-detective-rebuild-l2-c3",
+    "id": "bible-detective-case-l2-c3",
     "game_slug": "bible-detective",
     "level": 2,
     "challenge_index": 3,
-    "question_text": "A king secretly consulted a woman who called up a spirit after expelling mediums from the land. Who was the king?",
-    "correct_answer": "Saul",
-    "reference": "1 Samuel 28:7-20",
-    "explanation": "Saul went in disguise to the medium at Endor when the Lord did not answer him.",
+    "question_text": "CASE FILE 08: The Prisoner Who Sent Back a Runaway\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Paul's Appeal for Onesimus",
     "options": [
-      "Saul",
-      "David",
-      "Hezekiah",
-      "Josiah"
+      "Paul's Appeal for Onesimus",
+      "Paul's Appeal for Mark",
+      "Peter's Appeal for Silas",
+      "John's Appeal for Demetrius"
     ],
+    "reference": "Philemon 1:8-18",
+    "explanation": "Paul appealed to Philemon to receive Onesimus as a brother, not merely as a servant.",
     "metadata": {
-      "difficulty": "easy",
-      "fact_key": "detective-saul-endor"
+      "difficulty": "advanced",
+      "case_title": "The Prisoner Who Sent Back a Runaway",
+      "clues": [
+        "Evidence A — A letter was written by a prisoner concerning a man who had become a Christian.",
+        "Evidence B — The writer called the man his child, saying he had become his father while in chains.",
+        "Evidence C — The request was not merely to receive him back, but to welcome him as a beloved brother."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-8"
     }
   },
   {
-    "id": "bible-detective-rebuild-l2-c4",
+    "id": "bible-detective-case-l2-c4",
     "game_slug": "bible-detective",
     "level": 2,
     "challenge_index": 4,
-    "question_text": "A prophet bought a field in his hometown while Jerusalem was under siege. Who made the purchase?",
-    "correct_answer": "Jeremiah",
+    "question_text": "CASE FILE 09: The Courtroom Split Over a Resurrection\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Paul Before the Sanhedrin",
+    "options": [
+      "Paul Before the Sanhedrin",
+      "Stephen Before the Sanhedrin",
+      "Peter Before the Council",
+      "Jesus Before Caiaphas"
+    ],
+    "reference": "Acts 23:1-10",
+    "explanation": "Paul's statement about resurrection divided the Pharisees and Sadducees.",
+    "metadata": {
+      "difficulty": "advanced",
+      "case_title": "The Courtroom Split Over a Resurrection",
+      "clues": [
+        "Evidence A — A prisoner stood before a council made up of two rival Jewish groups.",
+        "Evidence B — He declared that he was being judged concerning the hope of the resurrection of the dead.",
+        "Evidence C — The declaration divided the council because one group denied resurrection, angels and spirits."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-9"
+    }
+  },
+  {
+    "id": "bible-detective-case-l2-c5",
+    "game_slug": "bible-detective",
+    "level": 2,
+    "challenge_index": 5,
+    "question_text": "CASE FILE 10: The Unknown Altar in Athens\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Paul at the Areopagus",
+    "options": [
+      "Paul at the Areopagus",
+      "Paul in Ephesus",
+      "Peter at Pentecost",
+      "Barnabas in Lystra"
+    ],
+    "reference": "Acts 17:16-31",
+    "explanation": "Paul referred to the altar 'To the Unknown God' in his speech in Athens.",
+    "metadata": {
+      "difficulty": "advanced",
+      "case_title": "The Unknown Altar in Athens",
+      "clues": [
+        "Evidence A — A travelling teacher examined religious objects in a Greek city.",
+        "Evidence B — He found an altar bearing an inscription to an unknown deity.",
+        "Evidence C — He used the inscription to introduce the Creator who does not live in temples made by hands."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-10"
+    }
+  },
+  {
+    "id": "bible-detective-case-l3-c1",
+    "game_slug": "bible-detective",
+    "level": 3,
+    "challenge_index": 1,
+    "question_text": "CASE FILE 11: The Unexpected Roman Citizenship\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Paul's Roman Citizenship",
+    "options": [
+      "Paul's Roman Citizenship",
+      "Silas' Roman Citizenship",
+      "Peter's Citizenship",
+      "Luke's Citizenship"
+    ],
+    "reference": "Acts 22:24-29",
+    "explanation": "Paul stated that he was born a Roman citizen, unlike the commander who had bought citizenship.",
+    "metadata": {
+      "difficulty": "advanced",
+      "case_title": "The Unexpected Roman Citizenship",
+      "clues": [
+        "Evidence A — A Roman commander prepared to have a prisoner examined by scourging.",
+        "Evidence B — The prisoner asked whether it was lawful to scourge an uncondemned Roman citizen.",
+        "Evidence C — The commander became alarmed after learning the prisoner was a citizen by birth."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-11"
+    }
+  },
+  {
+    "id": "bible-detective-case-l3-c2",
+    "game_slug": "bible-detective",
+    "level": 3,
+    "challenge_index": 2,
+    "question_text": "CASE FILE 12: The Man Who Was Not to Be Harmed\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Plot Against Paul",
+    "options": [
+      "The Plot Against Paul",
+      "The Plot Against Peter",
+      "The Plot Against Stephen",
+      "The Plot Against Barnabas"
+    ],
+    "reference": "Acts 23:12-35",
+    "explanation": "Paul's nephew warned the Roman commander of the ambush planned by conspirators.",
+    "metadata": {
+      "difficulty": "advanced",
+      "case_title": "The Man Who Was Not to Be Harmed",
+      "clues": [
+        "Evidence A — A commander of the Roman cohort protected a prisoner from a plot.",
+        "Evidence B — More than forty men had sworn not to eat or drink until they killed the prisoner.",
+        "Evidence C — The prisoner's nephew heard the plot and reported it to the commander."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-12"
+    }
+  },
+  {
+    "id": "bible-detective-case-l3-c3",
+    "game_slug": "bible-detective",
+    "level": 3,
+    "challenge_index": 3,
+    "question_text": "CASE FILE 13: The Prophet Who Challenged a Royal Wedding\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "John the Baptist and Herod Antipas",
+    "options": [
+      "John the Baptist and Herod Antipas",
+      "Elijah and Ahab",
+      "Micaiah and Ahab",
+      "Nathan and David"
+    ],
+    "reference": "Mark 6:17-29",
+    "explanation": "John rebuked Herod for marrying Herodias, his brother's wife, and was executed after Herod's oath.",
+    "metadata": {
+      "difficulty": "advanced",
+      "case_title": "The Prophet Who Challenged a Royal Wedding",
+      "clues": [
+        "Evidence A — A prophet confronted a ruler for taking his brother's wife.",
+        "Evidence B — The ruler imprisoned the prophet, but feared him because he knew him to be righteous and holy.",
+        "Evidence C — At a birthday banquet, a promise made to a dancer led to the prophet's execution."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-13"
+    }
+  },
+  {
+    "id": "bible-detective-case-l3-c4",
+    "game_slug": "bible-detective",
+    "level": 3,
+    "challenge_index": 4,
+    "question_text": "CASE FILE 14: The Contract Sealed Before Exile\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Jeremiah Buys Hanamel's Field",
+    "options": [
+      "Jeremiah Buys Hanamel's Field",
+      "Boaz Redeems Ruth's Land",
+      "Abraham Buys Machpelah",
+      "David Buys Araunah's Threshing Floor"
+    ],
     "reference": "Jeremiah 32:6-15",
-    "explanation": "Jeremiah bought Hanamel’s field at Anathoth as a sign that land would again be bought in Judah.",
-    "options": [
-      "Jeremiah",
-      "Ezra",
-      "Baruch",
-      "Hanamel"
-    ],
+    "explanation": "Jeremiah bought his cousin Hanamel's field at Anathoth as a sign of future restoration.",
     "metadata": {
-      "difficulty": "easy",
-      "fact_key": "detective-jeremiah-field"
+      "difficulty": "advanced",
+      "case_title": "The Contract Sealed Before Exile",
+      "clues": [
+        "Evidence A — A prophet was told to buy a field while the city was under siege.",
+        "Evidence B — The deed was signed, witnessed and sealed, with a copy left unsealed for reference.",
+        "Evidence C — The documents were placed in an earthen vessel so they would last many days."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-14"
     }
   },
   {
-    "id": "bible-detective-rebuild-l2-c5",
-    "game_slug": "bible-detective",
-    "level": 2,
-    "challenge_index": 5,
-    "question_text": "A king tore his clothes after a book of the Law was read to him during temple repairs. Who was he?",
-    "correct_answer": "Josiah",
-    "reference": "2 Kings 22:8-13",
-    "explanation": "Hilkiah found the Book of the Law; Shaphan read it to Josiah, who tore his clothes.",
-    "options": [
-      "Josiah",
-      "Manasseh",
-      "Amon",
-      "Jehoiakim"
-    ],
-    "metadata": {
-      "difficulty": "easy",
-      "fact_key": "detective-josiah-book"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l3-c1",
-    "game_slug": "bible-detective",
-    "level": 3,
-    "challenge_index": 1,
-    "question_text": "A prophet was commanded to marry a woman whose unfaithfulness became a sign concerning Israel. Who was the prophet?",
-    "correct_answer": "Hosea",
-    "reference": "Hosea 1:2-3",
-    "explanation": "Hosea’s marriage to Gomer became a prophetic sign of Israel’s unfaithfulness.",
-    "options": [
-      "Hosea",
-      "Amos",
-      "Micah",
-      "Joel"
-    ],
-    "metadata": {
-      "difficulty": "intermediate",
-      "fact_key": "detective-hosea-marriage"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l3-c2",
-    "game_slug": "bible-detective",
-    "level": 3,
-    "challenge_index": 2,
-    "question_text": "A man escaped a guarded city by being lowered through an opening in its wall in a basket. Which apostle described this?",
-    "correct_answer": "Paul",
-    "reference": "2 Corinthians 11:32-33",
-    "explanation": "Paul described being lowered in a basket through a window in Damascus’s wall.",
-    "options": [
-      "Paul",
-      "Peter",
-      "James",
-      "John"
-    ],
-    "metadata": {
-      "difficulty": "intermediate",
-      "fact_key": "detective-paul-basket"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l3-c3",
-    "game_slug": "bible-detective",
-    "level": 3,
-    "challenge_index": 3,
-    "question_text": "A prophet lay on his side as a sign bearing the guilt of Israel and Judah. Who performed this sign?",
-    "correct_answer": "Ezekiel",
-    "reference": "Ezekiel 4:4-8",
-    "explanation": "Ezekiel lay on his left side for Israel and his right side for Judah.",
-    "options": [
-      "Ezekiel",
-      "Jeremiah",
-      "Daniel",
-      "Zechariah"
-    ],
-    "metadata": {
-      "difficulty": "intermediate",
-      "fact_key": "detective-ezekiel-side"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l3-c4",
-    "game_slug": "bible-detective",
-    "level": 3,
-    "challenge_index": 4,
-    "question_text": "A prophet challenged four hundred prophets and described Israel scattered like sheep without a shepherd. Who was he?",
-    "correct_answer": "Micaiah son of Imlah",
-    "reference": "1 Kings 22:13-28",
-    "explanation": "Micaiah told Ahab and Jehoshaphat he saw Israel scattered without a shepherd.",
-    "options": [
-      "Micaiah son of Imlah",
-      "Elisha",
-      "Nathan",
-      "Jehu"
-    ],
-    "metadata": {
-      "difficulty": "intermediate",
-      "fact_key": "detective-micaiah-shepherd"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l3-c5",
+    "id": "bible-detective-case-l3-c5",
     "game_slug": "bible-detective",
     "level": 3,
     "challenge_index": 5,
-    "question_text": "A prophet broke a wooden yoke from Jeremiah’s neck and claimed Babylon’s yoke would soon be broken. Who did this?",
-    "correct_answer": "Hananiah son of Azzur",
-    "reference": "Jeremiah 28:1-17",
-    "explanation": "Hananiah broke Jeremiah’s wooden yoke and falsely announced that Babylon’s yoke would be broken.",
+    "question_text": "CASE FILE 15: The Man Who Refused to Strike the Ground Enough\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Joash and Elisha's Arrows",
     "options": [
-      "Hananiah son of Azzur",
-      "Herod Antipas",
-      "Pontius Pilate",
-      "Felix"
+      "Joash and Elisha's Arrows",
+      "Jehoash and the Bow of Jehu",
+      "Hezekiah and the Assyrian Threat",
+      "Amaziah and the Edomites"
     ],
-    "metadata": {
-      "difficulty": "intermediate",
-      "fact_key": "detective-hananiah-yoke"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l4-c1",
-    "game_slug": "bible-detective",
-    "level": 4,
-    "challenge_index": 1,
-    "question_text": "A king accepted a crowd’s praise that his voice was the voice of a god. Which ruler was struck down?",
-    "correct_answer": "Herod Agrippa I",
-    "reference": "Acts 12:20-23",
-    "explanation": "Herod accepted the acclamation and was struck by an angel of the Lord.",
-    "options": [
-      "Herod Agrippa I",
-      "Pharaoh",
-      "Laban",
-      "Achish"
-    ],
-    "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "detective-herod-agrippa"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l4-c2",
-    "game_slug": "bible-detective",
-    "level": 4,
-    "challenge_index": 2,
-    "question_text": "A governor was warned in a dream about harming a man’s wife and returned her with gifts. Who was the governor?",
-    "correct_answer": "Abimelech of Gerar",
-    "reference": "Genesis 20:1-18",
-    "explanation": "God warned Abimelech in a dream that Sarah was Abraham’s wife.",
-    "options": [
-      "Abimelech of Gerar",
-      "Daniel",
-      "Jeremiah",
-      "John"
-    ],
-    "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "detective-abimelech-sarah"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l4-c3",
-    "game_slug": "bible-detective",
-    "level": 4,
-    "challenge_index": 3,
-    "question_text": "A prophet ate a scroll that tasted sweet in his mouth before delivering a difficult message. Who received it?",
-    "correct_answer": "Ezekiel",
-    "reference": "Ezekiel 3:1-4",
-    "explanation": "Ezekiel was told to eat the scroll before speaking the Lord’s words to Israel.",
-    "options": [
-      "Ezekiel",
-      "The fall of Egypt",
-      "The end of the priesthood",
-      "The loss of temple vessels"
-    ],
-    "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "detective-ezekiel-scroll"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l4-c4",
-    "game_slug": "bible-detective",
-    "level": 4,
-    "challenge_index": 4,
-    "question_text": "A prophet hid a linen belt by the Euphrates and later found it ruined. What did it symbolise?",
-    "correct_answer": "The pride of Judah and Jerusalem",
-    "reference": "Jeremiah 13:1-11",
-    "explanation": "The ruined belt illustrated how the Lord would ruin Judah’s pride because of stubbornness.",
-    "options": [
-      "The pride of Judah and Jerusalem",
-      "Hosea",
-      "Micah",
-      "Nahum"
-    ],
-    "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "detective-jeremiah-belt"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l4-c5",
-    "game_slug": "bible-detective",
-    "level": 4,
-    "challenge_index": 5,
-    "question_text": "A prophet saw a basket of summer fruit and was told that the end had come upon Israel. Who saw it?",
-    "correct_answer": "Amos",
-    "reference": "Amos 8:1-3",
-    "explanation": "Amos saw a basket of summer fruit; the wordplay signalled that the end had come for Israel.",
-    "options": [
-      "Amos",
-      "Elisha",
-      "Isaiah",
-      "Zechariah"
-    ],
-    "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "detective-amos-fruit"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l5-c1",
-    "game_slug": "bible-detective",
-    "level": 5,
-    "challenge_index": 1,
-    "question_text": "A prophet used a story about a widow’s small amount of flour and oil that did not run out during a famine. Which prophet was involved?",
-    "correct_answer": "Elijah",
-    "reference": "1 Kings 17:8-16",
-    "explanation": "Elijah stayed with the widow of Zarephath; her flour and oil lasted through the famine.",
-    "options": [
-      "Elijah",
-      "Jehoahaz",
-      "Amaziah",
-      "Jeroboam II"
-    ],
-    "metadata": {
-      "difficulty": "expert",
-      "fact_key": "detective-zarephath-widow"
-    }
-  },
-  {
-    "id": "bible-detective-rebuild-l5-c2",
-    "game_slug": "bible-detective",
-    "level": 5,
-    "challenge_index": 2,
-    "question_text": "A king was told to shoot arrows out of a window as a sign of victory over Aram. Which king received this instruction?",
-    "correct_answer": "Joash king of Israel",
     "reference": "2 Kings 13:14-19",
-    "explanation": "Elisha told Joash to shoot the arrow of the Lord’s deliverance and then strike the ground with arrows.",
-    "options": [
-      "Joash king of Israel",
-      "Amaziah",
-      "Uzziah",
-      "Ahaz"
-    ],
+    "explanation": "Elisha rebuked Joash for striking the ground only three times after the arrow of deliverance.",
     "metadata": {
-      "difficulty": "expert",
-      "fact_key": "detective-joash-arrows"
+      "difficulty": "advanced",
+      "case_title": "The Man Who Refused to Strike the Ground Enough",
+      "clues": [
+        "Evidence A — A dying prophet told a king to take a bow and arrows and strike the ground.",
+        "Evidence B — The king struck the ground three times and stopped.",
+        "Evidence C — The prophet became angry because the king would now defeat Aram only three times rather than completely."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-15"
     }
   },
   {
-    "id": "bible-detective-rebuild-l5-c3",
+    "id": "bible-detective-case-l4-c1",
+    "game_slug": "bible-detective",
+    "level": 4,
+    "challenge_index": 1,
+    "question_text": "CASE FILE 16: The Two Prophets and the Disputed Burial\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "The Man of God from Judah",
+    "options": [
+      "The Man of God from Judah",
+      "Elijah at Cherith",
+      "Micaiah son of Imlah",
+      "Hanani the Seer"
+    ],
+    "reference": "1 Kings 13:11-32",
+    "explanation": "The unnamed man of God from Judah disobeyed the LORD's instruction and was killed by a lion.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Two Prophets and the Disputed Burial",
+      "clues": [
+        "Evidence A — An older prophet persuaded a younger man of God to eat with him despite a contrary instruction.",
+        "Evidence B — The younger prophet died on the road after disobeying the word he had received.",
+        "Evidence C — A lion stood beside the corpse and the donkey, but neither animal was eaten."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-16"
+    }
+  },
+  {
+    "id": "bible-detective-case-l4-c2",
+    "game_slug": "bible-detective",
+    "level": 4,
+    "challenge_index": 2,
+    "question_text": "CASE FILE 17: The Battle Plan Hidden in a Dream\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Gideon Overhears the Midianite Dream",
+    "options": [
+      "Gideon Overhears the Midianite Dream",
+      "Joseph Interprets Pharaoh's Dream",
+      "Daniel Interprets Nebuchadnezzar's Dream",
+      "Jonathan's Armour-Bearer"
+    ],
+    "reference": "Judges 7:9-15",
+    "explanation": "Gideon overheard a Midianite's dream and its interpretation before attacking the camp.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Battle Plan Hidden in a Dream",
+      "clues": [
+        "Evidence A — A Midianite soldier told a companion about a dream involving a barley loaf.",
+        "Evidence B — The loaf rolled into the camp and struck a tent, which collapsed.",
+        "Evidence C — The companion interpreted the dream as God's giving the Midianite camp into Gideon's hand."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-17"
+    }
+  },
+  {
+    "id": "bible-detective-case-l4-c3",
+    "game_slug": "bible-detective",
+    "level": 4,
+    "challenge_index": 3,
+    "question_text": "CASE FILE 18: The Priest Who Hid the Royal Heir\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Jehoash Hidden by Jehosheba",
+    "options": [
+      "Jehoash Hidden by Jehosheba",
+      "Joash Hidden by Athaliah",
+      "Moses Hidden by Pharaoh's Daughter",
+      "Josiah Hidden by Hilkiah"
+    ],
+    "reference": "2 Kings 11:1-12",
+    "explanation": "Jehosheba hid Joash, and Jehoiada later brought him out to be crowned king.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Priest Who Hid the Royal Heir",
+      "clues": [
+        "Evidence A — A queen attempted to destroy the royal descendants after her son's death.",
+        "Evidence B — A princess took a young child and his nurse and hid them in a bedroom.",
+        "Evidence C — The child remained hidden in the temple for six years before being crowned."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-18"
+    }
+  },
+  {
+    "id": "bible-detective-case-l4-c4",
+    "game_slug": "bible-detective",
+    "level": 4,
+    "challenge_index": 4,
+    "question_text": "CASE FILE 19: The Man Who Asked for a Sign Twice\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Gideon's Fleece",
+    "options": [
+      "Gideon's Fleece",
+      "Hezekiah's Sundial",
+      "Elijah's Altar",
+      "Moses' Staff"
+    ],
+    "reference": "Judges 6:36-40",
+    "explanation": "Gideon asked for two signs involving the fleece before leading Israel against Midian.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Man Who Asked for a Sign Twice",
+      "clues": [
+        "Evidence A — A judge requested a sign involving a fleece on a threshing floor.",
+        "Evidence B — First the fleece alone was wet while the ground was dry; then the fleece was dry while the ground was wet.",
+        "Evidence C — The requests came before a small force faced the Midianites."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-19"
+    }
+  },
+  {
+    "id": "bible-detective-case-l4-c5",
+    "game_slug": "bible-detective",
+    "level": 4,
+    "challenge_index": 5,
+    "question_text": "CASE FILE 20: The Prophet Who Bought Back His Wife\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Hosea Redeems Gomer",
+    "options": [
+      "Hosea Redeems Gomer",
+      "Boaz Redeems Ruth",
+      "Jeremiah Buys a Field",
+      "Abraham Marries Hagar"
+    ],
+    "reference": "Hosea 3:1-5",
+    "explanation": "Hosea bought Gomer back as a sign of the LORD's continued love for unfaithful Israel.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Prophet Who Bought Back His Wife",
+      "clues": [
+        "Evidence A — A prophet was told to love a woman who was loved by another and was adulterous.",
+        "Evidence B — He bought her for fifteen pieces of silver and a quantity of barley.",
+        "Evidence C — She was told to remain with him for many days without prostitution or another man."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-20"
+    }
+  },
+  {
+    "id": "bible-detective-case-l5-c1",
+    "game_slug": "bible-detective",
+    "level": 5,
+    "challenge_index": 1,
+    "question_text": "CASE FILE 21: The Queen Who Asked for a Second Banquet\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Esther Exposes Haman",
+    "options": [
+      "Esther Exposes Haman",
+      "Vashti Refuses the King",
+      "Bathsheba Appeals to David",
+      "Athaliah Seizes the Throne"
+    ],
+    "reference": "Esther 7:1-6",
+    "explanation": "Esther exposed Haman's plot during the second banquet and pleaded for her people.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Queen Who Asked for a Second Banquet",
+      "clues": [
+        "Evidence A — A royal decree threatened the lives of a people scattered through an empire.",
+        "Evidence B — A queen approached the king uninvited, then invited him and the enemy official to two banquets.",
+        "Evidence C — At the second banquet she identified her own people and exposed the plot against them."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-21"
+    }
+  },
+  {
+    "id": "bible-detective-case-l5-c2",
+    "game_slug": "bible-detective",
+    "level": 5,
+    "challenge_index": 2,
+    "question_text": "CASE FILE 22: The Vision of the Flying Scroll\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Zechariah's Flying Scroll",
+    "options": [
+      "Zechariah's Flying Scroll",
+      "Ezekiel's Scroll",
+      "Daniel's Sealed Book",
+      "Jeremiah's Burned Scroll"
+    ],
+    "reference": "Zechariah 5:1-4",
+    "explanation": "Zechariah's flying scroll represented judgment against theft and false swearing.",
+    "metadata": {
+      "difficulty": "expert",
+      "case_title": "The Vision of the Flying Scroll",
+      "clues": [
+        "Evidence A — A prophet saw a scroll flying through the air.",
+        "Evidence B — The scroll was twenty cubits long and ten cubits wide.",
+        "Evidence C — It represented a curse entering the houses of thieves and those who swore falsely."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-22"
+    }
+  },
+  {
+    "id": "bible-detective-case-l5-c3",
     "game_slug": "bible-detective",
     "level": 5,
     "challenge_index": 3,
-    "question_text": "A prophet confronted a priest at Bethel after the priest told him to stop prophesying there. Who was the prophet?",
-    "correct_answer": "Amos",
-    "reference": "Amos 7:10-17",
-    "explanation": "Amos answered Amaziah, the priest of Bethel, and continued delivering his message.",
+    "question_text": "CASE FILE 23: The Basket That Measured Wickedness\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Zechariah's Ephah Vision",
     "options": [
-      "Amos",
-      "Jerusalem",
-      "Ephesus",
-      "Corinth"
+      "Zechariah's Ephah Vision",
+      "Amos' Basket of Summer Fruit",
+      "Jeremiah's Linen Belt",
+      "Ezekiel's Measuring Line"
     ],
+    "reference": "Zechariah 5:5-11",
+    "explanation": "The ephah vision depicted Wickedness being carried to Shinar.",
     "metadata": {
       "difficulty": "expert",
-      "fact_key": "detective-amos-amaziah"
+      "case_title": "The Basket That Measured Wickedness",
+      "clues": [
+        "Evidence A — A prophet saw a basket with a lead cover lifted away.",
+        "Evidence B — A woman called Wickedness sat inside, and she was pushed back into the basket.",
+        "Evidence C — Two women with wings carried it to Shinar to build a house for it."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-23"
     }
   },
   {
-    "id": "bible-detective-rebuild-l5-c4",
+    "id": "bible-detective-case-l5-c4",
     "game_slug": "bible-detective",
     "level": 5,
     "challenge_index": 4,
-    "question_text": "A court official was reading Isaiah while travelling home. A preacher joined his chariot, explained the passage, and baptised him. Which official was this?",
-    "correct_answer": "The Ethiopian eunuch",
-    "reference": "Acts 8:26-39",
-    "explanation": "Philip met an Ethiopian eunuch who was reading Isaiah, explained the good news about Jesus, and baptised him after they came to water.",
+    "question_text": "CASE FILE 24: The Servant Who Was Marked for Release\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Onesimus and Philemon",
     "options": [
-      "The Ethiopian eunuch",
-      "Cornelius",
-      "Sergius Paulus",
-      "The jailer at Philippi"
+      "Onesimus and Philemon",
+      "Tychicus and Onesimus",
+      "Mark and Barnabas",
+      "Epaphroditus and Paul"
     ],
+    "reference": "Philemon 1:10-19",
+    "explanation": "Paul's letter to Philemon asks that Onesimus be received as a beloved brother.",
     "metadata": {
       "difficulty": "expert",
-      "fact_key": "detective-ethiopian-eunuch-isaiah"
+      "case_title": "The Servant Who Was Marked for Release",
+      "clues": [
+        "Evidence A — A man who had fled his master met Paul and became a believer.",
+        "Evidence B — Paul sent him back with a letter asking the master to charge any debt to Paul.",
+        "Evidence C — Paul reminded the master that he owed Paul his very self."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-24"
     }
   },
   {
-    "id": "bible-detective-rebuild-l5-c5",
+    "id": "bible-detective-case-l5-c5",
     "game_slug": "bible-detective",
     "level": 5,
     "challenge_index": 5,
-    "question_text": "A king was told to choose between three years of famine, three months of defeat, or three days of plague. Who made this choice?",
-    "correct_answer": "David",
-    "reference": "2 Samuel 24:10-17",
-    "explanation": "David chose to fall into the Lord’s hands after the census and the resulting judgment.",
+    "question_text": "CASE FILE 25: The Council's Unexpected Adviser\nInvestigate the testimony and identify the biblical event or person.",
+    "correct_answer": "Gamaliel's Counsel",
     "options": [
-      "David",
-      "Saul",
-      "Solomon",
-      "Hezekiah"
+      "Gamaliel's Counsel",
+      "Nicodemus' Defence",
+      "Joseph of Arimathea's Appeal",
+      "Caiaphas' Prophecy"
     ],
+    "reference": "Acts 5:34-39",
+    "explanation": "Gamaliel advised caution when the council considered killing the apostles.",
     "metadata": {
       "difficulty": "expert",
-      "fact_key": "detective-david-census"
+      "case_title": "The Council's Unexpected Adviser",
+      "clues": [
+        "Evidence A — A respected Pharisee stood up after apostles were brought before the council.",
+        "Evidence B — He recalled earlier failed uprisings led by Theudas and Judas the Galilean.",
+        "Evidence C — He advised the council to leave the apostles alone, warning that opposing God would fail."
+      ],
+      "investigation_type": "multi_evidence_case",
+      "fact_key": "detective-case-25"
     }
   }
 ];
