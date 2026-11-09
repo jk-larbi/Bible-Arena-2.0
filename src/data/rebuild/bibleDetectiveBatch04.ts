@@ -223,26 +223,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 17,
     "challenge_index": 4,
-    "question_text": "CASE FILE 84: The Bitter Water at Marah. Review the evidence and identify the biblical account.",
-    "correct_answer": "The Waters of Marah Made Sweet",
+    "question_text": "CASE FILE 084: The Foreigner in the Barley Field\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Ruth Gleans in Boaz's Field",
     "options": [
-      "The Waters of Marah Made Sweet",
-      "Elisha Heals Jericho's Spring",
-      "Moses Strikes the Rock at Horeb",
-      "Naaman Washes in Jordan"
+      "Ruth Gleans in Boaz's Field",
+      "Ruth Meets Boaz at the City Gate",
+      "Naomi Returns to Bethlehem",
+      "The Daughters of Zelophehad Gather Their Inheritance"
     ],
-    "reference": "Exodus 15:22-25",
-    "explanation": "Moses threw a tree into the bitter water at Marah, and it became sweet.",
+    "reference": "Ruth 2:1-23",
+    "explanation": "Ruth gleaned behind the harvesters in Boaz's field; Boaz protected her and instructed his workers to leave extra grain for her.",
     "metadata": {
       "difficulty": "advanced",
-      "case_title": "The Bitter Water at Marah",
+      "case_title": "The Foreigner in the Barley Field",
       "clues": [
-        "Evidence A — A group of travellers reached water they could not drink.",
-        "Evidence B — A tree was shown to their leader and thrown into the water.",
-        "Evidence C — The water became sweet at the place later named Marah."
+        "A Moabite widow went out to gather leftover grain so that she and her mother-in-law could eat.",
+        "The field belonged to a wealthy relative of her late father-in-law, who asked his workers about the unfamiliar woman.",
+        "The owner ordered his men not to molest her and to pull out extra stalks for her from the bundles."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-84"
+      "fact_key": "detective-rebuilt-17-4"
     }
   },
   {
@@ -655,26 +655,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 20,
     "challenge_index": 5,
-    "question_text": "CASE FILE 100: The Secret Anointing. Review the evidence and identify the biblical account.",
-    "correct_answer": "Jehu Anointed King of Israel",
+    "question_text": "CASE FILE 100: The Prophet's Three-Year Sign\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Isaiah's Sign Against Egypt and Cush",
     "options": [
-      "Jehu Anointed King of Israel",
-      "Hazael Anointed King of Aram",
-      "David Anointed at Bethlehem",
-      "Solomon Anointed at Gihon"
+      "Isaiah's Sign Against Egypt and Cush",
+      "Jeremiah's Yoke before the Nations",
+      "Ezekiel's Sign of the Siege Brick",
+      "Hosea's Marriage to Gomer"
     ],
-    "reference": "2 Kings 9:1-13",
-    "explanation": "A young prophet anointed Jehu and declared him king over Israel.",
+    "reference": "Isaiah 20:1-6",
+    "explanation": "Isaiah walked stripped and barefoot as a sign that Egypt and Cush would be led away captive by Assyria, stripped and barefoot.",
     "metadata": {
       "difficulty": "advanced",
-      "case_title": "The Secret Anointing",
+      "case_title": "The Prophet's Three-Year Sign",
       "clues": [
-        "Evidence A — A prophet instructed a young man to travel to Ramoth-gilead with a flask of oil.",
-        "Evidence B — The young man took a commander into a private room and anointed him.",
-        "Evidence C — He announced judgment on Ahab's house and fled."
+        "The sign was given in the year an Assyrian commander came to Ashdod.",
+        "The prophet was told to remove his sackcloth and sandals and then walked stripped and barefoot.",
+        "The sign pointed to the humiliation and captivity of Egypt and Cush at the hands of Assyria."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-100"
+      "fact_key": "detective-rebuilt-20-5"
     }
   },
   {
@@ -898,26 +898,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 22,
     "challenge_index": 4,
-    "question_text": "CASE FILE 109: The Prisoner Who Was Not Released. Review the evidence and identify the biblical account.",
-    "correct_answer": "Paul Before Felix",
+    "question_text": "CASE FILE 109: The Scroll on the Desert Road\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Philip and the Ethiopian Official",
     "options": [
-      "Paul Before Felix",
-      "Paul Before Festus",
-      "Peter Before Agrippa",
-      "Stephen Before Pilate"
+      "Philip and the Ethiopian Official",
+      "Peter and Cornelius",
+      "Paul and the Philippian Jailer",
+      "Philip and the Samaritan Crowds"
     ],
-    "reference": "Acts 24:24-27",
-    "explanation": "Felix trembled at Paul's teaching but kept him imprisoned while hoping for a bribe.",
+    "reference": "Acts 8:26-40",
+    "explanation": "Philip met an Ethiopian official reading Isaiah, explained the passage about the suffering servant, and baptised him when they reached water.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Prisoner Who Was Not Released",
+      "case_title": "The Scroll on the Desert Road",
       "clues": [
-        "Evidence A — A prisoner was brought before a governor and his wife.",
-        "Evidence B — The governor trembled as the prisoner reasoned about righteousness, self-control and judgment.",
-        "Evidence C — The governor repeatedly sent for him, hoping for a bribe."
+        "An angel directed an evangelist to a road running south from Jerusalem toward Gaza.",
+        "A high-ranking official from a distant African kingdom was returning from worship and reading aloud from Isaiah.",
+        "The traveller asked for guidance, heard the good news about Jesus, and requested baptism when they came to water."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-109"
+      "fact_key": "detective-rebuilt-22-4"
     }
   },
   {
@@ -925,26 +925,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 22,
     "challenge_index": 5,
-    "question_text": "CASE FILE 110: The Man Who Tried to Buy Authority. Review the evidence and identify the biblical account.",
-    "correct_answer": "Simon the Sorcerer Offers Money",
+    "question_text": "CASE FILE 110: The Disagreement over John Mark\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Paul and Barnabas Part Ways",
     "options": [
-      "Simon the Sorcerer Offers Money",
-      "Elymas Opposes Paul",
-      "The Sons of Sceva Use Jesus' Name",
-      "Bar-Jesus Blinds the Proconsul"
+      "Paul and Barnabas Part Ways",
+      "Paul and Peter Disagree at Antioch",
+      "Paul and Silas Are Released from Prison",
+      "Barnabas Introduces Saul to the Apostles"
     ],
-    "reference": "Acts 8:9-24",
-    "explanation": "Simon tried to buy the authority to impart the Holy Spirit and was rebuked.",
+    "reference": "Acts 15:36-41",
+    "explanation": "Paul and Barnabas disagreed about taking John Mark on another journey; Barnabas took Mark to Cyprus, while Paul travelled with Silas through Syria and Cilicia.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Man Who Tried to Buy Authority",
+      "case_title": "The Disagreement over John Mark",
       "clues": [
-        "Evidence A — A magician in Samaria amazed the people and was called the Great Power of God.",
-        "Evidence B — After being baptised, he offered money for the ability to impart the Holy Spirit.",
-        "Evidence C — An apostle told him to repent because his heart was not right before God."
+        "Two missionaries proposed revisiting the communities where they had previously preached.",
+        "One wanted to take a younger companion who had left them during an earlier journey; the other refused to take him.",
+        "The disagreement became sharp, and the two leaders travelled separately with different companions."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-110"
+      "fact_key": "detective-rebuilt-22-5"
     }
   },
   {
