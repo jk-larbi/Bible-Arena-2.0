@@ -74,10 +74,12 @@ async function runTestSuite() {
       const sortedAnswer = sample.correct_answer.replace(/[^a-zA-Z]/g, '').split('').sort().join('').toLowerCase();
       if (sortedLetters !== sortedAnswer) mechanicsFailures++;
     } else if (slug === 'verse-builder') {
-      // Verse builder: word tiles that assemble the verse
+      // Verse builder: word tiles that assemble the verse or missing-word options
       const words = sample.options.join(' ').toLowerCase();
       const answer = sample.correct_answer.toLowerCase();
-      if (words.length === 0 || words.split(' ').sort().join(' ') !== answer.split(' ').sort().join(' ')) {
+      const isWordTileAssembly = words.length > 0 && words.split(' ').sort().join(' ') === answer.split(' ').sort().join(' ');
+      const isOptionSelection = Array.isArray(sample.options) && sample.options.includes(sample.correct_answer);
+      if (!isWordTileAssembly && !isOptionSelection) {
         mechanicsFailures++;
       }
     } else if (slug === 'bible-timeline' || slug === 'bible-puzzles') {

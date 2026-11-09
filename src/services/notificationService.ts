@@ -249,6 +249,43 @@ export async function notifyChallengeResponse(
 }
 
 /**
+ * Helper to notify challenge completion and outcome
+ */
+export async function notifyChallengeCompleted(
+  recipientId: string,
+  senderId: string,
+  senderName: string,
+  challengeId: string,
+  resultOutcome: 'won' | 'lost' | 'draw',
+  score: number,
+  rewardXp: number,
+  challengeTitle = 'Scripture Challenge'
+) {
+  if (recipientId === senderId) return;
+  const title = resultOutcome === 'won' ? 'Challenge Victory! 🏆' : resultOutcome === 'lost' ? 'Challenge Concluded ⚔️' : 'Challenge Draw! 🤝';
+  const message = resultOutcome === 'won'
+    ? `You won the ${challengeTitle} against ${senderName} (${score} pts) and earned +${rewardXp} XP!`
+    : resultOutcome === 'lost'
+    ? `${senderName} finished ${challengeTitle} with ${score} pts. Head to the arena for a rematch!`
+    : `You and ${senderName} tied in ${challengeTitle} with ${score} pts!`;
+
+  try {
+    await supabase
+      .from('notifications')
+      .insert({
+        user_id: recipientId,
+        sender_id: senderId,
+        title,
+        message,
+        type: 'challenge_response',
+        reference_id: challengeId
+      });
+  } catch (err) {
+    console.error('Error sending challenge completion notification:', err);
+  }
+}
+
+/**
  * Helper to notify live game invitation
  */
 export async function notifyLiveGameInvite(
