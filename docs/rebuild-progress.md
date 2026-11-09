@@ -93,3 +93,7 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Final automated structural audit across all five batches: 250 unique question wordings; 250 unique normalized reference-and-answer facts; no repeated fact keys; every question has exactly four distinct options including the correct answer; all rows have a reference and explanation; every level has exactly five questions.
 - The audit is structural, not a substitute for human passage-by-passage Scripture review. Some distractors and interpretation details still require editorial verification against the chosen Bible translation.
 - The 250 rows remain staged in source files and have NOT been imported into Supabase or published to the live Character Quest game. Integration, final source review, cross-game comparison, database replacement, and live gameplay verification are still pending.
+
+
+- Cross-game duplicate-key check against the current `public.game_content` bank found several reference/answer facts already used in Scripture Challenge and Bible Riddles. Those staged rows were replaced with different character facts. A repeat check returned no matching reference/answer facts in the other live game banks.
+- This check uses the same normalized reference-plus-answer key as the database guard; it does not replace editorial review for semantic similarity or translation accuracy.
