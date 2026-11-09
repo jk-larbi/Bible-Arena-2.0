@@ -952,16 +952,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 18,
     "challenge_index": 1,
-    "question_text": "Which woman supported Jesus' ministry and was the wife of Chuza?",
+    "question_text": "Which woman was identified as the mother of James and John among those watching the crucifixion?",
     "options": [
+      "Salome",
       "Joanna",
       "Susanna",
-      "Martha",
-      "Salome"
+      "Martha"
     ],
-    "correct_answer": "Joanna",
-    "explanation": "Joanna, the wife of Chuza, and other women provided for Jesus and the disciples from their resources.",
-    "reference": "Luke 8:1-3",
+    "correct_answer": "Salome",
+    "explanation": "Matthew records the mother of Zebedee's children among the women watching from a distance; Mark names Salome among the women present.",
+    "reference": "Matthew 27:56; Mark 15:40",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-86",
@@ -1087,16 +1087,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 19,
     "challenge_index": 1,
-    "question_text": "Which couple explained the way of God more accurately to Apollos?",
+    "question_text": "Which apostle prayed before Tabitha was restored to life in Joppa?",
     "options": [
-      "Priscilla and Aquila",
-      "Ananias and Sapphira",
-      "Mary and Martha",
-      "Lois and Eunice"
+      "Peter",
+      "John",
+      "Philip",
+      "Paul"
     ],
-    "correct_answer": "Priscilla and Aquila",
-    "explanation": "Priscilla and Aquila took Apollos aside and explained the way of God more accurately.",
-    "reference": "Acts 18:24-26",
+    "correct_answer": "Peter",
+    "explanation": "Peter sent everyone out, knelt and prayed before telling Tabitha to arise; she opened her eyes and sat up.",
+    "reference": "Acts 9:36-41",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-91",
@@ -1114,16 +1114,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 19,
     "challenge_index": 2,
-    "question_text": "Which woman was commended by Paul as a servant of the church at Cenchreae?",
+    "question_text": "Which woman from Thyatira, a seller of purple, listened to Paul by the riverside in Philippi?",
     "options": [
-      "Phoebe",
       "Lydia",
+      "Phoebe",
       "Priscilla",
       "Euodia"
     ],
-    "correct_answer": "Phoebe",
-    "explanation": "Paul commended Phoebe to the believers in Rome and described her as a servant of the church at Cenchreae.",
-    "reference": "Romans 16:1-2",
+    "correct_answer": "Lydia",
+    "explanation": "Lydia was a seller of purple from Thyatira; the Lord opened her heart to attend to Paul's message, and she and her household were baptised.",
+    "reference": "Acts 16:14-15",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-92",
