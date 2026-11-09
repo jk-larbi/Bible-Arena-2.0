@@ -43,6 +43,10 @@ export const SCRIPTURE_CHALLENGE_LEVELS: ScriptureLevelSpec[] = [
   { level: 28, stage: 6, name: "The Disciples' Test", focus: 'The Twelve and other followers', mechanic: 'disciple-identity', rule: 'Distinguish disciples by their actions, relationships, questions and experiences.' },
   { level: 29, stage: 6, name: 'The Final Week', focus: 'Events of Jesus’ final week', mechanic: 'passion-week-order', rule: 'Reconstruct the sequence of events surrounding the final week.' },
   { level: 30, stage: 6, name: 'The Gospel Boss Round', focus: 'Gospel synthesis', mechanic: 'gospel-boss', rule: 'Five difficult questions combining teachings, miracles, relationships and Gospel details.' },
+
+  { level: 31, stage: 7, name: 'Acts in Motion', focus: 'The early church and the book of Acts', mechanic: 'acts-investigation', rule: 'Trace the early church through precise details about its people, places, speeches and turning points.' },
+  { level: 32, stage: 7, name: "Paul's Mission Trail", focus: 'Paul’s journeys and companions', mechanic: 'journey-reconstruction', rule: 'Identify locations, companions, officials and events from Paul’s missionary journeys.' },
+  { level: 33, stage: 7, name: 'Letters Under Examination', focus: 'Details from New Testament letters', mechanic: 'epistle-evidence', rule: 'Answer detailed questions about the recipients, people, instructions and references in the New Testament letters.' },
 ];
 
 export function getScriptureLevelSpec(level: number): ScriptureLevelSpec | undefined {
