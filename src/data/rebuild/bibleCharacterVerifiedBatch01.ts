@@ -49,16 +49,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 1,
     "challenge_index": 3,
-    "question_text": "What name did Hagar use for the LORD after He spoke to her?",
+    "question_text": "What name did Hagar give the son she bore to Abram?",
     "options": [
-      "El Roi",
-      "Jehovah Jireh",
-      "El Shaddai",
-      "Jehovah Nissi"
+      "Ishmael",
+      "Isaac",
+      "Eliezer",
+      "Lot"
     ],
-    "correct_answer": "El Roi",
-    "explanation": "Hagar called the LORD who spoke to her 'Thou God seest me' (El Roi).",
-    "reference": "Genesis 16:13",
+    "correct_answer": "Ishmael",
+    "explanation": "The angel instructed Hagar to name her son Ishmael, and she bore him to Abram as the passage records.",
+    "reference": "Genesis 16:11-16",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "character-verified-fact-3",
@@ -448,16 +448,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 5,
     "challenge_index": 2,
-    "question_text": "Which judge struck down six hundred Philistines with an oxgoad?",
+    "question_text": "Which Moabite king did Ehud kill after gaining a private audience with him?",
     "options": [
-      "Shamgar",
-      "Samson",
-      "Ehud",
-      "Barak"
+      "Eglon",
+      "Jabin",
+      "Sisera",
+      "Abimelech"
     ],
-    "correct_answer": "Shamgar",
-    "explanation": "Shamgar son of Anath used an oxgoad to deliver Israel from six hundred Philistines.",
-    "reference": "Judges 3:31",
+    "correct_answer": "Eglon",
+    "explanation": "Ehud's private audience with Eglon ended when Ehud struck the Moabite king with his concealed sword.",
+    "reference": "Judges 3:15-25",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "character-verified-fact-22",
@@ -805,16 +805,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 8,
     "challenge_index": 4,
-    "question_text": "Which prophetess was consulted after the Book of the Law was found during Josiah's reign?",
+    "question_text": "Which elderly prophetess recognised the infant Jesus at the temple and spoke about him to those awaiting redemption?",
     "options": [
+      "Anna",
       "Huldah",
       "Deborah",
-      "Noadiah",
-      "Anna"
+      "Miriam"
     ],
-    "correct_answer": "Huldah",
-    "explanation": "Hilkiah and the king's officials went to Huldah the prophetess to inquire of the LORD about the discovered book.",
-    "reference": "2 Kings 22:14-20",
+    "correct_answer": "Anna",
+    "explanation": "Anna was a prophetess who gave thanks to God and spoke about Jesus to those looking for Jerusalem's redemption.",
+    "reference": "Luke 2:36-38",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-39",
