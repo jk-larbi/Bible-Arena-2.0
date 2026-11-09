@@ -6,6 +6,14 @@ Branch: `hosting/cloudflare-github-pages`
 Supabase project: `cbbtqsjcsttguukfgnvw`  
 Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
+## Latest Bible Chain investigation update — 2026-11-09
+
+- Source commits: dossier display fix `59f7fd879cb1043bb97fac4b08f66d67f0d2f582`; progress/audit note `ee0af30497910e66886bc8f49b15adf97dffd7ea`.
+- GitHub Actions content-audit run `42623126459` passed its 4,750-slot audit.
+- GitHub Pages build/deploy run `42623210036` passed TypeScript, quiz accuracy/scoring, all-level/game-mechanics, staged-batch, multiplayer/catalogue, build, artifact upload and deploy steps.
+- Direct fetch of the public Pages URL could not be completed from this run, so the workflow is confirmed successful but the live page response is not independently verified here.
+- This is a dossier-rendering and audit correction only. Bible Chain Challenge is still not content-complete and must not be counted as rebuilt.
+
 ## Publication boundary — applied to all 19 games
 
 - The catalogue retains 50 level slots so Levels 31–50 can display as Coming Soon.
