@@ -37,6 +37,8 @@ jobs:
 
       - name: Test quiz accuracy and scoring
         run: npm run test:quiz
+      - name: Verify all 50 levels and game mechanics
+        run: npm run test:all-levels
 
       - name: Validate staged Bible rebuild batches
         run: npm run validate:rebuild
