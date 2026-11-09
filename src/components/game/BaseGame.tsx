@@ -513,8 +513,6 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       const masked = String(meta.maskedText || '');
       const targets: string[] = Array.isArray(meta.targetWords) ? meta.targetWords : [];
       const pool: string[] = Array.isArray(meta.wordPool) ? meta.wordPool : [];
-      const submitTyped = () => settleAnswer(scriptureTyped.trim());
-      const submitPicked = () => settleAnswer(scripturePicked.join(' '));
       const versePanel = (text: string) => (
         <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-5 text-center">
           <p className="text-xs font-bold uppercase tracking-wider text-[#3156C9]">King James Version</p>
