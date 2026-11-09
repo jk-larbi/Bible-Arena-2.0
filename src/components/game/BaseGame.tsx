@@ -1102,10 +1102,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           <span className="px-3 py-1.5 rounded-full bg-[#171B24]/10 text-[#171B24] text-xs font-bold">
             Level {level} • Q{currentIdx + 1}/{CHALLENGES_PER_LEVEL}
           </span>
-          {gameId === 'who-said-it' && (
-            <button
+          <button
               type="button"
-              aria-label={soundEnabled ? 'Turn game sounds off' : 'Turn game sounds on'}
+              aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
               aria-pressed={soundEnabled}
               onClick={() => {
                 setSoundEnabled((enabled) => {
@@ -1119,8 +1118,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             >
               {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
               Game sound {soundEnabled ? 'On' : 'Off'}
-            </button>
-          )}
+          </button>
           {reveal === null && (
             <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-sm sm:text-base">
               ⏱ {answering.secondsLeft}s
