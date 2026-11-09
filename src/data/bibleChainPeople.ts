@@ -42,5 +42,5 @@ export const BIBLE_CHAIN_PEOPLE_SEED: BiblePerson[] = [
   { id:"manaen", displayName:"Manaen", aliases:[], testament:"NT", reference:"Acts 13:1", identity:"An Antioch teacher brought up with Herod the tetrarch.", category:"other", difficulty:5 },
   { id:"lucius-cyrene", displayName:"Lucius", aliases:["Lucius of Cyrene"], testament:"NT", reference:"Acts 13:1", identity:"A prophet or teacher in Antioch, identified as being from Cyrene.", category:"other", difficulty:5 },
 ];
-export const normalizeBiblePersonName=(value:string)=>value.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');
+export const normalizeBiblePersonName=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');
 export function validateBibleChainCatalogue(people:BiblePerson[]=BIBLE_CHAIN_PEOPLE_SEED):string[]{const errors:string[]=[];const ids=new Set<string>();const names=new Map<string,string>();for(const p of people){if(!p.id||ids.has(p.id))errors.push('Duplicate or empty id: '+p.id);ids.add(p.id);if(!p.displayName||!p.reference||!p.identity)errors.push('Missing required field: '+p.id);for(const n of [p.displayName,...p.aliases]){const k=normalizeBiblePersonName(n);const prior=names.get(k);if(prior&&prior!==p.id)errors.push('Name collision '+n+': '+prior+' / '+p.id);names.set(k,p.id);}}return errors;}
