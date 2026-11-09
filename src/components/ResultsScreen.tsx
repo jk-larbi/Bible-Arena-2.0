@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { encouragement, type LevelResult } from '../lib/levels';
+import { CHALLENGES_PER_LEVEL, encouragement, type LevelResult } from '../lib/levels';
 import { useCountUp } from '../hooks/useCountUp';
 import './victory.css';
 
@@ -78,7 +78,7 @@ export function ResultsScreen({ gameName, level, result: r, nextLevelAvailable, 
         {/* Unified Marks Badge */}
         <div className="v-rise flex flex-col items-center gap-1.5" style={rise(1.15)}>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#D66B3D] text-white font-bold text-lg shadow-md">
-            <span>Session Marks: {r.session_marks ?? r.fully_correct * 10} / 100</span>
+            <span>Session Marks: {r.session_marks ?? r.fully_correct * 10} / {CHALLENGES_PER_LEVEL * 10}</span>
           </div>
           {r.new_marks_awarded > 0 ? (
             <span className="text-xs font-semibold text-[#A7B49A]">
@@ -105,13 +105,13 @@ export function ResultsScreen({ gameName, level, result: r, nextLevelAvailable, 
           <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
             <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Correct</dt>
             <dd className="font-serif text-2xl font-bold tabular-nums text-emerald-400">
-              {r.correct_count ?? r.fully_correct}/10
+              {r.correct_count ?? r.fully_correct}/{CHALLENGES_PER_LEVEL}
             </dd>
           </div>
           <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
             <dt className="text-[11px] uppercase tracking-wider text-[#A7B49A]">Incorrect</dt>
             <dd className="font-serif text-2xl font-bold tabular-nums text-rose-300">
-              {r.incorrect_count ?? (10 - r.fully_correct)}/10
+              {r.incorrect_count ?? (CHALLENGES_PER_LEVEL - r.fully_correct)}/{CHALLENGES_PER_LEVEL}
             </dd>
           </div>
           <div className="p-3 rounded-2xl bg-white/5 border border-white/10">
