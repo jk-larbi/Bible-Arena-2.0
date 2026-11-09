@@ -360,7 +360,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             className="inline-flex items-center gap-2 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-2 text-sm font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
           >
             {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-            All game sounds {soundEnabled ? 'On' : 'Off'}
+            All sounds {soundEnabled ? 'On' : 'Off'}
           </button>
         </div>
         {gameId === 'complete-the-scripture' && (
