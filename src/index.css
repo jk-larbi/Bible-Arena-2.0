@@ -25,8 +25,11 @@
     color: var(--color-midnight);
     font-family: 'Inter', sans-serif;
     min-height: 100%;
+    min-height: 100svh;
     overflow-x: clip;
+    overflow-y: auto;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
     padding: 0;
     overscroll-behavior-y: auto;
@@ -40,6 +43,7 @@
 
   main {
     min-width: 0;
+    min-height: 0;
     flex: 1 0 auto;
   }
 
@@ -185,6 +189,12 @@
     min-height: 100svh;
   }
 
+  /* Keep the document as the vertical scroll owner on touch devices.
+     Nested panels opt into their own scrolling only when their content requires it. */
+  body, #root, main {
+    overscroll-behavior-y: auto;
+  }
+
   .smooth-horizontal-scroll {
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 1rem;
@@ -193,6 +203,19 @@
   .smooth-horizontal-scroll > * {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
+  }
+
+  .mobile-scroll-panel {
+    max-height: min(82svh, 720px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  /* Prevent fixed mobile navigation from covering the last row of page content. */
+  .mobile-page-end {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
   }
 
   :where(button, a, [role="button"]) {
