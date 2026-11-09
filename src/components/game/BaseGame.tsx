@@ -18,7 +18,7 @@ import {
   type LevelResult,
 } from '../../lib/levels';
 import type { ChallengeItem } from '../../data/bibleContentBank';
-import { ArrowUp, ArrowDown, RotateCcw } from 'lucide-react';
+import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 
 interface BaseGameProps {
   gameId: string;
@@ -91,6 +91,54 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [reveal, setReveal] = useState<Reveal | null>(null);
   const [sessionMarks, setSessionMarks] = useState(0);
   const [totalMarks, setTotalMarks] = useState(() => getOverallTotalMarks());
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    try { return localStorage.getItem('biblearena-who-said-it-sound') !== 'off'; } catch { return true; }
+  });
+  const soundContext = useRef<AudioContext | null>(null);
+  const lastTickSecond = useRef<number | null>(null);
+
+  const playGameSound = (kind: 'correct' | 'incorrect' | 'tick' | 'complete') => {
+    if (gameId !== 'who-said-it' || !soundEnabled || typeof window === 'undefined') return;
+    try {
+      const AudioContextClass = window.AudioContext;
+      if (!AudioContextClass) return;
+      const context = soundContext.current || (soundContext.current = new AudioContextClass());
+      if (context.state === 'suspended') void context.resume();
+      const patterns: Record<typeof kind, number[]> = {
+        correct: [659.25, 783.99, 987.77],
+        incorrect: [246.94, 196],
+        tick: [880],
+        complete: [523.25, 659.25, 783.99, 1046.5],
+      };
+      const notes = patterns[kind];
+      const now = context.currentTime;
+      notes.forEach((frequency, index) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.type = kind === 'incorrect' ? 'triangle' : 'sine';
+        oscillator.frequency.setValueAtTime(frequency, now + index * (kind === 'tick' ? 0 : 0.12));
+        gain.gain.setValueAtTime(0.0001, now + index * 0.12);
+        gain.gain.exponentialRampToValueAtTime(kind === 'tick' ? 0.035 : 0.09, now + index * 0.12 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.12 + (kind === 'tick' ? 0.09 : 0.22));
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(now + index * 0.12);
+        oscillator.stop(now + index * 0.12 + 0.24);
+      });
+    } catch {
+      // Sound is an enhancement; audio restrictions must never interrupt gameplay.
+    }
+  };
+
+  useEffect(() => {
+    if (gameId !== 'who-said-it' || reveal !== null || !attempt) return;
+    if (answering.secondsLeft <= 5 && answering.secondsLeft > 0 && lastTickSecond.current !== answering.secondsLeft) {
+      lastTickSecond.current = answering.secondsLeft;
+      playGameSound('tick');
+    }
+    if (answering.secondsLeft > 5) lastTickSecond.current = null;
+  }, [gameId, answering.secondsLeft, reveal, attempt, soundEnabled]);
+
 
   // Interactive per-mechanic state
   const [scramblePicked, setScramblePicked] = useState<number[]>([]);
@@ -215,6 +263,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setSessionMarks(res.session_marks);
       setTotalMarks(res.total_marks);
 
+      playGameSound(res.is_correct ? 'correct' : 'incorrect');
       setReveal({
         is_correct: res.is_correct,
         correct_answer: res.correct_answer,
@@ -248,6 +297,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       if (isLastChallenge) {
         try {
           const finalRes = await finishLevel(attempt.attemptId);
+          if (gameId === 'who-said-it') playGameSound('complete');
           setResult(finalRes);
           await refreshMap();
         } catch (e) {
@@ -1013,6 +1063,25 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           <span className="px-3 py-1.5 rounded-full bg-[#171B24]/10 text-[#171B24] text-xs font-bold">
             Level {level} • Q{currentIdx + 1}/{CHALLENGES_PER_LEVEL}
           </span>
+          {gameId === 'who-said-it' && (
+            <button
+              type="button"
+              aria-label={soundEnabled ? 'Turn game sounds off' : 'Turn game sounds on'}
+              aria-pressed={soundEnabled}
+              onClick={() => {
+                setSoundEnabled((enabled) => {
+                  const next = !enabled;
+                  try { localStorage.setItem('biblearena-who-said-it-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+                  if (next) playGameSound('tick');
+                  return next;
+                });
+              }}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-1.5 text-xs font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
+            >
+              {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              Sound {soundEnabled ? 'On' : 'Off'}
+            </button>
+          )}
           {reveal === null && (
             <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-sm sm:text-base">
               ⏱ {answering.secondsLeft}s
