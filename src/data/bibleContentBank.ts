@@ -1,5 +1,6 @@
 import { BIBLE_CHAIN_PEOPLE_SEED, normalizeBiblePersonName } from './bibleChainPeople';
 import { COMPLETE_SCRIPTURE_VERSES } from './completeScriptureVerses';
+import { getMatchUpChallenge } from './bibleMatchUpBank';
 
 export interface ChallengeItem {
   id: string;
@@ -964,23 +965,19 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-match-up': {
-        const pairs = [
-          BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 3) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 7) % BIBLE_CHARACTERS.length],
-          BIBLE_CHARACTERS[(globalSeed + 11) % BIBLE_CHARACTERS.length],
-        ].map((c) => ({ left: c.name, right: c.clue3, ref: c.clue3Ref }));
+        const matchSet = getMatchUpChallenge(globalSeed);
+        const pairs = matchSet.pairs;
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: 'Match each biblical figure with their scriptural accomplishment:',
+          question_text: `Match each ${matchSet.leftLabel.toLowerCase()} with its correct ${matchSet.rightLabel.toLowerCase()}:`,
           options: pairs.map((p) => `${p.left}:${p.right}`),
           correct_answer: pairs.map((p) => `${p.left}=${p.right}`).join('|'),
           explanation: pairs.map((p) => `${p.left} — ${p.right} (${p.ref})`).join(' • '),
           reference: pairs.map((p) => p.ref).join('; '),
-          metadata: { pairs },
+          metadata: { pairs, mode: matchSet.mode, leftLabel: matchSet.leftLabel, rightLabel: matchSet.rightLabel },
         });
         break;
       }
