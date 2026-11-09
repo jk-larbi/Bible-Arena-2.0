@@ -709,52 +709,70 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-chain-challenge': {
-        // People-only chain: every option begins with the previous person's final letter.
-        // Names are drawn from the curated Scripture-referenced catalogue, never Bible book titles.
-        const people = BIBLE_CHAIN_PEOPLE_SEED;
-        const eligibleStarts = people.filter((person) => {
-          const required = normalizeBiblePersonName(person.displayName).slice(-1);
-          const candidates = people.filter((candidate) =>
-            candidate.id !== person.id &&
-            normalizeBiblePersonName(candidate.displayName).startsWith(required)
-          );
-          return candidates.length >= 4;
-        });
-        const source = eligibleStarts[globalSeed % Math.max(eligibleStarts.length, 1)];
-        if (!source) {
-          throw new Error('Bible Chain catalogue has no valid four-option letter links.');
+        // Combine the curated rare-name catalogue with the established character
+        // reference bank. Only single people are eligible; Bible book titles and
+        // group/couple labels are excluded.
+        const curated = BIBLE_CHAIN_PEOPLE_SEED.map((p) => ({
+          id: p.id, name: p.displayName, aliases: p.aliases, reference: p.reference,
+          identity: p.identity, category: p.category, difficulty: p.difficulty,
+        }));
+        const established = BIBLE_CHARACTERS
+          .filter((p) => !/[&]|\band\b/i.test(p.name))
+          .map((p) => ({
+            id: `existing-${normalizeBiblePersonName(p.name)}`,
+            name: p.name.replace(/\s*\([^)]*\)\s*/g, '').trim(),
+            aliases: [] as string[],
+            reference: p.clue1Ref || p.ref,
+            identity: p.clue1,
+            category: p.role.toLowerCase().includes('prophet') ? 'prophet' : p.role.toLowerCase().includes('king') ? 'king' : p.role.toLowerCase().includes('apostle') ? 'apostle' : 'other',
+            difficulty: 2,
+          }));
+        const uniquePeople = new Map<string, typeof curated[number]>();
+        for (const person of [...curated, ...established]) {
+          const key = normalizeBiblePersonName(person.name);
+          if (key.length < 2 || !person.reference || !person.identity) continue;
+          if (!uniquePeople.has(key)) uniquePeople.set(key, person);
         }
-        const requiredLetter = normalizeBiblePersonName(source.displayName).slice(-1).toUpperCase();
+        const people = [...uniquePeople.values()];
+        const startsWith = (person: typeof people[number], letter: string) =>
+          normalizeBiblePersonName(person.name).startsWith(letter.toLowerCase());
+        const endsWith = (person: typeof people[number]) =>
+          normalizeBiblePersonName(person.name).slice(-1).toUpperCase();
+        const eligibleStarts = people.filter((person) => {
+          const letter = endsWith(person);
+          return people.filter((candidate) => candidate.id !== person.id && startsWith(candidate, letter)).length >= 4;
+        });
+        if (eligibleStarts.length === 0) {
+          throw new Error('Bible Chain catalogue has no valid four-option name links.');
+        }
+        const source = eligibleStarts[globalSeed % eligibleStarts.length];
+        const requiredLetter = endsWith(source);
         const candidates = people.filter((person) =>
-          person.id !== source.id &&
-          normalizeBiblePersonName(person.displayName).startsWith(requiredLetter.toLowerCase())
+          person.id !== source.id && startsWith(person, requiredLetter)
         );
         const ordered = shuffleDeterministic(candidates, shuffleSeed + 71);
         const matching = ordered[0];
-        const options = shuffleDeterministic(
-          ordered.slice(0, 4).map((person) => person.displayName),
-          shuffleSeed
-        );
+        const options = shuffleDeterministic(ordered.slice(0, 4).map((person) => person.name), shuffleSeed);
         if (!matching || options.length !== 4 || new Set(options.map(normalizeBiblePersonName)).size !== 4) {
-          throw new Error('Bible Chain could not construct four distinct valid name choices.');
+          throw new Error('Bible Chain could not construct four distinct, letter-valid choices.');
         }
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `NAME CHAIN: “${source.displayName}” ends with “${requiredLetter}”. Which biblical person can legally follow it? The Scripture dossier says: ${matching.identity}`,
+          question_text: `NAME CHAIN: “${source.name}” ends with “${requiredLetter}”. Which biblical person can follow it? Scripture dossier: ${matching.identity}`,
           options,
-          correct_answer: matching.displayName,
-          explanation: `The chain moves from ${source.displayName} to ${matching.displayName}: the final letter “${requiredLetter}” matches the first letter of the next name. ${matching.identity}`,
+          correct_answer: matching.name,
+          explanation: `The final letter of ${source.name} is “${requiredLetter}”, matching the first letter of ${matching.name}. ${matching.identity}`,
           reference: matching.reference,
           metadata: {
-            previousWord: source.displayName,
+            previousWord: source.name,
             requiredLetter,
             answerPersonId: matching.id,
             category: matching.category,
-            difficulty: matching.difficulty,
-            clues: [matching.identity, `Read ${matching.reference} and identify the person in context.`],
+            difficulty: Math.min(5, Math.max(1, Math.ceil(level / 6))),
+            clues: [matching.identity, `Read ${matching.reference} in context and identify the person.`],
           },
         });
         break;
