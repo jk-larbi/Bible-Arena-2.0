@@ -8,6 +8,7 @@ import {
 
 export const CHALLENGES_PER_LEVEL = 5;
 export const DEFAULT_TOTAL_LEVELS = 50;
+export const MAX_PUBLISHED_LEVELS = 30;
 
 // These games intentionally use client-generated content. Keep their attempts local
 // so the server never grades a different question bank than the one shown to players.
@@ -200,7 +201,7 @@ function buildLocalLevelMap(game: string, totalLevels = DEFAULT_TOTAL_LEVELS): L
       name: getStageTitleForLevel(lvl),
       difficulty: getDifficultyForLevel(lvl),
       challenge_count: CHALLENGES_PER_LEVEL,
-      is_published: lvl <= DEFAULT_TOTAL_LEVELS,
+      is_published: lvl <= MAX_PUBLISHED_LEVELS,
       unlocked,
       completed: Boolean(p?.completed),
       best_stars: p?.best_stars ?? 0,
@@ -252,8 +253,11 @@ export async function startLevel(
   level: number,
   restart = false
 ): Promise<{ attemptId: string; startIndex: number }> {
-  if (!Number.isInteger(level) || level < 1 || level > DEFAULT_TOTAL_LEVELS) {
-    throw new Error(`Choose a level between 1 and ${DEFAULT_TOTAL_LEVELS}.`);
+  if (!Number.isInteger(level) || level < 1 || level > MAX_PUBLISHED_LEVELS) {
+    if (Number.isInteger(level) && level > MAX_PUBLISHED_LEVELS && level <= DEFAULT_TOTAL_LEVELS) {
+      throw new Error(`Level ${level} is coming soon. Please play Levels 1–${MAX_PUBLISHED_LEVELS} for now.`);
+    }
+    throw new Error(`Choose a level between 1 and ${MAX_PUBLISHED_LEVELS}.`);
   }
   const allProgress = loadAllLocalProgress();
   const gameProg = allProgress[game] || {};

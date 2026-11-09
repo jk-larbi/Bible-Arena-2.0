@@ -43,7 +43,23 @@ export const SCRIPTURE_CHALLENGE_LEVELS: ScriptureLevelSpec[] = [
   { level: 28, stage: 6, name: "The Disciples' Test", focus: 'The Twelve and other followers', mechanic: 'disciple-identity', rule: 'Distinguish disciples by their actions, relationships, questions and experiences.' },
   { level: 29, stage: 6, name: 'The Final Week', focus: 'Events of Jesus’ final week', mechanic: 'passion-week-order', rule: 'Reconstruct the sequence of events surrounding the final week.' },
   { level: 30, stage: 6, name: 'The Gospel Boss Round', focus: 'Gospel synthesis', mechanic: 'gospel-boss', rule: 'Five difficult questions combining teachings, miracles, relationships and Gospel details.' },
-];
+
+  { level: 31, stage: 7, name: 'Acts in Motion', focus: 'The early church and the book of Acts', mechanic: 'acts-investigation', rule: 'Trace the early church through precise details about its people, places, speeches and turning points.' },
+  { level: 32, stage: 7, name: "Paul's Mission Trail", focus: 'Paul’s journeys and companions', mechanic: 'journey-reconstruction', rule: 'Identify locations, companions, officials and events from Paul’s missionary journeys.' },
+  { level: 33, stage: 7, name: 'Letters Under Examination', focus: 'Details from New Testament letters', mechanic: 'epistle-evidence', rule: 'Answer detailed questions about the recipients, people, instructions and references in the New Testament letters.' },
+
+  { level: 34, stage: 8, name: 'Songs and Wisdom', focus: 'Psalms, Proverbs, Job and Ecclesiastes', mechanic: 'wisdom-text-detail', rule: 'Test exact wording, speakers, literary structure and distinctive details from the wisdom books.' },
+  { level: 35, stage: 8, name: 'Exile and Return', focus: 'Judah’s exile and restoration', mechanic: 'restoration-history', rule: 'Trace the fall of Jerusalem, the exile, the return and the rebuilding of Jerusalem and the temple.' },
+  { level: 36, stage: 8, name: 'General Letters', focus: 'James, Peter, John and Jude', mechanic: 'letter-precision', rule: 'Identify precise teachings, people and Old Testament connections in the general letters.' },
+
+  { level: 37, stage: 9, name: 'The Tabernacle Blueprint', focus: 'The tabernacle, its furnishings and priestly garments', mechanic: 'sanctuary-detail', rule: 'Identify precise materials, measurements, instructions and unusual details in the tabernacle passages.' },
+  { level: 38, stage: 9, name: 'The Sacred Calendar', focus: 'Israel’s appointed feasts and sacred dates', mechanic: 'feast-calendar', rule: 'Recall the exact dates, counts, rituals and sequence of the appointed festivals.' },
+  { level: 39, stage: 9, name: 'The Seven Churches', focus: 'The messages to the seven churches in Revelation', mechanic: 'revelation-church-messages', rule: 'Match each church with its rebuke, commendation, warning and promise without confusing the messages.' },
+
+  { level: 40, stage: 10, name: 'The Throne Room and the Scroll', focus: 'John’s visions of the throne, the Lamb and the sealed scroll', mechanic: 'revelation-scroll-vision', rule: 'Recall precise details from the throne-room vision and the opening of the seals.' },
+  { level: 41, stage: 10, name: 'Daniel’s Exile Dossier', focus: 'Daniel’s life, royal courts, dreams and visions', mechanic: 'daniel-precision', rule: 'Identify exact numbers, objects, decrees and interpretations from Daniel’s accounts.' },
+  { level: 42, stage: 10, name: 'Covenant Law and Cities of Refuge', focus: 'Inheritance, Jubilee and Israel’s legal provisions', mechanic: 'covenant-law-cases', rule: 'Solve detailed questions about legal provisions, tribal inheritance and cities of refuge.' },
+]; 
 
 export function getScriptureLevelSpec(level: number): ScriptureLevelSpec | undefined {
   return SCRIPTURE_CHALLENGE_LEVELS.find((entry) => entry.level === level);

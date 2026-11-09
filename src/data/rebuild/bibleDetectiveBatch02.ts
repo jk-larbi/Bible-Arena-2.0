@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Advanced original Bible Detective cases, Levels 6–10. */
+/** Verified Bible Detective cases. Five distinct evidence files per level, Levels 1–30. */
 export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
   {
     "id": "bible-detective-case-l6-c1",
@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 10:17-24",
     "explanation": "Saul was found hiding among the baggage when Israel sought him after his selection.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A king hid among baggage during his public selection",
       "clues": [
         "Evidence A — The people gathered at Mizpah to confirm a king.",
@@ -34,26 +34,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 6,
     "challenge_index": 2,
-    "question_text": "CASE FILE 027: A dead man revived after touching a prophet's bones. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 027: The Barley Loaves in a Famine\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Elisha",
-      "Elijah",
-      "Samuel",
-      "Moses"
+      "Elisha Feeds a Hundred Men",
+      "Jesus Feeds the Five Thousand",
+      "Elijah Feeds the Widow at Zarephath",
+      "The Manna Given in the Wilderness"
     ],
-    "correct_answer": "Elisha",
-    "reference": "2 Kings 13:20-21",
-    "explanation": "A dead man revived when his body touched Elisha's bones; the event occurred after Elisha's death.",
+    "correct_answer": "Elisha Feeds a Hundred Men",
+    "reference": "2 Kings 4:42-44",
+    "explanation": "A man brought twenty barley loaves and fresh ears of grain; Elisha ordered that they be given to one hundred men, and the food was left over according to the LORD's word.",
     "metadata": {
-      "difficulty": "advanced",
-      "case_title": "A dead man revived after touching a prophet's bones",
+      "difficulty": "beginner",
+      "case_title": "The Barley Loaves in a Famine",
       "clues": [
-        "Evidence A — The event occurred during a burial.",
-        "Evidence B — The mourners saw a raiding band and hurriedly threw the body into a tomb.",
-        "Evidence C — When the body touched the prophet's bones, the man revived and stood up."
+        "During a time of famine, a man arrived from Baal-shalishah carrying food from the firstfruits.",
+        "The prophet instructed his servant to set the food before a group of one hundred, although the servant questioned whether it was enough.",
+        "Everyone ate, and some was left over in keeping with the word of the LORD."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-27"
+      "fact_key": "detective-rebuilt-6-2"
     }
   },
   {
@@ -61,26 +61,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 6,
     "challenge_index": 3,
-    "question_text": "CASE FILE 028: A fleeing commander died beneath a household tent. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 028: The Two Men at the Philistine Pass\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Sisera",
-      "Abimelech",
-      "Jabin",
-      "Holofernes"
+      "Jonathan and His Armour-Bearer Attack the Outpost",
+      "David and Abishai Enter Saul's Camp",
+      "Gideon and His Three Hundred",
+      "Shamgar Strikes the Philistines"
     ],
-    "correct_answer": "Sisera",
-    "reference": "Judges 4:17-22",
-    "explanation": "Jael killed Sisera with a tent peg after he fled from Barak's army.",
+    "correct_answer": "Jonathan and His Armour-Bearer Attack the Outpost",
+    "reference": "1 Samuel 14:1-14",
+    "explanation": "Jonathan and his armour-bearer approached a Philistine outpost; Jonathan proposed a sign and the two climbed up to attack the garrison.",
     "metadata": {
-      "difficulty": "advanced",
-      "case_title": "A fleeing commander died beneath a household tent",
+      "difficulty": "beginner",
+      "case_title": "The Two Men at the Philistine Pass",
       "clues": [
-        "Evidence A — A woman invited the exhausted commander into her tent and covered him.",
-        "Evidence B — He asked for water, and she gave him milk.",
-        "Evidence C — While he slept, she drove a tent peg through his temple."
+        "While Israel's king remained near Gibeah with the people, his son quietly left the camp with one companion.",
+        "The pair proposed that the enemy's response—calling them to climb up—would serve as a sign that the LORD had given them into Israel's hand.",
+        "They climbed on hands and feet and struck down about twenty men in the first attack."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-28"
+      "fact_key": "detective-rebuilt-6-3"
     }
   },
   {
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Judges 3:12-30",
     "explanation": "Ehud killed Eglon, king of Moab, and escaped through the porch.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A Moabite ruler was killed in a private upper room",
       "clues": [
         "Evidence A — Israel was oppressed by Moab after doing evil.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Kings 5:15-27",
     "explanation": "Gehazi took gifts from Naaman deceitfully and was struck with Naaman's leprosy.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A prophet's servant was struck with the disease of a healed commander",
       "clues": [
         "Evidence A — A foreign military commander had been healed after washing in the Jordan.",
@@ -153,7 +153,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 4:19-22",
     "explanation": "Ichabod's name marked the loss of glory after the ark was captured and his father-in-law died.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A priest's grandson carried a name linked to lost glory",
       "clues": [
         "Evidence A — The child was born when his mother heard that the ark had been captured.",
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 25:2-35",
     "explanation": "Abigail intervened when Nabal insulted David and prevented David from avenging himself.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A woman stopped a king from taking revenge on a household",
       "clues": [
         "Evidence A — A wealthy landowner refused David's messengers and insulted them.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Samuel 12:1-13",
     "explanation": "Nathan used the parable of the ewe lamb to confront David over his sin.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A prophet confronted a king with a stolen lamb story",
       "clues": [
         "Evidence A — A rich man took a poor man's only ewe lamb to feed a visitor.",
@@ -234,7 +234,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Daniel 6:1-23",
     "explanation": "Daniel continued his regular prayers despite the decree and was preserved in the lions' den.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A royal official was executed after refusing to bow",
       "clues": [
         "Evidence A — The official was elevated above other officials in a foreign empire.",
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Esther 4:10-17; 5:1-8",
     "explanation": "Esther risked approaching the king and arranged banquets to expose Haman's plot.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "A queen approached the throne without being summoned",
       "clues": [
         "Evidence A — A royal decree threatened the Jews throughout the Persian empire.",
@@ -288,7 +288,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Esther 6:1-11",
     "explanation": "Mordecai was publicly honoured after the king remembered his exposure of a conspiracy.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "A king's sleep was interrupted by an old record",
       "clues": [
         "Evidence A — The king could not sleep and ordered the chronicles to be read.",
@@ -304,26 +304,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 8,
     "challenge_index": 2,
-    "question_text": "CASE FILE 037: A prophet used two pieces of wood to explain national reunion. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 037: The Answer from the Ash Heap\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Ezekiel",
-      "Jeremiah",
-      "Zechariah",
-      "Hosea"
+      "Job Refuses His Wife's Counsel",
+      "Job's Friends Accuse Him",
+      "Jeremiah Buys a Field",
+      "Habakkuk Questions God's Justice"
     ],
-    "correct_answer": "Ezekiel",
-    "reference": "Ezekiel 37:15-28",
-    "explanation": "Ezekiel's joined sticks symbolised the reunion of Israel and Judah.",
+    "correct_answer": "Job Refuses His Wife's Counsel",
+    "reference": "Job 2:7-10",
+    "explanation": "After Job was struck with painful sores, his wife urged him to curse God and die; Job refused to speak foolishly and accepted that people receive both good and adversity.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A prophet used two pieces of wood to explain national reunion",
+      "difficulty": "beginner",
+      "case_title": "The Answer from the Ash Heap",
       "clues": [
-        "Evidence A — One piece represented Judah and its associated tribes.",
-        "Evidence B — The other represented Joseph, especially Ephraim.",
-        "Evidence C — The prophet joined the pieces in his hand to signify one people under one king."
+        "A righteous man was afflicted with painful sores from the sole of his foot to the crown of his head.",
+        "He sat among ashes and used a piece of broken pottery to scrape himself.",
+        "His wife urged him to abandon his integrity, but he asked whether they should receive good from God and not adversity."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-37"
+      "fact_key": "detective-rebuilt-8-2"
     }
   },
   {
@@ -331,26 +331,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 8,
     "challenge_index": 3,
-    "question_text": "CASE FILE 038: A prophet purchased a field while the city was under siege. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 038: The Donkeys and Provisions on the Road\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Jeremiah",
-      "Ezekiel",
-      "Nehemiah",
-      "Ezra"
+      "Ziba's Report to David",
+      "Mephibosheth's Appeal to David",
+      "Abigail Meets David",
+      "Shimei Seeks Pardon"
     ],
-    "correct_answer": "Jeremiah",
-    "reference": "Jeremiah 32:6-15",
-    "explanation": "Jeremiah bought Hanamel's field at Anathoth as a sign of future restoration.",
+    "correct_answer": "Ziba's Report to David",
+    "reference": "2 Samuel 16:1-4",
+    "explanation": "Ziba met David during his flight from Jerusalem with provisions and made a claim about Mephibosheth's intentions; the passage records Ziba's report, not an independently confirmed fact.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A prophet purchased a field while the city was under siege",
+      "difficulty": "beginner",
+      "case_title": "The Donkeys and Provisions on the Road",
       "clues": [
-        "Evidence A — The seller was the prophet's cousin.",
-        "Evidence B — The transaction included a deed, witnesses, scales and payment.",
-        "Evidence C — The deed was placed in an earthen vessel as a sign that houses and fields would again be bought in the land."
+        "A king was fleeing Jerusalem shortly after crossing the Mount of Olives.",
+        "A servant of a man from Saul's family arrived with two saddled donkeys, bread, dried fruit and wine.",
+        "When asked where his master was, the servant claimed that the man had stayed in Jerusalem hoping to regain the kingdom."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-38"
+      "fact_key": "detective-rebuilt-8-3"
     }
   },
   {
@@ -358,26 +358,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 8,
     "challenge_index": 4,
-    "question_text": "CASE FILE 039: A king was told that his arrows would determine victories. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 039: The Mockery on the Road to Bethel\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Joash of Israel",
-      "Jehoash of Judah",
-      "Amaziah",
-      "Jeroboam II"
+      "Elisha and the Bears at Bethel",
+      "Elijah's Chariot of Fire",
+      "Elisha Heals Naaman",
+      "The She-Bears of Samaria"
     ],
-    "correct_answer": "Joash of Israel",
-    "reference": "2 Kings 13:14-19",
-    "explanation": "Joash struck the ground three times after Elisha's instruction, signifying only three victories over Aram.",
+    "correct_answer": "Elisha and the Bears at Bethel",
+    "reference": "2 Kings 2:23-25",
+    "explanation": "As Elisha travelled toward Bethel, youths mocked him; after he pronounced a curse in the LORD's name, two bears came out of the woods and mauled forty-two of them.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A king was told that his arrows would determine victories",
+      "difficulty": "beginner",
+      "case_title": "The Mockery on the Road to Bethel",
       "clues": [
-        "Evidence A — A prophet was near death and summoned the king of Israel.",
-        "Evidence B — The king was told to shoot an arrow eastward as a sign of deliverance from Aram.",
-        "Evidence C — He struck the ground only three times, and the prophet rebuked him for stopping."
+        "A prophet was travelling uphill from Jericho toward Bethel after taking up his predecessor's mantle.",
+        "A group of youths came out of the town and repeatedly mocked his appearance and told him to go up.",
+        "He turned, pronounced a curse in the name of the LORD, and two female bears came out of the woods."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-39"
+      "fact_key": "detective-rebuilt-8-4"
     }
   },
   {
@@ -385,26 +385,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 8,
     "challenge_index": 5,
-    "question_text": "CASE FILE 40: The Priest Who Challenged a Governor's Authority. Identify the account from the evidence.",
+    "question_text": "CASE FILE 040: The Garments Beside the Upper Room\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Paul and the High Priest Ananias",
-      "Stephen and the Sanhedrin",
-      "Peter and Caiaphas",
-      "John and Annas"
+      "Peter Raises Tabitha",
+      "Peter Heals Aeneas",
+      "Paul Raises Eutychus",
+      "Jesus Raises Jairus' Daughter"
     ],
-    "correct_answer": "Paul and the High Priest Ananias",
-    "reference": "Acts 23:1-5",
-    "explanation": "When Ananias ordered Paul to be struck, Paul rebuked him; after being told he was the high priest, Paul acknowledged the scriptural prohibition against speaking evil of a ruler.",
+    "correct_answer": "Peter Raises Tabitha",
+    "reference": "Acts 9:36-43",
+    "explanation": "Tabitha, also called Dorcas, died in Joppa; Peter prayed beside her and told her to arise, and she was presented alive to the believers.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "Paul and the High Priest Ananias",
+      "difficulty": "beginner",
+      "case_title": "The Garments Beside the Upper Room",
       "clues": [
-        "Evidence A — Paul began by declaring that he had lived in good conscience before God.",
-        "Evidence B — The high priest ordered those standing near Paul to strike his mouth.",
-        "Evidence C — Paul acknowledged the command not to speak evil of the ruler of the people when he learned the man's office."
+        "A disciple in Joppa was known for good works and acts of charity, especially garments she made for others.",
+        "After she became ill and died, the believers washed her body and placed it in an upper room.",
+        "Widows stood beside the visiting apostle and showed him the tunics and other clothing she had made; he prayed and called her by name to rise."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-40"
+      "fact_key": "detective-rebuilt-8-5"
     }
   },
   {
@@ -412,26 +412,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 1,
-    "question_text": "CASE FILE 041: A judge overheard an enemy soldier's dream. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 041: The Burden of One Judge\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Gideon",
-      "Barak",
-      "Jephthah",
-      "Samson"
+      "Jethro's Advice to Moses",
+      "Aaron's Counsel during the Golden Calf",
+      "Moses' Appointment of the Twelve Spies",
+      "Joshua's Division of the Land"
     ],
-    "correct_answer": "Gideon",
-    "reference": "Judges 7:9-15",
-    "explanation": "Gideon overheard the dream and its interpretation before attacking the Midianite camp.",
+    "correct_answer": "Jethro's Advice to Moses",
+    "reference": "Exodus 18:13-27",
+    "explanation": "Jethro saw that Moses was judging the people alone and advised him to appoint capable, trustworthy leaders over groups of thousands, hundreds, fifties and tens.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A judge overheard an enemy soldier's dream",
+      "difficulty": "beginner",
+      "case_title": "The Burden of One Judge",
       "clues": [
-        "Evidence A — A barley loaf rolled into an enemy camp.",
-        "Evidence B — It struck a tent so that the tent fell over.",
-        "Evidence C — The soldier's companion interpreted the dream as a sign that Israel would defeat Midian."
+        "A leader sat from morning until evening hearing disputes brought by an entire nation.",
+        "His visiting father-in-law warned that the arrangement would exhaust both the leader and the people.",
+        "The advice was to appoint capable, God-fearing and trustworthy men over smaller groups, leaving only the hardest cases for the leader."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-41"
+      "fact_key": "detective-rebuilt-9-1"
     }
   },
   {
@@ -439,26 +439,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 2,
-    "question_text": "CASE FILE 042: A princess rescued a royal child from a massacre. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 042: The Guests Who Would Not Drink\nInvestigate the evidence and identify the biblical event or group.",
     "options": [
-      "Jehosheba",
-      "Jehoshabeath",
-      "Huldah",
-      "Athaliah"
+      "The Rechabites Refuse Wine",
+      "The Nazirites' Vow",
+      "The Priests' Refusal of Defiled Food",
+      "The Israelites at Marah"
     ],
-    "correct_answer": "Jehosheba",
-    "reference": "2 Kings 11:1-12",
-    "explanation": "Jehosheba rescued Joash from Athaliah's purge and hid him in the temple.",
+    "correct_answer": "The Rechabites Refuse Wine",
+    "reference": "Jeremiah 35:1-19",
+    "explanation": "The Rechabites refused wine because their ancestor Jonadab had instructed them not to drink it or settle in houses; the LORD used their obedience as a contrast to Judah's disobedience.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A princess rescued a royal child from a massacre",
+      "difficulty": "beginner",
+      "case_title": "The Guests Who Would Not Drink",
       "clues": [
-        "Evidence A — A queen attempted to destroy the royal heirs of Judah.",
-        "Evidence B — The child was hidden with his nurse in a bedroom in the temple.",
-        "Evidence C — After six years, a priest brought him out and crowned him king."
+        "A prophet invited members of a family clan into a chamber in the house of the LORD and set cups of wine before them.",
+        "They refused, explaining that their ancestor Jonadab son of Rechab had commanded them not to drink wine, build houses, sow seed or plant vineyards, but to live in tents.",
+        "The LORD used their obedience to their ancestor as a rebuke to Judah for refusing to listen to his commands."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-42"
+      "fact_key": "detective-rebuilt-9-2"
     }
   },
   {
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Hosea 1:2; 3:1-5",
     "explanation": "Hosea's relationship with Gomer illustrated God's love for unfaithful Israel.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "A prophet's marriage became a sign about Israel's unfaithfulness",
       "clues": [
         "Evidence A — The prophet was told to marry a woman associated with unfaithfulness.",
@@ -493,26 +493,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 4,
-    "question_text": "CASE FILE 044: A scroll flew over the land and announced judgment against theft and false oaths. Identify the vision.",
+    "question_text": "CASE FILE 044: The Riders Among the Myrtle Trees\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "The Flying Scroll Vision",
-      "The Ephah Vision",
-      "The Four Chariots Vision",
-      "The Lampstand and Olive Trees Vision"
+      "Zechariah's Horsemen Vision",
+      "Zechariah's Four Horns and Craftsmen",
+      "The Vision of the Flying Scroll",
+      "Elijah's Vision at Horeb"
     ],
-    "correct_answer": "The Flying Scroll Vision",
-    "reference": "Zechariah 5:1-4",
-    "explanation": "The flying scroll measured twenty cubits by ten cubits and represented a curse against thieves and those who swore falsely.",
+    "correct_answer": "Zechariah's Horsemen Vision",
+    "reference": "Zechariah 1:7-17",
+    "explanation": "Zechariah saw a rider on a red horse among myrtle trees, with other coloured horses behind him; the vision brought a message that the LORD would again show mercy to Jerusalem.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Flying Scroll Vision",
+      "difficulty": "beginner",
+      "case_title": "The Riders Among the Myrtle Trees",
       "clues": [
-        "Evidence A — The vision involved a scroll flying through the air.",
-        "Evidence B — It measured twenty cubits by ten cubits.",
-        "Evidence C — It represented a curse against theft and false swearing entering houses."
+        "A prophet received a night vision in the eleventh month of the second year of Darius.",
+        "A rider on a red horse stood among myrtle trees in a ravine, with red, sorrel and white horses behind him.",
+        "The angel asked how long Jerusalem would remain without mercy, and the LORD answered with words of comfort and promised restoration."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-flying-scroll-vision"
+      "fact_key": "detective-rebuilt-9-4"
     }
   },
   {
@@ -520,26 +520,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 5,
-    "question_text": "CASE FILE 045: A sealed container carried a woman representing wickedness to Shinar. Identify the vision.",
+    "question_text": "CASE FILE 045: The Defective Offering\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "The Ephah Vision",
-      "The Flying Scroll Vision",
-      "The Basket of Summer Fruit Vision",
-      "The Four Horns Vision"
+      "Malachi Rebukes Defective Offerings",
+      "Haggai Rebukes the Neglected Temple",
+      "Amos Condemns Dishonest Scales",
+      "Samuel Rebukes Saul's Sacrifice"
     ],
-    "correct_answer": "The Ephah Vision",
-    "reference": "Zechariah 5:5-11",
-    "explanation": "The woman personifying wickedness sat inside the ephah, which was carried to Shinar to have a house built for it.",
+    "correct_answer": "Malachi Rebukes Defective Offerings",
+    "reference": "Malachi 1:6-14",
+    "explanation": "Malachi rebuked priests who brought blind, lame and sick animals to the altar, asking whether a human governor would accept such a gift.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Ephah Vision",
+      "difficulty": "beginner",
+      "case_title": "The Defective Offering",
       "clues": [
-        "Evidence A — A lead cover was lifted from an ephah basket.",
-        "Evidence B — A woman personifying wickedness sat inside.",
-        "Evidence C — Two winged women carried the basket to Shinar to build a house for it."
+        "A prophet addressed priests who treated the LORD's name with contempt while claiming to honour him.",
+        "The offerings brought to the altar included blind, lame and sick animals.",
+        "The prophet asked whether the governor would accept such a gift and declared that the LORD's name would be great among the nations."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-ephah-vision"
+      "fact_key": "detective-rebuilt-9-5"
     }
   },
   {
@@ -547,26 +547,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 10,
     "challenge_index": 1,
-    "question_text": "CASE FILE 046: A Pharisee advised the council not to kill the apostles. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 046: The One Who Returned\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Gamaliel",
-      "Nicodemus",
-      "Caiaphas",
-      "Joseph of Arimathea"
+      "The Samaritan Who Returned to Give Thanks",
+      "The Samaritan Woman at the Well",
+      "The Grateful Leper at Bethany",
+      "The Centurion Who Asked for Healing"
     ],
-    "correct_answer": "Gamaliel",
-    "reference": "Acts 5:34-39",
-    "explanation": "Gamaliel advised the council to leave the apostles alone and warned against opposing God.",
+    "correct_answer": "The Samaritan Who Returned to Give Thanks",
+    "reference": "Luke 17:11-19",
+    "explanation": "Jesus healed ten men with a skin disease as they went to show themselves to the priests, but only one returned to thank him, and he was a Samaritan.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A Pharisee advised the council not to kill the apostles",
+      "difficulty": "beginner",
+      "case_title": "The One Who Returned",
       "clues": [
-        "Evidence A — The council was enraged and wanted to kill the apostles.",
-        "Evidence B — The speaker recalled failed movements led by Theudas and Judas the Galilean.",
-        "Evidence C — He warned that opposing the apostles might mean fighting against God."
+        "Ten men with a skin disease stood at a distance and called to Jesus for mercy.",
+        "Jesus told them to go and show themselves to the priests; they were cleansed while travelling.",
+        "Only one returned, praising God loudly, fell at Jesus' feet and gave thanks—and the narrator identifies his nationality."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-46"
+      "fact_key": "detective-rebuilt-10-1"
     }
   },
   {
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 24:24-27",
     "explanation": "Felix trembled at Paul's message and hoped for a bribe, leaving Paul imprisoned.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "A prisoner made a governor tremble but remained detained for money",
       "clues": [
         "Evidence A — The prisoner spoke about righteousness, self-control and judgment.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 19:23-41",
     "explanation": "Demetrius stirred the Ephesian riot because Christian preaching threatened his idol-making trade.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "A crowd in a Greek city shouted for nearly two hours over a goddess",
       "clues": [
         "Evidence A — A silversmith made silver shrines and feared loss of trade.",
@@ -628,26 +628,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 10,
     "challenge_index": 4,
-    "question_text": "CASE FILE 049: A Roman commander learned a prisoner was a citizen by birth. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 049: The Commander Who Fell at Hebron\nInvestigate the evidence and identify the biblical event or person.",
     "options": [
-      "Paul",
-      "Silas",
-      "Luke",
-      "Barnabas"
+      "Joab Murders Abner",
+      "Abner Kills Asahel",
+      "Ish-bosheth Is Murdered",
+      "Amasa Is Killed by Joab"
     ],
-    "correct_answer": "Paul",
-    "reference": "Acts 22:24-29",
-    "explanation": "Paul declared that he was a Roman citizen by birth, unlike the commander who had purchased citizenship.",
+    "correct_answer": "Joab Murders Abner",
+    "reference": "2 Samuel 3:22-39",
+    "explanation": "Joab secretly called Abner back to Hebron and killed him in revenge for the death of his brother Asahel; David publicly mourned Abner.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "A Roman commander learned a prisoner was a citizen by birth",
+      "difficulty": "beginner",
+      "case_title": "The Commander Who Fell at Hebron",
       "clues": [
-        "Evidence A — A commander prepared to examine a prisoner by scourging.",
-        "Evidence B — The prisoner asked whether it was lawful to scourge an uncondemned Roman citizen.",
-        "Evidence C — The commander became alarmed because the prisoner had been born a citizen."
+        "A military commander had just left David after negotiating the transfer of Israel's allegiance.",
+        "Another commander sent messengers to bring him back and met him privately at the city gate.",
+        "The returning commander was killed in revenge for Asahel, and the king ordered mourning rather than celebrating the death."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-49"
+      "fact_key": "detective-rebuilt-10-4"
     }
   },
   {
@@ -666,7 +666,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 27:39-44; 28:1-6",
     "explanation": "Paul survived the shipwreck and was unharmed by a viper on Malta.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "A prisoner survived a shipwreck and a snakebite on the same island",
       "clues": [
         "Evidence A — A ship carrying prisoners ran aground and broke apart.",

@@ -646,14 +646,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
 
     switch (gameSlug) {
       case 'scripture-challenge': {
-        // Levels 1–6 use the curated Scripture Challenge question bank.
+        // Levels 1–42 use the curated Scripture Challenge question bank.
         // Later levels retain the existing generator until their curated batches land.
-        if (level >= 1 && level <= 6) {
+        if (level >= 1 && level <= 42) {
           const curated = SCRIPTURE_CHALLENGE_QUESTIONS.find(
             (entry) => entry.level === level && entry.challenge_index === challengeIndex,
           );
           if (curated) {
-            items.push({ ...curated, id, game_slug: gameSlug, level, challenge_index: challengeIndex });
+            items.push({ ...curated, id, game_slug: gameSlug, level, challenge_index: challengeIndex, options: shuffleDeterministic([...curated.options], shuffleSeed) });
             break;
           }
         }
@@ -793,11 +793,31 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         const c1 = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
         const c2 = BIBLE_CHARACTERS[(globalSeed + 5) % BIBLE_CHARACTERS.length];
         const c3 = BOOKS_66[globalSeed % BOOKS_66.length];
-        const words = [
-          c1.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
-          c2.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
-          c3.name.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8),
-        ];
+        const wordEntries: Array<{ word: string; reference: string }> = [];
+        const addWord = (rawWord: string, reference: string) => {
+          const word = rawWord.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8);
+          if (word && !wordEntries.some((entry) => entry.word === word)) {
+            wordEntries.push({ word, reference });
+          }
+        };
+
+        addWord(c1.name.split(' ')[0], c1.clue3Ref || c1.ref);
+        addWord(c2.name.split(' ')[0], c2.clue3Ref || c2.ref);
+        addWord(c3.name, c3.ref);
+
+        // Names such as John can also be Bible book names. If a collision occurs,
+        // select the next unused character/book clue and keep its own reference.
+        for (let offset = 1; wordEntries.length < 3 && offset <= BIBLE_CHARACTERS.length; offset++) {
+          const person = BIBLE_CHARACTERS[(globalSeed + 5 + offset) % BIBLE_CHARACTERS.length];
+          addWord(person.name.split(' ')[0], person.clue3Ref || person.ref);
+        }
+        for (let offset = 1; wordEntries.length < 3 && offset <= BOOKS_66.length; offset++) {
+          const book = BOOKS_66[(globalSeed + offset) % BOOKS_66.length];
+          addWord(book.name, book.ref);
+        }
+
+        const words = wordEntries.map((entry) => entry.word);
+        const references = wordEntries.map((entry) => entry.reference);
         items.push({
           id,
           game_slug: gameSlug,
@@ -806,8 +826,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           question_text: `Locate the hidden sacred words in the letter grid: ${words.join(', ')}`,
           options: words,
           correct_answer: words.join(','),
-          explanation: `Key terms from ${c1.clue3Ref}, ${c2.clue3Ref}, and ${c3.ref}: ${words.join(', ')}.`,
-          reference: `${c1.clue3Ref}; ${c2.clue3Ref}; ${c3.ref}`,
+          explanation: `Key terms from ${references.join(', ')}: ${words.join(', ')}.`,
+          reference: references.join('; '),
           metadata: {
             words,
             gridSize: 8,
@@ -1438,7 +1458,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Complete this five-person Bible name chain. Each name must begin with the final letter of the name before it. Dossier: ${chosen.answer.identity} Which person fits the dossier and completes the chain?`,
+          question_text: chosen.answer.identity,
           options,
           correct_answer: chosen.answer.name,
           explanation: `${chainNames.join(' → ')} → ${chosen.answer.name}. The final letter of ${chosen.chain[3].name} is “${requiredLetter}”, so the next name begins with that letter. ${chosen.answer.identity}`,
@@ -1451,8 +1471,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
             category: chosen.answer.category,
             difficulty: Math.min(5, Math.max(1, Math.ceil(level / 6))),
             clues: [
-              `The next name begins with “${requiredLetter}”.`,
-              `Check the relevant Bible passages: ${chosen.answer.reference}.`,
+              `Category: ${chosen.answer.category}.`,
+              `Read ${chosen.answer.reference} carefully for the identifying detail.`,
             ],
           },
         });

@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Expert original Bible Detective investigations, Levels 16–25. */
+/** Verified Bible Detective cases. Five distinct evidence files per level, Levels 1–30. */
 export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
   {
     "id": "bible-detective-l16-c1",
@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 31:19-35",
     "explanation": "Rachel had taken her father's household gods and concealed them in the camel's saddle.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "Rachel's Hidden Household Gods",
       "clues": [
         "Evidence A — A household image was concealed beneath a camel's saddle.",
@@ -45,7 +45,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 21:22-34",
     "explanation": "Abraham and Abimelech made a covenant at Beersheba; seven ewe lambs witnessed Abraham's claim to the well.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Seven Ewe Lambs",
       "clues": [
         "Evidence A — A patriarch and a Philistine king disputed over a well.",
@@ -72,7 +72,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 27:30-40",
     "explanation": "Isaac realised Jacob had received the blessing intended for Esau.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Stolen Blessing Exposed",
       "clues": [
         "Evidence A — A blind patriarch discovered that he had blessed the younger twin.",
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 24:10-27",
     "explanation": "Rebekah watered the servant's camels and was identified as the answer to his prayer for a wife for Isaac.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Servant at the Well",
       "clues": [
         "Evidence A — A servant prayed for a sign while seeking a wife for his master's son.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 28:10-22",
     "explanation": "Jacob dreamed of a stairway between earth and heaven and named the place Bethel.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Stairway at Bethel",
       "clues": [
         "Evidence A — A fugitive slept with a stone for a pillow.",
@@ -153,7 +153,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 32:22-32",
     "explanation": "Jacob wrestled until daybreak and was renamed Israel.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Wrestling at Daybreak",
       "clues": [
         "Evidence A — A man wrestled through the night beside a river crossing.",
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 40:9-23; 41:1-14",
     "explanation": "The cupbearer forgot Joseph until Pharaoh's dreams created a need for an interpreter.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Forgotten Prisoner",
       "clues": [
         "Evidence A — A royal cupbearer was restored after a prison dream.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Genesis 50:24-26; Exodus 13:19; Joshua 24:32",
     "explanation": "Joseph made Israel swear to carry his bones from Egypt; they were buried at Shechem.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Bones Carried from Egypt",
       "clues": [
         "Evidence A — A dying patriarch made his son swear an oath about his burial.",
@@ -223,26 +223,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 17,
     "challenge_index": 4,
-    "question_text": "CASE FILE 84: The Bitter Water at Marah. Review the evidence and identify the biblical account.",
-    "correct_answer": "The Waters of Marah Made Sweet",
+    "question_text": "CASE FILE 084: The Foreigner in the Barley Field\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Ruth Gleans in Boaz's Field",
     "options": [
-      "The Waters of Marah Made Sweet",
-      "Elisha Heals Jericho's Spring",
-      "Moses Strikes the Rock at Horeb",
-      "Naaman Washes in Jordan"
+      "Ruth Gleans in Boaz's Field",
+      "Ruth Meets Boaz at the City Gate",
+      "Naomi Returns to Bethlehem",
+      "The Daughters of Zelophehad Gather Their Inheritance"
     ],
-    "reference": "Exodus 15:22-25",
-    "explanation": "Moses threw a tree into the bitter water at Marah, and it became sweet.",
+    "reference": "Ruth 2:1-23",
+    "explanation": "Ruth gleaned behind the harvesters in Boaz's field; Boaz protected her and instructed his workers to leave extra grain for her.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Bitter Water at Marah",
+      "difficulty": "easy",
+      "case_title": "The Foreigner in the Barley Field",
       "clues": [
-        "Evidence A — A group of travellers reached water they could not drink.",
-        "Evidence B — A tree was shown to their leader and thrown into the water.",
-        "Evidence C — The water became sweet at the place later named Marah."
+        "A Moabite widow went out to gather leftover grain so that she and her mother-in-law could eat.",
+        "The field belonged to a wealthy relative of her late father-in-law, who asked his workers about the unfamiliar woman.",
+        "The owner ordered his men not to molest her and to pull out extra stalks for her from the bundles."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-84"
+      "fact_key": "detective-rebuilt-17-4"
     }
   },
   {
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Numbers 17:1-11",
     "explanation": "Aaron's staff budded, blossomed and produced almonds as God's sign of his chosen priesthood.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Staff That Blossomed",
       "clues": [
         "Evidence A — Tribal leaders submitted staffs to be placed before the testimony.",
@@ -288,7 +288,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Numbers 21:4-9",
     "explanation": "God instructed Moses to make a bronze serpent; those bitten who looked at it lived.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Bronze Serpent",
       "clues": [
         "Evidence A — A wilderness camp was afflicted by venomous snakes.",
@@ -315,7 +315,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Numbers 22:21-35",
     "explanation": "Balaam's donkey saw the angel and spoke after Balaam struck it.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Donkey That Saw the Angel",
       "clues": [
         "Evidence A — A diviner travelled on an animal that suddenly turned aside three times.",
@@ -342,7 +342,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Numbers 32:1-33",
     "explanation": "Reuben and Gad received land east of the Jordan after agreeing to fight alongside the other tribes.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Land East of Jordan",
       "clues": [
         "Evidence A — Two tribes requested land east of the Jordan before Israel crossed.",
@@ -369,7 +369,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Numbers 35:9-34; Joshua 20:1-9",
     "explanation": "The cities of refuge protected those who killed unintentionally until a proper hearing.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Cities of Refuge",
       "clues": [
         "Evidence A — A legal arrangement provided protection for someone who killed unintentionally.",
@@ -396,7 +396,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Joshua 5:13-15",
     "explanation": "Joshua encountered the commander of the LORD's army near Jericho and removed his sandals.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Commander with a Drawn Sword",
       "clues": [
         "Evidence A — A leader approached a fortified city before its capture.",
@@ -423,7 +423,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Joshua 9:3-27",
     "explanation": "The Gibeonites deceived Israel into making a treaty by pretending to come from a distant land.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Treaty Made with Deception",
       "clues": [
         "Evidence A — Visitors arrived wearing worn clothes and carrying mouldy provisions.",
@@ -450,7 +450,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Joshua 10:1-14",
     "explanation": "Joshua prayed during battle, and the sun and moon stood still until Israel's victory.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Sun Stands Still",
       "clues": [
         "Evidence A — A battle took place while Israel pursued a coalition of Amorite kings.",
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Samuel 20:14-22",
     "explanation": "A wise woman negotiated with Joab and persuaded the city to surrender Sheba.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Wise Woman at Abel",
       "clues": [
         "Evidence A — A woman was asked to surrender a fugitive who had taken refuge in her city.",
@@ -504,7 +504,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Samuel 24:10-25; 1 Chronicles 21:18-30",
     "explanation": "David bought Araunah's threshing floor and built an altar after the plague was stopped.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Census and the Threshing Floor",
       "clues": [
         "Evidence A — A king ordered a census and later regretted it.",
@@ -531,7 +531,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "1 Kings 10:1-13; 2 Chronicles 9:1-12",
     "explanation": "The Queen of Sheba tested Solomon with hard questions and praised his wisdom.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Queen Who Tested Solomon",
       "clues": [
         "Evidence A — A foreign monarch travelled with a large caravan and difficult questions.",
@@ -558,7 +558,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "1 Samuel 13:5-14",
     "explanation": "Saul offered the burnt offering at Gilgal instead of waiting for Samuel, and Samuel announced that his kingdom would not endure.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "Saul's Sacrifice at Gilgal",
       "clues": [
         "Israel's troops were scattered while a Philistine force gathered for battle.",
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 20:20; 2 Chronicles 32:1-8, 30",
     "explanation": "Hezekiah strengthened Jerusalem's water supply and brought the Gihon spring's water through a tunnel.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "Hezekiah's Water Tunnel",
       "clues": [
         "A king prepared Jerusalem for an expected Assyrian attack.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 6:8-23",
     "explanation": "Elisha's servant saw the mountain filled with heavenly horses and chariots of fire.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The Heavenly Army at Dothan",
       "clues": [
         "Evidence A — A foreign king sent troops to capture a prophet in a city.",
@@ -639,7 +639,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 22:8-20; 2 Chronicles 34:14-28",
     "explanation": "Hilkiah found the book of the law; Josiah heard it and sought the LORD's word through Huldah.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "easy",
       "case_title": "The King Who Found the Law",
       "clues": [
         "Evidence A — A high priest found a book of the law during temple repairs.",
@@ -655,26 +655,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 20,
     "challenge_index": 5,
-    "question_text": "CASE FILE 100: The Secret Anointing. Review the evidence and identify the biblical account.",
-    "correct_answer": "Jehu Anointed King of Israel",
+    "question_text": "CASE FILE 100: The Prophet's Three-Year Sign\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Isaiah's Sign Against Egypt and Cush",
     "options": [
-      "Jehu Anointed King of Israel",
-      "Hazael Anointed King of Aram",
-      "David Anointed at Bethlehem",
-      "Solomon Anointed at Gihon"
+      "Isaiah's Sign Against Egypt and Cush",
+      "Jeremiah's Yoke before the Nations",
+      "Ezekiel's Sign of the Siege Brick",
+      "Hosea's Marriage to Gomer"
     ],
-    "reference": "2 Kings 9:1-13",
-    "explanation": "A young prophet anointed Jehu and declared him king over Israel.",
+    "reference": "Isaiah 20:1-6",
+    "explanation": "Isaiah walked stripped and barefoot as a sign that Egypt and Cush would be led away captive by Assyria, stripped and barefoot.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Secret Anointing",
+      "difficulty": "easy",
+      "case_title": "The Prophet's Three-Year Sign",
       "clues": [
-        "Evidence A — A prophet instructed a young man to travel to Ramoth-gilead with a flask of oil.",
-        "Evidence B — The young man took a commander into a private room and anointed him.",
-        "Evidence C — He announced judgment on Ahab's house and fled."
+        "The sign was given in the year an Assyrian commander came to Ashdod.",
+        "The prophet was told to remove his sackcloth and sandals and then walked stripped and barefoot.",
+        "The sign pointed to the humiliation and captivity of Egypt and Cush at the hands of Assyria."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-100"
+      "fact_key": "detective-rebuilt-20-5"
     }
   },
   {
@@ -693,7 +693,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Ezekiel 2:8-3:3",
     "explanation": "Ezekiel ate the scroll before proclaiming God's message.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Prophet Who Ate a Scroll",
       "clues": [
         "Evidence A — A prophet saw a hand holding a scroll written on both sides.",
@@ -720,7 +720,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Ezekiel 3:16-21; 33:1-9",
     "explanation": "Ezekiel was appointed a watchman responsible for warning the people.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Watchman of Israel",
       "clues": [
         "Evidence A — A prophet was appointed as a watchman for Israel.",
@@ -747,7 +747,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Ezekiel 24:15-27",
     "explanation": "Ezekiel's loss and restrained mourning symbolised the people's response to the temple's destruction.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Prophet's Wife as a Sign",
       "clues": [
         "Evidence A — A prophet was told his wife would die suddenly.",
@@ -774,7 +774,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Zechariah 1:18-21",
     "explanation": "Zechariah's vision showed four horns and four craftsmen who would cast them down.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Four Horns and Craftsmen",
       "clues": [
         "Evidence A — A prophet saw four horns that had scattered Judah, Israel and Jerusalem.",
@@ -801,7 +801,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Zechariah 2:1-5",
     "explanation": "The measuring line vision promised Jerusalem's expansion and the LORD's protection.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Measuring Line over Jerusalem",
       "clues": [
         "Evidence A — A prophet saw a man with a measuring line going to measure Jerusalem.",
@@ -828,7 +828,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Zechariah 3:1-10",
     "explanation": "Joshua the high priest's filthy garments were replaced, symbolising removal of guilt.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The High Priest's Filthy Garments",
       "clues": [
         "Evidence A — A high priest stood before the angel of the LORD while an accuser stood beside him.",
@@ -855,7 +855,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Zechariah 4:1-14",
     "explanation": "The lampstand vision encouraged Zerubbabel that God's work would be accomplished by the Spirit.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Lampstand and Two Olive Trees",
       "clues": [
         "Evidence A — A prophet saw a golden lampstand with a bowl and seven lamps.",
@@ -882,7 +882,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "1 Kings 19:1-18",
     "explanation": "Elijah fled Jezebel's threat, was sustained by an angel and encountered the LORD at Horeb.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Elijah Flees to Horeb",
       "clues": [
         "After a threat from Jezebel, a prophet fled south and left his servant behind.",
@@ -898,26 +898,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 22,
     "challenge_index": 4,
-    "question_text": "CASE FILE 109: The Prisoner Who Was Not Released. Review the evidence and identify the biblical account.",
-    "correct_answer": "Paul Before Felix",
+    "question_text": "CASE FILE 109: The Scroll on the Desert Road\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Philip and the Ethiopian Official",
     "options": [
-      "Paul Before Felix",
-      "Paul Before Festus",
-      "Peter Before Agrippa",
-      "Stephen Before Pilate"
+      "Philip and the Ethiopian Official",
+      "Peter and Cornelius",
+      "Paul and the Philippian Jailer",
+      "Philip and the Samaritan Crowds"
     ],
-    "reference": "Acts 24:24-27",
-    "explanation": "Felix trembled at Paul's teaching but kept him imprisoned while hoping for a bribe.",
+    "reference": "Acts 8:26-40",
+    "explanation": "Philip met an Ethiopian official reading Isaiah, explained the passage about the suffering servant, and baptised him when they reached water.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Prisoner Who Was Not Released",
+      "difficulty": "intermediate",
+      "case_title": "The Scroll on the Desert Road",
       "clues": [
-        "Evidence A — A prisoner was brought before a governor and his wife.",
-        "Evidence B — The governor trembled as the prisoner reasoned about righteousness, self-control and judgment.",
-        "Evidence C — The governor repeatedly sent for him, hoping for a bribe."
+        "An angel directed an evangelist to a road running south from Jerusalem toward Gaza.",
+        "A high-ranking official from a distant African kingdom was returning from worship and reading aloud from Isaiah.",
+        "The traveller asked for guidance, heard the good news about Jesus, and requested baptism when they came to water."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-109"
+      "fact_key": "detective-rebuilt-22-4"
     }
   },
   {
@@ -925,26 +925,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 22,
     "challenge_index": 5,
-    "question_text": "CASE FILE 110: The Man Who Tried to Buy Authority. Review the evidence and identify the biblical account.",
-    "correct_answer": "Simon the Sorcerer Offers Money",
+    "question_text": "CASE FILE 110: The Disagreement over John Mark\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Paul and Barnabas Part Ways",
     "options": [
-      "Simon the Sorcerer Offers Money",
-      "Elymas Opposes Paul",
-      "The Sons of Sceva Use Jesus' Name",
-      "Bar-Jesus Blinds the Proconsul"
+      "Paul and Barnabas Part Ways",
+      "Paul and Peter Disagree at Antioch",
+      "Paul and Silas Are Released from Prison",
+      "Barnabas Introduces Saul to the Apostles"
     ],
-    "reference": "Acts 8:9-24",
-    "explanation": "Simon tried to buy the authority to impart the Holy Spirit and was rebuked.",
+    "reference": "Acts 15:36-41",
+    "explanation": "Paul and Barnabas disagreed about taking John Mark on another journey; Barnabas took Mark to Cyprus, while Paul travelled with Silas through Syria and Cilicia.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Man Who Tried to Buy Authority",
+      "difficulty": "intermediate",
+      "case_title": "The Disagreement over John Mark",
       "clues": [
-        "Evidence A — A magician in Samaria amazed the people and was called the Great Power of God.",
-        "Evidence B — After being baptised, he offered money for the ability to impart the Holy Spirit.",
-        "Evidence C — An apostle told him to repent because his heart was not right before God."
+        "Two missionaries proposed revisiting the communities where they had previously preached.",
+        "One wanted to take a younger companion who had left them during an earlier journey; the other refused to take him.",
+        "The disagreement became sharp, and the two leaders travelled separately with different companions."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-110"
+      "fact_key": "detective-rebuilt-22-5"
     }
   },
   {
@@ -963,7 +963,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "1 Kings 21:1-29",
     "explanation": "Jezebel arranged false testimony against Naboth so Ahab could take his vineyard; Elijah announced judgment.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Naboth's Vineyard",
       "clues": [
         "A king wanted a vineyard beside his palace, but its owner refused to sell his ancestral inheritance.",
@@ -990,7 +990,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Acts 25:13-27; 26:1-32",
     "explanation": "Paul defended himself before Agrippa and described his conversion and commission.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Paul Before King Agrippa",
       "clues": [
         "A Roman governor arranged a hearing for a prisoner after a royal visit.",
@@ -1006,26 +1006,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 3,
-    "question_text": "CASE FILE 113: The Young Man Who Fled. Review the evidence and identify the biblical account.",
-    "correct_answer": "The Young Man Flees at Jesus' Arrest",
+    "question_text": "CASE FILE 113: The Man Seen Under the Fig Tree\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Nathanael Meets Jesus",
     "options": [
-      "The Young Man Flees at Jesus' Arrest",
-      "Eutychus Falls at Troas",
-      "John Mark Leaves the Mission",
-      "Peter Flees from the High Priest's Court"
+      "Nathanael Meets Jesus",
+      "Nicodemus Visits Jesus at Night",
+      "The Samaritan Woman Meets Jesus",
+      "Andrew Brings Simon to Jesus"
     ],
-    "reference": "Mark 14:51-52",
-    "explanation": "Mark records that a young man fled naked after leaving his linen cloth in the hands of those who seized him.",
+    "reference": "John 1:43-51",
+    "explanation": "Philip brought Nathanael to Jesus; Jesus said he had seen him under the fig tree before Philip called him, prompting Nathanael's confession.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Young Man Who Fled",
+      "difficulty": "intermediate",
+      "case_title": "The Man Seen Under the Fig Tree",
       "clues": [
-        "During Jesus' arrest, a young man followed him wearing only a linen cloth.",
-        "When the crowd seized him, he left the cloth behind and ran away naked.",
-        "The Gospel records the brief incident without naming the young man."
+        "A disciple invited a friend to meet the one he believed Moses and the prophets had written about.",
+        "The friend questioned whether anything good could come from the town where Jesus was raised.",
+        "Jesus described him as an Israelite without deceit and said he had seen him under a fig tree before the invitation."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-revised-bible-detective-l23-c3"
+      "fact_key": "detective-rebuilt-23-3"
     }
   },
   {
@@ -1033,26 +1033,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 4,
-    "question_text": "CASE FILE 114: The King Who Was Caught in an Oak Tree. Review the evidence and identify the biblical account.",
-    "correct_answer": "Absalom's Death in the Oak",
+    "question_text": "CASE FILE 114: The Archer at Megiddo\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Josiah's Death at Megiddo",
     "options": [
-      "Absalom's Death in the Oak",
+      "Josiah's Death at Megiddo",
+      "Ahab's Death at Ramoth-gilead",
       "Saul's Death on Mount Gilboa",
-      "Sisera's Death in Jael's Tent",
-      "Judas' Death in the Potter's Field"
+      "Ahaziah's Fall through the Lattice"
     ],
-    "reference": "2 Samuel 18:9-15",
-    "explanation": "Absalom was caught by his head in an oak tree and was killed by Joab's men.",
+    "reference": "2 Chronicles 35:20-27",
+    "explanation": "Josiah went out against Pharaoh Necho despite a warning that God had sent the Egyptian king; archers wounded him at Megiddo, and he died after being taken to Jerusalem.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The King Who Was Caught in an Oak Tree",
+      "difficulty": "intermediate",
+      "case_title": "The Archer at Megiddo",
       "clues": [
-        "Evidence A — A rebel's hair became caught in the branches of a large oak as he rode beneath it.",
-        "Evidence B — His mule continued, leaving him suspended between heaven and earth.",
-        "Evidence C — A commander found him and killed him despite the king's order to deal gently with him."
+        "A reforming king went out to confront an Egyptian ruler travelling toward the Euphrates.",
+        "The Egyptian ruler sent a warning that he was not seeking war with Judah and that God had told him to hurry.",
+        "The king disguised himself but was struck by archers at Megiddo and later died; lamentations were made for him."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-114"
+      "fact_key": "detective-rebuilt-23-4"
     }
   },
   {
@@ -1060,26 +1060,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 5,
-    "question_text": "CASE FILE 115: The King's Table for a Disabled Heir. Review the evidence and identify the biblical account.",
-    "correct_answer": "Mephibosheth Honoured by David",
+    "question_text": "CASE FILE 115: The Disguised Wound\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "The Prophet Rebukes Ahab after the Battle",
     "options": [
-      "Mephibosheth Honoured by David",
-      "Ziba Honoured by Saul",
-      "Ish-bosheth Honoured by Abner",
-      "Jonathan Honoured by Samuel"
+      "The Prophet Rebukes Ahab after the Battle",
+      "Nathan Rebukes David over Uriah",
+      "Elijah Confronts Ahab over Naboth",
+      "Micaiah Warns Ahab before Ramoth-gilead"
     ],
-    "reference": "2 Samuel 9:1-13",
-    "explanation": "David showed kindness to Mephibosheth for Jonathan's sake and gave him a place at the royal table.",
+    "reference": "1 Kings 20:35-43",
+    "explanation": "A prophet disguised himself with a headband and used a prisoner parable to announce judgment on Ahab for releasing Ben-hadad, whom God had devoted to destruction.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The King's Table for a Disabled Heir",
+      "difficulty": "intermediate",
+      "case_title": "The Disguised Wound",
       "clues": [
-        "Evidence A — A king asked whether anyone from a former rival's house remained alive.",
-        "Evidence B — A son of Jonathan who was lame in both feet was brought to him.",
-        "Evidence C — The man was given his family's land and a permanent place at the king's table."
+        "A member of a prophetic group asked another man to strike him, but the man refused and was killed by a lion.",
+        "After another man struck him, the prophet covered his face with a bandage and waited for the king.",
+        "He told the king a story about a prisoner who escaped; the king's own judgment then exposed his failure to carry out God's command."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-115"
+      "fact_key": "detective-rebuilt-23-5"
     }
   },
   {
@@ -1098,7 +1098,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "1 Kings 17:1-7",
     "explanation": "Ravens brought Elijah bread and meat while he stayed by the brook Cherith.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Prophet Fed by Birds",
       "clues": [
         "Evidence A — A prophet announced a drought to a king.",
@@ -1114,26 +1114,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 24,
     "challenge_index": 2,
-    "question_text": "CASE FILE 117: The Widow's Unending Oil. Review the evidence and identify the biblical account.",
-    "correct_answer": "Elisha Multiplies the Widow's Oil",
+    "question_text": "CASE FILE 117: The Priest Who Could Not Speak\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Zechariah's Temple Vision",
     "options": [
-      "Elisha Multiplies the Widow's Oil",
-      "Elijah Multiplies the Widow's Flour",
-      "Jesus Multiplies the Loaves",
-      "Moses Multiplies the Manna"
+      "Zechariah's Temple Vision",
+      "Simeon's Blessing in the Temple",
+      "The Angel Appears to Mary",
+      "The Shepherds Hear the Birth Announcement"
     ],
-    "reference": "2 Kings 4:1-7",
-    "explanation": "Elisha instructed the widow to pour her oil into borrowed vessels; the oil continued until they were full.",
+    "reference": "Luke 1:5-25",
+    "explanation": "The angel Gabriel appeared to Zechariah while he served in the temple and announced the birth of John; Zechariah became mute after asking for a sign.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Widow's Unending Oil",
+      "difficulty": "intermediate",
+      "case_title": "The Priest Who Could Not Speak",
       "clues": [
-        "Evidence A — A widow faced creditors who threatened to take her sons.",
-        "Evidence B — A prophet told her to borrow empty vessels from her neighbours.",
-        "Evidence C — A small amount of oil filled every vessel until no more were available."
+        "An elderly priest from the division of Abijah was chosen by lot to offer incense in the sanctuary.",
+        "A heavenly messenger stood beside the altar and promised that the priest's wife would bear a son who would prepare a people for the Lord.",
+        "The priest questioned how he could know this because he and his wife were old, and he was unable to speak until the promise was fulfilled."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-117"
+      "fact_key": "detective-rebuilt-24-2"
     }
   },
   {
@@ -1152,7 +1152,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 4:8-37",
     "explanation": "Elisha prayed for the Shunammite woman's son and the child was restored to life.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Shunammite's Son",
       "clues": [
         "Evidence A — A wealthy woman prepared a small room for a travelling prophet.",
@@ -1179,7 +1179,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Chronicles 20:1-30",
     "explanation": "Jehoshaphat appointed singers to praise the LORD as the army went out; the enemy forces turned against one another.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Singers Sent Ahead of the Army",
       "clues": [
         "Evidence A — A king faced a coalition of Moabites, Ammonites and others.",
@@ -1206,7 +1206,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 20:12-19; Isaiah 39:1-8",
     "explanation": "Hezekiah showed the Babylonian envoys his treasures; Isaiah foretold their removal to Babylon.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The King Who Showed His Treasures",
       "clues": [
         "Evidence A — Envoys from Babylon visited a king after hearing of his recovery.",
@@ -1222,26 +1222,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 25,
     "challenge_index": 1,
-    "question_text": "CASE FILE 121: The King Who Refused to Bow. Review the evidence and identify the biblical account.",
-    "correct_answer": "Haman Forced to Honour Mordecai",
+    "question_text": "CASE FILE 121: The Shade That Withered\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Jonah and the Plant",
     "options": [
-      "Haman Forced to Honour Mordecai",
-      "Saul Forced to Honour David",
-      "Pharaoh Forced to Honour Joseph",
-      "Nebuchadnezzar Forced to Honour Daniel"
+      "Jonah and the Plant",
+      "Jonah in the Great Fish",
+      "The Repentance of Nineveh",
+      "The Gourd of Elisha"
     ],
-    "reference": "Esther 3:1-6; 6:1-11",
-    "explanation": "Haman hated Mordecai for refusing to bow and was later forced to honour him publicly.",
+    "reference": "Jonah 4:1-11",
+    "explanation": "Jonah was angry that Nineveh had been spared; God used a plant that grew and then withered to challenge the prophet's concern for his own comfort over the people of the city.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The King Who Refused to Bow",
+      "difficulty": "intermediate",
+      "case_title": "The Shade That Withered",
       "clues": [
-        "Evidence A — A royal official expected people to bow before him.",
-        "Evidence B — One Jewish exile refused, provoking the official to plot against the Jews.",
-        "Evidence C — The king later ordered the official to honour the very man he hated."
+        "A prophet became angry after a foreign city repented and escaped the disaster he had announced.",
+        "He sat east of the city, where a plant grew overnight and shaded his head; the next day a worm damaged it.",
+        "When the heat and wind made him faint, God asked why he pitied the plant but not a city containing many people and animals."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-121"
+      "fact_key": "detective-rebuilt-25-1"
     }
   },
   {
@@ -1260,7 +1260,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Samuel 16:5-14; 19:16-23",
     "explanation": "Shimei cursed David during his flight and later sought pardon when David returned to Jerusalem.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Shimei Curses David",
       "clues": [
         "During David's flight from Jerusalem, a man from Saul's clan came out cursing him.",
@@ -1287,7 +1287,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "Amos 8:1-6",
     "explanation": "The summer-fruit vision announced Israel's end and condemned injustice.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "The Prophet Who Saw the End in Fruit",
       "clues": [
         "Evidence A — A prophet was shown a basket of ripe summer fruit.",
@@ -1314,7 +1314,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Kings 19:14-37; Isaiah 37:14-38",
     "explanation": "Hezekiah spread the Assyrian letter before God and prayed; Isaiah announced that Jerusalem would be delivered.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Hezekiah's Prayer over the Assyrian Letter",
       "clues": [
         "An Assyrian ruler sent a threatening letter to Jerusalem.",
@@ -1341,7 +1341,7 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "reference": "2 Chronicles 35:1-19",
     "explanation": "Josiah organised an extensive Passover observance in Jerusalem after the law was rediscovered.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "intermediate",
       "case_title": "Josiah's Passover",
       "clues": [
         "A king ordered the Passover to be observed in Jerusalem after the book of the law had been found.",

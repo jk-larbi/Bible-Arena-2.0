@@ -25,6 +25,7 @@ const ids = new Set<string>();
 const questions = new Set<string>();
 const facts = new Set<string>();
 const referenceAnswerFacts = new Set<string>();
+const detectiveReferences = new Set<string>();
 const byGameLevel = new Map<string, number>();
 const challengeIndexes = new Map<string, Set<number>>();
 
@@ -48,6 +49,19 @@ for (const item of ALL_BATCHES) {
   facts.add(factKey);
 
   if (!item.reference.trim()) errors.push(`Missing Bible reference: ${item.id}`);
+  if (item.game_slug === 'bible-detective') {
+    const detectiveReference = normalize(item.reference);
+    if (detectiveReferences.has(detectiveReference)) {
+      errors.push(`Bible Detective reuses a passage: ${item.id} (${detectiveReference})`);
+    }
+    detectiveReferences.add(detectiveReference);
+    const expectedDifficulty =
+      item.level <= 10 ? 'beginner' :
+      item.level <= 20 ? 'easy' : 'intermediate';
+    if (item.metadata?.difficulty !== expectedDifficulty) {
+      errors.push(`Bible Detective difficulty progression mismatch: ${item.id}`);
+    }
+  }
   const referenceAnswerFact = `${normalize(item.reference)}|${normalize(item.correct_answer)}`;
   if (referenceAnswerFacts.has(referenceAnswerFact)) errors.push(`Repeated reference-and-answer fact: ${item.id} (${referenceAnswerFact})`);
   referenceAnswerFacts.add(referenceAnswerFact);

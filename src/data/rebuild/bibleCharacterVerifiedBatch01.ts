@@ -49,16 +49,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 1,
     "challenge_index": 3,
-    "question_text": "What name did Hagar give the son she bore to Abram?",
+    "question_text": "Which son of Adam and Eve killed his brother Abel?",
     "options": [
-      "Ishmael",
-      "Isaac",
-      "Eliezer",
-      "Lot"
+      "Cain",
+      "Seth",
+      "Enoch",
+      "Lamech"
     ],
-    "correct_answer": "Ishmael",
-    "explanation": "The angel instructed Hagar to name her son Ishmael, and she bore him to Abram as the passage records.",
-    "reference": "Genesis 16:11-16",
+    "correct_answer": "Cain",
+    "explanation": "Cain became angry when God regarded Abel and his offering. He killed his brother, and the LORD confronted him about the murder.",
+    "reference": "Genesis 4:1-16",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "character-verified-fact-3",
