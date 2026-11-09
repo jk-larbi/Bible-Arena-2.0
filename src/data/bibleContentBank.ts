@@ -1,3 +1,4 @@
+import { getScriptureChallengeOpeningQuestion } from './scriptureChallengeQuestions';
 export interface ChallengeItem {
   id: string;
   game_slug: string;
@@ -297,6 +298,34 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number): C
 
     switch (gameSlug) {
       case 'scripture-challenge': {
+        // The first five levels use a curated opening bank of 50 more demanding,
+        // text-grounded questions. Later levels retain the existing generator.
+        if (level <= 5) {
+          const curated = getScriptureChallengeOpeningQuestion(globalSeed);
+          const options = makeFourDistinctOptions(
+            curated.correct_answer,
+            curated.options.filter((option) => option !== curated.correct_answer),
+            shuffleSeed
+          );
+          items.push({
+            id,
+            game_slug: gameSlug,
+            level,
+            challenge_index: challengeIndex,
+            question_text: curated.question_text,
+            options,
+            correct_answer: curated.correct_answer,
+            explanation: curated.explanation,
+            reference: curated.reference,
+            metadata: {
+              category: curated.category,
+              difficulty: curated.difficulty,
+              curated: true,
+            },
+          });
+          break;
+        }
+
         const mode = globalSeed % 3;
         if (mode === 0) {
           const char = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];

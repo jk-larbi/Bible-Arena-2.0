@@ -11,6 +11,7 @@
     "lint": "tsc --noEmit",
     "validate:content": "tsx scripts/validateContent.ts",
     "test:quiz": "tsx scripts/testQuizAccuracy.ts",
+    "test:scripture-challenge": "tsx scripts/testScriptureChallengeQuality.ts",
     "test:multiplayer": "tsx scripts/testMultiplayerAnd19Games.ts"
   },
   "dependencies": {
