@@ -1,6 +1,7 @@
 import { BIBLE_CHAIN_PEOPLE_SEED, normalizeBiblePersonName } from './bibleChainPeople';
 import { COMPLETE_SCRIPTURE_VERSES } from './completeScriptureVerses';
 import { getMatchUpChallenge } from './bibleMatchUpBank';
+import { SCRIPTURE_CHALLENGE_QUESTIONS } from './scriptureChallengeQuestions';
 
 export interface ChallengeItem {
   id: string;
@@ -632,6 +633,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
 
     switch (gameSlug) {
       case 'scripture-challenge': {
+        // Levels 1–3 use the curated, passage-checked question bank.
+        // Keep the established generator as a fallback for later levels while
+        // the remaining production batches are added.
+        if (level >= 1 && level <= 3) {
+          const curated = SCRIPTURE_CHALLENGE_QUESTIONS.find(
+            (entry) => entry.level === level && entry.challenge_index === challengeIndex,
+          );
+          if (curated) {
+            items.push({ ...curated, id, game_slug: gameSlug, level, challenge_index: challengeIndex });
+            break;
+          }
+        }
         const mode = globalSeed % 3;
         if (mode === 0) {
           const char = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
