@@ -854,12 +854,17 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     if (gameId === 'bible-match-up') {
       const pairs: { left: string; right: string }[] = currentChallenge.metadata?.pairs || [];
       const leftItems = pairs.map((p) => p.left);
-      const rightItems = pairs.map((p) => p.right);
+      // Keep the right column in a different order so players must actually match, not read across.
+      const rightItems = pairs.map((p) => p.right).reverse();
+      const leftLabel = currentChallenge.metadata?.leftLabel || 'Biblical person';
+      const rightLabel = currentChallenge.metadata?.rightLabel || 'Correct connection';
+      const modeLabel = currentChallenge.metadata?.mode || 'Character & Action';
       return (
         <div className="space-y-4">
+          <div className="rounded-xl bg-[#F3EBDD] px-3 py-2 text-xs font-extrabold uppercase tracking-wide text-[#3156C9]">{modeLabel}</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase text-[#5A6275]">1. Select Biblical Figure</span>
+              <span className="text-xs font-bold uppercase text-[#5A6275]">1. {leftLabel}</span>
               {leftItems.map((left) => {
                 const isMatched = Boolean(matchedPairs[left]);
                 const isSelected = matchSelectedLeft === left;
@@ -882,7 +887,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               })}
             </div>
             <div className="space-y-2">
-              <span className="text-xs font-bold uppercase text-[#5A6275]">2. Match Defining Act</span>
+              <span className="text-xs font-bold uppercase text-[#5A6275]">2. {rightLabel}</span>
               {rightItems.map((right) => {
                 const alreadyUsed = Object.values(matchedPairs).includes(right);
                 return (
