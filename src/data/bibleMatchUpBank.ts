@@ -175,18 +175,42 @@ export const MATCH_UP_BANK: MatchUpSet[] = [
 ]}];
 
 export function getMatchUpChallenge(seed: number): MatchUpSet {
+  // Each mode contains 12 distinct Scripture-based pairings. Select a unique
+  // four-pair combination for each seed instead of cycling through three
+  // adjacent blocks. C(12, 4) = 495 combinations per mode.
   const modeIndex = ((seed % MATCH_UP_BANK.length) + MATCH_UP_BANK.length) % MATCH_UP_BANK.length;
   const set = MATCH_UP_BANK[modeIndex];
-  const chooseCount = 4;
-  const combinations: number[][] = [];
-  const build = (start: number, chosen: number[]) => {
-    if (chosen.length === chooseCount) { combinations.push([...chosen]); return; }
-    for (let i = start; i <= set.pairs.length - (chooseCount - chosen.length); i++) {
-      chosen.push(i); build(i + 1, chosen); chosen.pop();
+  const combinationIndex = Math.floor(seed / MATCH_UP_BANK.length) % 495;
+
+  let remainingRank = combinationIndex;
+  const selectedIndices: number[] = [];
+  let nextIndex = 0;
+
+  for (let position = 0; position < 4; position++) {
+    for (let candidate = nextIndex; candidate < set.pairs.length; candidate++) {
+      const remainingSlots = 3 - position;
+      const remainingItems = set.pairs.length - candidate - 1;
+      const combinationsAfter = remainingSlots === 0
+        ? 1
+        : (remainingItems >= remainingSlots
+          ? factorial(remainingItems) / (factorial(remainingSlots) * factorial(remainingItems - remainingSlots))
+          : 0);
+
+      if (remainingRank < combinationsAfter) {
+        selectedIndices.push(candidate);
+        nextIndex = candidate + 1;
+        break;
+      }
+      remainingRank -= combinationsAfter;
     }
-  };
-  build(0, []);
-  const roundIndex = Math.floor(Math.abs(seed) / MATCH_UP_BANK.length) % combinations.length;
-  const indexes = combinations[roundIndex];
-  return { ...set, pairs: indexes.map((index) => set.pairs[index]) };
+  }
+
+  const pairs = selectedIndices.map((index) => set.pairs[index]);
+  return { ...set, pairs };
+}
+
+function factorial(value: number): number {
+  let result = 1;
+  for (let n = 2; n <= value; n++) result *= n;
+  return result;
 }
