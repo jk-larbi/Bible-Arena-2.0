@@ -28,12 +28,14 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Reward check: 10 marks per correct answer (maximum 50 marks per five-question level). The Supabase level-completion function awards 100 XP per correct answer (maximum 500 XP on a perfect level); XP is separate from the marks balance.
 - Remaining verification: browser-level authenticated playthrough and successful Pages deployment for the latest documentation commit. Do not label fully live until these pass.
 
-## Current next game: Bible Detective
+## Current game in progress: Bible Detective
 
-- Existing implementation currently contains only eight fixed case templates in `DETECTIVE_CASES`.
-- `buildLocalChallengesForLevel` selects a case using modulo indexing, so the same small set repeats across levels. That does not meet the 250-question target.
-- Preserve the investigation mechanic: a case title, multiple evidence clues/witness statements, and a final identification from four plausible case options. Do not flatten Detective into generic trivia.
-- Next: build 250 distinct case files with five per level, progressively harder evidence, accurate references and explanations, then integrate the case bank with the gameplay loader and verify the public levels.
+- Research direction checked against Focus on the Family's Bible Detectives kit, Kids Sunday School's tiered investigation cards, Bible Academy's historical/contextual trivia approach, and Bible Quest's Mystery of the Dig. These are design research only; BibleArena cases are original and Scripture-checked, not copied.
+- Preserve the actual investigation mechanic: staged evidence, case title, four plausible suspect/event options, explanation and Bible references. Focus on contextual clues and multi-passage reasoning as difficulty rises.
+- Batch 01: 25 original cases, five each for Levels 1–5. Three evidence clues per case, four distinct options including the correct answer, reference and explanation. Cross-game normalized reference-answer collision check returned no matches for these 25.
+- Imported Batch 01 into the existing 25 corresponding `public.game_content` rows in Supabase. Existing 250 row slots remain five per level across Levels 1–50.
+- Database audit after this first import: all 250 rows have four distinct options and three evidence clues, but only 33 unique normalized question wordings/reference-answer facts across the whole bank. This shows that Levels 6–50 still contain old repeated content and the game is NOT complete.
+- Next: replace the remaining 225 rows with original, progressively harder investigations. Add multi-passage cross-checks, chronology, cultural/historical context, less familiar people and events, and fair near-miss distractors. Then run full semantic and normalized duplicate checks.
 
 ## Other games awaiting rebuild
 
