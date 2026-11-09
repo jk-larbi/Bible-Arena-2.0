@@ -38,6 +38,18 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Runtime uses the Supabase public challenge feed. The public feed now enforces publication flags, so this game exposes exactly 150 questions to players; the 100 legacy rows in Levels 31–50 remain unavailable.
 - Deployment verification: GitHub Actions run `42619134947` completed successfully for commit `0d9d7f3d84450c078dd9ded18c5020116036b82a`. TypeScript, quiz accuracy/scoring, all-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, and the GitHub Pages deploy step all passed.
 
+## Bible Detective — content and database complete; live-page verification pending
+
+- Source batches `bibleDetectiveBatch01.ts` through `bibleDetectiveBatch05.ts` now contain the canonical 150-question bank for Levels 1–30. The first two case details were corrected (the alabaster flask is not described as broken, and the royal official's son was near death rather than already dead).
+- Replaced repeated or colliding cases with distinct passages, including Jotham's parable, Samuel's call at Shiloh, the Rechabites, the Rechabites' refusal of wine, the Siloam healing, Tabitha's restoration, and other separate accounts. Difficulty metadata aligns with the existing level map: Levels 1–10 beginner, 11–20 easy, 21–30 intermediate.
+- Source validation: 150 questions; exactly five per level; 150 unique normalized question wordings, 150 unique passage references, 150 unique fact keys; all rows have four distinct options including the answer, explanations, references and three evidence clues. The staged-batch CI audit passed.
+- Cross-bank audit before import compared normalized question wording, exact normalized passage reference, reference-answer facts and fact keys against every other `game_content` row, including hidden Levels 31–50 and previously rebuilt games. No collisions remained.
+- Supabase import updated exactly 150 existing rows in place for `bible-detective` Levels 1–30; row identities and the 100 hidden legacy rows were preserved. Post-import checks returned: five questions in every level; zero duplicate wording, references or reference-answer facts; zero option, missing explanation/reference/clue or fact-key failures; zero cross-game wording/reference/fact collisions.
+- Publication checks: 30 levels published and 20 unpublished; all levels have five challenge slots. `game_content_public` exposes exactly 150 rows across Levels 1–30 and none above Level 30.
+- Runtime check: Bible Detective is not in `LOCAL_CONTENT_GAMES`; `getLevelChallenges` reads `game_content_public`. The shared frontend has `MAX_PUBLISHED_LEVELS = 30`, the remote/local publication merge requires both local and remote publication, and `startLevel` rejects levels above 30.
+- CI: staged-batch audit run [42627739526](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739526) passed. GitHub Pages build/deploy run [42627739601](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739601) passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, artifact upload and deployment.
+- **Not yet marked fully complete:** the direct live Pages URL could not be independently fetched by the available browser/network tools in this run (cache miss / inaccessible URL), so the deployed page response itself remains unverified. The successful GitHub Pages deploy job is confirmed, but a direct live-site check is still required before moving this game into the fully verified list.
+
 ## Next game — Bible Chain Challenge (not complete)
 
 - Runtime intentionally generates this game locally rather than loading its challenge rows from Supabase. The 250 legacy database rows are not the live question source for this game.
@@ -51,21 +63,20 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 ## Other games awaiting completion
 
 1. Bible Crossword
-2. Bible Detective
-3. Bible Geography Quest
-4. Bible Match Up
-5. Bible Memory Challenge
-6. Bible Puzzles
-7. Bible Timeline
-8. Bible Word Search
-9. Complete the Scripture
-10. Find the Bible Book
-11. Guess the Emoji
-12. Old vs New Testament
-13. Scripture Challenge
-14. Scripture Scramble
-15. Verse Builder
-16. Who Said It
+2. Bible Geography Quest
+3. Bible Match Up
+4. Bible Memory Challenge
+5. Bible Puzzles
+6. Bible Timeline
+7. Bible Word Search
+8. Complete the Scripture
+9. Find the Bible Book
+10. Guess the Emoji
+11. Old vs New Testament
+12. Scripture Challenge
+13. Scripture Scramble
+14. Verse Builder
+15. Who Said It
 
 Some of these have partial staged batches or prior content work. None should be marked complete until it has 150 verified playable challenges, game-specific mechanics preserved, cross-game duplicate checks, publication checks, and a successful deployment.
 
