@@ -91,16 +91,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "Which judge struck down six hundred Philistines with an oxgoad?",
+    "question_text": "Which judge was raised up to deliver Israel from Cushan-rishathaim, king of Mesopotamia?",
     "options": [
-      "Shamgar",
-      "Ehud",
       "Othniel",
+      "Ehud",
+      "Shamgar",
       "Gideon"
     ],
-    "correct_answer": "Shamgar",
-    "explanation": "Shamgar son of Anath struck down six hundred Philistines with an oxgoad and also delivered Israel.",
-    "reference": "Judges 3:31",
+    "correct_answer": "Othniel",
+    "explanation": "The Spirit of the LORD came upon Othniel, and he judged Israel and went out to war against Cushan-rishathaim.",
+    "reference": "Judges 3:7-11",
     "metadata": {
       "difficulty": "advanced",
       "source_type": "original_scripture_research",
