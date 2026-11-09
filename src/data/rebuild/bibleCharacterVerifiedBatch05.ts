@@ -91,16 +91,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 41,
     "challenge_index": 5,
-    "question_text": "Which craftsman was filled with the Spirit of God for the tabernacle work?",
+    "question_text": "Who stood with Aaron and supported Moses' hands while Joshua fought Amalek?",
     "options": [
-      "Oholiab",
-      "Bezalel",
       "Hur",
-      "Uri"
+      "Bezalel",
+      "Oholiab",
+      "Eleazar"
     ],
-    "correct_answer": "Bezalel",
-    "explanation": "God called Bezalel and gave him skill for the tabernacle.",
-    "reference": "Exodus 31:1-5",
+    "correct_answer": "Hur",
+    "explanation": "Aaron and Hur supported Moses' hands until sunset while Joshua fought Amalek.",
+    "reference": "Exodus 17:10-12",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
