@@ -493,26 +493,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 4,
-    "question_text": "CASE FILE 044: A prophet described a flying scroll with exact dimensions. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 044: A scroll flew over the land and announced judgment against theft and false oaths. Identify the vision.",
     "options": [
-      "Zechariah",
-      "Ezekiel",
-      "Daniel",
-      "Haggai"
+      "The Flying Scroll Vision",
+      "The Ephah Vision",
+      "The Four Chariots Vision",
+      "The Lampstand and Olive Trees Vision"
     ],
-    "correct_answer": "Zechariah",
+    "correct_answer": "The Flying Scroll Vision",
     "reference": "Zechariah 5:1-4",
-    "explanation": "Zechariah's flying scroll represented judgment against thieves and those who swore falsely.",
+    "explanation": "The flying scroll measured twenty cubits by ten cubits and represented a curse against thieves and those who swore falsely.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "A prophet described a flying scroll with exact dimensions",
+      "case_title": "The Flying Scroll Vision",
       "clues": [
         "Evidence A — The vision involved a scroll flying through the air.",
         "Evidence B — It measured twenty cubits by ten cubits.",
         "Evidence C — It represented a curse against theft and false swearing entering houses."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-44"
+      "fact_key": "detective-flying-scroll-vision"
     }
   },
   {
@@ -520,26 +520,26 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 5,
-    "question_text": "CASE FILE 045: A prophet saw wickedness carried away in a measuring container. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 045: A sealed container carried a woman representing wickedness to Shinar. Identify the vision.",
     "options": [
-      "Zechariah",
-      "Amos",
-      "Jeremiah",
-      "Ezekiel"
+      "The Ephah Vision",
+      "The Flying Scroll Vision",
+      "The Basket of Summer Fruit Vision",
+      "The Four Horns Vision"
     ],
-    "correct_answer": "Zechariah",
+    "correct_answer": "The Ephah Vision",
     "reference": "Zechariah 5:5-11",
-    "explanation": "The ephah vision pictured wickedness being removed and carried to Shinar.",
+    "explanation": "The woman personifying wickedness sat inside the ephah, which was carried to Shinar to have a house built for it.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "A prophet saw wickedness carried away in a measuring container",
+      "case_title": "The Ephah Vision",
       "clues": [
         "Evidence A — A lead cover was lifted from an ephah basket.",
         "Evidence B — A woman personifying wickedness sat inside.",
         "Evidence C — Two winged women carried the basket to Shinar to build a house for it."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-45"
+      "fact_key": "detective-ephah-vision"
     }
   },
   {
