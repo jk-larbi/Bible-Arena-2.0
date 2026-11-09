@@ -261,6 +261,16 @@ export async function startLevel(
   if (level > 1 && !gameProg[level - 1]?.completed) {
     // Also check if remote says unlocked when backend configured
     let remoteUnlocked = false;
+    if (LOCAL_CONTENT_GAMES.has(game) && isBackendConfigured && supabase) {
+      try {
+        const { data } = await supabase.rpc('get_level_map', { p_game: game });
+        remoteUnlocked = Array.isArray(data) && data.some(
+          (node: LevelNode) => node.level === level - 1 && node.completed
+        );
+      } catch {
+        // Existing server progress may unlock a locally generated game level.
+      }
+    }
     if (!LOCAL_CONTENT_GAMES.has(game) && isBackendConfigured && supabase) {
       try {
         const { data } = await supabase.rpc('start_level', {
