@@ -72,7 +72,7 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
 
       {sel && (
         <div role="dialog" aria-label={`Level ${sel.level}`}
-             className="fixed inset-x-0 bottom-0 z-40 mx-auto max-h-[85dvh] w-full max-w-md overflow-y-auto overscroll-contain rounded-t-2xl bg-[#F3EBDD] p-5 text-[#171B24] shadow-2xl"
+             className="fixed inset-x-0 bottom-0 z-[60] mx-auto max-h-[85dvh] w-full max-w-md overflow-y-auto overscroll-contain rounded-t-2xl bg-[#F3EBDD] p-5 text-[#171B24] shadow-2xl"
              style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}>
           <div className="flex items-start justify-between">
             <div>
