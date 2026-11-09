@@ -51,7 +51,11 @@ export const SCRIPTURE_CHALLENGE_LEVELS: ScriptureLevelSpec[] = [
   { level: 34, stage: 8, name: 'Songs and Wisdom', focus: 'Psalms, Proverbs, Job and Ecclesiastes', mechanic: 'wisdom-text-detail', rule: 'Test exact wording, speakers, literary structure and distinctive details from the wisdom books.' },
   { level: 35, stage: 8, name: 'Exile and Return', focus: 'Judah’s exile and restoration', mechanic: 'restoration-history', rule: 'Trace the fall of Jerusalem, the exile, the return and the rebuilding of Jerusalem and the temple.' },
   { level: 36, stage: 8, name: 'General Letters', focus: 'James, Peter, John and Jude', mechanic: 'letter-precision', rule: 'Identify precise teachings, people and Old Testament connections in the general letters.' },
-];
+
+  { level: 37, stage: 9, name: 'The Tabernacle Blueprint', focus: 'The tabernacle, its furnishings and priestly garments', mechanic: 'sanctuary-detail', rule: 'Identify precise materials, measurements, instructions and unusual details in the tabernacle passages.' },
+  { level: 38, stage: 9, name: 'The Sacred Calendar', focus: 'Israel’s appointed feasts and sacred dates', mechanic: 'feast-calendar', rule: 'Recall the exact dates, counts, rituals and sequence of the appointed festivals.' },
+  { level: 39, stage: 9, name: 'The Seven Churches', focus: 'The messages to the seven churches in Revelation', mechanic: 'revelation-church-messages', rule: 'Match each church with its rebuke, commendation, warning and promise without confusing the messages.' },
+]; 
 
 export function getScriptureLevelSpec(level: number): ScriptureLevelSpec | undefined {
   return SCRIPTURE_CHALLENGE_LEVELS.find((entry) => entry.level === level);
