@@ -640,7 +640,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
             (entry) => entry.level === level && entry.challenge_index === challengeIndex,
           );
           if (curated) {
-            items.push({ ...curated, id, game_slug: gameSlug, level, challenge_index: challengeIndex });
+            items.push({ ...curated, id, game_slug: gameSlug, level, challenge_index: challengeIndex, options: shuffleDeterministic([...curated.options], shuffleSeed) });
             break;
           }
         }
