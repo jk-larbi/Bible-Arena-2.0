@@ -99,37 +99,62 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const soundContext = useRef<AudioContext | null>(null);
   const lastTickSecond = useRef<number | null>(null);
 
-  const playGameSound = (kind: 'correct' | 'incorrect' | 'tick' | 'complete') => {
-    if (!soundEnabled || typeof window === 'undefined') return;
+  // Resume audio directly from a user gesture for iOS Safari and Android.
+  const unlockGameAudio = () => {
+    if (typeof window === 'undefined') return null;
     try {
-      const AudioContextClass = window.AudioContext;
-      if (!AudioContextClass) return;
+      const AudioContextClass = window.AudioContext
+        || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AudioContextClass) return null;
       const context = soundContext.current || (soundContext.current = new AudioContextClass());
-      if (context.state === 'suspended') void context.resume();
+      if (context.state === 'suspended') void context.resume().catch(() => undefined);
+      return context;
+    } catch {
+      return null;
+    }
+  };
+
+  const playGameSound = async (kind: 'correct' | 'incorrect' | 'tick' | 'complete', force = false) => {
+    if ((!soundEnabled && !force) || typeof window === 'undefined') return;
+    try {
+      const context = unlockGameAudio();
+      if (!context) return;
+      if (context.state === 'suspended') await context.resume();
       const patterns: Record<typeof kind, number[]> = {
-        correct: [659.25, 783.99, 987.77],
-        incorrect: [246.94, 196],
-        tick: [880],
+        correct: [587.33, 739.99, 880],
+        incorrect: [293.66, 220],
+        tick: [740],
         complete: [523.25, 659.25, 783.99, 1046.5],
       };
       const notes = patterns[kind];
-      const now = context.currentTime;
+      const now = context.currentTime + 0.015;
+      const spacing = kind === 'tick' ? 0 : 0.105;
       notes.forEach((frequency, index) => {
+        const start = now + index * spacing;
         const oscillator = context.createOscillator();
-        const gain = context.createGain();
+        const envelope = context.createGain();
+        const peak = kind === 'tick' ? 0.025 : kind === 'incorrect' ? 0.045 : 0.065;
+        const duration = kind === 'tick' ? 0.075 : 0.18;
         oscillator.type = kind === 'incorrect' ? 'triangle' : 'sine';
-        oscillator.frequency.setValueAtTime(frequency, now + index * (kind === 'tick' ? 0 : 0.12));
-        gain.gain.setValueAtTime(0.0001, now + index * 0.12);
-        gain.gain.exponentialRampToValueAtTime(kind === 'tick' ? 0.035 : 0.09, now + index * 0.12 + 0.015);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.12 + (kind === 'tick' ? 0.09 : 0.22));
-        oscillator.connect(gain);
-        gain.connect(context.destination);
-        oscillator.start(now + index * 0.12);
-        oscillator.stop(now + index * 0.12 + 0.24);
+        oscillator.frequency.setValueAtTime(frequency, start);
+        envelope.gain.setValueAtTime(0.0001, start);
+        envelope.gain.exponentialRampToValueAtTime(peak, start + 0.012);
+        envelope.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+        oscillator.connect(envelope);
+        envelope.connect(context.destination);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.02);
       });
     } catch {
-      // Sound is an enhancement; audio restrictions must never interrupt gameplay.
+      // Audio is optional; browser restrictions must never interrupt gameplay.
     }
+  };
+
+  const toggleGameSound = () => {
+    const next = !soundEnabled;
+    setSoundEnabled(next);
+    try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+    if (next) void playGameSound('tick', true);
   };
 
 
@@ -221,6 +246,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   }, [currentIdx, currentChallenge?.id, gameId]);
 
   async function handlePlay(lvl: number, restart: boolean) {
+    unlockGameAudio();
     setError(null);
     try {
       const variationSeed = gameId === 'bible-chain-challenge'
@@ -245,6 +271,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   async function settleAnswer(pickedAnswer: string | null) {
     if (locked.current || !attempt || !currentChallenge) return;
+    unlockGameAudio();
     locked.current = true;
     setError(null);
 
@@ -364,14 +391,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             type="button"
             aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
             aria-pressed={soundEnabled}
-            onClick={() => {
-              setSoundEnabled((enabled) => {
-                const next = !enabled;
-                try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
-                if (next) playGameSound('tick');
-                return next;
-              });
-            }}
+            onClick={toggleGameSound}
             className="inline-flex items-center gap-2 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-2 text-sm font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
           >
             {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
@@ -1209,14 +1229,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               type="button"
               aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
               aria-pressed={soundEnabled}
-              onClick={() => {
-                setSoundEnabled((enabled) => {
-                  const next = !enabled;
-                  try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
-                  if (next) playGameSound('tick');
-                  return next;
-                });
-              }}
+              onClick={toggleGameSound}
               className="inline-flex items-center gap-1.5 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-1.5 text-xs font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
             >
               {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
