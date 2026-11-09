@@ -91,16 +91,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "Which judge was raised up to deliver Israel from Cushan-rishathaim, king of Mesopotamia?",
+    "question_text": "Which judge from the tribe of Issachar judged Israel for twenty-three years and lived in Shamir?",
     "options": [
-      "Othniel",
-      "Ehud",
-      "Shamgar",
-      "Gideon"
+      "Tola",
+      "Jair",
+      "Ibzan",
+      "Elon"
     ],
-    "correct_answer": "Othniel",
-    "explanation": "The Spirit of the LORD came upon Othniel, and he judged Israel and went out to war against Cushan-rishathaim.",
-    "reference": "Judges 3:7-11",
+    "correct_answer": "Tola",
+    "explanation": "Tola son of Puah, son of Dodo, rose to save Israel and judged for twenty-three years before dying and being buried in Shamir.",
+    "reference": "Judges 10:1-2",
     "metadata": {
       "difficulty": "advanced",
       "source_type": "original_scripture_research",
