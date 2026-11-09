@@ -130,14 +130,6 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     }
   };
 
-  useEffect(() => {
-    if (gameId !== 'who-said-it' || reveal !== null || !attempt) return;
-    if (answering.secondsLeft <= 5 && answering.secondsLeft > 0 && lastTickSecond.current !== answering.secondsLeft) {
-      lastTickSecond.current = answering.secondsLeft;
-      playGameSound('tick');
-    }
-    if (answering.secondsLeft > 5) lastTickSecond.current = null;
-  }, [gameId, answering.secondsLeft, reveal, attempt, soundEnabled]);
 
 
   // Interactive per-mechanic state
@@ -288,6 +280,16 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   );
 
   const isLastChallenge = currentIdx === CHALLENGES_PER_LEVEL - 1;
+
+  useEffect(() => {
+    if (gameId !== 'who-said-it' || reveal !== null || !attempt) return;
+    if (answering.secondsLeft <= 5 && answering.secondsLeft > 0 && lastTickSecond.current !== answering.secondsLeft) {
+      lastTickSecond.current = answering.secondsLeft;
+      playGameSound('tick');
+    }
+    if (answering.secondsLeft > 5) lastTickSecond.current = null;
+  }, [gameId, answering.secondsLeft, reveal, attempt, soundEnabled]);
+
 
   const advancing = useCountdown(
     reveal !== null && !result,
