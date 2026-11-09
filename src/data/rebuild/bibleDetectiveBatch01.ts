@@ -7,7 +7,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 1,
-    "question_text": "CASE FILE 01: The Broken Alabaster Jar\nInvestigate the testimony and identify the biblical event or person.",
+    "question_text": "CASE FILE 001: The Alabaster Flask at Simon's Table\nInvestigate the testimony and identify the biblical event or person.",
     "correct_answer": "The Sinful Woman Who Anointed Jesus' Feet",
     "options": [
       "The Sinful Woman Who Anointed Jesus' Feet",
@@ -16,14 +16,14 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
       "The Samaritan Woman"
     ],
     "reference": "Luke 7:36-50",
-    "explanation": "Jesus contrasted the woman's love with Simon's lack of hospitality and declared her sins forgiven.",
+    "explanation": "Jesus used the story of two debtors to explain why the woman loved much, and he declared her sins forgiven.",
     "metadata": {
       "difficulty": "beginner",
-      "case_title": "The Broken Alabaster Jar",
+      "case_title": "The Alabaster Flask at Simon's Table",
       "clues": [
-        "Evidence A — A woman entered a Pharisee's house while Jesus was reclining at the table.",
-        "Evidence B — She stood behind him weeping; her tears wet his feet, which she wiped with her hair.",
-        "Evidence C — The host silently questioned how Jesus could accept her touch; Jesus answered with a story about two debtors."
+        "A woman entered a Pharisee's house while Jesus was reclining at the table.",
+        "She stood behind him weeping, wet his feet with tears, wiped them with her hair and anointed them from an alabaster flask.",
+        "The host questioned Jesus' acceptance of her; Jesus answered with a story about two debtors and declared her sins forgiven."
       ],
       "investigation_type": "multi_evidence_case",
       "fact_key": "detective-case-1"
@@ -34,7 +34,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 1,
     "challenge_index": 2,
-    "question_text": "CASE FILE 02: The Missing Body and the Unburned Clothes\nInvestigate the testimony and identify the biblical event or person.",
+    "question_text": "CASE FILE 002: The Fever at the Seventh Hour\nInvestigate the testimony and identify the biblical event or person.",
     "correct_answer": "The Healing of the Royal Official's Son",
     "options": [
       "The Healing of the Royal Official's Son",
@@ -43,14 +43,14 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
       "The Widow of Nain's Son"
     ],
     "reference": "John 4:46-54",
-    "explanation": "The royal official's son was healed at the seventh hour, and the household believed.",
+    "explanation": "Jesus healed the royal official's son from a distance; the official connected the recovery at the seventh hour with Jesus' words.",
     "metadata": {
       "difficulty": "beginner",
-      "case_title": "The Missing Body and the Unburned Clothes",
+      "case_title": "The Fever at the Seventh Hour",
       "clues": [
-        "Evidence A — A royal official's servant died, yet the official was told to go home because his son lived.",
-        "Evidence B — The healing happened at the exact hour Jesus said the fever had left.",
-        "Evidence C — The official learned the time from his servants and connected it to Jesus' word."
+        "A royal official from Capernaum begged Jesus to come down and heal his son, who was near death.",
+        "Jesus told him to go home because his son would live.",
+        "On the journey home, servants reported that the fever had left at the seventh hour; the official recognised that this was the hour Jesus had spoken."
       ],
       "investigation_type": "multi_evidence_case",
       "fact_key": "detective-case-2"
