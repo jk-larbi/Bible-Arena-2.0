@@ -973,16 +973,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 10,
     "challenge_index": 2,
-    "question_text": "Which prophet was told to buy a field at Anathoth while Jerusalem was under siege?",
+    "question_text": "Which prophet was told to bury a linen girdle near the Euphrates as a sign?",
     "options": [
       "Jeremiah",
       "Ezekiel",
       "Isaiah",
-      "Baruch"
+      "Daniel"
     ],
     "correct_answer": "Jeremiah",
-    "explanation": "Jeremiah bought his cousin Hanamel's field at Anathoth as a sign that houses and fields would again be possessed in the land.",
-    "reference": "Jeremiah 32:6-15",
+    "explanation": "Jeremiah followed the LORD's instruction to buy and wear a linen girdle, then hide it by the Euphrates before retrieving it as a prophetic sign.",
+    "reference": "Jeremiah 13:1-7",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-47",
