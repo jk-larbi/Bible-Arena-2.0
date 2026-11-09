@@ -439,6 +439,65 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 11. BIBLE CHAIN: 150 playable challenges, five unique linked people each
+  // ===================================================================
+  {
+    let checked = 0;
+    let failures = 0;
+    const chainKeys = new Set<string>();
+    const factKeys = new Set<string>();
+    const failureLog: string[] = [];
+    const normalizeName = (v: string) => v.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
+    for (let level = 1; level <= 30; level++) {
+      const items = buildLocalChallengesForLevel('bible-chain-challenge', level);
+      if (items.length !== 5) {
+        failures++;
+        failureLog.push(`L${level}: expected five challenges, received ${items.length}`);
+      }
+      for (const item of items) {
+        checked++;
+        const chain: string[] = item.metadata?.chain || [];
+        const allNames = [...chain, item.correct_answer];
+        const normalized = allNames.map(normalizeName);
+        const options = item.options.map(normalizeName);
+        const valid = chain.length === 4 &&
+          normalized.every(Boolean) &&
+          new Set(normalized).size === 5 &&
+          chain.every((name, index) => index === 0 || normalizeName(chain[index - 1]).slice(-1) === normalizeName(name)[0]) &&
+          normalizeName(chain[3]).slice(-1) === normalizeName(item.correct_answer)[0] &&
+          item.options.length === 4 &&
+          new Set(options).size === 4 &&
+          options.every(option => option[0] === normalizeName(chain[3]).slice(-1)) &&
+          options.includes(normalizeName(item.correct_answer)) &&
+          Boolean(item.metadata?.answerPersonId) &&
+          item.reference.split(';').length >= 5;
+        if (!valid) {
+          failures++;
+          failureLog.push(`${item.id}: invalid chain links, repeated person, choices, answer or references`);
+        }
+        const chainKey = normalized.join('>');
+        if (chainKeys.has(chainKey)) {
+          failures++;
+          failureLog.push(`${item.id}: repeated five-person chain`);
+        }
+        chainKeys.add(chainKey);
+        const factKey = `${item.reference.toLowerCase()}::${normalizeName(item.correct_answer)}`;
+        if (factKeys.has(factKey)) {
+          failures++;
+          failureLog.push(`${item.id}: repeated chain fact`);
+        }
+        factKeys.add(factKey);
+      }
+    }
+    results.push({
+      name: '11. Bible Chain integrity and uniqueness',
+      scope: 'Playable bank: 150 challenges (30 levels x 5)',
+      passed: checked === 150 && failures === 0,
+      details: `Checked ${checked} challenges. Invalid chains, repeated names/chains/facts or choices: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
   // SUMMARY REPORT
   // ===================================================================
   console.log('TEST EXECUTION REPORT:\n');
