@@ -38,6 +38,14 @@ type ChallengeItem = {
   completed_at?: string | null;
 };
 
+const CHALLENGE_MODES = [
+  { id: 'quick-challenge', label: 'Quick Challenge', gameId: 'scripture-scramble' },
+  { id: 'scripture-battle', label: 'Scripture Battle', gameId: 'scripture-challenge' },
+  { id: 'character-challenge', label: 'Character Challenge', gameId: 'bible-character-quest' },
+  { id: 'memory-battle', label: 'Scripture Memory Battle', gameId: 'bible-memory-challenge' },
+  { id: 'random-challenge', label: 'Random Bible Challenge', gameId: 'random' },
+];
+
 interface ChallengesPageProps { onSelectGame?: (game: GameInfo) => void; }
 
 export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) => {
@@ -45,7 +53,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedGameId, setSelectedGameId] = useState('scripture-challenge');
+  const [selectedGameId, setSelectedGameId] = useState('quick-challenge');
   const [loading, setLoading] = useState(true);
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null);
   const [actionBusy, setActionBusy] = useState<string | null>(null);
@@ -241,7 +249,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
         <div className="max-w-md mx-auto">
           <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5A6275]">Choose a Bible game</label>
           <select value={selectedGameId} onChange={(e) => setSelectedGameId(e.target.value)} className="w-full rounded-2xl border border-[#171B24]/15 bg-white px-4 py-3 text-sm text-[#171B24]">
-            {GAMES_LIST.map((game) => <option key={game.id} value={game.id}>{game.title}</option>)}
+            <optgroup label="Challenge modes">{CHALLENGE_MODES.map((mode) => <option key={mode.id} value={mode.id}>{mode.label}</option>)}</optgroup><optgroup label="Choose a specific game">{GAMES_LIST.map((game) => <option key={game.id} value={game.id}>{game.title}</option>)}</optgroup>
           </select>
         </div>
       )}
