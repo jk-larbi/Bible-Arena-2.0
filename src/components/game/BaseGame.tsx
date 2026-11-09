@@ -1016,6 +1016,10 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             </div>
             <p className="mt-3 text-xs text-white/70">The next person's name must begin with the final letter of {chain[chain.length - 1] || 'the previous name'}. No person may appear twice in this chain.</p>
           </div>
+          <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-4 sm:p-5">
+            <p className="text-xs font-extrabold uppercase tracking-wider text-[#D66B3D]">Scripture Dossier</p>
+            <p className="mt-2 font-serif text-base sm:text-lg font-semibold leading-relaxed text-[#171B24]">{currentChallenge.question_text}</p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentChallenge.options.map((option) => (
               <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)}
