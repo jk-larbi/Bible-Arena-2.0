@@ -168,7 +168,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3EBDD] text-[#171B24] pb-20 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-[#F3EBDD] text-[#171B24] pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       
       {/* Top Navbar */}
       <TopNav
