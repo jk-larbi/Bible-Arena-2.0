@@ -329,15 +329,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     const metadata = currentChallenge.metadata || {};
 
     if (gameId === 'bible-crossword') {
-      const across = String(metadata.acrossAnswer || currentChallenge.options[0] || '').replace(/[^A-Z]/gi, '').toUpperCase();
-      const down = String(metadata.downAnswer || currentChallenge.options[1] || '').replace(/[^A-Z]/gi, '').toUpperCase();
-      const acrossIndex = [...across].findIndex((letter) => down.includes(letter));
-      const shared = acrossIndex >= 0 ? across[acrossIndex] : '';
-      const downIndex = shared ? down.indexOf(shared) : -1;
-      if (requestedLevel === 1 && shared) {
-        return `Crossing clue: the shared letter is “${shared}”. It is letter ${acrossIndex + 1} in Across and letter ${downIndex + 1} in Down.`;
-      }
-      return `Across begins with “${across[0]}”. Down begins with “${down[0]}”. Use the crossing letter to check where they meet.`;
+      return 'One correct letter has been revealed in the crossword grid. Use the crossing clues to work out the remaining answers.';
     }
 
     if (gameId === 'bible-puzzles') {
@@ -667,6 +659,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         <BibleCrosswordBoard
           entries={entries}
           disabled={reveal !== null}
+          hintCount={hintLevel}
           onSubmit={(answer) => settleAnswer(answer)}
         />
       );
