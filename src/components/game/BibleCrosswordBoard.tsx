@@ -133,7 +133,7 @@ export function BibleCrosswordBoard({ entries, onSubmit, disabled }: {
           </div>)}
         </section>)}
       </div>
-      <button type="button" disabled={disabled || usable < 10} onClick={() => onSubmit(layout.placed.map(readWord).join('|'))}
+      <button type="button" disabled={disabled || usable < 10} onClick={() => onSubmit(entries.map((entry) => { const placed = layout.placed.find((word) => word.number === entry.number); return placed ? readWord(placed) : ''; }).join('|'))}
         className="w-full rounded-xl bg-[#D66B3D] px-5 py-3 font-bold text-white disabled:opacity-40">Submit Crossword</button>
     </div>
   );
