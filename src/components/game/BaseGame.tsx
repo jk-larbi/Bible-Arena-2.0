@@ -34,6 +34,7 @@ interface BaseGameProps {
 }
 
 const QUESTION_SECONDS = 35;
+const WHO_SAID_IT_SECONDS = 25;
 const REVEAL_SECONDS = 5;
 function buildWordSearchGrid(words: string[], size: number, seed: number): string[][] {
   const grid = Array.from({ length: size }, () => Array.from({ length: size }, () => ''));
@@ -274,7 +275,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const answering = useCountdown(
     Boolean(attempt && !result && reveal === null && currentChallenge),
-    gameId === 'bible-crossword' ? 240 : QUESTION_SECONDS,
+    gameId === 'bible-crossword' ? 240 : gameId === 'who-said-it' ? WHO_SAID_IT_SECONDS : QUESTION_SECONDS,
     () => settleAnswer(null),
     currentChallenge?.id ?? currentIdx,
     gameId === 'bible-crossword' ? crosswordBonusSeconds : 0
@@ -378,12 +379,17 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               How to play — Who Said It?
             </div>
             <ol className="list-decimal pl-5 space-y-1.5 text-sm leading-relaxed text-[#394150]">
-              <li>Read the quotation carefully and choose the person or group who spoke those words in the Bible.</li>
-              <li>Select one of the four answer options before the 35-second timer runs out.</li>
-              <li>Each level contains five questions. A correct answer earns marks; incorrect answers reveal the correct speaker.</li>
-              <li>After each answer, read the explanation and Scripture reference to understand who spoke and the context.</li>
-              <li>Some speakers may be kings, prophets, women, ordinary people, enemies, groups, angels, or God. Do not assume a familiar quotation was spoken by the person you first expect.</li>
-              <li>Use the sound control to turn game audio on or off. Your choice is remembered on this device.</li>
+              <li>Each level contains five questions. You have 25 seconds to answer each one.</li>
+              <li><strong>Identify the Speaker:</strong> match a biblical quotation to the person or group who spoke it.</li>
+              <li><strong>Who Was Being Addressed?</strong> identify the person or audience receiving the words.</li>
+              <li><strong>Complete the Conversation:</strong> read a short exchange and identify who gave the next response.</li>
+              <li><strong>The Unexpected Speaker:</strong> identify words spoken by an enemy, ruler, outsider, or another surprising speaker.</li>
+              <li><strong>Who Said It and Where?</strong> choose the correct speaker together with the Bible passage.</li>
+              <li><strong>The Misattributed Quote:</strong> avoid familiar names and choose the person Scripture actually identifies.</li>
+              <li><strong>Scripture or Not?</strong> decide whether a saying is a direct biblical quotation, a paraphrase, or not Scripture.</li>
+              <li>After answering, read the explanation and reference. They show the context and help you learn from mistakes.</li>
+              <li>Speakers may include women, kings, prophets, ordinary people, enemies, groups, angels, Jesus, or God. We only identify a speaker when the passage supports the attribution.</li>
+              <li>Use the shared sound control to turn BibleArena game audio on or off. Your choice is remembered on this device.</li>
             </ol>
             <p className="mt-3 text-xs leading-relaxed text-[#687386]">Accuracy tip: identify the speaker only where the passage clearly attributes the words. A Bible narrator or an uncertain speaker should not be guessed.</p>
           </section>
