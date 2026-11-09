@@ -1,4 +1,4 @@
-export type MatchUpMode = 'Character & Action' | 'Object & Purpose' | 'Person & Place' | 'Person & Relationship' | 'Event & Outcome' | 'Prophet & Assignment' | 'Book & Content';
+export type MatchUpMode = 'Character & Action' | 'Object & Purpose' | 'Person & Place' | 'Person & Relationship' | 'Event & Outcome' | 'Prophet & Assignment' | 'Book & Content' | 'Person & Spouse' | 'Person & Mother' | 'Miracle & Detail' | 'Bible Book & Testament' | 'Event & Sequence';
 
 export interface MatchUpPair { left: string; right: string; ref: string; }
 export interface MatchUpSet { mode: MatchUpMode; leftLabel: string; rightLabel: string; pairs: MatchUpPair[]; }
@@ -102,11 +102,91 @@ export const MATCH_UP_BANK: MatchUpSet[] = [
 {left:'Acts',right:'Records the early church and spread of the gospel',ref:'Acts 1:8; 2:1-47'},
 {left:'Leviticus',right:'Details offerings, priestly duties and holiness laws',ref:'Leviticus 1:1-4; 19:2'}
 ]}
-];
+,
+{ mode:'Person & Spouse', leftLabel:'Biblical person', rightLabel:'Spouse', pairs:[
+{left:'Moses',right:'Zipporah',ref:'Exodus 2:21'},
+{left:'Ananias',right:'Sapphira',ref:'Acts 5:1-2'},
+{left:'Boaz',right:'Ruth',ref:'Ruth 4:13'},
+{left:'Ahasuerus',right:'Esther',ref:'Esther 2:17'},
+{left:'Elkanah',right:'Hannah',ref:'1 Samuel 1:1-2'},
+{left:'Adam',right:'Eve',ref:'Genesis 2:21-25'},
+{left:'Joseph',right:'Mary',ref:'Matthew 1:18-25'},
+{left:'Aquila',right:'Priscilla',ref:'Acts 18:2'},
+{left:'Hosea',right:'Gomer',ref:'Hosea 1:2-3'},
+{left:'Abraham',right:'Sarah',ref:'Genesis 17:15-19'},
+{left:'Isaac',right:'Rebekah',ref:'Genesis 24:67'},
+{left:'Jacob',right:'Rachel',ref:'Genesis 29:18-30'}
+]},
+{ mode:'Person & Mother', leftLabel:'Biblical person', rightLabel:'Mother', pairs:[
+{left:'Samuel',right:'Hannah',ref:'1 Samuel 1:20'},
+{left:'Moses',right:'Jochebed',ref:'Exodus 6:20'},
+{left:'Solomon',right:'Bathsheba',ref:'2 Samuel 12:24'},
+{left:'John the Baptist',right:'Elizabeth',ref:'Luke 1:57-60'},
+{left:'Jesus',right:'Mary',ref:'Matthew 1:18-25'},
+{left:'Jacob and Esau',right:'Rebekah',ref:'Genesis 25:24-26'},
+{left:'Joseph and Benjamin',right:'Rachel',ref:'Genesis 30:22-24; 35:16-18'},
+{left:'Ishmael',right:'Hagar',ref:'Genesis 16:15'},
+{left:'Obed',right:'Ruth',ref:'Ruth 4:13-17'},
+{left:'Abel',right:'Eve',ref:'Genesis 4:1-2'},
+{left:'Isaac',right:'Sarah',ref:'Genesis 21:1-3'},
+{left:'John Mark',right:'Mary of Jerusalem',ref:'Acts 12:12'}
+]},
+{ mode:'Miracle & Detail', leftLabel:'Miracle or healing', rightLabel:'Person or detail', pairs:[
+{left:'Jesus healed the servant’s ear',right:'Malchus',ref:'Luke 22:50-51; John 18:10'},
+{left:'Peter raised a woman at Joppa',right:'Tabitha (Dorcas)',ref:'Acts 9:36-41'},
+{left:'Jesus healed a feverish relative',right:'Peter’s mother-in-law',ref:'Mark 1:29-31'},
+{left:'Paul restored a young man after a fall',right:'Eutychus',ref:'Acts 20:9-12'},
+{left:'Jesus healed a blind man near Jericho',right:'Bartimaeus',ref:'Mark 10:46-52'},
+{left:'Two apostles healed a lame man at the temple gate',right:'Peter and John',ref:'Acts 3:1-10'},
+{left:'Jesus fed a large crowd',right:'Five loaves and two fishes',ref:'John 6:5-13'},
+{left:'One of ten healed lepers returned to give thanks',right:'A Samaritan',ref:'Luke 17:11-19'},
+{left:'Jesus walked across the water toward the disciples',right:'The Sea of Galilee',ref:'Matthew 14:24-33'},
+{left:'Jesus healed a man who had been unable to walk for 38 years',right:'The pool of Bethesda',ref:'John 5:2-9'},
+{left:'Three Hebrews survived the fiery furnace',right:'Shadrach, Meshach and Abednego',ref:'Daniel 3:19-27'},
+{left:'An angel shut the lions’ mouths',right:'Daniel',ref:'Daniel 6:16-23'}
+]},
+{ mode:'Bible Book & Testament', leftLabel:'Bible book', rightLabel:'Testament and section', pairs:[
+{left:'Genesis',right:'Old Testament · Law',ref:'Genesis 1:1'},
+{left:'Psalms',right:'Old Testament · Wisdom and Poetry',ref:'Psalm 1:1'},
+{left:'Isaiah',right:'Old Testament · Major Prophets',ref:'Isaiah 1:1'},
+{left:'Malachi',right:'Old Testament · Minor Prophets',ref:'Malachi 1:1'},
+{left:'Matthew',right:'New Testament · Gospel',ref:'Matthew 1:1'},
+{left:'Acts',right:'New Testament · History',ref:'Acts 1:1'},
+{left:'Romans',right:'New Testament · Pauline Epistle',ref:'Romans 1:1'},
+{left:'Hebrews',right:'New Testament · General Epistle',ref:'Hebrews 1:1'},
+{left:'Revelation',right:'New Testament · Prophecy',ref:'Revelation 1:1'},
+{left:'Ruth',right:'Old Testament · History',ref:'Ruth 1:1'},
+{left:'Proverbs',right:'Old Testament · Wisdom',ref:'Proverbs 1:1'},
+{left:'Jude',right:'New Testament · General Epistle',ref:'Jude 1:1'}
+]},
+{ mode:'Event & Sequence', leftLabel:'Bible event', rightLabel:'What happened next', pairs:[
+{left:'Noah entered the ark',right:'The floodwaters came upon the earth',ref:'Genesis 7:7-12'},
+{left:'Abraham was told to offer Isaac',right:'God provided a ram as a substitute',ref:'Genesis 22:1-13'},
+{left:'Moses led Israel to the Red Sea',right:'The sea divided and Israel crossed on dry ground',ref:'Exodus 14:10-22'},
+{left:'Israel crossed the Jordan',right:'Memorial stones were set up at Gilgal',ref:'Joshua 3:14-17; 4:1-9'},
+{left:'Gideon’s army surrounded the camp',right:'They blew trumpets and broke their pitchers',ref:'Judges 7:19-22'},
+{left:'David was anointed by Samuel',right:'The Spirit of the LORD came upon David',ref:'1 Samuel 16:12-13'},
+{left:'Elijah challenged Baal’s prophets',right:'Fire from the LORD consumed the offering',ref:'1 Kings 18:30-39'},
+{left:'Jonah preached in Nineveh',right:'The people believed God and proclaimed a fast',ref:'Jonah 3:4-6'},
+{left:'Daniel interpreted the writing on the wall',right:'Belshazzar was slain that night',ref:'Daniel 5:25-31'},
+{left:'Jesus was crucified',right:'He was buried in a new tomb',ref:'John 19:16-42'},
+{left:'The women found the tomb open',right:'They were told Jesus had risen',ref:'Luke 24:1-8'},
+{left:'The Holy Spirit came at Pentecost',right:'Peter preached and about three thousand were added',ref:'Acts 2:1-4, 37-41'}
+]}];
 
 export function getMatchUpChallenge(seed: number): MatchUpSet {
-  const set = MATCH_UP_BANK[seed % MATCH_UP_BANK.length];
-  const offset = (Math.floor(seed / MATCH_UP_BANK.length) * 4) % set.pairs.length;
-  const selected = Array.from({length:4}, (_,i) => set.pairs[(offset+i)%set.pairs.length]);
-  return { ...set, pairs: selected };
+  const modeIndex = ((seed % MATCH_UP_BANK.length) + MATCH_UP_BANK.length) % MATCH_UP_BANK.length;
+  const set = MATCH_UP_BANK[modeIndex];
+  const chooseCount = 4;
+  const combinations: number[][] = [];
+  const build = (start: number, chosen: number[]) => {
+    if (chosen.length === chooseCount) { combinations.push([...chosen]); return; }
+    for (let i = start; i <= set.pairs.length - (chooseCount - chosen.length); i++) {
+      chosen.push(i); build(i + 1, chosen); chosen.pop();
+    }
+  };
+  build(0, []);
+  const roundIndex = Math.floor(Math.abs(seed) / MATCH_UP_BANK.length) % combinations.length;
+  const indexes = combinations[roundIndex];
+  return { ...set, pairs: indexes.map((index) => set.pairs[index]) };
 }
