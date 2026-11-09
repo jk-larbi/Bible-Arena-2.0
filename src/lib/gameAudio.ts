@@ -50,12 +50,12 @@ function startAmbient(): void {
     const lfo = context.createOscillator();
     const lfoDepth = context.createGain();
     master.gain.setValueAtTime(0.0001, context.currentTime);
-    master.gain.linearRampToValueAtTime(0.018, context.currentTime + 2.5);
+    master.gain.linearRampToValueAtTime(0.075, context.currentTime + 1.8);
     filter.type = 'lowpass';
     filter.frequency.setValueAtTime(720, context.currentTime);
     lfo.type = 'sine';
     lfo.frequency.setValueAtTime(0.075, context.currentTime);
-    lfoDepth.gain.setValueAtTime(0.004, context.currentTime);
+    lfoDepth.gain.setValueAtTime(0.012, context.currentTime);
     lfo.connect(lfoDepth);
     lfoDepth.connect(master.gain);
     filter.connect(master);
@@ -66,7 +66,7 @@ function startAmbient(): void {
       const voiceGain = context.createGain();
       oscillator.type = index === 1 ? 'triangle' : 'sine';
       oscillator.frequency.setValueAtTime(frequency, context.currentTime);
-      voiceGain.gain.setValueAtTime(index === 0 ? 0.32 : 0.2, context.currentTime);
+      voiceGain.gain.setValueAtTime(index === 0 ? 0.48 : index === 1 ? 0.34 : 0.28, context.currentTime);
       oscillator.connect(voiceGain);
       voiceGain.connect(filter);
       oscillator.start();
@@ -86,6 +86,9 @@ export function unlockBibleArenaAudio(): void {
   const context = getAudioContext();
   if (!context) return;
   audioUnlocked = true;
+  context.onstatechange = () => {
+    if (context.state === 'running' && soundEnabled) startAmbient();
+  };
   try {
     const resume = context.state === 'running' ? Promise.resolve() : context.resume();
     void resume.then(() => {
@@ -120,6 +123,7 @@ export function installBibleArenaAudioUnlock(): () => void {
     document.addEventListener('pointerdown', unlock, { capture: true, passive: true });
     document.addEventListener('touchend', unlock, { capture: true, passive: true });
     document.addEventListener('keydown', unlock, { capture: true });
+    document.addEventListener('click', unlock, { capture: true, passive: true });
     document.addEventListener('click', interactionSound, true);
     window.addEventListener('biblearena:sound-change', syncSoundPreference);
     window.addEventListener('storage', syncSoundPreference);
