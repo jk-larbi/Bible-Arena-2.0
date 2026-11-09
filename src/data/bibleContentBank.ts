@@ -727,7 +727,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
             category: p.role.toLowerCase().includes('prophet') ? 'prophet' : p.role.toLowerCase().includes('king') ? 'king' : p.role.toLowerCase().includes('apostle') ? 'apostle' : 'other',
             difficulty: 2,
           }));
-        const uniquePeople = new Map<string, typeof curated[number]>();
+        const uniquePeople = new Map<string, { id: string; name: string; reference: string; identity: string; category: string; difficulty: number }>();
         for (const person of [...curated, ...established]) {
           const key = normalizeBiblePersonName(person.name);
           if (key.length < 2 || !person.reference || !person.identity) continue;
