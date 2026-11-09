@@ -385,23 +385,23 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 8,
     "challenge_index": 5,
-    "question_text": "CASE FILE 040: A prophet's disobedience was exposed by a lion that did not eat its victims. Identify the person or event from the evidence.",
+    "question_text": "CASE FILE 40: The Priest Who Challenged a Governor's Authority. Identify the account from the evidence.",
     "options": [
-      "The man of God from Judah",
-      "Elijah",
-      "Micaiah",
-      "Hanani"
+      "Paul and the High Priest Ananias",
+      "Stephen and the Sanhedrin",
+      "Peter and Caiaphas",
+      "John and Annas"
     ],
-    "correct_answer": "The man of God from Judah",
-    "reference": "1 Kings 13:11-32",
-    "explanation": "The unnamed man of God from Judah disobeyed the LORD's command and died on his return journey.",
+    "correct_answer": "Paul and the High Priest Ananias",
+    "reference": "Acts 23:1-5",
+    "explanation": "When Ananias ordered Paul to be struck, Paul rebuked him; after being told he was the high priest, Paul acknowledged the scriptural prohibition against speaking evil of a ruler.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "A prophet's disobedience was exposed by a lion that did not eat its victims",
+      "case_title": "Paul and the High Priest Ananias",
       "clues": [
-        "Evidence A — A man of God from Judah had been told not to eat or drink in Bethel.",
-        "Evidence B — An older prophet deceived him into returning for a meal.",
-        "Evidence C — A lion killed him on the road but did not eat the body or attack the donkey."
+        "Evidence A — Paul began by declaring that he had lived in good conscience before God.",
+        "Evidence B — The high priest ordered those standing near Paul to strike his mouth.",
+        "Evidence C — Paul acknowledged the command not to speak evil of the ruler of the people when he learned the man's office."
       ],
       "investigation_type": "multi_evidence_case",
       "fact_key": "detective-case-40"
