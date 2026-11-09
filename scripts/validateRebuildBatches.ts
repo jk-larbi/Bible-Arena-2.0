@@ -56,11 +56,8 @@ for (const item of ALL_BATCHES) {
     }
     detectiveReferences.add(detectiveReference);
     const expectedDifficulty =
-      item.level <= 5 ? 'beginner' :
-      item.level <= 10 ? 'developing' :
-      item.level <= 15 ? 'intermediate' :
-      item.level <= 20 ? 'advanced' :
-      item.level <= 25 ? 'expert' : 'master';
+      item.level <= 10 ? 'beginner' :
+      item.level <= 20 ? 'easy' : 'intermediate';
     if (item.metadata?.difficulty !== expectedDifficulty) {
       errors.push(`Bible Detective difficulty progression mismatch: ${item.id}`);
     }
