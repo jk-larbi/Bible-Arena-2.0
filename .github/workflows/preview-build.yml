@@ -1,0 +1,48 @@
+name: Build Bible Arena Preview
+
+on:
+  pull_request:
+    branches:
+      - hosting/cloudflare-github-pages
+  push:
+    branches:
+      - feature/challenges-leaderboards-preview
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bible-arena-preview-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out preview changes
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.12.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build isolated preview
+        run: npm run build
+        env:
+          VITE_BASE_PATH: /
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+
+      - name: Upload preview build
+        uses: actions/upload-artifact@v4
+        with:
+          name: bible-arena-preview
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7

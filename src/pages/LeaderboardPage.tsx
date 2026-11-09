@@ -133,6 +133,52 @@ const WeeklyArenaPanel: React.FC<{ currentUserId: string | null }> = ({ currentU
   );
 };
 
+
+const getUtcMonthLabel = () => {
+  const now = new Date();
+  const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const end = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 0));
+  const fmt = (date: Date) => date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', timeZone: 'UTC' });
+  return `${fmt(start)} – ${fmt(end)} UTC`;
+};
+
+const MonthlyArenaPanel: React.FC<{ currentUserId: string | null }> = ({ currentUserId }) => {
+  const [rows, setRows] = useState<WeeklyLeader[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const load = useCallback(async () => {
+    if (!supabase || !isSupabaseConfigured) { setError('Monthly Arena is unavailable right now.'); setLoading(false); return; }
+    const { data, error: rpcError } = await supabase.rpc('get_monthly_arena_standings');
+    if (rpcError) setError('Monthly standings could not be loaded. Please try again.');
+    else { setRows((data || []) as WeeklyLeader[]); setError(''); }
+    setLoading(false);
+  }, []);
+  useEffect(() => {
+    void load();
+    const interval = window.setInterval(() => void load(), 30000);
+    const onFocus = () => void load();
+    window.addEventListener('focus', onFocus);
+    return () => { window.clearInterval(interval); window.removeEventListener('focus', onFocus); };
+  }, [load]);
+  return (
+    <section className="overflow-hidden rounded-3xl border border-[#171B24]/10 bg-white shadow-xl">
+      <div className="bg-[#171B24] px-5 py-5 text-white sm:px-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div><span className="text-xs font-bold uppercase tracking-[0.16em] text-[#F0B18D]">Monthly Competition</span><h3 className="mt-1 font-serif text-2xl font-extrabold">Monthly Scholars Cup</h3><p className="mt-1 text-xs text-white/65">Your best score for each level counts once this month.</p></div>
+          <div className="rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-right"><p className="text-[10px] font-bold uppercase tracking-wider text-white/55">This month's event</p><p className="text-xs font-bold">{getUtcMonthLabel()}</p><p className="mt-1 text-[10px] text-[#F0B18D]">Resets on the 1st · 00:00 UTC</p></div>
+        </div>
+      </div>
+      <div className="space-y-3 p-4 sm:p-6">
+        {loading ? <div className="space-y-3">{[1,2,3].map((item)=><div key={item} className="h-14 animate-pulse rounded-xl bg-[#171B24]/5"/>)}</div>
+        : error ? <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-700">{error}</p>
+        : rows.length === 0 ? <div className="py-6 text-center"><Trophy className="mx-auto mb-3 h-9 w-9 text-[#D66B3D]"/><p className="font-serif text-lg font-bold text-[#171B24]">A new monthly contest awaits.</p><p className="mt-1 text-xs text-[#5A6275]">Complete a level this month to enter the standings.</p></div>
+        : <>{rows.slice(0,10).map((player)=><div key={player.player_id} className={`flex items-center justify-between gap-3 rounded-2xl border p-3 ${player.player_id===currentUserId?'border-[#3156C9] bg-[#EEF2FF] ring-1 ring-[#3156C9]/20':'border-[#171B24]/10 bg-[#FCFBF8]'}`}><div className="min-w-0"><p className="truncate text-sm font-bold text-[#171B24]">#{player.rank} · {player.username || player.full_name || 'Bible Arena Scholar'} {player.player_id===currentUserId && <span className="text-[10px] text-[#3156C9]">(YOU)</span>}</p><p className="text-[10px] text-[#7A8190]">Level {player.player_level} · {player.levels_played} levels · {player.games_played} games</p></div><p className="shrink-0 font-mono text-sm font-extrabold text-[#D66B3D]">{Number(player.weekly_points).toLocaleString()}</p></div>)}</>}
+        <p className="text-[10px] text-[#7A8190]">Registered players only. The best completed score per game level is counted once to prevent repeat-attempt farming.</p>
+      </div>
+    </section>
+  );
+};
+
 export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
   const [leaders, setLeaders] = useState<Leader[]>([]);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
@@ -244,6 +290,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
       </div>
 
       <WeeklyArenaPanel currentUserId={currentUserId} />
+      <MonthlyArenaPanel currentUserId={currentUserId} />
 
       <div className="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border border-[#171B24]/10 min-h-[260px]">
         {loading ? (
