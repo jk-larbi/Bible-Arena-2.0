@@ -460,20 +460,21 @@ async function runQuizAccuracyTests() {
         const allNames = [...chain, item.correct_answer];
         const normalized = allNames.map(normalizeName);
         const options = item.options.map(normalizeName);
-        const valid = chain.length === 4 &&
-          normalized.every(Boolean) &&
-          new Set(normalized).size === 5 &&
-          chain.every((name, index) => index === 0 || normalizeName(chain[index - 1]).slice(-1) === normalizeName(name)[0]) &&
-          normalizeName(chain[3]).slice(-1) === normalizeName(item.correct_answer)[0] &&
-          item.options.length === 4 &&
-          new Set(options).size === 4 &&
-          options.every(option => option[0] === normalizeName(chain[3]).slice(-1)) &&
-          options.includes(normalizeName(item.correct_answer)) &&
-          Boolean(item.metadata?.answerPersonId) &&
-          item.reference.split(';').length >= 5;
+        const checks = {
+          fourLinks: chain.length === 4,
+          fiveNames: normalized.every(Boolean) && new Set(normalized).size === 5,
+          internalLinks: chain.every((name, index) => index === 0 || normalizeName(chain[index - 1]).slice(-1) === normalizeName(name)[0]),
+          finalLink: normalizeName(chain[3] || '').slice(-1) === normalizeName(item.correct_answer)[0],
+          fourOptions: item.options.length === 4 && new Set(options).size === 4,
+          optionsLink: options.every(option => option[0] === normalizeName(chain[3] || '').slice(-1)),
+          correctInOptions: options.includes(normalizeName(item.correct_answer)),
+          personId: Boolean(item.metadata?.answerPersonId),
+          fiveReferences: item.reference.split(';').length >= 5,
+        };
+        const valid = Object.values(checks).every(Boolean);
         if (!valid) {
           failures++;
-          failureLog.push(`${item.id}: invalid chain links, repeated person, choices, answer or references`);
+          failureLog.push(`${item.id}: ${Object.entries(checks).filter(([, ok]) => !ok).map(([key]) => key).join(', ')}; chain=${chain.join('>')}; answer=${item.correct_answer}; options=${item.options.join('|')}; refs=${item.reference}`);
         }
         const chainKey = normalized.join('>');
         if (chainKeys.has(chainKey)) {
