@@ -97,3 +97,15 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
 - Cross-game duplicate-key check against the current `public.game_content` bank found several reference/answer facts already used in Scripture Challenge and Bible Riddles. Those staged rows were replaced with different character facts. A repeat check returned no matching reference/answer facts in the other live game banks.
 - This check uses the same normalized reference-plus-answer key as the database guard; it does not replace editorial review for semantic similarity or translation accuracy.
+
+
+## Bible Character Quest — imported into Supabase
+
+- Imported all 250 verified-batch draft rows into `public.game_content` using the unique key `(game_slug, level, challenge_index)`, replacing the previous Character Quest content.
+- Set all 50 level rows to five challenges each. Levels 1–30 are published; Levels 31–50 remain unpublished.
+- Database verification: 250 rows; 250 unique question wordings; 250 unique normalized reference-answer keys; 250 rows with exactly four options; 250 rows with a reference and explanation.
+- Every level has exactly five rows. The public content view exposes all 150 rows for Levels 1–30.
+- The live loader reads the `game_content_public` view and passes the stable `question_key` into the answer RPC. New question keys were populated with the staged stable IDs.
+- Reward verification: `submit_challenge_answer` awards 10 marks for each correct answer through the idempotent award ledger (maximum 50 marks for five correct answers). `finish_level` calculates 100 server XP per correct answer (maximum 500 XP for a perfect five-question level), based on best completed score.
+- Cross-game normalized reference-answer duplicate check returned no matches in other game banks after the final staged replacements.
+- Status: database content and publication settings are complete and verified. A final browser-level gameplay test with an authenticated account and successful Pages deployment check are still required before calling this game fully live.
