@@ -223,16 +223,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 12,
     "challenge_index": 4,
-    "question_text": "Which king of Israel was struck with leprosy after entering the temple to burn incense?",
+    "question_text": "Which king spread the threatening letter from Assyria before the LORD in the temple?",
     "options": [
+      "Hezekiah",
+      "Josiah",
       "Uzziah",
-      "Ahaz",
-      "Jotham",
-      "Hezekiah"
+      "Jehoshaphat"
     ],
-    "correct_answer": "Uzziah",
-    "explanation": "Uzziah became leprous when he angrily resisted the priests who challenged his unlawful offering.",
-    "reference": "2 Chronicles 26:16-21",
+    "correct_answer": "Hezekiah",
+    "explanation": "Hezekiah received the letter from the Assyrian king, went up to the house of the LORD and spread it before the LORD in prayer.",
+    "reference": "2 Kings 19:14-19",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-59",
@@ -331,16 +331,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 13,
     "challenge_index": 3,
-    "question_text": "Which prophet was sent to anoint Hazael as king over Syria?",
+    "question_text": "Which prophet instructed Naaman to wash seven times in the Jordan to be cleansed?",
     "options": [
-      "Elijah",
       "Elisha",
+      "Elijah",
       "Isaiah",
-      "Micaiah"
+      "Jeremiah"
     ],
-    "correct_answer": "Elijah",
-    "explanation": "The LORD instructed Elijah to anoint Hazael king over Syria as part of the judgment announced to Israel.",
-    "reference": "1 Kings 19:15",
+    "correct_answer": "Elisha",
+    "explanation": "Elisha sent a messenger telling Naaman to wash seven times in the Jordan; Naaman obeyed and his flesh was restored.",
+    "reference": "2 Kings 5:8-14",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-63",
@@ -520,16 +520,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 14,
     "challenge_index": 5,
-    "question_text": "Which prophet married a woman named Gomer?",
+    "question_text": "Which priest at Bethel accused Amos of conspiring against Jeroboam?",
     "options": [
-      "Hosea",
-      "Amos",
-      "Micah",
-      "Joel"
+      "Amaziah",
+      "Hilkiah",
+      "Pashhur",
+      "Zephaniah"
     ],
-    "correct_answer": "Hosea",
-    "explanation": "Hosea's marriage to Gomer became a sign concerning the unfaithfulness of Israel.",
-    "reference": "Hosea 1:2-3",
+    "correct_answer": "Amaziah",
+    "explanation": "Amaziah the priest of Bethel sent word to King Jeroboam and told Amos to flee to Judah because the sanctuary was the king's chapel.",
+    "reference": "Amos 7:10-13",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-70",
@@ -1249,7 +1249,7 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 20,
     "challenge_index": 2,
-    "question_text": "Which prophet foretold that Paul would be bound by the owner of the belt he used?",
+    "question_text": "Which prophet from Judea predicted a great famine during the reign of Claudius?",
     "options": [
       "Agabus",
       "Silas",
@@ -1257,8 +1257,8 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
       "Philip"
     ],
     "correct_answer": "Agabus",
-    "explanation": "Agabus took Paul's belt and bound his own hands and feet, predicting Paul's arrest in Jerusalem.",
-    "reference": "Acts 21:10-11",
+    "explanation": "Agabus stood up and signified by the Spirit that a great famine would occur throughout the world.",
+    "reference": "Acts 11:27-28",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-97",
