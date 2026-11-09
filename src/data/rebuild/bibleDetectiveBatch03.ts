@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Chronicles 33:10-17",
     "explanation": "After being taken captive to Babylon, Manasseh humbled himself and prayed; God restored him to Jerusalem, where he removed foreign worship objects and restored the altar.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Captive King Who Prayed",
       "clues": [
         "A king repeatedly ignored warnings from the LORD, and the Assyrian army captured him with hooks and bronze chains.",
@@ -45,7 +45,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Samuel 6:1-8; 1 Chronicles 13:9-11",
     "explanation": "Uzzah touched the ark when the oxen stumbled and died; David named the place Perez-uzzah.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Hand Reaching for the Sacred Chest",
       "clues": [
         "Evidence A — The ark was being transported on a new cart.",
@@ -72,7 +72,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Judges 17:1-13",
     "explanation": "Micah's mother dedicated silver, a carved image and a cast idol were made, and a wandering Levite from Bethlehem in Judah became Micah's household priest.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Household Shrine and the Wandering Levite",
       "clues": [
         "A man from the hill country of Ephraim confessed that he had taken a large sum of silver from his mother.",
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Samuel 21:1-14",
     "explanation": "Rizpah protected the exposed bodies; David later gathered the bones for burial.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Watcher at the Rock of the Goats",
       "clues": [
         "Evidence A — Seven male descendants of Saul and two sons of Rizpah were handed over after a famine.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "1 Samuel 14:24-45",
     "explanation": "Jonathan unknowingly violated Saul's oath by tasting honey; the people rescued him.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Taste That Broke a Military Oath",
       "clues": [
         "Evidence A — Saul placed his troops under a curse: no one was to eat before evening.",
@@ -153,7 +153,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Kings 12:4-16; 2 Chronicles 24:4-14",
     "explanation": "Jehoiada arranged a collection chest to fund temple repairs during Joash's reign.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Chest with a Hole in Its Lid",
       "clues": [
         "Evidence A — A king ordered repairs to the neglected temple.",
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "1 Kings 22:13-28; 2 Chronicles 18:18-27",
     "explanation": "Micaiah son of Imlah described the heavenly council and lying spirit before Ahab's final battle.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Throne Room Filled with Deception",
       "clues": [
         "Evidence A — A king wanted to attack Ramoth-gilead and gathered prophets.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "1 Kings 22:48-49; 2 Chronicles 20:35-37",
     "explanation": "Jehoshaphat's alliance with Ahaziah ended with the ships being wrecked at Ezion-geber.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Fleet That Never Reached Its Destination",
       "clues": [
         "Evidence A — Two kings formed an alliance to build merchant ships at a Red Sea port.",
@@ -234,7 +234,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Kings 9:1-13",
     "explanation": "A young prophet anointed Jehu and declared that he would become king over Israel.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Commander Anointed in a Private Room",
       "clues": [
         "Evidence A — A young prophet was sent to Ramoth-gilead.",
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "2 Kings 11:1-16; 2 Chronicles 22:10-23:15",
     "explanation": "Athaliah seized power, but Jehosheba hid Joash and Jehoiada later crowned him.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Queen Who Tried to Erase the Royal Family",
       "clues": [
         "Evidence A — After her son died, a queen ordered the royal heirs destroyed.",
@@ -288,7 +288,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Daniel 5:1-31",
     "explanation": "Belshazzar profaned the temple vessels; the writing announced the end of his kingdom.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Feast Using Stolen Temple Vessels",
       "clues": [
         "Evidence A — A ruler hosted a feast for a thousand nobles.",
@@ -315,7 +315,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Daniel 4:4-37",
     "explanation": "Daniel interpreted the tree as Nebuchadnezzar, whose pride led to humiliation until he acknowledged God.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Tree That Reached the Sky in a King's Dream",
       "clues": [
         "Evidence A — A king saw a great tree providing shelter and food.",
@@ -342,7 +342,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Daniel 3:1-30",
     "explanation": "Shadrach, Meshach and Abednego were preserved in the furnace; the king saw a fourth figure.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Fourth Figure in the Furnace",
       "clues": [
         "Evidence A — Three Judean officials refused to bow to a golden image.",
@@ -369,7 +369,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Ezekiel 24:1-14",
     "explanation": "Ezekiel's boiling-pot sign represented Jerusalem: the choice pieces were placed in the pot, but its corrosion and bloodguilt could not be removed by ordinary cleansing.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Rusted Cooking Pot",
       "clues": [
         "The prophet received a dated message on the tenth day of the tenth month in the ninth year.",
@@ -396,7 +396,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Amos 7:7-9",
     "explanation": "Amos saw the LORD holding a plumb line, symbolising that Israel would be measured and judged.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Prophet Measuring a Wall",
       "clues": [
         "Evidence A — A prophet saw the LORD standing beside a wall with a measuring tool.",
@@ -423,7 +423,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Jeremiah 13:1-11",
     "explanation": "Jeremiah's ruined linen belt symbolised how Judah had clung to pride instead of the LORD.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Linen Belt Hidden Beside a River",
       "clues": [
         "Evidence A — A prophet bought a linen belt and wore it without washing it.",
@@ -450,7 +450,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Jeremiah 18:1-10",
     "explanation": "Jeremiah watched a potter remake a spoiled vessel, illustrating God's authority and the possibility of repentance.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Potter's Vessel That Could Be Remade",
       "clues": [
         "Evidence A — A prophet was told to visit a craftsman's workshop.",
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Jeremiah 36:1-32",
     "explanation": "Baruch wrote Jeremiah's words; Jehoiakim cut and burned the scroll, and another was prepared.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Scroll Read, Cut and Burned",
       "clues": [
         "Evidence A — A prophet dictated messages to a scribe who wrote them on a scroll.",
@@ -504,7 +504,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Jeremiah 38:1-13",
     "explanation": "Ebed-melech the Cushite rescued Jeremiah from the cistern using ropes and worn cloths.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Rescue from the Muddy Cistern",
       "clues": [
         "Evidence A — A prophet was lowered into a cistern because officials opposed his message.",
@@ -531,7 +531,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Nehemiah 2:11-20",
     "explanation": "Nehemiah inspected Jerusalem's broken walls at night before calling the people to rebuild.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Night Inspection of Broken Gates",
       "clues": [
         "Evidence A — A returning exile arrived in Jerusalem and initially kept his mission private.",
@@ -558,7 +558,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Nehemiah 8:1-12",
     "explanation": "Ezra read the Law publicly while Levites helped the people understand its meaning.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Law Read from Dawn Until Midday",
       "clues": [
         "Evidence A — A returned community gathered in an open square before the Water Gate.",
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Haggai 1:1-15",
     "explanation": "Haggai rebuked the people for neglecting the temple while prioritising their own houses.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Panelled Houses and the Neglected Temple",
       "clues": [
         "Evidence A — A prophet challenged returned exiles for living in panelled houses while the LORD's house lay desolate.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Acts 21:8-14",
     "explanation": "Agabus used Paul's belt to act out the announced arrest awaiting Paul in Jerusalem.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Belt Used to Predict an Arrest",
       "clues": [
         "Evidence A — A prophet travelled from Judea to a gathering of believers.",
@@ -639,7 +639,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Acts 19:11-20",
     "explanation": "Seven sons of Sceva tried to invoke Jesus by using the name preached by Paul; the possessed man overpowered them, and many believers later burned their magic books.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Name the Exorcists Tried to Borrow",
       "clues": [
         "Extraordinary miracles were being performed through Paul in a major city of Asia.",
@@ -666,7 +666,7 @@ export const BIBLE_DETECTIVE_BATCH_03: ChallengeItem[] = [
     "reference": "Acts 20:17-38",
     "explanation": "Paul summoned the elders of the Ephesian church to Miletus, warned them about fierce wolves, prayed with them and said they would not see his face again.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "easy",
       "case_title": "The Farewell at Miletus",
       "clues": [
         "A travelling apostle sent for the elders of a church while his ship waited at a coastal city.",
