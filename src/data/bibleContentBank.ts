@@ -738,41 +738,64 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           normalizeBiblePersonName(person.name).startsWith(letter.toLowerCase());
         const endsWith = (person: typeof people[number]) =>
           normalizeBiblePersonName(person.name).slice(-1).toUpperCase();
-        const eligibleStarts = people.filter((person) => {
-          const letter = endsWith(person);
-          return people.filter((candidate) => candidate.id !== person.id && startsWith(candidate, letter)).length >= 4;
-        });
-        if (eligibleStarts.length === 0) {
-          throw new Error('Bible Chain catalogue has no valid four-option name links.');
+        // Build a genuine five-person chain. Every next name begins with
+        // the previous name's final letter, and no person appears twice.
+        const byInitial = new Map<string, typeof people>();
+        for (const person of people) {
+          const initial = normalizeBiblePersonName(person.name)[0]?.toUpperCase();
+          if (!initial) continue;
+          byInitial.set(initial, [...(byInitial.get(initial) || []), person]);
         }
-        const source = eligibleStarts[globalSeed % eligibleStarts.length];
-        const requiredLetter = endsWith(source);
-        const candidates = people.filter((person) =>
-          person.id !== source.id && startsWith(person, requiredLetter)
-        );
-        const ordered = shuffleDeterministic(candidates, shuffleSeed + 71);
-        const matching = ordered[0];
-        const options = shuffleDeterministic(ordered.slice(0, 4).map((person) => person.name), shuffleSeed);
-        if (!matching || options.length !== 4 || new Set(options.map(normalizeBiblePersonName)).size !== 4) {
-          throw new Error('Bible Chain could not construct four distinct, letter-valid choices.');
+        const paths: Array<{ chain: typeof people; answer: typeof people[number]; choices: typeof people }> = [];
+        for (const first of people) {
+          const walk = (chain: typeof people) => {
+            if (chain.length === 4) {
+              const last = chain[chain.length - 1];
+              const required = normalizeBiblePersonName(last.name).slice(-1).toUpperCase();
+              const next = (byInitial.get(required) || []).filter((p) => !chain.some((x) => x.id === p.id));
+              if (next.length >= 4) {
+                const ranked = shuffleDeterministic(next, shuffleSeed + chain.length * 37 + normalizeBiblePersonName(first.name).length);
+                paths.push({ chain, answer: ranked[0], choices: ranked.slice(0, 4) });
+              }
+              return;
+            }
+            const last = chain[chain.length - 1];
+            const required = normalizeBiblePersonName(last.name).slice(-1).toUpperCase();
+            const next = (byInitial.get(required) || [])
+              .filter((p) => !chain.some((x) => x.id === p.id))
+              .sort((a, b) => a.name.localeCompare(b.name));
+            for (const candidate of next.slice(0, 12)) walk([...chain, candidate]);
+          };
+          walk([first]);
         }
+        if (!paths.length) {
+          throw new Error('Bible Chain needs at least five distinct linked people and four valid final choices.');
+        }
+        const chosen = paths[globalSeed % paths.length];
+        const requiredLetter = normalizeBiblePersonName(chosen.chain[3].name).slice(-1).toUpperCase();
+        const options = shuffleDeterministic(chosen.choices.map((person) => person.name), shuffleSeed);
+        const chainNames = chosen.chain.map((person) => person.name);
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `NAME CHAIN: “${source.name}” ends with “${requiredLetter}”. Which biblical person can follow it? Scripture dossier: ${matching.identity}`,
+          question_text: 'Complete this five-person Bible name chain. Each name must begin with the final letter of the name before it.',
           options,
-          correct_answer: matching.name,
-          explanation: `The final letter of ${source.name} is “${requiredLetter}”, matching the first letter of ${matching.name}. ${matching.identity}`,
-          reference: matching.reference,
+          correct_answer: chosen.answer.name,
+          explanation: `${chainNames.join(' → ')} → ${chosen.answer.name}. The final letter of ${chosen.chain[3].name} is “${requiredLetter}”, so the next name begins with that letter. ${chosen.answer.identity}`,
+          reference: [ ...chosen.chain.map((person) => person.reference), chosen.answer.reference ].join('; '),
           metadata: {
-            previousWord: source.name,
+            chain: chainNames,
+            previousWord: chosen.chain[3].name,
             requiredLetter,
-            answerPersonId: matching.id,
-            category: matching.category,
+            answerPersonId: chosen.answer.id,
+            category: chosen.answer.category,
             difficulty: Math.min(5, Math.max(1, Math.ceil(level / 6))),
-            clues: [matching.identity, `Read ${matching.reference} in context and identify the person.`],
+            clues: [
+              `The next name begins with “${requiredLetter}”.`,
+              `Check the relevant Bible passages: ${chosen.answer.reference}.`,
+            ],
           },
         });
         break;
