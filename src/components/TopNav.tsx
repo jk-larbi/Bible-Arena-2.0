@@ -41,11 +41,41 @@ export const TopNav: React.FC<TopNavProps> = ({
     };
   }, []);
 
+  const playSoundConfirmation = async () => {
+    try {
+      const AudioContextClass = window.AudioContext
+        || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (!AudioContextClass) return;
+      const context = new AudioContextClass();
+      if (context.state === 'suspended') await context.resume();
+      const now = context.currentTime + 0.02;
+      [523.25, 659.25, 783.99].forEach((frequency, index) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const start = now + index * 0.12;
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(frequency, start);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.12, start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.24);
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start(start);
+        oscillator.stop(start + 0.27);
+      });
+      window.setTimeout(() => { void context.close().catch(() => undefined); }, 700);
+    } catch {
+      // Sound is optional; browser audio restrictions must not interrupt navigation.
+    }
+  };
+
   const toggleSound = () => {
     const next = !soundEnabled;
     setSoundEnabled(next);
     try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* sound still works for this session */ }
     window.dispatchEvent(new Event('biblearena:sound-change'));
+    // Give an audible confirmation when sound is enabled, using this tap as the audio gesture.
+    if (next) void playSoundConfirmation();
   };
 
   const isGuest = user?.is_anonymous === true;
