@@ -19,6 +19,7 @@ import {
 } from '../../lib/levels';
 import type { ChallengeItem } from '../../data/bibleContentBank';
 import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX } from 'lucide-react';
+import { BibleCrosswordBoard } from './BibleCrosswordBoard';
 
 interface BaseGameProps {
   gameId: string;
@@ -712,7 +713,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           entries={entries}
           disabled={reveal !== null}
           hintCount={hintLevel}
-          onSubmit={(answer) => settleAnswer(answer)}
+          onSubmit={(answer: string) => settleAnswer(answer)}
         />
       );
     }
