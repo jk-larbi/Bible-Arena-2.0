@@ -75,3 +75,12 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Fixed the shared game header, which incorrectly displayed `/100`; it now displays the correct maximum of `CHALLENGES_PER_LEVEL * 10` (50). Also corrected stale “0..9” and “of 10” UI comments/loading text.
 - Commit: `15943fd2034e6827b215f83fbc9d3078a852fe1b`.
 - Character Quest still has five questions per level and currently has 250 old database rows, but its quality audit remains 25 distinct wordings and 32 distinct normalized reference/answer facts. The 100 replacement questions for Levels 1–20 are staged, not published. Further work remains Levels 21–50, then review, database replacement, and live verification.
+
+
+## Bible Character Quest — research batches expanded
+
+- Four original, Scripture-referenced replacement batches now cover Levels 1–40: 200 challenges total, exactly five per level.
+- Batch files: `bibleCharacterVerifiedBatch01.ts` (Levels 1–10), `bibleCharacterVerifiedBatch02.ts` (11–20), `bibleCharacterVerifiedBatch03.ts` (21–30), and `bibleCharacterVerifiedBatch04.ts` (31–40).
+- Automated structural audit: 200 unique question wordings, four distinct options per question, correct answer included, and non-empty references/explanations. Cross-batch duplicate reference+answer facts were identified and corrected during review.
+- Levels 41–50 remain to be built (50 challenges).
+- These batches remain staged source files. They have NOT yet been imported into Supabase or made live. Passage-by-passage source verification, cross-game duplicate checks against the final live banks, integration, database publication, and runtime tests are still required.
