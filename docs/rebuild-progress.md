@@ -68,3 +68,19 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
 - GitHub Pages workflow for the latest progress commit: https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42545002400
 - At last check this workflow was still in progress. Database changes are live in Supabase, but do not claim the latest Pages deployment succeeded until the workflow reports success.
+
+## Bible Chain Challenge — fresh audit and design decision (2026-11-09)
+
+- User-approved design: chain biblical **people's names only** (not Bible book titles). Each next person's name must begin with the previous person's final letter. Do not repeat a person within one chain; distinguish people who share a name; accept documented spelling variants; every person needs a Scripture reference and a short identity note.
+- Difficulty is mixed within every level, including Level 1: familiar names, less familiar characters, judges/kings/prophets, obscure people, and long or difficult names. Add optional themed rounds (prophets, kings, women of Scripture, no-hint and rare-name rounds) without changing the five-challenge level structure.
+- Audit found the current implementation is not suitable for publication: `getLevelChallenges()` deliberately bypasses Supabase for this game and calls `buildLocalChallengesForLevel()`; the local generator mixes Bible books with people, generates only a single link per question, and currently supplies three choices rather than four. It draws from a small hard-coded character pool, so it repeats targets (e.g. Song of Solomon) and cannot meet the requested name-only rules. Supabase currently contains 250 legacy rows (five per level), but these are not the gameplay source and are not evidence of 250 valid chain challenges.
+- Do not simply import 250 rows and claim the game is rebuilt. Next implementation: create a curated, reference-backed people catalogue with explicit identity distinctions and spelling aliases; validate each entry against Scripture; build five-link name chains with no repeated person within a chain; create plausible distractor chains that obey the same letter rule where appropriate; add tests for every link, uniqueness within each chain, answer inclusion, exactly four choices, and reference presence. Preserve the five-question level/reward system.
+- Research sources for discovery and cross-checking (do not copy their quiz wording or proprietary question banks):
+  - Bible Knowledge Quiz character list and three-clue model: https://bibleknowledgequiz.com/
+  - Bible Academy character quizzes and verse-backed explanations: https://bibleacademyapp.com/quiz/
+  - StudyLight Bible People catalogue (disambiguates shared names): https://www.studylight.org/research-tools/bible-people.html
+  - Begat A–Z people index for name discovery: https://begat.app/people/all/
+  - Bible Explorer people catalogue: https://bibleexplorer.app/people/
+  - Name-chain activity example and rule: https://cdn.ministerialassociation.org/cdn/ministerialassociation.org/assets/spouses/sij-archives-en/2020/sij-en-2020-1b.pdf
+- Research confirms the discovery pool can be much larger than the current local list: StudyLight reports 1,837 personal names; Begat reports 3,050 people. These are discovery indexes, not automatic approval lists; each playable entry still requires manual Scripture verification and distinction of namesakes.
+- Current status: audit complete; no new chain content published yet. Do not claim the new mechanic or bank is live until the local source, runtime path, tests, database and deployment are all verified.
