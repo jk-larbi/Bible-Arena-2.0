@@ -734,10 +734,6 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           if (!uniquePeople.has(key)) uniquePeople.set(key, person);
         }
         const people = [...uniquePeople.values()];
-        const startsWith = (person: typeof people[number], letter: string) =>
-          normalizeBiblePersonName(person.name).startsWith(letter.toLowerCase());
-        const endsWith = (person: typeof people[number]) =>
-          normalizeBiblePersonName(person.name).slice(-1).toUpperCase();
         // Build a genuine five-person chain. Every next name begins with
         // the previous name's final letter, and no person appears twice.
         const byInitial = new Map<string, typeof people>();
