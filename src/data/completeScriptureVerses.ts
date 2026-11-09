@@ -46,7 +46,7 @@ export const COMPLETE_SCRIPTURE_VERSES: CompleteScriptureVerse[] = [
   },
   {
     "ref": "1 Samuel 16:7",
-    "text": " for man looketh on the outward appearance, but the LORD looketh on the heart.",
+    "text": "But the LORD said unto Samuel, Look not on his countenance, or on the height of his stature; because I have refused him: for the LORD seeth not as man seeth; for man looketh on the outward appearance, but the LORD looketh on the heart.",
     "explanation": "The LORD tells Samuel that He judges the heart, not outward appearance.",
     "difficulty": "intermediate"
   },
@@ -64,7 +64,7 @@ export const COMPLETE_SCRIPTURE_VERSES: CompleteScriptureVerse[] = [
   },
   {
     "ref": "Nehemiah 8:10",
-    "text": " for the joy of the LORD is your strength.",
+    "text": "Then he said unto them, Go your way, eat the fat, and drink the sweet, and send portions unto them for whom nothing is prepared: for this day is holy unto our Lord: neither be ye sorry; for the joy of the LORD is your strength.",
     "explanation": "Nehemiah encourages the people that the LORD's joy is their strength.",
     "difficulty": "beginner"
   },
