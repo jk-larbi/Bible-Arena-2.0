@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, Bell, Trophy, Gamepad2, Users, Flame } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Search, Bell, Trophy, Gamepad2, Users, Flame, Volume2, VolumeX } from 'lucide-react';
 
 interface TopNavProps {
   currentTab: string;
@@ -25,6 +25,29 @@ export const TopNav: React.FC<TopNavProps> = ({
   onToggleNotif
 }) => {
   const [logoFailed, setLogoFailed] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    try { return localStorage.getItem('biblearena-game-sound') !== 'off'; } catch { return true; }
+  });
+
+  useEffect(() => {
+    const syncSoundPreference = () => {
+      try { setSoundEnabled(localStorage.getItem('biblearena-game-sound') !== 'off'); } catch { /* storage may be unavailable */ }
+    };
+    window.addEventListener('biblearena:sound-change', syncSoundPreference);
+    window.addEventListener('storage', syncSoundPreference);
+    return () => {
+      window.removeEventListener('biblearena:sound-change', syncSoundPreference);
+      window.removeEventListener('storage', syncSoundPreference);
+    };
+  }, []);
+
+  const toggleSound = () => {
+    const next = !soundEnabled;
+    setSoundEnabled(next);
+    try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* sound still works for this session */ }
+    window.dispatchEvent(new Event('biblearena:sound-change'));
+  };
+
   const isGuest = user?.is_anonymous === true;
 
   const navTabs = [
@@ -83,7 +106,19 @@ export const TopNav: React.FC<TopNavProps> = ({
         </nav>
 
         {/* Right Section */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
+          {/* Shared sound preference for game audio */}
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={soundEnabled ? 'Mute BibleArena game sounds' : 'Enable BibleArena game sounds'}
+            aria-pressed={soundEnabled}
+            title={soundEnabled ? 'Mute game sounds' : 'Enable game sounds'}
+            className="w-10 h-10 min-h-[44px] min-w-[44px] rounded-full bg-[#171B24]/5 hover:bg-[#171B24]/10 text-[#171B24] flex items-center justify-center transition-colors cursor-pointer"
+          >
+            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+          </button>
+
           {/* Search Button */}
           <button
             onClick={onOpenSearch}
