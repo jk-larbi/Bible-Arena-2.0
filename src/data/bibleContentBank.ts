@@ -633,10 +633,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
 
     switch (gameSlug) {
       case 'scripture-challenge': {
-        // Levels 1–3 use the curated, passage-checked question bank.
-        // Keep the established generator as a fallback for later levels while
-        // the remaining production batches are added.
-        if (level >= 1 && level <= 3) {
+        // Levels 1–6 use the curated Scripture Challenge question bank.
+        // Later levels retain the existing generator until their curated batches land.
+        if (level >= 1 && level <= 6) {
           const curated = SCRIPTURE_CHALLENGE_QUESTIONS.find(
             (entry) => entry.level === level && entry.challenge_index === challengeIndex,
           );
