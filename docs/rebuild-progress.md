@@ -84,3 +84,12 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Automated structural audit: 200 unique question wordings, four distinct options per question, correct answer included, and non-empty references/explanations. Cross-batch duplicate reference+answer facts were identified and corrected during review.
 - Levels 41–50 remain to be built (50 challenges).
 - These batches remain staged source files. They have NOT yet been imported into Supabase or made live. Passage-by-passage source verification, cross-game duplicate checks against the final live banks, integration, database publication, and runtime tests are still required.
+
+
+## Bible Character Quest — all 50 levels drafted
+
+- Five replacement batches now cover Levels 1–50, with five questions in each level: 250 challenges total.
+- Batch 05 adds Levels 41–50.
+- Final automated structural audit across all five batches: 250 unique question wordings; 250 unique normalized reference-and-answer facts; no repeated fact keys; every question has exactly four distinct options including the correct answer; all rows have a reference and explanation; every level has exactly five questions.
+- The audit is structural, not a substitute for human passage-by-passage Scripture review. Some distractors and interpretation details still require editorial verification against the chosen Bible translation.
+- The 250 rows remain staged in source files and have NOT been imported into Supabase or published to the live Character Quest game. Integration, final source review, cross-game comparison, database replacement, and live gameplay verification are still pending.
