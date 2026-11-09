@@ -24,7 +24,7 @@ const question = (
   correct_answer: answer,
   reference,
   explanation,
-  metadata: { challengeType: mechanic, curated: true, difficulty: level === 1 ? 'medium' : 'hard' },
+  metadata: { challengeType: mechanic, curated: true, difficulty: level <= 10 ? 'medium' : level <= 30 ? 'hard' : 'very hard' },
 });
 
 export const SCRIPTURE_CHALLENGE_QUESTIONS: ChallengeItem[] = [
