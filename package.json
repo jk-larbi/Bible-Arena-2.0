@@ -12,7 +12,8 @@
     "validate:content": "tsx scripts/validateContent.ts",
     "test:quiz": "tsx scripts/testQuizAccuracy.ts",
     "test:multiplayer": "tsx scripts/testMultiplayerAnd19Games.ts",
-    "validate:rebuild": "tsx scripts/validateRebuildBatches.ts"
+    "validate:rebuild": "tsx scripts/validateRebuildBatches.ts",
+    "test:all-levels": "tsx scripts/testAll50Levels.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
