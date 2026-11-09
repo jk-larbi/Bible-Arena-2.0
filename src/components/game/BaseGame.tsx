@@ -152,6 +152,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [memoryFlipped, setMemoryFlipped] = useState<number[]>([]);
   const [memorySolved, setMemorySolved] = useState<number[]>([]);
   const [memoryCards, setMemoryCards] = useState<{ id: number; text: string; pairKey: string }[]>([]);
+  const [scriptureTyped, setScriptureTyped] = useState('');
+  const [scripturePicked, setScripturePicked] = useState<string[]>([]);
+  const [scriptureHidden, setScriptureHidden] = useState(false);
 
   const locked = useRef(false);
   const challengeStart = useRef(Date.now());
@@ -192,6 +195,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setMatchedPairs({});
     setMemoryFlipped([]);
     setMemorySolved([]);
+    setScriptureTyped('');
+    setScripturePicked([]);
+    setScriptureHidden(false);
     locked.current = false;
     challengeStart.current = Date.now();
 
@@ -480,6 +486,72 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   // Render mechanic-specific interactive body
   const renderMechanicUI = () => {
+    if (gameId === 'complete-the-scripture') {
+      const meta = currentChallenge.metadata || {};
+      const mode = Number(meta.mode ?? 0);
+      const verse = String(meta.verseText || '');
+      const masked = String(meta.maskedText || '');
+      const targets: string[] = Array.isArray(meta.targetWords) ? meta.targetWords : [];
+      const pool: string[] = Array.isArray(meta.wordPool) ? meta.wordPool : [];
+      const submitTyped = () => settleAnswer(scriptureTyped.trim());
+      const submitPicked = () => settleAnswer(scripturePicked.join(' '));
+      const versePanel = (text: string) => (
+        <div className="rounded-2xl border border-[#3156C9]/20 bg-[#EEF2FF] p-5 text-center">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#3156C9]">King James Version</p>
+          <p className="mt-3 font-serif text-lg sm:text-xl font-semibold leading-relaxed text-[#171B24]">{text}</p>
+          {mode !== 5 && <p className="mt-3 text-xs font-bold text-[#5A6275]">{currentChallenge.reference}</p>}
+        </div>
+      );
+      if (mode === 2 || mode === 4) {
+        return (
+          <div className="space-y-4">
+            {mode === 4 && !scriptureHidden ? versePanel(verse) : versePanel(masked)}
+            {mode === 4 && !scriptureHidden && <button type="button" onClick={() => setScriptureHidden(true)} className="w-full rounded-xl bg-[#171B24] px-4 py-3 font-bold text-white">Hide Verse &amp; Start Recall</button>}
+            {(mode === 2 || scriptureHidden) && <>
+              <div className="rounded-xl border-2 border-dashed border-[#3156C9]/30 bg-white p-4 text-center min-h-14">
+                {scripturePicked.length ? scripturePicked.join('  •  ') : <span className="text-sm text-[#5A6275]">Tap the missing words in the correct order</span>}
+              </div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {pool.map((word, index) => {
+                  const used = scripturePicked.filter((picked) => picked === word).length >= pool.slice(0,index+1).filter((item) => item === word).length;
+                  return <button key={index} type="button" disabled={used || reveal !== null} onClick={() => {
+                    const next = [...scripturePicked, word];
+                    setScripturePicked(next);
+                    if (next.length === targets.length) settleAnswer(next.join(' '));
+                  }} className="rounded-xl border border-[#171B24]/15 bg-[#F3EBDD] px-3 py-2.5 text-sm font-bold text-[#171B24] disabled:opacity-30">{word}</button>;
+                })}
+              </div>
+              <button type="button" disabled={!scripturePicked.length || reveal !== null} onClick={() => setScripturePicked([])} className="rounded-lg border px-4 py-2 text-xs font-bold">Reset words</button>
+            </>}
+          </div>
+        );
+      }
+      return (
+        <div className="space-y-4">
+          {versePanel(masked)}
+          {mode === 3 || mode === 1 ? (
+            <div className="space-y-3">
+              {targets.map((target, index) => (
+                <label key={index} className="block text-sm font-semibold text-[#171B24]">
+                  Missing word {targets.length > 1 ? index + 1 : ''}
+                  <input value={scriptureTyped.split('|')[index] || ''} disabled={reveal !== null} onChange={(event) => {
+                    const parts = scriptureTyped.split('|'); parts[index] = event.target.value;
+                    setScriptureTyped(parts.join('|'));
+                  }} placeholder="Type the exact KJV word" className="mt-1 w-full rounded-xl border border-[#171B24]/20 bg-white px-4 py-3 text-base outline-none focus:border-[#3156C9]" />
+                </label>
+              ))}
+              <button type="button" disabled={reveal !== null || !scriptureTyped.trim()} onClick={() => settleAnswer(scriptureTyped.split('|').map((word) => word.trim()).join(' '))} className="w-full rounded-xl bg-[#D66B3D] px-5 py-3 font-bold text-white disabled:opacity-40">Check Scripture</button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              {currentChallenge.options.map((option) => (
+                <button key={option} type="button" disabled={reveal !== null} onClick={() => settleAnswer(option)} className="min-h-14 rounded-xl border border-[#3156C9]/20 bg-white p-4 text-left font-bold text-[#171B24] hover:border-[#3156C9] disabled:opacity-50">{option}</button>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
     // 1. SCRIPTURE SCRAMBLE (Letter tile rearranging)
     if (gameId === 'scripture-scramble') {
       const letters = currentChallenge.options;
