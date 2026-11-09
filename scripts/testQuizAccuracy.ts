@@ -447,7 +447,7 @@ async function runQuizAccuracyTests() {
     const chainKeys = new Set<string>();
     const factKeys = new Set<string>();
     const failureLog: string[] = [];
-    const normalizeName = (v: string) => v.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
+    const normalizeName = (v: string) => v.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z]/g, '');
     for (let level = 1; level <= 30; level++) {
       const items = buildLocalChallengesForLevel('bible-chain-challenge', level);
       if (items.length !== 5) {
