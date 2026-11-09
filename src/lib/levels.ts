@@ -257,7 +257,7 @@ export async function startLevel(
   if (level > 1 && !gameProg[level - 1]?.completed) {
     // Also check if remote says unlocked when backend configured
     let remoteUnlocked = false;
-    if (isBackendConfigured && supabase) {
+    if (game !== 'bible-crossword' && isBackendConfigured && supabase) {
       try {
         const { data } = await supabase.rpc('start_level', {
           p_game: game,
@@ -289,7 +289,7 @@ export async function startLevel(
   }
 
   // Try remote start_level first if signed in
-  if (isBackendConfigured && supabase) {
+  if (game !== 'bible-crossword' && isBackendConfigured && supabase) {
     try {
       const { data, error } = await supabase.rpc('start_level', {
         p_game: game,
@@ -444,7 +444,7 @@ export async function submitChallengeAnswer(
 
   const challengeKey = `${gameSlug}-l${level}-c${challengeIndex}`;
 
-  if (!attemptId.startsWith('local-') && isBackendConfigured && supabase) {
+  if (!attemptId.startsWith('local-') && gameSlug !== 'bible-crossword' && isBackendConfigured && supabase) {
     const { data, error } = await supabase.rpc('submit_challenge_answer', {
       p_attempt: attemptId,
       p_challenge_index: challengeIndex,
@@ -671,7 +671,7 @@ export async function getLevelChallenges(
   variationSeed = 0
 ): Promise<ChallengeItem[]> {
   // Bible Chain is generated per attempt so players never receive a fixed replay set.
-  if (gameSlug === 'bible-chain-challenge') {
+  if (gameSlug === 'bible-chain-challenge' || gameSlug === 'bible-crossword') {
     return buildLocalChallengesForLevel(gameSlug, level, variationSeed);
   }
 
