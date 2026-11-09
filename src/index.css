@@ -12,22 +12,35 @@
   }
 
   html {
-    height: 100dvh;
-    overflow-x: hidden;
+    min-height: 100%;
+    height: auto;
+    overflow-x: clip;
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: calc(4.5rem + env(safe-area-inset-top));
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-parchment);
     color: var(--color-midnight);
     font-family: 'Inter', sans-serif;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    min-height: 100%;
+    overflow-x: clip;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-top: env(safe-area-inset-top);
+    padding: 0;
+    overscroll-behavior-y: auto;
+  }
+
+  #root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    min-width: 0;
+    flex: 1 0 auto;
   }
 
   h1, h2, h3, h4, .font-serif {
@@ -42,11 +55,16 @@
 
 /* Smooth, touch-friendly horizontal rails on phones and desktops. */
 .smooth-horizontal-scroll {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
+  touch-action: pan-x pan-y;
 }
 .smooth-horizontal-scroll::-webkit-scrollbar { display: none; }
 .smooth-horizontal-scroll > * { scroll-snap-align: start; }
@@ -151,3 +169,39 @@
   }
 }
 
+
+
+/* Mobile-first scrolling: keep the document as the primary vertical scroll area. */
+@media (max-width: 767px) {
+  html, body {
+    overscroll-behavior-x: none;
+  }
+
+  body {
+    min-height: 100svh;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+
+  .smooth-horizontal-scroll {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+  }
+
+  .smooth-horizontal-scroll > * {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
+  :where(button, a, [role="button"]) {
+    touch-action: manipulation;
+  }
+}
+
+@supports (height: 100dvh) {
+  #root {
+    min-height: 100dvh;
+  }
+}
