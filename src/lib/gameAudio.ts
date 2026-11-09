@@ -26,7 +26,19 @@ function getAudioContext(): AudioContext | null {
   }
 }
 
+let ambientMusicSource: AudioBufferSourceNode | null = null;
+let ambientMusicGain: GainNode | null = null;
+
 function stopAmbient(): void {
+  if (ambientMusicSource) {
+    try { ambientMusicSource.stop(); } catch { /* Already stopped. */ }
+    try { ambientMusicSource.disconnect(); } catch { /* Already disconnected. */ }
+  }
+  if (ambientMusicGain) {
+    try { ambientMusicGain.disconnect(); } catch { /* Already disconnected. */ }
+  }
+  ambientMusicSource = null;
+  ambientMusicGain = null;
   ambientOscillators.forEach((oscillator) => {
     try { oscillator.stop(); } catch { /* Already stopped. */ }
     try { oscillator.disconnect(); } catch { /* Already disconnected. */ }
@@ -38,44 +50,91 @@ function stopAmbient(): void {
   ambientNodes = [];
 }
 
+/** Build a short, original, peaceful instrumental loop locally with Web Audio. */
+function createBackgroundMusic(context: AudioContext): AudioBuffer {
+  const sampleRate = context.sampleRate;
+  const secondsPerBeat = 60 / 82;
+  const barLength = secondsPerBeat * 4;
+  const loopLength = barLength * 4;
+  const buffer = context.createBuffer(1, Math.ceil(sampleRate * loopLength), sampleRate);
+  const samples = buffer.getChannelData(0);
+
+  const frequencies: Record<string, number> = {
+    C3: 130.81, G3: 196, A3: 220, F3: 174.61,
+    C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+    G4: 392, A4: 440, B4: 493.88, C5: 523.25,
+    D5: 587.33, E5: 659.25, G5: 783.99
+  };
+
+  const addNote = (frequency: number, start: number, duration: number, volume: number, tone: 'pad' | 'plucked' = 'plucked') => {
+    const first = Math.max(0, Math.floor(start * sampleRate));
+    const last = Math.min(samples.length, Math.floor((start + duration) * sampleRate));
+    const attack = tone === 'pad' ? 0.22 : 0.012;
+    const release = tone === 'pad' ? 0.38 : 0.16;
+    for (let i = first; i < last; i++) {
+      const t = i / sampleRate - start;
+      const remaining = duration - t;
+      const envelope = Math.min(1, t / attack, remaining / release);
+      const fundamental = Math.sin(2 * Math.PI * frequency * t);
+      const harmonic = Math.sin(2 * Math.PI * frequency * 2 * t) * (tone === 'pad' ? 0.18 : 0.28);
+      const softThird = Math.sin(2 * Math.PI * frequency * 3 * t) * 0.06;
+      samples[i] += (fundamental + harmonic + softThird) * Math.max(0, envelope) * volume;
+    }
+  };
+
+  const chords = [
+    { notes: ['C4', 'E4', 'G4'], bass: 'C3' },
+    { notes: ['G3', 'B4', 'D5'], bass: 'G3' },
+    { notes: ['A3', 'C4', 'E4'], bass: 'A3' },
+    { notes: ['F4', 'A4', 'C5'], bass: 'F3' }
+  ];
+  chords.forEach((chord, bar) => {
+    const start = bar * barLength;
+    chord.notes.forEach((note) => addNote(frequencies[note], start, barLength, 0.075, 'pad'));
+    addNote(frequencies[chord.bass], start, barLength * 0.92, 0.13, 'pad');
+    // Gentle broken-chord notes give the background a recognisable musical pulse.
+    const arpeggio = [chord.notes[0], chord.notes[2], chord.notes[1], chord.notes[2]];
+    arpeggio.forEach((note, beat) => addNote(frequencies[note], start + beat * secondsPerBeat, secondsPerBeat * 0.72, 0.085));
+  });
+
+  const melody: Array<[string, number, number]> = [
+    ['G4',0,0.7],['C5',0.75,0.65],['D5',1.5,0.65],['E5',2.25,0.8],['D5',3.25,0.55],
+    ['B4',4,0.7],['D5',4.75,0.65],['G5',5.5,0.8],['D5',6.5,0.55],
+    ['C5',7,0.7],['E5',7.75,0.65],['D5',8.5,0.65],['C5',9.25,0.8],['A4',10.25,0.55],
+    ['A4',11,0.7],['C5',11.75,0.65],['F5',12.5,0.8],['E5',13.5,0.55],['D5',14.25,0.6],['C5',15,0.8]
+  ];
+  // The four-bar melody is repeated with a slight variation in the second half.
+  const extendedMelody = melody.concat(melody.map(([note, beat, duration]) => [note, beat + 16, duration] as [string, number, number]));
+  extendedMelody.forEach(([note, beat, duration]) => {
+    const frequency = frequencies[note] || (note === 'F5' ? 698.46 : 0);
+    if (frequency) addNote(frequency, beat * secondsPerBeat, duration * secondsPerBeat, 0.11);
+  });
+
+  let peak = 0;
+  for (let i = 0; i < samples.length; i++) peak = Math.max(peak, Math.abs(samples[i]));
+  if (peak > 0.92) {
+    const scale = 0.92 / peak;
+    for (let i = 0; i < samples.length; i++) samples[i] *= scale;
+  }
+  return buffer;
+}
+
 function startAmbient(): void {
-  if (!soundEnabled || !audioUnlocked || ambientOscillators.length > 0) return;
+  if (!soundEnabled || !audioUnlocked || ambientMusicSource) return;
   const context = getAudioContext();
   if (!context || context.state !== 'running') return;
-
   try {
-    // A quiet, original synthesized ambient chord. No external audio file or network request.
-    const master = context.createGain();
-    const filter = context.createBiquadFilter();
-    const lfo = context.createOscillator();
-    const lfoDepth = context.createGain();
-    master.gain.setValueAtTime(0.0001, context.currentTime);
-    master.gain.linearRampToValueAtTime(0.075, context.currentTime + 1.8);
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(720, context.currentTime);
-    lfo.type = 'sine';
-    lfo.frequency.setValueAtTime(0.075, context.currentTime);
-    lfoDepth.gain.setValueAtTime(0.012, context.currentTime);
-    lfo.connect(lfoDepth);
-    lfoDepth.connect(master.gain);
-    filter.connect(master);
-    master.connect(context.destination);
-
-    [146.83, 196, 220].forEach((frequency, index) => {
-      const oscillator = context.createOscillator();
-      const voiceGain = context.createGain();
-      oscillator.type = index === 1 ? 'triangle' : 'sine';
-      oscillator.frequency.setValueAtTime(frequency, context.currentTime);
-      voiceGain.gain.setValueAtTime(index === 0 ? 0.48 : index === 1 ? 0.34 : 0.28, context.currentTime);
-      oscillator.connect(voiceGain);
-      voiceGain.connect(filter);
-      oscillator.start();
-      ambientOscillators.push(oscillator);
-      ambientNodes.push(voiceGain);
-    });
-    lfo.start();
-    ambientOscillators.push(lfo);
-    ambientNodes.push(lfoDepth, filter, master);
+    const source = context.createBufferSource();
+    const gain = context.createGain();
+    source.buffer = createBackgroundMusic(context);
+    source.loop = true;
+    gain.gain.setValueAtTime(0.0001, context.currentTime);
+    gain.gain.linearRampToValueAtTime(0.22, context.currentTime + 2.2);
+    source.connect(gain);
+    gain.connect(context.destination);
+    source.start();
+    ambientMusicSource = source;
+    ambientMusicGain = gain;
   } catch {
     stopAmbient();
   }
