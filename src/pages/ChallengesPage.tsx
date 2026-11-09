@@ -346,7 +346,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                       </div>
                       {c.status === 'completed' && (
                         <span className="ml-2 font-bold text-emerald-700">
-                          {c.winner_id === user?.id ? 'You won!' : 'Challenge completed'}
+                          {c.winner_id === user?.id ? 'You won!' : c.winner_id ? 'Opponent won' : 'Challenge completed'}
                         </span>
                       )}
                     </div>
