@@ -439,23 +439,23 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 9,
     "challenge_index": 2,
-    "question_text": "CASE FILE 042: The Censers Before the Tent\nInvestigate the evidence and identify the biblical event or person.",
+    "question_text": "CASE FILE 042: The Guests Who Would Not Drink\nInvestigate the evidence and identify the biblical event or group.",
     "options": [
-      "Korah's Rebellion",
-      "The Rebellion of Absalom",
-      "The Sin of Nadab and Abihu",
-      "The Complaint of Miriam and Aaron"
+      "The Rechabites Refuse Wine",
+      "The Nazirites' Vow",
+      "The Priests' Refusal of Defiled Food",
+      "The Israelites at Marah"
     ],
-    "correct_answer": "Korah's Rebellion",
-    "reference": "Numbers 16:1-35",
-    "explanation": "Korah and his allies challenged the leadership of Moses and Aaron; the ground opened beneath Dathan and Abiram, while fire consumed the men offering incense.",
+    "correct_answer": "The Rechabites Refuse Wine",
+    "reference": "Jeremiah 35:1-19",
+    "explanation": "The Rechabites refused wine because their ancestor Jonadab had instructed them not to drink it or settle in houses; the LORD used their obedience as a contrast to Judah's disobedience.",
     "metadata": {
       "difficulty": "developing",
-      "case_title": "The Censers Before the Tent",
+      "case_title": "The Guests Who Would Not Drink",
       "clues": [
-        "A Levite and several community leaders challenged the authority of Moses and Aaron.",
-        "Moses instructed the challengers to bring censers with incense before the LORD, and 250 leaders gathered at the entrance of the tent of meeting.",
-        "The ground opened and swallowed the households of Dathan and Abiram, while fire came out and consumed the men offering incense."
+        "A prophet invited members of a family clan into a chamber in the house of the LORD and set cups of wine before them.",
+        "They refused, explaining that their ancestor Jonadab son of Rechab had commanded them not to drink wine, build houses, sow seed or plant vineyards, but to live in tents.",
+        "The LORD used their obedience to their ancestor as a rebuke to Judah for refusing to listen to his commands."
       ],
       "investigation_type": "multi_evidence_case",
       "fact_key": "detective-rebuilt-9-2"
