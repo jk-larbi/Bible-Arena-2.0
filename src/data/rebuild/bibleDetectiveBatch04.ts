@@ -547,26 +547,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 20,
     "challenge_index": 1,
-    "question_text": "CASE FILE 96: The Prophet and the Bethel Altar. Review the evidence and identify the biblical account.",
-    "correct_answer": "The Man of God from Judah",
+    "question_text": "CASE FILE 96: Saul's Sacrifice at Gilgal. Review the evidence and identify the biblical account.",
+    "correct_answer": "Saul Offers the Sacrifice at Gilgal",
     "options": [
-      "The Man of God from Judah",
-      "Elijah at Mount Carmel",
-      "Micaiah Before Ahab",
-      "Elisha at Jericho"
+      "Saul Offers the Sacrifice at Gilgal",
+      "David Offers at Araunah's Threshing Floor",
+      "Solomon Offers at Gibeon",
+      "Jeroboam Offers at Bethel"
     ],
-    "reference": "1 Kings 13:1-32",
-    "explanation": "The man of God from Judah prophesied against Jeroboam's altar, then died after disobeying God's instruction.",
+    "reference": "1 Samuel 13:5-14",
+    "explanation": "Saul offered the burnt offering at Gilgal instead of waiting for Samuel, and Samuel announced that his kingdom would not endure.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Prophet and the Bethel Altar",
+      "case_title": "Saul's Sacrifice at Gilgal",
       "clues": [
-        "Evidence A — A prophet from Judah confronted a king at an altar.",
-        "Evidence B — The altar split and its ashes poured out after a sign was given.",
-        "Evidence C — The prophet later died after disobeying the word he had received about returning home."
+        "Israel's troops were scattered while a Philistine force gathered for battle.",
+        "A king waited for the prophet who was supposed to offer the sacrifice.",
+        "When the prophet delayed, the king offered it himself and was rebuked for not keeping God's command."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-96"
+      "fact_key": "detective-expert-revised-bible-detective-l20-c1"
     }
   },
   {
@@ -574,26 +574,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 20,
     "challenge_index": 2,
-    "question_text": "CASE FILE 97: The Hidden Royal Child. Review the evidence and identify the biblical account.",
-    "correct_answer": "Joash Hidden from Athaliah",
+    "question_text": "CASE FILE 97: Hezekiah's Water Tunnel. Review the evidence and identify the biblical account.",
+    "correct_answer": "Hezekiah Secures Jerusalem's Water Supply",
     "options": [
-      "Joash Hidden from Athaliah",
-      "Moses Hidden from Pharaoh",
-      "Mephibosheth Hidden by David",
-      "Josiah Hidden from Jehoiakim"
+      "Hezekiah Secures Jerusalem's Water Supply",
+      "Solomon Builds the Pool of Siloam",
+      "Nehemiah Diverts the Jordan",
+      "Uzziah Builds a Canal at Jericho"
     ],
-    "reference": "2 Kings 11:1-16; 2 Chronicles 22:10-23:15",
-    "explanation": "Jehosheba hid Joash from Athaliah; Jehoiada later crowned him king.",
+    "reference": "2 Kings 20:20; 2 Chronicles 32:1-8, 30",
+    "explanation": "Hezekiah strengthened Jerusalem's water supply and brought the Gihon spring's water through a tunnel.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Hidden Royal Child",
+      "case_title": "Hezekiah's Water Tunnel",
       "clues": [
-        "Evidence A — A queen attempted to destroy the royal heirs after her son's death.",
-        "Evidence B — A royal sister hid a young prince and his nurse in a bedroom for six years.",
-        "Evidence C — A priest brought him out and crowned him while the queen was overthrown."
+        "A king prepared Jerusalem for an expected Assyrian attack.",
+        "He stopped the water sources outside the city and redirected a spring toward the city.",
+        "The water was brought through a tunnel to the western side of the city of David."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-97"
+      "fact_key": "detective-expert-revised-bible-detective-l20-c2"
     }
   },
   {
@@ -979,26 +979,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 2,
-    "question_text": "CASE FILE 112: The Theatre Riot. Review the evidence and identify the biblical account.",
-    "correct_answer": "The Riot in Ephesus",
+    "question_text": "CASE FILE 112: Paul Before King Agrippa. Review the evidence and identify the biblical account.",
+    "correct_answer": "Paul's Defence Before Agrippa",
     "options": [
-      "The Riot in Ephesus",
-      "The Riot in Thessalonica",
-      "The Riot in Philippi",
-      "The Riot in Corinth"
+      "Paul's Defence Before Agrippa",
+      "Peter's Defence Before Herod",
+      "Stephen's Defence Before Pilate",
+      "Barnabas' Defence Before Felix"
     ],
-    "reference": "Acts 19:23-41",
-    "explanation": "Demetrius stirred a riot in Ephesus; the town clerk calmed the crowd.",
+    "reference": "Acts 25:13-27; 26:1-32",
+    "explanation": "Paul defended himself before Agrippa and described his conversion and commission.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Theatre Riot",
+      "case_title": "Paul Before King Agrippa",
       "clues": [
-        "Evidence A — A silversmith feared that the spread of the gospel would damage his trade.",
-        "Evidence B — A crowd gathered in a theatre and shouted for hours.",
-        "Evidence C — A city clerk warned that the assembly could be charged with unlawful rioting."
+        "A Roman governor arranged a hearing for a prisoner after a royal visit.",
+        "The prisoner recounted his former persecution of Jesus' followers and his encounter on the road to Damascus.",
+        "The king remarked that the prisoner was almost persuading him to become a Christian."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-112"
+      "fact_key": "detective-expert-revised-bible-detective-l23-c2"
     }
   },
   {
@@ -1006,26 +1006,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 3,
-    "question_text": "CASE FILE 113: The Prisoner's Warning at Sea. Review the evidence and identify the biblical account.",
-    "correct_answer": "Paul Warns of the Shipwreck",
+    "question_text": "CASE FILE 113: The Young Man Who Fled. Review the evidence and identify the biblical account.",
+    "correct_answer": "The Young Man Flees at Jesus' Arrest",
     "options": [
-      "Paul Warns of the Shipwreck",
-      "Jonah Warns of the Storm",
-      "Luke Warns of the Famine",
-      "Peter Warns of the Flood"
+      "The Young Man Flees at Jesus' Arrest",
+      "Eutychus Falls at Troas",
+      "John Mark Leaves the Mission",
+      "Peter Flees from the High Priest's Court"
     ],
-    "reference": "Acts 27:9-26",
-    "explanation": "Paul warned of danger at sea and later assured the passengers that all would survive.",
+    "reference": "Mark 14:51-52",
+    "explanation": "Mark records that a young man fled naked after leaving his linen cloth in the hands of those who seized him.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Prisoner's Warning at Sea",
+      "case_title": "The Young Man Who Fled",
       "clues": [
-        "Evidence A — A prisoner warned a centurion that sailing would bring loss and danger.",
-        "Evidence B — The ship was caught in a violent storm and the crew abandoned hope.",
-        "Evidence C — He assured everyone that all would survive, though the ship would be lost."
+        "During Jesus' arrest, a young man followed him wearing only a linen cloth.",
+        "When the crowd seized him, he left the cloth behind and ran away naked.",
+        "The Gospel records the brief incident without naming the young man."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-113"
+      "fact_key": "detective-expert-revised-bible-detective-l23-c3"
     }
   },
   {
