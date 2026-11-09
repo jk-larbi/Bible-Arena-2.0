@@ -749,6 +749,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         const paths: Array<{ chain: typeof people; answer: typeof people[number]; choices: typeof people }> = [];
         for (const first of people) {
           const walk = (chain: typeof people) => {
+            if (paths.length >= 500) return;
             if (chain.length === 4) {
               const last = chain[chain.length - 1];
               const required = normalizeBiblePersonName(last.name).slice(-1).toUpperCase();
@@ -764,7 +765,10 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
             const next = (byInitial.get(required) || [])
               .filter((p) => !chain.some((x) => x.id === p.id))
               .sort((a, b) => a.name.localeCompare(b.name));
-            for (const candidate of next.slice(0, 12)) walk([...chain, candidate]);
+            for (const candidate of next.slice(0, 12)) {
+              walk([...chain, candidate]);
+              if (paths.length >= 500) break;
+            }
           };
           walk([first]);
         }
