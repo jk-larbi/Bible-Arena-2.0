@@ -931,16 +931,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 9,
     "challenge_index": 5,
-    "question_text": "Which prophet was instructed to marry Gomer as a sign concerning Israel?",
+    "question_text": "Which prophet was commanded to eat a scroll before speaking God's words to Israel?",
     "options": [
-      "Hosea",
-      "Amos",
-      "Micah",
-      "Zechariah"
+      "Ezekiel",
+      "Jeremiah",
+      "Isaiah",
+      "Daniel"
     ],
-    "correct_answer": "Hosea",
-    "explanation": "The LORD instructed Hosea to take a wife of whoredoms, and her name was Gomer.",
-    "reference": "Hosea 1:2-3",
+    "correct_answer": "Ezekiel",
+    "explanation": "God instructed Ezekiel to eat the scroll, which tasted sweet as honey, before sending him to speak to the house of Israel.",
+    "reference": "Ezekiel 3:1-4",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-45",
