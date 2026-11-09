@@ -32,10 +32,13 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
 ## Next game — Bible Chain Challenge (not complete)
 
-- Runtime intentionally generates this game locally rather than loading its challenge rows from Supabase.
-- Current generator uses a curated people-only catalogue combined with the established character bank. It constructs five-name chains: four linked names plus a multiple-choice final name; every link follows the final-letter/first-letter rule.
-- A deterministic audit of the current 30-level generation produced 150 distinct chain sequences, 150 distinct composite reference-answer keys, four distinct final choices, and no repeated person within any one chain. The CI quiz and all-level tests also passed the current chain structural checks.
-- Still required before completion: review all names and passages, verify no repeated underlying identity clue across challenges or collisions with other games, inspect the actual player-facing chain presentation, and decide whether the generated bank should also be persisted in Supabase for auditing. Do not mark complete based only on the structural generator tests.
+- Runtime intentionally generates this game locally rather than loading its challenge rows from Supabase. The 250 legacy database rows are not the live question source for this game.
+- Fresh audit of the current source pool: 40 curated seed records plus 32 established character records produce 72 unique people. The deterministic Level 1–30 sample has 150 different chain sequences, but only 27 distinct final-person reference/answer facts and 27 distinct dossier wordings. The target clue facts repeat heavily (for example, Nahum appears as the answer 37 times, Sarah 13 times, Solomon 13 times, Nicanor 13 times, and Maher-shalal-hash-baz 11 times). Distinct chain sequences alone do not meet the no-repeated-facts requirement.
+- Cross-game fact audit: combining the current 40 seed identities and the 96 established character clues gives 135 distinct normalized reference/answer candidates. Comparing them against every other game's existing `game_content` rows found 44 collisions. Of the 91 clean facts remaining, only 49 currently have a valid four-person chain path and enough same-initial answer choices in the current name graph.
+- A second gameplay defect was found: the chain-specific UI showed the linked names and required letter but did not render `question_text`, so the identity dossier was hidden. The latest source update now renders the dossier in a matching card under the chain, without changing the chain rules or option layout. The generator now supplies the concise identity clue as the dossier text, and its paid hints provide category and passage guidance.
+- Still required before completion: expand the fact/name bank to at least 150 clean, distinct answer facts; ensure each target has a valid four-name chain and four distinct same-initial choices; balance difficulty across Levels 1–30; generate and persist the same 150-question canonical bank for audit; compare normalized wording and reference-answer facts against all games; validate all chain mechanics; verify Levels 31–50 remain unpublished; and confirm the final deployment.
+- Do not mark this game complete based on the chain-sequence count or the UI correction alone.
+
 
 ## Other games awaiting completion
 
