@@ -32,6 +32,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: TypeScript check
+        run: npm run lint
+
+      - name: Validate Bible content structure
+        run: npm run validate:content
+
+      - name: Test quiz accuracy and scoring
+        run: npm run test:quiz
+
+      - name: Test multiplayer and 19-game catalogue
+        run: npm run test:multiplayer
+
       - name: Optimize game artwork and logo
         run: node scripts/optimizeImages.mjs
 
