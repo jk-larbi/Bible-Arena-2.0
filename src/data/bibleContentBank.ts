@@ -456,8 +456,18 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           { across: 'SAMUEL', acrossClue: 'The prophet who anointed Saul and David as kings', down: 'SAUL', downClue: 'Israel’s first king, anointed by Samuel', acrossRef: '1 Samuel 10:1; 16:13', downRef: '1 Samuel 10:1', extraDown: 'DAVID', extraDownClue: 'The shepherd boy who became king after Saul', extraDownRef: '1 Samuel 16:13' },
         ];
         const pair = crosswordPairs[globalSeed % crosswordPairs.length];
-        const acrossWord = pair.across;
-        const downWord = pair.down;
+        const acrossWord = pair.across.replace(/[^A-Z]/gi, '').toUpperCase();
+        const downWord = pair.down.replace(/[^A-Z]/gi, '').toUpperCase();
+        const extraWord = pair.extraDown.replace(/[^A-Z]/gi, '').toUpperCase();
+        const sharedAcrossIndex = [...acrossWord].findIndex((letter) => downWord.includes(letter));
+        const extraAcrossIndex = [...acrossWord].findIndex((letter, index) => index !== sharedAcrossIndex && extraWord.includes(letter));
+        if (sharedAcrossIndex < 0 || extraAcrossIndex < 0) {
+          throw new Error(`Invalid Bible crossword intersection for level ${level}, challenge ${challengeIndex}.`);
+        }
+        if (!pair.acrossClue.trim() || !pair.downClue.trim() || !pair.extraDownClue.trim() ||
+            !pair.acrossRef.trim() || !pair.downRef.trim() || !pair.extraDownRef.trim()) {
+          throw new Error(`Incomplete Bible crossword clue or Scripture reference for level ${level}, challenge ${challengeIndex}.`);
+        }
         items.push({
           id,
           game_slug: gameSlug,
