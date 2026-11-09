@@ -566,7 +566,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
                 : 'text-[#5A6275] hover:text-[#171B24]'
             }`}
           >
-            <Trophy className="w-3.5 h-3.5 text-amber-400" /> All-Time
+            <Crown className={`w-3.5 h-3.5 ${period === 'all-time' ? 'text-amber-400' : 'text-amber-600/70'}`} /> All-Time
           </button>
           <button
             type="button"
@@ -577,7 +577,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
                 : 'text-[#5A6275] hover:text-[#171B24]'
             }`}
           >
-            <Calendar className="w-3.5 h-3.5" /> Weekly Cup
+            <Trophy className={`w-3.5 h-3.5 ${period === 'weekly' ? 'text-white' : 'text-[#D66B3D]'}`} /> Weekly Cup
           </button>
           <button
             type="button"
@@ -588,7 +588,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
                 : 'text-[#5A6275] hover:text-[#171B24]'
             }`}
           >
-            <CalendarRange className="w-3.5 h-3.5" /> Monthly
+            <Calendar className={`w-3.5 h-3.5 ${period === 'monthly' ? 'text-white' : 'text-[#3156C9]'}`} /> Monthly
           </button>
         </div>
       </div>
