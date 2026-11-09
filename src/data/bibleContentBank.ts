@@ -496,15 +496,15 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           ['JEROBOAM','The king whose rebellion divided the kingdom after Solomon','1 Kings 12:16-20'],
           ['ATHALIAH','The queen who attempted to destroy the royal heirs of Judah','2 Kings 11:1-3'],
           ['JEHOSHAPHAT','The king of Judah who appointed singers before the army','2 Chronicles 20:20-22'],
-          ['ZACCHARIAS','The father of John the Baptist, named in Luke’s account','Luke 1:5-13'],
+          ['ZACHARIAS','The father of John the Baptist, named in Luke’s account','Luke 1:5-13'],
           ['SAPPHIRA','The wife of Ananias who lied about the proceeds of a sale','Acts 5:1-10'],
           ['TABITHA','The disciple also known as Dorcas, raised by Peter','Acts 9:36-41'],
           ['CORNELIUS','The Roman centurion whose household heard Peter preach','Acts 10:1-48'],
           ['GAMALIEL','The Pharisee who advised the council to leave the apostles alone','Acts 5:34-39'],
           ['EPAPHRAS','The servant of Christ who laboured in prayer for the Colossians','Colossians 4:12'],
         ] as const;
-        const count = 10 + (globalSeed % 6);
-        const startAt = (Math.floor(globalSeed / 5) * 7) % crosswordClues.length;
+        const count = 10;
+        const startAt = (globalSeed * 11 + level * 13 + challengeIndex * 17) % crosswordClues.length;
         const chosen = Array.from({ length: count }, (_, offset) => crosswordClues[(startAt + offset * 3) % crosswordClues.length]);
         const entries = chosen.map(([answer, clue, reference], index) => ({
           number: index + 1,
