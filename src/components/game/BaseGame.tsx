@@ -930,15 +930,16 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       );
     }
 
-    // 10. WHO SAID IT — put the quotation at the centre of the round.
+    // 10. WHO SAID IT — the prompt identifies the active challenge format.
     if (gameId === 'who-said-it') {
-      const quote = currentChallenge.question_text.match(/"([^"]+)"/)?.[1] || currentChallenge.question_text;
+      const promptLines = currentChallenge.question_text.split('\n');
+      const modeTitle = promptLines[0] || 'Who Said It?';
+      const promptBody = promptLines.slice(1).join('\n');
       return (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-6 text-center">
-            <span className="text-4xl text-[#D66B3D]">“</span>
-            <blockquote className="font-serif text-xl font-bold leading-relaxed text-[#171B24]">{quote}</blockquote>
-            <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#7A8190]">Who spoke these words?</p>
+          <div className="rounded-2xl border border-[#D66B3D]/25 bg-[#FFF8F0] p-5 sm:p-6">
+            <p className="text-xs font-extrabold uppercase tracking-wider text-[#D66B3D]">{modeTitle}</p>
+            <p className="mt-3 whitespace-pre-line font-serif text-lg sm:text-xl font-bold leading-relaxed text-[#171B24]">{promptBody}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentChallenge.options.map((option) => (
