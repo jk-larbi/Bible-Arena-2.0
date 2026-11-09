@@ -64,7 +64,7 @@ export const MATCH_UP_BANK: MatchUpSet[] = [
 {left:'The walls of Jericho fell',right:'Israel took the city after marching and shouting',ref:'Joshua 6:12-21'},
 {left:'The contest on Mount Carmel',right:'The people declared that the LORD is God',ref:'1 Kings 18:36-39'},
 {left:'Peter’s prison escape',right:'An angel led him past the guards and out of the gate',ref:'Acts 12:5-11'},
-{left:'The covenant at Mizpah',right:'Jacob and Laban set up a witness heap and pillar',ref:'Genesis 31:43- " '},
+{left:'The covenant at Mizpah',right:'Jacob and Laban set up a witness heap and pillar',ref:'Genesis 31:43-54'},
 {left:'The dedication of the temple',right:'Fire came down and the glory of the LORD filled it',ref:'2 Chronicles 7:1-3'},
 {left:'The feeding of the five thousand',right:'Five loaves and two fish fed the crowd, with leftovers',ref:'Mark 6:34-44'},
 {left:'The fall of Dagon before the ark',right:'Dagon was found fallen before the ark twice',ref:'1 Samuel 5:1-5'},
