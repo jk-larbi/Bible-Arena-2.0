@@ -757,11 +757,31 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         const c1 = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
         const c2 = BIBLE_CHARACTERS[(globalSeed + 5) % BIBLE_CHARACTERS.length];
         const c3 = BOOKS_66[globalSeed % BOOKS_66.length];
-        const words = [
-          c1.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
-          c2.name.split(' ')[0].replace(/[^A-Za-z]/g, '').toUpperCase(),
-          c3.name.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8),
-        ];
+        const wordEntries: Array<{ word: string; reference: string }> = [];
+        const addWord = (rawWord: string, reference: string) => {
+          const word = rawWord.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8);
+          if (word && !wordEntries.some((entry) => entry.word === word)) {
+            wordEntries.push({ word, reference });
+          }
+        };
+
+        addWord(c1.name.split(' ')[0], c1.clue3Ref || c1.ref);
+        addWord(c2.name.split(' ')[0], c2.clue3Ref || c2.ref);
+        addWord(c3.name, c3.ref);
+
+        // Names such as John can also be Bible book names. If a collision occurs,
+        // select the next unused character/book clue and keep its own reference.
+        for (let offset = 1; wordEntries.length < 3 && offset <= BIBLE_CHARACTERS.length; offset++) {
+          const person = BIBLE_CHARACTERS[(globalSeed + 5 + offset) % BIBLE_CHARACTERS.length];
+          addWord(person.name.split(' ')[0], person.clue3Ref || person.ref);
+        }
+        for (let offset = 1; wordEntries.length < 3 && offset <= BOOKS_66.length; offset++) {
+          const book = BOOKS_66[(globalSeed + offset) % BOOKS_66.length];
+          addWord(book.name, book.ref);
+        }
+
+        const words = wordEntries.map((entry) => entry.word);
+        const references = wordEntries.map((entry) => entry.reference);
         items.push({
           id,
           game_slug: gameSlug,
@@ -770,8 +790,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           question_text: `Locate the hidden sacred words in the letter grid: ${words.join(', ')}`,
           options: words,
           correct_answer: words.join(','),
-          explanation: `Key terms from ${c1.clue3Ref}, ${c2.clue3Ref}, and ${c3.ref}: ${words.join(', ')}.`,
-          reference: `${c1.clue3Ref}; ${c2.clue3Ref}; ${c3.ref}`,
+          explanation: `Key terms from ${references.join(', ')}: ${words.join(', ')}.`,
+          reference: references.join('; '),
           metadata: {
             words,
             gridSize: 8,
