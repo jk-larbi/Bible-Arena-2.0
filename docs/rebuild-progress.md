@@ -32,10 +32,11 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
 - Research direction checked against Focus on the Family's Bible Detectives kit, Kids Sunday School's tiered investigation cards, Bible Academy's historical/contextual trivia approach, and Bible Quest's Mystery of the Dig. These are design research only; BibleArena cases are original and Scripture-checked, not copied.
 - Preserve the actual investigation mechanic: staged evidence, case title, four plausible suspect/event options, explanation and Bible references. Focus on contextual clues and multi-passage reasoning as difficulty rises.
-- Batch 01: 25 original cases, five each for Levels 1–5. Three evidence clues per case, four distinct options including the correct answer, reference and explanation. Cross-game normalized reference-answer collision check returned no matches for these 25.
-- Imported Batch 01 into the existing 25 corresponding `public.game_content` rows in Supabase. Existing 250 row slots remain five per level across Levels 1–50.
-- Database audit after this first import: all 250 rows have four distinct options and three evidence clues, but only 33 unique normalized question wordings/reference-answer facts across the whole bank. This shows that Levels 6–50 still contain old repeated content and the game is NOT complete.
-- Next: replace the remaining 225 rows with original, progressively harder investigations. Add multi-passage cross-checks, chronology, cultural/historical context, less familiar people and events, and fair near-miss distractors. Then run full semantic and normalized duplicate checks.
+- Batch 01: 25 original cases for Levels 1–5. Batch 02: 25 original, harder cases for Levels 6–10. Each case has three staged evidence clues, four distinct answer options, an explanation and Bible references.
+- Both batches have been imported into their corresponding 50 rows in `public.game_content`. Cross-game normalized reference-answer collision checks returned no matches for these batches. One duplicate within the Detective bank in Batch 02 was replaced before import.
+- Database verification: Levels 1–10 each contain five rows and five distinct normalized question/fact keys. All 250 game rows have four distinct options and evidence metadata. However, the whole bank currently has only 58 distinct normalized facts/wordings because Levels 11–50 still contain repeated legacy content. Detective is NOT complete.
+- Gameplay already renders the staged evidence in the case panel and reveals further clues through the existing paid-hint flow. The five-question level/reward system remains unchanged.
+- Next: replace Levels 11–50 (200 cases) with original, increasingly difficult investigations, then run global semantic and normalized duplicate checks and verify deployment.
 
 ## Other games awaiting rebuild
 
