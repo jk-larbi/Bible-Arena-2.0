@@ -281,7 +281,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const answering = useCountdown(
     Boolean(attempt && !result && reveal === null && currentChallenge),
-    gameId === 'bible-crossword' ? 240 : gameId === 'who-said-it' ? WHO_SAID_IT_SECONDS : QUESTION_SECONDS,
+    gameId === 'bible-crossword' ? 240 : (gameId === 'who-said-it' || gameId === 'complete-the-scripture') ? WHO_SAID_IT_SECONDS : QUESTION_SECONDS,
     () => settleAnswer(null),
     currentChallenge?.id ?? currentIdx,
     gameId === 'bible-crossword' ? crosswordBonusSeconds : 0
@@ -378,6 +378,26 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             All game sounds {soundEnabled ? 'On' : 'Off'}
           </button>
         </div>
+        {gameId === 'complete-the-scripture' && (
+          <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
+              <HelpCircle className="h-5 w-5 text-[#3156C9]" />
+              How to play — Complete the Scripture
+            </div>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm leading-relaxed text-[#394150]">
+              <li>Each level has five KJV Scripture challenges. You have 25 seconds for each one.</li>
+              <li><strong>Find the Missing Word:</strong> choose one missing word from four options.</li>
+              <li><strong>Multiple Missing Words:</strong> type the missing words in the order they appear.</li>
+              <li><strong>Arrange the Missing Words:</strong> tap the word tiles in the correct order.</li>
+              <li><strong>Type the Missing Word:</strong> enter the exact KJV word yourself; no options are provided.</li>
+              <li><strong>Disappearing Scripture:</strong> study the full verse, hide it, then recall the missing words from tiles.</li>
+              <li><strong>No Reference Challenge:</strong> complete the verse without seeing its reference until the answer is revealed.</li>
+              <li>Read the explanation and full verse after each answer. The reference is shown with the reveal.</li>
+              <li>Hints cost marks. Game sounds can be switched on or off using the shared sound control.</li>
+            </ol>
+            <p className="mt-3 text-xs leading-relaxed text-[#687386]">Translation: King James Version (KJV). Match the exact wording, including the original spelling.</p>
+          </section>
+        )}
         {gameId === 'who-said-it' && (
           <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
@@ -1213,6 +1233,11 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
           </span>
         </div>
 
+        {gameId === 'complete-the-scripture' && currentChallenge.metadata?.modeLabel && (
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-wider text-[#3156C9]">
+            Challenge format: {String(currentChallenge.metadata.modeLabel)}
+          </p>
+        )}
         <h2
           className={`font-serif font-bold text-[#171B24] mb-6 ${
             gameId === 'guess-the-emoji' ? 'text-4xl sm:text-6xl text-center py-6 bg-[#171B24] rounded-2xl text-white' : 'text-xl sm:text-2xl'
