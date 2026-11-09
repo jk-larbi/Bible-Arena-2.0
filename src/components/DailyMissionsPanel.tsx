@@ -7,7 +7,6 @@ import {
   Clock3,
   Flame,
   LockKeyhole,
-  Sparkles,
   Target,
   Trophy,
   X,
@@ -367,7 +366,7 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700">Reward Claimed!</span>
                     <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[11px] font-extrabold text-emerald-800">
-                      <Sparkles className="h-3 w-3" /> +{celebration.reward} XP
+                      <Trophy className="h-3 w-3" /> +{celebration.reward} XP
                     </span>
                   </div>
                   <p className="mt-0.5 text-xs font-semibold text-emerald-950">
@@ -444,15 +443,9 @@ export const DailyMissionsPanel: React.FC<DailyMissionsPanelProps> = ({ userId, 
                         type="button"
                         disabled={claiming !== null}
                         onClick={() => void claimMission(mission)}
-                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#D66B3D] px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-[#bf592f] disabled:opacity-50 cursor-pointer"
+                        className="rounded-xl bg-[#D66B3D] px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-[#bf592f] disabled:opacity-50 cursor-pointer"
                       >
-                        {isClaimingThis ? (
-                          <>Claiming…</>
-                        ) : (
-                          <>
-                            <Sparkles className="h-3.5 w-3.5" /> Claim reward
-                          </>
-                        )}
+                        {isClaimingThis ? 'Claiming…' : 'Claim reward'}
                       </button>
                     ) : (
                       <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#7A8190]">
