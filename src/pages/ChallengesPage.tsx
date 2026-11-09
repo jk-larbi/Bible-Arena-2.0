@@ -25,6 +25,10 @@ type ChallengeItem = {
   reward_xp: number;
   challenger_score?: number;
   opponent_score?: number;
+  challenger_correct?: number;
+  opponent_correct?: number;
+  challenger_duration_ms?: number;
+  opponent_duration_ms?: number;
   winner_id?: string | null;
   challenger_id?: string;
   opponent_id?: string;
@@ -324,6 +328,12 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                       Challenger: {c.challenger_score ?? 0} XP
                       <span className="mx-2 text-[#D66B3D]">•</span>
                       Opponent: {c.opponent_score ?? 0} XP
+                      <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-[10px] font-medium text-[#7A8190]">
+                        <span>Challenger correct: {c.challenger_correct ?? 0}</span>
+                        <span>Opponent correct: {c.opponent_correct ?? 0}</span>
+                        <span>Challenger time: {Math.round((c.challenger_duration_ms ?? 0) / 1000)}s</span>
+                        <span>Opponent time: {Math.round((c.opponent_duration_ms ?? 0) / 1000)}s</span>
+                      </div>
                       {c.status === 'completed' && (
                         <span className="ml-2 font-bold text-emerald-700">
                           {c.winner_id === user?.id ? 'You won!' : 'Challenge completed'}
