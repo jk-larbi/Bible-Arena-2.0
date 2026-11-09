@@ -150,10 +150,23 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     }
   };
 
+  useEffect(() => {
+    const syncSoundPreference = () => {
+      try { setSoundEnabled(localStorage.getItem('biblearena-game-sound') !== 'off'); } catch { /* keep current preference */ }
+    };
+    window.addEventListener('biblearena:sound-change', syncSoundPreference);
+    window.addEventListener('storage', syncSoundPreference);
+    return () => {
+      window.removeEventListener('biblearena:sound-change', syncSoundPreference);
+      window.removeEventListener('storage', syncSoundPreference);
+    };
+  }, []);
+
   const toggleGameSound = () => {
     const next = !soundEnabled;
     setSoundEnabled(next);
     try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+    window.dispatchEvent(new Event('biblearena:sound-change'));
     if (next) void playGameSound('tick', true);
   };
 
