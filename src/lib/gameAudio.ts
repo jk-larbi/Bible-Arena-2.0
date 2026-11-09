@@ -1,6 +1,8 @@
 type GameSound = 'correct' | 'incorrect' | 'tick' | 'complete' | 'enabled' | 'select' | 'start' | 'hint' | 'reward' | 'navigate';
 
 let sharedAudioContext: AudioContext | null = null;
+let masterVolumeNode: GainNode | null = null;
+let masterVolume = 0.65;
 let unlockListenersInstalled = false;
 let soundEnabled = true;
 let audioUnlocked = false;
@@ -9,6 +11,33 @@ let ambientOscillators: OscillatorNode[] = [];
 
 function readSoundPreference(): boolean {
   try { return localStorage.getItem('biblearena-game-sound') !== 'off'; } catch { return true; }
+}
+
+function readMasterVolume(): number {
+  try {
+    const saved = localStorage.getItem('biblearena-master-volume');
+    if (saved === null) return 0.65;
+    const value = Number(saved);
+    return Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : 0.65;
+  } catch { return 0.65; }
+}
+
+function getMasterVolumeNode(context: AudioContext): GainNode {
+  if (!masterVolumeNode || masterVolumeNode.context !== context) {
+    masterVolumeNode = context.createGain();
+    masterVolumeNode.gain.value = masterVolume;
+    masterVolumeNode.connect(context.destination);
+  }
+  return masterVolumeNode;
+}
+
+export function getBibleArenaVolume(): number { return masterVolume; }
+
+export function setBibleArenaVolume(value: number): void {
+  masterVolume = Math.max(0, Math.min(1, value));
+  try { localStorage.setItem('biblearena-master-volume', String(masterVolume)); } catch { /* volume still applies for this session */ }
+  const context = getAudioContext();
+  if (context) getMasterVolumeNode(context).gain.setTargetAtTime(masterVolume, context.currentTime, 0.035);
 }
 
 function getAudioContext(): AudioContext | null {
@@ -20,6 +49,7 @@ function getAudioContext(): AudioContext | null {
     if (!sharedAudioContext || sharedAudioContext.state === 'closed') {
       sharedAudioContext = new AudioContextClass();
     }
+    masterVolume = readMasterVolume();
     return sharedAudioContext;
   } catch {
     return null;
@@ -131,7 +161,7 @@ function startAmbient(): void {
     gain.gain.setValueAtTime(0.0001, context.currentTime);
     gain.gain.linearRampToValueAtTime(0.22, context.currentTime + 2.2);
     source.connect(gain);
-    gain.connect(context.destination);
+    gain.connect(getMasterVolumeNode(context));
     source.start();
     ambientMusicSource = source;
     ambientMusicGain = gain;
@@ -230,7 +260,7 @@ export function playBibleArenaSound(kind: GameSound, enabled = true, force = fal
       gain.gain.exponentialRampToValueAtTime(peak, start + 0.015);
       gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
       oscillator.connect(gain);
-      gain.connect(context.destination);
+      gain.connect(getMasterVolumeNode(context));
       oscillator.start(start);
       oscillator.stop(start + duration + 0.025);
       oscillator.onended = () => {
