@@ -504,8 +504,17 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           ['EPAPHRAS','The servant of Christ who laboured in prayer for the Colossians','Colossians 4:12'],
         ] as const;
         const count = 10;
-        const startAt = (globalSeed * 11 + level * 13 + challengeIndex * 17) % crosswordClues.length;
-        const chosen = Array.from({ length: count }, (_, offset) => crosswordClues[(startAt + offset * 3) % crosswordClues.length]);
+        let crosswordState = (globalSeed + 1) * 2654435761 + level * 97 + challengeIndex * 7919;
+        const crosswordRandom = () => {
+          crosswordState = (crosswordState * 1664525 + 1013904223) >>> 0;
+          return crosswordState / 4294967296;
+        };
+        const shuffledClues = [...crosswordClues];
+        for (let i = shuffledClues.length - 1; i > 0; i--) {
+          const j = Math.floor(crosswordRandom() * (i + 1));
+          [shuffledClues[i], shuffledClues[j]] = [shuffledClues[j], shuffledClues[i]];
+        }
+        const chosen = shuffledClues.slice(0, count);
         const entries = chosen.map(([answer, clue, reference], index) => ({
           number: index + 1,
           answer,
