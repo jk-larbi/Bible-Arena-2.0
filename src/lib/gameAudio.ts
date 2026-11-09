@@ -31,7 +31,7 @@ function getMasterVolumeNode(context: AudioContext): GainNode {
   return masterVolumeNode;
 }
 
-export function getBibleArenaVolume(): number { return masterVolume; }
+export function getBibleArenaVolume(): number { masterVolume = readMasterVolume(); return masterVolume; }
 
 export function setBibleArenaVolume(value: number): void {
   masterVolume = Math.max(0, Math.min(1, value));
