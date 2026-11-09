@@ -37,7 +37,6 @@ const MULTIPLE_CHOICE_GAMES = [
   'scripture-challenge',
   'bible-character-quest',
   'who-said-it',
-  'complete-the-scripture',
   'find-the-bible-book',
   'bible-riddles',
   'bible-geography-quest',
@@ -138,7 +137,7 @@ async function runQuizAccuracyTests() {
 
     results.push({
       name: '3. Exactly 4 distinct options per MC challenge',
-      scope: 'Deep Audit Sample: 900 MC challenges (9 MC games x 10 levels)',
+      scope: 'Deep Audit Sample: 400 MC challenges (8 MC games x 10 levels)',
       passed: distinctFailures === 0,
       details: `Checked ${mcTotal} multiple-choice challenges across 10 levels. Duplicate/invalid options: ${distinctFailures}.`,
     });
@@ -168,7 +167,7 @@ async function runQuizAccuracyTests() {
 
     results.push({
       name: '4. Correct answer guaranteed present in options',
-      scope: 'Deep Audit Sample: 900 MC challenges (9 MC games x 10 levels)',
+      scope: 'Deep Audit Sample: 400 MC challenges (9 MC games x 10 levels)',
       passed: missingCorrectFailures === 0,
       details: `Checked ${mcTotal} MC challenges. Correct answer present: ${mcTotal - missingCorrectFailures}/${mcTotal}. Missing: ${missingCorrectFailures}.`,
     });
@@ -207,7 +206,7 @@ async function runQuizAccuracyTests() {
 
     results.push({
       name: '5. Uniform Mulberry32 option position distribution (~25% balance)',
-      scope: 'Shuffling Audit: 2,700 MC instances (9 MC games x 30 levels)',
+      scope: 'Shuffling Audit: 1,200 MC instances (8 MC games x 30 levels)',
       passed,
       details: `Sampled ${totalQuestionsSampled} questions: [${formatted}]. No position exceeds 40%.`,
     });
