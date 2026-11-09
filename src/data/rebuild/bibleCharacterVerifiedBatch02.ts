@@ -358,16 +358,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 13,
     "challenge_index": 4,
-    "question_text": "Who succeeded Elijah and received his mantle?",
+    "question_text": "Which prophet's bones caused a dead man to come to life when the body touched them?",
     "options": [
       "Elisha",
-      "Gehazi",
-      "Micaiah",
-      "Jehu"
+      "Elijah",
+      "Isaiah",
+      "Jeremiah"
     ],
     "correct_answer": "Elisha",
-    "explanation": "Elisha picked up Elijah's mantle after Elijah was taken up in a whirlwind.",
-    "reference": "2 Kings 2:9-15",
+    "explanation": "When the dead man's body touched Elisha's bones, the man revived and stood up, even after Elisha had died.",
+    "reference": "2 Kings 13:20-21",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-64",
@@ -547,16 +547,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 15,
     "challenge_index": 1,
-    "question_text": "Which prophet described himself as a herdsman and a dresser of sycamore figs rather than a prophet's son?",
+    "question_text": "Which servant did Elisha send to summon the Shunammite woman after her son died?",
     "options": [
-      "Amos",
-      "Hosea",
-      "Micah",
-      "Joel"
+      "Gehazi",
+      "Naaman",
+      "Hazael",
+      "Jehu"
     ],
-    "correct_answer": "Amos",
-    "explanation": "Amos told Amaziah that he was a herdsman and a dresser of sycamore fruit before the LORD called him to prophesy to Israel.",
-    "reference": "Amos 7:14-15",
+    "correct_answer": "Gehazi",
+    "explanation": "Elisha told his servant Gehazi to take his staff and go quickly to the Shunammite woman's house, but the child did not awaken until Elisha arrived.",
+    "reference": "2 Kings 4:29-31",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-71",
