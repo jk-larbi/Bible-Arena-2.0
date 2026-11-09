@@ -85,7 +85,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [attempt, setAttempt] = useState<{ attemptId: string; startIndex: number } | null>(null);
   const [level, setLevel] = useState<number | null>(null);
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
-  const [currentIdx, setCurrentIdx] = useState(0); // 0..9
+  const [currentIdx, setCurrentIdx] = useState(0); // 0..4
   const [result, setResult] = useState<LevelResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [reveal, setReveal] = useState<Reveal | null>(null);
@@ -315,7 +315,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   if (!currentChallenge) {
     return (
       <div className="max-w-3xl mx-auto p-6 text-center">
-        <p className="text-base font-semibold">Loading challenge {currentIdx + 1} of 10...</p>
+        <p className="text-base font-semibold">Loading challenge {currentIdx + 1} of {CHALLENGES_PER_LEVEL}...</p>
       </div>
     );
   }
@@ -1145,7 +1145,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
           <div className="px-3.5 py-1.5 rounded-xl bg-[#D66B3D] text-white text-xs font-bold shadow-sm flex items-center gap-1.5">
             <span>Marks:</span>
-            <span className="tabular-nums text-sm">{sessionMarks} / 100</span>
+            <span className="tabular-nums text-sm">{sessionMarks} / {CHALLENGES_PER_LEVEL * 10}</span>
           </div>
           <div className="px-3 py-1.5 rounded-xl bg-[#171B24] text-[#F3EBDD] text-xs font-bold flex items-center gap-1.5">
             <span className="text-[#A7B49A]">Career:</span>
