@@ -547,16 +547,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 15,
     "challenge_index": 1,
-    "question_text": "Which prophet saw a basket of summer fruit in a vision?",
+    "question_text": "Which prophet described himself as a herdsman and a dresser of sycamore figs rather than a prophet's son?",
     "options": [
       "Amos",
-      "Joel",
-      "Nahum",
-      "Habakkuk"
+      "Hosea",
+      "Micah",
+      "Joel"
     ],
     "correct_answer": "Amos",
-    "explanation": "The basket of summer fruit signified that the end had come upon Israel.",
-    "reference": "Amos 8:1-2",
+    "explanation": "Amos told Amaziah that he was a herdsman and a dresser of sycamore fruit before the LORD called him to prophesy to Israel.",
+    "reference": "Amos 7:14-15",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-71",
