@@ -20,6 +20,7 @@ import {
 import type { ChallengeItem } from '../../data/bibleContentBank';
 import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX, HelpCircle } from 'lucide-react';
 import { BibleCrosswordBoard } from './BibleCrosswordBoard';
+import { installBibleArenaAudioUnlock, playBibleArenaSound, unlockBibleArenaAudio } from '../../lib/gameAudio';
 
 interface BaseGameProps {
   gameId: string;
@@ -96,67 +97,17 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [soundEnabled, setSoundEnabled] = useState(() => {
     try { return localStorage.getItem('biblearena-game-sound') !== 'off'; } catch { return true; }
   });
-  const soundContext = useRef<AudioContext | null>(null);
   const lastTickSecond = useRef<number | null>(null);
 
-  // Resume audio directly from a user gesture for iOS Safari and Android.
-  const unlockGameAudio = () => {
-    if (typeof window === 'undefined') return null;
-    try {
-      const AudioContextClass = window.AudioContext
-        || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-      if (!AudioContextClass) return null;
-      const context = soundContext.current || (soundContext.current = new AudioContextClass());
-      if (context.state === 'suspended') void context.resume().catch(() => undefined);
-      return context;
-    } catch {
-      return null;
-    }
-  };
-
-  const playGameSound = async (kind: 'correct' | 'incorrect' | 'tick' | 'complete', force = false) => {
-    if ((!soundEnabled && !force) || typeof window === 'undefined') return;
-    try {
-      const context = unlockGameAudio();
-      if (!context) return;
-      if (context.state === 'suspended') await context.resume();
-      const patterns: Record<typeof kind, number[]> = {
-        correct: [587.33, 739.99, 880],
-        incorrect: [293.66, 220],
-        tick: [740],
-        complete: [523.25, 659.25, 783.99, 1046.5],
-      };
-      const notes = patterns[kind];
-      const now = context.currentTime + 0.015;
-      const spacing = kind === 'tick' ? 0 : 0.105;
-      notes.forEach((frequency, index) => {
-        const start = now + index * spacing;
-        const oscillator = context.createOscillator();
-        const envelope = context.createGain();
-        const peak = kind === 'tick' ? 0.04 : kind === 'incorrect' ? 0.07 : 0.11;
-        const duration = kind === 'tick' ? 0.075 : 0.18;
-        oscillator.type = kind === 'incorrect' ? 'triangle' : 'sine';
-        oscillator.frequency.setValueAtTime(frequency, start);
-        envelope.gain.setValueAtTime(0.0001, start);
-        envelope.gain.exponentialRampToValueAtTime(peak, start + 0.012);
-        envelope.gain.exponentialRampToValueAtTime(0.0001, start + duration);
-        oscillator.connect(envelope);
-        envelope.connect(context.destination);
-        oscillator.start(start);
-        oscillator.stop(start + duration + 0.02);
-      });
-    } catch {
-      // Audio is optional; browser restrictions must never interrupt gameplay.
-    }
-  };
-
   useEffect(() => {
+    const cleanupAudioUnlock = installBibleArenaAudioUnlock();
     const syncSoundPreference = () => {
       try { setSoundEnabled(localStorage.getItem('biblearena-game-sound') !== 'off'); } catch { /* keep current preference */ }
     };
     window.addEventListener('biblearena:sound-change', syncSoundPreference);
     window.addEventListener('storage', syncSoundPreference);
     return () => {
+      cleanupAudioUnlock();
       window.removeEventListener('biblearena:sound-change', syncSoundPreference);
       window.removeEventListener('storage', syncSoundPreference);
     };
@@ -165,10 +116,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const toggleGameSound = () => {
     const next = !soundEnabled;
     setSoundEnabled(next);
-    try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+    try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* session preference still applies */ }
     window.dispatchEvent(new Event('biblearena:sound-change'));
-    // Use a clear confirmation chord so the user can hear that audio is enabled.
-    if (next) void playGameSound('complete', true);
+    if (next) playBibleArenaSound('enabled', true, true);
   };
 
 
@@ -260,7 +210,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   }, [currentIdx, currentChallenge?.id, gameId]);
 
   async function handlePlay(lvl: number, restart: boolean) {
-    unlockGameAudio();
+    unlockBibleArenaAudio();
     setError(null);
     try {
       const variationSeed = gameId === 'bible-chain-challenge'
@@ -285,7 +235,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   async function settleAnswer(pickedAnswer: string | null) {
     if (locked.current || !attempt || !currentChallenge) return;
-    unlockGameAudio();
+    unlockBibleArenaAudio();
     locked.current = true;
     setError(null);
 
@@ -304,7 +254,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setSessionMarks(res.session_marks);
       setTotalMarks(res.total_marks);
 
-      playGameSound(res.is_correct ? 'correct' : 'incorrect');
+      playBibleArenaSound(res.is_correct ? 'correct' : 'incorrect', soundEnabled);
       setReveal({
         is_correct: res.is_correct,
         correct_answer: res.correct_answer,
@@ -334,7 +284,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     if (reveal !== null || !attempt) return;
     if (answering.secondsLeft <= 5 && answering.secondsLeft > 0 && lastTickSecond.current !== answering.secondsLeft) {
       lastTickSecond.current = answering.secondsLeft;
-      playGameSound('tick');
+      playBibleArenaSound('tick', soundEnabled);
     }
     if (answering.secondsLeft > 5) lastTickSecond.current = null;
   }, [answering.secondsLeft, reveal, attempt, soundEnabled]);
@@ -348,7 +298,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       if (isLastChallenge) {
         try {
           const finalRes = await finishLevel(attempt.attemptId);
-          playGameSound('complete');
+          playBibleArenaSound('complete', soundEnabled);
           setResult(finalRes);
           await refreshMap();
         } catch (e) {
