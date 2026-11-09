@@ -18,7 +18,7 @@ import {
   type LevelResult,
 } from '../../lib/levels';
 import type { ChallengeItem } from '../../data/bibleContentBank';
-import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX } from 'lucide-react';
+import { ArrowUp, ArrowDown, RotateCcw, Volume2, VolumeX, HelpCircle } from 'lucide-react';
 import { BibleCrosswordBoard } from './BibleCrosswordBoard';
 
 interface BaseGameProps {
@@ -93,13 +93,13 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const [sessionMarks, setSessionMarks] = useState(0);
   const [totalMarks, setTotalMarks] = useState(() => getOverallTotalMarks());
   const [soundEnabled, setSoundEnabled] = useState(() => {
-    try { return localStorage.getItem('biblearena-who-said-it-sound') !== 'off'; } catch { return true; }
+    try { return localStorage.getItem('biblearena-game-sound') !== 'off'; } catch { return true; }
   });
   const soundContext = useRef<AudioContext | null>(null);
   const lastTickSecond = useRef<number | null>(null);
 
   const playGameSound = (kind: 'correct' | 'incorrect' | 'tick' | 'complete') => {
-    if (gameId !== 'who-said-it' || !soundEnabled || typeof window === 'undefined') return;
+    if (!soundEnabled || typeof window === 'undefined') return;
     try {
       const AudioContextClass = window.AudioContext;
       if (!AudioContextClass) return;
@@ -283,13 +283,13 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
   const isLastChallenge = currentIdx === CHALLENGES_PER_LEVEL - 1;
 
   useEffect(() => {
-    if (gameId !== 'who-said-it' || reveal !== null || !attempt) return;
+    if (reveal !== null || !attempt) return;
     if (answering.secondsLeft <= 5 && answering.secondsLeft > 0 && lastTickSecond.current !== answering.secondsLeft) {
       lastTickSecond.current = answering.secondsLeft;
       playGameSound('tick');
     }
     if (answering.secondsLeft > 5) lastTickSecond.current = null;
-  }, [gameId, answering.secondsLeft, reveal, attempt, soundEnabled]);
+  }, [answering.secondsLeft, reveal, attempt, soundEnabled]);
 
 
   const advancing = useCountdown(
@@ -300,7 +300,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       if (isLastChallenge) {
         try {
           const finalRes = await finishLevel(attempt.attemptId);
-          if (gameId === 'who-said-it') playGameSound('complete');
+          playGameSound('complete');
           setResult(finalRes);
           await refreshMap();
         } catch (e) {
@@ -352,6 +352,42 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             </span>
           )}
         </div>
+        <div className="flex items-center justify-end mb-3">
+          <button
+            type="button"
+            aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
+            aria-pressed={soundEnabled}
+            onClick={() => {
+              setSoundEnabled((enabled) => {
+                const next = !enabled;
+                try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+                if (next) playGameSound('tick');
+                return next;
+              });
+            }}
+            className="inline-flex items-center gap-2 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-2 text-sm font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
+          >
+            {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+            All game sounds {soundEnabled ? 'On' : 'Off'}
+          </button>
+        </div>
+        {gameId === 'who-said-it' && (
+          <section className="mb-4 rounded-2xl border border-[#3156C9]/15 bg-white p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-[#171B24] font-extrabold text-lg mb-2">
+              <HelpCircle className="h-5 w-5 text-[#3156C9]" />
+              How to play — Who Said It?
+            </div>
+            <ol className="list-decimal pl-5 space-y-1.5 text-sm leading-relaxed text-[#394150]">
+              <li>Read the quotation carefully and choose the person or group who spoke those words in the Bible.</li>
+              <li>Select one of the four answer options before the 35-second timer runs out.</li>
+              <li>Each level contains five questions. A correct answer earns marks; incorrect answers reveal the correct speaker.</li>
+              <li>After each answer, read the explanation and Scripture reference to understand who spoke and the context.</li>
+              <li>Some speakers may be kings, prophets, women, ordinary people, enemies, groups, angels, or God. Do not assume a familiar quotation was spoken by the person you first expect.</li>
+              <li>Use the sound control to turn game audio on or off. Your choice is remembered on this device.</li>
+            </ol>
+            <p className="mt-3 text-xs leading-relaxed text-[#687386]">Accuracy tip: identify the speaker only where the passage clearly attributes the words. A Bible narrator or an uncertain speaker should not be guessed.</p>
+          </section>
+        )}
         {loadingMap ? (
           <div className="rounded-2xl bg-[#171B24] p-8 text-center text-[#F3EBDD]">
             Loading levels for {gameName}...
@@ -1074,7 +1110,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               onClick={() => {
                 setSoundEnabled((enabled) => {
                   const next = !enabled;
-                  try { localStorage.setItem('biblearena-who-said-it-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
+                  try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
                   if (next) playGameSound('tick');
                   return next;
                 });
@@ -1082,7 +1118,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               className="inline-flex items-center gap-1.5 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-1.5 text-xs font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
             >
               {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              Sound {soundEnabled ? 'On' : 'Off'}
+              Game sound {soundEnabled ? 'On' : 'Off'}
             </button>
           )}
           {reveal === null && (
