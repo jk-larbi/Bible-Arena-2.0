@@ -78,3 +78,76 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Accessible interaction and motion foundations shared by all 19 games. */
+@layer base {
+  :where(button, a, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+    outline: 3px solid var(--color-blue);
+    outline-offset: 3px;
+  }
+
+  :where(button, [role="button"]) {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  :where(img, picture, video, canvas, svg) {
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  ::selection {
+    color: #fff;
+    background: var(--color-blue);
+  }
+}
+
+/* Reusable surface and feedback primitives; opt-in to avoid changing existing layouts. */
+.ba-surface {
+  background: var(--color-parchment-light);
+  border: 1px solid rgba(23, 27, 36, 0.10);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 24px rgba(23, 27, 36, 0.06);
+}
+
+.ba-interactive {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ba-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(23, 27, 36, 0.10);
+  }
+}
+
+.ba-answer-correct {
+  border-color: #27845a !important;
+  background: #eaf6ef !important;
+  color: #155b3b !important;
+}
+
+.ba-answer-incorrect {
+  border-color: #b54747 !important;
+  background: #fff0ef !important;
+  color: #842d2d !important;
+}
+
+.ba-focus-ring:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-interactive {
+    transition: none;
+  }
+}
+
