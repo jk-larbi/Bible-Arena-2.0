@@ -90,8 +90,8 @@ function buildLayout(entries: Entry[]) {
   return { placed: normalized, cells: [...normalizedCells.values()] };
 }
 
-export function BibleCrosswordBoard({ entries, onSubmit, disabled }: {
-  entries: Entry[]; onSubmit: (answer: string) => void; disabled: boolean;
+export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0 }: {
+  entries: Entry[]; onSubmit: (answer: string) => void; disabled: boolean; hintCount?: number;
 }) {
   const layout = useMemo(() => buildLayout(entries), [entries]);
   const [letters, setLetters] = useState<Record<string, string>>({});
