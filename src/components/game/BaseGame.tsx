@@ -213,11 +213,25 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     unlockBibleArenaAudio();
     setError(null);
     try {
+      // The Scripture Challenge question bank changed in this release. Restart
+      // one unfinished attempt once so players do not resume an old question
+      // sequence. Completed-level records and earned marks remain untouched.
+      const contentVersion = 'scripture-challenge-questions-v2';
+      const versionKey = 'biblearena-scripture-challenge-content-version';
+      let needsContentRefresh = false;
+      if (gameId === 'scripture-challenge') {
+        try {
+          needsContentRefresh = localStorage.getItem(versionKey) !== contentVersion;
+        } catch {
+          needsContentRefresh = true;
+        }
+      }
+      const shouldRestart = restart || needsContentRefresh;
       const variationSeed = gameId === 'bible-chain-challenge'
         ? Date.now() + Math.floor(Math.random() * 1_000_000)
         : 0;
       const [started, loadedChallenges] = await Promise.all([
-        startLevel(gameId, lvl, restart),
+        startLevel(gameId, lvl, shouldRestart),
         getLevelChallenges(gameId, lvl, variationSeed),
       ]);
       setAttempt(started);
@@ -228,6 +242,9 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setReveal(null);
       setSessionMarks(0);
       setTotalMarks(getOverallTotalMarks());
+      if (gameId === 'scripture-challenge' && needsContentRefresh) {
+        try { localStorage.setItem(versionKey, contentVersion); } catch { /* session can continue */ }
+      }
       playBibleArenaSound('start', soundEnabled);
     } catch (e) {
       setError((e as Error).message);
