@@ -76,7 +76,16 @@ async function validate() {
         }
 
         const options = (item.options || []).map(normalize).filter(Boolean);
-        if (new Set(options).size !== options.length) {
+        if (slug === 'scripture-scramble') {
+          // Repeated letters are required when the source word contains repeated
+          // characters (for example, HANNAH has two Ns). Validate the letter
+          // multiset instead of incorrectly treating repeated tiles as duplicates.
+          const expectedLetters = [...normalize(item.correct_answer)].sort().join('');
+          const suppliedLetters = [...options.join('')].sort().join('');
+          if (expectedLetters !== suppliedLetters) {
+            errors.push(`Scramble tiles do not match the answer: ${item.id}`);
+          }
+        } else if (new Set(options).size !== options.length) {
           duplicateOptionCount++;
           errors.push(`Duplicate answer options: ${item.id}`);
         }
