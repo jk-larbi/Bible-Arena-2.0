@@ -1114,16 +1114,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 19,
     "challenge_index": 2,
-    "question_text": "Which woman from Thyatira, a seller of purple, listened to Paul by the riverside in Philippi?",
+    "question_text": "At whose house did believers gather to pray after Peter was imprisoned?",
     "options": [
-      "Lydia",
-      "Phoebe",
-      "Priscilla",
-      "Euodia"
+      "Mary, the mother of John Mark",
+      "Lydia of Thyatira",
+      "Priscilla, the wife of Aquila",
+      "Rhoda, the servant girl"
     ],
-    "correct_answer": "Lydia",
-    "explanation": "Lydia was a seller of purple from Thyatira; the Lord opened her heart to attend to Paul's message, and she and her household were baptised.",
-    "reference": "Acts 16:14-15",
+    "correct_answer": "Mary, the mother of John Mark",
+    "explanation": "Many believers were gathered at Mary's house praying for Peter when he arrived after the angel released him from prison.",
+    "reference": "Acts 12:12-13",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-92",
