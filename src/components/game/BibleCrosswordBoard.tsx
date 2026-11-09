@@ -44,7 +44,7 @@ function buildLayout(entries: Entry[]) {
       const py = y + (entry.direction === 'down' ? i : 0);
       const k = key(px, py);
       const cell = cells.get(k) || { x: px, y: py };
-      cell[entry.direction] = entry.number;
+      if (i === 0) cell[entry.direction] = entry.number;
       cells.set(k, cell);
     }
   };
@@ -83,7 +83,7 @@ function buildLayout(entries: Entry[]) {
       const x = p.x + (p.direction === 'across' ? i : 0);
       const y = p.y + (p.direction === 'down' ? i : 0);
       const k = key(x, y), cell = normalizedCells.get(k) || { x, y };
-      cell[p.direction] = p.number;
+      if (i === 0) cell[p.direction] = p.number;
       normalizedCells.set(k, cell);
     }
   });
@@ -118,7 +118,7 @@ export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0
                 onFocus={() => setActive(cell.across ? 'across' : 'down')}
                 onChange={(e) => setLetters((old) => ({ ...old, [`${x},${y}`]: e.target.value.replace(/[^a-z]/gi, '').slice(-1).toUpperCase() }))}
                 className="h-full w-full rounded-sm border-2 border-white bg-white text-center font-black text-[#171B24] uppercase focus:border-[#D66B3D] outline-none" />
-              {(cell.across || cell.down) && <span className="absolute left-0.5 top-0 text-[8px] font-bold text-slate-500 pointer-events-none">{Math.min(cell.across || 999, cell.down || 999)}</span>}
+              {(cell.across || cell.down) && <span className="absolute left-0.5 top-0 text-[8px] font-bold text-slate-500 pointer-events-none">{[cell.across, cell.down].filter(Boolean).join('/')}</span>}
             </div>;
           })}
         </div>
