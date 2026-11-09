@@ -358,7 +358,7 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 13,
     "challenge_index": 4,
-    "question_text": "Which prophet's bones caused a dead man to come to life when the body touched them?",
+    "question_text": "Which prophet multiplied a widow's small supply of oil so she could pay her creditors?",
     "options": [
       "Elisha",
       "Elijah",
@@ -366,8 +366,8 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
       "Jeremiah"
     ],
     "correct_answer": "Elisha",
-    "explanation": "When the dead man's body touched Elisha's bones, the man revived and stood up, even after Elisha had died.",
-    "reference": "2 Kings 13:20-21",
+    "explanation": "Elisha instructed the widow to borrow empty vessels and pour her oil; the supply continued until every vessel was filled.",
+    "reference": "2 Kings 4:1-7",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-64",
