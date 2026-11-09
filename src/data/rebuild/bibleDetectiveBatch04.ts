@@ -871,26 +871,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 22,
     "challenge_index": 3,
-    "question_text": "CASE FILE 108: The Prophet Who Warned a King. Review the evidence and identify the biblical account.",
-    "correct_answer": "Micaiah's Vision Before Ahab",
+    "question_text": "CASE FILE 108: Elijah Flees to Horeb. Review the evidence and identify the biblical account.",
+    "correct_answer": "Elijah at Mount Horeb",
     "options": [
-      "Micaiah's Vision Before Ahab",
-      "Elijah's Contest at Carmel",
-      "Isaiah's Throne Vision",
-      "Elisha's Vision at Dothan"
+      "Elijah at Mount Horeb",
+      "Moses at Mount Sinai",
+      "Jonah Outside Nineveh",
+      "Jeremiah at the Potter's House"
     ],
-    "reference": "1 Kings 22:13-28; 2 Chronicles 18:18-27",
-    "explanation": "Micaiah described the heavenly council and the lying spirit before Ahab's battle.",
+    "reference": "1 Kings 19:1-18",
+    "explanation": "Elijah fled Jezebel's threat, was sustained by an angel and encountered the LORD at Horeb.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Prophet Who Warned a King",
+      "case_title": "Elijah Flees to Horeb",
       "clues": [
-        "Evidence A — A prophet warned a king not to join a campaign against Ramoth-gilead.",
-        "Evidence B — The king gathered hundreds of prophets who promised success.",
-        "Evidence C — A lone prophet described a heavenly council and a lying spirit in the prophets' mouths."
+        "After a threat from Jezebel, a prophet fled south and left his servant behind.",
+        "He sat beneath a broom tree and asked that his life might end; an angel provided food and water.",
+        "At Horeb, he encountered wind, earthquake and fire, then heard a low whisper."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-108"
+      "fact_key": "detective-expert-revised-bible-detective-l22-c3"
     }
   },
   {
@@ -952,26 +952,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 23,
     "challenge_index": 1,
-    "question_text": "CASE FILE 111: The Night Inspection. Review the evidence and identify the biblical account.",
-    "correct_answer": "Nehemiah's Night Inspection",
+    "question_text": "CASE FILE 111: Naboth's Vineyard. Review the evidence and identify the biblical account.",
+    "correct_answer": "Naboth's Vineyard Seized by Ahab",
     "options": [
-      "Nehemiah's Night Inspection",
-      "Ezra's Temple Inspection",
-      "Daniel's Night Vision",
-      "Zerubbabel's Temple Survey"
+      "Naboth's Vineyard Seized by Ahab",
+      "David Takes Uriah's Wife",
+      "Ahab's Treaty with Ben-hadad",
+      "Jezebel's Contest with Elijah"
     ],
-    "reference": "Nehemiah 2:11-20",
-    "explanation": "Nehemiah inspected Jerusalem's broken walls at night before calling the people to rebuild.",
+    "reference": "1 Kings 21:1-29",
+    "explanation": "Jezebel arranged false testimony against Naboth so Ahab could take his vineyard; Elijah announced judgment.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Night Inspection",
+      "case_title": "Naboth's Vineyard",
       "clues": [
-        "Evidence A — A leader arrived in Jerusalem and waited three days before inspecting the damage.",
-        "Evidence B — He went out at night with a few men and examined the broken walls and gates.",
-        "Evidence C — He told the officials of God's favour and the king's support before inviting them to rebuild."
+        "A king wanted a vineyard beside his palace, but its owner refused to sell his ancestral inheritance.",
+        "The king's wife arranged letters in his name and appointed a fast with false witnesses.",
+        "The owner was stoned, and a prophet announced judgment on the royal house."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-111"
+      "fact_key": "detective-expert-revised-bible-detective-l23-c1"
     }
   },
   {
@@ -1249,26 +1249,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 25,
     "challenge_index": 2,
-    "question_text": "CASE FILE 122: The Prophet Who Was Lowered into a Pit. Review the evidence and identify the biblical account.",
-    "correct_answer": "Ebed-melech Rescues Jeremiah",
+    "question_text": "CASE FILE 122: Shimei Curses David. Review the evidence and identify the biblical account.",
+    "correct_answer": "Shimei Curses and Seeks Pardon from David",
     "options": [
-      "Ebed-melech Rescues Jeremiah",
-      "Baruch Rescues Jeremiah",
-      "Gedaliah Rescues Daniel",
-      "Zedekiah Rescues Hananiah"
+      "Shimei Curses and Seeks Pardon from David",
+      "Ziba Accuses Mephibosheth",
+      "Joab Rebukes David",
+      "Absalom Seeks Pardon from David"
     ],
-    "reference": "Jeremiah 38:1-13",
-    "explanation": "Ebed-melech rescued Jeremiah from the muddy cistern using ropes and old cloths.",
+    "reference": "2 Samuel 16:5-14; 19:16-23",
+    "explanation": "Shimei cursed David during his flight and later sought pardon when David returned to Jerusalem.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Prophet Who Was Lowered into a Pit",
+      "case_title": "Shimei Curses David",
       "clues": [
-        "Evidence A — A prophet was thrown into a muddy cistern because officials opposed his message.",
-        "Evidence B — A foreign court official appealed to the king and gathered old rags and worn-out clothes.",
-        "Evidence C — He used ropes and cloths to lift the prophet from the mud."
+        "During David's flight from Jerusalem, a man from Saul's clan came out cursing him.",
+        "He threw stones at the king and his servants while calling David a man of blood.",
+        "After David returned, the man hurried to meet him and begged for mercy."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-122"
+      "fact_key": "detective-expert-revised-bible-detective-l25-c2"
     }
   },
   {
@@ -1303,26 +1303,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 25,
     "challenge_index": 4,
-    "question_text": "CASE FILE 124: The Queen Who Risked Her Life. Review the evidence and identify the biblical account.",
-    "correct_answer": "Esther's Appeal to the King",
+    "question_text": "CASE FILE 124: Hezekiah's Prayer over the Assyrian Letter. Review the evidence and identify the biblical account.",
+    "correct_answer": "Hezekiah Prays over Sennacherib's Letter",
     "options": [
-      "Esther's Appeal to the King",
-      "Vashti's Refusal at the Banquet",
-      "Abigail's Appeal to David",
-      "Bathsheba's Appeal to Solomon"
+      "Hezekiah Prays over Sennacherib's Letter",
+      "Josiah Reads the Covenant",
+      "Jehoshaphat Prays Before Battle",
+      "David Prays over the Census"
     ],
-    "reference": "Esther 5:1-8; 7:1-6",
-    "explanation": "Esther risked her life to approach the king and expose Haman's plot.",
+    "reference": "2 Kings 19:14-37; Isaiah 37:14-38",
+    "explanation": "Hezekiah spread the Assyrian letter before God and prayed; Isaiah announced that Jerusalem would be delivered.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The Queen Who Risked Her Life",
+      "case_title": "Hezekiah's Prayer over the Assyrian Letter",
       "clues": [
-        "Evidence A — A queen entered the king's inner court without being summoned.",
-        "Evidence B — The king extended his golden sceptre and offered to hear her request.",
-        "Evidence C — She arranged two banquets before exposing a plot against her people."
+        "An Assyrian ruler sent a threatening letter to Jerusalem.",
+        "Judah's king took the letter into the temple and spread it before the LORD.",
+        "A prophet announced deliverance, and the Assyrian army suffered a sudden defeat."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-124"
+      "fact_key": "detective-expert-revised-bible-detective-l25-c4"
     }
   },
   {
@@ -1330,26 +1330,26 @@ export const BIBLE_DETECTIVE_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 25,
     "challenge_index": 5,
-    "question_text": "CASE FILE 125: The King Who Could Not Sleep. Review the evidence and identify the biblical account.",
-    "correct_answer": "Mordecai's Delayed Reward",
+    "question_text": "CASE FILE 125: Josiah's Passover. Review the evidence and identify the biblical account.",
+    "correct_answer": "Josiah Keeps the Great Passover",
     "options": [
-      "Mordecai's Delayed Reward",
-      "Daniel's Promotion After the Dream",
-      "Nehemiah's Reward for the Wall",
-      "Joseph's Promotion After Prison"
+      "Josiah Keeps the Great Passover",
+      "Hezekiah Keeps the Passover",
+      "Ezra Restores the Feast of Booths",
+      "Solomon Dedicates the Temple"
     ],
-    "reference": "Esther 6:1-11",
-    "explanation": "The king discovered Mordecai's unrewarded service and ordered Haman to honour him.",
+    "reference": "2 Chronicles 35:1-19",
+    "explanation": "Josiah organised an extensive Passover observance in Jerusalem after the law was rediscovered.",
     "metadata": {
       "difficulty": "expert",
-      "case_title": "The King Who Could Not Sleep",
+      "case_title": "Josiah's Passover",
       "clues": [
-        "Evidence A — A king ordered royal records to be read during a sleepless night.",
-        "Evidence B — He discovered that a man had exposed an assassination plot without receiving honour.",
-        "Evidence C — The official plotting against that man was ordered to honour him."
+        "A king ordered the Passover to be observed in Jerusalem after the book of the law had been found.",
+        "Priests and Levites were organised to serve and prepare the offerings.",
+        "The writer says no Passover like it had been kept in Israel since the days of Samuel."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-125"
+      "fact_key": "detective-expert-revised-bible-detective-l25-c5"
     }
   }
 ];
