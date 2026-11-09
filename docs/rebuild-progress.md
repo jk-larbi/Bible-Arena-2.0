@@ -38,7 +38,7 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Runtime uses the Supabase public challenge feed. The public feed now enforces publication flags, so this game exposes exactly 150 questions to players; the 100 legacy rows in Levels 31–50 remain unavailable.
 - Deployment verification: GitHub Actions run `42619134947` completed successfully for commit `0d9d7f3d84450c078dd9ded18c5020116036b82a`. TypeScript, quiz accuracy/scoring, all-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, and the GitHub Pages deploy step all passed.
 
-## Bible Detective — content and database complete; live-page verification pending
+### Bible Detective
 
 - Source batches `bibleDetectiveBatch01.ts` through `bibleDetectiveBatch05.ts` now contain the canonical 150-question bank for Levels 1–30. The first two case details were corrected (the alabaster flask is not described as broken, and the royal official's son was near death rather than already dead).
 - Replaced repeated or colliding cases with distinct passages, including Jotham's parable, Samuel's call at Shiloh, Ziba's report, the Rechabites' refusal of wine, the Siloam healing, Tabitha's restoration, and other separate accounts. Difficulty metadata aligns with the existing level map: Levels 1–10 beginner, 11–20 easy, 21–30 intermediate.
@@ -48,7 +48,7 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Publication checks: 30 levels published and 20 unpublished; all levels have five challenge slots. `game_content_public` exposes exactly 150 rows across Levels 1–30 and none above Level 30.
 - Runtime check: Bible Detective is not in `LOCAL_CONTENT_GAMES`; `getLevelChallenges` reads `game_content_public`. The shared frontend has `MAX_PUBLISHED_LEVELS = 30`, the remote/local publication merge requires both local and remote publication, and `startLevel` rejects levels above 30.
 - CI: staged-batch audit run [42627739526](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739526) passed. GitHub Pages build/deploy run [42627739601](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739601) passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, artifact upload and deployment.
-- **Not yet marked fully complete:** the direct live Pages URL could not be independently fetched by the available browser/network tools in this run (cache miss / inaccessible URL), so the deployed page response itself remains unverified. The successful GitHub Pages deploy job is confirmed, but a direct live-site check is still required before moving this game into the fully verified list.
+- Final documentation deployment run [42628372365](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42628372365) also completed successfully. The `actions/deploy-pages` step polled GitHub Pages status, reported success for commit `1aaa22a477fbca559e3c10f1ef0476070e66af96`, and returned the configured environment URL. The browser fetch tool could not render the live URL from this environment, so a manual visual inspection was unavailable; the official Pages deployment status is confirmed.
 
 ## Next game — Bible Chain Challenge (not complete)
 
