@@ -70,16 +70,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 4,
-    "question_text": "Who was left-handed and used that advantage to kill Eglon, king of Moab?",
+    "question_text": "Which judge from the tribe of Judah delivered Israel from Cushan-rishathaim?",
     "options": [
-      "Shamgar",
-      "Ehud",
       "Othniel",
+      "Ehud",
+      "Shamgar",
       "Gideon"
     ],
-    "correct_answer": "Ehud",
-    "explanation": "Ehud was a left-handed Benjaminite who concealed a short sword and killed Eglon.",
-    "reference": "Judges 3:15-22",
+    "correct_answer": "Othniel",
+    "explanation": "Othniel, the son of Kenaz and Caleb's younger brother, was raised up as Israel's first judge in the period described in Judges.",
+    "reference": "Judges 3:7-11",
     "metadata": {
       "difficulty": "advanced",
       "source_type": "original_scripture_research",
@@ -406,16 +406,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 24,
     "challenge_index": 5,
-    "question_text": "Who interpreted the writing on the wall during Belshazzar's feast?",
+    "question_text": "Which royal official was sent to bring Daniel before Nebuchadnezzar after the king's decree against the wise men?",
     "options": [
-      "Ezekiel",
-      "Daniel",
-      "Jeremiah",
-      "Shadrach"
+      "Arioch",
+      "Ashpenaz",
+      "Belshazzar",
+      "Darius"
     ],
-    "correct_answer": "Daniel",
-    "explanation": "Daniel explained the words Mene, Mene, Tekel, Upharsin and announced the kingdom's judgement.",
-    "reference": "Daniel 5:13-28",
+    "correct_answer": "Arioch",
+    "explanation": "Arioch was the captain of the king's guard. Daniel spoke with him and asked for time before being brought to the king.",
+    "reference": "Daniel 2:14-25",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
@@ -532,16 +532,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 26,
     "challenge_index": 1,
-    "question_text": "Which servant of Elisha was struck with leprosy after deceitfully accepting gifts from Naaman?",
+    "question_text": "Which Syrian king was told by Elisha that he would become king over Syria?",
     "options": [
-      "Gehazi",
+      "Hazael",
       "Naaman",
-      "Joram",
-      "Ben-hadad"
+      "Ben-hadad",
+      "Rezin"
     ],
-    "correct_answer": "Gehazi",
-    "explanation": "Gehazi secretly pursued Naaman for gifts and lied to Elisha; Naaman's leprosy clung to him.",
-    "reference": "2 Kings 5:20-27",
+    "correct_answer": "Hazael",
+    "explanation": "Elisha told Hazael that he would become king over Syria. Hazael later returned to Ben-hadad and became king.",
+    "reference": "2 Kings 8:7-15",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
@@ -658,16 +658,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 27,
     "challenge_index": 2,
-    "question_text": "Which scribe read the Book of the Law publicly to the people after the wall was rebuilt?",
+    "question_text": "Which high priest returned with Zerubbabel and helped rebuild the altar after the exile?",
     "options": [
-      "Nehemiah",
-      "Ezra",
       "Jeshua",
-      "Malachi"
+      "Eliashib",
+      "Abiathar",
+      "Zadok"
     ],
-    "correct_answer": "Ezra",
-    "explanation": "Ezra brought the Law before the assembly and read it while the Levites helped the people understand.",
-    "reference": "Nehemiah 8:1-8",
+    "correct_answer": "Jeshua",
+    "explanation": "Jeshua son of Jozadak joined Zerubbabel in rebuilding the altar of the God of Israel after the exiles returned.",
+    "reference": "Ezra 3:2-3",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
@@ -679,16 +679,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 27,
     "challenge_index": 3,
-    "question_text": "Who was the Persian king who authorised Nehemiah to travel to Jerusalem?",
+    "question_text": "Which Persian king issued the decree confirming the rebuilding of the temple after the search of the royal archives?",
     "options": [
-      "Cyrus",
       "Darius",
+      "Cyrus",
       "Artaxerxes",
       "Ahasuerus"
     ],
-    "correct_answer": "Artaxerxes",
-    "explanation": "Artaxerxes granted Nehemiah's request for permission, letters and timber for the rebuilding work.",
-    "reference": "Nehemiah 2:1-8",
+    "correct_answer": "Darius",
+    "explanation": "Darius ordered a search of the archives, confirmed Cyrus's decree and commanded that the temple work should continue.",
+    "reference": "Ezra 6:1-12",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
@@ -742,15 +742,15 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 28,
     "challenge_index": 1,
-    "question_text": "Which disciple was chosen to replace Judas among the Twelve?",
+    "question_text": "Which man, also called Barsabbas and surnamed Justus, was proposed alongside Matthias to replace Judas?",
     "options": [
-      "Barsabbas",
-      "Matthias",
+      "Joseph",
+      "Silas",
       "Stephen",
       "Philip"
     ],
-    "correct_answer": "Matthias",
-    "explanation": "After prayer and the casting of lots, Matthias was numbered with the eleven apostles.",
+    "correct_answer": "Joseph",
+    "explanation": "The gathered believers proposed Joseph called Barsabbas, surnamed Justus, and Matthias as the two candidates before the lot fell to Matthias.",
     "reference": "Acts 1:23-26",
     "metadata": {
       "difficulty": "master",
@@ -1036,15 +1036,15 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 30,
     "challenge_index": 5,
-    "question_text": "Which believer from Berea is named as travelling with Paul in Acts 20?",
+    "question_text": "Which companion from Asia is named with Trophimus among those travelling with Paul?",
     "options": [
+      "Tychicus",
       "Sopater",
       "Trophimus",
-      "Epaphras",
-      "Onesimus"
+      "Aristarchus"
     ],
-    "correct_answer": "Sopater",
-    "explanation": "Sopater of Berea is listed among the companions travelling with Paul toward Asia.",
+    "correct_answer": "Tychicus",
+    "explanation": "Acts lists Tychicus and Trophimus of Asia among the companions who travelled with Paul.",
     "reference": "Acts 20:4",
     "metadata": {
       "difficulty": "master",
