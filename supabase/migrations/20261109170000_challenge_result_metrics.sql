@@ -196,7 +196,7 @@ begin
   insert into public.community_quest_contributions(quest_id, user_id, game_slug, level, best_points, updated_at)
   select q.id, auth.uid(), a.game_slug, a.level, pts, now()
   from public.community_quests q
-  where q.status = 'active' and q.starts_at <= now() and q.ends_at > now()
+  where q.status = 'active' and q.starts_at <= now() and q.ends_at > now() and pts > 0
   on conflict (quest_id, user_id, game_slug, level) do update
     set best_points = greatest(public.community_quest_contributions.best_points, excluded.best_points),
         updated_at = now();
@@ -222,7 +222,7 @@ begin
         values (v_quest.id, v_contributor.user_id, v_quest.reward_xp)
         on conflict (quest_id, user_id) do nothing;
         get diagnostics v_reward_rows = row_count;
-        if v_reward_rows > 0 then
+        if v_reward_rows > 0 and v_quest.reward_xp > 0 then
           update public.profiles
           set xp = coalesce(xp, 0) + v_quest.reward_xp,
               level = ((coalesce(xp, 0) + v_quest.reward_xp) / 500) + 1
