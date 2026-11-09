@@ -543,6 +543,58 @@ async function runQuizAccuracyTests() {
     });
   }
 
+
+  // ===================================================================
+  // 13. WHO SAID IT: 250 questions across all seven challenge formats
+  // ===================================================================
+  {
+    const modeCounts = new Map<number, number>();
+    let checked = 0;
+    let failures = 0;
+    const failureLog: string[] = [];
+    const prompts = new Set<string>();
+    for (let level = 1; level <= 50; level++) {
+      const items = buildLocalChallengesForLevel('who-said-it', level);
+      if (items.length !== 5) {
+        failures++;
+        failureLog.push(`L${level}: expected five questions, received ${items.length}`);
+      }
+      for (const item of items) {
+        checked++;
+        const modeIndex = Number(item.metadata?.modeIndex);
+        modeCounts.set(modeIndex, (modeCounts.get(modeIndex) || 0) + 1);
+        const options = item.options.map((option) => option.trim().toLowerCase());
+        const valid = Number.isInteger(modeIndex) && modeIndex >= 0 && modeIndex <= 6 &&
+          item.options.length === 4 && new Set(options).size === 4 &&
+          options.includes(item.correct_answer.trim().toLowerCase()) &&
+          Boolean(item.question_text.trim()) && Boolean(item.reference.trim()) &&
+          Boolean(item.explanation.trim()) && Boolean(item.metadata?.mode);
+        if (!valid) {
+          failures++;
+          failureLog.push(`${item.id}: invalid mode/options/answer/reference payload`);
+        }
+        const promptKey = item.question_text.trim().toLowerCase();
+        if (prompts.has(promptKey)) {
+          failures++;
+          failureLog.push(`${item.id}: repeated question wording`);
+        }
+        prompts.add(promptKey);
+      }
+    }
+    const allSevenModes = [0, 1, 2, 3, 4, 5, 6].every((mode) => modeCounts.has(mode));
+    const balanced = [0, 1, 2, 3, 4, 5, 6].every((mode) => {
+      const count = modeCounts.get(mode) || 0;
+      return count >= 35 && count <= 36;
+    });
+    if (!allSevenModes || !balanced) failures++;
+    results.push({
+      name: '13. Who Said It seven-mode bank integrity',
+      scope: 'Full game: 250 questions (50 levels x 5), seven rotating challenge formats',
+      passed: checked === 250 && prompts.size === 250 && allSevenModes && balanced && failures === 0,
+      details: `Checked ${checked} questions. Mode distribution: ${[...modeCounts.entries()].sort((a,b)=>a[0]-b[0]).map(([mode,count])=>`mode ${mode + 1}: ${count}`).join(', ')}. Invalid payloads or repeated prompts: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+    });
+  }
+
   // ===================================================================
   // SUMMARY REPORT
   // ===================================================================
