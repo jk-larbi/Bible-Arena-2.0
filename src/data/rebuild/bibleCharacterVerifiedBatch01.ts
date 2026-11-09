@@ -1031,4 +1031,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_01: ChallengeItem[] = [
       "review_status": "scripture_reference_reviewed"
     }
   }
+  {
+    "id": "bible-character-verified-050",
+    "game_slug": "bible-character-quest",
+    "level": 10,
+    "challenge_index": 5,
+    "question_text": "Which prophet was sent to Nineveh but boarded a ship for Tarshish instead?",
+    "options": ["Jonah", "Nahum", "Micah", "Amos"],
+    "correct_answer": "Jonah",
+    "explanation": "Jonah received the command to go to Nineveh but went down to Joppa and boarded a ship bound for Tarshish, attempting to flee from the LORD's presence.",
+    "reference": "Jonah 1:1-3",
+    "metadata": { "difficulty": "medium", "fact_key": "character-verified-fact-50", "review_status": "scripture_reference_reviewed" }
+  }
 ];
