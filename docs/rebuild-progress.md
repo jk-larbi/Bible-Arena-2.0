@@ -6,9 +6,11 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
 ## Publication rule
 
-- Levels 1–30 are the maximum playable range.
-- Levels 31–50 must remain unpublished / Coming Soon.
-- Each completed game requires five verified challenges per level (150 total), game-specific mechanics preserved, and cross-game duplicate checks.
+- Target: all 50 levels playable for each game.
+- Each completed game requires five verified challenges per level (250 total), game-specific mechanics preserved, and cross-game duplicate checks.
+- Scripture questions must use accurate translation-aware wording and include close but fair reference distractors where appropriate (for example, 1 Timothy versus 2 Timothy).
+- Scripture-memory challenges must include both completion prompts and full-verse-to-reference selection questions.
+- Image-based puzzle levels must use relevant, legible, properly licensed or original artwork as part of the actual puzzle.
 - A game is not complete until its content, database publication flags, frontend behaviour, validation, and deployment have all been verified.
 
 ## Completed
@@ -50,3 +52,10 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - The project-wide Levels 1–30 publication restriction was confirmed deployed by successful GitHub Actions run:
   https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42522016145
 - This does not mean the remaining games' question banks have been rebuilt.
+
+## Bible Character Quest — audit in progress
+
+- Supabase currently contains 250 rows across Levels 1–50, but the rows are not a valid completed bank: an audit found only 25 distinct question wordings and 32 distinct normalized reference/answer pairs across all 250 rows.
+- The existing staged Batch 01 has weak repeated distractors and generic explanation templates; Batch 02 also contains questionable distractors and explanations that merely restate the reference. Neither batch is approved for publication.
+- Gameplay reads five rows per level from `game_content_public` when Supabase is configured and otherwise falls back to `buildLocalChallengesForLevel` in `src/data/bibleContentBank.ts`. The Character Quest therefore needs a complete replacement bank, not just a frontend restyle.
+- No Character Quest content was published during this audit. Next: rebuild 250 original character-story questions, verify each fact and passage, improve plausible character distractors and explanations, run cross-game duplicate checks, then replace the database rows and validate the live game.
