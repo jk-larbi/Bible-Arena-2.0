@@ -358,7 +358,7 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 13,
     "challenge_index": 4,
-    "question_text": "Which prophet multiplied a widow's small supply of oil so she could pay her creditors?",
+    "question_text": "Which prophet warned Israel's king about the Aramean army's planned ambushes?",
     "options": [
       "Elisha",
       "Elijah",
@@ -366,8 +366,8 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_02: ChallengeItem[] = [
       "Jeremiah"
     ],
     "correct_answer": "Elisha",
-    "explanation": "Elisha instructed the widow to borrow empty vessels and pour her oil; the supply continued until every vessel was filled.",
-    "reference": "2 Kings 4:1-7",
+    "explanation": "Elisha repeatedly revealed the king of Syria's plans to Israel's king, preventing the Arameans from taking him by surprise.",
+    "reference": "2 Kings 6:8-12",
     "metadata": {
       "difficulty": "medium",
       "fact_key": "character-verified-fact-64",
