@@ -780,7 +780,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: 'Complete this five-person Bible name chain. Each name must begin with the final letter of the name before it.',
+          question_text: `Complete this five-person Bible name chain. Each name must begin with the final letter of the name before it. Dossier: ${chosen.answer.identity} Which person fits the dossier and completes the chain?`,
           options,
           correct_answer: chosen.answer.name,
           explanation: `${chainNames.join(' → ')} → ${chosen.answer.name}. The final letter of ${chosen.chain[3].name} is “${requiredLetter}”, so the next name begins with that letter. ${chosen.answer.identity}`,
