@@ -949,19 +949,24 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
     // 9. BIBLE CHAIN CHALLENGE — continue the chain using the required opening letter.
     if (gameId === 'bible-chain-challenge') {
-      const previous = String(currentChallenge.metadata?.previousWord || '');
+      const chain: string[] = currentChallenge.metadata?.chain || [];
       const required = String(currentChallenge.metadata?.requiredLetter || '');
       return (
         <div className="space-y-4">
           <div className="rounded-2xl bg-[#171B24] p-5 text-center text-white">
-            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">Continue the Scripture Chain</p>
-            <div className="mt-4 flex items-center justify-center gap-3">
-              <span className="rounded-xl bg-white/10 px-4 py-3 font-serif text-xl font-bold">{previous}</span>
-              <span className="text-2xl text-[#F0B18D]">→</span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#D66B3D] text-2xl font-black">{required}</span>
-              <span className="text-2xl text-[#F0B18D]">…</span>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#F0B18D]">Five-Person Bible Name Chain</p>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+              {chain.map((name, index) => (
+                <React.Fragment key={name}>
+                  {index > 0 && <span className="text-xl text-[#F0B18D]">→</span>}
+                  <span className="rounded-xl bg-white/10 px-3 py-2 font-serif text-base font-bold">{name}</span>
+                </React.Fragment>
+              ))}
+              <span className="text-xl text-[#F0B18D]">→</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D66B3D] text-2xl font-black">{required}</span>
+              <span className="text-xl text-[#F0B18D]">?</span>
             </div>
-            <p className="mt-3 text-xs text-white/65">Choose a Bible name or book that begins with the highlighted letter.</p>
+            <p className="mt-3 text-xs text-white/70">The next person's name must begin with the final letter of {chain[chain.length - 1] || 'the previous name'}. No person may appear twice in this chain.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentChallenge.options.map((option) => (
