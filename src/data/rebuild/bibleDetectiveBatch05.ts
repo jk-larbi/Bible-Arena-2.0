@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Expert original Bible Detective investigations, Levels 26–30. */
+/** Verified Bible Detective cases. Five distinct evidence files per level, Levels 1–30. */
 export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
   {
     "id": "bible-detective-l26-c1",
@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Genesis 21:8-21",
     "explanation": "God heard Ishmael, showed Hagar a well and promised to make the boy a great nation.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Hagar and Ishmael Sent Away",
       "clues": [
         "A household conflict intensified after a son was weaned.",
@@ -45,7 +45,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Exodus 32:7-35",
     "explanation": "Moses pleaded for Israel after the golden calf incident and asked God to spare the people.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Moses Intercedes after the Calf",
       "clues": [
         "A leader descended from a mountain carrying two stone tablets.",
@@ -72,7 +72,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Numbers 12:1-15",
     "explanation": "Miriam was struck with a skin disease after speaking against Moses and was shut outside the camp for seven days.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Miriam Challenges Moses",
       "clues": [
         "Two siblings spoke against their brother because of his marriage and leadership.",
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "2 Chronicles 29:3-36",
     "explanation": "Hezekiah reopened the temple, consecrated the priests and Levites, and restored sacrifices and worship.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Hezekiah Reopens the Temple",
       "clues": [
         "Evidence A — Early in his reign, a king opened the doors of the LORD's house and repaired them.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Joshua 2:1-21; 6:22-25",
     "explanation": "Rahab hid the spies and marked her house with a scarlet cord; her family was spared.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Rahab's Scarlet Cord",
       "clues": [
         "Two spies entered a fortified city and were hidden on a roof beneath stalks of flax.",
@@ -153,7 +153,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Judges 14:5-20",
     "explanation": "Samson's riddle concerned honey from the lion; his bride obtained the answer through pressure from the guests.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Samson's Riddle at the Feast",
       "clues": [
         "A judge posed a riddle at a wedding feast after finding honey in a lion's carcass.",
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Judges 11:29-40",
     "explanation": "Jephthah made a rash vow and his daughter came out first to meet him after victory.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Jephthah's Daughter",
       "clues": [
         "A judge made a vow before going to battle against the Ammonites.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Ruth 4:1-12",
     "explanation": "Boaz completed the redemption at the city gate after the nearer relative declined and gave his sandal.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Ruth at the City Gate",
       "clues": [
         "A relative of a deceased husband approached the nearer family redeemer.",
@@ -234,7 +234,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "1 Samuel 15:1-35",
     "explanation": "Saul spared Agag and the best livestock; Samuel rebuked him for disobeying God's command.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Saul Spares Agag",
       "clues": [
         "A king received a command concerning the Amalekites and their possessions.",
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "2 Samuel 6:12-23; 1 Chronicles 15:25-29",
     "explanation": "David celebrated before the LORD as the ark was brought to Jerusalem; Michal despised him.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "David Dances before the Ark",
       "clues": [
         "A sacred chest was brought toward Jerusalem with music and celebration.",
@@ -288,7 +288,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "1 Kings 8:1-66; 2 Chronicles 5:2-14",
     "explanation": "The glory cloud filled Solomon's temple when the ark was brought into the Most Holy Place.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "The Glory Fills Solomon's Temple",
       "clues": [
         "Priests carried the ark into the inner sanctuary of a newly completed house.",
@@ -315,7 +315,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "2 Kings 1:1-17",
     "explanation": "Fire from heaven consumed the first two captains and their companies; the third approached Elijah humbly.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Fire from Heaven against Ahaziah's Captains",
       "clues": [
         "A sick king sent military captains to summon a prophet.",
@@ -331,26 +331,26 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 28,
     "challenge_index": 3,
-    "question_text": "CASE FILE 138: Naaman's Servant Girl. Examine the evidence and identify the biblical account.",
-    "correct_answer": "Naaman Seeks Elisha's Help",
+    "question_text": "CASE FILE 138: The Man Who Washed at Siloam\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Jesus Heals the Man Born Blind",
     "options": [
-      "Naaman Seeks Elisha's Help",
-      "Ben-hadad Seeks Elijah's Help",
-      "Hazael Seeks Elisha's Help",
-      "Sennacherib Seeks Isaiah's Help"
+      "Jesus Heals the Man Born Blind",
+      "Jesus Heals Bartimaeus near Jericho",
+      "Peter Heals Aeneas at Lydda",
+      "Jesus Opens the Ears of a Deaf Man"
     ],
-    "reference": "2 Kings 5:1-14",
-    "explanation": "An Israelite servant girl directed Naaman to Elisha; he was healed after washing in the Jordan.",
+    "reference": "John 9:1-41",
+    "explanation": "Jesus made mud, placed it on the eyes of a man born blind and sent him to wash at Siloam; the healing led to questioning by the Pharisees.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "Naaman's Servant Girl",
+      "difficulty": "master",
+      "case_title": "The Man Who Washed at Siloam",
       "clues": [
-        "A foreign military commander suffered from a skin disease.",
-        "A young captive from Israel told his wife that a prophet in Samaria could help him.",
-        "The commander later became angry at the instruction to wash in the Jordan seven times."
+        "The disciples asked whether a man's blindness from birth was caused by his own sin or his parents' sin.",
+        "Jesus made mud, placed it on the man's eyes and sent him to wash at a pool whose name means 'Sent'.",
+        "The healed man was questioned by religious leaders, while his parents confirmed that he had been born blind."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-expert-138"
+      "fact_key": "detective-rebuilt-28-3"
     }
   },
   {
@@ -369,7 +369,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Jonah 1:1-17; 2:1-10",
     "explanation": "Jonah was swallowed by a great fish after being thrown into the sea and prayed to God from within it.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Jonah's Great Fish",
       "clues": [
         "A prophet fled by ship after receiving an instruction to preach to a foreign city.",
@@ -396,7 +396,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Daniel 9:1-27",
     "explanation": "Gabriel explained Daniel's prayer through the prophecy of seventy weeks concerning Jerusalem and its people.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Daniel's Seventy Weeks",
       "clues": [
         "A prophet studied Jeremiah's writings about Jerusalem's desolation.",
@@ -423,7 +423,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Daniel 1:3-20",
     "explanation": "Daniel and his companions requested vegetables and water and were found healthier after ten days.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "The Three Hebrews Refuse the King's Food",
       "clues": [
         "Four Judean youths were selected for training in a foreign royal court.",
@@ -450,7 +450,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 12:1-19",
     "explanation": "An angel led Peter out of Herod's prison while the church prayed for him.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Peter's Escape from Herod's Prison",
       "clues": [
         "A ruler imprisoned a leading apostle during the days of unleavened bread.",
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 10:1-48",
     "explanation": "Cornelius saw an angel, while Peter saw a vision that prepared him to visit the Gentile household.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Cornelius' Vision",
       "clues": [
         "A Roman centurion in Caesarea prayed regularly and gave generously to the needy.",
@@ -504,7 +504,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 7:54-60",
     "explanation": "Stephen saw the Son of Man at God's right hand before he was stoned outside Jerusalem.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Stephen's Final Vision",
       "clues": [
         "A witness was accused before the council and recounted Israel's history.",
@@ -531,7 +531,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 16:11-15",
     "explanation": "The Lord opened Lydia's heart to Paul's message; she and her household were baptised.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Lydia's Open Heart",
       "clues": [
         "A group of missionaries met women praying beside a river outside a Macedonian city.",
@@ -558,7 +558,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 18:24-28",
     "explanation": "Priscilla and Aquila privately explained God's way more accurately to Apollos.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Apollos Corrected in Ephesus",
       "clues": [
         "A learned speaker from Alexandria taught accurately about Jesus but knew only John's baptism.",
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 5:1-11",
     "explanation": "Ananias and Sapphira lied about the proceeds of their land sale and died after being confronted.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "The Sudden Death of Ananias and Sapphira",
       "clues": [
         "A couple sold property and brought only part of the proceeds to the apostles.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Revelation 1:9-20",
     "explanation": "John saw the risen Christ among seven golden lampstands while exiled on Patmos.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "John's Vision on Patmos",
       "clues": [
         "An apostle was exiled to an island because of the word of God and testimony of Jesus.",
@@ -639,7 +639,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Acts 9:19-25; 2 Corinthians 11:32-33",
     "explanation": "Paul's disciples lowered him in a basket through an opening in the Damascus wall to escape the governor.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "Paul Escapes Damascus in a Basket",
       "clues": [
         "A city governor guarded the gates to arrest a newly converted preacher.",
@@ -666,7 +666,7 @@ export const BIBLE_DETECTIVE_BATCH_05: ChallengeItem[] = [
     "reference": "Jonah 3:1-10",
     "explanation": "Nineveh's people and king repented after Jonah announced judgment, and God relented from the disaster.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "master",
       "case_title": "The Prophet's Message to Nineveh",
       "clues": [
         "A reluctant messenger finally entered a great foreign city.",
