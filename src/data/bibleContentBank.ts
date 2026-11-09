@@ -834,17 +834,34 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           ['EPAPHRAS','The servant of Christ who laboured in prayer for the Colossians','Colossians 4:12'],
         ] as const;
         const count = 10;
-        let crosswordState = (globalSeed + 1) * 2654435761 + level * 97 + challengeIndex * 7919;
-        const crosswordRandom = () => {
-          crosswordState = (crosswordState * 1664525 + 1013904223) >>> 0;
-          return crosswordState / 4294967296;
+        // Generate a deterministic, non-repeating set of ten clues for each of
+        // the 250 level challenges. C(60, 10) gives ample unique combinations.
+        const chooseCount = (n: number, k: number): number => {
+          if (k < 0 || k > n) return 0;
+          let result = 1;
+          for (let i = 1; i <= Math.min(k, n - k); i++) {
+            result = result * (n - Math.min(k, n - k) + i) / i;
+          }
+          return Math.round(result);
         };
-        const shuffledClues = [...crosswordClues];
-        for (let i = shuffledClues.length - 1; i > 0; i--) {
-          const j = Math.floor(crosswordRandom() * (i + 1));
-          [shuffledClues[i], shuffledClues[j]] = [shuffledClues[j], shuffledClues[i]];
+        const combinationCount = chooseCount(crosswordClues.length, count);
+        const combinationStep = 301576111; // Coprime to C(60, 10).
+        const rank = (((globalSeed % combinationCount) * combinationStep) % combinationCount + combinationCount) % combinationCount;
+        const selectedIndices: number[] = [];
+        let remainingRank = rank;
+        let nextCandidate = 0;
+        for (let position = 0; position < count; position++) {
+          for (let candidate = nextCandidate; candidate < crosswordClues.length; candidate++) {
+            const combinationsAfter = chooseCount(crosswordClues.length - candidate - 1, count - position - 1);
+            if (remainingRank < combinationsAfter) {
+              selectedIndices.push(candidate);
+              nextCandidate = candidate + 1;
+              break;
+            }
+            remainingRank -= combinationsAfter;
+          }
         }
-        const chosen = shuffledClues.slice(0, count);
+        const chosen = selectedIndices.map((index) => crosswordClues[index]);
         const entries = chosen.map(([answer, clue, reference], index) => ({
           number: index + 1,
           answer,
@@ -859,7 +876,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           correct_answer: entries.map((entry) => entry.answer).join('|'),
           explanation: entries.map((entry) => `${entry.number}. ${entry.answer}: ${entry.clue} (${entry.reference})`).join(' '),
           reference: [...new Set(entries.map((entry) => entry.reference))].join('; '),
-          metadata: { entries, crosswordVersion: 2, category: 'Mixed Bible knowledge' },
+          metadata: { entries, crosswordVersion: 3, category: 'Mixed Bible knowledge', uniquePuzzleRank: rank, clueCount: entries.length },
         });
         break;
       }
