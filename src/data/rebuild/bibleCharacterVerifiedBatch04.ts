@@ -1036,16 +1036,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 40,
     "challenge_index": 5,
-    "question_text": "Who was the host of the church in Cenchreae whom Paul commended to the believers in Rome?",
+    "question_text": "Which believer often refreshed Paul and was not ashamed of his chains?",
     "options": [
-      "Phoebe",
-      "Lydia",
-      "Priscilla",
-      "Persis"
+      "Onesiphorus",
+      "Demas",
+      "Tychicus",
+      "Epaphras"
     ],
-    "correct_answer": "Phoebe",
-    "explanation": "Paul commended Phoebe, a servant of the church at Cenchreae, and asked the Roman believers to assist her.",
-    "reference": "Romans 16:1-2",
+    "correct_answer": "Onesiphorus",
+    "explanation": "Paul asked the Lord to show mercy to the household of Onesiphorus, who often refreshed him and sought him out in Rome.",
+    "reference": "2 Timothy 1:16-18",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
