@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 10:17-24",
     "explanation": "Saul was found hiding among the baggage when Israel sought him after his selection.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A king hid among baggage during his public selection",
       "clues": [
         "Evidence A — The people gathered at Mizpah to confirm a king.",
@@ -45,7 +45,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Kings 4:42-44",
     "explanation": "A man brought twenty barley loaves and fresh ears of grain; Elisha ordered that they be given to one hundred men, and the food was left over according to the LORD's word.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Barley Loaves in a Famine",
       "clues": [
         "During a time of famine, a man arrived from Baal-shalishah carrying food from the firstfruits.",
@@ -72,7 +72,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 14:1-14",
     "explanation": "Jonathan and his armour-bearer approached a Philistine outpost; Jonathan proposed a sign and the two climbed up to attack the garrison.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Two Men at the Philistine Pass",
       "clues": [
         "While Israel's king remained near Gibeah with the people, his son quietly left the camp with one companion.",
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Judges 3:12-30",
     "explanation": "Ehud killed Eglon, king of Moab, and escaped through the porch.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A Moabite ruler was killed in a private upper room",
       "clues": [
         "Evidence A — Israel was oppressed by Moab after doing evil.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Kings 5:15-27",
     "explanation": "Gehazi took gifts from Naaman deceitfully and was struck with Naaman's leprosy.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A prophet's servant was struck with the disease of a healed commander",
       "clues": [
         "Evidence A — A foreign military commander had been healed after washing in the Jordan.",
@@ -153,7 +153,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 4:19-22",
     "explanation": "Ichabod's name marked the loss of glory after the ark was captured and his father-in-law died.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A priest's grandson carried a name linked to lost glory",
       "clues": [
         "Evidence A — The child was born when his mother heard that the ark had been captured.",
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "1 Samuel 25:2-35",
     "explanation": "Abigail intervened when Nabal insulted David and prevented David from avenging himself.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A woman stopped a king from taking revenge on a household",
       "clues": [
         "Evidence A — A wealthy landowner refused David's messengers and insulted them.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Samuel 12:1-13",
     "explanation": "Nathan used the parable of the ewe lamb to confront David over his sin.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A prophet confronted a king with a stolen lamb story",
       "clues": [
         "Evidence A — A rich man took a poor man's only ewe lamb to feed a visitor.",
@@ -234,7 +234,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Daniel 6:1-23",
     "explanation": "Daniel continued his regular prayers despite the decree and was preserved in the lions' den.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A royal official was executed after refusing to bow",
       "clues": [
         "Evidence A — The official was elevated above other officials in a foreign empire.",
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Esther 4:10-17; 5:1-8",
     "explanation": "Esther risked approaching the king and arranged banquets to expose Haman's plot.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A queen approached the throne without being summoned",
       "clues": [
         "Evidence A — A royal decree threatened the Jews throughout the Persian empire.",
@@ -288,7 +288,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Esther 6:1-11",
     "explanation": "Mordecai was publicly honoured after the king remembered his exposure of a conspiracy.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A king's sleep was interrupted by an old record",
       "clues": [
         "Evidence A — The king could not sleep and ordered the chronicles to be read.",
@@ -315,7 +315,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Job 2:7-10",
     "explanation": "After Job was struck with painful sores, his wife urged him to curse God and die; Job refused to speak foolishly and accepted that people receive both good and adversity.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Answer from the Ash Heap",
       "clues": [
         "A righteous man was afflicted with painful sores from the sole of his foot to the crown of his head.",
@@ -342,7 +342,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Samuel 16:1-4",
     "explanation": "Ziba met David during his flight from Jerusalem with provisions and made a claim about Mephibosheth's intentions; the passage records Ziba's report, not an independently confirmed fact.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Donkeys and Provisions on the Road",
       "clues": [
         "A king was fleeing Jerusalem shortly after crossing the Mount of Olives.",
@@ -369,7 +369,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Kings 2:23-25",
     "explanation": "As Elisha travelled toward Bethel, youths mocked him; after he pronounced a curse in the LORD's name, two bears came out of the woods and mauled forty-two of them.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Mockery on the Road to Bethel",
       "clues": [
         "A prophet was travelling uphill from Jericho toward Bethel after taking up his predecessor's mantle.",
@@ -396,7 +396,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 9:36-43",
     "explanation": "Tabitha, also called Dorcas, died in Joppa; Peter prayed beside her and told her to arise, and she was presented alive to the believers.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Garments Beside the Upper Room",
       "clues": [
         "A disciple in Joppa was known for good works and acts of charity, especially garments she made for others.",
@@ -423,7 +423,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Exodus 18:13-27",
     "explanation": "Jethro saw that Moses was judging the people alone and advised him to appoint capable, trustworthy leaders over groups of thousands, hundreds, fifties and tens.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Burden of One Judge",
       "clues": [
         "A leader sat from morning until evening hearing disputes brought by an entire nation.",
@@ -450,7 +450,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Jeremiah 35:1-19",
     "explanation": "The Rechabites refused wine because their ancestor Jonadab had instructed them not to drink it or settle in houses; the LORD used their obedience as a contrast to Judah's disobedience.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Guests Who Would Not Drink",
       "clues": [
         "A prophet invited members of a family clan into a chamber in the house of the LORD and set cups of wine before them.",
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Hosea 1:2; 3:1-5",
     "explanation": "Hosea's relationship with Gomer illustrated God's love for unfaithful Israel.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A prophet's marriage became a sign about Israel's unfaithfulness",
       "clues": [
         "Evidence A — The prophet was told to marry a woman associated with unfaithfulness.",
@@ -504,7 +504,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Zechariah 1:7-17",
     "explanation": "Zechariah saw a rider on a red horse among myrtle trees, with other coloured horses behind him; the vision brought a message that the LORD would again show mercy to Jerusalem.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Riders Among the Myrtle Trees",
       "clues": [
         "A prophet received a night vision in the eleventh month of the second year of Darius.",
@@ -531,7 +531,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Malachi 1:6-14",
     "explanation": "Malachi rebuked priests who brought blind, lame and sick animals to the altar, asking whether a human governor would accept such a gift.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Defective Offering",
       "clues": [
         "A prophet addressed priests who treated the LORD's name with contempt while claiming to honour him.",
@@ -558,7 +558,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Luke 17:11-19",
     "explanation": "Jesus healed ten men with a skin disease as they went to show themselves to the priests, but only one returned to thank him, and he was a Samaritan.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The One Who Returned",
       "clues": [
         "Ten men with a skin disease stood at a distance and called to Jesus for mercy.",
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 24:24-27",
     "explanation": "Felix trembled at Paul's message and hoped for a bribe, leaving Paul imprisoned.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A prisoner made a governor tremble but remained detained for money",
       "clues": [
         "Evidence A — The prisoner spoke about righteousness, self-control and judgment.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 19:23-41",
     "explanation": "Demetrius stirred the Ephesian riot because Christian preaching threatened his idol-making trade.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A crowd in a Greek city shouted for nearly two hours over a goddess",
       "clues": [
         "Evidence A — A silversmith made silver shrines and feared loss of trade.",
@@ -639,7 +639,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "2 Samuel 3:22-39",
     "explanation": "Joab secretly called Abner back to Hebron and killed him in revenge for the death of his brother Asahel; David publicly mourned Abner.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "The Commander Who Fell at Hebron",
       "clues": [
         "A military commander had just left David after negotiating the transfer of Israel's allegiance.",
@@ -666,7 +666,7 @@ export const BIBLE_DETECTIVE_BATCH_02: ChallengeItem[] = [
     "reference": "Acts 27:39-44; 28:1-6",
     "explanation": "Paul survived the shipwreck and was unharmed by a viper on Malta.",
     "metadata": {
-      "difficulty": "developing",
+      "difficulty": "beginner",
       "case_title": "A prisoner survived a shipwreck and a snakebite on the same island",
       "clues": [
         "Evidence A — A ship carrying prisoners ran aground and broke apart.",
