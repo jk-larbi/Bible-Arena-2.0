@@ -64,3 +64,14 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Both batches are included in `validate:rebuild`. The structural validator checks five entries per level and four distinct options, but it does not independently prove theological interpretation or every reference.
 - CI's cross-game validator caught several older staged collisions; those questions were replaced with different facts and passages. A local structural comparison of all 975 records in the 13 currently staged rebuild files now finds zero duplicate normalized reference/answer pairs. The current Character Quest Batch 02 also has no collision against live database rows. Final CI validation on the latest commit is still pending.
 - **Not published:** all 100 questions remain staged only. The existing 250 database rows have not been replaced. Next: perform passage-by-passage human review, prepare Levels 21–50 (150 more questions), then replace the database rows and verify the live game.
+
+
+## Question-count and reward audit — 2026-11-09
+
+- Confirmed shared gameplay constant: `CHALLENGES_PER_LEVEL = 5`. A level therefore contains five questions, not ten.
+- Confirmed the Supabase `finish_level` function rejects completion unless exactly five challenge results have been submitted.
+- Confirmed `submit_challenge_answer` awards 10 marks per correct answer, with an idempotent award ledger. A perfect five-question level therefore earns at most 50 marks; incorrect answers earn zero.
+- Confirmed level completion converts the five correctness results to a 0–500 result-points score and a 0–100 percentage. These are separate from the 0–50 marks balance.
+- Fixed the shared game header, which incorrectly displayed `/100`; it now displays the correct maximum of `CHALLENGES_PER_LEVEL * 10` (50). Also corrected stale “0..9” and “of 10” UI comments/loading text.
+- Commit: `15943fd2034e6827b215f83fbc9d3078a852fe1b`.
+- Character Quest still has five questions per level and currently has 250 old database rows, but its quality audit remains 25 distinct wordings and 32 distinct normalized reference/answer facts. The 100 replacement questions for Levels 1–20 are staged, not published. Further work remains Levels 21–50, then review, database replacement, and live verification.
