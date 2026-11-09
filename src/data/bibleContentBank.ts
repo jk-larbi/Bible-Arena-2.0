@@ -854,7 +854,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           derivedCrosswordClues.push([item.answer.replace(/[^A-Za-z]/g, '').toUpperCase(), item.clue2, item.ref]);
           derivedCrosswordClues.push([item.answer.replace(/[^A-Za-z]/g, '').toUpperCase(), item.clue3, item.ref]);
         }
-        const clueMap = new Map<string, [string, string, string]>();
+        const clueMap = new Map<string, readonly [string, string, string]>();
         for (const clue of [...originalCrosswordClues, ...derivedCrosswordClues]) {
           const [answer, prompt, reference] = clue;
           if (answer.length >= 3 && prompt?.trim() && reference?.trim()) {
