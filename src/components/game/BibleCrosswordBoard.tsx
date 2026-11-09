@@ -4,7 +4,7 @@ type Entry = { number: number; answer: string; clue: string; reference: string; 
 type Placed = Entry & { x: number; y: number };
 type Cell = { x: number; y: number; across?: number; down?: number };
 
-function buildLayout(entries: Entry[]) {
+function buildLayoutOnce(entries: Entry[], firstIndex = 0) {
   const placed: Placed[] = [];
   const cells = new Map<string, Cell>();
   const key = (x: number, y: number) => `${x},${y}`;
@@ -48,10 +48,10 @@ function buildLayout(entries: Entry[]) {
       cells.set(k, cell);
     }
   };
-  const first = entries[0];
+  const first = entries[firstIndex];
   if (!first) return { placed, cells: [] as Cell[] };
   add({ ...first, direction: 'across' }, 0, 0);
-  const remaining = entries.slice(1);
+  const remaining = entries.filter((_, index) => index !== firstIndex);
   while (remaining.length) {
     let best = -1, bestPos: [number, number] | null = null, bestDir: 'across' | 'down' = 'down';
     for (let ei = 0; ei < remaining.length && !bestPos; ei++) {
@@ -88,6 +88,16 @@ function buildLayout(entries: Entry[]) {
     }
   });
   return { placed: normalized, cells: [...normalizedCells.values()] };
+}
+
+
+function buildLayout(entries: Entry[]) {
+  let best = buildLayoutOnce(entries, 0);
+  for (let start = 1; start < entries.length && best.placed.length < entries.length; start++) {
+    const candidate = buildLayoutOnce(entries, start);
+    if (candidate.placed.length > best.placed.length) best = candidate;
+  }
+  return best;
 }
 
 export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0 }: {
