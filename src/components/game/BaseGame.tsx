@@ -232,7 +232,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
 
   const answering = useCountdown(
     Boolean(attempt && !result && reveal === null && currentChallenge),
-    QUESTION_SECONDS,
+    gameId === 'bible-crossword' ? 240 : QUESTION_SECONDS,
     () => settleAnswer(null),
     currentChallenge?.id ?? currentIdx,
     gameId === 'bible-crossword' ? crosswordBonusSeconds : 0
