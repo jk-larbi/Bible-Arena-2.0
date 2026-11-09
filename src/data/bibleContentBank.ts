@@ -1302,7 +1302,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           options,
           correct_answer: answer,
           explanation: verse.explanation + ' The complete KJV wording is: “' + verse.text + '”',
-          reference: mode === 5 ? 'Reference revealed after answer' : verse.ref,
+          reference: verse.ref,
           metadata: {
             mode, modeLabel: labels[mode], verseText: verse.text, maskedText: missingText,
             targetWords, wordPool: mode === 2 || mode === 4 ? shuffleDeterministic([...targetWords, ...words.filter((_, index) => !targetIndexes.includes(index)).filter((word) => word.replace(/[^A-Za-z]/g, '').length >= 3).slice(0, 5).map((word) => word.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, ''))], shuffleSeed + 17) : [],
