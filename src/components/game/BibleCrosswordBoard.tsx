@@ -110,13 +110,16 @@ export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0
   const width = Math.max(1, ...layout.cells.map((c) => c.x + 1));
   const height = Math.max(1, ...layout.cells.map((c) => c.y + 1));
   const cellMap = new Map(layout.cells.map((c) => [`${c.x},${c.y}`, c]));
-  const readWord = (p: Placed) => Array.from({ length: p.answer.length }, (_, i) => letters[`${p.x + (p.direction === 'across' ? i : 0)},${p.y + (p.direction === 'down' ? i : 0)}`] || '').join('');
   const usable = layout.placed.length;
   const revealedLetters = new Map<string, string>();
   layout.placed.slice(0, Math.min(2, Math.max(0, hintCount))).forEach((entry) => {
     const key = `${entry.x},${entry.y}`;
     revealedLetters.set(key, entry.answer[0] || '');
   });
+  const readWord = (p: Placed) => Array.from({ length: p.answer.length }, (_, i) => {
+    const key = `${p.x + (p.direction === 'across' ? i : 0)},${p.y + (p.direction === 'down' ? i : 0)}`;
+    return letters[key] || revealedLetters.get(key) || '';
+  }).join('');
   return (
     <div className="space-y-4">
       <div className="rounded-xl bg-[#F3EBDD] border border-[#171B24]/15 p-3 text-sm text-[#171B24]">
