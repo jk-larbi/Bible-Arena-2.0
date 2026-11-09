@@ -47,6 +47,10 @@ export const SCRIPTURE_CHALLENGE_LEVELS: ScriptureLevelSpec[] = [
   { level: 31, stage: 7, name: 'Acts in Motion', focus: 'The early church and the book of Acts', mechanic: 'acts-investigation', rule: 'Trace the early church through precise details about its people, places, speeches and turning points.' },
   { level: 32, stage: 7, name: "Paul's Mission Trail", focus: 'Paul’s journeys and companions', mechanic: 'journey-reconstruction', rule: 'Identify locations, companions, officials and events from Paul’s missionary journeys.' },
   { level: 33, stage: 7, name: 'Letters Under Examination', focus: 'Details from New Testament letters', mechanic: 'epistle-evidence', rule: 'Answer detailed questions about the recipients, people, instructions and references in the New Testament letters.' },
+
+  { level: 34, stage: 8, name: 'Songs and Wisdom', focus: 'Psalms, Proverbs, Job and Ecclesiastes', mechanic: 'wisdom-text-detail', rule: 'Test exact wording, speakers, literary structure and distinctive details from the wisdom books.' },
+  { level: 35, stage: 8, name: 'Exile and Return', focus: 'Judah’s exile and restoration', mechanic: 'restoration-history', rule: 'Trace the fall of Jerusalem, the exile, the return and the rebuilding of Jerusalem and the temple.' },
+  { level: 36, stage: 8, name: 'General Letters', focus: 'James, Peter, John and Jude', mechanic: 'letter-precision', rule: 'Identify precise teachings, people and Old Testament connections in the general letters.' },
 ];
 
 export function getScriptureLevelSpec(level: number): ScriptureLevelSpec | undefined {
