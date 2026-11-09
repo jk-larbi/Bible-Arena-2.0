@@ -58,7 +58,7 @@ for (const game of ALL_19_GAME_SLUGS) {
         const letters = item.options.map(normalize);
         if (!sameMultiset(letters, [...answer])) failures.push(`${item.id}: scrambled letters do not exactly match the answer`);
       } else if (game === 'verse-builder') {
-        if (!sameMultiset(item.options.map(normalize), item.correct_answer.split(/\\s+/).map(normalize))) failures.push(`${item.id}: word tiles do not match the complete verse`);
+        if (!sameMultiset(item.options.map(normalize), item.correct_answer.split(/\s+/).map(normalize))) failures.push(`${item.id}: word tiles do not match the complete verse`);
       } else if (game === 'bible-word-search') {
         const words = (item.metadata?.words || item.options) as string[];
         if (words.length < 2 || words.some((word) => !normalize(word))) failures.push(`${item.id}: invalid word-search target list`);
