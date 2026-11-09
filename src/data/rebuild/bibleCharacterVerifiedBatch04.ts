@@ -322,16 +322,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 34,
     "challenge_index": 1,
-    "question_text": "Which prophetess was the daughter of Penuel and spoke about the child Jesus to those awaiting Jerusalem's redemption?",
+    "question_text": "Which righteous and devout man was promised that he would not die before seeing the Lord's Christ?",
     "options": [
-      "Elizabeth",
-      "Anna",
-      "Mary Magdalene",
-      "Martha"
+      "Simeon",
+      "Joseph",
+      "Zechariah",
+      "Jairus"
     ],
-    "correct_answer": "Anna",
-    "explanation": "Anna, a prophetess of the tribe of Asher, gave thanks and spoke about Jesus to those looking for redemption.",
-    "reference": "Luke 2:36-38",
+    "correct_answer": "Simeon",
+    "explanation": "Simeon was righteous and devout, and the Holy Spirit had revealed to him that he would see the Lord's Christ before his death.",
+    "reference": "Luke 2:25-35",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -553,16 +553,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 36,
     "challenge_index": 2,
-    "question_text": "Who asked Pilate for the body of Jesus and laid it in his own new tomb?",
+    "question_text": "Who brought a mixture of myrrh and aloes to help prepare Jesus' body for burial?",
     "options": [
       "Nicodemus",
       "Joseph of Arimathea",
       "Simon of Cyrene",
-      "Cleopas"
+      "Gamaliel"
     ],
-    "correct_answer": "Joseph of Arimathea",
-    "explanation": "Joseph of Arimathea, a rich disciple, asked Pilate for Jesus' body and placed it in his own new tomb.",
-    "reference": "Matthew 27:57-60",
+    "correct_answer": "Nicodemus",
+    "explanation": "Nicodemus, who had earlier visited Jesus by night, brought a large quantity of myrrh and aloes for Jesus' burial.",
+    "reference": "John 19:38-40",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -679,16 +679,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_04: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 37,
     "challenge_index": 3,
-    "question_text": "Which disciple was chosen by lot to replace Judas Iscariot?",
+    "question_text": "Which apostle was praying on the rooftop in Joppa when he saw a vision before Cornelius's messengers arrived?",
     "options": [
-      "Matthias",
-      "Joseph Barsabbas",
-      "Stephen",
-      "Philip"
+      "Peter",
+      "John",
+      "James",
+      "Andrew"
     ],
-    "correct_answer": "Matthias",
-    "explanation": "Matthias was selected after the believers prayed and cast lots between him and Joseph called Barsabbas.",
-    "reference": "Acts 1:23-26",
+    "correct_answer": "Peter",
+    "explanation": "Peter went up to the housetop to pray and saw a vision that prepared him to visit Cornelius and understand that God shows no partiality.",
+    "reference": "Acts 10:9-23",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
