@@ -1,4 +1,5 @@
 import { BIBLE_CHAIN_PEOPLE_SEED, normalizeBiblePersonName } from './bibleChainPeople';
+import { COMPLETE_SCRIPTURE_VERSES } from './completeScriptureVerses';
 
 export interface ChallengeItem {
   id: string;
@@ -1262,6 +1263,50 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           reference: v.ref,
           metadata: {
             words,
+          },
+        });
+        break;
+      }
+
+      case 'complete-the-scripture': {
+        const verse = COMPLETE_SCRIPTURE_VERSES[globalSeed % COMPLETE_SCRIPTURE_VERSES.length];
+        const words = verse.text.split(/\s+/);
+        const candidates = words.map((word, index) => ({ word: word.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, ''), index }))
+          .filter((entry) => entry.word.length >= 4 && !['THAT','THIS','THEM','THEIR','THERE','WHICH','WHEN','THOU','THEY','WITH','FROM','HATH','SHALL','WILL'].includes(entry.word.toUpperCase()));
+        const chosen = candidates[(globalSeed * 7 + 3) % candidates.length] || candidates[0];
+        const chosenTwo = candidates.find((entry) => entry.index !== chosen.index && entry.word.length >= 4) || chosen;
+        const mode = (level + challengeIndex - 2) % 6;
+        const mask = (indexes: number[]) => words.map((word, index) => indexes.includes(index) ? '________' : word).join(' ');
+        const targetIndexes = mode === 1 || mode === 2 || mode === 4 ? [...new Set([chosen.index, chosenTwo.index])] : [chosen.index];
+        const targetWords = targetIndexes.map((index) => words[index].replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, ''));
+        const missingText = mask(targetIndexes);
+        const options = mode === 0 || mode === 5
+          ? makeFourDistinctOptions(targetWords[0], candidates.filter((entry) => entry.word.toLowerCase() !== targetWords[0].toLowerCase()).slice(0, 12).map((entry) => entry.word), shuffleSeed)
+          : mode === 3 ? [] : shuffleDeterministic([...targetWords], shuffleSeed);
+        const labels = ['Find the Missing Word', 'Multiple Missing Words', 'Arrange the Missing Words', 'Type the Missing Word', 'Disappearing Scripture', 'No Reference Challenge'];
+        const questionText = mode === 4
+          ? 'Memorise the verse shown, then hide it and rebuild the missing words.'
+          : mode === 2
+            ? 'Arrange the missing words in their correct order to complete the verse.'
+            : mode === 3
+              ? 'Type the exact missing word to complete this KJV verse.'
+              : mode === 1
+                ? 'Fill both blanks in the correct order.'
+                : mode === 5
+                  ? 'Complete the verse. This round deliberately hides the reference.'
+                  : 'Choose the exact missing word from the KJV verse.';
+        const answer = mode === 1 || mode === 2 || mode === 4 ? targetWords.join(' ') : targetWords[0];
+        items.push({
+          id, game_slug: gameSlug, level, challenge_index: challengeIndex,
+          question_text: questionText,
+          options,
+          correct_answer: answer,
+          explanation: verse.explanation + ' The complete KJV wording is: “' + verse.text + '”',
+          reference: mode === 5 ? 'Reference revealed after answer' : verse.ref,
+          metadata: {
+            mode, modeLabel: labels[mode], verseText: verse.text, maskedText: missingText,
+            targetWords, wordPool: mode === 2 || mode === 4 ? shuffleDeterministic([...targetWords, ...words.filter((_, index) => !targetIndexes.includes(index)).filter((word) => word.replace(/[^A-Za-z]/g, '').length >= 3).slice(0, 5).map((word) => word.replace(/^[^A-Za-z]+|[^A-Za-z]+$/g, ''))], shuffleSeed + 17) : [],
+            hiddenReference: mode === 5, difficulty: verse.difficulty,
           },
         });
         break;
