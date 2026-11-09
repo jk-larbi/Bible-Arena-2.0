@@ -55,6 +55,10 @@ export const SCRIPTURE_CHALLENGE_LEVELS: ScriptureLevelSpec[] = [
   { level: 37, stage: 9, name: 'The Tabernacle Blueprint', focus: 'The tabernacle, its furnishings and priestly garments', mechanic: 'sanctuary-detail', rule: 'Identify precise materials, measurements, instructions and unusual details in the tabernacle passages.' },
   { level: 38, stage: 9, name: 'The Sacred Calendar', focus: 'Israel’s appointed feasts and sacred dates', mechanic: 'feast-calendar', rule: 'Recall the exact dates, counts, rituals and sequence of the appointed festivals.' },
   { level: 39, stage: 9, name: 'The Seven Churches', focus: 'The messages to the seven churches in Revelation', mechanic: 'revelation-church-messages', rule: 'Match each church with its rebuke, commendation, warning and promise without confusing the messages.' },
+
+  { level: 40, stage: 10, name: 'The Throne Room and the Scroll', focus: 'John’s visions of the throne, the Lamb and the sealed scroll', mechanic: 'revelation-scroll-vision', rule: 'Recall precise details from the throne-room vision and the opening of the seals.' },
+  { level: 41, stage: 10, name: 'Daniel’s Exile Dossier', focus: 'Daniel’s life, royal courts, dreams and visions', mechanic: 'daniel-precision', rule: 'Identify exact numbers, objects, decrees and interpretations from Daniel’s accounts.' },
+  { level: 42, stage: 10, name: 'Covenant Law and Cities of Refuge', focus: 'Inheritance, Jubilee and Israel’s legal provisions', mechanic: 'covenant-law-cases', rule: 'Solve detailed questions about legal provisions, tribal inheritance and cities of refuge.' },
 ]; 
 
 export function getScriptureLevelSpec(level: number): ScriptureLevelSpec | undefined {
