@@ -29,6 +29,8 @@ type ChallengeItem = {
   opponent_id?: string;
   status?: string;
   created_at: string;
+  expires_at?: string;
+  completed_at?: string | null;
 };
 
 interface ChallengesPageProps { onSelectGame?: (game: GameInfo) => void; }
@@ -38,6 +40,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
   const [challenges, setChallenges] = useState<ChallengeItem[]>([]);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedGameId, setSelectedGameId] = useState('scripture-challenge');
   const [loading, setLoading] = useState(true);
   const [sendingChallenge, setSendingChallenge] = useState<string | null>(null);
   const [actionBusy, setActionBusy] = useState<string | null>(null);
@@ -66,15 +69,6 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
           if (challengeError) throw challengeError;
           if (isMounted && challengeData) setChallenges(challengeData);
 
-          // Fetch profiles to allow peer search
-          const { data: profileData } = await supabase
-            .from('profiles')
-            .select('id, username, full_name, level')
-            .limit(50);
-
-          if (isMounted && profileData) {
-            setProfiles(profileData);
-          }
         } catch (e) {
           console.error('Error fetching challenges:', e);
         }
@@ -85,7 +79,25 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
     return () => { isMounted = false; };
   }, [user?.id]);
 
-  const handleSendChallenge = async (targetProfile: Profile) => {
+  useEffect(() => {
+    let active = true;
+    const term = searchQuery.trim().replace(/[,%()]/g, '').slice(0, 40);
+    if (!term || !supabase || !isSupabaseConfigured) { setProfiles([]); return; }
+    const findPlayers = async () => {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, username, full_name, level')
+        .eq('is_guest', false)
+        .or(`username.ilike.%${term}%,full_name.ilike.%${term}%`)
+        .order('username', { ascending: true })
+        .limit(30);
+      if (active) setProfiles(error ? [] : (data || []) as Profile[]);
+    };
+    void findPlayers();
+    return () => { active = false; };
+  }, [searchQuery]);
+
+  const handleSendChallenge = async (targetProfile: Profile, gameId = selectedGameId) => {
     if (!user?.id) {
       setStatusMsg({ type: 'error', text: 'Please log in to challenge players.' });
       return;
@@ -99,7 +111,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
     setStatusMsg(null);
     try {
       const senderName = user.user_metadata?.username || user.user_metadata?.full_name || 'A Bible Arena Scholar';
-      const challengeTitle = `Scripture Challenge: ${senderName} vs ${targetProfile.username || targetProfile.full_name}`;
+      const selectedGame = GAMES_LIST.find((item) => item.id === gameId) || GAMES_LIST[0];
+      const challengeTitle = `${selectedGame.title}: ${senderName} vs ${targetProfile.username || targetProfile.full_name}`;
       
       const { data: inserted, error: insertErr } = await supabase
         .from('challenges')
@@ -107,8 +120,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
           challenger_id: user.id,
           opponent_id: targetProfile.id,
           title: challengeTitle,
-          description: `Score at least 1500 XP in Scripture Challenge to win 250 bonus XP!`,
-          game_id: 'scripture-challenge',
+          description: `Complete ${selectedGame.title} and be the first to reach 1500 XP to win 250 bonus XP.`,
+          game_id: selectedGame.id,
           target_score: 1500,
           reward_xp: 250,
           expires_at: new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString()
@@ -161,12 +174,15 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
     }
   };
 
-  const searchedProfiles = searchQuery
-    ? profiles.filter(p =>
-        (p.username && p.username.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (p.full_name && p.full_name.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    : [];
+  const searchedProfiles = searchQuery.trim() ? profiles.filter(p => p.id !== user?.id) : [];
+
+  const handleRematch = async (challenge: ChallengeItem) => {
+    const otherPlayerId = challenge.challenger_id === user?.id ? challenge.opponent_id : challenge.challenger_id;
+    if (!otherPlayerId) return;
+    const { data, error } = await supabase.from('profiles').select('id, username, full_name, level').eq('id', otherPlayerId).maybeSingle();
+    if (error || !data) { setStatusMsg({ type: 'error', text: 'The other player could not be found.' }); return; }
+    await handleSendChallenge(data as Profile, challenge.game_id || 'scripture-challenge');
+  };
 
   const filteredChallenges = searchQuery
     ? challenges.filter(c => c.title.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -214,8 +230,15 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
         />
       </div>
 
-      {/* Searched Players Results (if searching) */}
-      {searchQuery && searchedProfiles.length > 0 && (
+      {searchQuery.trim() && (
+        <div className="max-w-md mx-auto">
+          <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-[#5A6275]">Choose a Bible game</label>
+          <select value={selectedGameId} onChange={(e) => setSelectedGameId(e.target.value)} className="w-full rounded-2xl border border-[#171B24]/15 bg-white px-4 py-3 text-sm text-[#171B24]">
+            {GAMES_LIST.map((game) => <option key={game.id} value={game.id}>{game.title}</option>)}
+          </select>
+        </div>
+      )}
+      {searchQuery.trim() && searchedProfiles.length > 0 && (
         <div className="bg-white rounded-3xl p-6 border border-[#171B24]/10 shadow-lg space-y-4">
           <h3 className="font-serif font-bold text-lg text-[#171B24]">Registered Scholars ({searchedProfiles.length})</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -251,6 +274,10 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
         </div>
       )}
 
+      {searchQuery.trim() && searchedProfiles.length === 0 && !loading && (
+        <p className="text-center text-xs text-[#5A6275]">No registered players match that search.</p>
+      )}
+
       {/* Active Challenges List */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#171B24]/10 min-h-[220px]">
         <h3 className="font-serif font-bold text-xl text-[#171B24] mb-4">Active Challenges & Community Quests</h3>
@@ -279,7 +306,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                     <h4 className="font-serif font-bold text-base text-[#171B24]">{c.title}</h4>
                     {c.status && (
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#171B24]/10 text-[#171B24]">
-                        {c.status}
+                        {c.status === 'pending' && c.expires_at && new Date(c.expires_at).getTime() <= Date.now() ? 'expired' : c.status} · {c.challenger_id === user?.id ? 'sent by you' : 'sent to you'}
                       </span>
                     )}
                   </div>
@@ -287,6 +314,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                   <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold text-[#5A6275]">
                     <span className="flex items-center gap-1"><Trophy className="w-3.5 h-3.5 text-amber-500" /> +{c.reward_xp} XP Reward</span>
                     <span>Target: {c.target_score} XP</span>
+                    <span>{GAMES_LIST.find((game) => game.id === c.game_id)?.title || c.game_id}</span>
                   </div>
                   {(c.status === 'accepted' || c.status === 'completed') && (
                     <div className="mt-2 rounded-xl border border-[#171B24]/10 bg-white/70 px-3 py-2 text-xs font-semibold text-[#5A6275]">
@@ -306,13 +334,16 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                   <Button
                     size="sm"
                     onClick={() => {
-                      const game = GAMES_LIST.find((item) => item.id === 'scripture-challenge');
+                      const game = GAMES_LIST.find((item) => item.id === c.game_id);
                       if (game) onSelectGame?.(game);
                     }}
                     className="bg-[#3156C9] hover:bg-[#2544A5] text-white w-full sm:w-auto"
                   >
-                    Play Challenge
+                    Play {GAMES_LIST.find((item) => item.id === c.game_id)?.title || 'Challenge'}
                   </Button>
+                )}
+                {c.status === 'completed' && (
+                  <Button size="sm" onClick={() => void handleRematch(c)} disabled={!!sendingChallenge} className="bg-[#D66B3D] text-white hover:bg-[#c25a2c]">Rematch</Button>
                 )}
                 {c.status === 'pending' && c.opponent_id === user?.id && (
                   <div className="flex items-center gap-2 w-full sm:w-auto">
