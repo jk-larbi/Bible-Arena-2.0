@@ -343,6 +343,108 @@ const UNIQUE_QUOTES_POOL = QUOTES_POOL.filter((item, index, all) =>
   all.findIndex((other) => normalizeQuote(other.quote) === normalizeQuote(item.quote)) === index
 );
 
+type WhoSaidItAudience = { quote: string; speaker: string; audience: string; ref: string; explanation: string; options: string[] };
+const WHO_SAID_IT_AUDIENCES: WhoSaidItAudience[] = [
+{quote:'Am I my brother’s keeper?',speaker:'Cain',audience:'The LORD',ref:'Genesis 4:9',explanation:'Cain answered the LORD after being asked where Abel was.',options:['The LORD','Abel','Adam','Eve']},
+{quote:'If I perish, I perish.',speaker:'Esther',audience:'Mordecai',ref:'Esther 4:16',explanation:'Esther sent this resolve to Mordecai before approaching the king unsummoned.',options:['Mordecai','Ahasuerus','Haman','The Jewish elders']},
+{quote:'Thou art the man.',speaker:'Nathan',audience:'David',ref:'2 Samuel 12:7',explanation:'Nathan confronted David after telling him the parable of the ewe lamb.',options:['David','Saul','Joab','Solomon']},
+{quote:'Speak, Lord; for thy servant heareth.',speaker:'Samuel',audience:'The LORD',ref:'1 Samuel 3:9-10',explanation:'Samuel answered the LORD after Eli instructed him how to respond to the call.',options:['The LORD','Eli','Hophni','Phinehas']},
+{quote:'What is truth?',speaker:'Pontius Pilate',audience:'Jesus',ref:'John 18:37-38',explanation:'Pilate asked Jesus this during the interrogation before the crucifixion.',options:['Jesus','The chief priests','The crowd','Herod Antipas']},
+{quote:'My Lord and my God!',speaker:'Thomas',audience:'The risen Jesus',ref:'John 20:26-29',explanation:'Thomas confessed this when Jesus appeared to the disciples.',options:['The risen Jesus','Peter','The other disciples','Mary Magdalene']},
+{quote:'How can a man be born when he is old?',speaker:'Nicodemus',audience:'Jesus',ref:'John 3:1-4',explanation:'Nicodemus asked Jesus how a person could be born again.',options:['Jesus','John the Baptist','The Pharisees','The disciples']},
+{quote:'Who is my neighbour?',speaker:'A lawyer',audience:'Jesus',ref:'Luke 10:25-29',explanation:'The lawyer asked Jesus this after discussing the commandments.',options:['Jesus','The disciples','The Samaritan','Martha']},
+{quote:'What must I do to be saved?',speaker:'The Philippian jailer',audience:'Paul and Silas',ref:'Acts 16:25-31',explanation:'The jailer asked Paul and Silas after the earthquake opened the prison doors.',options:['Paul and Silas','The magistrates','The other prisoners','His family']},
+{quote:'Who art thou, Lord?',speaker:'Saul of Tarsus',audience:'The voice of Jesus',ref:'Acts 9:3-6',explanation:'Saul asked this after being confronted by the heavenly light on the road to Damascus.',options:['The voice of Jesus','Ananias','Barnabas','Stephen']},
+{quote:'Where is the lamb for a burnt offering?',speaker:'Isaac',audience:'Abraham',ref:'Genesis 22:6-8',explanation:'Isaac asked his father about the missing sacrificial lamb on the journey up the mountain.',options:['Abraham','The two servants','The angel of the LORD','Sarah']},
+{quote:'Who made thee a prince and a judge over us?',speaker:'A Hebrew man',audience:'Moses',ref:'Exodus 2:13-14',explanation:'A Hebrew man challenged Moses after Moses questioned him about striking another Hebrew.',options:['Moses','Aaron','Pharaoh','Jethro']},
+{quote:'Who is the LORD, that I should obey his voice?',speaker:'Pharaoh',audience:'Moses and Aaron',ref:'Exodus 5:1-2',explanation:'Pharaoh rejected Moses and Aaron’s request to let Israel go.',options:['Moses and Aaron','The Hebrew foremen','The Egyptian taskmasters','The elders of Israel']},
+{quote:'How long halt ye between two opinions?',speaker:'Elijah',audience:'The people of Israel',ref:'1 Kings 18:20-21',explanation:'Elijah challenged Israel on Mount Carmel to stop wavering between the LORD and Baal.',options:['The people of Israel','The prophets of Baal','Ahab','Obadiah']},
+{quote:'Is there not a cause?',speaker:'David',audience:'Eliab',ref:'1 Samuel 17:28-29',explanation:'David answered Eliab after Eliab accused him of pride and curiosity about the battle.',options:['Eliab','Saul','Goliath','Jonathan']},
+{quote:'How long wilt thou be drunken?',speaker:'Eli',audience:'Hannah',ref:'1 Samuel 1:12-15',explanation:'Eli mistook Hannah’s silent prayer for drunkenness and questioned her.',options:['Hannah','Elkanah','Peninnah','Samuel']},
+{quote:'Is thy servant a dog, that he should do this great thing?',speaker:'Hazael',audience:'Elisha',ref:'2 Kings 8:11-13',explanation:'Hazael asked Elisha this after hearing the prophet’s prediction about him.',options:['Elisha','Ben-hadad','Jehu','Naaman']},
+{quote:'What have I to do with thee, thou man of God?',speaker:'The widow of Zarephath',audience:'Elijah',ref:'1 Kings 17:17-18',explanation:'The widow spoke to Elijah after her son became ill and stopped breathing.',options:['Elijah','Her son','Ahab','Obadiah']},
+{quote:'Lord, remember me when thou comest into thy kingdom.',speaker:'The repentant thief',audience:'Jesus',ref:'Luke 23:39-43',explanation:'One of the criminals crucified beside Jesus asked Him to remember him.',options:['Jesus','The other criminal','The soldiers','Pilate']},
+{quote:'Art thou he that should come, or do we look for another?',speaker:'John the Baptist’s disciples',audience:'Jesus',ref:'Matthew 11:2-6',explanation:'John sent his disciples to ask Jesus this while John was in prison.',options:['Jesus','John the Baptist','Herod','The Pharisees']},
+{quote:'What wilt thou that I should do unto thee?',speaker:'Jesus',audience:'Blind Bartimaeus',ref:'Mark 10:46-52',explanation:'Jesus asked Bartimaeus what he wanted after calling him near.',options:['Blind Bartimaeus','James and John','The crowd','The disciples']},
+{quote:'What is that in thine hand?',speaker:'The LORD',audience:'Moses',ref:'Exodus 4:1-4',explanation:'The LORD asked Moses this during the signs given at the burning bush.',options:['Moses','Aaron','Joshua','Jethro']},
+{quote:'What shall I do then with Jesus which is called Christ?',speaker:'Pontius Pilate',audience:'The crowd',ref:'Matthew 27:21-22',explanation:'Pilate asked the assembled crowd what should be done with Jesus.',options:['The crowd','Jesus','The chief priests alone','Barabbas']},
+{quote:'What meaneth this, that thou hast done this unto me?',speaker:'The king of Israel',audience:'Elisha',ref:'2 Kings 6:21-22',explanation:'The king asked Elisha whether he should kill the Aramean captives delivered into Israel’s hand.',options:['Elisha','Naaman','Gehazi','The captain of the host']},
+{quote:'Wherefore didst thou flee away secretly?',speaker:'Laban',audience:'Jacob',ref:'Genesis 31:25-28',explanation:'Laban confronted Jacob after pursuing him and asked why he had left secretly.',options:['Jacob','Rachel','Leah','The servants']},
+{quote:'Why persecutest thou me?',speaker:'Jesus',audience:'Saul of Tarsus',ref:'Acts 9:4-5',explanation:'The risen Jesus addressed Saul on the road to Damascus.',options:['Saul of Tarsus','Ananias','Stephen','Barnabas']},
+{quote:'What doth hinder me to be baptized?',speaker:'The Ethiopian eunuch',audience:'Philip',ref:'Acts 8:35-38',explanation:'The eunuch asked Philip this after Philip explained the Scripture he was reading.',options:['Philip','Peter','Ananias','The angel']},
+{quote:'Why callest thou me good?',speaker:'Jesus',audience:'The rich young ruler',ref:'Mark 10:17-18',explanation:'Jesus replied to the man who asked what he must do to inherit eternal life.',options:['The rich young ruler','Peter','The scribes','The disciples']},
+{quote:'Lord, if thou wilt, thou canst make me clean.',speaker:'A leper',audience:'Jesus',ref:'Matthew 8:1-3',explanation:'The leper approached Jesus and expressed confidence in His power to cleanse him.',options:['Jesus','The disciples','The priests','The crowd']},
+{quote:'How shall this be, seeing I know not a man?',speaker:'Mary',audience:'Gabriel',ref:'Luke 1:26-38',explanation:'Mary asked Gabriel how the announcement of her child would take place.',options:['Gabriel','Elizabeth','Joseph','Zechariah']}
+];
+type WhoSaidItDialogue = { prompt: string; answer: string; ref: string; explanation: string; options: string[] };
+const WHO_SAID_IT_DIALOGUES: WhoSaidItDialogue[] = [
+{prompt:'Jesus asked, “Whom say ye that I am?” Who answered, “Thou art the Christ, the Son of the living God”?',answer:'Simon Peter',ref:'Matthew 16:13-17',explanation:'Peter gave this confession at Caesarea Philippi.',options:['Simon Peter','Andrew','Thomas','Philip']},
+{prompt:'The angel told Mary she would bear a son. Who replied, “How shall this be, seeing I know not a man”?',answer:'Mary',ref:'Luke 1:26-34',explanation:'Mary asked Gabriel how the announcement would take place.',options:['Mary','Elizabeth','Anna','Martha']},
+{prompt:'Jesus asked the Samaritan woman for a drink. Who replied, “How is it that thou, being a Jew, askest drink of me”?',answer:'The Samaritan woman',ref:'John 4:7-9',explanation:'The woman at the well questioned why a Jewish man would ask a Samaritan woman for water.',options:['The Samaritan woman','Martha','Mary Magdalene','The disciples']},
+{prompt:'Paul and Silas prayed in prison. After the earthquake, who asked, “Sirs, what must I do to be saved”?',answer:'The Philippian jailer',ref:'Acts 16:25-31',explanation:'The jailer asked Paul and Silas after finding the prison doors open.',options:['The Philippian jailer','The magistrate','A Jerusalem guard','The jailer’s servant']},
+{prompt:'The LORD asked Adam where he was. Who answered that he was afraid because he was naked?',answer:'Adam',ref:'Genesis 3:8-10',explanation:'Adam answered after he and Eve heard the LORD God in the garden.',options:['Adam','Eve','Cain','Abel']},
+{prompt:'The LORD asked Cain where Abel was. Who replied, “I know not”?',answer:'Cain',ref:'Genesis 4:8-9',explanation:'Cain denied knowing Abel’s whereabouts after murdering his brother.',options:['Cain','Adam','Seth','Lamech']},
+{prompt:'The LORD asked Hagar where she had come from. Who answered that she was fleeing from Sarai?',answer:'Hagar',ref:'Genesis 16:7-8',explanation:'Hagar answered the angel of the LORD in the wilderness.',options:['Hagar','Sarai','Rebekah','Leah']},
+{prompt:'Elijah challenged the prophets of Baal. Who cried, “The LORD, he is the God”?',answer:'The people',ref:'1 Kings 18:36-39',explanation:'The people responded after fire from the LORD consumed Elijah’s offering.',options:['The people','The prophets of Baal','Ahab','Obadiah']},
+{prompt:'Elisha told Naaman to wash in the Jordan. Who questioned why he could not wash in Damascus?',answer:'Naaman',ref:'2 Kings 5:9-12',explanation:'Naaman reacted angrily because he expected a more dramatic healing.',options:['Naaman','Gehazi','Ben-hadad','The king of Israel']},
+{prompt:'Job’s first friend to speak after his lament was who?',answer:'Eliphaz the Temanite',ref:'Job 4:1-2',explanation:'Eliphaz began the first cycle of speeches after Job’s lament.',options:['Eliphaz the Temanite','Bildad the Shuhite','Zophar the Naamathite','Elihu']},
+{prompt:'Jesus asked the disciples who people said He was. Who reported the different opinions?',answer:'The disciples',ref:'Matthew 16:13-14',explanation:'The disciples reported that some people thought Jesus was John the Baptist, Elijah, Jeremiah, or a prophet.',options:['The disciples','The Pharisees','The crowd','The chief priests']},
+{prompt:'The LORD asked Isaiah whom He should send. Who answered, “Here am I; send me”?',answer:'Isaiah',ref:'Isaiah 6:8',explanation:'Isaiah volunteered after hearing the LORD’s question in the vision.',options:['Isaiah','Jeremiah','Ezekiel','Micah']},
+{prompt:'Jesus asked Peter three times whether he loved Him. Who answered that the Lord knew he loved Him?',answer:'Peter',ref:'John 21:15-17',explanation:'Peter answered Jesus during the conversation by the Sea of Tiberias.',options:['Peter','John','Thomas','Andrew']},
+{prompt:'The angel announced that Elizabeth would bear a son. Who asked, “Whereby shall I know this”?',answer:'Zechariah',ref:'Luke 1:11-18',explanation:'Zechariah questioned Gabriel because he and Elizabeth were advanced in years.',options:['Zechariah','Joseph','Simeon','Herod']},
+{prompt:'Jesus asked the man at the pool whether he wanted to be made whole. Who said he had no one to put him into the pool?',answer:'The man at Bethesda',ref:'John 5:1-7',explanation:'The man explained that someone else entered the water before he could reach it.',options:['The man at Bethesda','Bartimaeus','The man born blind','The paralytic at Capernaum']},
+{prompt:'Jesus asked the disciples whether they also wanted to leave. Who answered, “Lord, to whom shall we go”?',answer:'Simon Peter',ref:'John 6:66-69',explanation:'Peter answered after many followers turned back.',options:['Simon Peter','Thomas','Philip','Andrew']},
+{prompt:'The LORD asked Job where he was when the foundations of the earth were laid. Who had been demanding an answer?',answer:'Job',ref:'Job 38:1-4',explanation:'God answered Job out of the whirlwind after the debates with his friends.',options:['Job','Eliphaz','Bildad','Elihu']},
+{prompt:'Jesus asked the blind man at Jericho what he wanted. Who answered that he wanted to receive his sight?',answer:'Bartimaeus',ref:'Mark 10:46-52',explanation:'Bartimaeus made his request when Jesus called him near.',options:['Bartimaeus','The man at Bethesda','The Samaritan leper','The man born blind']},
+{prompt:'The angel told Manoah’s wife she would bear a son. Who asked how the child should be raised?',answer:'Manoah',ref:'Judges 13:2-12',explanation:'Manoah prayed for the messenger to return and asked how the child should be raised.',options:['Manoah','Samson','The high priest','The angel']},
+{prompt:'Jesus asked the disciples who touched Him. Who answered that the multitude was pressing around Him?',answer:'Peter',ref:'Luke 8:43-45',explanation:'Peter responded when Jesus asked who had touched Him in the crowd.',options:['Peter','John','James','Andrew']},
+{prompt:'The LORD asked Elijah what he was doing at Horeb. Who answered that Israel had forsaken the covenant?',answer:'Elijah',ref:'1 Kings 19:9-10',explanation:'Elijah answered from the cave at Horeb, explaining his zeal and fear.',options:['Elijah','Elisha','Obadiah','Micaiah']},
+{prompt:'Nathan told David a story about a poor man’s lamb. Who declared that the man deserved to die?',answer:'David',ref:'2 Samuel 12:1-6',explanation:'David pronounced judgment in response to Nathan’s parable before Nathan confronted him.',options:['David','Nathan','Joab','Solomon']},
+{prompt:'The LORD asked Moses what was in his hand. Who answered, “A rod”?',answer:'Moses',ref:'Exodus 4:1-4',explanation:'Moses answered the LORD during the signs given at the burning bush.',options:['Moses','Aaron','Joshua','Jethro']},
+{prompt:'The Ethiopian official was reading Isaiah. Who asked him whether he understood what he was reading?',answer:'Philip',ref:'Acts 8:26-31',explanation:'Philip approached the chariot after being directed by the angel and the Spirit.',options:['Philip','Peter','Stephen','Barnabas']},
+{prompt:'After the earthquake in Philippi, who brought Paul and Silas out and asked about salvation?',answer:'The Philippian jailer',ref:'Acts 16:27-30',explanation:'The jailer called for a light, fell before Paul and Silas, and asked how to be saved.',options:['The Philippian jailer','The magistrate','A Jerusalem prison keeper','The jailer’s wife']},
+{prompt:'The LORD asked Gideon why he was threshing wheat in a winepress. Who answered that the LORD had forsaken Israel?',answer:'Gideon',ref:'Judges 6:11-13',explanation:'Gideon questioned the angel’s greeting because of Midian’s oppression.',options:['Gideon','Barak','Jephthah','Samson']},
+{prompt:'The LORD asked Jonah whether he did well to be angry. Who answered that he did?',answer:'Jonah',ref:'Jonah 4:8-9',explanation:'Jonah defended his anger after the plant withered.',options:['Jonah','Nahum','Micah','Obadiah']},
+{prompt:'Jesus asked the man born blind what he believed about the Son of God. Who asked who He was?',answer:'The man born blind',ref:'John 9:35-38',explanation:'The healed man asked Jesus to identify the Son of God so he could believe.',options:['The man born blind','Nicodemus','Bartimaeus','The man at Bethesda']},
+{prompt:'The LORD asked Moses who made man’s mouth. Who had just explained that he was slow of speech?',answer:'Moses',ref:'Exodus 4:10-12',explanation:'Moses had protested that he was not eloquent, and the LORD answered his objection.',options:['Moses','Aaron','Joshua','Caleb']},
+{prompt:'The LORD asked the prophet what he saw. Who answered that he saw an almond branch?',answer:'Jeremiah',ref:'Jeremiah 1:11-12',explanation:'Jeremiah answered the LORD during his call as a prophet.',options:['Jeremiah','Isaiah','Ezekiel','Amos']}
+];
+type WhoSaidItNotScripture = { saying: string; ref: string; status: 'not-scripture' | 'paraphrase' | 'scripture'; explanation: string };
+const WHO_SAID_IT_NOT_SCRIPTURE: WhoSaidItNotScripture[] = [
+{ saying:'God helps those who help themselves.',ref:'Proverbs 3:5-6',status:'not-scripture',explanation:'This sentence is not a Bible verse. Proverbs 3:5-6 teaches trust in the LORD rather than reliance on one’s own understanding.' },
+{ saying:'Cleanliness is next to godliness.',ref:'1 Peter 1:15-16',status:'not-scripture',explanation:'This familiar saying is not Scripture. First Peter calls believers to holiness; it does not use this phrase.' },
+{ saying:'Money is the root of all evil.',ref:'1 Timothy 6:10',status:'paraphrase',explanation:'This is an inaccurate shortening. The verse says the love of money is a root of all kinds of evil.' },
+{ saying:'This too shall pass.',ref:'2 Corinthians 4:17-18',status:'not-scripture',explanation:'This exact saying is not in the Bible. Scripture teaches that present affliction is temporary in comparison with eternal glory.' },
+{ saying:'The Lord works in mysterious ways.',ref:'Romans 11:33',status:'not-scripture',explanation:'This wording is not a Bible quotation. Romans 11:33 praises the depth of God’s wisdom and knowledge.' },
+{ saying:'God will never give you more than you can handle.',ref:'1 Corinthians 10:13',status:'paraphrase',explanation:'This popular wording is not a direct verse. First Corinthians 10:13 concerns temptation and God providing a way of escape.' },
+{ saying:'Spare the rod and spoil the child.',ref:'Proverbs 13:24',status:'paraphrase',explanation:'This is a traditional paraphrase, not the exact wording of a verse. Proverbs 13:24 speaks about discipline.' },
+{ saying:'Hate the sin, love the sinner.',ref:'John 8:1-11',status:'not-scripture',explanation:'This phrase is not stated in Scripture. It is often used as a summary of a Christian approach to sin and mercy.' },
+{ saying:'When one door closes, another opens.',ref:'Revelation 3:7-8',status:'not-scripture',explanation:'This is not a Bible quotation. Revelation 3:7-8 describes the open door set before the church in Philadelphia.' },
+{ saying:'To thine own self be true.',ref:'Psalm 139:23-24',status:'not-scripture',explanation:'This line comes from Shakespeare, not Scripture. Psalm 139 asks God to search and lead the psalmist.' },
+{ saying:'Everything happens for a reason.',ref:'Romans 8:28',status:'not-scripture',explanation:'This exact sentence is not a verse. Romans 8:28 teaches that God works all things together for good for those who love Him.' },
+{ saying:'The eye is the window to the soul.',ref:'Matthew 6:22-23',status:'not-scripture',explanation:'This exact saying is not Scripture. Matthew 6:22-23 uses the eye as a lamp of the body.' },
+{ saying:'A fool and his money are soon parted.',ref:'Proverbs 21:20',status:'not-scripture',explanation:'This is a popular saying, not a Bible verse. Proverbs 21:20 says the wise store up choice food and oil.' },
+{ saying:'The ends justify the means.',ref:'Romans 3:8',status:'not-scripture',explanation:'This is not Scripture. Romans 3:8 rejects doing evil so that good may result.' },
+{ saying:'God said it, I believe it, that settles it.',ref:'2 Timothy 3:16-17',status:'not-scripture',explanation:'This slogan is not a verse. Second Timothy teaches that all Scripture is God-breathed and useful for equipping believers.' },
+{ saying:'The family that prays together stays together.',ref:'Joshua 24:15',status:'not-scripture',explanation:'This is a modern slogan, not a Bible quotation. Joshua 24:15 records Joshua’s declaration that his household would serve the LORD.' },
+{ saying:'Pride comes before a fall.',ref:'Proverbs 16:18',status:'paraphrase',explanation:'This is a common shortened form of Proverbs 16:18, which says pride goes before destruction and a haughty spirit before a fall.' },
+{ saying:'God is in control.',ref:'Psalm 103:19',status:'paraphrase',explanation:'This is a theological summary, not a direct quotation in this wording. Psalm 103:19 says the LORD rules over all.' },
+{ saying:'I can do all things through Christ who strengthens me.',ref:'Philippians 4:13',status:'scripture',explanation:'This is a biblical quotation in a familiar translation; Paul wrote it while describing contentment in every circumstance.' },
+{ saying:'A leopard cannot change its spots.',ref:'Jeremiah 13:23',status:'scripture',explanation:'Jeremiah 13:23 uses this image in a question about whether an Ethiopian can change his skin or a leopard its spots.' },
+{ saying:'There is nothing new under the sun.',ref:'Ecclesiastes 1:9',status:'scripture',explanation:'This statement appears in Ecclesiastes 1:9.'},
+{ saying:'The love of money is the root of all evil.',ref:'1 Timothy 6:10',status:'paraphrase',explanation:'This is a close but incomplete rendering. The verse says the love of money is a root of all kinds of evil.'},
+{ saying:'The truth will set you free.',ref:'John 8:32',status:'scripture',explanation:'This wording appears in Scripture as part of Jesus’ teaching.'},
+{ saying:'Pride goeth before destruction, and an haughty spirit before a fall.',ref:'Proverbs 16:18',status:'scripture',explanation:'This is the wording of Proverbs 16:18 in the King James Version.'},
+{ saying:'God will not put on you more than you can bear.',ref:'1 Corinthians 10:13',status:'paraphrase',explanation:'This popular expression is often confused with 1 Corinthians 10:13, which specifically addresses temptation.'},
+{ saying:'The Lord is my shepherd; I shall not want.',ref:'Psalm 23:1',status:'scripture',explanation:'This is a direct biblical quotation from Psalm 23:1.'},
+{ saying:'Be in the world but not of the world.',ref:'John 17:14-16',status:'paraphrase',explanation:'This is a common summary of Jesus’ prayer, not the exact wording of John 17.'},
+{ saying:'God does not call the qualified; He qualifies the called.',ref:'Exodus 4:10-12',status:'not-scripture',explanation:'This popular motivational saying is not a Bible verse. Exodus records God answering Moses’ concern about his speech.'},
+{ saying:'The battle is not yours, but God’s.',ref:'2 Chronicles 20:15',status:'scripture',explanation:'This statement is based on the words spoken by Jahaziel to Judah in 2 Chronicles 20:15.'},
+{ saying:'Faith can move mountains.',ref:'Matthew 17:20',status:'paraphrase',explanation:'This is a shortened paraphrase of Jesus’ teaching about faith like a grain of mustard seed.'}
+];
+const WHO_SAID_IT_MODES = ['Identify the Speaker','Who Was Being Addressed?','Complete the Conversation','The Unexpected Speaker','Who Said It and Where?','The Misattributed Quote','Scripture or Not?'] as const;
+
+
 const VERSES_POOL = [
   { ref: 'Genesis 1:1', text: 'In the beginning God created the heavens and the earth', missing: 'beginning', distractors: ['morning', 'eternity', 'wilderness'] },
   { ref: 'Psalm 23:1', text: 'The Lord is my shepherd I shall not want', missing: 'shepherd', distractors: ['fortress', 'captain', 'counselor'] },
@@ -728,19 +830,83 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'who-said-it': {
-        const q = UNIQUE_QUOTES_POOL[globalSeed % UNIQUE_QUOTES_POOL.length];
-        const speakerCandidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
-        const options = makeFourDistinctOptions(q.speaker, speakerCandidates, shuffleSeed);
+        const modeIndex = globalSeed % WHO_SAID_IT_MODES.length;
+        const mode = WHO_SAID_IT_MODES[modeIndex];
+        const slot = Math.floor(globalSeed / WHO_SAID_IT_MODES.length);
+        const q = UNIQUE_QUOTES_POOL[(slot + modeIndex * 19) % UNIQUE_QUOTES_POOL.length];
+        let questionText = '';
+        let correctAnswer = '';
+        let options: string[] = [];
+        let explanation = '';
+        let reference = q.ref;
+        let metadata: Record<string, any> = { mode, modeIndex };
+
+        if (modeIndex === 0) {
+          const candidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
+          options = makeFourDistinctOptions(q.speaker, candidates, shuffleSeed);
+          questionText = 'IDENTIFY THE SPEAKER\nWho spoke these words in Scripture?\n“' + q.quote + '”';
+          correctAnswer = q.speaker;
+          explanation = q.context + ' The speaker is ' + q.speaker + '.';
+          metadata = { ...metadata, quote: q.quote, speaker: q.speaker };
+        } else if (modeIndex === 1) {
+          const a = WHO_SAID_IT_AUDIENCES[slot % WHO_SAID_IT_AUDIENCES.length];
+          options = makeFourDistinctOptions(a.audience, a.options, shuffleSeed);
+          questionText = 'WHO WAS BEING ADDRESSED?\n' + a.speaker + ' said: “' + a.quote + '”\nWho was the speaker talking to?';
+          correctAnswer = a.audience;
+          explanation = a.explanation;
+          reference = a.ref;
+          metadata = { ...metadata, quote: a.quote, speaker: a.speaker, addressedTo: a.audience };
+        } else if (modeIndex === 2) {
+          const d = WHO_SAID_IT_DIALOGUES[slot % WHO_SAID_IT_DIALOGUES.length];
+          options = makeFourDistinctOptions(d.answer, d.options, shuffleSeed);
+          questionText = 'COMPLETE THE CONVERSATION\n' + d.prompt + '\nWho gave the response?';
+          correctAnswer = d.answer;
+          explanation = d.explanation;
+          reference = d.ref;
+          metadata = { ...metadata, dialogue: d.prompt, responseSpeaker: d.answer };
+        } else if (modeIndex === 3) {
+          const unexpected = UNIQUE_QUOTES_POOL.filter((entry) => ['Cain','Balaam','Judas Iscariot','King Agrippa','The Roman Centurion','The Philippian Jailer','The Ethiopian eunuch','Saul','Naaman','King Belshazzar','The repentant thief','Pharaoh'].includes(entry.speaker));
+          const u = unexpected[slot % unexpected.length] || q;
+          const candidates = QUOTE_SPEAKER_GROUPS[u.speaker] || QUOTE_SPEAKERS;
+          options = makeFourDistinctOptions(u.speaker, candidates, shuffleSeed);
+          questionText = 'THE UNEXPECTED SPEAKER\nThis statement came from a person you might not expect:\n“' + u.quote + '”\nWho actually said it?';
+          correctAnswer = u.speaker;
+          explanation = u.context + ' The unexpected speaker was ' + u.speaker + '.';
+          reference = u.ref;
+          metadata = { ...metadata, quote: u.quote, speaker: u.speaker, unexpectedSpeaker: true };
+        } else if (modeIndex === 4) {
+          const candidates = UNIQUE_QUOTES_POOL.filter((entry) => entry.ref !== q.ref && entry.speaker !== q.speaker);
+          const refOptions = [q.speaker + ' — ' + q.ref, ...candidates.slice(slot % Math.max(1, candidates.length - 3), (slot % Math.max(1, candidates.length - 3)) + 3).map((entry) => entry.speaker + ' — ' + entry.ref)];
+          options = shuffleDeterministic(refOptions, shuffleSeed);
+          correctAnswer = q.speaker + ' — ' + q.ref;
+          questionText = 'WHO SAID IT AND WHERE?\n“' + q.quote + '”\nChoose the correct speaker AND Bible passage.';
+          explanation = q.context + ' The correct attribution is ' + q.speaker + ' in ' + q.ref + '.';
+          metadata = { ...metadata, quote: q.quote, speaker: q.speaker, exactReference: q.ref };
+        } else if (modeIndex === 5) {
+          const candidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
+          options = makeFourDistinctOptions(q.speaker, candidates, shuffleSeed);
+          questionText = 'THE MISATTRIBUTED QUOTE\nSeveral people are often confused with the speaker of this statement:\n“' + q.quote + '”\nWho actually said it?';
+          correctAnswer = q.speaker;
+          explanation = q.context + ' It is attributed to ' + q.speaker + ', not the other suggested speakers.';
+          metadata = { ...metadata, quote: q.quote, speaker: q.speaker, misattributionCheck: true };
+        } else {
+          const claim = WHO_SAID_IT_NOT_SCRIPTURE[slot % WHO_SAID_IT_NOT_SCRIPTURE.length];
+          const labels = ['Yes — a direct biblical quotation', 'No — not a biblical quotation', 'It is a paraphrase or popular summary', 'The Bible records it, but no speaker is named'];
+          correctAnswer = claim.status === 'scripture' ? labels[0] : claim.status === 'paraphrase' ? labels[2] : labels[1];
+          options = shuffleDeterministic(labels, shuffleSeed);
+          questionText = 'SCRIPTURE OR NOT?\nIs this saying actually found in the Bible?\n“' + claim.saying + '”';
+          explanation = claim.explanation;
+          reference = claim.ref;
+          metadata = { ...metadata, saying: claim.saying, scriptureStatus: claim.status };
+        }
+
+        if (options.length !== 4 || new Set(options.map((option) => option.toLowerCase())).size !== 4 || !options.includes(correctAnswer)) {
+          options = makeFourDistinctOptions(correctAnswer, q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS), shuffleSeed);
+        }
         items.push({
-          id,
-          game_slug: gameSlug,
-          level,
-          challenge_index: challengeIndex,
-          question_text: `Who spoke these words in Scripture: "${q.quote}"?`,
-          options,
-          correct_answer: q.speaker,
-          explanation: q.context,
-          reference: q.ref,
+          id, game_slug: gameSlug, level, challenge_index: challengeIndex,
+          question_text: questionText, options, correct_answer: correctAnswer,
+          explanation, reference, metadata: { ...metadata, mode, modeIndex },
         });
         break;
       }
