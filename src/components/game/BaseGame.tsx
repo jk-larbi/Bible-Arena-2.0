@@ -228,6 +228,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       setReveal(null);
       setSessionMarks(0);
       setTotalMarks(getOverallTotalMarks());
+      playBibleArenaSound('start', soundEnabled);
     } catch (e) {
       setError((e as Error).message);
     }
@@ -486,6 +487,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setError(null);
     setTotalMarks(purchase.newTotal);
     setHintLevel((current) => current + 1);
+    playBibleArenaSound('hint', soundEnabled);
   };
 
   // Render mechanic-specific interactive body
