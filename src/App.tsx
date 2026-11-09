@@ -10,6 +10,7 @@ import { HomePage } from './pages/HomePage';
 import { MultiplayerPage } from './pages/MultiplayerPage';
 import { LeaderboardPage } from './pages/LeaderboardPage';
 import { ChallengesPage } from './pages/ChallengesPage';
+import CommunityQuestsPage from './pages/CommunityQuestsPage';
 import { ProfilePage } from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import JoinRoom from './pages/JoinRoom';
@@ -212,6 +213,7 @@ export default function App() {
             <Route path="/multiplayer" element={<MultiplayerPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/challenges" element={<ChallengesPage onSelectGame={handleSelectGame} />} />
+            <Route path="/community-quests" element={<CommunityQuestsPage />} />
             <Route path="/community-challenges" element={<CommunityChallengesPage />} />
             <Route path="/community-challenges/:code" element={<CommunityChallengesPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />
