@@ -272,7 +272,76 @@ const QUOTES_POOL = [
   { quote: 'Not by might, nor by power, but by my spirit.', speaker: 'The LORD', options: [], context: 'The Lord gave Zerubbabel a message through Zechariah about completing the temple.', ref: 'Zechariah 4:6' },
   { quote: 'Bring ye all the tithes into the storehouse.', speaker: 'The LORD', options: [], context: 'The Lord called Israel to return to Him and test His promise of provision.', ref: 'Malachi 3:10' },
   { quote: 'Behold, I send my messenger before thy face.', speaker: 'Jesus', options: [], context: 'Jesus cited Scripture while describing John the Baptist’s role.', ref: 'Matthew 11:10' },
+  { quote: 'I am not able to bear all this people alone.', speaker: 'Moses', options: [], context: 'Moses told the Lord that the burden of leading Israel was too heavy for him alone.', ref: 'Numbers 11:14' },
+  { quote: 'I have sinned: yet honour me now, I pray thee.', speaker: 'Saul', options: [], context: 'Saul admitted his sin to Samuel but still asked to be honoured before the elders.', ref: '1 Samuel 15:30' },
+  { quote: 'Nay; but as captain of the host of the LORD am I now come.', speaker: 'The captain of the LORD’s host', options: [], context: 'The mysterious commander answered Joshua near Jericho.', ref: 'Joshua 5:14' },
 ];
+
+
+const QUOTE_SPEAKER_GROUPS: Record<string, string[]> = {
+  'God': ['The LORD', 'Jesus', 'Gabriel', 'Moses', 'Isaiah'],
+  'The LORD': ['God', 'Jesus', 'Moses', 'Isaiah', 'Jeremiah'],
+  'The captain of the LORD’s host': ['Gabriel', 'God', 'Joshua', 'Moses', 'Elisha'],
+  'The Preacher': ['Solomon', 'Job', 'David', 'Asaph', 'Agur'],
+  'The psalmist': ['David', 'Asaph', 'Solomon', 'Moses', 'The sons of Korah'],
+  'David': ['Saul', 'Jonathan', 'Solomon', 'Nathan', 'Asaph'],
+  'Solomon': ['David', 'Rehoboam', 'Hezekiah', 'Job', 'Agur'],
+  'Moses': ['Aaron', 'Joshua', 'Caleb', 'Pharaoh', 'Balaam'],
+  'Joshua': ['Moses', 'Caleb', 'Gideon', 'Samuel', 'David'],
+  'Joseph': ['Jacob', 'Judah', 'Reuben', 'Benjamin', 'Moses'],
+  'Jacob': ['Isaac', 'Abraham', 'Esau', 'Joseph', 'Laban'],
+  'Job': ['Eliphaz', 'Bildad', 'Zophar', 'Elihu', 'David'],
+  'Balaam': ['Balak', 'Moses', 'Aaron', 'Joshua', 'Phinehas'],
+  'Samuel': ['Eli', 'Saul', 'David', 'Nathan', 'Elijah'],
+  'Isaiah': ['Jeremiah', 'Ezekiel', 'Micah', 'Amos', 'Daniel'],
+  'Jeremiah': ['Isaiah', 'Ezekiel', 'Daniel', 'Baruch', 'Habakkuk'],
+  'Ezekiel': ['Isaiah', 'Jeremiah', 'Daniel', 'Hosea', 'Zechariah'],
+  'Daniel': ['Ezekiel', 'Jeremiah', 'Isaiah', 'Hananiah', 'Ezra'],
+  'Habakkuk': ['Micah', 'Zephaniah', 'Nahum', 'Haggai', 'Malachi'],
+  'Micah': ['Amos', 'Isaiah', 'Hosea', 'Habakkuk', 'Zephaniah'],
+  'Amos': ['Hosea', 'Micah', 'Elijah', 'Elisha', 'Jonah'],
+  'Jonah': ['Nahum', 'Micah', 'Amos', 'Elijah', 'Elisha'],
+  'Elijah': ['Elisha', 'Micaiah', 'Nathan', 'Samuel', 'Amos'],
+  'Elisha': ['Elijah', 'Gehazi', 'Micaiah', 'Samuel', 'Nathan'],
+  'Naaman': ['Gehazi', 'Elisha', 'Ben-hadad', 'Hazael', 'Ahab'],
+  'Naboth': ['Ahab', 'Elijah', 'Jezebel', 'Obadiah', 'Micaiah'],
+  'Nathan': ['David', 'Samuel', 'Gad', 'Solomon', 'Joab'],
+  'Mephibosheth': ['Ziba', 'David', 'Jonathan', 'Joab', 'Absalom'],
+  'Esther': ['Vashti', 'Mordecai', 'Ruth', 'Deborah', 'Abigail'],
+  'Mordecai': ['Esther', 'Haman', 'Ahasuerus', 'Nehemiah', 'Ezra'],
+  'Shadrach, Meshach, and Abednego': ['Daniel', 'Nebuchadnezzar', 'Belshazzar', 'Darius', 'Cyrus'],
+  'King Belshazzar': ['Nebuchadnezzar', 'Darius', 'Cyrus', 'Pharaoh', 'Herod'],
+  'The people of Israel': ['Joshua', 'Moses', 'Gideon', 'Samuel', 'David'],
+  'Mary, the mother of Jesus': ['Elizabeth', 'Martha', 'Mary Magdalene', 'Anna', 'Ruth'],
+  'Mary': ['Martha', 'Elizabeth', 'Anna', 'Mary Magdalene', 'Joanna'],
+  'Elizabeth': ['Mary, the mother of Jesus', 'Anna', 'Martha', 'Ruth', 'Esther'],
+  'Martha': ['Mary', 'Lazarus', 'Peter', 'Thomas', 'Mary Magdalene'],
+  'Simeon': ['Zechariah', 'Joseph', 'Anna', 'John the Baptist', 'Gabriel'],
+  'Gabriel': ['Michael', 'Jesus', 'Zechariah', 'Simeon', 'John the Baptist'],
+  'Jesus': ['Peter', 'John the Baptist', 'Paul', 'Thomas', 'Philip'],
+  'Peter': ['John', 'James', 'Andrew', 'Thomas', 'Philip'],
+  'Simon Peter': ['John', 'James', 'Andrew', 'Thomas', 'Philip'],
+  'Thomas': ['Peter', 'Philip', 'Andrew', 'Nathanael', 'John'],
+  'Philip': ['Andrew', 'Nathanael', 'Thomas', 'Peter', 'John'],
+  'Nathanael': ['Philip', 'Andrew', 'Thomas', 'Peter', 'John'],
+  'Andrew': ['Peter', 'Philip', 'John', 'James', 'Thomas'],
+  'Saul of Tarsus': ['Peter', 'Stephen', 'Barnabas', 'Ananias', 'Silas'],
+  'Paul': ['Peter', 'James', 'John', 'Barnabas', 'Silas'],
+  'Stephen': ['Philip', 'Paul', 'Peter', 'James', 'Barnabas'],
+  'The Philippian jailer': ['Cornelius', 'Ethiopian eunuch', 'Sergius Paulus', 'Felix', 'Festus'],
+  'The Ethiopian eunuch': ['Cornelius', 'Philippian jailer', 'Sergius Paulus', 'Nicodemus', 'Simon the sorcerer'],
+  'King Agrippa': ['Felix', 'Festus', 'Herod Antipas', 'Caesar', 'Pilate'],
+  'The repentant thief': ['Barabbas', 'Judas Iscariot', 'Simon of Cyrene', 'the Roman centurion', 'Joseph of Arimathea'],
+  'The disciples': ['Peter', 'Thomas', 'Philip', 'Andrew', 'James'],
+  'Peter and the apostles': ['Paul and Silas', 'Stephen', 'Barnabas', 'Philip', 'James'],
+  'Paul and Silas': ['Peter and John', 'Barnabas and Paul', 'Timothy and Silas', 'Philip and the eunuch', 'Peter and the apostles'],
+  'Judas Iscariot': ['Peter', 'Thomas', 'Judas (son of James)', 'Matthew', 'John'],
+};
+const QUOTE_SPEAKERS = [...new Set(QUOTES_POOL.map((item) => item.speaker))];
+const normalizeQuote = (value: string) => value.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+const UNIQUE_QUOTES_POOL = QUOTES_POOL.filter((item, index, all) =>
+  all.findIndex((other) => normalizeQuote(other.quote) === normalizeQuote(item.quote)) === index
+);
 
 const VERSES_POOL = [
   { ref: 'Genesis 1:1', text: 'In the beginning God created the heavens and the earth', missing: 'beginning', distractors: ['morning', 'eternity', 'wilderness'] },
@@ -659,8 +728,9 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'who-said-it': {
-        const q = QUOTES_POOL[globalSeed % QUOTES_POOL.length];
-        const options = makeFourDistinctOptions(q.speaker, q.options, shuffleSeed);
+        const q = UNIQUE_QUOTES_POOL[globalSeed % UNIQUE_QUOTES_POOL.length];
+        const speakerCandidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
+        const options = makeFourDistinctOptions(q.speaker, speakerCandidates, shuffleSeed);
         items.push({
           id,
           game_slug: gameSlug,
