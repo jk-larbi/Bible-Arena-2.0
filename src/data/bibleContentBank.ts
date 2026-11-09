@@ -439,54 +439,88 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-crossword': {
-        // Curated clue pairs: every clue has one clear answer and the answers
-        // share at least one letter, so the crossword intersection is real.
-        const crosswordPairs = [
-          { across: 'NOAH', acrossClue: 'The man God told to build an ark before the flood', down: 'ARK', downClue: 'The large vessel Noah built to survive the flood', acrossRef: 'Genesis 6:13-22', downRef: 'Genesis 6:14', extraDown: 'HAM', extraDownClue: 'One of Noah’s sons who entered the ark with his wife', extraDownRef: 'Genesis 7:13' },
-          { across: 'EDEN', acrossClue: 'The garden where Adam and Eve first lived', down: 'EVE', downClue: 'The first woman, formed from Adam’s side', acrossRef: 'Genesis 2:8', downRef: 'Genesis 2:21-23', extraDown: 'NEHEMIAH', extraDownClue: 'The cupbearer who led the rebuilding of Jerusalem’s wall', extraDownRef: 'Nehemiah 2:17-18' },
-          { across: 'MOSES', acrossClue: 'The leader God used to bring Israel out of Egypt', down: 'SEA', downClue: 'The body of water God parted for Israel to cross', acrossRef: 'Exodus 3:10', downRef: 'Exodus 14:21-22', extraDown: 'JOSHUA', extraDownClue: 'The leader who succeeded Moses and led Israel into Canaan', extraDownRef: 'Joshua 1:1-6' },
-          { across: 'RUTH', acrossClue: 'The Moabite woman who stayed loyal to Naomi', down: 'THOMAS', downClue: 'The disciple who doubted Jesus had risen until he saw Him', acrossRef: 'Ruth 1:16-17', downRef: 'John 20:24-29', extraDown: 'RACHEL', extraDownClue: 'The wife of Jacob and mother of Joseph and Benjamin', extraDownRef: 'Genesis 35:24' },
-          { across: 'JONAH', acrossClue: 'The prophet who was swallowed by a great fish', down: 'JOHN', downClue: 'The apostle traditionally associated with the fourth Gospel', acrossRef: 'Jonah 1:17', downRef: 'John 21:20-24', extraDown: 'NOAH', extraDownClue: 'The man who built the ark before the flood', extraDownRef: 'Genesis 6:13-22' },
-          { across: 'DAVID', acrossClue: 'The young shepherd who defeated Goliath', down: 'DANIEL', downClue: 'The prophet who was thrown into the lions’ den', acrossRef: '1 Samuel 17:49-50', downRef: 'Daniel 6:16-23', extraDown: 'ISAIAH', extraDownClue: 'The prophet who foretold that a child would be called Immanuel', extraDownRef: 'Isaiah 7:14' },
-          { across: 'MARY', acrossClue: 'The mother of Jesus', down: 'MARK', downClue: 'The Gospel writer whose account begins with John the Baptist', acrossRef: 'Luke 1:30-31', downRef: 'Mark 1:1-4', extraDown: 'RUTH', extraDownClue: 'The loyal Moabite woman who became an ancestor of David', extraDownRef: 'Ruth 4:13-17' },
-          { across: 'PETER', acrossClue: 'The disciple who denied Jesus three times', down: 'TEMPLE', downClue: 'The holy place in Jerusalem where Jesus taught', acrossRef: 'Luke 22:54-62', downRef: 'Luke 19:45-47', extraDown: 'RUTH', extraDownClue: 'The Moabite woman who stayed with Naomi', extraDownRef: 'Ruth 1:16-17' },
-          { across: 'ESTHER', acrossClue: 'The Jewish queen who risked her life to save her people', down: 'STAR', downClue: 'The sign that led the wise men to Jesus', acrossRef: 'Esther 4:14-16', downRef: 'Matthew 2:1-2', extraDown: 'JESUS', extraDownClue: 'The promised Messiah born in Bethlehem', extraDownRef: 'Matthew 2:1' },
-          { across: 'ISAAC', acrossClue: 'The son God promised to Abraham and Sarah', down: 'CAIN', downClue: 'Adam and Eve’s first son, who killed Abel', acrossRef: 'Genesis 21:1-3', downRef: 'Genesis 4:1-8', extraDown: 'SARAH', extraDownClue: 'Abraham’s wife and the mother of Isaac', extraDownRef: 'Genesis 21:1-3' },
-          { across: 'JACOB', acrossClue: 'The son of Isaac whose name was changed to Israel', down: 'JOB', downClue: 'The righteous man who endured great suffering and remained faithful', acrossRef: 'Genesis 32:28', downRef: 'Job 1:1-22', extraDown: 'RACHEL', extraDownClue: 'The wife of Jacob whom he loved deeply', extraDownRef: 'Genesis 29:18' },
-          { across: 'SAMUEL', acrossClue: 'The prophet who anointed Saul and David as kings', down: 'SAUL', downClue: 'Israel’s first king, anointed by Samuel', acrossRef: '1 Samuel 10:1; 16:13', downRef: '1 Samuel 10:1', extraDown: 'DAVID', extraDownClue: 'The shepherd boy who became king after Saul', extraDownRef: '1 Samuel 16:13' },
-        ];
-        const pair = crosswordPairs[globalSeed % crosswordPairs.length];
-        const acrossWord = pair.across.replace(/[^A-Z]/gi, '').toUpperCase();
-        const downWord = pair.down.replace(/[^A-Z]/gi, '').toUpperCase();
-        const extraWord = pair.extraDown.replace(/[^A-Z]/gi, '').toUpperCase();
-        const sharedAcrossIndex = [...acrossWord].findIndex((letter) => downWord.includes(letter));
-        const extraAcrossIndex = [...acrossWord].findIndex((letter, index) => index !== sharedAcrossIndex && extraWord.includes(letter));
-        if (sharedAcrossIndex < 0 || extraAcrossIndex < 0) {
-          throw new Error(`Invalid Bible crossword intersection for level ${level}, challenge ${challengeIndex}.`);
-        }
-        if (!pair.acrossClue.trim() || !pair.downClue.trim() || !pair.extraDownClue.trim() ||
-            !pair.acrossRef.trim() || !pair.downRef.trim() || !pair.extraDownRef.trim()) {
-          throw new Error(`Incomplete Bible crossword clue or Scripture reference for level ${level}, challenge ${challengeIndex}.`);
-        }
+        // Original Scripture-checked clue bank. Answers are normalized for grid entry;
+        // references and explanations remain visible after submission.
+        const crosswordClues = [
+          ['JEHOIAKIM','The king who cut Jeremiah’s scroll with a knife and burned it','Jeremiah 36:20-26'],
+          ['EHUD','The left-handed judge who killed Eglon','Judges 3:15-22'],
+          ['EBEDMELECH','The Ethiopian official who rescued Jeremiah from the cistern','Jeremiah 38:7-13'],
+          ['HULDAH','The prophetess consulted during Josiah’s reign','2 Kings 22:14-20'],
+          ['MATTHIAS','The man chosen to replace Judas among the Twelve','Acts 1:23-26'],
+          ['UZZIAH','The king struck with leprosy after unlawfully burning incense','2 Chronicles 26:16-21'],
+          ['MEPHIBOSHETH','Jonathan’s son whom David showed kindness','2 Samuel 9:1-13'],
+          ['MICAIAH','The prophet who warned Ahab despite the other prophets’ assurances','1 Kings 22:13-28'],
+          ['JAEL','The woman who killed Sisera with a tent peg','Judges 4:17-22'],
+          ['BEZALEL','The craftsman appointed to make articles for the tabernacle','Exodus 31:1-5'],
+          ['SHAMGAR','The judge who struck down six hundred Philistines with an oxgoad','Judges 3:31'],
+          ['ABIGAIL','The wise woman who became David’s wife after Nabal died','1 Samuel 25:23-42'],
+          ['RIZPAH','The woman who guarded the bodies of Saul’s descendants','2 Samuel 21:8-10'],
+          ['HAGGAI','The prophet who urged the returned exiles to rebuild the temple','Haggai 1:1-8'],
+          ['ZEPHANIAH','The prophet whose book begins with a warning about the day of the LORD','Zephaniah 1:1-7'],
+          ['NAAMAN','The Syrian commander healed after washing in the Jordan','2 Kings 5:1-14'],
+          ['GIDEON','The judge who reduced his army to three hundred men','Judges 7:1-8'],
+          ['DEBORAH','The prophetess and judge who summoned Barak','Judges 4:4-9'],
+          ['BARZILLAI','The elderly Gileadite who supplied David during Absalom’s rebellion','2 Samuel 17:27-29'],
+          ['DOEG','The Edomite who reported David’s visit to Ahimelech','1 Samuel 22:9-19'],
+          ['ONESIMUS','The formerly useless servant Paul described as useful to him','Philemon 10-16'],
+          ['EUTYCHUS','The young man who fell from a window while Paul preached','Acts 20:7-12'],
+          ['PHOEBE','The servant of the church at Cenchreae commended by Paul','Romans 16:1-2'],
+          ['AGABUS','The prophet who foretold a great famine and Paul’s arrest','Acts 11:27-28; 21:10-11'],
+          ['TROPHIMUS','The Ephesian whom Paul left sick at Miletus','2 Timothy 4:20'],
+          ['LYDIA','The seller of purple goods who hosted Paul in Philippi','Acts 16:14-15'],
+          ['PRISCILLA','The woman who, with Aquila, explained God’s way more accurately to Apollos','Acts 18:24-26'],
+          ['MELCHIZEDEK','The king of Salem and priest who blessed Abraham','Genesis 14:18-20'],
+          ['ZACCHAEUS','The chief tax collector who climbed a tree to see Jesus','Luke 19:1-10'],
+          ['BEREA','The place whose people examined the Scriptures daily','Acts 17:10-12'],
+          ['PATMOS','The island where John received the Revelation','Revelation 1:9'],
+          ['JOPPA','The coastal city where Peter raised Tabitha','Acts 9:36-43'],
+          ['SHILOH','The place where the tabernacle stood during Joshua’s time','Joshua 18:1'],
+          ['PISGAH','The mountain height from which Moses viewed the land','Deuteronomy 34:1-4'],
+          ['GOLGOTHA','The place where Jesus was crucified','John 19:17-18'],
+          ['PENTECOST','The feast day when the Holy Spirit came upon the gathered disciples','Acts 2:1-4'],
+          ['PASSOVER','The feast commemorating Israel’s deliverance from Egypt','Exodus 12:1-14'],
+          ['EPHOD','A priestly garment associated with the high priest','Exodus 28:6-12'],
+          ['URIM','An object kept in the high priest’s breastpiece for decision-making','Exodus 28:30'],
+          ['MANNA','The food God provided Israel in the wilderness','Exodus 16:14-15'],
+          ['SHOFAR','A ram’s horn sounded at Jericho','Joshua 6:4-5'],
+          ['JUBILEE','The year of release proclaimed every fiftieth year','Leviticus 25:8-12'],
+          ['SHEPHERD','The image Jesus used when describing his care for the sheep','John 10:11-14'],
+          ['PARABLE','A teaching story Jesus often used to reveal truth','Matthew 13:34'],
+          ['COVENANT','A solemn agreement established by God with his people','Genesis 17:1-7'],
+          ['TABERNACLE','The portable sanctuary Israel built in the wilderness','Exodus 25:8-9'],
+          ['PENTATEUCH','The collective name for the first five books of the Bible','Luke 24:44'],
+          ['PHILEMON','The short New Testament letter concerning Onesimus','Philemon 1:1'],
+          ['NAHUM','The prophet whose book announces judgment against Nineveh','Nahum 1:1'],
+          ['HABAKKUK','The prophet who asked why injustice seemed to go unpunished','Habakkuk 1:2-4'],
+          ['ELISHA','The prophet who succeeded Elijah and received a double portion','2 Kings 2:9-15'],
+          ['JEROBOAM','The king whose rebellion divided the kingdom after Solomon','1 Kings 12:16-20'],
+          ['ATHALIAH','The queen who attempted to destroy the royal heirs of Judah','2 Kings 11:1-3'],
+          ['JEHOSHAPHAT','The king of Judah who appointed singers before the army','2 Chronicles 20:20-22'],
+          ['ZACCHARIAS','The father of John the Baptist, named in Luke’s account','Luke 1:5-13'],
+          ['SAPPHIRA','The wife of Ananias who lied about the proceeds of a sale','Acts 5:1-10'],
+          ['TABITHA','The disciple also known as Dorcas, raised by Peter','Acts 9:36-41'],
+          ['CORNELIUS','The Roman centurion whose household heard Peter preach','Acts 10:1-48'],
+          ['GAMALIEL','The Pharisee who advised the council to leave the apostles alone','Acts 5:34-39'],
+          ['EPAPHRAS','The servant of Christ who laboured in prayer for the Colossians','Colossians 4:12'],
+        ] as const;
+        const count = 10 + (globalSeed % 6);
+        const startAt = (Math.floor(globalSeed / 5) * 7) % crosswordClues.length;
+        const chosen = Array.from({ length: count }, (_, offset) => crosswordClues[(startAt + offset * 3) % crosswordClues.length]);
+        const entries = chosen.map(([answer, clue, reference], index) => ({
+          number: index + 1,
+          answer,
+          clue,
+          reference,
+          direction: index % 2 === 0 ? 'across' : 'down',
+        }));
         items.push({
-          id,
-          game_slug: gameSlug,
-          level,
-          challenge_index: challengeIndex,
-          question_text: 'Solve the two Bible clues. Their answers cross at a shared letter.',
-          options: [acrossWord, downWord],
-          correct_answer: `${acrossWord}|${downWord}`,
-          explanation: `Across: ${acrossWord} — ${pair.acrossClue} (${pair.acrossRef}). Down: ${downWord} — ${pair.downClue} (${pair.downRef}).`,
-          reference: `${pair.acrossRef}; ${pair.downRef}`,
-          metadata: {
-            acrossClue: pair.acrossClue,
-            acrossAnswer: acrossWord,
-            downClue: pair.downClue,
-            downAnswer: downWord,
-            extraDownAnswer: pair.extraDown,
-            extraDownClue: pair.extraDownClue,
-            extraDownReference: pair.extraDownRef,
-          },
+          id, game_slug: gameSlug, level, challenge_index: challengeIndex,
+          question_text: 'Complete the Bible crossword. Solve every Across and Down clue.',
+          options: entries.map((entry) => entry.answer),
+          correct_answer: entries.map((entry) => entry.answer).join('|'),
+          explanation: entries.map((entry) => `${entry.number}. ${entry.answer}: ${entry.clue} (${entry.reference})`).join(' '),
+          reference: [...new Set(entries.map((entry) => entry.reference))].join('; '),
+          metadata: { entries, crosswordVersion: 2, category: 'Mixed Bible knowledge' },
         });
         break;
       }
