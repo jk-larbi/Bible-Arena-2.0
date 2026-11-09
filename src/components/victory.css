@@ -1,4 +1,4 @@
-.victory-root{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding: max(16px, env(safe-area-inset-top)) 0 max(24px, env(safe-area-inset-bottom));background:#171B24;color:#F3EBDD}
+.victory-root{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-start;justify-content:center;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding: max(16px, env(safe-area-inset-top)) 0 max(24px, env(safe-area-inset-bottom));background:#171B24;color:#F3EBDD}
 .victory-inner{width:100%;max-width:448px;min-height:min-content;margin:auto;padding:20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;position:relative;z-index:1}
 .victory-fx{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .v-title{margin-top:8px}
