@@ -133,7 +133,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
         const start = now + index * spacing;
         const oscillator = context.createOscillator();
         const envelope = context.createGain();
-        const peak = kind === 'tick' ? 0.025 : kind === 'incorrect' ? 0.045 : 0.065;
+        const peak = kind === 'tick' ? 0.04 : kind === 'incorrect' ? 0.07 : 0.11;
         const duration = kind === 'tick' ? 0.075 : 0.18;
         oscillator.type = kind === 'incorrect' ? 'triangle' : 'sine';
         oscillator.frequency.setValueAtTime(frequency, start);
@@ -167,7 +167,8 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
     setSoundEnabled(next);
     try { localStorage.setItem('biblearena-game-sound', next ? 'on' : 'off'); } catch { /* ignore storage restrictions */ }
     window.dispatchEvent(new Event('biblearena:sound-change'));
-    if (next) void playGameSound('tick', true);
+    // Use a clear confirmation chord so the user can hear that audio is enabled.
+    if (next) void playGameSound('complete', true);
   };
 
 
