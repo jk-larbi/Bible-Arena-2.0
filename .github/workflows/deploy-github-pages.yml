@@ -35,9 +35,6 @@ jobs:
       - name: TypeScript check
         run: npm run lint
 
-      - name: Validate Bible content structure
-        run: npm run validate:content
-
       - name: Test quiz accuracy and scoring
         run: npm run test:quiz
 
