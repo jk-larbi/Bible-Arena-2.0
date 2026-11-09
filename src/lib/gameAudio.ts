@@ -55,7 +55,7 @@ function createBackgroundMusic(context: AudioContext): AudioBuffer {
   const sampleRate = context.sampleRate;
   const secondsPerBeat = 60 / 82;
   const barLength = secondsPerBeat * 4;
-  const loopLength = barLength * 4;
+  const loopLength = barLength * 8;
   const buffer = context.createBuffer(1, Math.ceil(sampleRate * loopLength), sampleRate);
   const samples = buffer.getChannelData(0);
 
@@ -88,7 +88,7 @@ function createBackgroundMusic(context: AudioContext): AudioBuffer {
     { notes: ['A3', 'C4', 'E4'], bass: 'A3' },
     { notes: ['F4', 'A4', 'C5'], bass: 'F3' }
   ];
-  chords.forEach((chord, bar) => {
+  Array.from({ length: 8 }, (_, bar) => chords[bar % 4]).forEach((chord, bar) => {
     const start = bar * barLength;
     chord.notes.forEach((note) => addNote(frequencies[note], start, barLength, 0.075, 'pad'));
     addNote(frequencies[chord.bass], start, barLength * 0.92, 0.13, 'pad');
