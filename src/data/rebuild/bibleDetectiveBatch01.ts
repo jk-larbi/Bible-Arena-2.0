@@ -1,6 +1,6 @@
 import type { ChallengeItem } from '../bibleContentBank';
 
-/** Original, evidence-led Bible Detective cases. Five cases per level, Levels 1–5. */
+/** Verified Bible Detective cases. Five distinct evidence files per level, Levels 1–30. */
 export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
   {
     "id": "bible-detective-case-l1-c1",
@@ -18,7 +18,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Luke 7:36-50",
     "explanation": "Jesus contrasted the woman's love with Simon's lack of hospitality and declared her sins forgiven.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "case_title": "The Broken Alabaster Jar",
       "clues": [
         "Evidence A — A woman entered a Pharisee's house while Jesus was reclining at the table.",
@@ -45,7 +45,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "John 4:46-54",
     "explanation": "The royal official's son was healed at the seventh hour, and the household believed.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "case_title": "The Missing Body and the Unburned Clothes",
       "clues": [
         "Evidence A — A royal official's servant died, yet the official was told to go home because his son lived.",
@@ -72,7 +72,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "2 Kings 7:3-11",
     "explanation": "The four men with leprosy found the Aramean camp deserted and reported it to Samaria.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "case_title": "The Unusual Witness at the City Gate",
       "clues": [
         "Evidence A — A famine-stricken capital had four men excluded from ordinary society at its gate.",
@@ -99,7 +99,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Numbers 27:1-11; 36:1-12",
     "explanation": "Mahlah, Noah, Hoglah, Milcah and Tirzah received an inheritance ruling from the LORD.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "case_title": "The Unclaimed Inheritance",
       "clues": [
         "Evidence A — A man died without sons, and his daughters approached the entrance of the tent of meeting.",
@@ -126,7 +126,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Exodus 30:11-16",
     "explanation": "Exodus prescribes a half-shekel ransom for each person counted in the census.",
     "metadata": {
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "case_title": "The Unusual Census Payment",
       "clues": [
         "Evidence A — A census was ordered among Israel's men eligible for military service.",
@@ -142,26 +142,26 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 2,
     "challenge_index": 1,
-    "question_text": "CASE FILE 06: The King Who Cut Up a Prophetic Message\nInvestigate the testimony and identify the biblical event or person.",
-    "correct_answer": "Jehoiakim Burns Jeremiah's Scroll",
+    "question_text": "CASE FILE 006: The Trees Seeking a King\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Jotham's Parable of the Trees",
     "options": [
-      "Jehoiakim Burns Jeremiah's Scroll",
-      "Josiah Finds the Book of the Law",
-      "Zedekiah Breaks the Covenant",
-      "Manasseh Destroys the Altar"
+      "Jotham's Parable of the Trees",
+      "Nathan's Parable of the Ewe Lamb",
+      "Gideon's Fleece",
+      "Joash's Temple Chest"
     ],
-    "reference": "Jeremiah 36:20-26",
-    "explanation": "King Jehoiakim burned the scroll containing Jeremiah's words as Jehudi read it.",
+    "reference": "Judges 9:7-21",
+    "explanation": "Jotham told the people of Shechem a parable in which the olive, fig and vine declined kingship, while the bramble accepted it and warned of fire.",
     "metadata": {
-      "difficulty": "advanced",
-      "case_title": "The King Who Cut Up a Prophetic Message",
+      "difficulty": "beginner",
+      "case_title": "The Trees Seeking a King",
       "clues": [
-        "Evidence A — A scroll dictated by Jeremiah was read before a king during a winter session.",
-        "Evidence B — After hearing several columns, the king cut them with a scribe's knife and threw them into the fire.",
-        "Evidence C — The king's officials urged him not to burn the scroll, but he did not listen."
+        "A surviving son of Gideon addressed the people from Mount Gerizim after a violent struggle over kingship.",
+        "In his story, the olive tree, fig tree and vine each refused to abandon their useful work to rule the trees.",
+        "A bramble accepted the offer and warned that fire could come from it and consume the cedars of Lebanon."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-6"
+      "fact_key": "detective-rebuilt-2-1"
     }
   },
   {
@@ -180,7 +180,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Ezekiel 37:15-28",
     "explanation": "The joined sticks symbolised the reunification of Israel under one king.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Prophetic Sign of Two Sticks",
       "clues": [
         "Evidence A — A prophet was told to write two names on separate pieces of wood.",
@@ -207,7 +207,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Philemon 1:8-18",
     "explanation": "Paul appealed to Philemon to receive Onesimus as a brother, not merely as a servant.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Prisoner Who Sent Back a Runaway",
       "clues": [
         "Evidence A — A letter was written by a prisoner concerning a man who had become a Christian.",
@@ -234,7 +234,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Acts 23:1-10",
     "explanation": "Paul's statement about resurrection divided the Pharisees and Sadducees.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Courtroom Split Over a Resurrection",
       "clues": [
         "Evidence A — A prisoner stood before a council made up of two rival Jewish groups.",
@@ -261,7 +261,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Acts 17:16-31",
     "explanation": "Paul referred to the altar 'To the Unknown God' in his speech in Athens.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Unknown Altar in Athens",
       "clues": [
         "Evidence A — A travelling teacher examined religious objects in a Greek city.",
@@ -277,26 +277,26 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 3,
     "challenge_index": 1,
-    "question_text": "CASE FILE 11: The Unexpected Roman Citizenship\nInvestigate the testimony and identify the biblical event or person.",
-    "correct_answer": "Paul's Roman Citizenship",
+    "question_text": "CASE FILE 011: The Voice in the Night at Shiloh\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Samuel's Call at Shiloh",
     "options": [
-      "Paul's Roman Citizenship",
-      "Silas' Roman Citizenship",
-      "Peter's Citizenship",
-      "Luke's Citizenship"
+      "Samuel's Call at Shiloh",
+      "Elijah's Call at Horeb",
+      "Samuel Anoints Saul",
+      "Micaiah's Vision of the Heavenly Court"
     ],
-    "reference": "Acts 22:24-29",
-    "explanation": "Paul stated that he was born a Roman citizen, unlike the commander who had bought citizenship.",
+    "reference": "1 Samuel 3:1-18",
+    "explanation": "The LORD called Samuel during the night; Eli eventually understood what was happening and instructed the boy to answer the LORD.",
     "metadata": {
-      "difficulty": "advanced",
-      "case_title": "The Unexpected Roman Citizenship",
+      "difficulty": "beginner",
+      "case_title": "The Voice in the Night at Shiloh",
       "clues": [
-        "Evidence A — A Roman commander prepared to have a prisoner examined by scourging.",
-        "Evidence B — The prisoner asked whether it was lawful to scourge an uncondemned Roman citizen.",
-        "Evidence C — The commander became alarmed after learning the prisoner was a citizen by birth."
+        "A young attendant served under an elderly priest while the word of the LORD was rare.",
+        "He heard his name called during the night and repeatedly ran to the priest, thinking he had been summoned.",
+        "The priest told him to answer, 'Speak, LORD, for your servant hears'; the message concerned judgment on the priest's household."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-11"
+      "fact_key": "detective-rebuilt-3-1"
     }
   },
   {
@@ -315,7 +315,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Acts 23:12-35",
     "explanation": "Paul's nephew warned the Roman commander of the ambush planned by conspirators.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Man Who Was Not to Be Harmed",
       "clues": [
         "Evidence A — A commander of the Roman cohort protected a prisoner from a plot.",
@@ -342,7 +342,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Mark 6:17-29",
     "explanation": "John rebuked Herod for marrying Herodias, his brother's wife, and was executed after Herod's oath.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Prophet Who Challenged a Royal Wedding",
       "clues": [
         "Evidence A — A prophet confronted a ruler for taking his brother's wife.",
@@ -369,7 +369,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Jeremiah 32:6-15",
     "explanation": "Jeremiah bought his cousin Hanamel's field at Anathoth as a sign of future restoration.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Contract Sealed Before Exile",
       "clues": [
         "Evidence A — A prophet was told to buy a field while the city was under siege.",
@@ -396,7 +396,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "2 Kings 13:14-19",
     "explanation": "Elisha rebuked Joash for striking the ground only three times after the arrow of deliverance.",
     "metadata": {
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "case_title": "The Man Who Refused to Strike the Ground Enough",
       "clues": [
         "Evidence A — A dying prophet told a king to take a bow and arrows and strike the ground.",
@@ -423,7 +423,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "1 Kings 13:11-32",
     "explanation": "The unnamed man of God from Judah disobeyed the LORD's instruction and was killed by a lion.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Two Prophets and the Disputed Burial",
       "clues": [
         "Evidence A — An older prophet persuaded a younger man of God to eat with him despite a contrary instruction.",
@@ -450,7 +450,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Judges 7:9-15",
     "explanation": "Gideon overheard a Midianite's dream and its interpretation before attacking the camp.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Battle Plan Hidden in a Dream",
       "clues": [
         "Evidence A — A Midianite soldier told a companion about a dream involving a barley loaf.",
@@ -477,7 +477,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "2 Kings 11:1-12",
     "explanation": "Jehosheba hid Joash, and Jehoiada later brought him out to be crowned king.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Priest Who Hid the Royal Heir",
       "clues": [
         "Evidence A — A queen attempted to destroy the royal descendants after her son's death.",
@@ -493,26 +493,26 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 4,
     "challenge_index": 4,
-    "question_text": "CASE FILE 19: The Man Who Asked for a Sign Twice\nInvestigate the testimony and identify the biblical event or person.",
-    "correct_answer": "Gideon's Fleece",
+    "question_text": "CASE FILE 019: The Mountain Claimed at Eighty-Five\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Caleb Receives Hebron",
     "options": [
-      "Gideon's Fleece",
-      "Hezekiah's Sundial",
-      "Elijah's Altar",
-      "Moses' Staff"
+      "Caleb Receives Hebron",
+      "Joshua Receives Timnath-serah",
+      "Othniel Receives Achsah",
+      "The Daughters of Zelophehad Receive an Inheritance"
     ],
-    "reference": "Judges 6:36-40",
-    "explanation": "Gideon asked for two signs involving the fleece before leading Israel against Midian.",
+    "reference": "Joshua 14:6-15",
+    "explanation": "Caleb reminded Joshua of the promise Moses had made and received Hebron as his inheritance because he had followed the LORD wholeheartedly.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Man Who Asked for a Sign Twice",
+      "difficulty": "beginner",
+      "case_title": "The Mountain Claimed at Eighty-Five",
       "clues": [
-        "Evidence A — A judge requested a sign involving a fleece on a threshing floor.",
-        "Evidence B — First the fleece alone was wet while the ground was dry; then the fleece was dry while the ground was wet.",
-        "Evidence C — The requests came before a small force faced the Midianites."
+        "An older leader from the tribe of Judah approached Joshua at Gilgal and recalled the earlier mission to scout Canaan.",
+        "He said forty-five years had passed since Moses sent him from Kadesh-barnea, and he was now eighty-five.",
+        "Rather than request an easy portion, he asked for the hill country where the Anakim still lived."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-19"
+      "fact_key": "detective-rebuilt-4-4"
     }
   },
   {
@@ -531,7 +531,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Hosea 3:1-5",
     "explanation": "Hosea bought Gomer back as a sign of the LORD's continued love for unfaithful Israel.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Prophet Who Bought Back His Wife",
       "clues": [
         "Evidence A — A prophet was told to love a woman who was loved by another and was adulterous.",
@@ -558,7 +558,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Esther 7:1-6",
     "explanation": "Esther exposed Haman's plot during the second banquet and pleaded for her people.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Queen Who Asked for a Second Banquet",
       "clues": [
         "Evidence A — A royal decree threatened the lives of a people scattered through an empire.",
@@ -585,7 +585,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Zechariah 5:1-4",
     "explanation": "Zechariah's flying scroll represented judgment against theft and false swearing.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Vision of the Flying Scroll",
       "clues": [
         "Evidence A — A prophet saw a scroll flying through the air.",
@@ -612,7 +612,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Zechariah 5:5-11",
     "explanation": "The ephah vision depicted Wickedness being carried to Shinar.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Basket That Measured Wickedness",
       "clues": [
         "Evidence A — A prophet saw a basket with a lead cover lifted away.",
@@ -628,26 +628,26 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "game_slug": "bible-detective",
     "level": 5,
     "challenge_index": 4,
-    "question_text": "CASE FILE 24: The Servant Who Was Marked for Release\nInvestigate the testimony and identify the biblical event or person.",
-    "correct_answer": "Onesimus and Philemon",
+    "question_text": "CASE FILE 024: The Midnight Hymns in Philippi\nInvestigate the evidence and identify the biblical event or person.",
+    "correct_answer": "Paul and Silas in the Philippian Jail",
     "options": [
-      "Onesimus and Philemon",
-      "Tychicus and Onesimus",
-      "Mark and Barnabas",
-      "Epaphroditus and Paul"
+      "Paul and Silas in the Philippian Jail",
+      "Peter Escapes Herod's Prison",
+      "Paul's Shipwreck on Malta",
+      "The Apostles Released by an Angel"
     ],
-    "reference": "Philemon 1:10-19",
-    "explanation": "Paul's letter to Philemon asks that Onesimus be received as a beloved brother.",
+    "reference": "Acts 16:16-40",
+    "explanation": "After a slave girl's owners stirred up opposition, Paul and Silas were beaten and imprisoned; an earthquake opened the prison, and the jailer and his household believed.",
     "metadata": {
-      "difficulty": "expert",
-      "case_title": "The Servant Who Was Marked for Release",
+      "difficulty": "beginner",
+      "case_title": "The Midnight Hymns in Philippi",
       "clues": [
-        "Evidence A — A man who had fled his master met Paul and became a believer.",
-        "Evidence B — Paul sent him back with a letter asking the master to charge any debt to Paul.",
-        "Evidence C — Paul reminded the master that he owed Paul his very self."
+        "A slave girl followed two missionaries through a Macedonian city, crying out about them; her owners profited from her fortune-telling.",
+        "After the missionaries removed the spirit, the owners dragged them before magistrates, who ordered them beaten and jailed.",
+        "At midnight the prisoners prayed and sang; an earthquake opened the doors, and the jailer asked what he must do to be saved."
       ],
       "investigation_type": "multi_evidence_case",
-      "fact_key": "detective-case-24"
+      "fact_key": "detective-rebuilt-5-4"
     }
   },
   {
@@ -666,7 +666,7 @@ export const BIBLE_DETECTIVE_BATCH_01: ChallengeItem[] = [
     "reference": "Acts 5:34-39",
     "explanation": "Gamaliel advised caution when the council considered killing the apostles.",
     "metadata": {
-      "difficulty": "expert",
+      "difficulty": "beginner",
       "case_title": "The Council's Unexpected Adviser",
       "clues": [
         "Evidence A — A respected Pharisee stood up after apostles were brought before the council.",
