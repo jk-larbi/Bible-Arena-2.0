@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
-type Entry = { number: number; answer: string; clue: string; reference: string; direction: 'across' | 'down' };
+export type CrosswordEntry = { number: number; answer: string; clue: string; reference: string; direction: 'across' | 'down' };
+type Entry = CrosswordEntry;
 type Placed = Entry & { x: number; y: number };
 type Cell = { x: number; y: number; across?: number; down?: number };
 
@@ -91,7 +92,7 @@ function buildLayoutOnce(entries: Entry[], firstIndex = 0) {
 }
 
 
-function buildLayout(entries: Entry[]) {
+export function buildBibleCrosswordLayout(entries: Entry[]) {
   let best = buildLayoutOnce(entries, 0);
   for (let start = 1; start < entries.length && best.placed.length < entries.length; start++) {
     const candidate = buildLayoutOnce(entries, start);
@@ -103,7 +104,7 @@ function buildLayout(entries: Entry[]) {
 export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0 }: {
   entries: Entry[]; onSubmit: (answer: string) => void; disabled: boolean; hintCount?: number;
 }) {
-  const layout = useMemo(() => buildLayout(entries), [entries]);
+  const layout = useMemo(() => buildBibleCrosswordLayout(entries), [entries]);
   const [letters, setLetters] = useState<Record<string, string>>({});
   const [active, setActive] = useState<'across' | 'down'>('across');
   const width = Math.max(1, ...layout.cells.map((c) => c.x + 1));
@@ -111,6 +112,11 @@ export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0
   const cellMap = new Map(layout.cells.map((c) => [`${c.x},${c.y}`, c]));
   const readWord = (p: Placed) => Array.from({ length: p.answer.length }, (_, i) => letters[`${p.x + (p.direction === 'across' ? i : 0)},${p.y + (p.direction === 'down' ? i : 0)}`] || '').join('');
   const usable = layout.placed.length;
+  const revealedLetters = new Map<string, string>();
+  layout.placed.slice(0, Math.min(2, Math.max(0, hintCount))).forEach((entry) => {
+    const key = `${entry.x},${entry.y}`;
+    revealedLetters.set(key, entry.answer[0] || '');
+  });
   return (
     <div className="space-y-4">
       <div className="rounded-xl bg-[#F3EBDD] border border-[#171B24]/15 p-3 text-sm text-[#171B24]">
@@ -122,9 +128,11 @@ export function BibleCrosswordBoard({ entries, onSubmit, disabled, hintCount = 0
           {Array.from({ length: width * height }, (_, idx) => {
             const x = idx % width, y = Math.floor(idx / width), cell = cellMap.get(`${x},${y}`);
             if (!cell) return <div key={idx} className="h-[34px] w-[34px] bg-[#080B12] rounded-sm" />;
-            const value = letters[`${x},${y}`] || '';
+            const cellKey = `${x},${y}`;
+            const revealed = revealedLetters.get(cellKey);
+            const value = letters[cellKey] || revealed || '';
             return <div key={idx} className="relative h-[34px] w-[34px]">
-              <input aria-label={`Crossword cell ${x + 1}, ${y + 1}`} maxLength={1} value={value} disabled={disabled}
+              <input aria-label={`Crossword cell ${x + 1}, ${y + 1}`} maxLength={1} value={value} disabled={disabled || Boolean(revealed)}
                 onFocus={() => setActive(cell.across ? 'across' : 'down')}
                 onChange={(e) => setLetters((old) => ({ ...old, [`${x},${y}`]: e.target.value.replace(/[^a-z]/gi, '').slice(-1).toUpperCase() }))}
                 className="h-full w-full rounded-sm border-2 border-white bg-white text-center font-black text-[#171B24] uppercase focus:border-[#D66B3D] outline-none" />
