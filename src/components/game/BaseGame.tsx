@@ -842,6 +842,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       }[];
       return (
         <BibleCrosswordBoard
+          key={currentChallenge.id}
           entries={entries}
           disabled={reveal !== null}
           hintCount={hintLevel}
