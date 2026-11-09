@@ -124,8 +124,10 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
     setStatusMsg(null);
     try {
       const senderName = user.user_metadata?.username || user.user_metadata?.full_name || 'A Bible Arena Scholar';
-      const selectedGame = GAMES_LIST.find((item) => item.id === gameId) || GAMES_LIST[0];
-      const challengeTitle = `${selectedGame.title}: ${senderName} vs ${targetProfile.username || targetProfile.full_name}`;
+      const mode = CHALLENGE_MODES.find((item) => item.id === gameId);
+      const selectedGame = mode?.gameId === 'random' ? GAMES_LIST[Math.floor(Math.random() * GAMES_LIST.length)] : GAMES_LIST.find((item) => item.id === (mode?.gameId || gameId)) || GAMES_LIST[0];
+      const challengeLabel = mode?.label || selectedGame.title;
+      const challengeTitle = `${challengeLabel}: ${senderName} vs ${targetProfile.username || targetProfile.full_name}`;
       
       const { data: inserted, error: insertErr } = await supabase
         .from('challenges')
