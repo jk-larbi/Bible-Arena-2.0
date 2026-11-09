@@ -4,36 +4,43 @@ Branch: `hosting/cloudflare-github-pages`
 Supabase project: `cbbtqsjcsttguukfgnvw`  
 Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 
-## Publication rule
+## Rules
 
-- Target: all 50 levels playable for each game.
-- Each completed game requires five verified challenges per level (250 total), game-specific mechanics preserved, and cross-game duplicate checks.
-- Scripture questions must use accurate translation-aware wording and include close but fair reference distractors where appropriate (for example, 1 Timothy versus 2 Timothy).
-- Scripture-memory challenges must include both completion prompts and full-verse-to-reference selection questions.
-- Image-based puzzle levels must use relevant, legible, properly licensed or original artwork as part of the actual puzzle.
-- A game is not complete until its content, database publication flags, frontend behaviour, validation, and deployment have all been verified.
+- Each game targets 50 levels, five challenges per level (250 total).
+- Levels 1–30 are published; Levels 31–50 remain Coming Soon until approved.
+- Preserve each game's actual mechanic, not just its theme.
+- Scripture references and wording must be checked against the passage and chosen translation. For Scripture-memory formats, include both missing-phrase completion and full-verse-to-reference multiple-choice.
+- Distractors should be plausible but fair, including close book distinctions such as 1 Timothy versus 2 Timothy where relevant.
+- Image puzzle levels need relevant, legible original or properly licensed artwork in the actual gameplay.
+- A game is complete only after source review, cross-game duplicate checks, database verification, frontend/runtime testing, and successful deployment.
 
-## Completed
+## Completed / database-integrated
 
-- **Bible Riddles** — previously rebuilt and reported as 250 updated questions, with Levels 1–50 originally populated. The current project-wide 30-level publication cap is applied separately.
+### Bible Riddles
+- Previously reported as rebuilt with 250 questions. Re-audit source quality and live integration if required before treating as fully verified under the current standards.
 
-## Current investigation
+### Bible Character Quest
+- Five original replacement batches cover Levels 1–50, 250 questions total, five per level.
+- Automated audit across the batches: 250 unique question wordings; 250 unique normalized reference-answer keys; four distinct options including the answer for every row; non-empty reference and explanation on every row; exactly five questions per level.
+- Compared normalized reference-answer keys against other existing game banks; collisions found during the first check were replaced. The repeat query returned no cross-game matches.
+- Imported all 250 rows into `public.game_content`, replacing the previous Character Quest bank. Populated stable `question_key` values for answer RPC validation.
+- Published Levels 1–30 and kept Levels 31–50 unpublished. Database verification returned 250 rows, 250 unique question wordings/facts, 250 four-option rows and 250 referenced/explained rows. The public view exposes all 150 published questions.
+- Reward check: 10 marks per correct answer (maximum 50 marks per five-question level). The Supabase level-completion function awards 100 XP per correct answer (maximum 500 XP on a perfect level); XP is separate from the marks balance.
+- Remaining verification: browser-level authenticated playthrough and successful Pages deployment for the latest documentation commit. Do not label fully live until these pass.
 
-- **Bible Chain Challenge — not complete; no content was changed in this run.**
-- The game bypasses Supabase content in `getLevelChallenges` and calls `buildLocalChallengesForLevel` in `src/data/bibleContentBank.ts`.
-- The existing generator builds a chain by matching the final letter of one entry to the first letter of another. Its current source pool has 66 Bible books and 32 character entries (98 entries total).
-- A deterministic maximum bipartite matching check over those source entries found only 39 unique valid source-to-target links. That pool cannot safely supply 150 distinct chain challenges without expanding and reviewing the underlying Bible-entry source bank.
-- Existing generated rows repeat the same targets/facts (for example, several different source books point to Song of Solomon). Replacing only Supabase rows would not affect gameplay while the local-generation bypass remains.
-- Safe next work: expand and validate the Bible Chain entry pool sufficiently, build 150 unique valid chain links while retaining the letter-link mechanic, then route gameplay to the validated bank and verify the deployed build.
+## Current next game: Bible Detective
 
-## Remaining games
+- Existing implementation currently contains only eight fixed case templates in `DETECTIVE_CASES`.
+- `buildLocalChallengesForLevel` selects a case using modulo indexing, so the same small set repeats across levels. That does not meet the 250-question target.
+- Preserve the investigation mechanic: a case title, multiple evidence clues/witness statements, and a final identification from four plausible case options. Do not flatten Detective into generic trivia.
+- Next: build 250 distinct case files with five per level, progressively harder evidence, accurate references and explanations, then integrate the case bank with the gameplay loader and verify the public levels.
 
-- Bible Chain Challenge (in progress; blocked on source-pool expansion)
-- Bible Character Quest
+## Other games awaiting rebuild
+
+- Bible Chain Challenge — currently generated locally; its source pool/matching constraints need expansion and validation before it can supply 150 unique playable challenges.
 - Bible Crossword
-- Bible Detective
 - Bible Geography Quest
-- Bible Match Up
+- Bible Match-Up
 - Bible Memory Challenge
 - Bible Puzzles
 - Bible Timeline
@@ -47,65 +54,14 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Verse Builder
 - Who Said It
 
+## Question and reward rules
+
+- Shared gameplay constant: `CHALLENGES_PER_LEVEL = 5`.
+- Supabase `submit_challenge_answer` records five ordered answers and awards 10 marks for each correct answer through an idempotent ledger.
+- Supabase `finish_level` rejects a level unless all five answers are submitted. It calculates percentage from five results and result points at 100 per correct answer (maximum 500).
+- Marks and result-points/XP are separate measures.
+
 ## Deployment
 
-- The project-wide Levels 1–30 publication restriction was confirmed deployed by successful GitHub Actions run:
-  https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42522016145
-- This does not mean the remaining games' question banks have been rebuilt.
-
-## Bible Character Quest — audit in progress
-
-- Supabase currently contains 250 rows across Levels 1–50, but the rows are not a valid completed bank: an audit found only 25 distinct question wordings and 32 distinct normalized reference/answer pairs across all 250 rows.
-- The existing staged Batch 01 has weak repeated distractors and generic explanation templates; Batch 02 also contains questionable distractors and explanations that merely restate the reference. Neither batch is approved for publication.
-- Gameplay reads five rows per level from `game_content_public` when Supabase is configured and otherwise falls back to `buildLocalChallengesForLevel` in `src/data/bibleContentBank.ts`. The Character Quest therefore needs a complete replacement bank, not just a frontend restyle.
-- **Replacement batches staged:** 100 original questions for Levels 1–20 (five per level) in `bibleCharacterVerifiedBatch01.ts` and `bibleCharacterVerifiedBatch02.ts`. Each record has four distinct options, an explanation, a Scripture reference and a unique fact key.
-- Batch 02 was researched using the people/character categories and Bible passage references from the previously shared research sites. The questions are rewritten in original wording; the websites are not copied verbatim.
-- Normalized reference-plus-answer checks found **zero duplicates within the 100 staged Character Quest facts** and, after replacing overlapping facts, **zero collisions against the current live banks of the other games**.
-- Both batches are included in `validate:rebuild`. The structural validator checks five entries per level and four distinct options, but it does not independently prove theological interpretation or every reference.
-- CI's cross-game validator caught several older staged collisions; those questions were replaced with different facts and passages. A local structural comparison of all 975 records in the 13 currently staged rebuild files now finds zero duplicate normalized reference/answer pairs. The current Character Quest Batch 02 also has no collision against live database rows. Final CI validation on the latest commit is still pending.
-- **Not published:** all 100 questions remain staged only. The existing 250 database rows have not been replaced. Next: perform passage-by-passage human review, prepare Levels 21–50 (150 more questions), then replace the database rows and verify the live game.
-
-
-## Question-count and reward audit — 2026-11-09
-
-- Confirmed shared gameplay constant: `CHALLENGES_PER_LEVEL = 5`. A level therefore contains five questions, not ten.
-- Confirmed the Supabase `finish_level` function rejects completion unless exactly five challenge results have been submitted.
-- Confirmed `submit_challenge_answer` awards 10 marks per correct answer, with an idempotent award ledger. A perfect five-question level therefore earns at most 50 marks; incorrect answers earn zero.
-- Confirmed level completion converts the five correctness results to a 0–500 result-points score and a 0–100 percentage. These are separate from the 0–50 marks balance.
-- Fixed the shared game header, which incorrectly displayed `/100`; it now displays the correct maximum of `CHALLENGES_PER_LEVEL * 10` (50). Also corrected stale “0..9” and “of 10” UI comments/loading text.
-- Commit: `15943fd2034e6827b215f83fbc9d3078a852fe1b`.
-- Character Quest still has five questions per level and currently has 250 old database rows, but its quality audit remains 25 distinct wordings and 32 distinct normalized reference/answer facts. The 100 replacement questions for Levels 1–20 are staged, not published. Further work remains Levels 21–50, then review, database replacement, and live verification.
-
-
-## Bible Character Quest — research batches expanded
-
-- Four original, Scripture-referenced replacement batches now cover Levels 1–40: 200 challenges total, exactly five per level.
-- Batch files: `bibleCharacterVerifiedBatch01.ts` (Levels 1–10), `bibleCharacterVerifiedBatch02.ts` (11–20), `bibleCharacterVerifiedBatch03.ts` (21–30), and `bibleCharacterVerifiedBatch04.ts` (31–40).
-- Automated structural audit: 200 unique question wordings, four distinct options per question, correct answer included, and non-empty references/explanations. Cross-batch duplicate reference+answer facts were identified and corrected during review.
-- Levels 41–50 remain to be built (50 challenges).
-- These batches remain staged source files. They have NOT yet been imported into Supabase or made live. Passage-by-passage source verification, cross-game duplicate checks against the final live banks, integration, database publication, and runtime tests are still required.
-
-
-## Bible Character Quest — all 50 levels drafted
-
-- Five replacement batches now cover Levels 1–50, with five questions in each level: 250 challenges total.
-- Batch 05 adds Levels 41–50.
-- Final automated structural audit across all five batches: 250 unique question wordings; 250 unique normalized reference-and-answer facts; no repeated fact keys; every question has exactly four distinct options including the correct answer; all rows have a reference and explanation; every level has exactly five questions.
-- The audit is structural, not a substitute for human passage-by-passage Scripture review. Some distractors and interpretation details still require editorial verification against the chosen Bible translation.
-- The 250 rows remain staged in source files and have NOT been imported into Supabase or published to the live Character Quest game. Integration, final source review, cross-game comparison, database replacement, and live gameplay verification are still pending.
-
-
-- Cross-game duplicate-key check against the current `public.game_content` bank found several reference/answer facts already used in Scripture Challenge and Bible Riddles. Those staged rows were replaced with different character facts. A repeat check returned no matching reference/answer facts in the other live game banks.
-- This check uses the same normalized reference-plus-answer key as the database guard; it does not replace editorial review for semantic similarity or translation accuracy.
-
-
-## Bible Character Quest — imported into Supabase
-
-- Imported all 250 verified-batch draft rows into `public.game_content` using the unique key `(game_slug, level, challenge_index)`, replacing the previous Character Quest content.
-- Set all 50 level rows to five challenges each. Levels 1–30 are published; Levels 31–50 remain unpublished.
-- Database verification: 250 rows; 250 unique question wordings; 250 unique normalized reference-answer keys; 250 rows with exactly four options; 250 rows with a reference and explanation.
-- Every level has exactly five rows. The public content view exposes all 150 rows for Levels 1–30.
-- The live loader reads the `game_content_public` view and passes the stable `question_key` into the answer RPC. New question keys were populated with the staged stable IDs.
-- Reward verification: `submit_challenge_answer` awards 10 marks for each correct answer through the idempotent award ledger (maximum 50 marks for five correct answers). `finish_level` calculates 100 server XP per correct answer (maximum 500 XP for a perfect five-question level), based on best completed score.
-- Cross-game normalized reference-answer duplicate check returned no matches in other game banks after the final staged replacements.
-- Status: database content and publication settings are complete and verified. A final browser-level gameplay test with an authenticated account and successful Pages deployment check are still required before calling this game fully live.
+- GitHub Pages workflow for the latest progress commit: https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42545002400
+- At last check this workflow was still in progress. Database changes are live in Supabase, but do not claim the latest Pages deployment succeeded until the workflow reports success.
