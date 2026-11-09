@@ -1,3 +1,5 @@
+import { BIBLE_CHAIN_PEOPLE_SEED, normalizeBiblePersonName } from './bibleChainPeople';
+
 export interface ChallengeItem {
   id: string;
   game_slug: string;
@@ -707,57 +709,52 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-chain-challenge': {
-        const entries = [
-          ...BOOKS_66.map((entry) => ({
-            name: entry.name,
-            clue: entry.clue,
-            testament: entry.testament,
-            hintOne: `It is in the ${entry.section} section of the ${entry.testament}.`,
-            hintTwo: `Its key passage is ${entry.ref}; consider the events surrounding that passage.`,
-            ref: entry.ref,
-          })),
-          ...BIBLE_CHARACTERS.map((entry) => ({
-            name: entry.name,
-            clue: entry.clue1,
-            testament: entry.testament,
-            hintOne: `This figure is classed as a ${entry.role} in the ${entry.testament}.`,
-            hintTwo: `Read ${entry.clue2Ref}: ${entry.clue2}.`,
-            ref: entry.clue1Ref,
-          })),
-        ];
-        const eligibleStarts = entries.filter((entry) => {
-          const letter = entry.name.slice(-1).toUpperCase();
-          return entries.filter((candidate) =>
-            candidate.name !== entry.name && candidate.name.toUpperCase().startsWith(letter)
-          ).length >= 4;
+        // People-only chain: every option begins with the previous person's final letter.
+        // Names are drawn from the curated Scripture-referenced catalogue, never Bible book titles.
+        const people = BIBLE_CHAIN_PEOPLE_SEED;
+        const eligibleStarts = people.filter((person) => {
+          const required = normalizeBiblePersonName(person.displayName).slice(-1);
+          const candidates = people.filter((candidate) =>
+            candidate.id !== person.id &&
+            normalizeBiblePersonName(candidate.displayName).startsWith(required)
+          );
+          return candidates.length >= 4;
         });
-        const source = eligibleStarts[globalSeed % eligibleStarts.length];
-        const requiredLetter = source.name.slice(-1).toUpperCase();
-        const candidates = Array.from(new Map(
-          entries
-            .filter((entry) => entry.name !== source.name && entry.name.toUpperCase().startsWith(requiredLetter))
-            .map((entry) => [entry.name, entry])
-        ).values());
-        const orderedCandidates = shuffleDeterministic(candidates, shuffleSeed + 71);
-        const matching = orderedCandidates[0];
+        const source = eligibleStarts[globalSeed % Math.max(eligibleStarts.length, 1)];
+        if (!source) {
+          throw new Error('Bible Chain catalogue has no valid four-option letter links.');
+        }
+        const requiredLetter = normalizeBiblePersonName(source.displayName).slice(-1).toUpperCase();
+        const candidates = people.filter((person) =>
+          person.id !== source.id &&
+          normalizeBiblePersonName(person.displayName).startsWith(requiredLetter.toLowerCase())
+        );
+        const ordered = shuffleDeterministic(candidates, shuffleSeed + 71);
+        const matching = ordered[0];
         const options = shuffleDeterministic(
-          [matching.name, ...orderedCandidates.slice(1, 4).map((entry) => entry.name)],
+          ordered.slice(0, 4).map((person) => person.displayName),
           shuffleSeed
         );
+        if (!matching || options.length !== 4 || new Set(options.map(normalizeBiblePersonName)).size !== 4) {
+          throw new Error('Bible Chain could not construct four distinct valid name choices.');
+        }
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `CHAIN LINK: "${source.name.toUpperCase()}" ends in "${requiredLetter}". Your next entry must begin with that letter. A sealed Scripture dossier describes it: ${matching.clue}. Which entry completes the chain?`,
+          question_text: `NAME CHAIN: “${source.displayName}” ends with “${requiredLetter}”. Which biblical person can legally follow it? The Scripture dossier says: ${matching.identity}`,
           options,
-          correct_answer: matching.name,
-          explanation: `The chain runs from ${source.name} to ${matching.name}. The dossier points to ${matching.name} (${matching.ref}).`,
-          reference: matching.ref,
+          correct_answer: matching.displayName,
+          explanation: `The chain moves from ${source.displayName} to ${matching.displayName}: the final letter “${requiredLetter}” matches the first letter of the next name. ${matching.identity}`,
+          reference: matching.reference,
           metadata: {
-            previousWord: source.name.toUpperCase(),
+            previousWord: source.displayName,
             requiredLetter,
-            clues: [matching.hintOne, matching.hintTwo],
+            answerPersonId: matching.id,
+            category: matching.category,
+            difficulty: matching.difficulty,
+            clues: [matching.identity, `Read ${matching.reference} and identify the person in context.`],
           },
         });
         break;
