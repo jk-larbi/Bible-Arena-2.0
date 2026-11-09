@@ -91,16 +91,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "Which judge used 300 men, torches, jars and trumpets against the Midianites?",
+    "question_text": "Which judge struck down six hundred Philistines with an oxgoad?",
     "options": [
-      "Gideon",
-      "Jephthah",
-      "Samson",
-      "Barak"
+      "Shamgar",
+      "Ehud",
+      "Othniel",
+      "Gideon"
     ],
-    "correct_answer": "Gideon",
-    "explanation": "Gideon divided the 300 men into companies and used trumpets, empty jars and torches in the night attack.",
-    "reference": "Judges 7:16-22",
+    "correct_answer": "Shamgar",
+    "explanation": "Shamgar son of Anath struck down six hundred Philistines with an oxgoad and also delivered Israel.",
+    "reference": "Judges 3:31",
     "metadata": {
       "difficulty": "advanced",
       "source_type": "original_scripture_research",
@@ -616,16 +616,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 26,
     "challenge_index": 5,
-    "question_text": "Which prophetess was consulted after the Book of the Law was discovered in Josiah's reign?",
+    "question_text": "Which royal secretary received the Book of the Law from Hilkiah and read it to King Josiah?",
     "options": [
-      "Deborah",
-      "Huldah",
-      "Noadiah",
-      "Anna"
+      "Shaphan",
+      "Hilkiah",
+      "Ahikam",
+      "Gemariah"
     ],
-    "correct_answer": "Huldah",
-    "explanation": "Huldah delivered the LORD's message to the delegation sent by King Josiah.",
-    "reference": "2 Kings 22:14-20",
+    "correct_answer": "Shaphan",
+    "explanation": "Hilkiah gave the discovered Book of the Law to Shaphan the scribe, who read it before the king.",
+    "reference": "2 Kings 22:8-10",
     "metadata": {
       "difficulty": "expert",
       "source_type": "original_scripture_research",
@@ -868,16 +868,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 29,
     "challenge_index": 2,
-    "question_text": "Which couple explained the way of God more accurately to Apollos?",
+    "question_text": "Which Macedonian companion of Paul was seized by the crowd during the uproar in Ephesus?",
     "options": [
-      "Ananias and Sapphira",
-      "Priscilla and Aquila",
-      "Mary and Martha",
-      "Lois and Eunice"
+      "Aristarchus",
+      "Tychicus",
+      "Trophimus",
+      "Sopater"
     ],
-    "correct_answer": "Priscilla and Aquila",
-    "explanation": "Priscilla and Aquila heard Apollos and privately explained the way of God more accurately to him.",
-    "reference": "Acts 18:24-26",
+    "correct_answer": "Aristarchus",
+    "explanation": "The crowd seized Gaius and Aristarchus, Paul's travelling companions from Macedonia, during the disturbance in Ephesus.",
+    "reference": "Acts 19:29",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
@@ -952,16 +952,16 @@ export const BIBLE_CHARACTER_VERIFIED_BATCH_03: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 30,
     "challenge_index": 1,
-    "question_text": "Which woman from Thyatira, a seller of purple cloth, became a believer after hearing Paul at Philippi?",
+    "question_text": "Which woman in Athens believed after hearing Paul's message at the Areopagus?",
     "options": [
       "Damaris",
       "Lydia",
       "Priscilla",
       "Phoebe"
     ],
-    "correct_answer": "Lydia",
-    "explanation": "The Lord opened Lydia's heart to attend to Paul's message, and she and her household were baptised.",
-    "reference": "Acts 16:14-15",
+    "correct_answer": "Damaris",
+    "explanation": "Damaris is named among those who believed after Paul spoke in Athens.",
+    "reference": "Acts 17:32-34",
     "metadata": {
       "difficulty": "master",
       "source_type": "original_scripture_research",
