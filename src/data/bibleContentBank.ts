@@ -338,7 +338,7 @@ const QUOTE_SPEAKER_GROUPS: Record<string, string[]> = {
   'Judas Iscariot': ['Peter', 'Thomas', 'Judas (son of James)', 'Matthew', 'John'],
 };
 const QUOTE_SPEAKERS = [...new Set(QUOTES_POOL.map((item) => item.speaker))];
-const normalizeQuote = (value: string) => value.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+const normalizeQuote = (value: string) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
 const UNIQUE_QUOTES_POOL = QUOTES_POOL.filter((item, index, all) =>
   all.findIndex((other) => normalizeQuote(other.quote) === normalizeQuote(item.quote)) === index
 );
