@@ -116,9 +116,9 @@ export const TopNav: React.FC<TopNavProps> = ({
           <button
             type="button"
             onClick={toggleSound}
-            aria-label={soundEnabled ? 'Mute BibleArena game sounds' : 'Enable BibleArena game sounds'}
+            aria-label={soundEnabled ? 'Mute all BibleArena sounds' : 'Enable all BibleArena sounds'}
             aria-pressed={soundEnabled}
-            title={soundEnabled ? 'Mute game sounds' : 'Enable game sounds'}
+            title={soundEnabled ? 'Mute all sounds' : 'Enable all sounds'}
             className="w-10 h-10 min-h-[44px] min-w-[44px] rounded-full bg-[#171B24]/5 hover:bg-[#171B24]/10 text-[#171B24] flex items-center justify-center transition-colors cursor-pointer"
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
