@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { GAMES_LIST, GameInfo } from '../data/gamesList';
 import { Flame, Search, UserCheck, Check, X, Swords, Send, Trophy } from 'lucide-react';
 import { Button } from '../components/Button';
@@ -207,6 +208,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
           Challenge friends to head-to-head Bible games and deliver real-time notifications.
         </p>
       </div>
+
+      <div className="flex justify-center"><Link to="/community-quests" className="rounded-full border border-[#3156C9]/20 bg-white px-5 py-2.5 text-xs font-bold text-[#3156C9] hover:bg-[#EEF2FF]">Explore Community Quests</Link></div>
 
       {statusMsg && (
         <div
