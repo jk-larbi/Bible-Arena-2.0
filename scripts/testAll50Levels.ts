@@ -1,5 +1,6 @@
 import { ALL_19_GAME_SLUGS, buildLocalChallengesForLevel } from '../src/data/bibleContentBank';
 import { buildBibleCrosswordLayout } from '../src/components/game/BibleCrosswordBoard';
+import { DEFAULT_TOTAL_LEVELS, MAX_PUBLISHED_LEVELS, getLevelMap, startLevel } from '../src/lib/levels';
 
 const failures: string[] = [];
 const ids = new Set<string>();
@@ -82,8 +83,36 @@ for (const game of ALL_19_GAME_SLUGS) {
   }
 }
 
+// Every game keeps its 50-level catalogue, but only Levels 1–30 are playable.
+let publicationFailures = 0;
+for (const game of ALL_19_GAME_SLUGS) {
+  const nodes = await getLevelMap(game);
+  if (nodes.length !== DEFAULT_TOTAL_LEVELS) {
+    publicationFailures++;
+    failures.push(`${game}: expected ${DEFAULT_TOTAL_LEVELS} level nodes, got ${nodes.length}`);
+  }
+  for (const node of nodes) {
+    const expectedPublished = node.level <= MAX_PUBLISHED_LEVELS;
+    if (node.is_published !== expectedPublished) {
+      publicationFailures++;
+      failures.push(`${game} L${node.level}: expected is_published=${expectedPublished}, got ${node.is_published}`);
+    }
+  }
+  try {
+    await startLevel(game, MAX_PUBLISHED_LEVELS + 1);
+    publicationFailures++;
+    failures.push(`${game}: Level ${MAX_PUBLISHED_LEVELS + 1} unexpectedly started`);
+  } catch (error) {
+    if (!String(error).toLowerCase().includes('coming soon')) {
+      publicationFailures++;
+      failures.push(`${game}: unpublished level was rejected for the wrong reason: ${String(error)}`);
+    }
+  }
+}
+
 console.log('BIBLE ARENA — 50-LEVEL PLAYABILITY CHECK');
-console.log(`Games: ${ALL_19_GAME_SLUGS.length}; levels: ${ALL_19_GAME_SLUGS.length * 50}; challenge slots: ${total}; unique IDs: ${ids.size}`);
+console.log(`Games: ${ALL_19_GAME_SLUGS.length}; catalogue levels: ${ALL_19_GAME_SLUGS.length * DEFAULT_TOTAL_LEVELS}; playable levels: ${ALL_19_GAME_SLUGS.length * MAX_PUBLISHED_LEVELS}; challenge slots checked: ${total}; unique IDs: ${ids.size}`);
+console.log(`Publication gates checked: ${ALL_19_GAME_SLUGS.length * DEFAULT_TOTAL_LEVELS}; failures: ${publicationFailures}`);
 console.log(`Crossword layouts checked: ${crosswordLayouts}; clue entries: ${crosswordClues}`);
 if (failures.length) {
   console.error(`FAILED: ${failures.length} issue(s). First 80:`);
