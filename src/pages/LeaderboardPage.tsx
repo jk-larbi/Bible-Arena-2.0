@@ -11,7 +11,7 @@ import {
   TrendingDown,
   Minus,
   Award,
-  CalendarDays,
+  CalendarRange,
   Flame,
   Calendar,
   Clock,
@@ -588,7 +588,7 @@ export const LeaderboardPage: React.FC<LeaderboardProps> = ({ onPlayGame }) => {
                 : 'text-[#5A6275] hover:text-[#171B24]'
             }`}
           >
-            <CalendarDays className="w-3.5 h-3.5" /> Monthly
+            <CalendarRange className="w-3.5 h-3.5" /> Monthly
           </button>
         </div>
       </div>
