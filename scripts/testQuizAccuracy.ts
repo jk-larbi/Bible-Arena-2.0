@@ -499,6 +499,51 @@ async function runQuizAccuracyTests() {
   }
 
   // ===================================================================
+  // 12. BIBLE CROSSWORD: 150 distinct ten-entry clue sets with references
+  // ===================================================================
+  {
+    let checked = 0;
+    let failures = 0;
+    const puzzleSets = new Set<string>();
+    const failureLog: string[] = [];
+    for (let level = 1; level <= 30; level++) {
+      const items = buildLocalChallengesForLevel('bible-crossword', level);
+      if (items.length !== 5) {
+        failures++;
+        failureLog.push(`L${level}: expected five crossword puzzles, received ${items.length}`);
+      }
+      for (const item of items) {
+        checked++;
+        const entries = item.metadata?.entries || [];
+        const answers = entries.map((entry: any) => String(entry.answer || '').toUpperCase());
+        const referencesValid = entries.every((entry: any) => Boolean(entry.clue?.trim()) && Boolean(entry.reference?.trim()));
+        const key = [...answers].sort().join('|');
+        const valid = entries.length === 10 &&
+          new Set(answers).size === 10 &&
+          answers.every((answer: string) => /^[A-Z]+$/.test(answer)) &&
+          referencesValid &&
+          item.correct_answer === answers.join('|') &&
+          item.reference.split(';').length >= 1;
+        if (!valid) {
+          failures++;
+          failureLog.push(`${item.id}: entries=${entries.length}, uniqueAnswers=${new Set(answers).size}, refsValid=${referencesValid}`);
+        }
+        if (puzzleSets.has(key)) {
+          failures++;
+          failureLog.push(`${item.id}: repeated crossword clue set`);
+        }
+        puzzleSets.add(key);
+      }
+    }
+    results.push({
+      name: '12. Bible Crossword clue-bank integrity and puzzle uniqueness',
+      scope: 'Playable bank: 150 puzzles (30 levels x 5), 10 entries each',
+      passed: checked === 150 && puzzleSets.size === 150 && failures === 0,
+      details: `Checked ${checked} puzzles and ${checked * 10} clue entries. Repeated sets, missing clues/references, malformed answers or incorrect answer ordering: ${failures}. ${failureLog.slice(0, 4).join('; ')}`,
+    });
+  }
+
+  // ===================================================================
   // SUMMARY REPORT
   // ===================================================================
   console.log('TEST EXECUTION REPORT:\n');
