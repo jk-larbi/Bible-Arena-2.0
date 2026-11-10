@@ -7264,36 +7264,34 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "Demonstrated that working on the temple while spiritually unclean contaminated the offering."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l46-c1",
     "game_slug": "guess-the-emoji",
     "level": 46,
     "challenge_index": 1,
-    "question_text": "🏰 🪢 🧺 🕳️ 👤",
+    "question_text": "🛡️ ⚔️ 🩸 👑 🏃‍♂️",
     "options": [],
-    "correct_answer": "Ebed-Melech",
-    "explanation": "Jeremiah 38:7–13 records Ebed-Melech the Ethiopian eunuch securing permission from King Zedekiah and hauling Jeremiah out of the mire using old rags and cords under his armpits.",
-    "reference": "Jeremiah 38:7–13",
+    "correct_answer": "Amasa",
+    "explanation": "David appointed Amasa over the army. At the great stone in Gibeon, Joab approached him and killed him with his sword while pretending to greet him.",
+    "reference": "2 Samuel 20:4–13",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "Obscure Old Testament Figures",
       "puzzle_type": "exact_person",
-      "emojis": "🏰 🪢 🧺 🕳️ 👤",
-      "prompt": "Type the exact name of the Ethiopian royal official who rescued Jeremiah from the muddy cistern.",
+      "emojis": "🛡️ ⚔️ 🩸 👑 🏃‍♂️",
+      "prompt": "Type the exact name of David's nephew and army commander whom Joab killed during the pursuit of Sheba.",
       "testament": "Old Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "ebedmelech",
-        "ebed-melech",
-        "ebed melech"
+        "amasa"
       ],
       "curated": true,
-      "hint1": "His name means \"Servant of the King\".",
-      "hint2": "Jeremiah 39 promised his life would be spared during the fall of Jerusalem because he trusted God."
+      "hint1": "He replaced Joab as commander of David's army.",
+      "hint2": "Joab killed him at the great stone in Gibeon."
     }
   },
   {
@@ -7358,35 +7356,34 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "Prophesied judgment for Judah and peaceful burial for reformist King Josiah."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l46-c4",
     "game_slug": "guess-the-emoji",
     "level": 46,
     "challenge_index": 4,
-    "question_text": "👑 🧠 🪢 🏠 💀",
+    "question_text": "3️⃣0️⃣ 👨 🫏 🏘️ 2️⃣2️⃣",
     "options": [],
-    "correct_answer": "Ahithophel",
-    "explanation": "2 Samuel 16:23; 17:23 records Ahithophel whose counsel was like inquiring at the oracle of God; when his advice to strike David immediately was rejected, he put his house in order and hanged himself.",
-    "reference": "2 Samuel 17:23",
+    "correct_answer": "Jair",
+    "explanation": "Jair the Gileadite judged Israel for twenty-two years. He had thirty sons who rode thirty donkeys and possessed thirty towns in Gilead.",
+    "reference": "Judges 10:3–5",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "Obscure Old Testament Figures",
       "puzzle_type": "exact_person",
-      "emojis": "👑 🧠 🪢 🏠 💀",
-      "prompt": "Type the exact name of David’s supreme counselor who defected to Absalom and hanged himself.",
+      "emojis": "3️⃣0️⃣ 👨 🫏 🏘️ 2️⃣2️⃣",
+      "prompt": "Type the name of the judge whose thirty sons rode thirty donkeys and controlled thirty towns in Gilead.",
       "testament": "Old Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "ahithophel",
-        "achitophel"
+        "jair"
       ],
       "curated": true,
-      "hint1": "Grandfather of Bathsheba; hailed from the city of Giloh.",
-      "hint2": "David prayed: \"O Lord, turn the counsel of Ahithophel into foolishness.\""
+      "hint1": "He was a judge from Gilead.",
+      "hint2": "His thirty sons rode thirty donkeys and held thirty towns."
     }
   },
   {
@@ -7449,64 +7446,64 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "His name means \"bringing profit\" or \"help-bringer\"."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l47-c2",
     "game_slug": "guess-the-emoji",
     "level": 47,
     "challenge_index": 2,
-    "question_text": "✍️ 📜 🏛️ 🕊️ 👤",
+    "question_text": "3️⃣0️⃣ 👦 3️⃣0️⃣ 👧 💍 🏙️",
     "options": [],
-    "correct_answer": "Tertius",
-    "explanation": "Romans 16:22 records: \"I Tertius, who wrote this epistle, salute you in the Lord.\" He was the amanuensis who penned the letter to the Romans as Paul dictated.",
-    "reference": "Romans 16:22",
+    "correct_answer": "Ibzan",
+    "explanation": "Ibzan of Bethlehem judged Israel for seven years. He had thirty sons and thirty daughters, and he arranged marriages for his daughters outside his clan and brought in thirty women for his sons.",
+    "reference": "Judges 12:8–10",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "Obscure New Testament Figures",
       "puzzle_type": "exact_person",
-      "emojis": "✍️ 📜 🏛️ 🕊️ 👤",
-      "prompt": "Type the exact name of the amanuensis / scribe who wrote down the Epistle to the Romans.",
+      "emojis": "3️⃣0️⃣ 👦 3️⃣0️⃣ 👧 💍 🏙️",
+      "prompt": "Type the name of the judge from Bethlehem who had thirty sons and thirty daughters.",
       "testament": "New Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "tertius"
+        "ibzan"
       ],
       "curated": true,
-      "hint1": "His personal first-person greeting appears in Romans 16:22.",
-      "hint2": "His Latin name corresponds to the number three."
+      "hint1": "He judged Israel after Jephthah.",
+      "hint2": "He had thirty sons and thirty daughters."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l47-c3",
     "game_slug": "guess-the-emoji",
     "level": 47,
     "challenge_index": 3,
-    "question_text": "4️⃣ 👨 🏛️ 📜 🤝",
+    "question_text": "🍇 🏙️ 🗣️ ⚔️ 👑",
     "options": [],
-    "correct_answer": "Quartus",
-    "explanation": "Romans 16:23 greets: \"Erastus the chamberlain of the city saluteth you, and Quartus a brother.\" Quartus’s name means \"Fourth\" in Latin.",
-    "reference": "Romans 16:23",
+    "correct_answer": "Gaal son of Ebed",
+    "explanation": "Gaal son of Ebed came with his relatives to Shechem, gained the confidence of its leaders, and challenged Abimelech. Zebul informed Abimelech, who defeated Gaal's forces.",
+    "reference": "Judges 9:26–41",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "Obscure New Testament Figures",
       "puzzle_type": "exact_person",
-      "emojis": "4️⃣ 👨 🏛️ 📜 🤝",
-      "prompt": "Type the exact name of the Christian brother whose name signifies \"Fourth\", greeted in Romans 16:23.",
+      "emojis": "🍇 🏙️ 🗣️ ⚔️ 👑",
+      "prompt": "Type the name of the man who led a revolt in Shechem against Abimelech and boasted of his strength.",
       "testament": "New Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "quartus"
+        "gaal son of ebed"
       ],
       "curated": true,
-      "hint1": "Mentioned immediately after Erastus the chamberlain of Corinth.",
-      "hint2": "Complements Tertius (\"Third\") earlier in the chapter."
+      "hint1": "He spoke boldly against Abimelech in Shechem.",
+      "hint2": "Zebul reported his challenge, and Abimelech defeated his forces."
     }
   },
   {
@@ -7539,66 +7536,64 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "Explicitly characterized in Greek as an \"ancient / early disciple\"."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l47-c5",
     "game_slug": "guess-the-emoji",
     "level": 47,
     "challenge_index": 5,
-    "question_text": "🤒 🏝️ 🚢 🏛️ 👤",
+    "question_text": "📜 🏛️ 👑 📖 ✍️",
     "options": [],
-    "correct_answer": "Trophimus",
-    "explanation": "2 Timothy 4:20 states: \"Erastus abode at Corinth: but Trophimus have I left at Miletum sick.\" Trophimus was an Ephesian believer who accompanied Paul to Jerusalem.",
-    "reference": "2 Timothy 4:20; Acts 20:4; 21:29",
+    "correct_answer": "Shaphan",
+    "explanation": "Shaphan was the scribe sent by Josiah to the high priest. He reported the temple funds and read the Book of the Law that Hilkiah had found.",
+    "reference": "2 Kings 22:3–14; 2 Chronicles 34:8–20",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "Obscure New Testament Figures",
       "puzzle_type": "exact_person",
-      "emojis": "🤒 🏝️ 🚢 🏛️ 👤",
-      "prompt": "Type the exact name of the Ephesian disciple whom Paul was compelled to leave sick at Miletus.",
+      "emojis": "📜 🏛️ 👑 📖 ✍️",
+      "prompt": "Type the name of King Josiah's royal scribe who reported the temple repairs and read the discovered Book of the Law to the king.",
       "testament": "New Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "trophimus"
+        "shaphan"
       ],
       "curated": true,
-      "hint1": "Jews in Jerusalem mistakenly supposed Paul had brought him into the Temple court.",
-      "hint2": "Left behind at Miletus (Miletum)."
+      "hint1": "He served as a royal scribe under Josiah.",
+      "hint2": "He read the discovered Book of the Law to the king."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l48-c1",
     "game_slug": "guess-the-emoji",
     "level": 48,
     "challenge_index": 1,
-    "question_text": "👑 🗡️ 8️⃣0️⃣0️⃣ 1️⃣ 🩸",
+    "question_text": "✅ ✝️ 👤 📜 🏛️",
     "options": [],
-    "correct_answer": "Adino",
-    "explanation": "2 Samuel 23:8 identifies Adino the Eznite: \"he lift up his spear against eight hundred, whom he slew at one time.\" He was chief among David’s captains.",
-    "reference": "2 Samuel 23:8",
+    "correct_answer": "Apelles",
+    "explanation": "Paul sends greetings to Apelles, whom he calls approved in Christ, in his closing greetings to the believers in Rome.",
+    "reference": "Romans 16:10",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "The Valiant & Feats of War",
       "puzzle_type": "exact_person",
-      "emojis": "👑 🗡️ 8️⃣0️⃣0️⃣ 1️⃣ 🩸",
-      "prompt": "Type the exact name of the Tachmonite (Adino the Eznite) who dispatched 800 foes in a single battle.",
+      "emojis": "✅ ✝️ 👤 📜 🏛️",
+      "prompt": "Type the name of the believer whom Paul describes as approved in Christ.",
       "testament": "Old Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "adino",
-        "adino the eznite",
-        "jashobeam"
+        "apelles"
       ],
       "curated": true,
-      "hint1": "The first named of David’s supreme Three Mighty Men.",
-      "hint2": "Sat in the seat as chief of the captains."
+      "hint1": "His name appears in Paul's greetings in Romans 16.",
+      "hint2": "Paul describes him as approved in Christ."
     }
   },
   {
@@ -7663,35 +7658,34 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "The Lord wrought a great victory that day."
     }
   },
-  {
+    {
     "id": "guess-the-emoji-l48-c4",
     "game_slug": "guess-the-emoji",
     "level": 48,
     "challenge_index": 4,
-    "question_text": "🛡️ 6️⃣0️⃣0️⃣ 👑 🤝 🚶‍♂️",
+    "question_text": "🌱 🌏 ✝️ 🏠 👤",
     "options": [],
-    "correct_answer": "Ittai",
-    "explanation": "2 Samuel 15:19–22 records Ittai the Gittite leading 600 Philistine warriors from Gath, swearing loyalty to exiled David: \"Surely in what place my lord the king shall be, whether in death or life, even there also will thy servant be.\"",
-    "reference": "2 Samuel 15:19–22",
+    "correct_answer": "Epaenetus",
+    "explanation": "Paul greets Epaenetus, whom he describes as the firstfruits of Asia unto Christ, in his closing greetings to the Roman believers.",
+    "reference": "Romans 16:5",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "The Valiant & Feats of War",
       "puzzle_type": "exact_person",
-      "emojis": "🛡️ 6️⃣0️⃣0️⃣ 👑 🤝 🚶‍♂️",
-      "prompt": "Type the exact name of the Philistine exile from Gath who pledged unwavering loyalty to David with 600 men.",
+      "emojis": "🌱 🌏 ✝️ 🏠 👤",
+      "prompt": "Type the name of the person Paul calls the firstfruits of Asia unto Christ.",
       "testament": "Old Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
       "points": 300,
       "is_typed": true,
       "acceptedAlternatives": [
-        "ittai",
-        "ittai the gittite"
+        "epaenetus"
       ],
       "curated": true,
-      "hint1": "Appointed commander over one-third of David’s army alongside Joab and Abishai.",
-      "hint2": "David told him he was a stranger and exile, but he insisted on marching with the king."
+      "hint1": "He is named in Romans 16:5.",
+      "hint2": "Paul calls him the firstfruits of Asia unto Christ."
     }
   },
   {
