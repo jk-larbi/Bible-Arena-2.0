@@ -410,6 +410,40 @@ const normalizeQuote = (value: string) => value.toLowerCase().normalize('NFD').r
 const UNIQUE_QUOTES_POOL = QUOTES_POOL.filter((item, index, all) =>
   all.findIndex((other) => normalizeQuote(other.quote) === normalizeQuote(item.quote)) === index
 );
+const whoSaidItFactKey = (entry: { speaker: string; ref: string }) =>
+  `${entry.ref.toLowerCase().replace(/[^a-z0-9]/g, '')}::${entry.speaker.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+const WHO_SAID_IT_FACT_POOL = UNIQUE_QUOTES_POOL.filter((entry, index, all) =>
+  all.findIndex((other) => whoSaidItFactKey(other) === whoSaidItFactKey(entry)) === index
+);
+const WHO_SAID_IT_BASE_QUOTES = WHO_SAID_IT_FACT_POOL.slice(0, 36);
+const WHO_SAID_IT_UNEXPECTED_SPEAKERS = [
+  'Cain','Balaam','Judas Iscariot','King Agrippa','The Roman Centurion','The Philippian Jailer',
+  'The Ethiopian eunuch','Saul','Naaman','King Belshazzar','The repentant thief','Pharaoh',
+  'Nathanael','Martha','Thomas','The Samaritan woman','The Shunammite woman','The widow of Zarephath',
+  'Hazael','Laban','Eli','A Hebrew man','The crowds','The rich young ruler','The leper','Naboth',
+  'Mephibosheth','Mordecai','The chief priests and elders','The king of Israel',
+  'The captain of the LORD’s host','The people of Israel','The disciples','Satan','Jezebel',
+  'Abimelech','Rahab','Nebuchadnezzar','Eliphaz','Bildad','Zophar','Elihu','Pontius Pilate',
+  'Mary','Elizabeth','Zechariah','The Preacher','Habakkuk','Micah','Amos','Nahum','Jonah',
+  'Nehemiah','Stephen','The psalmist','Joseph','Jacob','Gideon’s army','Peter and the apostles',
+  'Paul and Silas','Simon Peter','Andrew',
+];
+const WHO_SAID_IT_UNEXPECTED_QUOTES = WHO_SAID_IT_FACT_POOL.filter((entry) =>
+  WHO_SAID_IT_UNEXPECTED_SPEAKERS.includes(entry.speaker) &&
+  !WHO_SAID_IT_BASE_QUOTES.some((base) => whoSaidItFactKey(base) === whoSaidItFactKey(entry))
+).slice(0, 36);
+const WHO_SAID_IT_USED_QUOTE_FACTS = new Set([
+  ...WHO_SAID_IT_BASE_QUOTES,
+  ...WHO_SAID_IT_UNEXPECTED_QUOTES,
+].map(whoSaidItFactKey));
+const WHO_SAID_IT_REFERENCE_QUOTES = WHO_SAID_IT_FACT_POOL.filter((entry) =>
+  !WHO_SAID_IT_USED_QUOTE_FACTS.has(whoSaidItFactKey(entry))
+).slice(0, 36);
+for (const entry of WHO_SAID_IT_REFERENCE_QUOTES) WHO_SAID_IT_USED_QUOTE_FACTS.add(whoSaidItFactKey(entry));
+const WHO_SAID_IT_MISATTRIBUTED_QUOTES = WHO_SAID_IT_FACT_POOL.filter((entry) =>
+  !WHO_SAID_IT_USED_QUOTE_FACTS.has(whoSaidItFactKey(entry))
+).slice(0, 36);
+
 
 type WhoSaidItAudience = { quote: string; speaker: string; audience: string; ref: string; explanation: string; options: string[] };
 const WHO_SAID_IT_AUDIENCES: WhoSaidItAudience[] = [
@@ -463,7 +497,7 @@ const WHO_SAID_IT_DIALOGUES: WhoSaidItDialogue[] = [
 {prompt:'Elisha told Naaman to wash in the Jordan. Who questioned why he could not wash in Damascus?',answer:'Naaman',ref:'2 Kings 5:9-12',explanation:'Naaman reacted angrily because he expected a more dramatic healing.',options:['Naaman','Gehazi','Ben-hadad','The king of Israel']},
 {prompt:'Job’s first friend to speak after his lament was who?',answer:'Eliphaz the Temanite',ref:'Job 4:1-2',explanation:'Eliphaz began the first cycle of speeches after Job’s lament.',options:['Eliphaz the Temanite','Bildad the Shuhite','Zophar the Naamathite','Elihu']},
 {prompt:'Jesus asked the disciples who people said He was. Who reported the different opinions?',answer:'The disciples',ref:'Matthew 16:13-14',explanation:'The disciples reported that some people thought Jesus was John the Baptist, Elijah, Jeremiah, or a prophet.',options:['The disciples','The Pharisees','The crowd','The chief priests']},
-{prompt:'The LORD asked Isaiah whom He should send. Who answered, “Here am I; send me”?',answer:'Isaiah',ref:'Isaiah 6:8',explanation:'Isaiah volunteered after hearing the LORD’s question in the vision.',options:['Isaiah','Jeremiah','Ezekiel','Micah']},
+{prompt:'Philip asked the Ethiopian official whether he understood the passage from Isaiah. Who replied, “How can I, except some man should guide me”?',answer:'The Ethiopian eunuch',ref:'Acts 8:31',explanation:'The Ethiopian official admitted that he needed guidance and invited Philip to sit with him.',options:['The Ethiopian eunuch','Philip','An angel of the Lord','Simon the sorcerer']},
 {prompt:'Jesus asked Peter three times whether he loved Him. Who answered that the Lord knew he loved Him?',answer:'Peter',ref:'John 21:15-17',explanation:'Peter answered Jesus during the conversation by the Sea of Tiberias.',options:['Peter','John','Thomas','Andrew']},
 {prompt:'The angel announced that Elizabeth would bear a son. Who asked, “Whereby shall I know this”?',answer:'Zechariah',ref:'Luke 1:11-18',explanation:'Zechariah questioned Gabriel because he and Elizabeth were advanced in years.',options:['Zechariah','Joseph','Simeon','Herod']},
 {prompt:'Jesus asked the man at the pool whether he wanted to be made whole. Who said he had no one to put him into the pool?',answer:'The man at Bethesda',ref:'John 5:1-7',explanation:'The man explained that someone else entered the water before he could reach it.',options:['The man at Bethesda','Bartimaeus','The man born blind','The paralytic at Capernaum']},
@@ -1045,15 +1079,16 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         const modeIndex = globalSeed % WHO_SAID_IT_MODES.length;
         const mode = WHO_SAID_IT_MODES[modeIndex];
         const slot = Math.floor(globalSeed / WHO_SAID_IT_MODES.length);
-        const q = UNIQUE_QUOTES_POOL[(slot + modeIndex * 19) % UNIQUE_QUOTES_POOL.length];
+
         let questionText = '';
         let correctAnswer = '';
         let options: string[] = [];
         let explanation = '';
-        let reference = q.ref;
+        let reference = '';
         let metadata: Record<string, any> = { mode, modeIndex };
 
         if (modeIndex === 0) {
+          const q = WHO_SAID_IT_BASE_QUOTES[slot % WHO_SAID_IT_BASE_QUOTES.length];
           const candidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
           options = makeFourDistinctOptions(q.speaker, candidates, shuffleSeed);
           questionText = 'IDENTIFY THE SPEAKER\nWho spoke these words in Scripture?\n“' + q.quote + '”';
@@ -1077,8 +1112,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           reference = d.ref;
           metadata = { ...metadata, dialogue: d.prompt, responseSpeaker: d.answer };
         } else if (modeIndex === 3) {
-          const unexpected = UNIQUE_QUOTES_POOL.filter((entry) => ['Cain','Balaam','Judas Iscariot','King Agrippa','The Roman Centurion','The Philippian Jailer','The Ethiopian eunuch','Saul','Naaman','King Belshazzar','The repentant thief','Pharaoh','Nathanael','Martha','Thomas','The Samaritan woman','The Shunammite woman','The widow of Zarephath','Hazael','Laban','Eli','A Hebrew man','The crowds','The rich young ruler','The leper','Naboth','Mephibosheth','Mordecai','The chief priests and elders','The king of Israel','The captain of the LORD’s host','The people of Israel','The disciples','Satan','Pharaoh','Jezebel','Abimelech','Rahab','The Samaritan woman','Nebuchadnezzar','Eliphaz','Bildad','Zophar','Elihu','Pontius Pilate','Mary','Elizabeth','Zechariah','The Preacher','Habakkuk','Micah','Amos','Nahum','Jonah','Nehemiah','Stephen','The repentant thief','The psalmist','Joseph','Jacob','Gideon’s army','Peter and the apostles','Paul and Silas','Simon Peter','Andrew'].includes(entry.speaker));
-          const u = unexpected[slot % unexpected.length] || q;
+          const u = WHO_SAID_IT_UNEXPECTED_QUOTES[slot % WHO_SAID_IT_UNEXPECTED_QUOTES.length];
           const candidates = QUOTE_SPEAKER_GROUPS[u.speaker] || QUOTE_SPEAKERS;
           options = makeFourDistinctOptions(u.speaker, candidates, shuffleSeed);
           questionText = 'THE UNEXPECTED SPEAKER\nThis statement came from a person you might not expect:\n“' + u.quote + '”\nWho actually said it?';
@@ -1087,6 +1121,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           reference = u.ref;
           metadata = { ...metadata, quote: u.quote, speaker: u.speaker, unexpectedSpeaker: true };
         } else if (modeIndex === 4) {
+          const q = WHO_SAID_IT_REFERENCE_QUOTES[slot % WHO_SAID_IT_REFERENCE_QUOTES.length];
           const candidates = UNIQUE_QUOTES_POOL.filter((entry) => entry.ref !== q.ref && entry.speaker !== q.speaker);
           const refOptions = [q.speaker + ' — ' + q.ref, ...candidates.slice(slot % Math.max(1, candidates.length - 3), (slot % Math.max(1, candidates.length - 3)) + 3).map((entry) => entry.speaker + ' — ' + entry.ref)];
           options = shuffleDeterministic(refOptions, shuffleSeed);
@@ -1095,6 +1130,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           explanation = q.context + ' The correct attribution is ' + q.speaker + ' in ' + q.ref + '.';
           metadata = { ...metadata, quote: q.quote, speaker: q.speaker, exactReference: q.ref };
         } else if (modeIndex === 5) {
+          const q = WHO_SAID_IT_MISATTRIBUTED_QUOTES[slot % WHO_SAID_IT_MISATTRIBUTED_QUOTES.length];
           const candidates = q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS);
           options = makeFourDistinctOptions(q.speaker, candidates, shuffleSeed);
           questionText = 'THE MISATTRIBUTED QUOTE\nSeveral people are often confused with the speaker of this statement:\n“' + q.quote + '”\nWho actually said it?';
