@@ -56,7 +56,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
       <div className={`absolute inset-0 bg-gradient-to-br ${game.colorScheme.gradient} opacity-90 group-hover:scale-105 transition-transform duration-500`} />
       
       {!imgError && (
-        <div className="absolute inset-0 opacity-50 mix-blend-overlay">
+        <div className="absolute inset-0 opacity-35">
           <img
             src={imagePath}
             alt={game.title}
@@ -68,35 +68,35 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
       )}
 
       {/* Vignette lighting overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/65 to-black/45 pointer-events-none" />
 
       {/* Top badges */}
       <div className="relative z-10 p-5 flex items-center justify-between">
-        <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/40 backdrop-blur-md text-white border border-white/15">
+        <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/80 backdrop-blur-md text-white border border-white/25">
           {game.category}
         </span>
         {game.rating ? (
-          <div className="flex items-center gap-1 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-semibold border border-white/15">
+          <div className="flex items-center gap-1 bg-black/80 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold border border-white/25">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
             <span>{game.rating}</span>
           </div>
         ) : (
-          <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/40 backdrop-blur-md text-amber-200 border border-white/15 font-semibold">
+          <span className="px-3 py-1 rounded-full text-xs font-medium bg-black/80 backdrop-blur-md text-amber-100 border border-white/25 font-bold">
             {game.difficulty}
           </span>
         )}
       </div>
 
       {/* Game title and description — the illustration is rendered once as the card background. */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <h3 className="font-serif font-bold text-2xl text-white mb-2 drop-shadow-md">{game.title}</h3>
-        <p className="text-xs text-white/80 line-clamp-2 max-w-[220px]">{game.subtitle}</p>
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 text-center mx-4 my-3 rounded-2xl bg-black/65 border border-white/20 shadow-xl backdrop-blur-sm">
+        <h3 className="font-serif font-bold text-2xl text-white mb-2 drop-shadow-[0_2px_5px_rgba(0,0,0,1)]">{game.title}</h3>
+        <p className="text-xs text-white font-semibold leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,1)] line-clamp-2 max-w-[220px]">{game.subtitle}</p>
       </div>
 
       {/* Footer bar */}
-      <div className="relative z-10 p-5 bg-black/50 backdrop-blur-md border-t border-white/10 flex items-center justify-between">
+      <div className="relative z-10 p-5 bg-black/85 backdrop-blur-md border-t border-white/20 flex items-center justify-between">
         <div className="flex flex-col">
-          <span className="text-[10px] text-white/60 uppercase font-medium">Progress</span>
+          <span className="text-[10px] text-white/90 uppercase font-semibold">Progress</span>
           <span className="text-xs font-bold text-white font-mono">Level {game.playerLevel}/{game.levelsCount}</span>
         </div>
         <button className="px-4 py-2.5 rounded-xl bg-[#D66B3D] text-white text-xs font-bold flex items-center gap-1.5 shadow-md group-hover:bg-white group-hover:text-[#171B24] transition-colors">
