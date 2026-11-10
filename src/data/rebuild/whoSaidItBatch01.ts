@@ -155,7 +155,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "The prophets of Baal"
     ],
     "correct_answer": "The people of Israel",
-    "explanation": "After the people saw the LORD answer by fire, the people fell on their faces and declared that the LORD is God."
+    "explanation": "After the people saw the LORD answer by fire, the people fell on their faces and declared that the LORD is God.",
     "reference": "1 Kings 18:39",
     "metadata": {
       "difficulty": "beginner",
@@ -1475,7 +1475,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "Ezekiel"
     ],
     "correct_answer": "The lamenting speaker in Lamentations",
-    "explanation": "Lamentations 3:23 is spoken by the book’s lamenting voice; the book does not name Jeremiah as the speaker in this verse."
+    "explanation": "Lamentations 3:23 is spoken by the book’s lamenting voice; the book does not name Jeremiah as the speaker in this verse.",
     "reference": "Lamentations 3:23",
     "metadata": {
       "difficulty": "advanced",
@@ -1535,7 +1535,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "The prophet Hosea"
     ],
     "correct_answer": "Israel, personified as the unfaithful wife",
-    "explanation": "Hosea 2 uses the unfaithful wife as an image of Israel; verse 7 describes her resolve to return to her husband."
+    "explanation": "Hosea 2 uses the unfaithful wife as an image of Israel; verse 7 describes her resolve to return to her husband.",
     "reference": "Hosea 2:7",
     "metadata": {
       "difficulty": "advanced",
@@ -1695,7 +1695,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "The foolish virgins"
     ],
     "correct_answer": "An unnamed midnight herald",
-    "explanation": "Matthew 25:6 says a cry was made at midnight; the parable does not identify the person who made the announcement."
+    "explanation": "Matthew 25:6 says a cry was made at midnight; the parable does not identify the person who made the announcement.",
     "reference": "Matthew 25:6",
     "metadata": {
       "difficulty": "expert",
@@ -1709,13 +1709,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 1,
     "question_text": "\"Truly this was the Son of God.\"",
     "options": [
-      "Centurion",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "The centurion and those with him",
+      "Joseph of Arimathea",
+      "The disciples",
+      "The chief priests"
     ],
-    "correct_answer": "Centurion",
-    "explanation": "The biblical account in Matthew 27:54 supports this identification.",
+    "correct_answer": "The centurion and those with him",
+    "explanation": "Matthew 27:54 attributes the confession to the centurion and those guarding Jesus with him.",
     "reference": "Matthew 27:54",
     "metadata": {
       "difficulty": "expert",
