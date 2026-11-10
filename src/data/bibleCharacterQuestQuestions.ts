@@ -68,12 +68,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "An angel announced the birth of my son to my wife.",
         "I witnessed the angel ascend in the flame of the offering."
       ]
-    },
-    "clues": [
-      "I was from the tribe of Dan and lived in Zorah.",
-      "An angel announced the birth of my son to my wife.",
-      "I witnessed the angel ascend in the flame of the offering."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l1-c3",
@@ -1289,12 +1284,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "The name announced the coming plunder of Damascus and Samaria.",
         "The sign concerned how quickly Assyria would take their wealth."
       ]
-    },
-    "clues": [
-      "A prophetic child received an unusually long name.",
-      "The name announced the coming plunder of Damascus and Samaria.",
-      "The sign concerned how quickly Assyria would take their wealth."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l9-c1",
@@ -1326,12 +1316,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "His father was named Nahash.",
         "He helped David's company with provisions at Mahanaim."
       ]
-    },
-    "clues": [
-      "He was from Rabbah in Ammon.",
-      "His father was named Nahash.",
-      "He helped David's company with provisions at Mahanaim."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l9-c2",
@@ -1459,12 +1444,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "David sent me back to Jerusalem during Absalom's rebellion.",
         "My counsel helped frustrate Ahithophel's plan."
       ]
-    },
-    "clues": [
-      "I was known as an Archite and was loyal to David.",
-      "David sent me back to Jerusalem during Absalom's rebellion.",
-      "My counsel helped frustrate Ahithophel's plan."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l10-c1",
@@ -2552,12 +2532,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "I cursed David as he fled from Absalom.",
         "Solomon later restricted me to Jerusalem, and I was executed after leaving the city."
       ]
-    },
-    "clues": [
-      "Paul names me near the end of his letter to the Romans.",
-      "I held a civic financial office in the city.",
-      "My title is translated as city treasurer or city manager."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l16-c5",
@@ -3101,12 +3076,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "I warned Judah that forsaking the LORD would bring consequences.",
         "I was stoned in the court of the LORD's house during Joash's reign."
       ]
-    },
-    "clues": [
-      "I was the son of Jehoiada the priest.",
-      "I warned Judah that forsaking the LORD would bring consequences.",
-      "I was stoned in the court of the LORD's house during Joash's reign."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l20-c2",
@@ -3394,12 +3364,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "I delivered a prophetic judgment to King Baasha of Israel.",
         "My message compared Baasha's coming fate with Jeroboam's house."
       ]
-    },
-    "clues": [
-      "I was the son of a seer named Hanani.",
-      "I delivered a prophetic judgment to King Baasha of Israel.",
-      "My message compared Baasha's coming fate with Jeroboam's house."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l22-c1",
@@ -3591,12 +3556,7 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
         "I described Israel as scattered sheep without a shepherd.",
         "Zedekiah son of Chenaanah struck me after I spoke."
       ]
-    },
-    "clues": [
-      "Ahab summoned me after hearing the favourable predictions of other prophets.",
-      "I described Israel as scattered sheep without a shepherd.",
-      "Zedekiah son of Chenaanah struck me after I spoke."
-    ]
+    }
   },
   {
     "id": "bible-character-quest-l23-c2",
