@@ -1228,7 +1228,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
 
                   {/* Active Match In-Progress Card */}
                   {c.status === 'accepted' && (
-                    <div className="rounded-2xl border border-[#3156C9]/20 bg-white/80 p-3.5 text-xs text-[#5A6275] space-y-2">
+                    <div className="rounded-2xl border border-[#3156C9]/20 bg-white p-3.5 text-xs text-[#5A6275] space-y-2">
                       <div className="flex items-center justify-between">
                         <span>
                           {hasPlayed ? (
@@ -1302,8 +1302,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
 
       {/* Challenge Category Selection Modal */}
       {selectedTargetProfile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-[#171B24]/10 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto overscroll-contain p-4 bg-black/75">
+          <div className="bg-white rounded-3xl max-w-lg w-full max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain p-6 sm:p-7 shadow-2xl border border-[#171B24]/10 space-y-5 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-center justify-between border-b border-[#171B24]/10 pb-3">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#D66B3D]">Head-to-Head Invitation</span>
@@ -1338,7 +1338,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
               <label className="text-xs font-bold uppercase tracking-wider text-[#171B24]/70">
                 Select Challenge Category:
               </label>
-              <div className="grid grid-cols-1 gap-2.5 max-h-64 overflow-y-auto pr-1">
+              <div className="grid grid-cols-1 gap-2.5 max-h-none overflow-visible pr-1">
                 {CHALLENGE_CATEGORIES.map((cat) => {
                   const isSel = selectedCategory === cat.id;
                   return (
@@ -1401,8 +1401,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
 
       {/* Head-to-Head Fair Match Runner Modal */}
       {activePlayChallenge && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-[#171B24]/10 space-y-6 animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto overscroll-contain p-4 bg-black/80">
+          <div className="bg-white rounded-3xl max-w-xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain p-6 sm:p-8 shadow-2xl border border-[#171B24]/10 space-y-6 animate-in fade-in duration-200">
             {/* If finished attempt */}
             {matchCompletedStats ? (
               <div className="text-center space-y-5 py-4">
