@@ -8,6 +8,8 @@ on:
       - 'src/data/bibleContentBank.ts'
       - 'scripts/validateContent.ts'
       - 'package.json'
+      - 'scripts/generateSupabaseSyncSql.ts'
+      - 'src/data/**/*.ts'
       - '.github/workflows/audit-bible-content.yml'
   pull_request:
     branches:
@@ -29,5 +31,13 @@ jobs:
           node-version: 24.12.0
       - name: Install dependencies
         run: npm install
+      - name: Generate published database content sync
+        run: npm run sync:generate
+      - name: Upload generated database sync SQL
+        uses: actions/upload-artifact@v4
+        with:
+          name: biblearena-published-database-sync
+          path: supabase/sync_published_game_content.sql
+          retention-days: 1
       - name: Audit all 4,750 question slots
         run: npm run validate:content
