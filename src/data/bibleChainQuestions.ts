@@ -4914,7 +4914,7 @@ export const BIBLE_CHAIN_QUESTIONS: ChallengeItem[] = [
     ],
     "correct_answer": "Earthly ministry, death, resurrection, and ascension of Jesus Christ",
     "explanation": "Acts 1:21-22 explicitly defines the apostolic succession criteria: \"Beginning from the baptism of John, unto that same day that he was taken up from us, must one be ordained to be a witness with us of his resurrection.\" The earthly ministry, cross, resurrection, and ascension connect John to Pentecost.",
-    "reference": "Acts 1:21-22; 2:1-4",
+    "reference": "Acts 1:21-22; Acts 2:1-4",
     "metadata": {
       "stage": 6,
       "stage_title": "The Missing Link",
