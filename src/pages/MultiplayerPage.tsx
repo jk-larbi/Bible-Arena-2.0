@@ -34,7 +34,7 @@ export const MultiplayerPage: React.FC = () => {
     user?.user_metadata?.username || user?.user_metadata?.full_name || ''
   );
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
-  const questionCount = 150;
+  const [questionCount, setQuestionCount] = useState<number>(30);
   const [timeLimit, setTimeLimit] = useState<number>(20);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -385,9 +385,15 @@ export const MultiplayerPage: React.FC = () => {
 
               <div>
                 <label className="block font-semibold mb-1 text-[#5A6275]">Questions</label>
-                <div className="w-full rounded-xl border border-[#171B24]/15 bg-white p-2.5 font-semibold text-[#171B24]">
-                  All available questions
-                </div>
+                <select
+                  value={questionCount}
+                  onChange={(e) => setQuestionCount(Number(e.target.value))}
+                  className="w-full p-2.5 rounded-xl bg-white border border-[#171B24]/15 font-semibold text-[#171B24]"
+                >
+                  {[10, 20, 30, 40, 50, 75, 100, 125, 150].map((count) => (
+                    <option key={count} value={count}>{count} Questions</option>
+                  ))}
+                </select>
               </div>
 
               <div>
