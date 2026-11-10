@@ -940,7 +940,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
             return (
               <div
                 key={quest.id}
-                className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 hover:bg-white/10 transition"
+                className="bg-[#252B3A] border border-white/15 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-md transition-colors hover:bg-[#303849]"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-1.5">
