@@ -17,6 +17,30 @@ import { BIBLE_TIMELINE_BATCH_03 } from '../src/data/rebuild/bibleTimelineBatch0
 
 const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_02, ...WHO_SAID_IT_BATCH_01, ...BIBLE_TIMELINE_BATCH_01, ...FIND_BIBLE_BOOK_BATCH_01, ...BIBLE_TIMELINE_BATCH_02, ...BIBLE_GEOGRAPHY_BATCH_02, ...FIND_BIBLE_BOOK_BATCH_02, ...BIBLE_DETECTIVE_BATCH_02, ...BIBLE_DETECTIVE_BATCH_03, ...BIBLE_DETECTIVE_BATCH_04, ...BIBLE_DETECTIVE_BATCH_05, ...BIBLE_TIMELINE_BATCH_03];
 
+// Passage-reviewed speaker corrections. These checks guard against the exact
+// attribution mistakes found during the Bible-text audit.
+const REVIEWED_WHO_SAID_IT = [
+  { fact: 'who-said-it-fact-8', answer: 'The people of Israel', reference: '1 Kings 18:39' },
+  { fact: 'who-said-it-fact-10', answer: 'Jesus', reference: 'John 14:1' },
+  { fact: 'who-said-it-fact-44', answer: 'The LORD', reference: 'Judges 6:14' },
+  { fact: 'who-said-it-fact-74', answer: 'The lamenting speaker in Lamentations', reference: 'Lamentations 3:23' },
+  { fact: 'who-said-it-fact-77', answer: 'Israel, personified as the unfaithful wife', reference: 'Hosea 2:7' },
+  { fact: 'who-said-it-fact-85', answer: 'An unnamed midnight herald', reference: 'Matthew 25:6' },
+] as const;
+
+for (const reviewed of REVIEWED_WHO_SAID_IT) {
+  const item = ALL_BATCHES.find((entry) => entry.metadata?.fact_key === reviewed.fact);
+  if (!item) {
+    console.error(`Missing reviewed Who Said It fact: ${reviewed.fact}`);
+    process.exit(1);
+  }
+  if (item.correct_answer !== reviewed.answer || normalize(item.reference) !== normalize(reviewed.reference)) {
+    console.error(`Reviewed speaker attribution regressed: ${reviewed.fact}`);
+    process.exit(1);
+  }
+}
+
+
 const normalize = (value: string) =>
   value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
