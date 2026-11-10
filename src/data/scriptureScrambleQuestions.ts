@@ -5295,26 +5295,21 @@ export const SCRIPTURE_SCRAMBLE_QUESTIONS: ChallengeItem[] = [
       "isWordPuzzle": false
     }
   },
-  {
+    {
     "id": "scripture-scramble-l32-c3",
     "game_slug": "scripture-scramble",
     "level": 32,
     "challenge_index": 3,
-    "question_text": "Unscramble the letters to identify the minor prophet whose oracle of the Day of the Lord promises that God will rejoice over Zion with singing:",
+    "question_text": "Unscramble the letters to identify the prophet whose promise that God would pour out His Spirit on all flesh was quoted by Peter at Pentecost:",
     "options": [
-      "H",
-      "P",
-      "Z",
-      "E",
-      "A",
-      "N",
-      "I",
-      "A",
-      "H"
+      "O",
+      "J",
+      "L",
+      "E"
     ],
-    "correct_answer": "ZEPHANIAH",
-    "reference": "Zephaniah 1:1; Zephaniah 3:17",
-    "explanation": "Zephaniah prophesied during Josiah's reign, warning of wrath but closing with God quieting His people in His love.",
+    "correct_answer": "JOEL",
+    "reference": "Joel 2:28–29; Acts 2:16–21",
+    "explanation": "Joel 2:28–29 promises the outpouring of God's Spirit; Peter identifies the Pentecost event as the fulfilment of Joel's prophecy in Acts 2:16–21.",
     "metadata": {
       "stage": 7,
       "stage_title": "The Unfamiliar Challenge",
@@ -5326,8 +5321,8 @@ export const SCRIPTURE_SCRAMBLE_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 25,
       "curated": true,
       "testament": "OT",
-      "hint1": "Starts with Z.",
-      "hint2": "Traced his ancestry back four generations to King Hezekiah.",
+      "hint1": "Starts with J.",
+      "hint2": "Peter quoted this prophet in his Pentecost sermon.",
       "isWordPuzzle": false
     }
   },
