@@ -36,6 +36,10 @@ async function validate() {
   let observedRepeatedFactRows = 0;
   let crossGameFactReuseRows = 0;
   let strictOptionChecks = 0;
+  const repeatedQuestionRowsByGame = new Map<string, number>();
+  const repeatedFactRowsByGame = new Map<string, number>();
+  const publishedRepeatedQuestionRowsByGame = new Map<string, number>();
+  const publishedRepeatedFactRowsByGame = new Map<string, number>();
   const seenIds = new Set<string>();
   const seenQuestions = new Map<string, string>();
   const seenFacts = new Map<string, string>();
@@ -92,12 +96,18 @@ async function validate() {
         // test the same passage through different mechanics. Keep it visible as
         // a metric, but enforce uniqueness inside reviewed content for each game.
         const previousQuestion = seenQuestions.get(`${slug}::${questionKey}`);
-        if (questionKey !== '::' && previousQuestion) observedRepeatedQuestionRows++;
-        else if (questionKey !== '::') seenQuestions.set(`${slug}::${questionKey}`, location);
+        if (questionKey !== '::::' && previousQuestion) {
+          observedRepeatedQuestionRows++;
+          repeatedQuestionRowsByGame.set(slug, (repeatedQuestionRowsByGame.get(slug) ?? 0) + 1);
+          if (level <= 30) publishedRepeatedQuestionRowsByGame.set(slug, (publishedRepeatedQuestionRowsByGame.get(slug) ?? 0) + 1);
+        } else if (questionKey !== '::::') seenQuestions.set(`${slug}::${questionKey}`, location);
 
         const previousFact = factKey ? seenFacts.get(`${slug}::${factKey}`) : undefined;
-        if (previousFact) observedRepeatedFactRows++;
-        else if (factKey) seenFacts.set(`${slug}::${factKey}`, location);
+        if (previousFact) {
+          observedRepeatedFactRows++;
+          repeatedFactRowsByGame.set(slug, (repeatedFactRowsByGame.get(slug) ?? 0) + 1);
+          if (level <= 30) publishedRepeatedFactRowsByGame.set(slug, (publishedRepeatedFactRowsByGame.get(slug) ?? 0) + 1);
+        } else if (factKey) seenFacts.set(`${slug}::${factKey}`, location);
 
         if (factKey) {
           const otherGameFact = seenFacts.get(`any-game::${factKey}`);
@@ -132,7 +142,7 @@ async function validate() {
           continue;
         }
 
-        if (MULTIPLE_CHOICE_GAMES.has(slug)) {
+        if (MULTIPLE_CHOICE_GAMES.has(slug) && !item.metadata?.is_typed) {
           strictOptionChecks++;
           const options = item.options.map(normalize).filter(Boolean);
           if (options.length !== 4 || new Set(options).size !== 4) {
@@ -213,6 +223,20 @@ async function validate() {
   console.log(`Strict multiple-choice checks:       ${strictOptionChecks}`);
   console.log(`Reviewed question/fact uniqueness:  ${reviewedQuestions.size}/${reviewedFacts.size}`);
   console.log(`Difficulty tiers:                    ${[...actualTiers].join(', ')}`);
+  console.log('Repeated same-game question rows by game (all 50 levels):');
+  for (const [game, count] of [...repeatedQuestionRowsByGame.entries()].sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${game}: ${count}`);
+  }
+  console.log('Repeated same-game fact rows by game (all 50 levels):');
+  for (const [game, count] of [...repeatedFactRowsByGame.entries()].sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${game}: ${count}`);
+  }
+  console.log('Repeated question/fact rows in published Levels 1–30:');
+  for (const game of ALL_19_GAME_SLUGS) {
+    const q = publishedRepeatedQuestionRowsByGame.get(game) ?? 0;
+    const fact = publishedRepeatedFactRowsByGame.get(game) ?? 0;
+    if (q || fact) console.log(`  ${game}: ${q} repeated prompts, ${fact} repeated facts`);
+  }
 
   if (errors.length) {
     console.error(`AUDIT FAILED: ${errors.length} issue(s). First 40:`);
