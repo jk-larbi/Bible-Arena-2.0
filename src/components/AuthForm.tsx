@@ -37,6 +37,10 @@ export function AuthForm({ onDone }: { onDone?: () => void }) {
         if (!r.ok) return setErrors({ form: r.error });
         setInfo('If that email has an account, a reset link is on its way.');
       }
+    } catch (error) {
+      console.error('BibleArena authentication failed:', error);
+      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      setErrors({ form: message });
     } finally { setBusy(false); }
   }
 
