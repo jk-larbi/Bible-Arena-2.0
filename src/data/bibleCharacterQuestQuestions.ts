@@ -2527,16 +2527,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 16,
     "challenge_index": 4,
-    "question_text": "Which man is identified as the city treasurer in Paul's closing greetings to the Christians in Rome?",
+    "question_text": "Which Benjaminite from Bahurim cursed David as the king fled from Absalom and was later placed under a strict restriction by Solomon?",
     "options": [
-      "Erastus",
-      "Tertius",
-      "Gaius",
-      "Quartus"
+      "Shimei son of Gera",
+      "Ziba",
+      "Shimei son of Elah",
+      "Adonijah"
     ],
-    "correct_answer": "Erastus",
-    "reference": "Romans 16:23",
-    "explanation": "Paul's closing greetings name Erastus, the city treasurer, and Quartus, a brother. The verse identifies Erastus by his civic office.",
+    "correct_answer": "Shimei son of Gera",
+    "reference": "2 Samuel 16:5-13; 1 Kings 2:8-9, 36-46",
+    "explanation": "Shimei son of Gera cursed David during Absalom's revolt. David instructed Solomon to deal wisely with him, and Solomon later confined Shimei to Jerusalem before executing him when he broke the restriction.",
     "metadata": {
       "stage": 4,
       "stage_title": "Kings and Royal Families",
@@ -2548,9 +2548,9 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "Paul names me near the end of his letter to the Romans.",
-        "I held a civic financial office in the city.",
-        "My title is translated as city treasurer or city manager."
+        "I was a Benjaminite from Bahurim.",
+        "I cursed David as he fled from Absalom.",
+        "Solomon later restricted me to Jerusalem, and I was executed after leaving the city."
       ]
     },
     "clues": [
