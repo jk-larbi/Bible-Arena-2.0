@@ -6,7 +6,6 @@ import { buildLocalChallengesForLevel } from '../src/data/bibleContentBank';
 
 const DATABASE_GAMES = [
   'scripture-challenge',
-  'who-said-it',
   'bible-detective',
   'old-vs-new-testament',
   'bible-word-search',
