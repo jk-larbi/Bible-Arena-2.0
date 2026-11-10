@@ -12,6 +12,8 @@ import {
   finishLevel,
   recordAwardedChallenge,
   getOverallTotalMarks,
+  MAX_PUBLISHED_LEVELS,
+  CHALLENGES_PER_LEVEL,
 } from '../src/lib/levels';
 import {
   normalizeCode,
@@ -182,7 +184,36 @@ async function runTestSuite() {
     `Checked 190 challenges. Every challenge contains non-empty id, question_text, correct_answer, verified scripture reference, and educational explanation. Mismatches: ${referenceMismatches}.`
   );
 
-  // TEST 6: Randomized Answer Positions (Mulberry32)
+  // TEST 6: Multiplayer loads the complete published question bank for every game.
+  // Keep this regression test aligned with WaitingRoom's shared 30-level loader.
+  let multiplayerBankFailures = 0;
+  let multiplayerQuestionTotal = 0;
+  for (const slug of ALL_19_GAME_SLUGS) {
+    const fullBank: ChallengeItem[] = [];
+    for (let level = 1; level <= MAX_PUBLISHED_LEVELS; level++) {
+      const levelQuestions = buildLocalChallengesForLevel(slug, level);
+      if (levelQuestions.length !== CHALLENGES_PER_LEVEL) multiplayerBankFailures++;
+      if (levelQuestions.some((q) => q.game_slug !== slug || q.level !== level || !q.id || !q.question_text || !q.correct_answer)) {
+        multiplayerBankFailures++;
+      }
+      fullBank.push(...levelQuestions);
+    }
+    const uniqueIds = new Set(fullBank.map((q) => q.id));
+    if (fullBank.length !== MAX_PUBLISHED_LEVELS * CHALLENGES_PER_LEVEL || uniqueIds.size !== fullBank.length) {
+      multiplayerBankFailures++;
+    }
+    multiplayerQuestionTotal += fullBank.length;
+  }
+
+  assert(
+    multiplayerBankFailures === 0 &&
+      multiplayerQuestionTotal === ALL_19_GAME_SLUGS.length * MAX_PUBLISHED_LEVELS * CHALLENGES_PER_LEVEL,
+    'Multiplayer Full Published Question Bank Across All 19 Games',
+    'All 19 games × 30 published levels × 5 questions',
+    `Verified ${multiplayerQuestionTotal} questions across all 19 game banks. Each game supplies exactly ${MAX_PUBLISHED_LEVELS * CHALLENGES_PER_LEVEL} questions with five per level, matching the shared multiplayer loader. Failures: ${multiplayerBankFailures}.`
+  );
+
+  // TEST 7: Randomized Answer Positions (Mulberry32)
   const mcOptionDist = { A: 0, B: 0, C: 0, D: 0 };
   const mcGames = [
     'scripture-challenge', 'who-said-it', 'complete-the-scripture',
@@ -213,7 +244,7 @@ async function runTestSuite() {
       `D: ${mcOptionDist.D} (${((mcOptionDist.D / totalMCSampled) * 100).toFixed(1)}%). No position dominates (>35%).`
   );
 
-  // TEST 7: Level Progression & Star Calculation
+  // TEST 8: Level Progression & Star Calculation
   const finishRes = await finishLevel(attempt.attemptId);
   assert(
     finishRes.result_percent >= 0 && finishRes.result_stars >= 0 && finishRes.result_stars <= 5,
