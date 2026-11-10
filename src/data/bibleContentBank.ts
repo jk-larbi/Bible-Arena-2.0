@@ -851,9 +851,11 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'bible-word-search': {
-        const c1 = BIBLE_CHARACTERS[globalSeed % BIBLE_CHARACTERS.length];
-        const c2 = BIBLE_CHARACTERS[(globalSeed + 5) % BIBLE_CHARACTERS.length];
-        const c3 = BOOKS_66[globalSeed % BOOKS_66.length];
+        // Coprime strides produce a distinct three-word set across the 250
+        // question slots while still rotating through every character and book.
+        const c1 = BIBLE_CHARACTERS[(globalSeed * 13) % BIBLE_CHARACTERS.length];
+        const c2 = BIBLE_CHARACTERS[(globalSeed * 17 + 5) % BIBLE_CHARACTERS.length];
+        const c3 = BOOKS_66[(globalSeed * 19) % BOOKS_66.length];
         const wordEntries: Array<{ word: string; reference: string }> = [];
         const addWord = (rawWord: string, reference: string) => {
           const word = rawWord.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 8);
