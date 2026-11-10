@@ -14,6 +14,7 @@ export interface SyncRoom {
   question_duration_seconds: number;
   reveal_seconds: number;
   question_ids: string[];
+  settings?: Record<string, unknown>;
 }
 
 export interface SyncPlayer {
@@ -95,6 +96,7 @@ export function useMultiplayerSync(
           question_duration_seconds: rawRoom.question_duration_seconds ?? 20,
           reveal_seconds: rawRoom.reveal_seconds ?? 5,
           question_ids: rawRoom.question_ids ?? [],
+          settings: rawRoom.settings ?? {},
         };
 
         setRoom(formattedRoom);
@@ -149,6 +151,7 @@ export function useMultiplayerSync(
           question_duration_seconds: r.question_duration_seconds ?? 20,
           reveal_seconds: r.reveal_seconds ?? 5,
           question_ids: r.question_ids ?? [],
+          settings: r.settings ?? {},
         };
         setRoom(formatted);
       }
