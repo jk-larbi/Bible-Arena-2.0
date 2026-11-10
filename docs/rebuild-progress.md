@@ -50,7 +50,7 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - CI: staged-batch audit run [42627739526](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739526) passed. GitHub Pages build/deploy run [42627739601](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739601) passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, artifact upload and deployment.
 - Final documentation deployment run [42628372365](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42628372365) also completed successfully. The `actions/deploy-pages` step polled GitHub Pages status, reported success for commit `1aaa22a477fbca559e3c10f1ef0476070e66af96`, and returned the configured environment URL. The browser fetch tool could not render the live URL from this environment, so a manual visual inspection was unavailable; the official Pages deployment status is confirmed.
 
-## Bible Chain Challenge — content and database verified; deployment pending (2026-11-10)
+## Bible Chain Challenge — verified complete and deployed (2026-11-10)
 
 - Canonical source: `src/data/bibleChainQuestions.ts`. The file retains its 250-item catalogue; Levels 1–30 now have a verified playable bank of exactly 150 challenges (five per level). The 30 typed-input challenges keep typed mode; the remaining 120 retain four-option multiple choice.
 - Runtime: `buildLocalChallengesForLevel('bible-chain-challenge', level)` reads the curated `BIBLE_CHAIN_QUESTIONS` bank for the game. The existing chain-specific question formats and typed/choice mechanics were preserved.
@@ -63,12 +63,23 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Supabase import updated exactly 150 existing `bible-chain-challenge` rows in place. Post-import validation: 150 rows, 150 distinct slots, five per level, 150 unique wordings, 150 unique facts, zero missing fields, zero multiple-choice option failures and zero cross-game collisions.
 - Publication verification: 30 levels published and 20 unpublished; no level above 30 is published. `game_content_public` exposes exactly 150 chain challenges and none above Level 30. A project-wide check also confirmed all 19 games have 30 published levels, 20 Coming Soon levels and 150 public content rows.
 - Frontend publication boundary remains consistent: `MAX_PUBLISHED_LEVELS = 30`; `startLevel` rejects Levels 31–50; the local/remote level-map merge requires both local and remote publication flags.
-- CI for source commit `b540a1d94f6707caaadb95bc2234579c0c6dd528`: GitHub Pages build job passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics checks, staged-batch validation, multiplayer/catalogue checks, image optimization and Vite build. Deploy job is still in progress at the time of this update: [run 42817168215](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42817168215).
-- Deployment is not yet confirmed. The live Pages URL could not be fetched from this environment, so do not mark this game complete or begin the next game until the deploy job succeeds and the published site is checked.
+- CI for source commit `b540a1d94f6707caaadb95bc2234579c0c6dd528`: build and validation passed. Its first deploy attempt failed: [run 42817168215](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42817168215).
+- A subsequent build-and-deploy run completed successfully for commit `8e9be6167ddacb85cce1bd5f4d47a77e6eab4a79`, whose tree includes the Bible Chain source changes: [run 42818623312](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42818623312). Both build and deploy jobs, including the GitHub Pages deployment step, succeeded.
+- The public Pages URL could not be independently fetched from this environment (web fetch returned a cache miss). Deployment is therefore confirmed by the official GitHub Actions deployment job; manual visual/browser verification remains unavailable here.
 
-## Next game after deployment verification
+## Bible Crossword — audit blocked; not complete (2026-11-10)
 
-- Bible Crossword
+- Runtime source: `src/data/bibleCrosswordQuestions.ts`; `buildLocalChallengesForLevel` returns this curated bank for `bible-crossword`. The game is in `LOCAL_CONTENT_GAMES`, so the 10-entry crossword puzzles are client-generated/local content, not loaded from the current public Supabase feed.
+- Existing source structure: 250 total puzzles, with exactly five puzzles at each of Levels 1–50. Levels 1–30 contain 150 playable puzzles; each puzzle has 10 Across/Down entries (1,500 clue slots total). This is the existing crossword mechanic and must be preserved; four MCQ choices are not appropriate for this grid-entry format.
+- **Blocking content-quality audit:** the 1,500 playable clue slots contain only 251 unique normalized reference+answer fact keys and 269 unique normalized clue wordings. There are 1,249 repeated fact occurrences (186 duplicate fact groups) and 1,231 repeated clue-wording occurrences (200 duplicate wording groups). The generator's `usedPuzzleKeys` prevents identical complete answer sets, but does not prevent individual clues/facts from being reused across different puzzles.
+- The current generator's `MASTER_CLUES` pool contains 459 entries and only 425 unique normalized reference+answer keys before cross-game exclusions. It cannot currently supply 1,500 unique clue facts. The existing playable source bank also contains repeated facts that collide with other game banks, so it is not safe to import as a rebuilt bank.
+- Supabase mismatch: `public.game_content` has 150 crossword rows (five per level) but these are an older two-clue Across/Down format, not the current local 10-entry puzzle structure. The old rows also repeat clue-level facts. Do not overwrite/import until the canonical 10-entry bank is rebuilt and audited.
+- Publication settings remain correct: 30 published levels and 20 unpublished levels. The shared frontend boundary is still `MAX_PUBLISHED_LEVELS = 30`; local content is guarded by `startLevel`.
+- **No crossword source or Supabase rows were changed in this run.** Do not mark Bible Crossword complete. Required next work: expand the canonical clue pool with at least 1,500 genuinely distinct, passage-verified clue facts not already used by other games; regenerate 150 puzzles while reserving each clue/fact globally across Levels 1–30; validate grid placement, 10 clues per puzzle, unique clue wording and reference-answer facts, and cross-game collisions; then sync the 150 existing Supabase rows in place, validate publication, and deploy.
+
+## Next game
+
+- Bible Crossword — rebuild blocked pending expansion of the unique clue-fact pool.
 
 ## Other games awaiting completion
 
