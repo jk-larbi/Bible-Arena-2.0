@@ -6,10 +6,10 @@ import type { ChallengeItem } from './bibleContentBank';
 
 export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
   {
-    "id": "bible-memory-challenge-l1-c0",
+    "id": "bible-memory-challenge-l1-c1",
     "game_slug": "bible-memory-challenge",
     "level": 1,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete the opening verse of the Psalms of David:\n\n\"The LORD is my shepherd; I shall not ______.\"",
     "options": [
       "want",
@@ -49,10 +49,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l1-c1",
+    "id": "bible-memory-challenge-l1-c2",
     "game_slug": "bible-memory-challenge",
     "level": 1,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete the very first words of the Bible:\n\n\"In the beginning God created the heaven and the ______.\"",
     "options": [
       "earth",
@@ -92,10 +92,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l1-c2",
+    "id": "bible-memory-challenge-l1-c3",
     "game_slug": "bible-memory-challenge",
     "level": 1,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What phrase immediately follows in Psalm 23:2?\n\n\"He maketh me to lie down in green pastures: ______\"",
     "options": [
       "he leadeth me beside the still waters.",
@@ -135,10 +135,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l1-c3",
+    "id": "bible-memory-challenge-l1-c4",
     "game_slug": "bible-memory-challenge",
     "level": 1,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact missing word from this foundation verse:\n\n\"For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have ______ life.\"",
     "options": [
       "everlasting",
@@ -178,10 +178,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l1-c4",
+    "id": "bible-memory-challenge-l1-c5",
     "game_slug": "bible-memory-challenge",
     "level": 1,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 1 Mini-Boss: Type the final word of the beloved verse Philippians 4:13:\n\n\"I can do all things through Christ which ______ me.\"",
     "options": [
       "strengtheneth",
@@ -222,10 +222,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l2-c0",
+    "id": "bible-memory-challenge-l2-c1",
     "game_slug": "bible-memory-challenge",
     "level": 2,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete the command of Psalm 46:10:\n\n\"Be still, and know that I am ______: I will be exalted among the heathen, I will be exalted in the earth.\"",
     "options": [
       "God",
@@ -265,10 +265,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l2-c1",
+    "id": "bible-memory-challenge-l2-c2",
     "game_slug": "bible-memory-challenge",
     "level": 2,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Proverbs 3:5:\n\n\"Trust in the LORD with all thine heart; and lean not unto thine own ______.\"",
     "options": [
       "understanding",
@@ -308,10 +308,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l2-c2",
+    "id": "bible-memory-challenge-l2-c3",
     "game_slug": "bible-memory-challenge",
     "level": 2,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What promise directly follows in Proverbs 3:6?\n\n\"In all thy ways acknowledge him, ______\"",
     "options": [
       "and he shall direct thy paths.",
@@ -351,10 +351,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l2-c3",
+    "id": "bible-memory-challenge-l2-c4",
     "game_slug": "bible-memory-challenge",
     "level": 2,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing noun in Matthew 6:33:\n\n\"But seek ye first the ______ of God, and his righteousness; and all these things shall be added unto you.\"",
     "options": [
       "kingdom",
@@ -394,10 +394,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l2-c4",
+    "id": "bible-memory-challenge-l2-c5",
     "game_slug": "bible-memory-challenge",
     "level": 2,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 2 Mini-Boss: Type the exact bird mentioned in Isaiah 40:31:\n\n\"They that wait upon the LORD shall renew their strength; they shall mount up with wings as ______; they shall run, and not be weary; and they shall walk, and not faint.\"",
     "options": [
       "eagles",
@@ -438,10 +438,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l3-c0",
+    "id": "bible-memory-challenge-l3-c1",
     "game_slug": "bible-memory-challenge",
     "level": 3,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete the prologue of the Gospel of John:\n\n\"In the beginning was the Word, and the Word was with God, and the Word was ______.\"",
     "options": [
       "God",
@@ -481,10 +481,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l3-c1",
+    "id": "bible-memory-challenge-l3-c2",
     "game_slug": "bible-memory-challenge",
     "level": 3,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Psalm 119:105:\n\n\"Thy word is a lamp unto my feet, and a ______ unto my path.\"",
     "options": [
       "light",
@@ -524,10 +524,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l3-c2",
+    "id": "bible-memory-challenge-l3-c3",
     "game_slug": "bible-memory-challenge",
     "level": 3,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What follows the opening declaration in Romans 8:28?\n\n\"And we know that all things work together for good to them that love God, ______\"",
     "options": [
       "to them who are the called according to his purpose.",
@@ -567,10 +567,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l3-c3",
+    "id": "bible-memory-challenge-l3-c4",
     "game_slug": "bible-memory-challenge",
     "level": 3,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact missing word in 1 Thessalonians 5:17:\n\n\"Pray without ______.\"",
     "options": [
       "ceasing",
@@ -610,10 +610,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l3-c4",
+    "id": "bible-memory-challenge-l3-c5",
     "game_slug": "bible-memory-challenge",
     "level": 3,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 3 Mini-Boss: In John 14:6, Jesus said: \"I am the way, the truth, and the life: no man cometh unto the Father, but by ______.\" Type the missing word.",
     "options": [
       "me",
@@ -653,10 +653,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l4-c0",
+    "id": "bible-memory-challenge-l4-c1",
     "game_slug": "bible-memory-challenge",
     "level": 4,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete the Lord’s charge to Joshua:\n\n\"Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee ______ thou goest.\"",
     "options": [
       "whithersoever",
@@ -696,10 +696,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l4-c1",
+    "id": "bible-memory-challenge-l4-c2",
     "game_slug": "bible-memory-challenge",
     "level": 4,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Romans 12:2:\n\n\"And be not conformed to this world: but be ye transformed by the renewing of your ______.\"",
     "options": [
       "mind",
@@ -739,10 +739,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l4-c2",
+    "id": "bible-memory-challenge-l4-c3",
     "game_slug": "bible-memory-challenge",
     "level": 4,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What comes next in Psalm 100:1–2?\n\n\"Make a joyful noise unto the LORD, all ye lands. ______\"",
     "options": [
       "Serve the LORD with gladness: come before his presence with singing.",
@@ -782,10 +782,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l4-c3",
+    "id": "bible-memory-challenge-l4-c4",
     "game_slug": "bible-memory-challenge",
     "level": 4,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing virtue in 2 Timothy 1:7:\n\n\"For God hath not given us the spirit of fear; but of power, and of love, and of a ______ mind.\"",
     "options": [
       "sound",
@@ -825,10 +825,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l4-c4",
+    "id": "bible-memory-challenge-l4-c5",
     "game_slug": "bible-memory-challenge",
     "level": 4,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 4 Mini-Boss: Complete Hebrews 11:1 from memory:\n\n\"Now faith is the ______ of things hoped for, the evidence of things not seen.\" Type the exact 9-letter word.",
     "options": [
       "substance",
@@ -868,10 +868,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l5-c0",
+    "id": "bible-memory-challenge-l5-c1",
     "game_slug": "bible-memory-challenge",
     "level": 5,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Micah 6:8:\n\n\"He hath shewed thee, O man, what is good; and what doth the LORD require of thee, but to do justly, and to love mercy, and to walk ______ with thy God?\"",
     "options": [
       "humbly",
@@ -911,10 +911,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l5-c1",
+    "id": "bible-memory-challenge-l5-c2",
     "game_slug": "bible-memory-challenge",
     "level": 5,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "One word in this famous quotation of Galatians 5:22 has been changed:\n\n\"But the fruit of the Spirit is love, happiness, peace, longsuffering, gentleness, goodness, faith...\"\n\nWhich word was changed from the KJV text?",
     "options": [
       "happiness (should be joy)",
@@ -954,10 +954,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l5-c2",
+    "id": "bible-memory-challenge-l5-c3",
     "game_slug": "bible-memory-challenge",
     "level": 5,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What is the second half of Jeremiah 29:11?\n\n\"For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, ______\"",
     "options": [
       "to give you an expected end.",
@@ -997,10 +997,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l5-c3",
+    "id": "bible-memory-challenge-l5-c4",
     "game_slug": "bible-memory-challenge",
     "level": 5,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word from Galatians 2:20:\n\n\"I am ______ with Christ: nevertheless I live; yet not I, but Christ liveth in me...\"",
     "options": [
       "crucified",
@@ -1040,10 +1040,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l5-c4",
+    "id": "bible-memory-challenge-l5-c5",
     "game_slug": "bible-memory-challenge",
     "level": 5,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 1 Final Boss: Type the exact reference for this verse:\n\n\"Commit thy works unto the LORD, and thy thoughts shall be established.\"\n\n(Format: Book Chapter:Verse, e.g. Proverbs 16:3)",
     "options": [
       "Proverbs 16:3",
@@ -1085,10 +1085,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l6-c0",
+    "id": "bible-memory-challenge-l6-c1",
     "game_slug": "bible-memory-challenge",
     "level": 6,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete James 1:5:\n\n\"If any of you lack wisdom, let him ask of God, that giveth to all men ______, and upbraideth not; and it shall be given him.\"",
     "options": [
       "liberally",
@@ -1128,10 +1128,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l6-c1",
+    "id": "bible-memory-challenge-l6-c2",
     "game_slug": "bible-memory-challenge",
     "level": 6,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Proverbs 1:7:\n\n\"The fear of the LORD is the beginning of ______: but fools despise wisdom and instruction.\"",
     "options": [
       "knowledge",
@@ -1171,10 +1171,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l6-c2",
+    "id": "bible-memory-challenge-l6-c3",
     "game_slug": "bible-memory-challenge",
     "level": 6,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What completes Psalm 37:4?\n\n\"Delight thyself also in the LORD; ______\"",
     "options": [
       "and he shall give thee the desires of thine heart.",
@@ -1214,10 +1214,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l6-c3",
+    "id": "bible-memory-challenge-l6-c4",
     "game_slug": "bible-memory-challenge",
     "level": 6,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing 5-letter word in Psalm 34:8:\n\n\"O ______ and see that the LORD is good: blessed is the man that trusteth in him.\"",
     "options": [
       "taste",
@@ -1257,10 +1257,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l6-c4",
+    "id": "bible-memory-challenge-l6-c5",
     "game_slug": "bible-memory-challenge",
     "level": 6,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 6 Mini-Boss: Complete Proverbs 4:23 by typing the exact missing word:\n\n\"Keep thy ______ with all diligence; for out of it are the issues of life.\"",
     "options": [
       "heart",
@@ -1300,10 +1300,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l7-c0",
+    "id": "bible-memory-challenge-l7-c1",
     "game_slug": "bible-memory-challenge",
     "level": 7,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Psalm 91:1:\n\n\"He that dwelleth in the secret place of the most High shall abide under the ______ of the Almighty.\"",
     "options": [
       "shadow",
@@ -1343,10 +1343,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l7-c1",
+    "id": "bible-memory-challenge-l7-c2",
     "game_slug": "bible-memory-challenge",
     "level": 7,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Isaiah 26:3:\n\n\"Thou wilt keep him in ______ peace, whose mind is stayed on thee: because he trusteth in thee.\"",
     "options": [
       "perfect",
@@ -1386,10 +1386,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l7-c2",
+    "id": "bible-memory-challenge-l7-c3",
     "game_slug": "bible-memory-challenge",
     "level": 7,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What follows in Psalm 27:1?\n\n\"The LORD is my light and my salvation; whom shall I fear? ______\"",
     "options": [
       "the LORD is the strength of my life; of whom shall I be afraid?",
@@ -1429,10 +1429,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l7-c3",
+    "id": "bible-memory-challenge-l7-c4",
     "game_slug": "bible-memory-challenge",
     "level": 7,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in 1 Peter 5:7:\n\n\"Casting all your ______ upon him; for he careth for you.\"",
     "options": [
       "care",
@@ -1473,10 +1473,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l7-c4",
+    "id": "bible-memory-challenge-l7-c5",
     "game_slug": "bible-memory-challenge",
     "level": 7,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 7 Mini-Boss: Complete Lamentations 3:23 by typing the exact missing adjective:\n\n\"They are new every morning: ______ is thy faithfulness.\"",
     "options": [
       "great",
@@ -1516,10 +1516,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l8-c0",
+    "id": "bible-memory-challenge-l8-c1",
     "game_slug": "bible-memory-challenge",
     "level": 8,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Ephesians 2:8:\n\n\"For by grace are ye saved through ______; and that not of yourselves: it is the gift of God:\"",
     "options": [
       "faith",
@@ -1559,10 +1559,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l8-c1",
+    "id": "bible-memory-challenge-l8-c2",
     "game_slug": "bible-memory-challenge",
     "level": 8,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Titus 3:5:\n\n\"Not by works of righteousness which we have done, but according to his ______ he saved us, by the washing of regeneration, and renewing of the Holy Ghost;\"",
     "options": [
       "mercy",
@@ -1602,10 +1602,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l8-c2",
+    "id": "bible-memory-challenge-l8-c3",
     "game_slug": "bible-memory-challenge",
     "level": 8,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What directly follows in Romans 5:8?\n\n\"But God commendeth his love toward us, in that, ______\"",
     "options": [
       "while we were yet sinners, Christ died for us.",
@@ -1645,10 +1645,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l8-c3",
+    "id": "bible-memory-challenge-l8-c4",
     "game_slug": "bible-memory-challenge",
     "level": 8,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Romans 6:23:\n\n\"For the wages of sin is death; but the ______ of God is eternal life through Jesus Christ our Lord.\"",
     "options": [
       "gift",
@@ -1688,10 +1688,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l8-c4",
+    "id": "bible-memory-challenge-l8-c5",
     "game_slug": "bible-memory-challenge",
     "level": 8,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 8 Mini-Boss: Complete 2 Corinthians 5:17 by typing the exact missing word:\n\n\"Therefore if any man be in Christ, he is a new ______: old things are passed away; behold, all things are become new.\"",
     "options": [
       "creature",
@@ -1732,10 +1732,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l9-c0",
+    "id": "bible-memory-challenge-l9-c1",
     "game_slug": "bible-memory-challenge",
     "level": 9,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Psalm 103:1:\n\n\"Bless the LORD, O my soul: and all that is within me, bless his ______ name.\"",
     "options": [
       "holy",
@@ -1775,10 +1775,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l9-c1",
+    "id": "bible-memory-challenge-l9-c2",
     "game_slug": "bible-memory-challenge",
     "level": 9,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Psalm 103:2:\n\n\"Bless the LORD, O my soul, and forget not all his ______:\"",
     "options": [
       "benefits",
@@ -1818,10 +1818,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l9-c2",
+    "id": "bible-memory-challenge-l9-c3",
     "game_slug": "bible-memory-challenge",
     "level": 9,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What completes the trilogy in 1 Thessalonians 5:16–18?\n\n\"Rejoice evermore. Pray without ceasing. ______\"",
     "options": [
       "In every thing give thanks: for this is the will of God in Christ Jesus concerning you.",
@@ -1861,10 +1861,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l9-c3",
+    "id": "bible-memory-challenge-l9-c4",
     "game_slug": "bible-memory-challenge",
     "level": 9,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Psalm 150:6:\n\n\"Let every thing that hath ______ praise the LORD. Praise ye the LORD.\"",
     "options": [
       "breath",
@@ -1904,10 +1904,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l9-c4",
+    "id": "bible-memory-challenge-l9-c5",
     "game_slug": "bible-memory-challenge",
     "level": 9,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 9 Mini-Boss: Complete Psalm 100:4 by typing the exact architectural feature entered:\n\n\"Enter into his ______ with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name.\"",
     "options": [
       "gates",
@@ -1948,10 +1948,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l10-c0",
+    "id": "bible-memory-challenge-l10-c1",
     "game_slug": "bible-memory-challenge",
     "level": 10,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: 2 Kings 5:1–14\n\n\"Now Naaman, captain of the host of the king of Syria, was a great man with his master, and honourable... but he was a ______.\"",
     "options": [
       "leper",
@@ -1991,10 +1991,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l10-c1",
+    "id": "bible-memory-challenge-l10-c2",
     "game_slug": "bible-memory-challenge",
     "level": 10,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: Who spoke to Naaman's wife saying, \"Would God my lord were with the prophet that is in Samaria! for he would recover him of his leprosy\"?\n\n(2 Kings 5:2–3)",
     "options": [
       "A little maid from Israel",
@@ -2034,10 +2034,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l10-c2",
+    "id": "bible-memory-challenge-l10-c3",
     "game_slug": "bible-memory-challenge",
     "level": 10,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: In 2 Kings 5:10, what exact message did Elisha send by messenger unto Naaman?\n\n\"Go and wash in Jordan ______ times, and thy flesh shall come again to thee, and thou shalt be clean.\"",
     "options": [
       "seven",
@@ -2077,10 +2077,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l10-c3",
+    "id": "bible-memory-challenge-l10-c4",
     "game_slug": "bible-memory-challenge",
     "level": 10,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: Naaman was wroth and complained: \"Are not Abana and ______ , rivers of Damascus, better than all the waters of Israel?\" (2 Kings 5:12). Type the name of the second river of Damascus.",
     "options": [
       "Pharpar",
@@ -2121,10 +2121,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l10-c4",
+    "id": "bible-memory-challenge-l10-c5",
     "game_slug": "bible-memory-challenge",
     "level": 10,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 2 Grand Boss: Complete 2 Kings 5:14 describing Naaman's restored flesh:\n\n\"Then went he down, and dipped himself seven times in Jordan, according to the saying of the man of God: and his flesh came again like unto the flesh of a little ______, and he was clean.\" Type the exact 5-letter noun.",
     "options": [
       "child",
@@ -2164,10 +2164,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l11-c0",
+    "id": "bible-memory-challenge-l11-c1",
     "game_slug": "bible-memory-challenge",
     "level": 11,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct Lamentations 3:22:\n\n\"It is of the LORD'S mercies that we are not consumed, ______\"",
     "options": [
       "because his compassions fail not.",
@@ -2207,10 +2207,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l11-c1",
+    "id": "bible-memory-challenge-l11-c2",
     "game_slug": "bible-memory-challenge",
     "level": 11,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Isaiah 54:10:\n\n\"For the mountains shall depart, and the hills be removed; but my ______ shall not depart from thee, neither shall the covenant of my peace be removed, saith the LORD that hath mercy on thee.\"",
     "options": [
       "kindness",
@@ -2250,10 +2250,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l11-c2",
+    "id": "bible-memory-challenge-l11-c3",
     "game_slug": "bible-memory-challenge",
     "level": 11,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What completes Zephaniah 3:17?\n\n\"The LORD thy God in the midst of thee is mighty; he will save, he will rejoice over thee with joy; ______\"",
     "options": [
       "he will rest in his love, he will joy over thee with singing.",
@@ -2293,10 +2293,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l11-c3",
+    "id": "bible-memory-challenge-l11-c4",
     "game_slug": "bible-memory-challenge",
     "level": 11,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Hosea 2:19:\n\n\"And I will ______ thee unto me for ever; yea, I will betroth thee unto me in righteousness, and in judgment, and in lovingkindness, and in mercies.\"",
     "options": [
       "betroth",
@@ -2336,10 +2336,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l11-c4",
+    "id": "bible-memory-challenge-l11-c5",
     "game_slug": "bible-memory-challenge",
     "level": 11,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 11 Mini-Boss: Complete Psalm 89:1 by typing the exact duration:\n\n\"I will sing of the mercies of the LORD for ______: with my mouth will I make known thy faithfulness to all generations.\"",
     "options": [
       "ever",
@@ -2380,10 +2380,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l12-c0",
+    "id": "bible-memory-challenge-l12-c1",
     "game_slug": "bible-memory-challenge",
     "level": 12,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct Philippians 2:5:\n\n\"Let this ______ be in you, which was also in Christ Jesus:\"",
     "options": [
       "mind",
@@ -2423,10 +2423,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l12-c1",
+    "id": "bible-memory-challenge-l12-c2",
     "game_slug": "bible-memory-challenge",
     "level": 12,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Colossians 3:12:\n\n\"Put on therefore, as the elect of God, holy and beloved, bowels of mercies, kindness, humbleness of mind, meekness, ______;\"",
     "options": [
       "longsuffering",
@@ -2466,10 +2466,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l12-c2",
+    "id": "bible-memory-challenge-l12-c3",
     "game_slug": "bible-memory-challenge",
     "level": 12,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What comes next in 1 Peter 3:8?\n\n\"Finally, be ye all of one mind, having compassion one of another, ______\"",
     "options": [
       "love as brethren, be pitiful, be courteous:",
@@ -2509,10 +2509,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l12-c3",
+    "id": "bible-memory-challenge-l12-c4",
     "game_slug": "bible-memory-challenge",
     "level": 12,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Romans 12:10:\n\n\"Be kindly affectioned one to another with brotherly love; in honour ______ one another;\"",
     "options": [
       "preferring",
@@ -2552,10 +2552,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l12-c4",
+    "id": "bible-memory-challenge-l12-c5",
     "game_slug": "bible-memory-challenge",
     "level": 12,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 12 Mini-Boss: Complete Philippians 2:8 by typing the mode of death Christ endured:\n\n\"And being found in fashion as a man, he humbled himself, and became obedient unto death, even the death of the ______.\"",
     "options": [
       "cross",
@@ -2595,10 +2595,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l13-c0",
+    "id": "bible-memory-challenge-l13-c1",
     "game_slug": "bible-memory-challenge",
     "level": 13,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct Isaiah 9:6 titles in order:\n\n\"For unto us a child is born, unto us a son is given... and his name shall be called Wonderful, Counsellor, ______\"",
     "options": [
       "The mighty God, The everlasting Father, The Prince of Peace.",
@@ -2638,10 +2638,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l13-c1",
+    "id": "bible-memory-challenge-l13-c2",
     "game_slug": "bible-memory-challenge",
     "level": 13,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Matthew 1:21:\n\n\"And she shall bring forth a son, and thou shalt call his name JESUS: for he shall save his people from their ______.\"",
     "options": [
       "sins",
@@ -2681,10 +2681,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l13-c2",
+    "id": "bible-memory-challenge-l13-c3",
     "game_slug": "bible-memory-challenge",
     "level": 13,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What title is prophesied in Jeremiah 23:6?\n\n\"In his days Judah shall be saved, and Israel shall dwell safely: and this is his name whereby he shall be called, ______\"",
     "options": [
       "THE LORD OUR RIGHTEOUSNESS.",
@@ -2724,10 +2724,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l13-c3",
+    "id": "bible-memory-challenge-l13-c4",
     "game_slug": "bible-memory-challenge",
     "level": 13,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word from John 1:14:\n\n\"And the Word was made ______, and dwelt among us, (and we beheld his glory, the glory as of the only begotten of the Father,) full of grace and truth.\"",
     "options": [
       "flesh",
@@ -2767,10 +2767,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l13-c4",
+    "id": "bible-memory-challenge-l13-c5",
     "game_slug": "bible-memory-challenge",
     "level": 13,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 13 Mini-Boss: Complete Revelation 19:16 by typing the exact title on Christ's vesture:\n\n\"And he hath on his vesture and on his thigh a name written, ______ OF KINGS, AND LORD OF LORDS.\"",
     "options": [
       "KING",
@@ -2811,10 +2811,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l14-c0",
+    "id": "bible-memory-challenge-l14-c1",
     "game_slug": "bible-memory-challenge",
     "level": 14,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct Romans 5:1:\n\n\"Therefore being justified by faith, ______ through our Lord Jesus Christ:\"",
     "options": [
       "we have peace with God",
@@ -2854,10 +2854,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l14-c1",
+    "id": "bible-memory-challenge-l14-c2",
     "game_slug": "bible-memory-challenge",
     "level": 14,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete 2 Corinthians 5:21:\n\n\"For he hath made him to be sin for us, who knew no sin; that we might be made the ______ of God in him.\"",
     "options": [
       "righteousness",
@@ -2897,10 +2897,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l14-c2",
+    "id": "bible-memory-challenge-l14-c3",
     "game_slug": "bible-memory-challenge",
     "level": 14,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What completes Colossians 1:20?\n\n\"And, having made peace through the blood of his cross, ______\"",
     "options": [
       "by him to reconcile all things unto himself;",
@@ -2940,10 +2940,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l14-c3",
+    "id": "bible-memory-challenge-l14-c4",
     "game_slug": "bible-memory-challenge",
     "level": 14,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing noun in Hebrews 9:22:\n\n\"And almost all things are by the law purged with blood; and without shedding of blood is no ______.\"",
     "options": [
       "remission",
@@ -2983,10 +2983,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l14-c4",
+    "id": "bible-memory-challenge-l14-c5",
     "game_slug": "bible-memory-challenge",
     "level": 14,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 14 Mini-Boss: Complete Romans 3:24 by typing the free manner in which believers are justified:\n\n\"Being justified ______ by his grace through the redemption that is in Christ Jesus:\"",
     "options": [
       "freely",
@@ -3026,10 +3026,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l15-c0",
+    "id": "bible-memory-challenge-l15-c1",
     "game_slug": "bible-memory-challenge",
     "level": 15,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Ephesians 6:10–18\n\nWhat is the very first piece of armour mentioned in Ephesians 6:14?\n\n\"Stand therefore, having your loins girt about with ______\"",
     "options": [
       "truth",
@@ -3069,10 +3069,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l15-c1",
+    "id": "bible-memory-challenge-l15-c2",
     "game_slug": "bible-memory-challenge",
     "level": 15,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: What covers the feet in Ephesians 6:15?\n\n\"And your feet shod with the preparation of the gospel of ______;\"",
     "options": [
       "peace",
@@ -3112,10 +3112,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l15-c2",
+    "id": "bible-memory-challenge-l15-c3",
     "game_slug": "bible-memory-challenge",
     "level": 15,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: What purpose does the shield of faith serve in Ephesians 6:16?\n\n\"Above all, taking the shield of faith, wherewith ye shall be able to ______\"",
     "options": [
       "quench all the fiery darts of the wicked.",
@@ -3155,10 +3155,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l15-c3",
+    "id": "bible-memory-challenge-l15-c4",
     "game_slug": "bible-memory-challenge",
     "level": 15,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: Ephesians 6:17 commands: \"And take the helmet of salvation, and the sword of the Spirit, which is the ______ of God:\" Type the exact 4-letter noun.",
     "options": [
       "word",
@@ -3198,10 +3198,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l15-c4",
+    "id": "bible-memory-challenge-l15-c5",
     "game_slug": "bible-memory-challenge",
     "level": 15,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 3 Grand Boss: Complete the prayer watchfulness of Ephesians 6:18:\n\n\"Praying always with all prayer and supplication in the Spirit, and watching thereunto with all ______ and supplication for all saints;\" Type the exact 12-letter noun.",
     "options": [
       "perseverance",
@@ -3241,10 +3241,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l16-c0",
+    "id": "bible-memory-challenge-l16-c1",
     "game_slug": "bible-memory-challenge",
     "level": 16,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Which phrase arranges the opening of Psalm 19:14 in the exact KJV order?",
     "options": [
       "Let the words of my mouth, and the meditation of my heart,",
@@ -3284,10 +3284,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l16-c1",
+    "id": "bible-memory-challenge-l16-c2",
     "game_slug": "bible-memory-challenge",
     "level": 16,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Psalm 119:11 in proper order:\n\n\"Thy word have I hid in mine heart, that I might not ______ against thee.\"",
     "options": [
       "sin",
@@ -3327,10 +3327,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l16-c2",
+    "id": "bible-memory-challenge-l16-c3",
     "game_slug": "bible-memory-challenge",
     "level": 16,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "In Psalm 1:1, what is the exact order of the three progressive actions of the ungodly?\n\n\"Blessed is the man that ______\"",
     "options": [
       "walketh not... nor standeth... nor sitteth...",
@@ -3370,10 +3370,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l16-c3",
+    "id": "bible-memory-challenge-l16-c4",
     "game_slug": "bible-memory-challenge",
     "level": 16,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Psalm 1:2:\n\n\"But his delight is in the law of the LORD; and in his law doth he ______ day and night.\"",
     "options": [
       "meditate",
@@ -3413,10 +3413,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l16-c4",
+    "id": "bible-memory-challenge-l16-c5",
     "game_slug": "bible-memory-challenge",
     "level": 16,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 16 Mini-Boss: Complete Psalm 19:7 by typing the exact description of the testimony of the LORD:\n\n\"The law of the LORD is perfect, converting the soul: the testimony of the LORD is ______, making wise the simple.\" Type the 4-letter word.",
     "options": [
       "sure",
@@ -3456,10 +3456,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l17-c0",
+    "id": "bible-memory-challenge-l17-c1",
     "game_slug": "bible-memory-challenge",
     "level": 17,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "What is the very first Beatitude spoken by Jesus in Matthew 5:3?",
     "options": [
       "Blessed are the poor in spirit: for theirs is the kingdom of heaven.",
@@ -3499,10 +3499,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l17-c1",
+    "id": "bible-memory-challenge-l17-c2",
     "game_slug": "bible-memory-challenge",
     "level": 17,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Which Beatitude immediately follows \"Blessed are they that mourn\" in Matthew 5:5?",
     "options": [
       "Blessed are the meek: for they shall inherit the earth.",
@@ -3542,10 +3542,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l17-c2",
+    "id": "bible-memory-challenge-l17-c3",
     "game_slug": "bible-memory-challenge",
     "level": 17,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Complete the promise to the pure in heart in Matthew 5:8:\n\n\"Blessed are the pure in heart: for they shall ______ God.\"",
     "options": [
       "see",
@@ -3585,10 +3585,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l17-c3",
+    "id": "bible-memory-challenge-l17-c4",
     "game_slug": "bible-memory-challenge",
     "level": 17,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the title given to the peacemakers in Matthew 5:9:\n\n\"Blessed are the peacemakers: for they shall be called the ______ of God.\"",
     "options": [
       "children",
@@ -3628,10 +3628,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l17-c4",
+    "id": "bible-memory-challenge-l17-c5",
     "game_slug": "bible-memory-challenge",
     "level": 17,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 17 Mini-Boss: Complete Matthew 5:14 by typing the geographical location of the city:\n\n\"Ye are the light of the world. A city that is set on an ______ cannot be hid.\" Type the 4-letter noun.",
     "options": [
       "hill",
@@ -3671,10 +3671,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l18-c0",
+    "id": "bible-memory-challenge-l18-c1",
     "game_slug": "bible-memory-challenge",
     "level": 18,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct the opening words of Romans 12:1 in exact KJV sequence:\n\n\"I beseech you therefore, brethren, by the mercies of God, that ye present your bodies ______\"",
     "options": [
       "a living sacrifice, holy, acceptable unto God,",
@@ -3714,10 +3714,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l18-c1",
+    "id": "bible-memory-challenge-l18-c2",
     "game_slug": "bible-memory-challenge",
     "level": 18,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete 2 Timothy 2:15:\n\n\"Study to shew thyself approved unto God, a workman that needeth not to be ashamed, ______ dividing the word of truth.\"",
     "options": [
       "rightly",
@@ -3757,10 +3757,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l18-c2",
+    "id": "bible-memory-challenge-l18-c3",
     "game_slug": "bible-memory-challenge",
     "level": 18,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What follows in 1 Peter 4:10?\n\n\"As every man hath received the gift, even so minister the same one to another, ______\"",
     "options": [
       "as good stewards of the manifold grace of God.",
@@ -3800,10 +3800,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l18-c3",
+    "id": "bible-memory-challenge-l18-c4",
     "game_slug": "bible-memory-challenge",
     "level": 18,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing virtue in 2 Peter 1:5:\n\n\"And beside this, giving all diligence, add to your faith virtue; and to virtue ______;\"",
     "options": [
       "knowledge",
@@ -3843,10 +3843,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l18-c4",
+    "id": "bible-memory-challenge-l18-c5",
     "game_slug": "bible-memory-challenge",
     "level": 18,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 18 Mini-Boss: Complete Romans 12:1 by typing the exact description of our service to God:\n\n\"which is your ______ service.\" Type the 10-letter adjective.",
     "options": [
       "reasonable",
@@ -3886,10 +3886,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l19-c0",
+    "id": "bible-memory-challenge-l19-c1",
     "game_slug": "bible-memory-challenge",
     "level": 19,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In Acts 1:8, in what exact geographical order did Jesus say the disciples would be witnesses?",
     "options": [
       "Jerusalem -> all Judaea -> Samaria -> uttermost part of the earth",
@@ -3929,10 +3929,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l19-c1",
+    "id": "bible-memory-challenge-l19-c2",
     "game_slug": "bible-memory-challenge",
     "level": 19,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete the baptismal formula in Matthew 28:19:\n\n\"Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the ______\"",
     "options": [
       "Holy Ghost:",
@@ -3972,10 +3972,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l19-c2",
+    "id": "bible-memory-challenge-l19-c3",
     "game_slug": "bible-memory-challenge",
     "level": 19,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What is Christ's parting promise at the end of Matthew 28:20?\n\n\"and, lo, ______\"",
     "options": [
       "I am with you alway, even unto the end of the world. Amen.",
@@ -4015,10 +4015,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l19-c3",
+    "id": "bible-memory-challenge-l19-c4",
     "game_slug": "bible-memory-challenge",
     "level": 19,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word in Romans 10:15:\n\n\"And how shall they preach, except they be sent? as it is written, How ______ are the feet of them that preach the gospel of peace, and bring glad tidings of good things!\"",
     "options": [
       "beautiful",
@@ -4058,10 +4058,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l19-c4",
+    "id": "bible-memory-challenge-l19-c5",
     "game_slug": "bible-memory-challenge",
     "level": 19,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 19 Mini-Boss: Complete Romans 1:16 by typing the word that describes what the gospel is unto God:\n\n\"For I am not ashamed of the gospel of Christ: for it is the ______ of God unto salvation to every one that believeth; to the Jew first, and also to the Greek.\"",
     "options": [
       "power",
@@ -4101,10 +4101,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l20-c0",
+    "id": "bible-memory-challenge-l20-c1",
     "game_slug": "bible-memory-challenge",
     "level": 20,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Hebrews 11:1–10\n\nReconstruct Hebrews 11:3 in exact sequence:\n\n\"Through faith we understand that the worlds were framed by the word of God, ______\"",
     "options": [
       "so that things which are seen were not made of things which do appear.",
@@ -4144,10 +4144,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l20-c1",
+    "id": "bible-memory-challenge-l20-c2",
     "game_slug": "bible-memory-challenge",
     "level": 20,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: In Hebrews 11:4, who \"offered unto God a more excellent sacrifice than Cain, by which he obtained witness that he was righteous\"?",
     "options": [
       "Abel",
@@ -4187,10 +4187,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l20-c2",
+    "id": "bible-memory-challenge-l20-c3",
     "game_slug": "bible-memory-challenge",
     "level": 20,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: In Hebrews 11:6, what two things must he that cometh to God believe?\n\n\"for he that cometh to God must believe ______\"",
     "options": [
       "that he is, and that he is a rewarder of them that diligently seek him.",
@@ -4230,10 +4230,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l20-c3",
+    "id": "bible-memory-challenge-l20-c4",
     "game_slug": "bible-memory-challenge",
     "level": 20,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: Complete Hebrews 11:7 regarding Noah: \"By faith Noah, being warned of God of things not seen as yet, moved with ______, prepared an ark to the saving of his house...\" Type the 4-letter word describing Noah's reverence.",
     "options": [
       "fear",
@@ -4273,10 +4273,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l20-c4",
+    "id": "bible-memory-challenge-l20-c5",
     "game_slug": "bible-memory-challenge",
     "level": 20,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 4 Grand Boss: Complete Hebrews 11:10 describing the heavenly destination Abraham looked for:\n\n\"For he looked for a city which hath ______, whose builder and maker is God.\" Type the exact 11-letter plural noun.",
     "options": [
       "foundations",
@@ -4317,10 +4317,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l21-c0",
+    "id": "bible-memory-challenge-l21-c1",
     "game_slug": "bible-memory-challenge",
     "level": 21,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Identify the exact book, chapter, and verse for this foundational doctrine of justification:\n\n\"Behold, his soul which is lifted up is not upright in him: but the just shall live by his faith.\"",
     "options": [
       "Habakkuk 2:4",
@@ -4360,10 +4360,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l21-c1",
+    "id": "bible-memory-challenge-l21-c2",
     "game_slug": "bible-memory-challenge",
     "level": 21,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Identify the exact prophetic scripture predicting the birthplace of the Messiah:\n\n\"But thou, Bethlehem Ephratah, though thou be little among the thousands of Judah, yet out of thee shall he come forth unto me that is to be ruler in Israel...\"",
     "options": [
       "Micah 5:2",
@@ -4403,10 +4403,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l21-c2",
+    "id": "bible-memory-challenge-l21-c3",
     "game_slug": "bible-memory-challenge",
     "level": 21,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Where in Isaiah is the virgin birth of Immanuel prophesied?\n\n\"Therefore the Lord himself shall give you a sign; Behold, a virgin shall conceive, and bear a son, and shall call his name Immanuel.\"",
     "options": [
       "Isaiah 7:14",
@@ -4446,10 +4446,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l21-c3",
+    "id": "bible-memory-challenge-l21-c4",
     "game_slug": "bible-memory-challenge",
     "level": 21,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact reference (Book Chapter:Verse) for the prophecy of Zion's King entering on an ass:\n\n\"Rejoice greatly, O daughter of Zion; shout, O daughter of Jerusalem: behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass...\"",
     "options": [
       "Zechariah 9:9",
@@ -4490,10 +4490,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l21-c4",
+    "id": "bible-memory-challenge-l21-c5",
     "game_slug": "bible-memory-challenge",
     "level": 21,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 21 Mini-Boss: Type the exact reference for the great tithing and storehouse promise:\n\n\"Bring ye all the tithes into the storehouse, that there may be meat in mine house, and prove me now herewith, saith the LORD of hosts, if I will not open you the windows of heaven...\"",
     "options": [
       "Malachi 3:10",
@@ -4534,10 +4534,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l22-c0",
+    "id": "bible-memory-challenge-l22-c1",
     "game_slug": "bible-memory-challenge",
     "level": 22,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Identify the exact chapter and verse in Romans for universal sinfulness:\n\n\"For all have sinned, and come short of the glory of God;\"",
     "options": [
       "Romans 3:23",
@@ -4577,10 +4577,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l22-c1",
+    "id": "bible-memory-challenge-l22-c2",
     "game_slug": "bible-memory-challenge",
     "level": 22,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Where in Romans is the confession of salvation stated?\n\n\"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.\"",
     "options": [
       "Romans 10:9",
@@ -4620,10 +4620,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l22-c2",
+    "id": "bible-memory-challenge-l22-c3",
     "game_slug": "bible-memory-challenge",
     "level": 22,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Where is the proclamation of no condemnation found in Romans?\n\n\"There is therefore now no condemnation to them which are in Christ Jesus, who walk not after the flesh, but after the Spirit.\"",
     "options": [
       "Romans 8:1",
@@ -4663,10 +4663,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l22-c3",
+    "id": "bible-memory-challenge-l22-c4",
     "game_slug": "bible-memory-challenge",
     "level": 22,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact reference (Book Chapter:Verse) for calling upon the name of the Lord:\n\n\"For whosoever shall call upon the name of the Lord shall be saved.\"",
     "options": [
       "Romans 10:13",
@@ -4707,10 +4707,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l22-c4",
+    "id": "bible-memory-challenge-l22-c5",
     "game_slug": "bible-memory-challenge",
     "level": 22,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 22 Mini-Boss: Type the exact reference for this declaration of spiritual adoption:\n\n\"For ye have not received the spirit of bondage again to fear; but ye have received the Spirit of adoption, whereby we cry, Abba, Father.\" (Format: Romans X:Y)",
     "options": [
       "Romans 8:15",
@@ -4751,10 +4751,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l23-c0",
+    "id": "bible-memory-challenge-l23-c1",
     "game_slug": "bible-memory-challenge",
     "level": 23,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Identify the exact chapter and verse in the Gospel of John:\n\n\"The thief cometh not, but for to steal, and to kill, and to destroy: I am come that they might have life, and that they might have it more abundantly.\"",
     "options": [
       "John 10:10",
@@ -4794,10 +4794,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l23-c1",
+    "id": "bible-memory-challenge-l23-c2",
     "game_slug": "bible-memory-challenge",
     "level": 23,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Where did Peter proclaim to the Sanhedrin:\n\n\"Neither is there salvation in any other: for there is none other name under heaven given among men, whereby we must be saved.\"",
     "options": [
       "Acts 4:12",
@@ -4837,10 +4837,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l23-c2",
+    "id": "bible-memory-challenge-l23-c3",
     "game_slug": "bible-memory-challenge",
     "level": 23,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Where did Jesus proclaim to Martha:\n\n\"I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live:\"",
     "options": [
       "John 11:25",
@@ -4880,10 +4880,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l23-c3",
+    "id": "bible-memory-challenge-l23-c4",
     "game_slug": "bible-memory-challenge",
     "level": 23,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact reference for Christ standing at the door knocking:\n\n\"Behold, I stand at the door, and knock: if any man hear my voice, and open the door, I will come in to him, and will sup with him, and he with me.\" (Format: Revelation X:Y)",
     "options": [
       "Revelation 3:20",
@@ -4924,10 +4924,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l23-c4",
+    "id": "bible-memory-challenge-l23-c5",
     "game_slug": "bible-memory-challenge",
     "level": 23,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 23 Mini-Boss: Type the exact reference for this exalted passage:\n\n\"Wherefore God also hath highly exalted him, and given him a name which is above every name: That at the name of Jesus every knee should bow...\" (Format: Philippians X:Y)",
     "options": [
       "Philippians 2:9",
@@ -4969,10 +4969,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l24-c0",
+    "id": "bible-memory-challenge-l24-c1",
     "game_slug": "bible-memory-challenge",
     "level": 24,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Identify the exact chapter in 1 Corinthians known as the Love Chapter, where verse 13 concludes:\n\n\"And now abideth faith, hope, charity, these three; but the greatest of these is charity.\"",
     "options": [
       "1 Corinthians 13:13",
@@ -5012,10 +5012,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l24-c1",
+    "id": "bible-memory-challenge-l24-c2",
     "game_slug": "bible-memory-challenge",
     "level": 24,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Where in Ephesians is salvation by grace through faith declared as \"the gift of God: Not of works, lest any man should boast\"?",
     "options": [
       "Ephesians 2:8–9",
@@ -5055,10 +5055,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l24-c2",
+    "id": "bible-memory-challenge-l24-c3",
     "game_slug": "bible-memory-challenge",
     "level": 24,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Where in James is faith without works declared to be dead?\n\n\"For as the body without the spirit is dead, so faith without works is dead also.\"",
     "options": [
       "James 2:26",
@@ -5098,10 +5098,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l24-c3",
+    "id": "bible-memory-challenge-l24-c4",
     "game_slug": "bible-memory-challenge",
     "level": 24,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact reference for this warning about the love of money:\n\n\"For the love of money is the root of all evil: which while some coveted after, they have erred from the faith, and pierced themselves through with many sorrows.\" (Format: 1 Timothy X:Y)",
     "options": [
       "1 Timothy 6:10",
@@ -5142,10 +5142,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l24-c4",
+    "id": "bible-memory-challenge-l24-c5",
     "game_slug": "bible-memory-challenge",
     "level": 24,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 24 Mini-Boss: Type the exact reference for this steadfast encouragement:\n\n\"Therefore, my beloved brethren, be ye stedfast, unmoveable, always abounding in the work of the Lord, forasmuch as ye know that your labour is not in vain in the Lord.\" (Format: 1 Corinthians X:Y)",
     "options": [
       "1 Corinthians 15:58",
@@ -5186,10 +5186,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l25-c0",
+    "id": "bible-memory-challenge-l25-c1",
     "game_slug": "bible-memory-challenge",
     "level": 25,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Isaiah 53:1–6\n\nComplete Isaiah 53:3:\n\n\"He is despised and rejected of men; a man of ______, and acquainted with grief: and we hid as it were our faces from him; he was despised, and we esteemed him not.\"",
     "options": [
       "sorrows",
@@ -5229,10 +5229,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l25-c1",
+    "id": "bible-memory-challenge-l25-c2",
     "game_slug": "bible-memory-challenge",
     "level": 25,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: Reconstruct Isaiah 53:5 in exact sequence:\n\n\"But he was wounded for our transgressions, he was bruised for our iniquities: ______ and with his stripes we are healed.\"",
     "options": [
       "the chastisement of our peace was upon him;",
@@ -5272,10 +5272,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l25-c2",
+    "id": "bible-memory-challenge-l25-c3",
     "game_slug": "bible-memory-challenge",
     "level": 25,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: Complete the universal confession of Isaiah 53:6:\n\n\"All we like sheep have gone astray; we have turned every one to his own way; ______\"",
     "options": [
       "and the LORD hath laid on him the iniquity of us all.",
@@ -5315,10 +5315,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l25-c3",
+    "id": "bible-memory-challenge-l25-c4",
     "game_slug": "bible-memory-challenge",
     "level": 25,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: In Isaiah 53:7, the Messiah is compared to an innocent creature: \"He was oppressed, and he was afflicted, yet he opened not his mouth: he is brought as a ______ to the slaughter...\" Type the exact 4-letter animal name.",
     "options": [
       "lamb",
@@ -5358,10 +5358,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l25-c4",
+    "id": "bible-memory-challenge-l25-c5",
     "game_slug": "bible-memory-challenge",
     "level": 25,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 5 Grand Boss: Complete Isaiah 53:11 regarding the satisfaction of the Messiah:\n\n\"He shall see of the ______ of his soul, and shall be satisfied: by his knowledge shall my righteous servant justify many; for he shall bear their iniquities.\" Type the exact 7-letter noun.",
     "options": [
       "travail",
@@ -5401,10 +5401,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l26-c0",
+    "id": "bible-memory-challenge-l26-c1",
     "game_slug": "bible-memory-challenge",
     "level": 26,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Nahum 1:7:\n\n\"The LORD is good, a ______ in the day of trouble; and he knoweth them that trust in him.\"",
     "options": [
       "strong hold",
@@ -5444,10 +5444,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l26-c1",
+    "id": "bible-memory-challenge-l26-c2",
     "game_slug": "bible-memory-challenge",
     "level": 26,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Haggai 2:9:\n\n\"The glory of this latter house shall be ______ than of the former, saith the LORD of hosts: and in this place will I give peace, saith the LORD of hosts.\"",
     "options": [
       "greater",
@@ -5487,10 +5487,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l26-c2",
+    "id": "bible-memory-challenge-l26-c3",
     "game_slug": "bible-memory-challenge",
     "level": 26,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What glorious promise completes Malachi 4:2?\n\n\"But unto you that fear my name shall the Sun of righteousness arise with healing in his wings; ______\"",
     "options": [
       "and ye shall go forth, and grow up as calves of the stall.",
@@ -5530,10 +5530,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l26-c3",
+    "id": "bible-memory-challenge-l26-c4",
     "game_slug": "bible-memory-challenge",
     "level": 26,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing river-related word in Amos 5:24:\n\n\"But let judgment run down as waters, and righteousness as a ______ stream.\"",
     "options": [
       "mighty",
@@ -5573,10 +5573,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l26-c4",
+    "id": "bible-memory-challenge-l26-c5",
     "game_slug": "bible-memory-challenge",
     "level": 26,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 26 Mini-Boss: Complete Hosea 6:3 by typing the exact morning phenomenon God's going forth is prepared as:\n\n\"Then shall we know, if we follow on to know the LORD: his going forth is prepared as the ______; and he shall come unto us as the rain...\" Type the 7-letter word.",
     "options": [
       "morning",
@@ -5616,10 +5616,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l27-c0",
+    "id": "bible-memory-challenge-l27-c1",
     "game_slug": "bible-memory-challenge",
     "level": 27,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In Colossians 4:17, whom does Paul specifically charge:\n\n\"And say to ______, Take heed to the ministry which thou hast received in the Lord, that thou fulfil it.\"",
     "options": [
       "Archippus",
@@ -5659,10 +5659,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l27-c1",
+    "id": "bible-memory-challenge-l27-c2",
     "game_slug": "bible-memory-challenge",
     "level": 27,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In 2 Timothy 4:13, Paul asks Timothy to bring the cloke he left at Troas with Carpus, and which special writing materials?\n\n\"The cloke that I left at Troas with Carpus, when thou comest, bring with thee, and the books, but especially the ______.\"",
     "options": [
       "parchments",
@@ -5702,10 +5702,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l27-c2",
+    "id": "bible-memory-challenge-l27-c3",
     "game_slug": "bible-memory-challenge",
     "level": 27,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What supreme joy does the Apostle express in 3 John 1:4?\n\n\"I have no greater joy than to hear ______\"",
     "options": [
       "that my children walk in truth.",
@@ -5745,10 +5745,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l27-c3",
+    "id": "bible-memory-challenge-l27-c4",
     "game_slug": "bible-memory-challenge",
     "level": 27,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word from Titus 2:13:\n\n\"Looking for that ______ hope, and the glorious appearing of the great God and our Saviour Jesus Christ;\"",
     "options": [
       "blessed",
@@ -5788,10 +5788,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l27-c4",
+    "id": "bible-memory-challenge-l27-c5",
     "game_slug": "bible-memory-challenge",
     "level": 27,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 27 Mini-Boss: Complete Philemon 1:6 by typing the missing word:\n\n\"That the ______ of thy faith may become effectual by the acknowledging of every good thing which is in you in Christ Jesus.\" Type the 13-letter word.",
     "options": [
       "communication",
@@ -5831,10 +5831,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l28-c0",
+    "id": "bible-memory-challenge-l28-c1",
     "game_slug": "bible-memory-challenge",
     "level": 28,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete the Prayer of Jabez in 1 Chronicles 4:10:\n\n\"Oh that thou wouldest bless me indeed, and enlarge my ______...\"",
     "options": [
       "coast",
@@ -5874,10 +5874,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l28-c1",
+    "id": "bible-memory-challenge-l28-c2",
     "game_slug": "bible-memory-challenge",
     "level": 28,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete 2 Chronicles 7:14:\n\n\"If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their ______.\"",
     "options": [
       "land",
@@ -5917,10 +5917,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l28-c2",
+    "id": "bible-memory-challenge-l28-c3",
     "game_slug": "bible-memory-challenge",
     "level": 28,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What encouragement did Nehemiah give the people in Nehemiah 8:10?\n\n\"neither be ye sorry; ______\"",
     "options": [
       "for the joy of the LORD is your strength.",
@@ -5960,10 +5960,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l28-c3",
+    "id": "bible-memory-challenge-l28-c4",
     "game_slug": "bible-memory-challenge",
     "level": 28,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type Ruth's famous covenant declaration to Naomi in Ruth 1:16:\n\n\"thy people shall be my people, and thy God my ______:\"",
     "options": [
       "God",
@@ -6003,10 +6003,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l28-c4",
+    "id": "bible-memory-challenge-l28-c5",
     "game_slug": "bible-memory-challenge",
     "level": 28,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 28 Mini-Boss: Complete 1 Samuel 16:7 by typing what man looks on versus what God looks on:\n\n\"for man looketh on the outward appearance, but the LORD looketh on the ______.\" Type the 5-letter noun.",
     "options": [
       "heart",
@@ -6046,10 +6046,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l29-c0",
+    "id": "bible-memory-challenge-l29-c1",
     "game_slug": "bible-memory-challenge",
     "level": 29,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Reconstruct the opening of the doxology in Jude 1:24:\n\n\"Now unto him that is able to keep you from falling, ______\"",
     "options": [
       "and to present you faultless before the presence of his glory with exceeding joy,",
@@ -6089,10 +6089,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l29-c1",
+    "id": "bible-memory-challenge-l29-c2",
     "game_slug": "bible-memory-challenge",
     "level": 29,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete 2 Peter 3:18:\n\n\"But grow in ______, and in the knowledge of our Lord and Saviour Jesus Christ. To him be glory both now and for ever. Amen.\"",
     "options": [
       "grace",
@@ -6132,10 +6132,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l29-c2",
+    "id": "bible-memory-challenge-l29-c3",
     "game_slug": "bible-memory-challenge",
     "level": 29,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What dual command and promise appears in James 4:7?\n\n\"Submit yourselves therefore to God. ______\"",
     "options": [
       "Resist the devil, and he will flee from you.",
@@ -6175,10 +6175,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l29-c3",
+    "id": "bible-memory-challenge-l29-c4",
     "game_slug": "bible-memory-challenge",
     "level": 29,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing word from 1 John 5:14:\n\n\"And this is the ______ that we have in him, that, if we ask any thing according to his will, he heareth us:\"",
     "options": [
       "confidence",
@@ -6218,10 +6218,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l29-c4",
+    "id": "bible-memory-challenge-l29-c5",
     "game_slug": "bible-memory-challenge",
     "level": 29,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 29 Mini-Boss: Complete Hebrews 13:8 in exact sequence:\n\n\"Jesus Christ the same yesterday, and to day, and for ______.\" Type the 4-letter word.",
     "options": [
       "ever",
@@ -6262,10 +6262,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l30-c0",
+    "id": "bible-memory-challenge-l30-c1",
     "game_slug": "bible-memory-challenge",
     "level": 30,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Habakkuk 3:17–19\n\nWhat is the very first agricultural crop mentioned in Habakkuk 3:17?\n\n\"Although the ______ tree shall not blossom, neither shall fruit be in the vines...\"",
     "options": [
       "fig",
@@ -6305,10 +6305,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l30-c1",
+    "id": "bible-memory-challenge-l30-c2",
     "game_slug": "bible-memory-challenge",
     "level": 30,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: In Habakkuk 3:17, what crop's labor shall fail?\n\n\"the labour of the ______ shall fail, and the fields shall yield no meat...\"",
     "options": [
       "olive",
@@ -6348,10 +6348,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l30-c2",
+    "id": "bible-memory-challenge-l30-c3",
     "game_slug": "bible-memory-challenge",
     "level": 30,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: When all crops and livestock fail, what does the prophet declare in Habakkuk 3:18?\n\n\"Yet I will rejoice in the LORD, ______\"",
     "options": [
       "I will joy in the God of my salvation.",
@@ -6391,10 +6391,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l30-c3",
+    "id": "bible-memory-challenge-l30-c4",
     "game_slug": "bible-memory-challenge",
     "level": 30,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: In Habakkuk 3:19, what animal's feet does God give the prophet? \"The LORD God is my strength, and he will make my feet like ______' feet, and he will make me to walk upon mine high places.\" Type the 5-letter animal plural.",
     "options": [
       "hinds",
@@ -6435,10 +6435,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l30-c4",
+    "id": "bible-memory-challenge-l30-c5",
     "game_slug": "bible-memory-challenge",
     "level": 30,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 6 Grand Boss: In Habakkuk 3:19, to whom is the prayer inscribed at the very end?\n\n\"To the chief singer on my ______ instruments.\" Type the 8-letter musical adjective.",
     "options": [
       "stringed",
@@ -6478,10 +6478,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l31-c0",
+    "id": "bible-memory-challenge-l31-c1",
     "game_slug": "bible-memory-challenge",
     "level": 31,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Memorise this passage from Exodus 3:2:\n\n\"And the angel of the LORD appeared unto him in a flame of fire out of the midst of a bush: and he looked, and, behold, the bush burned with fire, and the bush was not ______.\"",
     "options": [
       "consumed",
@@ -6521,10 +6521,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l31-c1",
+    "id": "bible-memory-challenge-l31-c2",
     "game_slug": "bible-memory-challenge",
     "level": 31,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In Exodus 3:5, what command was given to Moses regarding his attire?\n\n\"Draw not nigh hither: put off thy ______ from off thy feet, for the place whereon thou standest is holy ground.\"",
     "options": [
       "shoes",
@@ -6564,10 +6564,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l31-c2",
+    "id": "bible-memory-challenge-l31-c3",
     "game_slug": "bible-memory-challenge",
     "level": 31,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What three patriarchs did God name when identifying Himself in Exodus 3:6?\n\n\"Moreover he said, I am the God of thy father, the God of Abraham, ______\"",
     "options": [
       "the God of Isaac, and the God of Jacob.",
@@ -6607,10 +6607,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l31-c3",
+    "id": "bible-memory-challenge-l31-c4",
     "game_slug": "bible-memory-challenge",
     "level": 31,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the divine memorial Name revealed to Moses in Exodus 3:14:\n\n\"And God said unto Moses, I AM THAT I AM: and he said, Thus shalt thou say unto the children of Israel, ______ hath sent me unto you.\"",
     "options": [
       "I AM",
@@ -6651,10 +6651,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l31-c4",
+    "id": "bible-memory-challenge-l31-c5",
     "game_slug": "bible-memory-challenge",
     "level": 31,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 31 Mini-Boss: Complete Exodus 3:8 describing the promised land flowing with two substances:\n\n\"unto a good land and a large, unto a land flowing with milk and ______.\" Type the 5-letter sweet substance.",
     "options": [
       "honey",
@@ -6694,10 +6694,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l32-c0",
+    "id": "bible-memory-challenge-l32-c1",
     "game_slug": "bible-memory-challenge",
     "level": 32,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In 1 Kings 19:11, what was the first dramatic natural phenomenon that rent the mountains?\n\n\"and a great and strong ______, rent the mountains, and brake in pieces the rocks before the LORD; but the LORD was not in the...\"",
     "options": [
       "wind",
@@ -6737,10 +6737,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l32-c1",
+    "id": "bible-memory-challenge-l32-c2",
     "game_slug": "bible-memory-challenge",
     "level": 32,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In 1 Kings 19:12, after the fire, how did the LORD reveal His presence to Elijah?\n\n\"and after the fire a ______\"",
     "options": [
       "still small voice.",
@@ -6780,10 +6780,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l32-c2",
+    "id": "bible-memory-challenge-l32-c3",
     "game_slug": "bible-memory-challenge",
     "level": 32,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "When Elijah heard the still small voice in 1 Kings 19:13, what physical action did he take?\n\n\"And it was so, when Elijah heard it, that he ______\"",
     "options": [
       "wrapped his face in his mantle, and went out, and stood in the entering in of the cave.",
@@ -6823,10 +6823,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l32-c3",
+    "id": "bible-memory-challenge-l32-c4",
     "game_slug": "bible-memory-challenge",
     "level": 32,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact number of faithful Israelites God reserved who had not bowed to Baal in 1 Kings 19:18:\n\n\"Yet I have left me ______ in Israel, all the knees which have not bowed unto Baal, and every mouth which hath not kissed him.\" Type the number as a word (e.g. seven thousand).",
     "options": [
       "seven thousand",
@@ -6868,10 +6868,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l32-c4",
+    "id": "bible-memory-challenge-l32-c5",
     "game_slug": "bible-memory-challenge",
     "level": 32,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 32 Mini-Boss: What question did the Lord ask Elijah twice at Mount Horeb in 1 Kings 19:9 & 13?\n\n\"What ______ thou here, Elijah?\" Type the exact 5-letter archaic verb.",
     "options": [
       "doest",
@@ -6911,10 +6911,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l33-c0",
+    "id": "bible-memory-challenge-l33-c1",
     "game_slug": "bible-memory-challenge",
     "level": 33,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "At what exact hour were Paul and Silas praying and singing praises in prison in Acts 16:25?\n\n\"And at ______ Paul and Silas prayed, and sang praises unto God: and the prisoners heard them.\"",
     "options": [
       "midnight",
@@ -6954,10 +6954,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l33-c1",
+    "id": "bible-memory-challenge-l33-c2",
     "game_slug": "bible-memory-challenge",
     "level": 33,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In Acts 16:26, what happened immediately following their midnight praise?\n\n\"And suddenly there was a great ______, so that the foundations of the prison were shaken...\"",
     "options": [
       "earthquake",
@@ -6997,10 +6997,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l33-c2",
+    "id": "bible-memory-challenge-l33-c3",
     "game_slug": "bible-memory-challenge",
     "level": 33,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What did the trembling Philippian jailor ask Paul and Silas in Acts 16:30?\n\n\"And brought them out, and said, ______\"",
     "options": [
       "Sirs, what must I do to be saved?",
@@ -7040,10 +7040,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l33-c3",
+    "id": "bible-memory-challenge-l33-c4",
     "game_slug": "bible-memory-challenge",
     "level": 33,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the famous answer given to the jailor in Acts 16:31:\n\n\"And they said, Believe on the Lord Jesus Christ, and thou shalt be saved, and thy ______.\"",
     "options": [
       "house",
@@ -7084,10 +7084,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l33-c4",
+    "id": "bible-memory-challenge-l33-c5",
     "game_slug": "bible-memory-challenge",
     "level": 33,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 33 Mini-Boss: In Acts 16:24, into which part of the prison were Paul and Silas thrust, and into what were their feet made fast?\n\n\"thrust them into the inner prison, and made their feet fast in the ______.\" Type the 6-letter wooden restraint plural.",
     "options": [
       "stocks",
@@ -7128,10 +7128,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l34-c0",
+    "id": "bible-memory-challenge-l34-c1",
     "game_slug": "bible-memory-challenge",
     "level": 34,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In Daniel 3:17, what bold answer did Shadrach, Meshach, and Abednego give Nebuchadnezzar?\n\n\"If it be so, our God whom we serve is able to deliver us from the burning fiery furnace, and he will deliver us out of thine hand, O ______.\"",
     "options": [
       "king",
@@ -7171,10 +7171,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l34-c1",
+    "id": "bible-memory-challenge-l34-c2",
     "game_slug": "bible-memory-challenge",
     "level": 34,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "How many times hotter did Nebuchadnezzar command the furnace to be heated in Daniel 3:19?\n\n\"and commanded that they should heat the furnace one ______ times more than it was wont to be heated.\"",
     "options": [
       "seven",
@@ -7214,10 +7214,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l34-c2",
+    "id": "bible-memory-challenge-l34-c3",
     "game_slug": "bible-memory-challenge",
     "level": 34,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "In Daniel 3:25, how did Nebuchadnezzar describe the fourth figure walking in the flames?\n\n\"Lo, I see four men loose, walking in the midst of the fire, and they have no hurt; and the form of the fourth is like ______\"",
     "options": [
       "the Son of God.",
@@ -7257,10 +7257,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l34-c3",
+    "id": "bible-memory-challenge-l34-c4",
     "game_slug": "bible-memory-challenge",
     "level": 34,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing detail from Daniel 3:27 regarding their physical bodies:\n\n\"upon whose bodies the fire had no power, nor was an ______ of their head singed, neither were their coats changed, nor the smell of fire had passed on them.\"",
     "options": [
       "hair",
@@ -7300,10 +7300,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l34-c4",
+    "id": "bible-memory-challenge-l34-c5",
     "game_slug": "bible-memory-challenge",
     "level": 34,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 34 Mini-Boss: In Daniel 3:18, what resolution did the three Hebrew men maintain if God did not rescue them?\n\n\"But if not, be it known unto thee, O king, that we will not serve thy gods, nor worship the golden ______ which thou hast set up.\" Type the 5-letter idol noun.",
     "options": [
       "image",
@@ -7343,10 +7343,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l35-c0",
+    "id": "bible-memory-challenge-l35-c1",
     "game_slug": "bible-memory-challenge",
     "level": 35,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Luke 24:13–35\n\nIn Luke 24:13, how far was the village called Emmaus from Jerusalem?\n\n\"which was from Jerusalem about threescore ______.\"",
     "options": [
       "furlongs",
@@ -7386,10 +7386,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l35-c1",
+    "id": "bible-memory-challenge-l35-c2",
     "game_slug": "bible-memory-challenge",
     "level": 35,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: In Luke 24:18, what was the name of the one disciple explicitly named?\n\n\"And the one of them, whose name was ______, answering said unto him, Art thou only a stranger in Jerusalem...\"",
     "options": [
       "Cleopas",
@@ -7429,10 +7429,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l35-c2",
+    "id": "bible-memory-challenge-l35-c3",
     "game_slug": "bible-memory-challenge",
     "level": 35,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: In Luke 24:27, where did Jesus begin when expounding the Scriptures concerning Himself?\n\n\"And beginning at ______ and all the prophets, he expounded unto them in all the scriptures the things concerning himself.\"",
     "options": [
       "Moses",
@@ -7472,10 +7472,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l35-c3",
+    "id": "bible-memory-challenge-l35-c4",
     "game_slug": "bible-memory-challenge",
     "level": 35,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: In Luke 24:30–31, during what mealtime action were their eyes opened? \"And it came to pass, as he sat at meat with them, he took bread, and blessed it, and ______ and gave to them. And their eyes were opened, and they knew him...\" Type the 5-letter past tense verb.",
     "options": [
       "brake",
@@ -7516,10 +7516,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l35-c4",
+    "id": "bible-memory-challenge-l35-c5",
     "game_slug": "bible-memory-challenge",
     "level": 35,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 7 Grand Boss: What famous physical sensation did the disciples describe in Luke 24:32 after Jesus vanished?\n\n\"And they said one to another, Did not our heart ______ within us, while he talked with us by the way, and while he opened to us the scriptures?\" Type the 4-letter verb.",
     "options": [
       "burn",
@@ -7559,10 +7559,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l36-c0",
+    "id": "bible-memory-challenge-l36-c1",
     "game_slug": "bible-memory-challenge",
     "level": 36,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Passage Mastery: Genesis 45:1–5\n\nWhat did Joseph cry out before weeping aloud in Genesis 45:1?\n\n\"Cause every man to go out from me. And there stood no man with him, while Joseph ______ unto his brethren.\"",
     "options": [
       "made himself known",
@@ -7602,10 +7602,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l36-c1",
+    "id": "bible-memory-challenge-l36-c2",
     "game_slug": "bible-memory-challenge",
     "level": 36,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Passage Mastery: What was the first question Joseph asked his terrified brothers in Genesis 45:3?\n\n\"I am Joseph; doth my ______ yet live?\"",
     "options": [
       "father",
@@ -7645,10 +7645,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l36-c2",
+    "id": "bible-memory-challenge-l36-c3",
     "game_slug": "bible-memory-challenge",
     "level": 36,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Passage Mastery: In Genesis 45:5, how did Joseph reframe their sin in selling him?\n\n\"Now therefore be not grieved, nor angry with yourselves, that ye sold me hither: for God did send me before you to ______\"",
     "options": [
       "preserve life.",
@@ -7688,10 +7688,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l36-c3",
+    "id": "bible-memory-challenge-l36-c4",
     "game_slug": "bible-memory-challenge",
     "level": 36,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Passage Mastery: In Genesis 45:7, Joseph says: \"And God sent me before you to preserve you a posterity in the earth, and to save your lives by a great ______.\" Type the 11-letter noun for salvation.",
     "options": [
       "deliverance",
@@ -7731,10 +7731,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l36-c4",
+    "id": "bible-memory-challenge-l36-c5",
     "game_slug": "bible-memory-challenge",
     "level": 36,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 36 Mini-Boss: Complete Genesis 45:8 concluding who sent Joseph to Egypt:\n\n\"So now it was not you that sent me hither, but ______: and he hath made me a father to Pharaoh, and lord of all his house, and a ruler throughout all the land of Egypt.\" Type the 3-letter noun.",
     "options": [
       "God",
@@ -7774,10 +7774,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l37-c0",
+    "id": "bible-memory-challenge-l37-c1",
     "game_slug": "bible-memory-challenge",
     "level": 37,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Passage Mastery: Isaiah 40:28–31\n\nComplete Isaiah 40:28:\n\n\"Hast thou not known? hast thou not heard, that the everlasting God, the LORD, the Creator of the ends of the earth, fainteth not, neither is weary? there is no searching of his ______.\"",
     "options": [
       "understanding",
@@ -7817,10 +7817,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l37-c1",
+    "id": "bible-memory-challenge-l37-c2",
     "game_slug": "bible-memory-challenge",
     "level": 37,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Passage Mastery: In Isaiah 40:29, what does God give to the faint?\n\n\"He giveth power to the faint; and to them that have no might he increaseth ______.\"",
     "options": [
       "strength",
@@ -7860,10 +7860,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l37-c2",
+    "id": "bible-memory-challenge-l37-c3",
     "game_slug": "bible-memory-challenge",
     "level": 37,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Passage Mastery: What happens to human vigor in Isaiah 40:30?\n\n\"Even the youths shall faint and be weary, and the young men shall ______\"",
     "options": [
       "utterly fall:",
@@ -7903,10 +7903,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l37-c3",
+    "id": "bible-memory-challenge-l37-c4",
     "game_slug": "bible-memory-challenge",
     "level": 37,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Passage Mastery: Complete the triad in Isaiah 40:31: \"they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not ______.\" Type the 5-letter verb.",
     "options": [
       "faint",
@@ -7946,10 +7946,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l37-c4",
+    "id": "bible-memory-challenge-l37-c5",
     "game_slug": "bible-memory-challenge",
     "level": 37,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 37 Mini-Boss: Complete Isaiah 40:31 by typing the exact verb describing what God does to their strength:\n\n\"But they that wait upon the LORD shall ______ their strength;\" Type the 5-letter verb.",
     "options": [
       "renew",
@@ -7989,10 +7989,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l38-c0",
+    "id": "bible-memory-challenge-l38-c1",
     "game_slug": "bible-memory-challenge",
     "level": 38,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Passage Mastery: Romans 8:29–39\n\nWhat is the exact 5-link golden chain of salvation in Romans 8:29–30 in order?\n\nForeknew -> Predestinate -> Called -> Justified -> ______",
     "options": [
       "Glorified",
@@ -8032,10 +8032,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l38-c1",
+    "id": "bible-memory-challenge-l38-c2",
     "game_slug": "bible-memory-challenge",
     "level": 38,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Passage Mastery: Complete Romans 8:31:\n\n\"What shall we then say to these things? If God be for us, ______?\"",
     "options": [
       "who can be against us?",
@@ -8075,10 +8075,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l38-c2",
+    "id": "bible-memory-challenge-l38-c3",
     "game_slug": "bible-memory-challenge",
     "level": 38,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Passage Mastery: What does God freely give us alongside Christ in Romans 8:32?\n\n\"He that spared not his own Son, but delivered him up for us all, how shall he not with him also ______\"",
     "options": [
       "freely give us all things?",
@@ -8118,10 +8118,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l38-c3",
+    "id": "bible-memory-challenge-l38-c4",
     "game_slug": "bible-memory-challenge",
     "level": 38,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Passage Mastery: Complete Romans 8:37: \"Nay, in all these things we are ______ than conquerors through him that loved us.\" Type the 4-letter comparative word.",
     "options": [
       "more",
@@ -8161,10 +8161,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l38-c4",
+    "id": "bible-memory-challenge-l38-c5",
     "game_slug": "bible-memory-challenge",
     "level": 38,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 38 Mini-Boss: Complete the grand climax in Romans 8:39 by typing what cannot be separated from us:\n\n\"Nor height, nor depth, nor any other creature, shall be able to separate us from the ______ of God, which is in Christ Jesus our Lord.\" Type the 4-letter divine attribute.",
     "options": [
       "love",
@@ -8204,10 +8204,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l39-c0",
+    "id": "bible-memory-challenge-l39-c1",
     "game_slug": "bible-memory-challenge",
     "level": 39,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Passage Mastery: 1 Corinthians 15:51–57\n\nComplete 1 Corinthians 15:51:\n\n\"Behold, I shew you a mystery; We shall not all sleep, but we shall all be ______\"",
     "options": [
       "changed,",
@@ -8247,10 +8247,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l39-c1",
+    "id": "bible-memory-challenge-l39-c2",
     "game_slug": "bible-memory-challenge",
     "level": 39,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Passage Mastery: In 1 Corinthians 15:52, in what rapid fraction of time does the transformation happen?\n\n\"In a moment, in the ______ of an eye, at the last trump: for the trumpet shall sound, and the dead shall be raised incorruptible...\"",
     "options": [
       "twinkling",
@@ -8290,10 +8290,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l39-c2",
+    "id": "bible-memory-challenge-l39-c3",
     "game_slug": "bible-memory-challenge",
     "level": 39,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Passage Mastery: What saying is brought to pass in 1 Corinthians 15:54?\n\n\"So when this corruptible shall have put on incorruption, and this mortal shall have put on immortality, then shall be brought to pass the saying that is written, ______\"",
     "options": [
       "Death is swallowed up in victory.",
@@ -8333,10 +8333,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l39-c3",
+    "id": "bible-memory-challenge-l39-c4",
     "game_slug": "bible-memory-challenge",
     "level": 39,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Passage Mastery: Complete 1 Corinthians 15:56: \"The sting of death is sin; and the strength of sin is the ______.\" Type the 3-letter word.",
     "options": [
       "law",
@@ -8376,10 +8376,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l39-c4",
+    "id": "bible-memory-challenge-l39-c5",
     "game_slug": "bible-memory-challenge",
     "level": 39,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 39 Mini-Boss: Complete 1 Corinthians 15:57 by typing what God gives us through Jesus Christ:\n\n\"But thanks be to God, which giveth us the ______ through our Lord Jesus Christ.\" Type the 7-letter triumphant noun.",
     "options": [
       "victory",
@@ -8419,10 +8419,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l40-c0",
+    "id": "bible-memory-challenge-l40-c1",
     "game_slug": "bible-memory-challenge",
     "level": 40,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: John 15:1–11\n\nIn John 15:1, Jesus identifies Himself as the true vine. Who does He say is the husbandman?\n\n\"I am the true vine, and my ______ is the husbandman.\"",
     "options": [
       "Father",
@@ -8462,10 +8462,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l40-c1",
+    "id": "bible-memory-challenge-l40-c2",
     "game_slug": "bible-memory-challenge",
     "level": 40,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: What does the Father do to the branch that beareth fruit in John 15:2?\n\n\"and every branch that beareth fruit, he ______ it, that it may bring forth more fruit.\"",
     "options": [
       "purgeth",
@@ -8505,10 +8505,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l40-c2",
+    "id": "bible-memory-challenge-l40-c3",
     "game_slug": "bible-memory-challenge",
     "level": 40,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: What absolute statement does Jesus make at the end of John 15:5?\n\n\"I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit: for without me ______\"",
     "options": [
       "ye can do nothing.",
@@ -8548,10 +8548,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l40-c3",
+    "id": "bible-memory-challenge-l40-c4",
     "game_slug": "bible-memory-challenge",
     "level": 40,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: In John 15:8, how is the Father glorified?\n\n\"Herein is my Father glorified, that ye bear ______ fruit; so shall ye be my disciples.\" Type the 4-letter word for abundant quantity.",
     "options": [
       "much",
@@ -8591,10 +8591,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l40-c4",
+    "id": "bible-memory-challenge-l40-c5",
     "game_slug": "bible-memory-challenge",
     "level": 40,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 8 Grand Boss: Complete Jesus' supreme standard of love in John 15:13:\n\n\"Greater love hath no man than this, that a man lay down his ______ for his friends.\" Type the 4-letter noun.",
     "options": [
       "life",
@@ -8634,10 +8634,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l41-c0",
+    "id": "bible-memory-challenge-l41-c1",
     "game_slug": "bible-memory-challenge",
     "level": 41,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In Hebrews 4:12, how sharp is the Word of God?\n\n\"For the word of God is quick, and powerful, and sharper than any ______ sword, piercing even to the dividing asunder of soul and spirit...\"",
     "options": [
       "twoedged",
@@ -8677,10 +8677,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l41-c1",
+    "id": "bible-memory-challenge-l41-c2",
     "game_slug": "bible-memory-challenge",
     "level": 41,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In Romans 8:26, how does the Spirit make intercession for the saints?\n\n\"with ______ which cannot be uttered.\"",
     "options": [
       "groanings",
@@ -8720,10 +8720,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l41-c2",
+    "id": "bible-memory-challenge-l41-c3",
     "game_slug": "bible-memory-challenge",
     "level": 41,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What four benefits of inspired Scripture are listed in 2 Timothy 3:16 in order?\n\n\"All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, ______\"",
     "options": [
       "for correction, for instruction in righteousness:",
@@ -8763,10 +8763,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l41-c3",
+    "id": "bible-memory-challenge-l41-c4",
     "game_slug": "bible-memory-challenge",
     "level": 41,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the missing 7-letter adjective in 1 Peter 1:19:\n\n\"But with the precious blood of Christ, as of a lamb without blemish and without ______:\"",
     "options": [
       "spot",
@@ -8806,10 +8806,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l41-c4",
+    "id": "bible-memory-challenge-l41-c5",
     "game_slug": "bible-memory-challenge",
     "level": 41,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 41 Mini-Boss: Complete 2 Peter 1:21 by typing how holy men of God spake:\n\n\"For the prophecy came not in old time by the will of man: but holy men of God spake as they were ______ by the Holy Ghost.\" Type the 5-letter verb.",
     "options": [
       "moved",
@@ -8849,10 +8849,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l42-c0",
+    "id": "bible-memory-challenge-l42-c1",
     "game_slug": "bible-memory-challenge",
     "level": 42,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In 1 John 2:2, what exact 12-letter theological term describes Christ's atoning sacrifice?\n\n\"And he is the ______ for our sins: and not for ours only, but also for the sins of the whole world.\"",
     "options": [
       "propitiation",
@@ -8892,10 +8892,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l42-c1",
+    "id": "bible-memory-challenge-l42-c2",
     "game_slug": "bible-memory-challenge",
     "level": 42,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete 1 Thessalonians 4:3:\n\n\"For this is the will of God, even your ______, that ye should abstain from fornication:\"",
     "options": [
       "sanctification",
@@ -8935,10 +8935,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l42-c2",
+    "id": "bible-memory-challenge-l42-c3",
     "game_slug": "bible-memory-challenge",
     "level": 42,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "In Ephesians 3:2, what special stewardship does Paul describe?\n\n\"If ye have heard of the ______ of the grace of God which is given me to you-ward:\"",
     "options": [
       "dispensation",
@@ -8978,10 +8978,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l42-c3",
+    "id": "bible-memory-challenge-l42-c4",
     "game_slug": "bible-memory-challenge",
     "level": 42,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the exact archaic verb in Hebrews 12:6 for divine discipline:\n\n\"For whom the Lord loveth he ______ and scourgeth every son whom he receiveth.\"",
     "options": [
       "chasteneth",
@@ -9021,10 +9021,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l42-c4",
+    "id": "bible-memory-challenge-l42-c5",
     "game_slug": "bible-memory-challenge",
     "level": 42,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 42 Mini-Boss: Complete 1 Peter 1:2 by typing the first divine attribute mentioned in the Trinitarian opening:\n\n\"Elect according to the ______ of God the Father, through sanctification of the Spirit, unto obedience and sprinkling of the blood of Jesus Christ:\" Type the 13-letter noun.",
     "options": [
       "foreknowledge",
@@ -9064,10 +9064,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l43-c0",
+    "id": "bible-memory-challenge-l43-c1",
     "game_slug": "bible-memory-challenge",
     "level": 43,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Complete Job's triumph in Job 19:25:\n\n\"For I know that my redeemer liveth, and that he shall stand at the ______ day upon the earth:\"",
     "options": [
       "latter",
@@ -9107,10 +9107,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l43-c1",
+    "id": "bible-memory-challenge-l43-c2",
     "game_slug": "bible-memory-challenge",
     "level": 43,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Complete Psalm 139:7:\n\n\"Whither shall I go from thy spirit? or whither shall I ______ from thy presence?\"",
     "options": [
       "flee",
@@ -9150,10 +9150,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l43-c2",
+    "id": "bible-memory-challenge-l43-c3",
     "game_slug": "bible-memory-challenge",
     "level": 43,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "What supreme contrast does God declare in Isaiah 55:8?\n\n\"For my thoughts are not your thoughts, ______\"",
     "options": [
       "neither are your ways my ways, saith the LORD.",
@@ -9193,10 +9193,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l43-c3",
+    "id": "bible-memory-challenge-l43-c4",
     "game_slug": "bible-memory-challenge",
     "level": 43,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the foundational proclamation of Deuteronomy 6:4 (The Shema):\n\n\"Hear, O Israel: The LORD our God is ______ LORD:\" Type the 3-letter word.",
     "options": [
       "one",
@@ -9236,10 +9236,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l43-c4",
+    "id": "bible-memory-challenge-l43-c5",
     "game_slug": "bible-memory-challenge",
     "level": 43,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 43 Mini-Boss: Complete Ecclesiastes 12:13 by typing the whole conclusion of the matter:\n\n\"Let us hear the conclusion of the whole matter: Fear God, and keep his ______: for this is the whole duty of man.\" Type the 12-letter plural noun.",
     "options": [
       "commandments",
@@ -9279,10 +9279,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l44-c0",
+    "id": "bible-memory-challenge-l44-c1",
     "game_slug": "bible-memory-challenge",
     "level": 44,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "In 1 Thessalonians 4:16, with what three sounds shall the Lord Himself descend from heaven?\n\n\"with a shout, with the voice of the ______, and with the trump of God:\"",
     "options": [
       "archangel",
@@ -9322,10 +9322,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l44-c1",
+    "id": "bible-memory-challenge-l44-c2",
     "game_slug": "bible-memory-challenge",
     "level": 44,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "In 2 Thessalonians 2:3, what title is given to the Antichrist who must be revealed after a falling away?\n\n\"that man of ______, the son of perdition;\"",
     "options": [
       "sin",
@@ -9365,10 +9365,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l44-c2",
+    "id": "bible-memory-challenge-l44-c3",
     "game_slug": "bible-memory-challenge",
     "level": 44,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "In 2 Peter 3:10, how shall the elements dissolve at the day of the Lord?\n\n\"the elements shall ______ with fervent heat, the earth also and the works that are therein shall be burned up.\"",
     "options": [
       "melt",
@@ -9408,10 +9408,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l44-c3",
+    "id": "bible-memory-challenge-l44-c4",
     "game_slug": "bible-memory-challenge",
     "level": 44,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Type the glorious promise of 1 John 3:2 regarding Christ's appearing:\n\n\"Beloved, now are we the sons of God, and it doth not yet appear what we shall be: but we know that, when he shall appear, we shall be ______ him; for we shall see him as he is.\" Type the 4-letter word.",
     "options": [
       "like",
@@ -9451,10 +9451,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l44-c4",
+    "id": "bible-memory-challenge-l44-c5",
     "game_slug": "bible-memory-challenge",
     "level": 44,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 44 Mini-Boss: Complete the ancient prophecy quoted in Jude 1:14 by typing the number of saints who accompany the Lord:\n\n\"And Enoch also, the seventh from Adam, prophesied of these, saying, Behold, the Lord cometh with ______ of his saints,\" Type the exact 13-letter phrase.",
     "options": [
       "ten thousands",
@@ -9495,10 +9495,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l45-c0",
+    "id": "bible-memory-challenge-l45-c1",
     "game_slug": "bible-memory-challenge",
     "level": 45,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Deep Scripture Study: Colossians 1:15–20\n\nHow is Christ depicted in Colossians 1:15?\n\n\"Who is the image of the invisible God, the ______ of every creature:\"",
     "options": [
       "firstborn",
@@ -9538,10 +9538,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l45-c1",
+    "id": "bible-memory-challenge-l45-c2",
     "game_slug": "bible-memory-challenge",
     "level": 45,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Deep Scripture Study: In Colossians 1:16, which spiritual ranks of beings are explicitly mentioned as created by Him and for Him?\n\n\"whether they be thrones, or dominions, or ______ or powers:\"",
     "options": [
       "principalities,",
@@ -9581,10 +9581,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l45-c2",
+    "id": "bible-memory-challenge-l45-c3",
     "game_slug": "bible-memory-challenge",
     "level": 45,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Deep Scripture Study: How are all things held together according to Colossians 1:17?\n\n\"And he is before all things, and by him ______\"",
     "options": [
       "all things consist.",
@@ -9624,10 +9624,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l45-c3",
+    "id": "bible-memory-challenge-l45-c4",
     "game_slug": "bible-memory-challenge",
     "level": 45,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Deep Scripture Study: In Colossians 1:18, why is Christ the beginning and firstborn from the dead? \"that in all things he might have the ______.\" Type the exact 11-letter noun.",
     "options": [
       "preeminence",
@@ -9667,10 +9667,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l45-c4",
+    "id": "bible-memory-challenge-l45-c5",
     "game_slug": "bible-memory-challenge",
     "level": 45,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Stage 9 Grand Boss: Complete Colossians 1:19 by typing what pleased the Father to dwell in Him:\n\n\"For it pleased the Father that in him should all ______ dwell;\" Type the 8-letter noun.",
     "options": [
       "fulness",
@@ -9711,10 +9711,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l46-c0",
+    "id": "bible-memory-challenge-l46-c1",
     "game_slug": "bible-memory-challenge",
     "level": 46,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Master Memory Challenge: John 17:1–5\n\nHow did Jesus open His great High Priestly prayer in John 17:1?\n\n\"Father, the hour is come; glorify thy Son, that thy Son also may ______\"",
     "options": [
       "glorify thee:",
@@ -9754,10 +9754,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l46-c1",
+    "id": "bible-memory-challenge-l46-c2",
     "game_slug": "bible-memory-challenge",
     "level": 46,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Master Memory Challenge: How does Jesus define eternal life in John 17:3?\n\n\"And this is life eternal, that they might know thee the only true God, and ______ whom thou hast sent.\"",
     "options": [
       "Jesus Christ,",
@@ -9797,10 +9797,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l46-c2",
+    "id": "bible-memory-challenge-l46-c3",
     "game_slug": "bible-memory-challenge",
     "level": 46,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Master Memory Challenge: What pre-incarnate glory does Jesus request in John 17:5?\n\n\"And now, O Father, glorify thou me with thine own self with the glory which I had with thee ______\"",
     "options": [
       "before the world was.",
@@ -9840,10 +9840,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l46-c3",
+    "id": "bible-memory-challenge-l46-c4",
     "game_slug": "bible-memory-challenge",
     "level": 46,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Master Memory Challenge: Type the missing word in Jesus' sanctifying petition in John 17:17:\n\n\"Sanctify them through thy truth: thy word is ______.\" Type the 5-letter noun.",
     "options": [
       "truth",
@@ -9883,10 +9883,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l46-c4",
+    "id": "bible-memory-challenge-l46-c5",
     "game_slug": "bible-memory-challenge",
     "level": 46,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 46 Mini-Boss: Complete John 17:21 by typing the desired unity among believers:\n\n\"That they all may be ______; as thou, Father, art in me, and I in thee, that they also may be one in us: that the world may believe that thou hast sent me.\" Type the 3-letter word.",
     "options": [
       "one",
@@ -9926,10 +9926,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l47-c0",
+    "id": "bible-memory-challenge-l47-c1",
     "game_slug": "bible-memory-challenge",
     "level": 47,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Master Memory Challenge: Hebrews 12:1–2\n\nWhat compasses believers about in Hebrews 12:1?\n\n\"Wherefore seeing we also are compassed about with so great a ______ of witnesses, let us lay aside every weight...\"",
     "options": [
       "cloud",
@@ -9969,10 +9969,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l47-c1",
+    "id": "bible-memory-challenge-l47-c2",
     "game_slug": "bible-memory-challenge",
     "level": 47,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Master Memory Challenge: In Hebrews 12:2, what dual title is given to Jesus?\n\n\"Looking unto Jesus the ______ and finisher of our faith;\"",
     "options": [
       "author",
@@ -10012,10 +10012,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l47-c2",
+    "id": "bible-memory-challenge-l47-c3",
     "game_slug": "bible-memory-challenge",
     "level": 47,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Master Memory Challenge: In Hebrews 12:28, what kind of kingdom do believers receive?\n\n\"Wherefore we receiving a kingdom which ______ let us have grace, whereby we may serve God acceptably with reverence and godly fear:\"",
     "options": [
       "cannot be moved,",
@@ -10055,10 +10055,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l47-c3",
+    "id": "bible-memory-challenge-l47-c4",
     "game_slug": "bible-memory-challenge",
     "level": 47,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Master Memory Challenge: In Hebrews 13:20, what great title is given to Jesus through the blood of the everlasting covenant? \"that great ______ of the sheep\" Type the 8-letter pastoral noun.",
     "options": [
       "shepherd",
@@ -10098,10 +10098,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l47-c4",
+    "id": "bible-memory-challenge-l47-c5",
     "game_slug": "bible-memory-challenge",
     "level": 47,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 47 Mini-Boss: Complete the striking definition of God in Hebrews 12:29 by typing the final word:\n\n\"For our God is a consuming ______.\" Type the 4-letter elemental noun.",
     "options": [
       "fire",
@@ -10141,10 +10141,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l48-c0",
+    "id": "bible-memory-challenge-l48-c1",
     "game_slug": "bible-memory-challenge",
     "level": 48,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Master Memory Challenge: Revelation 4:8\n\nWhat ceaseless declaration do the four living creatures make day and night?\n\n\"Holy, holy, holy, Lord God Almighty, which was, and is, and ______\"",
     "options": [
       "is to come.",
@@ -10184,10 +10184,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l48-c1",
+    "id": "bible-memory-challenge-l48-c2",
     "game_slug": "bible-memory-challenge",
     "level": 48,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Master Memory Challenge: In Revelation 5:9, what new song is sung to the Lamb?\n\n\"Thou art worthy to take the book, and to open the seals thereof: for thou wast slain, and hast redeemed us to God by thy ______ out of every kindred, and tongue, and people, and nation;\"",
     "options": [
       "blood",
@@ -10227,10 +10227,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l48-c2",
+    "id": "bible-memory-challenge-l48-c3",
     "game_slug": "bible-memory-challenge",
     "level": 48,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Master Memory Challenge: In Revelation 21:4, what former things shall pass away?\n\n\"And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: ______\"",
     "options": [
       "for the former things are passed away.",
@@ -10270,10 +10270,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l48-c3",
+    "id": "bible-memory-challenge-l48-c4",
     "game_slug": "bible-memory-challenge",
     "level": 48,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Master Memory Challenge: In Revelation 22:13, complete Christ's eternal title: \"I am Alpha and Omega, the beginning and the end, the first and the ______.\" Type the 4-letter word.",
     "options": [
       "last",
@@ -10313,10 +10313,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l48-c4",
+    "id": "bible-memory-challenge-l48-c5",
     "game_slug": "bible-memory-challenge",
     "level": 48,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 48 Mini-Boss: Complete Revelation 22:17 by typing what whosoever will may take freely:\n\n\"And the Spirit and the bride say, Come. And let him that heareth say, Come. And let him that is athirst come. And whosoever will, let him take the water of ______ freely.\" Type the 4-letter noun.",
     "options": [
       "life",
@@ -10356,10 +10356,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l49-c0",
+    "id": "bible-memory-challenge-l49-c1",
     "game_slug": "bible-memory-challenge",
     "level": 49,
-    "challenge_index": 0,
+    "challenge_index": 1,
     "question_text": "Master Memory Challenge: Psalm 119:9\n\n\"Wherewithal shall a young man cleanse his way? by taking heed thereto according to thy ______.\"",
     "options": [
       "word.",
@@ -10399,10 +10399,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l49-c1",
+    "id": "bible-memory-challenge-l49-c2",
     "game_slug": "bible-memory-challenge",
     "level": 49,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Master Memory Challenge: Complete Psalm 119:89:\n\n\"For ever, O LORD, thy word is settled in ______.\"",
     "options": [
       "heaven.",
@@ -10442,10 +10442,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l49-c2",
+    "id": "bible-memory-challenge-l49-c3",
     "game_slug": "bible-memory-challenge",
     "level": 49,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Master Memory Challenge: Complete Psalm 119:130:\n\n\"The entrance of thy words giveth light; ______\"",
     "options": [
       "it giveth understanding unto the simple.",
@@ -10485,10 +10485,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l49-c3",
+    "id": "bible-memory-challenge-l49-c4",
     "game_slug": "bible-memory-challenge",
     "level": 49,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Master Memory Challenge: In Psalm 119:160, what is the character of God's word from the beginning? \"Thy word is ______ from the beginning: and every one of thy righteous judgments endureth for ever.\" Type the 4-letter adjective.",
     "options": [
       "true",
@@ -10528,10 +10528,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l49-c4",
+    "id": "bible-memory-challenge-l49-c5",
     "game_slug": "bible-memory-challenge",
     "level": 49,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Level 49 Mini-Boss: Complete Psalm 119:165 by typing what those who love God's law shall have:\n\n\"Great ______ have they which love thy law: and nothing shall offend them.\" Type the 5-letter noun.",
     "options": [
       "peace",
@@ -10570,43 +10570,44 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
-    "id": "bible-memory-challenge-l50-c0",
+    {
+    "id": "bible-memory-challenge-l50-c1",
     "game_slug": "bible-memory-challenge",
     "level": 50,
-    "challenge_index": 0,
-    "question_text": "Grand Master Challenge 1: Type the concluding word of John 1:1:\n\n\"In the beginning was the Word, and the Word was with God, and the Word was ______.\"",
+    "challenge_index": 1,
+    "question_text": "Grand Master Challenge 1: Complete the prophetic declaration in Isaiah 40:8:\n\n\"The grass withereth, the flower fadeth: but the word of our God shall stand ______.\" Type the two words.",
     "options": [
-      "God",
-      "Light",
-      "Life",
-      "Truth"
+      "for ever",
+      "for a season",
+      "without fail",
+      "unto the end"
     ],
-    "correct_answer": "God",
-    "explanation": "John 1:1: \"In the beginning was the Word, and the Word was with God, and the Word was God.\"",
-    "reference": "John 1:1 (KJV)",
+    "correct_answer": "for ever",
+    "explanation": "Isaiah 40:8 contrasts the fading of grass and flowers with the enduring word of God: \"the word of our God shall stand for ever.\"",
+    "reference": "Isaiah 40:8 (KJV)",
     "metadata": {
       "challenge_type": "ultimate_memory",
       "is_typed": true,
       "study_mode": true,
-      "passage": "In the beginning was the Word, and the Word was with God, and the Word was God.",
+      "passage": "The grass withereth, the flower fadeth: but the word of our God shall stand for ever.",
       "stage": 10,
       "stage_title": "Ultimate Scripture Memory",
       "level_theme": "The Ultimate Grand Master Challenge",
       "timerSeconds": 90,
-      "hint": "Three-letter supreme deity of Christ.",
+      "hint": "Two words describing the enduring duration of God’s word.",
       "testament": "New Testament",
       "translation": "KJV",
       "acceptedAlternatives": [
-        "God"
+        "for ever",
+        "forever"
       ],
       "memoryPairs": [
         {
-          "a": "God",
-          "b": "John 1:1 (KJV)"
+          "a": "for ever",
+          "b": "Isaiah 40:8 (KJV)"
         },
         {
-          "a": "In the beginning was the Word,...",
+          "a": "The word of our God shall stand...",
           "b": "Ultimate Scripture Memory"
         }
       ],
@@ -10614,10 +10615,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l50-c1",
+    "id": "bible-memory-challenge-l50-c2",
     "game_slug": "bible-memory-challenge",
     "level": 50,
-    "challenge_index": 1,
+    "challenge_index": 2,
     "question_text": "Grand Master Challenge 2: Complete the supreme theological inquiry in Romans 8:35:\n\n\"Who shall ______ us from the love of Christ? shall tribulation, or distress, or persecution, or famine, or nakedness, or peril, or sword?\" Type the 8-letter verb.",
     "options": [
       "separate",
@@ -10657,10 +10658,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l50-c2",
+    "id": "bible-memory-challenge-l50-c3",
     "game_slug": "bible-memory-challenge",
     "level": 50,
-    "challenge_index": 2,
+    "challenge_index": 3,
     "question_text": "Grand Master Challenge 3: In 1 Corinthians 13:8, complete the immortal declaration of charity: \"Charity never ______: but whether there be prophecies, they shall fail; whether there be tongues, they shall cease; whether there be knowledge, it shall vanish away.\" Type the 7-letter verb.",
     "options": [
       "faileth",
@@ -10701,10 +10702,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l50-c3",
+    "id": "bible-memory-challenge-l50-c4",
     "game_slug": "bible-memory-challenge",
     "level": 50,
-    "challenge_index": 3,
+    "challenge_index": 4,
     "question_text": "Grand Master Challenge 4: In Philippians 2:11, what confession must every tongue make? \"And that every tongue should confess that Jesus Christ is ______, to the glory of God the Father.\" Type the 4-letter title.",
     "options": [
       "Lord",
@@ -10744,10 +10745,10 @@ export const BIBLE_MEMORY_QUESTIONS: ChallengeItem[] = [
     }
   },
   {
-    "id": "bible-memory-challenge-l50-c4",
+    "id": "bible-memory-challenge-l50-c5",
     "game_slug": "bible-memory-challenge",
     "level": 50,
-    "challenge_index": 4,
+    "challenge_index": 5,
     "question_text": "Grand Master Final Challenge (The Penultimate Climax): Type the final words of the beloved Apostle John in Revelation 22:20:\n\n\"He which testifieth these things saith, Surely I come quickly. Amen. Even so, ______ Lord Jesus.\" Type the 4-letter verb.",
     "options": [
       "come",
