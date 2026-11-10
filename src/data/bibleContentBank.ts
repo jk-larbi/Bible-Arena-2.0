@@ -1154,7 +1154,14 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         items.push({
           id, game_slug: gameSlug, level, challenge_index: challengeIndex,
           question_text: questionText, options, correct_answer: correctAnswer,
-          explanation, reference, metadata: { ...metadata, mode, modeIndex },
+          explanation,
+          reference,
+          metadata: {
+            ...metadata,
+            mode,
+            modeIndex,
+            fact_key: `who-said-it-${reference.toLowerCase().replace(/[^a-z0-9]+/g, '')}-${correctAnswer.toLowerCase().replace(/[^a-z0-9]+/g, '')}`,
+          },
         });
         break;
       }
