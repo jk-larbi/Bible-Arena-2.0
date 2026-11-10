@@ -2,7 +2,7 @@ import type { ChallengeItem } from './bibleContentBank';
 
 /**
  * BibleArena 2.0 — Bible Character Quest
- * 50 Levels · 5 Questions Per Level · 250 Questions Total
+ * 30 Published Levels · 5 Questions Per Level · 150 Live Questions (Levels 31–50 remain unpublished)
  * 10 Stages with thematic progression, uncommon names, and level-specific challenge mechanics.
  */
 export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
@@ -1259,16 +1259,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 8,
     "challenge_index": 5,
-    "question_text": "Which newborn infant in Shiloh was named Ichabod ('Where is the glory?'), because the ark of God had been taken and his father Phinehas was dead?",
+    "question_text": "Which prophetic child was given a name meaning “swift is the booty, speedy is the prey” as a sign that Damascus and Samaria would soon be plundered?",
     "options": [
-      "Ichabod",
-      "Ahitub",
-      "Ahijah",
-      "Phinehas"
+      "Maher-shalal-hash-baz",
+      "Shear-jashub",
+      "Lo-ammi",
+      "Jezreel"
     ],
-    "correct_answer": "Ichabod",
-    "reference": "1 Samuel 4:19-22",
-    "explanation": "Phinehas's wife gave birth and named the child Ichabod, declaring, 'The glory has departed from Israel, for the ark of God has been captured.'",
+    "correct_answer": "Maher-shalal-hash-baz",
+    "reference": "Isaiah 8:1-4",
+    "explanation": "Isaiah was instructed to write the name Maher-shalal-hash-baz. Before the child could say “My father” or “My mother,” Assyria would carry away the wealth of Damascus and the spoil of Samaria.",
     "metadata": {
       "stage": 2,
       "stage_title": "The People of the Bible",
@@ -1280,27 +1280,32 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "Clue 1: Relates to 1 Samuel 4:19-22.",
-        "Clue 2: Phinehas's wife gave birth and named the child Ichabod, declaring, 'The glory ha...",
-        "Clue 3: The answer starts with \"I\"."
+        "A prophetic child received an unusually long name.",
+        "The name announced the coming plunder of Damascus and Samaria.",
+        "The sign concerned how quickly Assyria would take their wealth."
       ]
-    }
+    },
+    "clues": [
+      "A prophetic child received an unusually long name.",
+      "The name announced the coming plunder of Damascus and Samaria.",
+      "The sign concerned how quickly Assyria would take their wealth."
+    ]
   },
   {
     "id": "bible-character-quest-l9-c1",
     "game_slug": "bible-character-quest",
     "level": 9,
     "challenge_index": 1,
-    "question_text": "Which Cushite royal official in King Zedekiah’s palace boldly petitioned the king and used rags and ropes to pull Jeremiah out of the muddy cistern?",
+    "question_text": "Which son of Nahash from Rabbah of Ammon brought beds, food, and other supplies to David at Mahanaim while David was fleeing Absalom?",
     "options": [
-      "Ebed-Melech",
-      "Baruch",
-      "Pashhur",
-      "Gedaliah"
+      "Shobi",
+      "Machir",
+      "Barzillai",
+      "Hanun"
     ],
-    "correct_answer": "Ebed-Melech",
-    "reference": "Jeremiah 38:7-13",
-    "explanation": "Ebed-Melech the Cushite took thirty men and old cloths, dropped them to Jeremiah with ropes, and pulled the prophet out of the pit of Malchijah.",
+    "correct_answer": "Shobi",
+    "reference": "2 Samuel 17:27-29",
+    "explanation": "Shobi son of Nahash from Rabbah, Machir from Lo-debar, and Barzillai from Rogelim supplied David and his people with provisions at Mahanaim.",
     "metadata": {
       "stage": 2,
       "stage_title": "The People of the Bible",
@@ -1312,11 +1317,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "Clue 1: Relates to Jeremiah 38:7-13.",
-        "Clue 2: Ebed-Melech the Cushite took thirty men and old cloths, dropped them to Jeremiah...",
-        "Clue 3: The answer starts with \"E\"."
+        "He was from Rabbah in Ammon.",
+        "His father was named Nahash.",
+        "He helped David's company with provisions at Mahanaim."
       ]
-    }
+    },
+    "clues": [
+      "He was from Rabbah in Ammon.",
+      "His father was named Nahash.",
+      "He helped David's company with provisions at Mahanaim."
+    ]
   },
   {
     "id": "bible-character-quest-l9-c2",
@@ -3339,16 +3349,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "• I was a prophetess who lived in the Second Quarter (Mishneh) of Jerusalem.\n• My husband Shallum was keeper of the king's wardrobe.\n• King Josiah's royal delegation consulted me after finding the lost Book of the Law.\nWho am I?",
+    "question_text": "Which seer rebuked King Asa for relying on the king of Aram instead of the LORD, and was then imprisoned after Asa became angry?",
     "options": [
-      "Huldah",
-      "Miriam",
-      "Noadiah",
-      "Deborah"
+      "Hanani",
+      "Jehu son of Hanani",
+      "Azariah son of Oded",
+      "Shemaiah"
     ],
-    "correct_answer": "Huldah",
-    "reference": "2 Kings 22:14-20",
-    "explanation": "Hilkiah the high priest and royal scribes consulted Huldah the prophetess, who confirmed God's judgment on Judah but promised peace during Josiah's lifetime.",
+    "correct_answer": "Hanani",
+    "reference": "2 Chronicles 16:7-10",
+    "explanation": "Hanani the seer confronted Asa because the king relied on the Syrian ruler rather than the LORD. Asa became angry and put Hanani in prison.",
     "metadata": {
       "stage": 5,
       "stage_title": "Prophets and Their Encounters",
@@ -3360,11 +3370,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "I resided in the prestigious Mishneh district of Jerusalem.",
-        "My husband held the title Keeper of the Wardrobe.",
-        "The highest spiritual and political officials sought my prophetic counsel for King Josiah."
+        "I served as a seer during Asa's reign in Judah.",
+        "I challenged the king's reliance on the ruler of Aram.",
+        "The king imprisoned me after becoming angry at my message."
       ]
-    }
+    },
+    "clues": [
+      "I served as a seer during Asa's reign in Judah.",
+      "I challenged the king's reliance on the ruler of Aram.",
+      "The king imprisoned me after becoming angry at my message."
+    ]
   },
   {
     "id": "bible-character-quest-l22-c1",
@@ -3531,16 +3546,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 23,
     "challenge_index": 1,
-    "question_text": "Which Cushite palace official in Jerusalem bravely rescued the prophet Jeremiah from a muddy cistern using worn rags and cords under his armpits?",
+    "question_text": "Which prophet told Ahab that he had seen Israel scattered on the hills like sheep without a shepherd, then was struck by Zedekiah son of Chenaanah?",
     "options": [
-      "Ebed-Melech",
-      "Baruch",
-      "Gedaliah",
-      "Seraiah"
+      "Micaiah son of Imlah",
+      "Zedekiah son of Chenaanah",
+      "Hanani",
+      "Jehu son of Hanani"
     ],
-    "correct_answer": "Ebed-Melech",
-    "reference": "Jeremiah 38:7-13",
-    "explanation": "Ebed-Melech the Ethiopian appealed directly to King Zedekiah, took thirty men, and cushioned ropes with old rags to lift Jeremiah out of the mire.",
+    "correct_answer": "Micaiah son of Imlah",
+    "reference": "1 Kings 22:13-28",
+    "explanation": "Micaiah son of Imlah refused to echo the other prophets' favourable message. He described his vision of Israel scattered without a shepherd, after which Zedekiah struck him and Ahab ordered him imprisoned.",
     "metadata": {
       "stage": 5,
       "stage_title": "Prophets and Their Encounters",
@@ -3552,11 +3567,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "I was an official from Cush serving in the royal court of Judah.",
-        "I stood before the king to plead for a dying prophet sinking in deep mud.",
-        "God specifically promised my life would be spared as a prize of war because I trusted Him."
+        "Ahab summoned me after hearing the favourable predictions of other prophets.",
+        "I described Israel as scattered sheep without a shepherd.",
+        "Zedekiah son of Chenaanah struck me after I spoke."
       ]
-    }
+    },
+    "clues": [
+      "Ahab summoned me after hearing the favourable predictions of other prophets.",
+      "I described Israel as scattered sheep without a shepherd.",
+      "Zedekiah son of Chenaanah struck me after I spoke."
+    ]
   },
   {
     "id": "bible-character-quest-l23-c2",
