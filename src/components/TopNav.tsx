@@ -65,7 +65,7 @@ export const TopNav: React.FC<TopNavProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-[#F3EBDD]/90 border-b border-[#171B24]/10 transition-all">
+    <header className="relative md:sticky md:top-0 z-40 bg-[#F3EBDD] md:bg-[#F3EBDD]/90 md:backdrop-blur-md border-b border-[#171B24]/10">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-16 flex items-center justify-between gap-4">
         
         {/* Logo Left */}
@@ -121,13 +121,13 @@ export const TopNav: React.FC<TopNavProps> = ({
             aria-label={soundEnabled ? 'Mute all BibleArena sounds' : 'Enable all BibleArena sounds'}
             aria-pressed={soundEnabled}
             title={soundEnabled ? 'Mute all sounds' : 'Enable all sounds'}
-            className="w-10 h-10 min-h-[44px] min-w-[44px] rounded-full bg-[#171B24]/5 hover:bg-[#171B24]/10 text-[#171B24] flex items-center justify-center transition-colors cursor-pointer"
+            className="hidden md:flex w-10 h-10 min-h-[44px] min-w-[44px] rounded-full bg-[#171B24]/5 hover:bg-[#171B24]/10 text-[#171B24] items-center justify-center transition-colors cursor-pointer"
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </button>
 
           {/* Master volume control for background music and game effects */}
-          <div className="relative">
+          <div className="relative hidden md:block">
             <button
               type="button"
               onClick={() => setShowVolumeControl((open) => !open)}
