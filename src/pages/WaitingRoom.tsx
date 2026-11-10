@@ -336,6 +336,21 @@ export default function WaitingRoom() {
     }
   }
 
+  async function handleEndMatch() {
+    if (!room || !isHost || busy) return;
+    if (!window.confirm('End this match now for everyone? The current scores will be saved and all players will see the final standings.')) return;
+    setBusy(true);
+    setError(null);
+    try {
+      await finishRoomSession(room.id);
+      await refetch();
+    } catch (err) {
+      setError((err as Error).message || 'The match could not be ended.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
   if (loading) {
     return (
       <main className="mx-auto max-w-xl p-6 text-center text-[#171B24]">
@@ -678,15 +693,24 @@ export default function WaitingRoom() {
             </div>
           )}
 
-          {/* Host Next Question Control */}
+          {/* Host Match Controls */}
           {isHost && (
-            <div className="pt-4 border-t border-[#F3EBDD] flex justify-end">
+            <div className="pt-4 border-t border-[#F3EBDD] flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3">
+              <button
+                type="button"
+                onClick={handleEndMatch}
+                disabled={busy}
+                className="px-4 py-2.5 rounded-xl border border-red-200 text-red-700 bg-red-50 text-xs font-bold hover:bg-red-100 inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+              >
+                <XCircle className="w-3.5 h-3.5" />
+                End Match for Everyone
+              </button>
               <button
                 onClick={handleHostAdvance}
                 disabled={busy}
-                className="px-5 py-2.5 rounded-xl bg-[#171B24] text-white text-xs font-bold hover:bg-[#2b3140] inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                className="px-5 py-2.5 rounded-xl bg-[#171B24] text-white text-xs font-bold hover:bg-[#2b3140] inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
               >
-                <span>{isLastQuestion ? 'Complete Match (Host)' : 'Advance Next Round (Host)'}</span>
+                <span>{busy ? 'Please wait…' : isLastQuestion ? 'Complete Match (Host)' : 'Advance Next Round (Host)'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
