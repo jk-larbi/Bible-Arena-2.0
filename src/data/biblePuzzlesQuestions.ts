@@ -2791,29 +2791,29 @@ export const BIBLE_PUZZLES_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-puzzles-l19-c1",
     "game_slug": "bible-puzzles",
     "level": 19,
     "challenge_index": 1,
-    "question_text": "THE BIBLE DETECTIVE:\nWho was the Cushite court official in King Zedekiah's palace who boldly intervened to rescue Jeremiah from drowning in the muddy cistern of Malkijah using old rags and cords?",
+    "question_text": "THE BIBLE DETECTIVE:\nWhich group of travelling Jewish exorcists tried to invoke Jesus' name over a man with an evil spirit, only to be overpowered and flee wounded and naked?",
     "options": [
-      "Ebed-Melech",
-      "Jehudi",
-      "Pashhur",
-      "Gedaliah"
+      "The seven sons of Sceva",
+      "The sons of Eli",
+      "The sons of Zebedee",
+      "The sons of Aaron"
     ],
-    "correct_answer": "Ebed-Melech",
-    "explanation": "Ebed-Melech the Ethiopian heard that they had put Jeremiah into the cistern. He went from the king's palace, spoke to Zedekiah, and safely hauled Jeremiah out of the mud with ropes and cushioned rags. God promised to spare his life when Jerusalem fell.",
-    "reference": "Jeremiah 38:7–13; 39:15–18",
+    "correct_answer": "The seven sons of Sceva",
+    "explanation": "Acts 19:13–16 describes the seven sons of Sceva attempting to use the name of Jesus; the possessed man overpowered them, and they fled wounded and naked.",
+    "reference": "Acts 19:13–16",
     "metadata": {
       "puzzle_type": "The Bible Detective",
       "clues": [
-        "He was an Ethiopian / Cushite eunuch serving in the royal court of Judah.",
-        "He appealed directly to King Zedekiah at the Gate of Benjamin.",
-        "He took thirty men and lowering decayed rags under Jeremiah's armpits, pulled him out of the mire."
+        "They were sons of a Jewish chief priest named Sceva.",
+        "They attempted to use the name of Jesus whom Paul preached.",
+        "The evil spirit answered that it knew Jesus and Paul, then the man overpowered them."
       ],
-      "hint": "His name literally means \"Servant of the King\" in Hebrew.",
+      "hint": "Their failed exorcism is recorded during Paul's ministry in Ephesus.",
       "stage": 4,
       "category": "The Missing Details",
       "level_theme": "Silent Witnesses",
@@ -3224,29 +3224,29 @@ export const BIBLE_PUZZLES_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-puzzles-l21-c5",
     "game_slug": "bible-puzzles",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "THE BIBLE DETECTIVE:\nFORENSIC CLUES:\n- When Hilkiah the high priest found the Book of the Law in the temple during repairs under young King Josiah, the king sent his royal delegation to consult me.\n- I was a prophetess living in Jerusalem in the Second Quarter.\n- My husband Shallum was keeper of the royal wardrobe.\n- I prophesied covenant disaster on Judah, but promised Josiah peace because his heart was penitent.\nWho am I?",
+    "question_text": "THE BIBLE DETECTIVE:\nWhich prophetess is specifically named by Nehemiah among those who tried to make him afraid while Jerusalem's wall was being rebuilt?",
     "options": [
+      "Noadiah",
       "Huldah",
-      "Miriam",
       "Deborah",
-      "Noadiah"
+      "Miriam"
     ],
-    "correct_answer": "Huldah",
-    "explanation": "The royal officials went to Huldah the prophetess, wife of Shallum keeper of the wardrobe, residing in Jerusalem in the Second Quarter, who verified the authenticity of the scroll and proclaimed God's word to King Josiah.",
-    "reference": "2 Kings 22:14–20; 2 Chronicles 34:22–28",
+    "correct_answer": "Noadiah",
+    "explanation": "Nehemiah 6:14 names Noadiah the prophetess among those whose words and actions sought to frighten Nehemiah.",
+    "reference": "Nehemiah 6:14",
     "metadata": {
       "puzzle_type": "The Bible Detective",
       "clues": [
-        "Prophetess in Jerusalem.",
-        "Wife of Shallum, keeper of the wardrobe.",
-        "Consulted by King Josiah's top officers concerning the newly rediscovered scroll of Deuteronomy."
+        "She is identified as a prophetess.",
+        "Nehemiah mentions her in his prayer alongside Tobiah, Sanballat and other prophets.",
+        "Her activity was connected with attempts to make Nehemiah afraid."
       ],
-      "hint": "She was the revered prophetess during Josiah's great temple reform.",
+      "hint": "Her name appears only in Nehemiah's prayer in chapter 6.",
       "stage": 5,
       "category": "Bible Detective",
       "level_theme": "OT Forensic Clues",
@@ -3286,29 +3286,29 @@ export const BIBLE_PUZZLES_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-puzzles-l22-c2",
     "game_slug": "bible-puzzles",
     "level": 22,
     "challenge_index": 2,
-    "question_text": "THE BIBLE DETECTIVE:\nFORENSIC CLUES:\n- I was a devoted believer from Ephesus.\n- When Paul was imprisoned in chains in Rome and many in Asia abandoned him, I was not ashamed of his chain.\n- I arrived in Rome and searched diligently for Paul until I found him in his cell.\n- Paul prayed that the Lord grant mercy to my household for refreshing him often.\nWho am I?",
+    "question_text": "THE BIBLE DETECTIVE:\nWhich loyal friend of David returned to Jerusalem at great personal risk to frustrate Ahithophel's advice during Absalom's revolt?",
     "options": [
-      "Onesiphorus",
-      "Tychicus",
-      "Erastus",
-      "Carpus"
+      "Hushai the Archite",
+      "Joab",
+      "Ittai the Gittite",
+      "Ziba"
     ],
-    "correct_answer": "Onesiphorus",
-    "explanation": "In 2 Timothy 1:16–17, Paul writes: \"May the Lord grant mercy to the household of Onesiphorus, for he often refreshed me and was not ashamed of my chains, but when he arrived in Rome he searched for me earnestly and found me.\"",
-    "reference": "2 Timothy 1:16–18; 4:19",
+    "correct_answer": "Hushai the Archite",
+    "explanation": "Hushai returned to Jerusalem, offered to serve Absalom, and helped frustrate Ahithophel's counsel so that David could escape.",
+    "reference": "2 Samuel 15:32–37; 17:5–14",
     "metadata": {
       "puzzle_type": "The Bible Detective",
       "clues": [
-        "Ephesian believer commended in 2 Timothy.",
-        "Refreshed Paul repeatedly and was not ashamed of his chains.",
-        "Searched through Rome until locating Paul's prison quarters."
+        "He met David on the Mount of Olives as David fled Jerusalem.",
+        "David sent him back to the city to counter Ahithophel's counsel.",
+        "His advice persuaded Absalom to delay pursuing David."
       ],
-      "hint": "His name means \"Profit-bearer\"; a loyal friend in Paul's final imprisonment.",
+      "hint": "He was called David's friend and was sent back to the palace.",
       "stage": 5,
       "category": "Bible Detective",
       "level_theme": "NT Forensic Clues",
