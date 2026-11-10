@@ -68,8 +68,8 @@ export default function WaitingRoom() {
 
   useAutoAdvance(room, phase);
 
-  // Multiplayer always loads the complete published question bank for the game.
-  // Each published level contributes five questions (up to 150 per game).
+  // Load the complete published bank so the host can choose a match length.
+  // The selected question IDs are stored in the room and shared by every player.
   useEffect(() => {
     let cancelled = false;
     if (!room?.game_slug) {
@@ -101,8 +101,14 @@ export default function WaitingRoom() {
     return () => { cancelled = true; };
   }, [room?.game_slug]);
 
+  const matchChallenges: ChallengeItem[] = room?.status === 'playing' && room.question_ids?.length
+    ? room.question_ids
+        .map((id) => challenges.find((question) => question.id === id))
+        .filter((question): question is ChallengeItem => Boolean(question))
+    : challenges;
+
   const currentChallenge: ChallengeItem | undefined =
-    challenges[room?.current_question_index ?? 0] || challenges[0];
+    matchChallenges[room?.current_question_index ?? 0] || matchChallenges[0];
 
   const sharedBoardType = room?.game_slug === 'scripture-scramble' || room?.game_slug === 'bible-crossword' ||
     room?.game_slug === 'bible-word-search' || room?.game_slug === 'verse-builder' ||
@@ -167,7 +173,7 @@ export default function WaitingRoom() {
   }, [phase, room?.current_question_index, room, currentChallenge, myPick]);
 
   const isLastQuestion = Boolean(
-    room && challenges.length > 0 && room.current_question_index + 1 >= challenges.length
+    room && matchChallenges.length > 0 && room.current_question_index + 1 >= matchChallenges.length
   );
 
   async function handleToggleReady() {
@@ -238,7 +244,19 @@ export default function WaitingRoom() {
         throw new Error(`This game has ${challenges.length} of ${expectedCount} published questions loaded. Please refresh the room and try again.`);
       }
 
-      const questionIds = challenges.map((q) => q.id);
+      const requestedCount = Number(room?.settings?.questionCount ?? 150);
+      if (!Number.isInteger(requestedCount) || requestedCount < 1 || requestedCount > challenges.length) {
+        throw new Error('The selected question count is invalid. Please recreate the room and choose between 1 and 150 questions.');
+      }
+
+      // Shuffle the full bank and take the host-selected number. These exact IDs
+      // are saved to the room, so every player sees the same questions in order.
+      const shuffledQuestions = [...challenges];
+      for (let i = shuffledQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledQuestions[i], shuffledQuestions[j]] = [shuffledQuestions[j], shuffledQuestions[i]];
+      }
+      const questionIds = shuffledQuestions.slice(0, requestedCount).map((q) => q.id);
       const { error: startError } = await supabase.rpc('start_game', {
         p_room: roomId,
         p_question_ids: questionIds,
@@ -618,7 +636,7 @@ export default function WaitingRoom() {
         <div className="rounded-3xl bg-white p-6 sm:p-8 shadow-xl border border-[#171B24]/10 text-[#171B24] space-y-6">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-[#D66B3D]">
-              Question {room.current_question_index + 1} of {challenges.length}
+              Question {room.current_question_index + 1} of {matchChallenges.length}
             </span>
             {phase === 'answering' ? (
               <span className="tabular-nums font-mono text-[#D66B3D] font-bold text-base sm:text-lg flex items-center gap-1">
@@ -685,7 +703,7 @@ export default function WaitingRoom() {
           <div>
             <h2 className="font-serif text-3xl font-extrabold text-[#171B24]">Match Finished!</h2>
             <p className="text-sm text-[#5A6275] mt-1">
-              Outstanding effort across all {challenges.length} rounds of {gameInfo?.title}.
+              Outstanding effort across all {matchChallenges.length} rounds of {gameInfo?.title}.
             </p>
           </div>
 
