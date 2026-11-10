@@ -13,7 +13,8 @@
     "test:quiz": "tsx scripts/testQuizAccuracy.ts",
     "test:multiplayer": "tsx scripts/testMultiplayerAnd19Games.ts",
     "validate:rebuild": "tsx scripts/validateRebuildBatches.ts",
-    "test:all-levels": "tsx scripts/testAll50Levels.ts"
+    "test:all-levels": "tsx scripts/testAll50Levels.ts",
+    "sync:generate": "tsx scripts/generateSupabaseSyncSql.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
