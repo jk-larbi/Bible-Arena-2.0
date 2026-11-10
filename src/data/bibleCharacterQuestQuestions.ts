@@ -43,16 +43,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 1,
     "challenge_index": 2,
-    "question_text": "• I was a tax collector in Jericho.\n• I was short in stature.\n• I climbed a sycamore tree to see Jesus over the crowd.\nWho am I?",
+    "question_text": "• I was a Danite man from Zorah.\n• An angel announced to my wife that she would bear a son who would begin to deliver Israel from the Philistines.\n• I prepared an offering, and the angel ascended in its flame.\nWho am I?",
     "options": [
-      "Zacchaeus",
-      "Matthew",
-      "Bartimaeus",
-      "Nicodemus"
+      "Manoah",
+      "Elkanah",
+      "Abdon",
+      "Samson"
     ],
-    "correct_answer": "Zacchaeus",
-    "reference": "Luke 19:1-10",
-    "explanation": "Zacchaeus was a chief tax collector in Jericho who climbed a sycamore tree; Jesus stayed at his house and declared salvation had come to it.",
+    "correct_answer": "Manoah",
+    "reference": "Judges 13:2-24",
+    "explanation": "Manoah and his wife were told that they would have a son who would begin to deliver Israel from the Philistines. Manoah later offered a sacrifice, and the angel of the LORD ascended in the flame of the altar.",
     "metadata": {
       "stage": 1,
       "stage_title": "The Identity Test",
@@ -64,11 +64,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "I was a tax collector in Jericho.",
-        "I was short in stature.",
-        "I climbed a sycamore tree to see Jesus over the crowd."
+        "I was from the tribe of Dan and lived in Zorah.",
+        "An angel announced the birth of my son to my wife.",
+        "I witnessed the angel ascend in the flame of the offering."
       ]
-    }
+    },
+    "clues": [
+      "I was from the tribe of Dan and lived in Zorah.",
+      "An angel announced the birth of my son to my wife.",
+      "I witnessed the angel ascend in the flame of the offering."
+    ]
   },
   {
     "id": "bible-character-quest-l1-c3",
@@ -1429,16 +1434,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 9,
     "challenge_index": 5,
-    "question_text": "Which Christian brother in Ephesus repeatedly refreshed the imprisoned apostle Paul in Rome, not being ashamed of his chains?",
+    "question_text": "Which Archite counselled David and later returned to Jerusalem at David's request to frustrate Ahithophel's advice during Absalom's revolt?",
     "options": [
-      "Onesiphorus",
-      "Epaphras",
-      "Tychicus",
-      "Philemon"
+      "Hushai the Archite",
+      "Ahithophel",
+      "Joab",
+      "Shimei son of Gera"
     ],
-    "correct_answer": "Onesiphorus",
-    "reference": "2 Timothy 1:16-18",
-    "explanation": "Paul prayed: 'The Lord grant mercy to the household of Onesiphorus, for he often refreshed me and was not ashamed of my chain.'",
+    "correct_answer": "Hushai the Archite",
+    "reference": "2 Samuel 15:32-37; 17:5-14",
+    "explanation": "David sent Hushai back to Jerusalem to counter Ahithophel's counsel. Hushai's advice was accepted by Absalom, giving David time to escape and regroup.",
     "metadata": {
       "stage": 2,
       "stage_title": "The People of the Bible",
@@ -1450,11 +1455,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "Clue 1: Relates to 2 Timothy 1:16-18.",
-        "Clue 2: Paul prayed: 'The Lord grant mercy to the household of Onesiphorus, for he often...",
-        "Clue 3: The answer starts with \"O\"."
+        "I was known as an Archite and was loyal to David.",
+        "David sent me back to Jerusalem during Absalom's rebellion.",
+        "My counsel helped frustrate Ahithophel's plan."
       ]
-    }
+    },
+    "clues": [
+      "I was known as an Archite and was loyal to David.",
+      "David sent me back to Jerusalem during Absalom's rebellion.",
+      "My counsel helped frustrate Ahithophel's plan."
+    ]
   },
   {
     "id": "bible-character-quest-l10-c1",
@@ -2517,16 +2527,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 16,
     "challenge_index": 4,
-    "question_text": "Which Christian teacher in Antioch was intimately connected to royalty, having been brought up with (a foster-brother of) Herod the tetrarch?",
+    "question_text": "Which man is identified as the city treasurer in Paul's closing greetings to the Christians in Rome?",
     "options": [
-      "Manaen",
-      "Lucius of Cyrene",
-      "Simeon Niger",
-      "Chuza"
+      "Erastus",
+      "Tertius",
+      "Gaius",
+      "Quartus"
     ],
-    "correct_answer": "Manaen",
-    "reference": "Acts 13:1",
-    "explanation": "Acts 13:1 lists Manaen, who had been brought up with Herod the tetrarch (Herod Antipas), among the prophets and teachers in the church at Antioch.",
+    "correct_answer": "Erastus",
+    "reference": "Romans 16:23",
+    "explanation": "Paul's closing greetings name Erastus, the city treasurer, and Quartus, a brother. The verse identifies Erastus by his civic office.",
     "metadata": {
       "stage": 4,
       "stage_title": "Kings and Royal Families",
@@ -2538,11 +2548,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "I was a prophet and teacher in the church at Antioch.",
-        "I grew up in the royal court alongside the ruler of Galilee.",
-        "I was the foster brother of Herod Antipas."
+        "Paul names me near the end of his letter to the Romans.",
+        "I held a civic financial office in the city.",
+        "My title is translated as city treasurer or city manager."
       ]
-    }
+    },
+    "clues": [
+      "Paul names me near the end of his letter to the Romans.",
+      "I held a civic financial office in the city.",
+      "My title is translated as city treasurer or city manager."
+    ]
   },
   {
     "id": "bible-character-quest-l16-c5",
@@ -3061,16 +3076,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 20,
     "challenge_index": 1,
-    "question_text": "Which courageous high priest engineered the temple coup that overthrew Queen Athaliah, guarded the child Joash, and crowned him king at age seven?",
+    "question_text": "Which priestly son stood before the people by the Spirit of God and warned that Judah had forsaken the LORD, then was stoned in the temple court at King Joash's command?",
     "options": [
-      "Jehoiada",
-      "Hilkiah",
-      "Abiathar",
-      "Zadok"
+      "Zechariah son of Jehoiada",
+      "Zechariah son of Berechiah",
+      "Uriah son of Shemaiah",
+      "Jehoiada"
     ],
-    "correct_answer": "Jehoiada",
-    "reference": "2 Kings 11:4-12",
-    "explanation": "Jehoiada the high priest formed an armed alliance with the royal guards, brought out young Joash, crowned him, and gave him the testimony.",
+    "correct_answer": "Zechariah son of Jehoiada",
+    "reference": "2 Chronicles 24:20-22",
+    "explanation": "Zechariah son of Jehoiada the priest rebuked the people for forsaking the LORD. At King Joash's command, the people stoned him in the court of the house of the LORD.",
     "metadata": {
       "stage": 4,
       "stage_title": "Kings and Royal Families",
@@ -3082,11 +3097,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 25,
       "curated": true,
       "clues": [
-        "I was the highest spiritual authority in Jerusalem.",
-        "I secretly raised the rightful Davidic heir in the temple courts.",
-        "I staged a synchronized military coup to place the crown on seven-year-old Joash."
+        "I was the son of Jehoiada the priest.",
+        "I warned Judah that forsaking the LORD would bring consequences.",
+        "I was stoned in the court of the LORD's house during Joash's reign."
       ]
-    }
+    },
+    "clues": [
+      "I was the son of Jehoiada the priest.",
+      "I warned Judah that forsaking the LORD would bring consequences.",
+      "I was stoned in the court of the LORD's house during Joash's reign."
+    ]
   },
   {
     "id": "bible-character-quest-l20-c2",
@@ -3349,16 +3369,16 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-character-quest",
     "level": 21,
     "challenge_index": 5,
-    "question_text": "Which seer rebuked King Asa for relying on the king of Aram instead of the LORD, and was then imprisoned after Asa became angry?",
+    "question_text": "Which prophet delivered a message of judgment against Baasha, declaring that his house would be made like the house of Jeroboam because he provoked the LORD?",
     "options": [
-      "Hanani",
       "Jehu son of Hanani",
-      "Azariah son of Oded",
-      "Shemaiah"
+      "Hanani",
+      "Ahijah the Shilonite",
+      "Micaiah son of Imlah"
     ],
-    "correct_answer": "Hanani",
-    "reference": "2 Chronicles 16:7-10",
-    "explanation": "Hanani the seer confronted Asa because the king relied on the Syrian ruler rather than the LORD. Asa became angry and put Hanani in prison.",
+    "correct_answer": "Jehu son of Hanani",
+    "reference": "1 Kings 16:1-4",
+    "explanation": "The word of the LORD came through Jehu son of Hanani against Baasha. Jehu announced judgment on Baasha's house because Baasha had followed Jeroboam's ways and provoked the LORD to anger.",
     "metadata": {
       "stage": 5,
       "stage_title": "Prophets and Their Encounters",
@@ -3370,15 +3390,15 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 30,
       "curated": true,
       "clues": [
-        "I served as a seer during Asa's reign in Judah.",
-        "I challenged the king's reliance on the ruler of Aram.",
-        "The king imprisoned me after becoming angry at my message."
+        "I was the son of a seer named Hanani.",
+        "I delivered a prophetic judgment to King Baasha of Israel.",
+        "My message compared Baasha's coming fate with Jeroboam's house."
       ]
     },
     "clues": [
-      "I served as a seer during Asa's reign in Judah.",
-      "I challenged the king's reliance on the ruler of Aram.",
-      "The king imprisoned me after becoming angry at my message."
+      "I was the son of a seer named Hanani.",
+      "I delivered a prophetic judgment to King Baasha of Israel.",
+      "My message compared Baasha's coming fate with Jeroboam's house."
     ]
   },
   {
