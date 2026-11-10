@@ -125,7 +125,7 @@ async function validate() {
           else if (!otherGameFact) seenFacts.set(`any-game::${factKey}`, location);
         }
 
-        if (isReviewedContent(item)) {
+        if (isReviewedContent(item) || slug === 'bible-word-search') {
           const reviewedQuestionKey = `${slug}::${questionKey}`;
           const reviewedFactKey = `${slug}::${factKey}`;
           const priorReviewedQuestion = reviewedQuestions.get(reviewedQuestionKey);
