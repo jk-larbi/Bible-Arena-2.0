@@ -6086,21 +6086,21 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       ]
     }
   },
-  {
+    {
     "id": "bible-character-quest-l39-c1",
     "game_slug": "bible-character-quest",
     "level": 39,
     "challenge_index": 1,
-    "question_text": "Which Roman centurion of the Italian Cohort stationed in Caesarea was a devout God-fearer who gave alms generously, and was instructed by an angel to send for Peter at Joppa?",
+    "question_text": "Which judge, son of Kenaz and relative of Caleb, delivered Israel from Cushan-rishathaim after eight years of oppression?",
     "options": [
-      "Cornelius",
-      "Julius",
-      "Publius",
-      "Sergius Paulus"
+      "Othniel",
+      "Ehud",
+      "Gideon",
+      "Jair"
     ],
-    "correct_answer": "Cornelius",
-    "reference": "Acts 10:1-8, 44-48",
-    "explanation": "Cornelius was a devout centurion whose prayers and alms ascended as a memorial before God; Peter preached to his household and the Holy Spirit fell on them.",
+    "correct_answer": "Othniel",
+    "reference": "Judges 3:7–11",
+    "explanation": "Othniel, son of Kenaz, was raised up by the LORD, delivered Israel from Cushan-rishathaim, and judged Israel for forty years.",
     "metadata": {
       "stage": 8,
       "stage_title": "The Early Church",
@@ -6112,9 +6112,9 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 25,
       "curated": true,
       "clues": [
-        "I commanded a unit of one hundred soldiers in the prestigious Italian Cohort.",
-        "An angel visited me at the ninth hour of prayer while I fasted.",
-        "My home became the landmark site where Gentiles first received the Holy Spirit and baptism."
+        "He was the son of Kenaz and Caleb's younger relative.",
+        "The Spirit of the LORD came upon him.",
+        "He defeated Cushan-rishathaim, king of Mesopotamia, and judged Israel for forty years."
       ]
     }
   },
@@ -6758,21 +6758,21 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       ]
     }
   },
-  {
+    {
     "id": "bible-character-quest-l43-c2",
     "game_slug": "bible-character-quest",
     "level": 43,
     "challenge_index": 2,
-    "question_text": "Which judge of Israel delivered the nation by striking down six hundred Philistine warriors using only an agricultural oxgoad?",
+    "question_text": "Which man was described as more honourable than his brothers and prayed that God would bless him, enlarge his border and keep him from evil?",
     "options": [
-      "Shamgar son of Anath",
-      "Ehud",
-      "Othniel",
-      "Tola"
+      "Jabez",
+      "Jair",
+      "Ibzan",
+      "Abdon"
     ],
-    "correct_answer": "Shamgar son of Anath",
-    "reference": "Judges 3:31",
-    "explanation": "After Ehud came Shamgar son of Anath, who struck down 600 Philistines with an oxgoad; he also delivered Israel.",
+    "correct_answer": "Jabez",
+    "reference": "1 Chronicles 4:9–10",
+    "explanation": "Jabez called upon the God of Israel for blessing, enlarged territory, God's hand upon him, and protection from evil and pain.",
     "metadata": {
       "stage": 9,
       "stage_title": "The People You Might Have Forgotten",
@@ -6784,9 +6784,9 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 25,
       "curated": true,
       "clues": [
-        "I am mentioned in only two verses across the entire Old Testament.",
-        "I wielded an eight-foot iron-tipped cattle stick instead of a military broadsword.",
-        "I single-handedly slew six hundred hostile Philistine invaders."
+        "His mother named him because she bore him with sorrow.",
+        "He was described as more honourable than his brothers.",
+        "His short prayer asked God to bless him and enlarge his territory."
       ]
     }
   },
@@ -6822,21 +6822,21 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       ]
     }
   },
-  {
+    {
     "id": "bible-character-quest-l43-c4",
     "game_slug": "bible-character-quest",
     "level": 43,
     "challenge_index": 4,
-    "question_text": "Which symbolic child was fathered by the prophet Isaiah, whose name meant 'Quick to the plunder, swift to the spoil', signifying Damascus and Samaria's sudden fall?",
+    "question_text": "Which judge from the tribe of Issachar lived at Shamir in the hill country of Ephraim and judged Israel for twenty-three years?",
     "options": [
-      "Maher-shalal-hash-baz",
-      "Shear-jashub",
-      "Immanuel",
-      "Lo-Ammi"
+      "Tola",
+      "Jair",
+      "Ibzan",
+      "Abdon"
     ],
-    "correct_answer": "Maher-shalal-hash-baz",
-    "reference": "Isaiah 8:1-4",
-    "explanation": "God commanded Isaiah to write on a large tablet 'Maher-shalal-hash-baz' and name his newborn son this to show Assyria would plunder Damascus and Samaria.",
+    "correct_answer": "Tola",
+    "reference": "Judges 10:1–2",
+    "explanation": "Tola son of Puah, son of Dodo, an Issacharite, arose after Abimelech, judged Israel for twenty-three years, and was buried at Shamir.",
     "metadata": {
       "stage": 9,
       "stage_title": "The People You Might Have Forgotten",
@@ -6848,9 +6848,9 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 25,
       "curated": true,
       "clues": [
-        "I bore the longest personal name found anywhere in the Bible.",
-        "My father had to record my name on a legal billboard before reliable witnesses.",
-        "Before I could speak 'my father' or 'my mother', Assyria pillaged Syria and Israel."
+        "He was the son of Puah and grandson of Dodo.",
+        "He belonged to the tribe of Issachar.",
+        "He judged Israel for twenty-three years and was buried at Shamir."
       ]
     }
   },
@@ -7046,21 +7046,21 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       ]
     }
   },
-  {
+    {
     "id": "bible-character-quest-l45-c1",
     "game_slug": "bible-character-quest",
     "level": 45,
     "challenge_index": 1,
-    "question_text": "In Romans 16:22, what is the personal name of the amanuensis (secretary) who actually penned the ink on the manuscript of Paul's Epistle to the Romans?",
+    "question_text": "Which judge, son of Hillel the Pirathonite, had forty sons and thirty nephews who rode on seventy donkeys?",
     "options": [
-      "Tertius",
-      "Quartus",
-      "Erastus",
-      "Gaius"
+      "Abdon",
+      "Ibzan",
+      "Elon",
+      "Jair"
     ],
-    "correct_answer": "Tertius",
-    "reference": "Romans 16:22",
-    "explanation": "Romans 16:22 includes the scribe's direct greeting: 'I Tertius, who wrote down this letter, greet you in the Lord.'",
+    "correct_answer": "Abdon",
+    "reference": "Judges 12:13–15",
+    "explanation": "Abdon son of Hillel judged Israel for eight years; he had forty sons and thirty nephews who rode on seventy donkeys, and he was buried in the land of Ephraim.",
     "metadata": {
       "stage": 9,
       "stage_title": "The People You Might Have Forgotten",
@@ -7072,9 +7072,9 @@ export const BIBLE_CHARACTER_QUEST_QUESTIONS: ChallengeItem[] = [
       "timerSeconds": 20,
       "curated": true,
       "clues": [
-        "I was the professional Christian scribe who transcribed Paul's dictation.",
-        "My Latin name literally means 'the Third.'",
-        "I inserted my own brief personal greeting right inside the closing doxology of Romans."
+        "He was a Pirathonite and the son of Hillel.",
+        "He had forty sons and thirty nephews.",
+        "His sons and nephews rode on seventy donkeys."
       ]
     }
   },
