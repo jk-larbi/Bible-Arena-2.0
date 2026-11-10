@@ -7,7 +7,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 1,
     "challenge_index": 1,
-    "question_text": "\"I am my brother's keeper?\"",
+    "question_text": "\"Am I my brother's keeper?\"",
     "options": [
       "Cain",
       "Joseph",
@@ -149,13 +149,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 3,
     "question_text": "\"The Lord, he is the God; the Lord, he is the God.\"",
     "options": [
+      "The people of Israel",
       "Elijah",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Ahab",
+      "The prophets of Baal"
     ],
-    "correct_answer": "Elijah",
-    "explanation": "The biblical account in 1 Kings 18:39 supports this identification.",
+    "correct_answer": "The people of Israel",
+    "explanation": "After the people saw the LORD answer by fire, the people fell on their faces and declared that the LORD is God."
     "reference": "1 Kings 18:39",
     "metadata": {
       "difficulty": "beginner",
@@ -167,7 +167,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 2,
     "challenge_index": 4,
-    "question_text": "\"Is it well with thee? is it well with thy husband? is it well with the child?\"",
+    "question_text": "Who instructed Gehazi to ask the Shunammite woman, \\\"Is it well with thee? is it well with thy husband? is it well with the child?\\\"?",
     "options": [
       "Elisha",
       "Cain",
@@ -187,16 +187,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 2,
     "challenge_index": 5,
-    "question_text": "\"Let not the king's heart be troubled.\"",
+    "question_text": "\"Let not your heart be troubled.\"",
     "options": [
+      "Jesus",
       "Nehemiah",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Paul",
+      "John the Baptist"
     ],
-    "correct_answer": "Nehemiah",
-    "explanation": "The biblical account in Nehemiah 2:2 supports this identification.",
-    "reference": "Nehemiah 2:2",
+    "correct_answer": "Jesus",
+    "explanation": "Jesus spoke these words to His disciples as He comforted them before His arrest.",
+    "reference": "John 14:1",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "who-said-it-fact-10"
@@ -869,13 +869,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 4,
     "question_text": "\"Am I not sending you?\"",
     "options": [
-      "Angel of the Lord",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "The LORD",
+      "Gideon",
+      "The angel Gabriel",
+      "An unnamed prophet"
     ],
-    "correct_answer": "Angel of the Lord",
-    "explanation": "The biblical account in Judges 6:14 supports this identification.",
+    "correct_answer": "The LORD",
+    "explanation": "Judges 6:14 explicitly identifies the speaker as the LORD, who commissions Gideon."
     "reference": "Judges 6:14",
     "metadata": {
       "difficulty": "intermediate",
@@ -1469,13 +1469,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 4,
     "question_text": "\"Great is thy faithfulness.\"",
     "options": [
-      "Jeremiah",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "The lamenting speaker in Lamentations",
+      "Jeremiah (named in the text)",
+      "Isaiah",
+      "Ezekiel"
     ],
-    "correct_answer": "Jeremiah",
-    "explanation": "The biblical account in Lamentations 3:23 supports this identification.",
+    "correct_answer": "The lamenting speaker in Lamentations",
+    "explanation": "Lamentations 3:23 is spoken by the book’s lamenting voice; the book does not name Jeremiah as the speaker in this verse."
     "reference": "Lamentations 3:23",
     "metadata": {
       "difficulty": "advanced",
@@ -1529,13 +1529,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 2,
     "question_text": "\"I will go and return to my first husband.\"",
     "options": [
-      "Gomer",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Israel, personified as the unfaithful wife",
+      "Gomer, named directly in the verse",
+      "Judah, represented as a king",
+      "The prophet Hosea"
     ],
-    "correct_answer": "Gomer",
-    "explanation": "The biblical account in Hosea 2:7 supports this identification.",
+    "correct_answer": "Israel, personified as the unfaithful wife",
+    "explanation": "Hosea 2 uses the unfaithful wife as an image of Israel; verse 7 describes her resolve to return to her husband."
     "reference": "Hosea 2:7",
     "metadata": {
       "difficulty": "advanced",
@@ -1689,13 +1689,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 5,
     "question_text": "\"Behold, the bridegroom cometh.\"",
     "options": [
-      "Wise virgins",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "An unnamed midnight herald",
+      "The wise virgins",
+      "The bridegroom",
+      "The foolish virgins"
     ],
-    "correct_answer": "Wise virgins",
-    "explanation": "The biblical account in Matthew 25:6 supports this identification.",
+    "correct_answer": "An unnamed midnight herald",
+    "explanation": "Matthew 25:6 says a cry was made at midnight; the parable does not identify the person who made the announcement."
     "reference": "Matthew 25:6",
     "metadata": {
       "difficulty": "expert",
