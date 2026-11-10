@@ -2712,7 +2712,7 @@ export const BIBLE_MATCH_UP_QUESTIONS: ChallengeItem[] = [
     ],
     "correct_answer": "Nathan=Confronted David with the ewe lamb parable saying \"Thou art the man\"|Elijah=Pronounced three years of drought and mocked Baal's silent priests on Carmel|Elisha=Healed Naaman the Syrian leper by commanding him to dip seven times in Jordan|Isaiah=Prophesied of the virgin birth and the Suffering Servant wounded for our transgressions",
     "explanation": "Nathan — Confronted David with the ewe lamb parable saying \"Thou art the man\" (2 Samuel 12:1-7) • Elijah — Pronounced three years of drought and mocked Baal's silent priests on Carmel (1 Kings 17:1; 18:27) • Elisha — Healed Naaman the Syrian leper by commanding him to dip seven times in Jordan (2 Kings 5:10-14) • Isaiah — Prophesied of the virgin birth and the Suffering Servant wounded for our transgressions (Isaiah 7:14; 53:5)",
-    "reference": "2 Samuel 12:1-7; 1 Kings 17:1; 18:27; 2 Kings 5:10-14; Isaiah 7:14; 53:5",
+    "reference": "2 Samuel 12:1-7; 1 Kings 17:1; 1 Kings 18:27; 2 Kings 5:10-14; Isaiah 7:14; 53:5",
     "metadata": {
       "pairs": [
         {
