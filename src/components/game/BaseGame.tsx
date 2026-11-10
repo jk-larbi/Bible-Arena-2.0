@@ -229,7 +229,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
       // one unfinished attempt once so players do not resume an old question
       // sequence. Completed-level records and earned marks remain untouched.
       const contentVersion = gameId === 'bible-character-quest'
-        ? 'bible-character-quest-v2'
+        ? 'bible-character-quest-v3'
         : 'scripture-challenge-questions-v2';
       const versionKey = gameId === 'bible-character-quest'
         ? 'biblearena-character-quest-content-version'
