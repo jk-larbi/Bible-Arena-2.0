@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   content-audit:
@@ -39,5 +39,12 @@ jobs:
           name: biblearena-published-database-sync
           path: supabase/sync_published_game_content.sql
           retention-days: 1
+      - name: Commit generated SQL for controlled Supabase sync
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add supabase/sync_published_game_content.sql
+          git commit -m "Generate published database question sync" || exit 0
+          git push origin "HEAD:${GITHUB_REF_NAME}"
       - name: Audit all 4,750 question slots
         run: npm run validate:content
