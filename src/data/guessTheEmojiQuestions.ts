@@ -7658,23 +7658,23 @@ export const GUESS_THE_EMOJI_QUESTIONS: EmojiChallengeItem[] = [
       "hint2": "The Lord wrought a great victory that day."
     }
   },
-    {
+      {
     "id": "guess-the-emoji-l48-c4",
     "game_slug": "guess-the-emoji",
     "level": 48,
     "challenge_index": 4,
-    "question_text": "🌱 🌏 ✝️ 🏠 👤",
+    "question_text": "🌱 ✝️ 👤 📜",
     "options": [],
     "correct_answer": "Epaenetus",
-    "explanation": "Paul greets Epaenetus, whom he describes as the firstfruits of Asia unto Christ, in his closing greetings to the Roman believers.",
+    "explanation": "Romans 16:5 greets Epaenetus as beloved and calls him the firstfruits unto Christ. The KJV reads 'Achaia' while several modern translations read 'Asia', so the question avoids depending on that textual difference.",
     "reference": "Romans 16:5",
     "metadata": {
       "stage": 10,
       "stage_title": "Extreme Master Canonical Challenge",
       "level_title": "The Valiant & Feats of War",
       "puzzle_type": "exact_person",
-      "emojis": "🌱 🌏 ✝️ 🏠 👤",
-      "prompt": "Type the name of the person Paul calls the firstfruits of Asia unto Christ.",
+      "emojis": "🌱 ✝️ 👤 📜",
+      "prompt": "Type the name of the believer whom Paul greets as beloved and identifies as the firstfruits unto Christ.",
       "testament": "New Testament",
       "difficulty": "Extreme Master",
       "timerSeconds": 180,
