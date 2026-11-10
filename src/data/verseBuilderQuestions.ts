@@ -4287,27 +4287,27 @@ export const VERSE_BUILDER_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "verse-builder-l21-c2",
     "game_slug": "verse-builder",
     "level": 21,
     "challenge_index": 2,
-    "question_text": "What phrase continues Proverbs 15:1? \"A soft answer turneth away wrath: but...\"",
+    "question_text": "What phrase completes Psalm 34:18? \"The LORD is nigh unto them that are of a broken heart; and...\"",
     "options": [
-      "grievous words stir up anger.",
-      "proud looks kindle destruction.",
-      "false lips bring shame.",
-      "a foolish tongue soweth strife."
+      "saveth such as be of a contrite spirit",
+      "giveth grace unto the humble",
+      "heareth the prayer of the righteous",
+      "delivereth them from all their fears"
     ],
-    "correct_answer": "grievous words stir up anger.",
-    "explanation": "Proverbs 15:1 contrasts gentle speech with provocative words: \"A soft answer turneth away wrath: but grievous words stir up anger.\"",
-    "reference": "Proverbs 15:1",
+    "correct_answer": "saveth such as be of a contrite spirit",
+    "explanation": "Psalm 34:18 (KJV) says that the LORD is near to the broken-hearted and saves those with a contrite spirit.",
+    "reference": "Psalm 34:18",
     "metadata": {
       "stage": 5,
       "stage_title": "Scripture Continuation",
       "level_title": "Proverbial Continuations",
       "mechanic": "what_comes_next",
-      "verse_text": "A soft answer turneth away wrath: but grievous words stir up anger.",
+      "verse_text": "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.",
       "translation": "KJV",
       "testament": "Old Testament",
       "difficulty": "Moderate",
@@ -4315,11 +4315,10 @@ export const VERSE_BUILDER_QUESTIONS: ChallengeItem[] = [
       "points": 100,
       "is_typed": false,
       "acceptedAlternatives": [
-        "grievous words stir up anger.",
-        "grievous words stir up anger"
+        "saveth such as be of a contrite spirit"
       ],
-      "hint1": "Hurtful speech that agitates fury.",
-      "hint2": "grievous words...",
+      "hint1": "Those whose hearts are contrite.",
+      "hint2": "The phrase follows the semicolon in Psalm 34:18.",
       "curated": true
     }
   },
@@ -7621,38 +7620,38 @@ export const VERSE_BUILDER_QUESTIONS: ChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "verse-builder-l39-c2",
     "game_slug": "verse-builder",
     "level": 39,
     "challenge_index": 2,
-    "question_text": "Identify the exact King James Version wording of Matthew 6:33:",
+    "question_text": "Identify the exact King James Version wording of Nahum 1:7:",
     "options": [
-      "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.",
-      "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
-      "Rather, seek first God's kingdom and righteousness, and you will receive all these things.",
-      "Seek ye first the kingdom of heaven, and God's righteousness, and all shall be added to you."
+      "The LORD is good, a strong hold in the day of trouble; and he knoweth them that trust in him.",
+      "The LORD is gracious and full of compassion, slow to anger, and of great mercy.",
+      "God is our refuge and strength, a very present help in trouble.",
+      "The name of the LORD is a strong tower: the righteous runneth into it, and is safe."
     ],
-    "correct_answer": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.",
-    "explanation": "KJV features \"seek ye first\", \"kingdom of God\", and \"shall be added unto you\".",
-    "reference": "Matthew 6:33",
+    "correct_answer": "The LORD is good, a strong hold in the day of trouble; and he knoweth them that trust in him.",
+    "explanation": "Nahum 1:7 (KJV) describes the LORD as good, a stronghold in trouble, and one who knows those who trust in Him.",
+    "reference": "Nahum 1:7",
     "metadata": {
       "stage": 8,
       "stage_title": "The Reference Test",
       "level_title": "Translation Forensic Test",
       "mechanic": "find_version",
-      "verse_text": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.",
+      "verse_text": "The LORD is good, a strong hold in the day of trouble; and he knoweth them that trust in him.",
       "translation": "KJV",
-      "testament": "New Testament",
+      "testament": "Old Testament",
       "difficulty": "Difficult",
       "timerSeconds": 40,
       "points": 150,
       "is_typed": false,
       "acceptedAlternatives": [
-        "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."
+        "The LORD is good, a strong hold in the day of trouble; and he knoweth them that trust in him."
       ],
-      "hint1": "Features archaic plural \"ye\" and \"unto you\".",
-      "hint2": "seek ye first... added unto you.",
+      "hint1": "Begins by describing the LORD as good.",
+      "hint2": "It ends with those who trust in Him.",
       "curated": true
     }
   },
