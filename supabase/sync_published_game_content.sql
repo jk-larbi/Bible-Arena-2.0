@@ -3,6 +3,19 @@
 -- Preserves UUID primary keys and existing player progress; matches rows by the unique game/level/challenge key.
 BEGIN;
 
+-- Move the target rows to unique temporary facts first. This avoids collisions
+-- with stale values in rows that are also being replaced, without disabling the trigger.
+UPDATE public.game_content
+SET reference = 'sync-pending-' || id::text,
+    correct_answer = 'sync-pending-' || id::text
+WHERE game_slug = ANY(ARRAY[
+  'scripture-challenge',
+  'bible-detective',
+  'old-vs-new-testament',
+  'bible-word-search'
+]::text[])
+  AND level BETWEEN 1 AND 30;
+
 INSERT INTO public.game_content (
   question_key, game_slug, level, challenge_index, question_text,
   options, correct_answer, explanation, reference, metadata
@@ -150,7 +163,7 @@ INSERT INTO public.game_content (
 ('scripture-challenge-l23-c5', 'scripture-challenge', 23, 5, 'When Jesus healed the blind man in Bethsaida, what did the man initially say he could see?', ARRAY['People who looked like trees walking around', 'People standing upside down', 'Faces without bodies', 'Bright lights but no people']::text[], 'People who looked like trees walking around', 'The healing happened in stages. At first the man saw people but described them as looking like trees walking.', 'Mark 8:22–26', '{"challengeType":"miracle-sequence","curated":true,"difficulty":"hard"}'::jsonb),
 ('scripture-challenge-l24-c1', 'scripture-challenge', 24, 1, 'Who said, “Am I my brother’s keeper?”', ARRAY['Cain', 'Adam', 'Lamech', 'Abel']::text[], 'Cain', 'After killing Abel, Cain answered the LORD with the question about being his brother’s keeper.', 'Genesis 4:8–10', '{"challengeType":"speaker-identification","curated":true,"difficulty":"hard"}'::jsonb),
 ('scripture-challenge-l24-c2', 'scripture-challenge', 24, 2, 'Who declared, “As for me and my house, we will serve the LORD”?', ARRAY['Caleb', 'Samuel', 'Moses', 'Joshua']::text[], 'Joshua', 'Joshua spoke these words when he challenged Israel to choose whom they would serve.', 'Joshua 24:14–15', '{"challengeType":"speaker-identification","curated":true,"difficulty":"hard"}'::jsonb),
-('scripture-challenge-l24-c3', 'scripture-challenge', 24, 3, 'Who said, “Though he slay me, yet will I trust in him” in the traditional wording of the verse?', ARRAY['David', 'Habakkuk', 'Job', 'Jeremiah']::text[], 'Job', 'The statement comes from Job as he responds amid his suffering and dispute with his friends.', 'Job 13:15', '{"challengeType":"speaker-identification","curated":true,"difficulty":"hard"}'::jsonb),
+('scripture-challenge-l24-c3', 'scripture-challenge', 24, 3, 'What did Jeremiah hide in the clay at the brickkiln near the entrance of Pharaoh’s house in Tahpanhes?', ARRAY['A bronze vessel', 'A clay jar', 'Large stones', 'A sealed scroll']::text[], 'Large stones', 'The LORD told Jeremiah to hide large stones in the clay at the brickkiln as a sign that Nebuchadnezzar would set his throne there.', 'Jeremiah 43:8–10', '{"challengeType":"textual-detail","curated":true,"difficulty":"hard"}'::jsonb),
 ('scripture-challenge-l24-c4', 'scripture-challenge', 24, 4, 'Who said, “Behold, I am the handmaid of the Lord; let it be to me according to your word”?', ARRAY['Martha', 'Anna', 'Mary', 'Elizabeth']::text[], 'Mary', 'Mary answered Gabriel with these words after hearing that she would give birth to Jesus.', 'Luke 1:26–38', '{"challengeType":"speaker-identification","curated":true,"difficulty":"hard"}'::jsonb),
 ('scripture-challenge-l24-c5', 'scripture-challenge', 24, 5, 'Who said, “You are the man!” when confronting King David about his sin?', ARRAY['Joab the commander', 'Gad the seer', 'Abiathar the priest', 'Nathan the prophet']::text[], 'Nathan the prophet', 'After telling David the parable of the rich man and the ewe lamb, Nathan declared that David was the man.', '2 Samuel 12:1–7', '{"challengeType":"speaker-identification","curated":true,"difficulty":"hard"}'::jsonb),
 ('scripture-challenge-l25-c1', 'scripture-challenge', 25, 1, 'Which Gospel alone records the visit of the Magi and their gifts to the child Jesus?', ARRAY['Mark', 'John', 'Matthew', 'Luke']::text[], 'Matthew', 'Matthew records the Magi following the star and presenting gold, frankincense and myrrh. The other Gospels do not include this episode.', 'Matthew 2:1–12', '{"challengeType":"gospel-comparison","curated":true,"difficulty":"hard"}'::jsonb),
