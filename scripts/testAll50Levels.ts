@@ -25,6 +25,10 @@ for (const game of ALL_19_GAME_SLUGS) {
       continue;
     }
     if (items.length !== 5) failures.push(`${game} L${level}: expected 5 challenges, got ${items.length}`);
+    const challengeIndexes = items.map((item) => item.challenge_index).sort((a, b) => a - b);
+    if (challengeIndexes.length !== 5 || challengeIndexes.some((index, position) => index !== position + 1)) {
+      failures.push(`${game} L${level}: challenge indexes must be exactly 1–5; received ${challengeIndexes.join(', ')}`);
+    }
 
     for (const item of items) {
       total++;
