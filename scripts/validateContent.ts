@@ -40,6 +40,8 @@ async function validate() {
   const repeatedFactRowsByGame = new Map<string, number>();
   const publishedRepeatedQuestionRowsByGame = new Map<string, number>();
   const publishedRepeatedFactRowsByGame = new Map<string, number>();
+  const repeatedQuestionExamples: string[] = [];
+  const repeatedFactExamples: string[] = [];
   const seenIds = new Set<string>();
   const seenQuestions = new Map<string, string>();
   const seenFacts = new Map<string, string>();
@@ -104,6 +106,7 @@ async function validate() {
           observedRepeatedQuestionRows++;
           repeatedQuestionRowsByGame.set(slug, (repeatedQuestionRowsByGame.get(slug) ?? 0) + 1);
           if (level <= 30) publishedRepeatedQuestionRowsByGame.set(slug, (publishedRepeatedQuestionRowsByGame.get(slug) ?? 0) + 1);
+          if (repeatedQuestionExamples.length < 80) repeatedQuestionExamples.push(`${location} duplicates ${previousQuestion}`);
         } else if (questionKey !== '::::') seenQuestions.set(`${slug}::${questionKey}`, location);
 
         const previousFact = factKey ? seenFacts.get(`${slug}::${factKey}`) : undefined;
@@ -111,6 +114,7 @@ async function validate() {
           observedRepeatedFactRows++;
           repeatedFactRowsByGame.set(slug, (repeatedFactRowsByGame.get(slug) ?? 0) + 1);
           if (level <= 30) publishedRepeatedFactRowsByGame.set(slug, (publishedRepeatedFactRowsByGame.get(slug) ?? 0) + 1);
+          if (repeatedFactExamples.length < 80) repeatedFactExamples.push(`${location} duplicates ${previousFact}`);
         } else if (factKey) seenFacts.set(`${slug}::${factKey}`, location);
 
         if (factKey) {
@@ -227,6 +231,10 @@ async function validate() {
   console.log(`Strict multiple-choice checks:       ${strictOptionChecks}`);
   console.log(`Reviewed question/fact uniqueness:  ${reviewedQuestions.size}/${reviewedFacts.size}`);
   console.log(`Difficulty tiers:                    ${[...actualTiers].join(', ')}`);
+  console.log('Repeated question examples:');
+  for (const example of repeatedQuestionExamples) console.log(`  ${example}`);
+  console.log('Repeated fact examples:');
+  for (const example of repeatedFactExamples) console.log(`  ${example}`);
   console.log('Repeated same-game question rows by game (all 50 levels):');
   for (const [game, count] of [...repeatedQuestionRowsByGame.entries()].sort((a, b) => b[1] - a[1])) {
     console.log(`  ${game}: ${count}`);
