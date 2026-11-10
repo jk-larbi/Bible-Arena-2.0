@@ -67,6 +67,13 @@ async function validate() {
 
       for (const item of items) {
         totalChallenges++;
+        const reviewedCoverageRequired =
+          (slug === 'bible-detective' && level <= 30) ||
+          (slug === 'who-said-it' && level <= 30) ||
+          (slug === 'bible-geography-quest' && level <= 40);
+        if (reviewedCoverageRequired && !item.metadata?.fact_key) {
+          errors.push(`${slug} L${level} C${item.challenge_index}: missing reviewed fact key; fallback content must not replace the reviewed batch`);
+        }
         if (seenIds.has(item.id)) errors.push(`Duplicate challenge ID: ${item.id}`);
         seenIds.add(item.id);
 
@@ -131,10 +138,18 @@ async function validate() {
             errors.push(`${item.id}: correct answer is missing from the options`);
           }
         } else if (slug === 'scripture-scramble') {
-          const expectedLetters = [...normalize(item.correct_answer)].sort().join('');
-          const suppliedLetters = [...item.options.map(normalize).join('')].sort().join('');
-          if (expectedLetters !== suppliedLetters) {
-            errors.push(`${item.id}: scramble tiles do not match the answer letters`);
+          if (item.metadata?.isWordPuzzle) {
+            const expectedWords = normalize(item.correct_answer).split(' ').filter(Boolean).sort().join('|');
+            const suppliedWords = item.options.flatMap((option) => normalize(option).split(' ')).filter(Boolean).sort().join('|');
+            if (expectedWords !== suppliedWords) {
+              errors.push(`${item.id}: scrambled word tiles do not match the answer words`);
+            }
+          } else {
+            const expectedLetters = [...normalize(item.correct_answer).replace(/\s/g, '')].sort().join('');
+            const suppliedLetters = [...item.options.map((option) => normalize(option).replace(/\s/g, '')).join('')].sort().join('');
+            if (expectedLetters !== suppliedLetters) {
+              errors.push(`${item.id}: scrambled letter tiles do not match the answer letters`);
+            }
           }
         } else if (slug === 'bible-word-search') {
           const words = item.options.map(normalize).filter(Boolean);
