@@ -1,6 +1,6 @@
 # BibleArena 2.0 — Rebuild Progress
 
-Last verified: 2026-11-09  
+Last verified: 2026-11-10  
 Repository: `jk-larbi/Bible-Arena-2.0`  
 Branch: `hosting/cloudflare-github-pages`  
 Supabase project: `cbbtqsjcsttguukfgnvw`  
@@ -50,15 +50,25 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - CI: staged-batch audit run [42627739526](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739526) passed. GitHub Pages build/deploy run [42627739601](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42627739601) passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, artifact upload and deployment.
 - Final documentation deployment run [42628372365](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42628372365) also completed successfully. The `actions/deploy-pages` step polled GitHub Pages status, reported success for commit `1aaa22a477fbca559e3c10f1ef0476070e66af96`, and returned the configured environment URL. The browser fetch tool could not render the live URL from this environment, so a manual visual inspection was unavailable; the official Pages deployment status is confirmed.
 
-## Next game — Bible Chain Challenge (not complete)
+## Bible Chain Challenge — content and database verified; deployment pending (2026-11-10)
 
-- Runtime intentionally generates this game locally rather than loading its challenge rows from Supabase. The 250 legacy database rows are not the live question source for this game.
-- Fresh audit of the current source pool: 40 curated seed records plus 32 established character records produce 72 unique people. The deterministic Level 1–30 sample has 150 different chain sequences, but only 27 distinct final-person reference/answer facts and 27 distinct dossier wordings. The target clue facts repeat heavily (for example, Nahum appears as the answer 37 times, Sarah 13 times, Solomon 13 times, Nicanor 13 times, and Maher-shalal-hash-baz 11 times). Distinct chain sequences alone do not meet the no-repeated-facts requirement.
-- Cross-game fact audit: combining the current 40 seed identities and the 96 established character clues gives 135 distinct normalized reference/answer candidates. Comparing them against every other game's existing `game_content` rows found 44 collisions. Of the 91 clean facts remaining, only 49 currently have a valid four-person chain path and enough same-initial answer choices in the current name graph.
-- A second gameplay defect was found: the chain-specific UI showed the linked names and required letter but did not render `question_text`, so the identity dossier was hidden. The latest source update now renders the dossier in a matching card under the chain, without changing the chain rules or option layout. The generator now supplies the concise identity clue as the dossier text, and its paid hints provide category and passage guidance.
-- Still required before completion: expand the fact/name bank to at least 150 clean, distinct answer facts; ensure each target has a valid four-name chain and four distinct same-initial choices; balance difficulty across Levels 1–30; generate and persist the same 150-question canonical bank for audit; compare normalized wording and reference-answer facts against all games; validate all chain mechanics; verify Levels 31–50 remain unpublished; and confirm the final deployment.
-- Do not mark this game complete based on the chain-sequence count or the UI correction alone.
+- Canonical source: `src/data/bibleChainQuestions.ts`. The file retains its 250-item catalogue; Levels 1–30 now have a verified playable bank of exactly 150 challenges (five per level). The 30 typed-input challenges keep typed mode; the remaining 120 retain four-option multiple choice.
+- Runtime: `buildLocalChallengesForLevel('bible-chain-challenge', level)` reads the curated `BIBLE_CHAIN_QUESTIONS` bank for the game. The existing chain-specific question formats and typed/choice mechanics were preserved.
+- Replaced three repeated/colliding facts in the playable bank:
+  - Level 5, Challenge 3: Philip (John 1:43–46) → Amittai, Jonah's father (Jonah 1:1; 2 Kings 14:25).
+  - Level 26, Challenge 1: Gehazi (2 Kings 5:20–27) → Hanamel, Jeremiah's cousin who offered the Anathoth field (Jeremiah 32:6–12).
+  - Level 29, Challenge 3: Haran (Genesis 11:31–32; Acts 7:4) → Tattenai, governor Beyond the River who questioned the temple rebuilding (Ezra 5:3–6; 6:6–7).
+- Source-bank validation: 150 playable rows; exactly five at each Level 1–30; 150 unique normalized question wordings; 150 unique normalized reference+answer facts; no missing question, answer, explanation or reference; all multiple-choice rows have four distinct options including the correct answer.
+- Cross-bank audit compared normalized wording and normalized reference+answer keys against every other `game_content` row, including the hidden Levels 31–50 and other games. After the three replacements, collisions = 0.
+- Supabase import updated exactly 150 existing `bible-chain-challenge` rows in place. Post-import validation: 150 rows, 150 distinct slots, five per level, 150 unique wordings, 150 unique facts, zero missing fields, zero multiple-choice option failures and zero cross-game collisions.
+- Publication verification: 30 levels published and 20 unpublished; no level above 30 is published. `game_content_public` exposes exactly 150 chain challenges and none above Level 30. A project-wide check also confirmed all 19 games have 30 published levels, 20 Coming Soon levels and 150 public content rows.
+- Frontend publication boundary remains consistent: `MAX_PUBLISHED_LEVELS = 30`; `startLevel` rejects Levels 31–50; the local/remote level-map merge requires both local and remote publication flags.
+- CI for source commit `b540a1d94f6707caaadb95bc2234579c0c6dd528`: GitHub Pages build job passed TypeScript, quiz accuracy/scoring, all-50-level/game-mechanics checks, staged-batch validation, multiplayer/catalogue checks, image optimization and Vite build. Deploy job is still in progress at the time of this update: [run 42817168215](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42817168215).
+- Deployment is not yet confirmed. The live Pages URL could not be fetched from this environment, so do not mark this game complete or begin the next game until the deploy job succeeds and the published site is checked.
 
+## Next game after deployment verification
+
+- Bible Crossword
 
 ## Other games awaiting completion
 
