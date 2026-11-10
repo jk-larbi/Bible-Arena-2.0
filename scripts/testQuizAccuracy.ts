@@ -291,10 +291,10 @@ async function runQuizAccuracyTests() {
     let substantiveFailures = 0;
     const failureLog: string[] = [];
 
-    // Check sample across levels 1..10 (950 questions)
+    // Check every currently published level across all 19 games (2,850 questions).
     let checkedCount = 0;
     for (const slug of ALL_19_GAME_SLUGS) {
-      for (let lvl = 1; lvl <= 10; lvl++) {
+      for (let lvl = 1; lvl <= 30; lvl++) {
         const items = buildLocalChallengesForLevel(slug, lvl);
         for (const item of items) {
           checkedCount++;
@@ -384,9 +384,9 @@ async function runQuizAccuracyTests() {
     const passed = substantiveFailures === 0;
     results.push({
       name: '8. Substantive Scripture accuracy (biblical context & passage relevance)',
-      scope: 'Deep Audit Sample: 950 challenges across Levels 1–10',
+      scope: 'Published bank: 2,850 challenges across Levels 1–30',
       passed,
-      details: `Substantively verified narrative-to-passage alignment across ${checkedCount} challenges. Mismatches: ${substantiveFailures}.${
+      details: `Ran targeted narrative-to-passage checks across ${checkedCount} published challenges. Mismatches: ${substantiveFailures}.${
         failureLog.length ? ' Log: ' + failureLog.slice(0, 3).join('; ') : ' All historical, narrative, and quotation references align with cited biblical chapters.'
       }`,
     });
