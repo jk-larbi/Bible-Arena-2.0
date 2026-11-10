@@ -68,6 +68,10 @@ async function validate() {
       if (items.length !== CHALLENGES_PER_LEVEL) {
         errors.push(`${slug} L${level}: expected 5 challenges, found ${items.length}`);
       }
+      const challengeIndexes = items.map((item) => item.challenge_index).sort((a, b) => a - b);
+      if (challengeIndexes.length !== 5 || challengeIndexes.some((index, position) => index !== position + 1)) {
+        errors.push(`${slug} L${level}: challenge indexes must be exactly 1–5; received ${challengeIndexes.join(', ')}`);
+      }
 
       for (const item of items) {
         totalChallenges++;
