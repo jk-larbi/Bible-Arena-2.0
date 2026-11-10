@@ -101,7 +101,7 @@ for (const item of ALL_BATCHES) {
   }
 }
 
-for (const [game, maxLevel] of [['bible-riddles', 5], ['bible-detective', 30], ['bible-geography-quest', 40], ['bible-character-quest', 20], ['who-said-it', 20], ['bible-timeline', 50], ['find-the-bible-book', 40]] as const) {
+for (const [game, maxLevel] of [['bible-riddles', 5], ['bible-detective', 30], ['bible-geography-quest', 40], ['bible-character-quest', 20], ['who-said-it', 30], ['bible-timeline', 50], ['find-the-bible-book', 40]] as const) {
   for (let level = 1; level <= maxLevel; level++) {
     const key = `${game}:${level}`;
     if (byGameLevel.get(key) !== 5) {
