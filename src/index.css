@@ -259,3 +259,17 @@
     scroll-snap-type: x proximity;
   }
 }
+
+
+/* Keep touch scrolling predictable on phones; avoid animated document scrolling. */
+@media (max-width: 767px) {
+  html, body {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  #root {
+    width: 100%;
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+}
