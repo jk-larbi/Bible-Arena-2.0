@@ -88,9 +88,9 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
       </div>
 
       {/* Game title and description — the illustration is rendered once as the card background. */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 text-center mx-4 my-3 rounded-2xl bg-black/65 border border-white/20 shadow-xl backdrop-blur-sm">
-        <h3 className="font-serif font-bold text-2xl text-white mb-2 drop-shadow-[0_2px_5px_rgba(0,0,0,1)]">{game.title}</h3>
-        <p className="text-xs text-white font-semibold leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,1)] line-clamp-2 max-w-[220px]">{game.subtitle}</p>
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 py-5 text-center mx-4 my-3 rounded-2xl bg-[#05070D]/95 border-2 border-white/40 shadow-2xl">
+        <h3 className="font-serif font-extrabold text-2xl sm:text-3xl leading-tight text-white mb-3 drop-shadow-[0_2px_5px_rgba(0,0,0,1)]">{game.title}</h3>
+        <p className="text-sm text-white font-bold leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,1)] line-clamp-3 max-w-[230px]">{game.subtitle}</p>
       </div>
 
       {/* Footer bar */}
