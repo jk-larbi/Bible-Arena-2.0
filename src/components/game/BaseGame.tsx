@@ -1790,7 +1790,7 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
               aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
               aria-pressed={soundEnabled}
               onClick={toggleGameSound}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-1.5 text-xs font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-[#3156C9]/20 bg-[#EEF2FF] px-3 py-1.5 text-xs font-bold text-[#3156C9] hover:bg-[#DDE6FF]"
             >
               {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
               Game sound {soundEnabled ? 'On' : 'Off'}
@@ -1801,6 +1801,19 @@ export const BaseGame: React.FC<BaseGameProps> = ({ gameId, gameName, onBack }) 
             </span>
           )}
         </div>
+      </div>
+
+      <div className="mb-4 sm:hidden">
+        <button
+          type="button"
+          aria-label={soundEnabled ? 'Turn all game sounds off' : 'Turn all game sounds on'}
+          aria-pressed={soundEnabled}
+          onClick={toggleGameSound}
+          className="flex min-h-11 w-full touch-manipulation items-center justify-center gap-2 rounded-xl border border-[#3156C9]/25 bg-[#EEF2FF] px-4 py-2.5 text-sm font-bold text-[#3156C9] shadow-sm active:bg-[#DDE6FF]"
+        >
+          {soundEnabled ? <Volume2 className="h-5 w-5" /> : <VolumeX className="h-5 w-5" />}
+          Game sound {soundEnabled ? 'On' : 'Off'}
+        </button>
       </div>
 
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-[#171B24]/10">
