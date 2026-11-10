@@ -1549,13 +1549,13 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "challenge_index": 3,
     "question_text": "\"Let justice roll down like waters.\"",
     "options": [
+      "The LORD",
       "Amos",
-      "Cain",
-      "Joseph",
+      "Micah",
       "Isaiah"
     ],
-    "correct_answer": "Amos",
-    "explanation": "The biblical account in Amos 5:24 supports this identification.",
+    "correct_answer": "The LORD",
+    "explanation": "Amos 5:21-24 records the LORD's message condemning empty worship and calling Israel to practise justice; Amos delivers the prophetic message.",
     "reference": "Amos 5:24",
     "metadata": {
       "difficulty": "advanced",
