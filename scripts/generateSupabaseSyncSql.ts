@@ -35,6 +35,19 @@ let sql = `-- BibleArena published database content sync.
 -- Preserves UUID primary keys and existing player progress; matches rows by the unique game/level/challenge key.
 BEGIN;
 
+-- Move the target rows to unique temporary facts first. This avoids collisions
+-- with stale values in rows that are also being replaced, without disabling the trigger.
+UPDATE public.game_content
+SET reference = 'sync-pending-' || id::text,
+    correct_answer = 'sync-pending-' || id::text
+WHERE game_slug = ANY(ARRAY[
+  'scripture-challenge',
+  'bible-detective',
+  'old-vs-new-testament',
+  'bible-word-search'
+]::text[])
+  AND level BETWEEN 1 AND ${PUBLISHED_LEVELS};
+
 `;
 let total = 0;
 let batch: string[] = [];
