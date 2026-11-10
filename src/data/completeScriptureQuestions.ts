@@ -2897,7 +2897,7 @@ export const COMPLETE_THE_SCRIPTURE_QUESTIONS: ChallengeItem[] = [
     ],
     "correct_answer": "visions",
     "explanation": "The Pentecostal prophecy quoted by Peter regarding the universal outpouring of the Holy Spirit. The complete KJV wording is: \"And it shall come to pass afterward, that I will pour out my spirit upon all flesh; and your sons and your daughters shall prophesy, your old men shall dream dreams, your young men shall see visions:\"",
-    "reference": "Joel 2:28",
+    "reference": "Joel 2:28; Acts 2:16-18",
     "metadata": {
       "mode": 0,
       "modeLabel": "Find the Missing Word",
