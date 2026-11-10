@@ -228,3 +228,34 @@
     min-height: 100dvh;
   }
 }
+
+
+/* Keep the document anchored horizontally on narrow screens. Horizontal movement
+   remains limited to explicitly designated rails such as game/category carousels. */
+@media (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+  }
+
+  #root,
+  #root > *,
+  main,
+  main > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #root {
+    overflow-x: clip;
+  }
+
+  /* Avoid mandatory snap pulling the page/gesture sideways on mobile. */
+  .smooth-horizontal-scroll {
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+}
