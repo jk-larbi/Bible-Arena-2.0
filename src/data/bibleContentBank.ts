@@ -14,6 +14,16 @@ import { BIBLE_RIDDLES_QUESTIONS } from './bibleRiddlesQuestions';
 import { BIBLE_MEMORY_QUESTIONS } from './bibleMemoryQuestions';
 import { BIBLE_CHAIN_QUESTIONS } from './bibleChainQuestions';
 import { VERSE_BUILDER_QUESTIONS } from './verseBuilderQuestions';
+import { BIBLE_DETECTIVE_BATCH_01 } from './rebuild/bibleDetectiveBatch01';
+import { BIBLE_DETECTIVE_BATCH_02 } from './rebuild/bibleDetectiveBatch02';
+import { BIBLE_DETECTIVE_BATCH_03 } from './rebuild/bibleDetectiveBatch03';
+import { BIBLE_DETECTIVE_BATCH_04 } from './rebuild/bibleDetectiveBatch04';
+import { BIBLE_DETECTIVE_BATCH_05 } from './rebuild/bibleDetectiveBatch05';
+import { BIBLE_GEOGRAPHY_BATCH_01 } from './rebuild/bibleGeographyBatch01';
+import { BIBLE_GEOGRAPHY_BATCH_02 } from './rebuild/bibleGeographyBatch02';
+import { WHO_SAID_IT_BATCH_01 } from './rebuild/whoSaidItBatch01';
+import { WHO_SAID_IT_BATCH_02 } from './rebuild/whoSaidItBatch02';
+
 import { GUESS_THE_EMOJI_QUESTIONS } from './guessTheEmojiQuestions';
 
 export interface ChallengeItem {
@@ -28,6 +38,30 @@ export interface ChallengeItem {
   reference: string;
   metadata?: Record<string, any>;
 }
+
+
+/**
+ * Passage-reviewed batches replace the small fallback pools for the published
+ * levels of these games. Runtime questions now use the batches that passed the
+ * staged uniqueness and structural reference audit.
+ */
+const REVIEWED_BATCHES_BY_GAME: Record<string, ChallengeItem[]> = {
+  'bible-detective': [
+    ...BIBLE_DETECTIVE_BATCH_01,
+    ...BIBLE_DETECTIVE_BATCH_02,
+    ...BIBLE_DETECTIVE_BATCH_03,
+    ...BIBLE_DETECTIVE_BATCH_04,
+    ...BIBLE_DETECTIVE_BATCH_05,
+  ],
+  'bible-geography-quest': [
+    ...BIBLE_GEOGRAPHY_BATCH_01,
+    ...BIBLE_GEOGRAPHY_BATCH_02,
+  ],
+  'who-said-it': [
+    ...WHO_SAID_IT_BATCH_01,
+    ...WHO_SAID_IT_BATCH_02,
+  ],
+};
 
 const BOOKS_66 = [
   { name: 'Genesis', testament: 'Old Testament', section: 'Law', author: 'Moses', chapters: 50, clue: 'Creation, Abrahamic covenant, and Joseph in Egypt', ref: 'Genesis 1:1' },
@@ -632,6 +666,30 @@ export function getDifficultyForLevel(level: number): string {
  * from 1..50+ so every level in all 19 games is genuinely playable and biblically accurate.
  */
 export function buildLocalChallengesForLevel(gameSlug: string, level: number, variationSeed = 0): ChallengeItem[] {
+  const reviewedSource = REVIEWED_BATCHES_BY_GAME[gameSlug] ?? [];
+  const reviewedLevel = reviewedSource
+    .filter((entry) => entry.level === level)
+    .sort((a, b) => a.challenge_index - b.challenge_index);
+
+  if (reviewedLevel.length === 5) {
+    const baseIndex = (level - 1) * 5;
+    return reviewedLevel.map((entry) => {
+      const challengeIndex = entry.challenge_index;
+      const seed =
+        (level * 10007) +
+        (challengeIndex * 997) +
+        ((baseIndex + challengeIndex - 1) * 31) +
+        1337;
+      return {
+        ...entry,
+        id: `${gameSlug}-l${level}-c${challengeIndex}`,
+        game_slug: gameSlug,
+        level,
+        options: entry.metadata?.is_typed ? [] : shuffleDeterministic([...entry.options], seed),
+      };
+    });
+  }
+
   const items: ChallengeItem[] = [];
   // Five questions per level: consume the source pools sequentially without
   // skipping every other item. This improves coverage but does not replace
