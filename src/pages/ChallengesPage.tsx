@@ -908,27 +908,27 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
       )}
 
       {/* Community Quests Section */}
-      <div className="bg-gradient-to-br from-[#171B24] to-[#252B3A] text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-white/10 space-y-6">
+      <div className="bg-[#171B24] text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-white/25 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#D66B3D]/20 text-[#F0B18D] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#71351F] text-white text-xs font-extrabold uppercase tracking-wider border border-[#F0B18D]/50">
               <Users className="w-3.5 h-3.5" /> Community Scripture Quests
             </div>
-            <h3 className="font-serif font-extrabold text-2xl text-white mt-1.5">
+            <h3 className="font-serif font-extrabold text-2xl sm:text-3xl text-white mt-2 drop-shadow-sm">
               Active Community Objectives
             </h3>
-            <p className="text-xs text-white/70 max-w-lg mt-1">
+            <p className="text-sm sm:text-base text-white/95 font-medium leading-relaxed max-w-lg mt-2">
               Collaborate with scholars worldwide. Every answered question and completed level advances our shared milestones.
             </p>
           </div>
           <div className="flex items-center gap-2">
             <Link
               to="/community-quests"
-              className="text-xs font-bold text-[#F0B18D] hover:text-white bg-white/10 hover:bg-white/15 px-3 py-1.5 rounded-xl border border-white/15 transition flex items-center gap-1"
+              className="text-sm font-extrabold text-white hover:text-white bg-[#71351F] hover:bg-[#8A4327] px-4 py-2.5 rounded-xl border border-[#F0B18D]/60 shadow-md transition flex items-center gap-1"
             >
               Start / Manage Quests →
             </Link>
-            <span className="text-[11px] font-mono text-[#F0B18D] bg-white/10 px-3 py-1.5 rounded-xl border border-white/10 hidden sm:inline-block">
+            <span className="text-xs font-mono font-bold text-white bg-[#303849] px-3 py-2 rounded-xl border border-white/30 inline-block">
               Collective Progress
             </span>
           </div>
@@ -940,24 +940,24 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
             return (
               <div
                 key={quest.id}
-                className="bg-[#252B3A] border border-white/15 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-md transition-colors hover:bg-[#303849]"
+                className="bg-[#252B3A] border-2 border-white/25 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 shadow-md transition-colors hover:bg-[#303849]"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-1.5">
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[#D66B3D]/30 text-[#F0B18D]">
                       {quest.type} Quest
                     </span>
-                    <span className="text-[11px] text-white/60 font-mono flex items-center gap-1">
+                    <span className="text-xs text-white/95 font-semibold font-mono flex items-center gap-1">
                       <Clock className="w-3 h-3" /> {quest.deadline}
                     </span>
                   </div>
                   <h4 className="font-serif font-bold text-base text-white">{quest.title}</h4>
-                  <p className="text-xs text-white/75 mt-1">{quest.description}</p>
+                  <p className="text-sm text-white/95 font-medium leading-relaxed mt-2">{quest.description}</p>
                 </div>
 
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-white/60">Community Progress</span>
+                    <span className="text-white/95 font-bold">Community Progress</span>
                     <span className="font-mono text-[#F0B18D]">
                       {quest.current} / {quest.target} ({pct}%)
                     </span>
@@ -968,8 +968,8 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  <div className="flex items-center justify-between pt-1 text-[11px]">
-                    <span className="text-[#F0B18D] font-medium flex items-center gap-1">
+                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 text-xs">
+                    <span className="text-white font-semibold flex items-center gap-1 min-w-0">
                       <Trophy className="w-3 h-3" /> {quest.reward}
                     </span>
                     <button
@@ -978,7 +978,7 @@ export const ChallengesPage: React.FC<ChallengesPageProps> = ({ onSelectGame }) 
                         const targetGame = GAMES_LIST.find((g) => g.id === quest.gameSlug);
                         if (targetGame && onSelectGame) onSelectGame(targetGame);
                       }}
-                      className="text-xs font-bold text-white hover:text-[#F0B18D] inline-flex items-center gap-1 transition"
+                      className="text-sm font-extrabold text-white hover:text-[#F0B18D] inline-flex items-center gap-1 transition shrink-0"
                     >
                       Contribute <ChevronRight className="w-3.5 h-3.5" />
                     </button>
