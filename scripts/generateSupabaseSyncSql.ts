@@ -1,4 +1,4 @@
-// Generates a safe, idempotent sync for the five database-backed games.
+// Generates a safe, idempotent sync for the four database-backed games.
 // The other fourteen games are loaded from the local curated bank at runtime.
 import * as fs from 'node:fs';
 import * as path from 'node:path';
