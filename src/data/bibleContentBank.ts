@@ -1149,7 +1149,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
         }
 
         if (options.length !== 4 || new Set(options.map((option) => option.toLowerCase())).size !== 4 || !options.includes(correctAnswer)) {
-          options = makeFourDistinctOptions(correctAnswer, q.options.length ? q.options : (QUOTE_SPEAKER_GROUPS[q.speaker] || QUOTE_SPEAKERS), shuffleSeed);
+          options = makeFourDistinctOptions(correctAnswer, QUOTE_SPEAKERS, shuffleSeed);
         }
         items.push({
           id, game_slug: gameSlug, level, challenge_index: challengeIndex,
