@@ -875,7 +875,7 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
       "An unnamed prophet"
     ],
     "correct_answer": "The LORD",
-    "explanation": "Judges 6:14 explicitly identifies the speaker as the LORD, who commissions Gideon."
+    "explanation": "Judges 6:14 explicitly identifies the speaker as the LORD, who commissions Gideon.",
     "reference": "Judges 6:14",
     "metadata": {
       "difficulty": "intermediate",
