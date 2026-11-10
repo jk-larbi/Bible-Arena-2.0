@@ -7,16 +7,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 1,
     "challenge_index": 1,
-    "question_text": "\"Am I my brother's keeper?\"",
+    "question_text": "\"Thou God seest me.\"",
     "options": [
-      "Cain",
-      "Joseph",
-      "Isaiah",
-      "Samuel"
+      "Hagar",
+      "Sarah",
+      "Leah",
+      "Rebekah"
     ],
-    "correct_answer": "Cain",
-    "explanation": "The biblical account in Genesis 4:9 supports this identification.",
-    "reference": "Genesis 4:9",
+    "correct_answer": "Hagar",
+    "explanation": "Hagar named the LORD who spoke with her, declaring that He was the God who saw her.",
+    "reference": "Genesis 16:13",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "who-said-it-fact-1"
@@ -47,16 +47,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 1,
     "challenge_index": 3,
-    "question_text": "\"Here am I; send me.\"",
+    "question_text": "\"Shall not the Judge of all the earth do right?\"",
     "options": [
-      "Isaiah",
-      "Cain",
-      "Joseph",
-      "Samuel"
+      "Abraham",
+      "Isaac",
+      "Jacob",
+      "Moses"
     ],
-    "correct_answer": "Isaiah",
-    "explanation": "The biblical account in Isaiah 6:8 supports this identification.",
-    "reference": "Isaiah 6:8",
+    "correct_answer": "Abraham",
+    "explanation": "Abraham appealed to God's justice while interceding for Sodom.",
+    "reference": "Genesis 18:25",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "who-said-it-fact-3"
@@ -67,16 +67,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 1,
     "challenge_index": 4,
-    "question_text": "\"Speak, Lord; for thy servant heareth.\"",
+    "question_text": "\"I am not eloquent, neither heretofore, nor since thou hast spoken unto thy servant.\"",
     "options": [
-      "Samuel",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Moses",
+      "Aaron",
+      "Joshua",
+      "Gideon"
     ],
-    "correct_answer": "Samuel",
-    "explanation": "The biblical account in 1 Samuel 3:9-10 supports this identification.",
-    "reference": "1 Samuel 3:9-10",
+    "correct_answer": "Moses",
+    "explanation": "Moses raised his concern about his speaking ability when God called him to lead Israel.",
+    "reference": "Exodus 4:10",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "who-said-it-fact-4"
@@ -227,16 +227,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 3,
     "challenge_index": 2,
-    "question_text": "\"The Lord is my shepherd; I shall not want.\"",
+    "question_text": "\"Lord, we know not whither thou goest; and how can we know the way?\"",
     "options": [
-      "David",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Thomas",
+      "Philip",
+      "Peter",
+      "Andrew"
     ],
-    "correct_answer": "David",
-    "explanation": "The biblical account in Psalm 23:1 supports this identification.",
-    "reference": "Psalm 23:1",
+    "correct_answer": "Thomas",
+    "explanation": "Thomas asked Jesus this question during His teaching about going to prepare a place for His disciples.",
+    "reference": "John 14:5",
     "metadata": {
       "difficulty": "beginner",
       "fact_key": "who-said-it-fact-12"
@@ -487,16 +487,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 5,
     "challenge_index": 5,
-    "question_text": "\"Lord, to whom shall we go? thou hast the words of eternal life.\"",
+    "question_text": "\"I come to thee in the name of the LORD of hosts.\"",
     "options": [
-      "Peter",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "David",
+      "Saul",
+      "Jonathan",
+      "Goliath"
     ],
-    "correct_answer": "Peter",
-    "explanation": "The biblical account in John 6:68 supports this identification.",
-    "reference": "John 6:68",
+    "correct_answer": "David",
+    "explanation": "David addressed Goliath and declared that he came in the name of the LORD.",
+    "reference": "1 Samuel 17:45",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "who-said-it-fact-25"
@@ -587,16 +587,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 6,
     "challenge_index": 5,
-    "question_text": "\"My Lord and my God.\"",
+    "question_text": "\"None of these things move me, neither count I my life dear unto myself.\"",
     "options": [
-      "Thomas",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Paul",
+      "Peter",
+      "Barnabas",
+      "Timothy"
     ],
-    "correct_answer": "Thomas",
-    "explanation": "The biblical account in John 20:28 supports this identification.",
-    "reference": "John 20:28",
+    "correct_answer": "Paul",
+    "explanation": "Paul spoke these words while describing his determination to finish the ministry entrusted to him.",
+    "reference": "Acts 20:24",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "who-said-it-fact-30"
@@ -687,16 +687,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 7,
     "challenge_index": 5,
-    "question_text": "\"Am I a dog, that thou comest to me with staves?\"",
+    "question_text": "\"What? shall we receive good at the hand of God, and shall we not receive evil?\"",
     "options": [
-      "Goliath",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Job",
+      "Eliphaz",
+      "Bildad",
+      "Zophar"
     ],
-    "correct_answer": "Goliath",
-    "explanation": "The biblical account in 1 Samuel 17:43 supports this identification.",
-    "reference": "1 Samuel 17:43",
+    "correct_answer": "Job",
+    "explanation": "Job rebuked his wife and acknowledged that people must receive both good and adversity from God's hand.",
+    "reference": "Job 2:10",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "who-said-it-fact-35"
@@ -907,16 +907,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 10,
     "challenge_index": 1,
-    "question_text": "\"Thy servant is listening.\"",
+    "question_text": "\"God forbid that I should sin against the LORD in ceasing to pray for you.\"",
     "options": [
       "Samuel",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Eli",
+      "Saul",
+      "David"
     ],
     "correct_answer": "Samuel",
-    "explanation": "The biblical account in 1 Samuel 3:10 supports this identification.",
-    "reference": "1 Samuel 3:10",
+    "explanation": "Samuel assured Israel that he would continue praying for them and teaching them the good way.",
+    "reference": "1 Samuel 12:23",
     "metadata": {
       "difficulty": "intermediate",
       "fact_key": "who-said-it-fact-46"
@@ -987,16 +987,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 10,
     "challenge_index": 5,
-    "question_text": "\"I know that my redeemer liveth.\"",
+    "question_text": "\"Let me find favour in thy sight, my lord.\"",
     "options": [
-      "Job",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Ruth",
+      "Naomi",
+      "Orpah",
+      "Boaz"
     ],
-    "correct_answer": "Job",
-    "explanation": "The biblical account in Job 19:25 supports this identification.",
-    "reference": "Job 19:25",
+    "correct_answer": "Ruth",
+    "explanation": "Ruth spoke respectfully to Boaz after he showed kindness to her in his field.",
+    "reference": "Ruth 2:13",
     "metadata": {
       "difficulty": "intermediate",
       "fact_key": "who-said-it-fact-50"
@@ -1187,16 +1187,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 12,
     "challenge_index": 5,
-    "question_text": "\"O Lord, how long shall I cry, and thou wilt not hear!\"",
+    "question_text": "\"Most gladly therefore will I rather glory in my infirmities.\"",
     "options": [
-      "Habakkuk",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Paul",
+      "Timothy",
+      "Peter",
+      "James"
     ],
-    "correct_answer": "Habakkuk",
-    "explanation": "The biblical account in Habakkuk 1:2 supports this identification.",
-    "reference": "Habakkuk 1:2",
+    "correct_answer": "Paul",
+    "explanation": "Paul described his response after recounting the Lord's assurance that His grace was sufficient.",
+    "reference": "2 Corinthians 12:9",
     "metadata": {
       "difficulty": "intermediate",
       "fact_key": "who-said-it-fact-60"
@@ -1987,16 +1987,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 20,
     "challenge_index": 5,
-    "question_text": "\"I have fought a good fight, I have finished my course.\"",
+    "question_text": "\"O Nebuchadnezzar, we are not careful to answer thee in this matter.\"",
     "options": [
-      "Paul",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Shadrach, Meshach, and Abednego",
+      "Daniel",
+      "Nebuchadnezzar's advisers",
+      "The chief eunuch"
     ],
-    "correct_answer": "Paul",
-    "explanation": "The biblical account in 2 Timothy 4:7 supports this identification.",
-    "reference": "2 Timothy 4:7",
+    "correct_answer": "Shadrach, Meshach, and Abednego",
+    "explanation": "The three Hebrews answered the king together before being threatened with the fiery furnace.",
+    "reference": "Daniel 3:16",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "who-said-it-fact-100"
