@@ -4,6 +4,7 @@ import { BIBLE_GEOGRAPHY_BATCH_01 } from '../src/data/rebuild/bibleGeographyBatc
 import { BIBLE_CHARACTER_VERIFIED_BATCH_01 } from '../src/data/rebuild/bibleCharacterVerifiedBatch01';
 import { BIBLE_CHARACTER_VERIFIED_BATCH_02 } from '../src/data/rebuild/bibleCharacterVerifiedBatch02';
 import { WHO_SAID_IT_BATCH_01 } from '../src/data/rebuild/whoSaidItBatch01';
+import { WHO_SAID_IT_BATCH_02 } from '../src/data/rebuild/whoSaidItBatch02';
 import { BIBLE_TIMELINE_BATCH_01 } from '../src/data/rebuild/bibleTimelineBatch01';
 import { FIND_BIBLE_BOOK_BATCH_01 } from '../src/data/rebuild/findBibleBookBatch01';
 import { BIBLE_TIMELINE_BATCH_02 } from '../src/data/rebuild/bibleTimelineBatch02';
@@ -15,7 +16,7 @@ import { BIBLE_DETECTIVE_BATCH_04 } from '../src/data/rebuild/bibleDetectiveBatc
 import { BIBLE_DETECTIVE_BATCH_05 } from '../src/data/rebuild/bibleDetectiveBatch05';
 import { BIBLE_TIMELINE_BATCH_03 } from '../src/data/rebuild/bibleTimelineBatch03';
 
-const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_02, ...WHO_SAID_IT_BATCH_01, ...BIBLE_TIMELINE_BATCH_01, ...FIND_BIBLE_BOOK_BATCH_01, ...BIBLE_TIMELINE_BATCH_02, ...BIBLE_GEOGRAPHY_BATCH_02, ...FIND_BIBLE_BOOK_BATCH_02, ...BIBLE_DETECTIVE_BATCH_02, ...BIBLE_DETECTIVE_BATCH_03, ...BIBLE_DETECTIVE_BATCH_04, ...BIBLE_DETECTIVE_BATCH_05, ...BIBLE_TIMELINE_BATCH_03];
+const ALL_BATCHES = [...BIBLE_RIDDLES_BATCH_01, ...BIBLE_DETECTIVE_BATCH_01, ...BIBLE_GEOGRAPHY_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_01, ...BIBLE_CHARACTER_VERIFIED_BATCH_02, ...WHO_SAID_IT_BATCH_01, ...WHO_SAID_IT_BATCH_02, ...BIBLE_TIMELINE_BATCH_01, ...FIND_BIBLE_BOOK_BATCH_01, ...BIBLE_TIMELINE_BATCH_02, ...BIBLE_GEOGRAPHY_BATCH_02, ...FIND_BIBLE_BOOK_BATCH_02, ...BIBLE_DETECTIVE_BATCH_02, ...BIBLE_DETECTIVE_BATCH_03, ...BIBLE_DETECTIVE_BATCH_04, ...BIBLE_DETECTIVE_BATCH_05, ...BIBLE_TIMELINE_BATCH_03];
 
 // Passage-reviewed speaker corrections. These checks guard against the exact
 // attribution mistakes found during the Bible-text audit.
