@@ -1,0 +1,74 @@
+-- Replace Who Said It levels 21-30 with 50 additional passage-reviewed questions.
+-- Existing row IDs and question_key values are intentionally preserved.
+DO $$
+DECLARE
+  v_updated integer;
+BEGIN
+  UPDATE public.game_content AS gc
+  SET question_text = v.question_text,
+      options = v.options,
+      correct_answer = v.correct_answer,
+      explanation = v.explanation,
+      "reference" = v.reference,
+      metadata = v.metadata
+  FROM (VALUES
+(21,1,'"For this child I prayed; and the LORD hath given me my petition which I asked of him."',ARRAY['Hannah','Sarah','Rebekah','Leah']::text[],'Hannah','Hannah explained to Eli that the child she had prayed for was Samuel.','1 Samuel 1:27','{"difficulty":"expert","fact_key":"who-said-it-fact-101"}'::jsonb),
+(21,2,'"I have sinned against the LORD."',ARRAY['David','Saul','Solomon','Absalom']::text[],'David','David confessed his sin after Nathan confronted him.','2 Samuel 12:13','{"difficulty":"expert","fact_key":"who-said-it-fact-102"}'::jsonb),
+(21,3,'"The LORD is my light and my salvation; whom shall I fear?"',ARRAY['David','Asaph','Moses','Solomon']::text[],'David','The psalm is identified as a psalm of David.','Psalm 27:1','{"difficulty":"expert","fact_key":"who-said-it-fact-103"}'::jsonb),
+(21,4,'"I will bless the LORD at all times: his praise shall continually be in my mouth."',ARRAY['David','Asaph','Solomon','Moses']::text[],'David','The psalm''s heading attributes it to David.','Psalm 34:1','{"difficulty":"expert","fact_key":"who-said-it-fact-104"}'::jsonb),
+(21,5,'"If I perish, I perish."',ARRAY['Esther','Mordecai','Vashti','Haman']::text[],'Esther','Esther accepted the risk of approaching the king to plead for her people.','Esther 4:16','{"difficulty":"expert","fact_key":"who-said-it-fact-105"}'::jsonb),
+(22,1,'"Who knoweth whether thou art come to the kingdom for such a time as this?"',ARRAY['Mordecai','Esther','Haman','Ahasuerus']::text[],'Mordecai','Mordecai urged Esther to consider her position as an opportunity to help her people.','Esther 4:14','{"difficulty":"expert","fact_key":"who-said-it-fact-106"}'::jsonb),
+(22,2,'"I will not let thee go, except thou bless me."',ARRAY['Jacob','Esau','Isaac','Laban']::text[],'Jacob','Jacob said this while wrestling through the night before meeting Esau.','Genesis 32:26','{"difficulty":"expert","fact_key":"who-said-it-fact-107"}'::jsonb),
+(22,3,'"I have sinned this time: the LORD is righteous, and I and my people are wicked."',ARRAY['Pharaoh','Moses','Aaron','Jethro']::text[],'Pharaoh','Pharaoh admitted wrongdoing during the plague of hail.','Exodus 9:27','{"difficulty":"expert","fact_key":"who-said-it-fact-108"}'::jsonb),
+(22,4,'"Let me die the death of the righteous, and let my last end be like his!"',ARRAY['Balaam','Balak','Moses','Aaron']::text[],'Balaam','Balaam spoke this while delivering his oracle over Israel.','Numbers 23:10','{"difficulty":"expert","fact_key":"who-said-it-fact-109"}'::jsonb),
+(22,5,'"I have sinned: for I have transgressed the commandment of the LORD, and thy words."',ARRAY['Saul','David','Jonathan','Samuel']::text[],'Saul','Saul admitted his disobedience after Samuel confronted him.','1 Samuel 15:24','{"difficulty":"expert","fact_key":"who-said-it-fact-110"}'::jsonb),
+(23,1,'"Behold, I thought, He will surely come out to me, and stand, and call on the name of the LORD his God."',ARRAY['Naaman','Gehazi','Elisha','Joram']::text[],'Naaman','Naaman expressed his disappointment before he followed the instruction to wash in the Jordan.','2 Kings 5:11','{"difficulty":"expert","fact_key":"who-said-it-fact-111"}'::jsonb),
+(23,2,'"I made a covenant with mine eyes; why then should I think upon a maid?"',ARRAY['Job','Eliphaz','Bildad','Zophar']::text[],'Job','Job described his commitment to moral purity.','Job 31:1','{"difficulty":"expert","fact_key":"who-said-it-fact-112"}'::jsonb),
+(23,3,'"Be strong and of a good courage; be not afraid, neither be thou dismayed."',ARRAY['The LORD','Moses','Joshua','Caleb']::text[],'The LORD','The LORD encouraged Joshua as he prepared to lead Israel.','Joshua 1:9','{"difficulty":"expert","fact_key":"who-said-it-fact-113"}'::jsonb),
+(23,4,'"Is not my word like as a fire? saith the LORD; and like a hammer that breaketh the rock in pieces?"',ARRAY['The LORD','Jeremiah','Baruch','Ezekiel']::text[],'The LORD','The LORD compared His word to fire and a hammer.','Jeremiah 23:29','{"difficulty":"expert","fact_key":"who-said-it-fact-114"}'::jsonb),
+(23,5,'"I will restore to you the years that the locust hath eaten."',ARRAY['The LORD','Joel','Amos','Hosea']::text[],'The LORD','The LORD promised restoration to His people.','Joel 2:25','{"difficulty":"expert","fact_key":"who-said-it-fact-115"}'::jsonb),
+(24,1,'"For I am the LORD, I change not; therefore ye sons of Jacob are not consumed."',ARRAY['The LORD','Malachi','Elijah','Moses']::text[],'The LORD','The LORD declared His unchanging nature.','Malachi 3:6','{"difficulty":"expert","fact_key":"who-said-it-fact-116"}'::jsonb),
+(24,2,'"I have loved you, saith the LORD."',ARRAY['The LORD','Malachi','Zechariah','Ezra']::text[],'The LORD','The LORD affirmed His love for Israel through Malachi.','Malachi 1:2','{"difficulty":"expert","fact_key":"who-said-it-fact-117"}'::jsonb),
+(24,3,'"Behold, I will do a new thing; now it shall spring forth; shall ye not know it?"',ARRAY['The LORD','Isaiah','Jeremiah','Ezekiel']::text[],'The LORD','The LORD promised to do a new thing for His people.','Isaiah 43:19','{"difficulty":"expert","fact_key":"who-said-it-fact-118"}'::jsonb),
+(24,4,'"I, even I, am he that blotteth out thy transgressions for mine own sake."',ARRAY['The LORD','Isaiah','Daniel','Jeremiah']::text[],'The LORD','The LORD declared that He alone blots out transgressions.','Isaiah 43:25','{"difficulty":"expert","fact_key":"who-said-it-fact-119"}'::jsonb),
+(24,5,'"Come now, and let us reason together, saith the LORD."',ARRAY['The LORD','Isaiah','Micah','Jeremiah']::text[],'The LORD','The LORD invited Judah to consider the way of forgiveness and cleansing.','Isaiah 1:18','{"difficulty":"expert","fact_key":"who-said-it-fact-120"}'::jsonb),
+(25,1,'"Blessed are the poor in spirit: for theirs is the kingdom of heaven."',ARRAY['Jesus','John the Baptist','Peter','Paul']::text[],'Jesus','Jesus began the Beatitudes with this blessing.','Matthew 5:3','{"difficulty":"expert","fact_key":"who-said-it-fact-121"}'::jsonb),
+(25,2,'"Man shall not live by bread alone, but by every word that proceedeth out of the mouth of God."',ARRAY['Jesus','Moses','Peter','Paul']::text[],'Jesus','Jesus answered the tempter during His wilderness testing.','Matthew 4:4','{"difficulty":"expert","fact_key":"who-said-it-fact-122"}'::jsonb),
+(25,3,'"Father, forgive them; for they know not what they do."',ARRAY['Jesus','Stephen','Peter','John']::text[],'Jesus','Jesus prayed for forgiveness while being crucified.','Luke 23:34','{"difficulty":"expert","fact_key":"who-said-it-fact-123"}'::jsonb),
+(25,4,'"My God, my God, why hast thou forsaken me?"',ARRAY['Jesus','David','Peter','Paul']::text[],'Jesus','Jesus cried these words from the cross.','Matthew 27:46','{"difficulty":"expert","fact_key":"who-said-it-fact-124"}'::jsonb),
+(25,5,'"I thirst."',ARRAY['Jesus','The centurion','John','Pilate']::text[],'Jesus','Jesus spoke this as He fulfilled the Scripture during the crucifixion.','John 19:28','{"difficulty":"expert","fact_key":"who-said-it-fact-125"}'::jsonb),
+(26,1,'"Lord, save us: we perish."',ARRAY['The disciples','The crowd','The Pharisees','The centurion']::text[],'The disciples','The disciples woke Jesus during the storm on the sea.','Matthew 8:25','{"difficulty":"expert","fact_key":"who-said-it-fact-126"}'::jsonb),
+(26,2,'"Even so, Father: for so it seemed good in thy sight."',ARRAY['Jesus','John the Baptist','Peter','Paul']::text[],'Jesus','Jesus addressed the Father in prayer.','Matthew 11:26','{"difficulty":"expert","fact_key":"who-said-it-fact-127"}'::jsonb),
+(26,3,'"Lord, I am not worthy that thou shouldest come under my roof."',ARRAY['The centurion','Peter','Pilate','Nicodemus']::text[],'The centurion','The centurion expressed humility when asking Jesus to heal his servant.','Matthew 8:8','{"difficulty":"expert","fact_key":"who-said-it-fact-128"}'::jsonb),
+(26,4,'"Lord, I am ready to go with thee, both into prison, and to death."',ARRAY['Peter','John','Thomas','Andrew']::text[],'Peter','Peter declared his loyalty to Jesus at the Last Supper.','Luke 22:33','{"difficulty":"expert","fact_key":"who-said-it-fact-129"}'::jsonb),
+(26,5,'"Woman, why weepest thou? whom seekest thou?"',ARRAY['Jesus','An angel','Peter','John']::text[],'Jesus','The risen Jesus asked Mary Magdalene this question near the tomb.','John 20:15','{"difficulty":"expert","fact_key":"who-said-it-fact-130"}'::jsonb),
+(27,1,'"I have not found so great faith, no, not in Israel."',ARRAY['Jesus','The centurion','Peter','John']::text[],'Jesus','Jesus praised the faith of the centurion.','Matthew 8:10','{"difficulty":"expert","fact_key":"who-said-it-fact-131"}'::jsonb),
+(27,2,'"Daughter, be of good comfort; thy faith hath made thee whole."',ARRAY['Jesus','Jairus','Peter','The woman']::text[],'Jesus','Jesus spoke to the woman who had suffered a flow of blood.','Matthew 9:22','{"difficulty":"expert","fact_key":"who-said-it-fact-132"}'::jsonb),
+(27,3,'"Talitha cumi; which is, being interpreted, Damsel, I say unto thee, arise."',ARRAY['Jesus','Peter','Jairus','An angel']::text[],'Jesus','Jesus spoke these words when He raised Jairus''s daughter.','Mark 5:41','{"difficulty":"expert","fact_key":"who-said-it-fact-133"}'::jsonb),
+(27,4,'"Ephphatha, that is, Be opened."',ARRAY['Jesus','The disciples','The man','A Pharisee']::text[],'Jesus','Jesus spoke this when healing a man who was deaf and had a speech impediment.','Mark 7:34','{"difficulty":"expert","fact_key":"who-said-it-fact-134"}'::jsonb),
+(27,5,'"Peace, be still."',ARRAY['Jesus','Peter','John','The disciples']::text[],'Jesus','Jesus rebuked the wind and commanded the sea to be calm.','Mark 4:39','{"difficulty":"expert","fact_key":"who-said-it-fact-135"}'::jsonb),
+(28,1,'"I can do all things through Christ which strengtheneth me."',ARRAY['Paul','Peter','James','John']::text[],'Paul','Paul described the strength he received through Christ.','Philippians 4:13','{"difficulty":"expert","fact_key":"who-said-it-fact-136"}'::jsonb),
+(28,2,'"For the love of Christ constraineth us."',ARRAY['Paul','Peter','Timothy','James']::text[],'Paul','Paul explained the compelling power of Christ''s love.','2 Corinthians 5:14','{"difficulty":"expert","fact_key":"who-said-it-fact-137"}'::jsonb),
+(28,3,'"For I am persuaded, that neither death, nor life, nor angels, nor principalities, nor powers, nor things present, nor things to come."',ARRAY['Paul','Peter','John','James']::text[],'Paul','Paul expressed his confidence that nothing can separate believers from God''s love in Christ.','Romans 8:38-39','{"difficulty":"expert","fact_key":"who-said-it-fact-138"}'::jsonb),
+(28,4,'"I have learned, in whatsoever state I am, therewith to be content."',ARRAY['Paul','Timothy','Peter','Barnabas']::text[],'Paul','Paul described the contentment he had learned in every circumstance.','Philippians 4:11','{"difficulty":"expert","fact_key":"who-said-it-fact-139"}'::jsonb),
+(28,5,'"But by the grace of God I am what I am: and his grace which was bestowed upon me was not in vain."',ARRAY['Paul','Peter','Apollos','Barnabas']::text[],'Paul','Paul acknowledged that his work was made possible by God''s grace.','1 Corinthians 15:10','{"difficulty":"expert","fact_key":"who-said-it-fact-140"}'::jsonb),
+(29,1,'"For when I am weak, then am I strong."',ARRAY['Paul','Timothy','Peter','James']::text[],'Paul','Paul explained how Christ''s power is made perfect in weakness.','2 Corinthians 12:10','{"difficulty":"expert","fact_key":"who-said-it-fact-141"}'::jsonb),
+(29,2,'"God forbid that I should glory, save in the cross of our Lord Jesus Christ."',ARRAY['Paul','Peter','John','James']::text[],'Paul','Paul declared that his only boast was in the cross of Christ.','Galatians 6:14','{"difficulty":"expert","fact_key":"who-said-it-fact-142"}'::jsonb),
+(29,3,'"Now unto him that is able to do exceeding abundantly above all that we ask or think."',ARRAY['Paul','Peter','John','James']::text[],'Paul','Paul closed his prayer with praise to God.','Ephesians 3:20','{"difficulty":"expert","fact_key":"who-said-it-fact-143"}'::jsonb),
+(29,4,'"For I know whom I have believed, and am persuaded that he is able to keep that which I have committed unto him against that day."',ARRAY['Paul','Timothy','Peter','Luke']::text[],'Paul','Paul expressed confidence in the One he had trusted.','2 Timothy 1:12','{"difficulty":"expert","fact_key":"who-said-it-fact-144"}'::jsonb),
+(29,5,'"O wretched man that I am! who shall deliver me from the body of this death?"',ARRAY['Paul','Peter','James','John']::text[],'Paul','Paul voiced his struggle with sin and his need for deliverance.','Romans 7:24','{"difficulty":"expert","fact_key":"who-said-it-fact-145"}'::jsonb),
+(30,1,'"Casting all your care upon him; for he careth for you."',ARRAY['Peter','Paul','James','John']::text[],'Peter','Peter encouraged believers to entrust their anxieties to God.','1 Peter 5:7','{"difficulty":"expert","fact_key":"who-said-it-fact-146"}'::jsonb),
+(30,2,'"Wherefore gird up the loins of your mind, be sober, and hope to the end."',ARRAY['Peter','Paul','James','John']::text[],'Peter','Peter urged believers to prepare their minds and set their hope fully on grace.','1 Peter 1:13','{"difficulty":"expert","fact_key":"who-said-it-fact-147"}'::jsonb),
+(30,3,'"We love him, because he first loved us."',ARRAY['John','Peter','Paul','James']::text[],'John','John taught that our love is a response to God''s prior love.','1 John 4:19','{"difficulty":"expert","fact_key":"who-said-it-fact-148"}'::jsonb),
+(30,4,'"If any of you lack wisdom, let him ask of God, that giveth to all men liberally."',ARRAY['James','Peter','Paul','John']::text[],'James','James instructed believers to ask God for wisdom.','James 1:5','{"difficulty":"expert","fact_key":"who-said-it-fact-149"}'::jsonb),
+(30,5,'"I am Alpha and Omega, the beginning and the ending, saith the Lord."',ARRAY['The Lord','John','An angel','Peter']::text[],'The Lord','The Lord identifies Himself as the Alpha and Omega.','Revelation 1:8','{"difficulty":"expert","fact_key":"who-said-it-fact-150"}'::jsonb)
+  ) AS v(level, challenge_index, question_text, options, correct_answer, explanation, reference, metadata)
+  WHERE gc.game_slug = 'who-said-it'
+    AND gc.level = v.level
+    AND gc.challenge_index = v.challenge_index;
+
+  GET DIAGNOSTICS v_updated = ROW_COUNT;
+  IF v_updated <> 50 THEN
+    RAISE EXCEPTION 'Expected to update 50 Who Said It questions, updated %', v_updated;
+  END IF;
+END $$;
