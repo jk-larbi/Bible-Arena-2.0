@@ -125,7 +125,9 @@ async function validate() {
           else if (!otherGameFact) seenFacts.set(`any-game::${factKey}`, location);
         }
 
-        if (isReviewedContent(item) || slug === 'bible-word-search') {
+        // Levels 31–50 remain locked drafts. Validate their structure above, but
+        // enforce reviewed-content uniqueness only on the unlocked Levels 1–30.
+        if (level <= 30 && (isReviewedContent(item) || slug === 'bible-word-search')) {
           const reviewedQuestionKey = `${slug}::${questionKey}`;
           const reviewedFactKey = `${slug}::${factKey}`;
           const priorReviewedQuestion = reviewedQuestions.get(reviewedQuestionKey);
