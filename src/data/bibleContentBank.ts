@@ -1094,7 +1094,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           questionText = 'IDENTIFY THE SPEAKER\nWho spoke these words in Scripture?\n“' + q.quote + '”';
           correctAnswer = q.speaker;
           explanation = q.context + ' The speaker is ' + q.speaker + '.';
-          metadata = { ...metadata, quote: q.quote, speaker: q.speaker };
+          reference = q.ref;
+          metadata = { ...metadata, quote: q.quote, speaker: q.speaker, exactReference: q.ref };
         } else if (modeIndex === 1) {
           const a = WHO_SAID_IT_AUDIENCES[slot % WHO_SAID_IT_AUDIENCES.length];
           options = makeFourDistinctOptions(a.audience, a.options, shuffleSeed);
@@ -1136,7 +1137,8 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           questionText = 'THE MISATTRIBUTED QUOTE\nSeveral people are often confused with the speaker of this statement:\n“' + q.quote + '”\nWho actually said it?';
           correctAnswer = q.speaker;
           explanation = q.context + ' It is attributed to ' + q.speaker + ', not the other suggested speakers.';
-          metadata = { ...metadata, quote: q.quote, speaker: q.speaker, misattributionCheck: true };
+          reference = q.ref;
+          metadata = { ...metadata, quote: q.quote, speaker: q.speaker, exactReference: q.ref, misattributionCheck: true };
         } else {
           const claim = WHO_SAID_IT_NOT_SCRIPTURE[slot % WHO_SAID_IT_NOT_SCRIPTURE.length];
           const labels = ['Yes — a direct biblical quotation', 'No — not a biblical quotation', 'It is a paraphrase or popular summary', 'The Bible records it, but no speaker is named'];
