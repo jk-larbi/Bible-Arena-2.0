@@ -1129,6 +1129,7 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
           correctAnswer = q.speaker + ' — ' + q.ref;
           questionText = 'WHO SAID IT AND WHERE?\n“' + q.quote + '”\nChoose the correct speaker AND Bible passage.';
           explanation = q.context + ' The correct attribution is ' + q.speaker + ' in ' + q.ref + '.';
+          reference = q.ref;
           metadata = { ...metadata, quote: q.quote, speaker: q.speaker, exactReference: q.ref };
         } else if (modeIndex === 5) {
           const q = WHO_SAID_IT_MISATTRIBUTED_QUOTES[slot % WHO_SAID_IT_MISATTRIBUTED_QUOTES.length];
