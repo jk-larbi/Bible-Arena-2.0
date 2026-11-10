@@ -34,7 +34,7 @@ for (const reviewed of REVIEWED_WHO_SAID_IT) {
     console.error(`Missing reviewed Who Said It fact: ${reviewed.fact}`);
     process.exit(1);
   }
-  if (item.correct_answer !== reviewed.answer || normalize(item.reference) !== normalize(reviewed.reference)) {
+  if (item.correct_answer !== reviewed.answer || item.reference.trim().toLowerCase() !== reviewed.reference.toLowerCase()) {
     console.error(`Reviewed speaker attribution regressed: ${reviewed.fact}`);
     process.exit(1);
   }
