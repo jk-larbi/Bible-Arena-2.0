@@ -253,7 +253,7 @@ async function runTestSuite() {
     `Level completed with ${finishRes.correct_count} correct answers, ${finishRes.result_stars} stars, and score ${finishRes.session_marks} marks.`
   );
 
-  // TEST 8: Host Room Creation Preserves Selected Game (Never Scripture Challenge by default!)
+  // TEST 9: Host Room Creation Preserves Selected Game (Never Scripture Challenge by default!)
   const chosenGamesToTest = ['verse-builder', 'bible-timeline', 'scripture-scramble', 'bible-word-search'];
   let gamePersistenceSuccess = true;
   for (const chosenGame of chosenGamesToTest) {
@@ -286,7 +286,7 @@ async function runTestSuite() {
     `Tested room creation with ${chosenGamesToTest.join(', ')}. In every case, game_slug is strictly preserved and corresponding game challenges are loaded. Scripture Challenge is never silently substituted.`
   );
 
-  // TEST 9: QR Join URL Structure & Validation
+  // TEST 10: QR Join URL Structure & Validation
   const samplePin = 'KJ92DF';
   const url = inviteLink(samplePin);
   const isValidPin = isValidCode(normalizeCode(samplePin));
@@ -299,7 +299,7 @@ async function runTestSuite() {
     `Generated valid QR join link: "${url}". Extracted PIN "${pinExtracted}" matches source "${samplePin}".`
   );
 
-  // TEST 10: Multiplayer API contract is present.
+  // TEST 11: Multiplayer API contract is present.
   // Real room RPC calls require a provisioned room and are integration tests;
   // they must not run against fabricated room IDs in a deterministic CI unit suite.
   const multiplayerApiAvailable =
