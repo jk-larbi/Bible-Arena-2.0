@@ -30,13 +30,26 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - Do not modify its question bank during the remaining rebuild.
 
 ### Bible Character Quest
-- Verified 150 playable challenges: exactly five in each of Levels 1–30.
-- Database checks: 150 distinct level/challenge slots, 150 unique normalized question wordings, 150 unique normalized reference-answer keys, 150 four-option rows, 150 rows with four distinct choices including the correct answer, and 150 rows with non-empty explanations and Bible references.
-- Cross-game normalized question-wording and reference-answer checks returned no collisions against the other 18 game banks.
-- Replaced a repeated Hagar/Ishmael fact in Level 1, Challenge 3 with the distinct Cain-and-Abel fact (Genesis 4:1–16). Updated both the staged source batch and the live Supabase row; the stable question key was retained.
-- Difficulty metadata rises from beginner/easy in early levels through medium, advanced, expert and master by Levels 28–30.
-- Runtime uses the Supabase public challenge feed. The public feed now enforces publication flags, so this game exposes exactly 150 questions to players; the 100 legacy rows in Levels 31–50 remain unavailable.
-- Deployment verification: GitHub Actions run `42619134947` completed successfully for commit `0d9d7f3d84450c078dd9ded18c5020116036b82a`. TypeScript, quiz accuracy/scoring, all-level/game-mechanics tests, staged-batch validation, multiplayer/catalogue checks, build, and the GitHub Pages deploy step all passed.
+
+- Canonical runtime source: `src/data/bibleCharacterQuestQuestions.ts`, consumed by `buildLocalChallengesForLevel`. The game remains in `LOCAL_CONTENT_GAMES` to preserve its established client-side grading and mechanic behaviour; its Supabase rows are kept in sync as the published content mirror.
+- Published bank: exactly 150 challenges, five at each of Levels 1–30. The source retains Levels 31–50, but they remain unpublished and blocked by the shared 30-level start guard.
+- Corrected eight recycled facts in the playable bank after checking against all other `game_content` rows, including this game's hidden Levels 31–50:
+  - Level 1, Challenge 2: Zacchaeus → Manoah (Judges 13:2–24).
+  - Level 8, Challenge 5: Ichabod → Maher-shalal-hash-baz (Isaiah 8:1–4).
+  - Level 9, Challenge 1: Ebed-Melech → Shobi (2 Samuel 17:27–29).
+  - Level 9, Challenge 5: Onesiphorus → Hushai the Archite (2 Samuel 15:32–37; 17:5–14).
+  - Level 16, Challenge 4: Manaen → Shimei son of Gera (2 Samuel 16:5–13; 1 Kings 2:8–9, 36–46).
+  - Level 20, Challenge 1: Jehoiada → Zechariah son of Jehoiada (2 Chronicles 24:20–22).
+  - Level 21, Challenge 5: Huldah → Jehu son of Hanani (1 Kings 16:1–4).
+  - Level 23, Challenge 1: Ebed-Melech → Micaiah son of Imlah (1 Kings 22:13–28).
+- Source validation: 150 rows; exactly five per level; no repeated normalized question wording or normalized reference-answer fact within the published bank; every row has a reference, explanation, and four distinct options including the correct answer.
+- Cross-bank validation: zero normalized reference-answer or question-wording collisions against every other database row, including hidden Levels 31–50 and the other games.
+- Supabase: updated exactly 150 existing rows in place. A source-to-database comparison returned 150 source rows, zero missing rows, and zero mismatched question/options/answer/explanation/reference fields. Stable row UUIDs and question keys were preserved. Post-update database checks returned 150 complete rows, 150 valid four-option rows, five per level, and zero duplicate or cross-bank fact collisions.
+- Publication: 30 levels published and 20 unpublished; every level retains five challenge slots. The shared frontend still requires both local and remote publication flags, and `startLevel` rejects levels above 30.
+- Difficulty progresses by level: Levels 1–3 easy, 4–12 moderate, 13–28 hard, and 29–30 very hard. The existing Character Quest clue-based mechanics, stage labels, and per-question timers are retained.
+- Unfinished-attempt refresh: `BaseGame.tsx` content version was advanced to `bible-character-quest-v3` so an old partial attempt does not resume against changed questions.
+- CI: build and deploy run [42821685713](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42821685713) passed for source commit `6e2f4a223461809eae817162efb5906dd32c1ea4`. Both build and deploy jobs succeeded. A subsequent documentation-only workflow also passed: [42821709928](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42821709928).
+- The live Pages URL could not be independently fetched from this environment (web fetch returned a cache miss). GitHub Actions confirms successful Pages deployment, but independent browser/visual verification remains unavailable here.
 
 ### Bible Detective
 
