@@ -58,8 +58,8 @@ const REVIEWED_BATCHES_BY_GAME: Record<string, ChallengeItem[]> = {
     ...BIBLE_GEOGRAPHY_BATCH_02,
   ],
   'who-said-it': [
-    ...WHO_SAID_IT_BATCH_01,
-    ...WHO_SAID_IT_BATCH_02,
+    ...WHO_SAID_IT_BATCH_01.map((entry) => ({ ...entry, options: [...entry.options] })),
+    ...WHO_SAID_IT_BATCH_02.map((entry) => ({ ...entry, options: [...entry.options] })),
   ],
 };
 
