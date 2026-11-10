@@ -25,6 +25,7 @@ const REVIEWED_WHO_SAID_IT = [
   { fact: 'who-said-it-fact-44', answer: 'The LORD', reference: 'Judges 6:14' },
   { fact: 'who-said-it-fact-74', answer: 'The lamenting speaker in Lamentations', reference: 'Lamentations 3:23' },
   { fact: 'who-said-it-fact-77', answer: 'Israel, personified as the unfaithful wife', reference: 'Hosea 2:7' },
+  { fact: 'who-said-it-fact-78', answer: 'The LORD', reference: 'Amos 5:24' },
   { fact: 'who-said-it-fact-85', answer: 'An unnamed midnight herald', reference: 'Matthew 25:6' },
 ] as const;
 
