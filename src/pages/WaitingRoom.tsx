@@ -14,7 +14,7 @@ import {
 } from '../lib/rooms';
 import { notifyGameStarted } from '../services/notificationService';
 import { getGameById } from '../data/gamesList';
-import { getLevelChallenges } from '../lib/levels';
+import { getLevelChallenges, MAX_PUBLISHED_LEVELS, CHALLENGES_PER_LEVEL } from '../lib/levels';
 import type { ChallengeItem } from '../data/bibleContentBank';
 import { useAutoAdvance } from '../hooks/useRoomClock';
 import { useMultiplayerSync, SyncPlayer } from '../hooks/useMultiplayerSync';
@@ -68,8 +68,8 @@ export default function WaitingRoom() {
 
   useAutoAdvance(room, phase);
 
-  // Multiplayer rooms can request 5, 10, or 15 questions. Each published
-  // level contributes five challenges, so load enough consecutive levels.
+  // Multiplayer always loads the complete published question bank for the game.
+  // Each published level contributes five questions (up to 150 per game).
   useEffect(() => {
     let cancelled = false;
     if (!room?.game_slug) {
@@ -77,22 +77,29 @@ export default function WaitingRoom() {
       return;
     }
 
-    const requestedCount = Math.min(15, Math.max(5, Number(room.settings?.questionCount) || 5));
-    const levelCount = Math.ceil(requestedCount / 5);
     Promise.all(
-      Array.from({ length: levelCount }, (_, index) =>
+      Array.from({ length: MAX_PUBLISHED_LEVELS }, (_, index) =>
         getLevelChallenges(room.game_slug, index + 1)
       )
     )
       .then((levels) => {
-        if (!cancelled) setChallenges(levels.flat().slice(0, requestedCount));
+        const allQuestions = levels.flat();
+        const expectedCount = MAX_PUBLISHED_LEVELS * CHALLENGES_PER_LEVEL;
+        if (!cancelled) {
+          setChallenges(allQuestions);
+          if (allQuestions.length !== expectedCount) {
+            setError(`Loaded ${allQuestions.length} of ${expectedCount} published questions. Please refresh the room and try again.`);
+          } else {
+            setError(null);
+          }
+        }
       })
       .catch((e) => {
         if (!cancelled) setError(e instanceof Error ? e.message : 'Questions could not be loaded.');
       });
 
     return () => { cancelled = true; };
-  }, [room?.game_slug, room?.settings?.questionCount]);
+  }, [room?.game_slug]);
 
   const currentChallenge: ChallengeItem | undefined =
     challenges[room?.current_question_index ?? 0] || challenges[0];
@@ -226,9 +233,9 @@ export default function WaitingRoom() {
     setBusy(true);
     setError(null);
     try {
-      const requestedCount = Math.min(15, Math.max(5, Number(room?.settings?.questionCount) || 5));
-      if (challenges.length !== requestedCount) {
-        throw new Error(`This game has ${challenges.length} of ${requestedCount} questions loaded. Please refresh the room and try again.`);
+      const expectedCount = MAX_PUBLISHED_LEVELS * CHALLENGES_PER_LEVEL;
+      if (challenges.length !== expectedCount) {
+        throw new Error(`This game has ${challenges.length} of ${expectedCount} published questions loaded. Please refresh the room and try again.`);
       }
 
       const questionIds = challenges.map((q) => q.id);
