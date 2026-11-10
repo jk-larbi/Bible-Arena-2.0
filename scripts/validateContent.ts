@@ -93,7 +93,9 @@ async function validate() {
         // question is the verse stored in metadata. Include it in uniqueness.
         const questionContext = slug === 'complete-the-scripture'
           ? normalize(String(item.metadata?.verseText || ''))
-          : '';
+          : slug === 'guess-the-emoji'
+            ? String(item.metadata?.emojis || item.question_text || '')
+            : '';
         const questionKey = `${q}::${questionContext}::${a}`;
         const factKey = ref && a ? `${ref}::${a}` : '';
         const location = `${slug}/L${level} ${item.id}`;
@@ -114,7 +116,7 @@ async function validate() {
           observedRepeatedFactRows++;
           repeatedFactRowsByGame.set(slug, (repeatedFactRowsByGame.get(slug) ?? 0) + 1);
           if (level <= 30) publishedRepeatedFactRowsByGame.set(slug, (publishedRepeatedFactRowsByGame.get(slug) ?? 0) + 1);
-          if (repeatedFactExamples.length < 80) repeatedFactExamples.push(`${location} duplicates ${previousFact}`);
+          if (repeatedFactExamples.length < 80) repeatedFactExamples.push(`${location} [${item.reference} :: ${item.correct_answer}] duplicates ${previousFact}`);
         } else if (factKey) seenFacts.set(`${slug}::${factKey}`, location);
 
         if (factKey) {
