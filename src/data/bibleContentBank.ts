@@ -126,6 +126,15 @@ const BOOKS_66 = [
   { name: 'Revelation', testament: 'New Testament', section: 'Revelation', author: 'John the Apostle', chapters: 22, clue: 'Apocalyptic letters to seven churches and visions of the Lamb’s victory and the New Jerusalem', ref: 'Revelation 21:1' },
 ];
 
+
+const OLD_TESTAMENT_BOOKS = BOOKS_66.filter((book) => book.testament === 'Old Testament');
+const NEW_TESTAMENT_BOOKS = BOOKS_66.filter((book) => book.testament === 'New Testament');
+const OLD_NEW_INTERLEAVED_BOOKS: (typeof BOOKS_66)[number][] = [];
+for (let index = 0; index < Math.max(OLD_TESTAMENT_BOOKS.length, NEW_TESTAMENT_BOOKS.length); index++) {
+  if (OLD_TESTAMENT_BOOKS[index]) OLD_NEW_INTERLEAVED_BOOKS.push(OLD_TESTAMENT_BOOKS[index]);
+  if (NEW_TESTAMENT_BOOKS[index]) OLD_NEW_INTERLEAVED_BOOKS.push(NEW_TESTAMENT_BOOKS[index]);
+}
+
 const BIBLE_CHARACTERS = [
   { name: 'Noah', testament: 'Old Testament', role: 'Patriarch', clue1: 'Walked faithfully with God when the earth was filled with violence', clue1Ref: 'Genesis 6:9-11', clue2: 'Built a three-story vessel of gopher wood to preserve life', clue2Ref: 'Genesis 6:14-16', clue3: 'Sent out a raven and a dove after forty days of rain', clue3Ref: 'Genesis 8:6-12', ref: 'Genesis 6:9' },
   { name: 'Abraham', testament: 'Old Testament', role: 'Patriarch', clue1: 'Called by God to leave Ur of the Chaldeans for a land he did not know', clue1Ref: 'Genesis 12:1-4', clue2: 'Promised descendants as numerous as the stars of heaven', clue2Ref: 'Genesis 15:5-6', clue3: 'Tested on Mount Moriah when offering his promised son Isaac', clue3Ref: 'Genesis 22:1-14', ref: 'Genesis 12:1-3' },
@@ -1391,17 +1400,26 @@ export function buildLocalChallengesForLevel(gameSlug: string, level: number, va
       }
 
       case 'old-vs-new-testament': {
-        const book = BOOKS_66[globalSeed % BOOKS_66.length];
+        const book = OLD_NEW_INTERLEAVED_BOOKS[globalSeed % OLD_NEW_INTERLEAVED_BOOKS.length];
+        const verseNumber = Math.floor(globalSeed / OLD_NEW_INTERLEAVED_BOOKS.length) + 1;
+        const passageReference = `${book.name} 1:${verseNumber}`;
         items.push({
           id,
           game_slug: gameSlug,
           level,
           challenge_index: challengeIndex,
-          question_text: `Classify "${book.name}" (${book.clue}): Does it belong to the Old Testament or the New Testament?`,
+          question_text: `Which Testament contains the passage ${passageReference}?`,
           options: ['Old Testament', 'New Testament'],
           correct_answer: book.testament,
-          explanation: `${book.name} is part of the ${book.section} section in the ${book.testament}.`,
-          reference: book.ref,
+          explanation: `${passageReference} is in ${book.name}, which belongs to the ${book.section} section of the ${book.testament}.`,
+          reference: passageReference,
+          metadata: {
+            difficulty: getDifficultyForLevel(level),
+            fact_key: `testament-${book.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-1-${verseNumber}`,
+            curated: true,
+            book_name: book.name,
+            testament: book.testament,
+          },
         });
         break;
       }
