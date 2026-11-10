@@ -21,8 +21,6 @@ import { BIBLE_DETECTIVE_BATCH_04 } from './rebuild/bibleDetectiveBatch04';
 import { BIBLE_DETECTIVE_BATCH_05 } from './rebuild/bibleDetectiveBatch05';
 import { BIBLE_GEOGRAPHY_BATCH_01 } from './rebuild/bibleGeographyBatch01';
 import { BIBLE_GEOGRAPHY_BATCH_02 } from './rebuild/bibleGeographyBatch02';
-import { WHO_SAID_IT_BATCH_01 } from './rebuild/whoSaidItBatch01';
-import { WHO_SAID_IT_BATCH_02 } from './rebuild/whoSaidItBatch02';
 
 import { GUESS_THE_EMOJI_QUESTIONS } from './guessTheEmojiQuestions';
 
@@ -56,10 +54,6 @@ const REVIEWED_BATCHES_BY_GAME: Record<string, ChallengeItem[]> = {
   'bible-geography-quest': [
     ...BIBLE_GEOGRAPHY_BATCH_01,
     ...BIBLE_GEOGRAPHY_BATCH_02,
-  ],
-  'who-said-it': [
-    ...WHO_SAID_IT_BATCH_01.map((entry) => ({ ...entry, options: [...entry.options] })),
-    ...WHO_SAID_IT_BATCH_02.map((entry) => ({ ...entry, options: [...entry.options] })),
   ],
 };
 
