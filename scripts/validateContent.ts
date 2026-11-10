@@ -80,7 +80,12 @@ async function validate() {
         const q = normalize(item.question_text || '');
         const a = normalize(item.correct_answer || '');
         const ref = normalizeReference(item.reference || '');
-        const questionKey = `${q}::${a}`;
+        // Complete Scripture uses a shared instruction prompt; the actual
+        // question is the verse stored in metadata. Include it in uniqueness.
+        const questionContext = slug === 'complete-the-scripture'
+          ? normalize(String(item.metadata?.verseText || ''))
+          : '';
+        const questionKey = `${q}::${questionContext}::${a}`;
         const factKey = ref && a ? `${ref}::${a}` : '';
         const location = `${slug}/L${level} ${item.id}`;
 
@@ -175,12 +180,23 @@ async function validate() {
             errors.push(`${item.id}: missing word pool for the memory verse mode`);
           }
         } else if (slug === 'verse-builder') {
-          const expected = Array.isArray(item.metadata?.words)
-            ? item.metadata.words.map(normalize).sort().join('|')
-            : '';
-          const supplied = item.options.map(normalize).sort().join('|');
-          if (!expected || supplied !== expected) {
-            errors.push(`${item.id}: verse-builder tiles do not match the source verse words`);
+          if (item.metadata?.is_typed) {
+            if (item.options.length !== 0) errors.push(`${item.id}: typed verse-builder challenge must not expose tiles`);
+          } else if (item.metadata?.is_tiles) {
+            if (!item.options.length) errors.push(`${item.id}: verse-builder word tiles are missing`);
+          } else if (item.metadata?.curated) {
+            const options = item.options.map(normalize).filter(Boolean);
+            if (options.length !== 4 || new Set(options).size !== 4 || !options.includes(a)) {
+              errors.push(`${item.id}: curated verse-builder multiple choice requires four distinct options including the answer`);
+            }
+          } else {
+            const expected = Array.isArray(item.metadata?.words)
+              ? item.metadata.words.map(normalize).sort().join('|')
+              : '';
+            const supplied = item.options.map(normalize).sort().join('|');
+            if (!expected || supplied !== expected) {
+              errors.push(`${item.id}: generated verse-builder tiles do not match the source verse words`);
+            }
           }
         }
       }
