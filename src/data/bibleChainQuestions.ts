@@ -802,37 +802,37 @@ export const BIBLE_CHAIN_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-chain-challenge",
     "level": 5,
     "challenge_index": 3,
-    "question_text": "Type the name of the disciple from Bethsaida who found Nathanael and said, \"We have found him, of whom Moses in the law, and the prophets, did write\":",
+    "question_text": "Type the name of Jonah's father, identified when the word of the LORD first came to the prophet and again in the account of Israel's restored border:",
     "options": [
-      "Philip",
-      "Bartholomew",
-      "Thomas",
-      "James"
+      "Amittai",
+      "Amaziah",
+      "Elijah",
+      "Elisha"
     ],
-    "correct_answer": "Philip",
-    "explanation": "Jesus finds Philip of Bethsaida → Philip finds Nathanael under the fig tree → Nathanael confesses Jesus as Son of God and King of Israel (John 1:43-49).",
-    "reference": "John 1:43-46",
+    "correct_answer": "Amittai",
+    "explanation": "The book of Jonah opens by identifying the prophet as Jonah, the son of Amittai. The account of Israel's restored border under Jeroboam II also names Jonah son of Amittai (Jonah 1:1; 2 Kings 14:25).",
+    "reference": "Jonah 1:1; 2 Kings 14:25",
     "metadata": {
       "stage": 1,
       "stage_title": "Chain Foundations",
-      "level_title": "Apostolic & Gospel Foundations",
+      "level_title": "Prophets & Their Lineages",
       "chain_type": "character_chain",
       "chain_nodes": [
-        "Bethsaida",
-        "Finds Nathanael",
-        "Under the fig tree",
-        "?"
+        "Jonah the prophet",
+        "son of ?",
+        "prophetic call to Nineveh",
+        "ministry under Jeroboam II"
       ],
       "is_typed": true,
       "acceptedAlternatives": [
-        "Phillip"
+        "Amitai"
       ],
-      "difficulty": "Easy",
-      "timerSeconds": 30,
-      "points": 50,
-      "testament": "New Testament",
-      "hint1": "When Nathanael asked, \"Can there any good thing come out of Nazareth?\" he replied, \"Come and see.\"",
-      "hint2": "John 1:45: \"Philip findeth Nathanael, and saith unto him, We have found him...\"",
+      "difficulty": "Moderate",
+      "timerSeconds": 45,
+      "points": 100,
+      "testament": "Old Testament",
+      "hint1": "The opening verse of Jonah identifies the prophet as the son of this man.",
+      "hint2": "Jonah 1:1 names him as Jonah, son of Amittai.",
       "curated": true
     }
   },
@@ -4607,34 +4607,34 @@ export const BIBLE_CHAIN_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-chain-challenge",
     "level": 26,
     "challenge_index": 1,
-    "question_text": "Identify the missing link in this chain of covetous deception from 2 Kings 5:\nElisha refuses gifts → [ ? ] runs after Syrian chariot → Naaman gives two talents and garments → Leprosy of Naaman clings forever",
+    "question_text": "Identify the missing link in Jeremiah's field-purchase chain from Anathoth:\nJeremiah receives the LORD's word that a relative will visit → [ ? ] asks Jeremiah to buy his field → the silver is weighed and the deed is sealed → witnesses confirm the purchase at the court of the guard",
     "options": [
-      "Gehazi",
-      "Obadiah",
-      "Hazael",
-      "Micaiah"
+      "Hanamel",
+      "Baruch",
+      "Shaphan",
+      "Gedaliah"
     ],
-    "correct_answer": "Gehazi",
-    "explanation": "Elisha refused Naaman’s gifts, but Gehazi his servant coveted the wealth, pursued Naaman, fabricated a story about two sons of the prophets, and hid the silver and garments. Elisha declared that Naaman’s leprosy would cleave unto Gehazi and his seed for ever (2 Kings 5:16, 20-27).",
-    "reference": "2 Kings 5:20-27",
+    "correct_answer": "Hanamel",
+    "explanation": "Hanamel, son of Shallum and Jeremiah's cousin, came to Jeremiah in the court of the guard and asked him to buy his field at Anathoth because the right of redemption belonged to him. Jeremiah weighed out the silver, signed the deed, and arranged for it to be witnessed (Jeremiah 32:6-12).",
+    "reference": "Jeremiah 32:6-12",
     "metadata": {
       "stage": 6,
       "stage_title": "The Missing Link",
-      "level_title": "Missing Mediators & Intermediaries",
+      "level_title": "The Anathoth Redemption Chain",
       "chain_type": "missing_link",
       "chain_nodes": [
-        "Elisha refuses gift",
+        "Jeremiah receives the LORD's word",
+        "kinsman arrives from Anathoth",
         "?",
-        "Naaman gives two talents of silver",
-        "Leprosy of Naaman clings forever"
+        "field deed is sealed and witnessed"
       ],
       "is_typed": false,
-      "difficulty": "Easy",
-      "timerSeconds": 30,
-      "points": 50,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
       "testament": "Old Testament",
-      "hint1": "Elisha’s servant who went out from his presence a leper as white as snow.",
-      "hint2": "2 Kings 5:20: \"But Gehazi, the servant of Elisha the man of God, said, Behold, my master hath spared Naaman this Syrian.\"",
+      "hint1": "He was Jeremiah's cousin, the son of Shallum.",
+      "hint2": "Jeremiah 32:7-8 records his visit and request to buy the field.",
       "curated": true
     }
   },
@@ -5232,37 +5232,37 @@ export const BIBLE_CHAIN_QUESTIONS: ChallengeItem[] = [
     "game_slug": "bible-chain-challenge",
     "level": 29,
     "challenge_index": 3,
-    "question_text": "Type the name of the missing northern Mesopotamian city where Terah halted with Abram and Sarai on the journey from Ur to Canaan, where Terah died at age 205:",
+    "question_text": "Type the name of the Persian governor of the province Beyond the River who challenged the rebuilding of the Jerusalem temple and whose report was sent to King Darius:",
     "options": [
-      "Haran",
-      "Damascus",
-      "Nineveh",
-      "Babylon"
+      "Tattenai",
+      "Rehum",
+      "Shimshai",
+      "Sanballat"
     ],
-    "correct_answer": "Haran",
-    "explanation": "Genesis 11:31: Terah took Abram and Lot and Sarai from Ur of the Chaldees to go into the land of Canaan, but they came unto Haran and dwelt there until Terah died, whereupon Abram was called to depart (Genesis 11:31-32; 12:4-5; Acts 7:4).",
-    "reference": "Genesis 11:31-32; Acts 7:4",
+    "correct_answer": "Tattenai",
+    "explanation": "Tattenai, governor of the province Beyond the River, came with Shethar-bozenai and their companions to question the temple rebuilding. Their report was sent to Darius, who ordered that the work not be hindered (Ezra 5:3-6; 6:6-7).",
+    "reference": "Ezra 5:3-6; 6:6-7",
     "metadata": {
       "stage": 6,
       "stage_title": "The Missing Link",
-      "level_title": "Missing Geographic Steps",
+      "level_title": "Persian Administration & Temple Restoration",
       "chain_type": "missing_link",
       "chain_nodes": [
-        "Ur of the Chaldees",
+        "Zerubbabel and Jeshua resume temple work",
+        "Persian officials arrive to question the work",
         "?",
-        "Terah dies at 205",
-        "Canaan entry"
+        "Darius orders the work not to be hindered"
       ],
       "is_typed": true,
       "acceptedAlternatives": [
-        "Charran"
+        "Tattenai the governor"
       ],
-      "difficulty": "Easy",
-      "timerSeconds": 30,
-      "points": 50,
+      "difficulty": "Difficult",
+      "timerSeconds": 75,
+      "points": 150,
       "testament": "Old Testament",
-      "hint1": "Five-letter city in Paddan-aram, spelled Charran by Stephen in Acts 7:4.",
-      "hint2": "Genesis 11:31: \"and they came unto Haran, and dwelt there.\"",
+      "hint1": "His title was governor of the province Beyond the River.",
+      "hint2": "Ezra 5:3 names him with Shethar-bozenai.",
       "curated": true
     }
   },
