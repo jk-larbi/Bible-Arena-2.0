@@ -102,8 +102,8 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onPlay, layout = 'post
             <Sparkles className="w-10 h-10 text-white/90" />
           )}
         </div>
-        <h3 className="font-serif font-bold text-2xl text-white mb-1 drop-shadow-[0_2px_6px_rgba(0,0,0,1)]">{game.title}</h3>
-        <p className="text-xs text-white font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,1)] line-clamp-2 max-w-[220px]">{game.subtitle}</p>
+        <h3 className="font-serif font-extrabold text-2xl text-white mb-1" style={{ textShadow: "0 2px 3px rgba(0,0,0,1), 0 3px 10px rgba(0,0,0,0.95), 0 0 18px rgba(0,0,0,0.85)" }}>{game.title}</h3>
+        <p className="text-[13px] leading-snug text-white font-bold line-clamp-2 max-w-[220px]" style={{ textShadow: "0 2px 3px rgba(0,0,0,1), 0 3px 8px rgba(0,0,0,1), 0 0 14px rgba(0,0,0,0.95)" }}>{game.subtitle}</p>
       </div>
 
       {/* Footer bar */}
