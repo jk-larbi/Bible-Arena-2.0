@@ -447,16 +447,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 5,
     "challenge_index": 3,
-    "question_text": "\"Behold the Lamb of God.\"",
+    "question_text": "\"He must increase, but I must decrease.\"",
     "options": [
       "John the Baptist",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Andrew",
+      "Peter",
+      "Philip"
     ],
     "correct_answer": "John the Baptist",
-    "explanation": "The biblical account in John 1:29 supports this identification.",
-    "reference": "John 1:29",
+    "explanation": "John the Baptist explained that his role was to point people to Jesus, whose ministry must increase.",
+    "reference": "John 3:30",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "who-said-it-fact-23"
@@ -707,16 +707,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 8,
     "challenge_index": 1,
-    "question_text": "\"Thy people shall be my people, and thy God my God.\"",
+    "question_text": "\"I know that thou canst do every thing, and that no thought can be withholden from thee.\"",
     "options": [
-      "Ruth",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Job",
+      "Eliphaz",
+      "Bildad",
+      "Zophar"
     ],
-    "correct_answer": "Ruth",
-    "explanation": "The biblical account in Ruth 1:16 supports this identification.",
-    "reference": "Ruth 1:16",
+    "correct_answer": "Job",
+    "explanation": "After the LORD addressed him, Job acknowledged God's power and wisdom.",
+    "reference": "Job 42:2",
     "metadata": {
       "difficulty": "easy",
       "fact_key": "who-said-it-fact-36"
@@ -1167,16 +1167,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 12,
     "challenge_index": 4,
-    "question_text": "\"My God hath sent his angel, and hath shut the lions' mouths.\"",
+    "question_text": "\"Blessed be the name of God for ever and ever: for wisdom and might are his.\"",
     "options": [
       "Daniel",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Nebuchadnezzar",
+      "Belshazzar",
+      "Hananiah"
     ],
     "correct_answer": "Daniel",
-    "explanation": "The biblical account in Daniel 6:22 supports this identification.",
-    "reference": "Daniel 6:22",
+    "explanation": "Daniel praised God after the mystery of the king's dream was revealed to him.",
+    "reference": "Daniel 2:20",
     "metadata": {
       "difficulty": "intermediate",
       "fact_key": "who-said-it-fact-59"
@@ -1967,16 +1967,16 @@ export const WHO_SAID_IT_BATCH_01: ChallengeItem[] = [
     "game_slug": "who-said-it",
     "level": 20,
     "challenge_index": 4,
-    "question_text": "\"I am not ashamed of the gospel of Christ.\"",
+    "question_text": "\"I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me.\"",
     "options": [
       "Paul",
-      "Cain",
-      "Joseph",
-      "Isaiah"
+      "Barnabas",
+      "Peter",
+      "Timothy"
     ],
     "correct_answer": "Paul",
-    "explanation": "The biblical account in Romans 1:16 supports this identification.",
-    "reference": "Romans 1:16",
+    "explanation": "Paul explained how his life was now lived by faith in the Son of God.",
+    "reference": "Galatians 2:20",
     "metadata": {
       "difficulty": "expert",
       "fact_key": "who-said-it-fact-99"
