@@ -8789,35 +8789,33 @@ export const BIBLE_RIDDLES_QUESTIONS: BibleRiddleChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-riddles-l48-c1",
     "game_slug": "bible-riddles",
     "level": 48,
     "challenge_index": 1,
-    "question_text": "TYPE THE NAME — GAUNTLET 1:\nI was an Ethiopian court official in the royal palace of King Zedekiah who heard that Jeremiah had been thrown into a miry dungeon cistern to starve. I took thirty men and old rags and ropes, lifted Jeremiah out of the mud, and was promised divine protection when Jerusalem fell to Babylon. Who am I?",
+    "question_text": "TYPE THE NAME — GAUNTLET 1:\nI was a prophetess named in Nehemiah's prayer because I, together with other prophets, tried to make him afraid while Jerusalem's wall was being rebuilt. Who am I?",
     "options": [
-      "Ebed-Melech",
-      "Baruch",
-      "Gedaliah",
-      "Pashhur"
+      "Noadiah",
+      "Huldah",
+      "Deborah",
+      "Miriam"
     ],
-    "correct_answer": "Ebed-Melech",
-    "explanation": "Ebed-Melech the Ethiopian rescued Jeremiah from the cistern with rags and ropes and was granted divine deliverance.",
-    "reference": "Jeremiah 38:7–13; 39:15–18",
+    "correct_answer": "Noadiah",
+    "explanation": "Nehemiah 6:14 names Noadiah the prophetess among those whose words and actions sought to frighten Nehemiah.",
+    "reference": "Nehemiah 6:14",
     "metadata": {
       "riddle_type": "Type the Name",
       "is_typed": true,
       "clues": [
-        "Name means \"servant of the king.\"",
-        "Recorded in Jeremiah 38:7–13 and 39:15–18.",
-        "Promised: \"You shall not be given into the hand of the men of whom you are afraid.\""
+        "I am identified as a prophetess.",
+        "Nehemiah names me in his prayer alongside Tobiah and Sanballat.",
+        "My activity was connected with attempts to make Nehemiah afraid."
       ],
-      "hint": "Ethiopian official who pulled Jeremiah out of the muddy cistern.",
+      "hint": "My name appears in Nehemiah 6:14.",
       "testament": "Old Testament",
       "acceptedAlternatives": [
-        "Ebedmelech",
-        "Ebed Melech",
-        "Ebed-melech the Ethiopian"
+        "Noadiah the prophetess"
       ],
       "stage": 10,
       "stage_title": "The Ultimate Bible Riddle",
@@ -8827,33 +8825,33 @@ export const BIBLE_RIDDLES_QUESTIONS: BibleRiddleChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-riddles-l48-c2",
     "game_slug": "bible-riddles",
     "level": 48,
     "challenge_index": 2,
-    "question_text": "TYPE THE NAME — GAUNTLET 2:\nI am the amanuensis (scribe) who physically wrote down Paul’s Epistle to the Romans, inserting my own personal greeting in Romans 16:22: \"I, [...], who wrote this letter, greet you in the Lord.\" Who am I?",
+    "question_text": "TYPE THE NAME — GAUNTLET 2:\nI was David's loyal friend who returned to Jerusalem during Absalom's revolt and helped frustrate Ahithophel's counsel. Who am I?",
     "options": [
-      "Tertius",
-      "Quartus",
-      "Silas",
-      "Tychicus"
+      "Hushai the Archite",
+      "Joab",
+      "Ittai the Gittite",
+      "Ziba"
     ],
-    "correct_answer": "Tertius",
-    "explanation": "Tertius was Paul’s secretary who penned Romans and added his own greeting.",
-    "reference": "Romans 16:22",
+    "correct_answer": "Hushai the Archite",
+    "explanation": "Hushai returned to Jerusalem, offered to serve Absalom, and gave advice that frustrated Ahithophel's counsel and helped David escape.",
+    "reference": "2 Samuel 15:32–37; 17:5–14",
     "metadata": {
       "riddle_type": "Type the Name",
       "is_typed": true,
       "clues": [
-        "Name means \"third\" in Latin.",
-        "Scribe of Paul’s greatest doctrinal letter.",
-        "Recorded in Romans 16:22."
+        "I met David on the Mount of Olives as he fled Jerusalem.",
+        "David sent me back to the city to counter Ahithophel's advice.",
+        "My counsel persuaded Absalom to delay pursuing David."
       ],
-      "hint": "Paul’s scribe who wrote down Romans (name means \"Third\").",
-      "testament": "New Testament",
+      "hint": "David called me his friend and sent me back to Jerusalem.",
+      "testament": "Old Testament",
       "acceptedAlternatives": [
-        "Tertius of Iconium"
+        "Hushai"
       ],
       "stage": 10,
       "stage_title": "The Ultimate Bible Riddle",
@@ -8936,33 +8934,33 @@ export const BIBLE_RIDDLES_QUESTIONS: BibleRiddleChallengeItem[] = [
       "curated": true
     }
   },
-  {
+    {
     "id": "bible-riddles-l48-c5",
     "game_slug": "bible-riddles",
     "level": 48,
     "challenge_index": 5,
-    "question_text": "TYPE THE NAME — GAUNTLET 5:\nI was the faithful Christian of Ephesus who was not ashamed of Paul’s chains. When Paul was imprisoned in a cold dungeon in Rome and deserted by all others in Asia, I searched diligently for him throughout the imperial city until I found him, and often refreshed his spirit. Paul prayed that the Lord would grant mercy to my household. Who am I?",
+    "question_text": "TYPE THE NAME — GAUNTLET 5:\nPaul called me a lawyer and asked Titus to send me on my journey with Apollos, making sure I lacked nothing. Who am I?",
     "options": [
-      "Onesiphorus",
-      "Epaphras",
+      "Zenas",
       "Tychicus",
-      "Philemon"
+      "Titus",
+      "Aristarchus"
     ],
-    "correct_answer": "Onesiphorus",
-    "explanation": "Onesiphorus searched diligently for Paul in Rome, refreshed him in prison, and was not ashamed of his chains.",
-    "reference": "2 Timothy 1:16–18; 4:19",
+    "correct_answer": "Zenas",
+    "explanation": "Paul instructed Titus to diligently send Zenas the lawyer and Apollos on their journey and see that they lacked nothing.",
+    "reference": "Titus 3:13",
     "metadata": {
       "riddle_type": "Type the Name",
       "is_typed": true,
       "clues": [
-        "Commended in 2 Timothy 1:16–18.",
-        "Searched Rome diligently to find Paul in prison.",
-        "Contrasted with Phygelus and Hermogenes."
+        "Paul identifies me by my profession as a lawyer.",
+        "I am named alongside Apollos in Paul's instruction to Titus.",
+        "The instruction is found near the close of Paul's letter to Titus."
       ],
-      "hint": "Faithful disciple who searched Rome to refresh imprisoned Paul.",
+      "hint": "I am the only person in the New Testament explicitly called 'the lawyer'.",
       "testament": "New Testament",
       "acceptedAlternatives": [
-        "Onesiforos"
+        "Zenas the lawyer"
       ],
       "stage": 10,
       "stage_title": "The Ultimate Bible Riddle",
