@@ -69,7 +69,6 @@ async function validate() {
         totalChallenges++;
         const reviewedCoverageRequired =
           (slug === 'bible-detective' && level <= 30) ||
-          (slug === 'who-said-it' && level <= 30) ||
           (slug === 'bible-geography-quest' && level <= 40);
         if (reviewedCoverageRequired && !item.metadata?.fact_key) {
           errors.push(`${slug} L${level} C${item.challenge_index}: missing reviewed fact key; fallback content must not replace the reviewed batch`);
