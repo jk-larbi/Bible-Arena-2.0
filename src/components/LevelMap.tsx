@@ -57,7 +57,14 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
                 aria-label={`Level ${l.level}, ${s === 'done' ? `completed, ${l.best_stars} stars` : s === 'progress' ? `in progress, ${l.challenges_done} of ${l.challenge_count}` : s}`}
                 className={`flex min-h-[64px] w-full flex-col items-center justify-center rounded-xl font-serif text-xl font-bold
                   ${STYLE[s]} ${isCurrent ? 'ring-2 ring-[#F3EBDD] ring-offset-2 ring-offset-[#171B24]' : ''}`}>
-                {s === 'locked' ? <LockIcon /> : s === 'soon' ? '…' : l.level}
+                {s === 'locked' ? <LockIcon /> : s === 'soon' ? (
+                  <>
+                    <span>{l.level}</span>
+                    <span className="mt-0.5 inline-flex items-center gap-1 font-sans text-[8px] font-bold uppercase tracking-wider opacity-80">
+                      <LockIcon size={11} /> Soon
+                    </span>
+                  </>
+                ) : l.level}
                 {s === 'done' && <Stars5 n={l.best_stars} />}
                 {s === 'progress' && <span className="text-xs font-sans tabular-nums">{l.challenges_done}/{l.challenge_count}</span>}
               </button>
@@ -88,7 +95,17 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
             </p>
           )}
           <div className="mt-4 grid gap-2">
-            {!sel.is_published && <p className="text-sm">This level is coming soon. We're preparing its Bible challenges.</p>}
+            {!sel.is_published && (
+              <div className="rounded-xl border border-[#D66B3D]/25 bg-[#D66B3D]/10 p-3">
+                <div className="flex items-center gap-2 text-sm font-bold text-[#A94B27]">
+                  <LockIcon size={15} />
+                  Coming Soon
+                </div>
+                <p className="mt-1 text-sm text-[#171B24]/75">
+                  Levels 31–50 are being prepared. Continue with the available levels while this stage is locked.
+                </p>
+              </div>
+            )}
             {sel.is_published && !sel.unlocked && <p className="text-sm">Complete Level {sel.level - 1} to unlock this level.</p>}
             {sel.unlocked && sel.is_published && sel.challenges_done > 0 && !sel.completed && (<>
               <button onClick={() => onPlay(sel.level, false)} className="min-h-[48px] rounded-xl bg-[#3156C9] font-semibold text-white">
@@ -108,8 +125,8 @@ export function LevelMap({ gameName, levels, onPlay }: Props) {
   );
 }
 
-const LockIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+const LockIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 018 0v3" />
   </svg>
 );
