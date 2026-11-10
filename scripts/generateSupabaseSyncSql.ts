@@ -1,124 +1,95 @@
-// Generates an idempotent SQL sync file for Supabase's public.game_content table
-import * as fs from 'fs';
-import * as path from 'path';
-import { ALL_19_GAME_SLUGS, buildLocalChallengesForLevel } from '../src/data/bibleContentBank';
+// Generates a safe, idempotent sync for the five database-backed games.
+// The other fourteen games are loaded from the local curated bank at runtime.
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { buildLocalChallengesForLevel } from '../src/data/bibleContentBank';
 
-function escapeSqlString(str: string): string {
-  if (str === null || str === undefined) return "''";
-  return "'" + str.replace(/'/g, "''") + "'";
+const DATABASE_GAMES = [
+  'scripture-challenge',
+  'who-said-it',
+  'bible-detective',
+  'old-vs-new-testament',
+  'bible-word-search',
+] as const;
+const PUBLISHED_LEVELS = 30;
+const CHALLENGES_PER_LEVEL = 5;
+const BATCH_SIZE = 50;
+
+function sqlString(value: unknown): string {
+  if (value === null || value === undefined) return "''";
+  return "'" + String(value).replace(/'/g, "''") + "'";
 }
 
-function escapeSqlArray(arr: string[]): string {
-  if (!arr || arr.length === 0) return "'{}'::text[]";
-  const elements = arr.map((item) => {
-    const escaped = item.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-    return `"${escaped}"`;
-  });
-  return `'${elements.join(',')}'::text[]`;
+function sqlArray(values: string[] | undefined): string {
+  const safe = Array.isArray(values) ? values : [];
+  if (!safe.length) return "ARRAY[]::text[]";
+  return `ARRAY[${safe.map(sqlString).join(', ')}]::text[]`;
 }
 
-function escapeSqlJson(obj: any): string {
-  if (!obj) return "'{}'::jsonb";
-  const jsonStr = JSON.stringify(obj).replace(/'/g, "''");
-  return `'${jsonStr}'::jsonb`;
+function sqlJson(value: unknown): string {
+  return sqlString(JSON.stringify(value ?? {})) + '::jsonb';
 }
 
-console.log('Generating Supabase sync SQL for all 19 games...');
-
-const outputDir = path.resolve(process.cwd(), 'supabase');
-const migrationPath = path.resolve(process.cwd(), 'supabase/migrations/20261109120000_sync_curated_game_content.sql');
-const syncScriptPath = path.resolve(process.cwd(), 'supabase/sync_game_content.sql');
-
-let sql = `-- Supabase Game Content Synchronization Script
--- Synchronizes 4,750 challenges across 50 levels and all 19 games into public.game_content
--- Safe & Idempotent: Uses ON CONFLICT (id) DO UPDATE
-
+const outputPath = path.resolve(process.cwd(), 'supabase/sync_published_game_content.sql');
+let sql = `-- BibleArena published database content sync.
+-- Generated from buildLocalChallengesForLevel; 5 database-backed games x 30 levels x 5 questions.
+-- Preserves UUID primary keys and existing player progress; matches rows by the unique game/level/challenge key.
 BEGIN;
 
-CREATE TABLE IF NOT EXISTS public.game_content (
-  id text PRIMARY KEY,
-  game_slug text NOT NULL,
-  level integer NOT NULL,
-  challenge_index smallint NOT NULL,
-  question_text text NOT NULL,
-  options text[] NOT NULL DEFAULT '{}',
-  correct_answer text NOT NULL,
-  explanation text NOT NULL,
-  reference text NOT NULL,
-  metadata jsonb DEFAULT '{}'::jsonb,
-  created_at timestamptz DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
-CREATE UNIQUE INDEX IF NOT EXISTS uq_game_content_game_level_challenge
-  ON public.game_content(game_slug, level, challenge_index);
-
 `;
+let total = 0;
+let batch: string[] = [];
 
-let totalChallenges = 0;
-const BATCH_SIZE = 100;
-let currentBatch: string[] = [];
-
-for (const gameSlug of ALL_19_GAME_SLUGS) {
-  for (let level = 1; level <= 50; level++) {
-    const items = buildLocalChallengesForLevel(gameSlug, level);
-    for (const item of items) {
-      totalChallenges++;
-      const val = `(
-        ${escapeSqlString(item.id)},
-        ${escapeSqlString(item.game_slug)},
-        ${item.level},
-        ${item.challenge_index},
-        ${escapeSqlString(item.question_text)},
-        ${escapeSqlArray(item.options)},
-        ${escapeSqlString(item.correct_answer)},
-        ${escapeSqlString(item.explanation)},
-        ${escapeSqlString(item.reference)},
-        ${escapeSqlJson(item.metadata || {})}
-      )`;
-      currentBatch.push(val);
-
-      if (currentBatch.length >= BATCH_SIZE) {
-        sql += `INSERT INTO public.game_content (
-  id, game_slug, level, challenge_index, question_text, options, correct_answer, explanation, reference, metadata
+function flushBatch() {
+  if (!batch.length) return;
+  sql += `INSERT INTO public.game_content (
+  question_key, game_slug, level, challenge_index, question_text,
+  options, correct_answer, explanation, reference, metadata
 ) VALUES
-${currentBatch.join(',\n')}
-ON CONFLICT (id) DO UPDATE SET
-  game_slug = EXCLUDED.game_slug,
-  level = EXCLUDED.level,
-  challenge_index = EXCLUDED.challenge_index,
+${batch.join(',\n')}
+ON CONFLICT (game_slug, level, challenge_index) DO UPDATE SET
+  question_key = EXCLUDED.question_key,
   question_text = EXCLUDED.question_text,
   options = EXCLUDED.options,
   correct_answer = EXCLUDED.correct_answer,
   explanation = EXCLUDED.explanation,
   reference = EXCLUDED.reference,
-  metadata = EXCLUDED.metadata;\n\n`;
-        currentBatch = [];
+  metadata = EXCLUDED.metadata;
+
+`;
+  batch = [];
+}
+
+for (const gameSlug of DATABASE_GAMES) {
+  for (let level = 1; level <= PUBLISHED_LEVELS; level++) {
+    const items = buildLocalChallengesForLevel(gameSlug, level);
+    if (items.length !== CHALLENGES_PER_LEVEL) {
+      throw new Error(`${gameSlug} level ${level}: expected 5 questions, got ${items.length}`);
+    }
+    for (const item of items) {
+      if (!item.id || !item.question_text?.trim() || !item.correct_answer?.trim() ||
+          !item.explanation?.trim() || !item.reference?.trim()) {
+        throw new Error(`${gameSlug} L${level} C${item.challenge_index}: incomplete published question`);
       }
+      const values = [
+        sqlString(item.id),
+        sqlString(item.game_slug),
+        String(item.level),
+        String(item.challenge_index),
+        sqlString(item.question_text),
+        sqlArray(item.options),
+        sqlString(item.correct_answer),
+        sqlString(item.explanation),
+        sqlString(item.reference),
+        sqlJson(item.metadata),
+      ];
+      batch.push(`(${values.join(', ')})`);
+      total++;
+      if (batch.length >= BATCH_SIZE) flushBatch();
     }
   }
 }
-
-if (currentBatch.length > 0) {
-  sql += `INSERT INTO public.game_content (
-  id, game_slug, level, challenge_index, question_text, options, correct_answer, explanation, reference, metadata
-) VALUES
-${currentBatch.join(',\n')}
-ON CONFLICT (id) DO UPDATE SET
-  game_slug = EXCLUDED.game_slug,
-  level = EXCLUDED.level,
-  challenge_index = EXCLUDED.challenge_index,
-  question_text = EXCLUDED.question_text,
-  options = EXCLUDED.options,
-  correct_answer = EXCLUDED.correct_answer,
-  explanation = EXCLUDED.explanation,
-  reference = EXCLUDED.reference,
-  metadata = EXCLUDED.metadata;\n\n`;
-  currentBatch = [];
-}
-
-sql += `COMMIT;\n`;
-
-fs.writeFileSync(migrationPath, sql, 'utf-8');
-fs.writeFileSync(syncScriptPath, sql, 'utf-8');
-
-console.log(`Generated ${migrationPath} and ${syncScriptPath} (${totalChallenges} challenges, ${sql.length} bytes).`);
+flushBatch();
+sql += 'COMMIT;\n';
+fs.writeFileSync(outputPath, sql, 'utf8');
+console.log(`Generated ${outputPath}: ${total} published questions across ${DATABASE_GAMES.length} database-backed games.`);
