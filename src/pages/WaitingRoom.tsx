@@ -68,14 +68,31 @@ export default function WaitingRoom() {
 
   useAutoAdvance(room, phase);
 
-  // Load challenges whenever room's selected game is identified
+  // Multiplayer rooms can request 5, 10, or 15 questions. Each published
+  // level contributes five challenges, so load enough consecutive levels.
   useEffect(() => {
-    if (room?.game_slug) {
-      getLevelChallenges(room.game_slug, 1)
-        .then(setChallenges)
-        .catch((e) => setError(e.message));
+    let cancelled = false;
+    if (!room?.game_slug) {
+      setChallenges([]);
+      return;
     }
-  }, [room?.game_slug]);
+
+    const requestedCount = Math.min(15, Math.max(5, Number(room.settings?.questionCount) || 5));
+    const levelCount = Math.ceil(requestedCount / 5);
+    Promise.all(
+      Array.from({ length: levelCount }, (_, index) =>
+        getLevelChallenges(room.game_slug, index + 1)
+      )
+    )
+      .then((levels) => {
+        if (!cancelled) setChallenges(levels.flat().slice(0, requestedCount));
+      })
+      .catch((e) => {
+        if (!cancelled) setError(e instanceof Error ? e.message : 'Questions could not be loaded.');
+      });
+
+    return () => { cancelled = true; };
+  }, [room?.game_slug, room?.settings?.questionCount]);
 
   const currentChallenge: ChallengeItem | undefined =
     challenges[room?.current_question_index ?? 0] || challenges[0];
@@ -209,8 +226,9 @@ export default function WaitingRoom() {
     setBusy(true);
     setError(null);
     try {
-      if (challenges.length !== 10) {
-        throw new Error(`This game has ${challenges.length} of 10 questions loaded. Please refresh the room and try again.`);
+      const requestedCount = Math.min(15, Math.max(5, Number(room?.settings?.questionCount) || 5));
+      if (challenges.length !== requestedCount) {
+        throw new Error(`This game has ${challenges.length} of ${requestedCount} questions loaded. Please refresh the room and try again.`);
       }
 
       const questionIds = challenges.map((q) => q.id);
