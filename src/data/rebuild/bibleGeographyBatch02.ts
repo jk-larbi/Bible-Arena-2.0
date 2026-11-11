@@ -467,7 +467,7 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 25,
     "challenge_index": 4,
-    "question_text": "At which town did Ahimelech give David the sword he had taken from Goliath?",
+    "question_text": "At which town did Ahimelech give David the sword that had been kept behind the ephod?",
     "options": [
       "Nob",
       "Gath",
@@ -476,7 +476,7 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Nob",
     "reference": "1 Samuel 21:8-9",
-    "explanation": "1 Samuel 21:8–9 records Ahimelech giving David Goliath's sword at Nob.",
+    "explanation": "1 Samuel 21:8–9 records Ahimelech giving David the sword kept behind the ephod at Nob.",
     "metadata": {
       "difficulty": "advanced",
       "fact_key": "bible-geography-fact-25-4"
