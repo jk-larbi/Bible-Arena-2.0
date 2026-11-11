@@ -35,7 +35,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Bethel",
-    "explanation": "The biblical account in Genesis 12:8 identifies Bethel as the location connected with this event: Abram pitched his tent with this town to the west and Ai to the east. Which town?",
+    "explanation": "The cited passage (Genesis 12:8) identifies Bethel as the location of the event described in the clue.",
     "reference": "Genesis 12:8",
     "metadata": {
       "difficulty": "beginner",
@@ -55,7 +55,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Jordan plain",
-    "explanation": "The biblical account in Genesis 13:10-11 identifies Jordan plain as the location connected with this event: Lot chose this well-watered district near Sodom. Which plain?",
+    "explanation": "The cited passage (Genesis 13:10-11) identifies Jordan plain as the location of the event described in the clue.",
     "reference": "Genesis 13:10-11",
     "metadata": {
       "difficulty": "beginner",
@@ -75,7 +75,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Dan",
-    "explanation": "The biblical account in Genesis 14:14 identifies Dan as the location connected with this event: Abram pursued the kings who captured Lot as far as which northern town?",
+    "explanation": "The cited passage (Genesis 14:14) identifies Dan as the location of the event described in the clue.",
     "reference": "Genesis 14:14",
     "metadata": {
       "difficulty": "beginner",
@@ -95,7 +95,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "King’s Valley",
-    "explanation": "The biblical account in Genesis 14:17-18 identifies King’s Valley as the location connected with this event: Melchizedek met Abram in the Valley of Shaveh, also called what?",
+    "explanation": "The cited passage (Genesis 14:17-18) identifies King’s Valley as the location of the event described in the clue.",
     "reference": "Genesis 14:17-18",
     "metadata": {
       "difficulty": "beginner",
@@ -115,7 +115,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Kiriath-jearim"
     ],
     "correct_answer": "Shur",
-    "explanation": "The biblical account in Genesis 16:7 identifies Shur as the location connected with this event: Hagar met the angel at a spring on the road to which wilderness region?",
+    "explanation": "The cited passage (Genesis 16:7) identifies Shur as the location of the event described in the clue.",
     "reference": "Genesis 16:7",
     "metadata": {
       "difficulty": "beginner",
@@ -135,7 +135,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Shechem"
     ],
     "correct_answer": "Sodom",
-    "explanation": "The biblical account in Genesis 19:1 identifies Sodom as the location connected with this event: Lot was sitting at the gate of which city when the angels arrived?",
+    "explanation": "The cited passage (Genesis 19:1) identifies Sodom as the location of the event described in the clue.",
     "reference": "Genesis 19:1",
     "metadata": {
       "difficulty": "beginner",
@@ -155,7 +155,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Caesarea"
     ],
     "correct_answer": "Moriah",
-    "explanation": "The biblical account in Genesis 22:2 identifies Moriah as the location connected with this event: Abraham was told to offer Isaac in the land of which place?",
+    "explanation": "The cited passage (Genesis 22:2) identifies Moriah as the location of the event described in the clue.",
     "reference": "Genesis 22:2",
     "metadata": {
       "difficulty": "beginner",
@@ -175,7 +175,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Hebron",
-    "explanation": "The biblical account in Genesis 23:2,19 identifies Hebron as the location connected with this event: Sarah was buried in the cave of Machpelah near which town?",
+    "explanation": "The cited passage (Genesis 23:2,19) identifies Hebron as the location of the event described in the clue.",
     "reference": "Genesis 23:2,19",
     "metadata": {
       "difficulty": "beginner",
@@ -195,7 +195,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Horeb"
     ],
     "correct_answer": "Luz",
-    "explanation": "The biblical account in Genesis 28:10,19 identifies Luz as the location connected with this event: Jacob named the place of his stairway dream after its former name. What was it?",
+    "explanation": "The cited passage (Genesis 28:10,19) identifies Luz as the location of the event described in the clue.",
     "reference": "Genesis 28:10,19",
     "metadata": {
       "difficulty": "beginner",
@@ -215,7 +215,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Hebron"
     ],
     "correct_answer": "Jabbok",
-    "explanation": "The biblical account in Genesis 32:22-24 identifies Jabbok as the location connected with this event: At which river did Jacob wrestle through the night before meeting Esau?",
+    "explanation": "The cited passage (Genesis 32:22-24) identifies Jabbok as the location of the event described in the clue.",
     "reference": "Genesis 32:22-24",
     "metadata": {
       "difficulty": "beginner",
@@ -235,7 +235,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Shechem",
-    "explanation": "The biblical account in Genesis 37:12-14 identifies Shechem as the location connected with this event: Joseph was sent from Hebron to check on his brothers at which place?",
+    "explanation": "The cited passage (Genesis 37:12-14) identifies Shechem as the location of the event described in the clue.",
     "reference": "Genesis 37:12-14",
     "metadata": {
       "difficulty": "beginner",
@@ -255,7 +255,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Dan"
     ],
     "correct_answer": "Horeb",
-    "explanation": "The biblical account in Exodus 3:1-2 identifies Horeb as the location connected with this event: Moses saw the burning bush at which mountain?",
+    "explanation": "The cited passage (Exodus 3:1-2) identifies Horeb as the location of the event described in the clue.",
     "reference": "Exodus 3:1-2",
     "metadata": {
       "difficulty": "beginner",
@@ -275,7 +275,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Susa"
     ],
     "correct_answer": "Red Sea",
-    "explanation": "The biblical account in Exodus 14:21-22 identifies Red Sea as the location connected with this event: Israel crossed which sea on dry ground during the Exodus?",
+    "explanation": "The cited passage (Exodus 14:21-22) identifies Red Sea as the location of the event described in the clue.",
     "reference": "Exodus 14:21-22",
     "metadata": {
       "difficulty": "beginner",
@@ -295,7 +295,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Golgotha"
     ],
     "correct_answer": "Wilderness of Sin",
-    "explanation": "The biblical account in Exodus 16:1-3 identifies Wilderness of Sin as the location connected with this event: Israel complained about food in which wilderness before receiving manna?",
+    "explanation": "The cited passage (Exodus 16:1-3) identifies Wilderness of Sin as the location of the event described in the clue.",
     "reference": "Exodus 16:1-3",
     "metadata": {
       "difficulty": "beginner",
@@ -315,7 +315,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Bethlehem"
     ],
     "correct_answer": "Mount Sinai",
-    "explanation": "The biblical account in Exodus 19:1-3 identifies Mount Sinai as the location connected with this event: At which mountain did Israel receive the covenant commandments?",
+    "explanation": "The cited passage (Exodus 19:1-3) identifies Mount Sinai as the location of the event described in the clue.",
     "reference": "Exodus 19:1-3",
     "metadata": {
       "difficulty": "beginner",
@@ -335,7 +335,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Sodom"
     ],
     "correct_answer": "Marah",
-    "explanation": "The biblical account in Exodus 15:23-25 identifies Marah as the location connected with this event: At which place did Moses make bitter water sweet?",
+    "explanation": "The cited passage (Exodus 15:23-25) identifies Marah as the location of the event described in the clue.",
     "reference": "Exodus 15:23-25",
     "metadata": {
       "difficulty": "beginner",
@@ -355,7 +355,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Pool of Siloam"
     ],
     "correct_answer": "Elim",
-    "explanation": "The biblical account in Exodus 15:27 identifies Elim as the location connected with this event: Which oasis had twelve springs and seventy palm trees?",
+    "explanation": "The cited passage (Exodus 15:27) identifies Elim as the location of the event described in the clue.",
     "reference": "Exodus 15:27",
     "metadata": {
       "difficulty": "beginner",
@@ -375,7 +375,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Jericho"
     ],
     "correct_answer": "Mount Nebo",
-    "explanation": "The biblical account in Deuteronomy 34:1-5 identifies Mount Nebo as the location connected with this event: From which mountain did Moses view Canaan before his death?",
+    "explanation": "The cited passage (Deuteronomy 34:1-5) identifies Mount Nebo as the location of the event described in the clue.",
     "reference": "Deuteronomy 34:1-5",
     "metadata": {
       "difficulty": "beginner",
@@ -395,7 +395,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Sinai"
     ],
     "correct_answer": "Jordan River",
-    "explanation": "The biblical account in Joshua 3:14-17 identifies Jordan River as the location connected with this event: Which river did Israel cross to enter Canaan under Joshua?",
+    "explanation": "The cited passage (Joshua 3:14-17) identifies Jordan River as the location of the event described in the clue.",
     "reference": "Joshua 3:14-17",
     "metadata": {
       "difficulty": "beginner",
@@ -415,7 +415,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Jericho",
-    "explanation": "The biblical account in Joshua 6:1-20 identifies Jericho as the location connected with this event: Which city’s walls fell after Israel marched around it for seven days?",
+    "explanation": "The cited passage (Joshua 6:1-20) identifies Jericho as the location of the event described in the clue.",
     "reference": "Joshua 6:1-20",
     "metadata": {
       "difficulty": "beginner",
@@ -435,7 +435,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Ai",
-    "explanation": "The biblical account in Joshua 7:2-5 identifies Ai as the location connected with this event: Israel was defeated after Achan’s sin near which town?",
+    "explanation": "The cited passage (Joshua 7:2-5) identifies Ai as the location of the event described in the clue.",
     "reference": "Joshua 7:2-5",
     "metadata": {
       "difficulty": "beginner",
@@ -455,7 +455,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Shechem",
-    "explanation": "The biblical account in Joshua 24:1,25-27 identifies Shechem as the location connected with this event: At which town did Joshua renew the covenant and set up a witness stone?",
+    "explanation": "The cited passage (Joshua 24:1,25-27) identifies Shechem as the location of the event described in the clue.",
     "reference": "Joshua 24:1,25-27",
     "metadata": {
       "difficulty": "beginner",
@@ -475,7 +475,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Hebron",
-    "explanation": "The biblical account in Joshua 14:12-15 identifies Hebron as the location connected with this event: Which city did Caleb receive as his inheritance?",
+    "explanation": "The cited passage (Joshua 14:12-15) identifies Hebron as the location of the event described in the clue.",
     "reference": "Joshua 14:12-15",
     "metadata": {
       "difficulty": "beginner",
@@ -495,7 +495,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Kiriath-jearim"
     ],
     "correct_answer": "Valley of Achor",
-    "explanation": "The biblical account in Joshua 7:24-26 identifies Valley of Achor as the location connected with this event: In which valley was Achan judged and a heap of stones raised?",
+    "explanation": "The cited passage (Joshua 7:24-26) identifies Valley of Achor as the location of the event described in the clue.",
     "reference": "Joshua 7:24-26",
     "metadata": {
       "difficulty": "beginner",
@@ -515,7 +515,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Shechem"
     ],
     "correct_answer": "Bethel",
-    "explanation": "The biblical account in Judges 4:4-5 identifies Bethel as the location connected with this event: Deborah judged Israel under a palm tree between Ramah and which town?",
+    "explanation": "The cited passage (Judges 4:4-5) identifies Bethel as the location of the event described in the clue.",
     "reference": "Judges 4:4-5",
     "metadata": {
       "difficulty": "easy",
@@ -535,7 +535,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Caesarea"
     ],
     "correct_answer": "Harod",
-    "explanation": "The biblical account in Judges 7:1-7 identifies Harod as the location connected with this event: At which spring did Gideon’s men undergo the drinking test?",
+    "explanation": "The cited passage (Judges 7:1-7) identifies Harod as the location of the event described in the clue.",
     "reference": "Judges 7:1-7",
     "metadata": {
       "difficulty": "easy",
@@ -555,7 +555,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Timnah",
-    "explanation": "The biblical account in Judges 14:1-3 identifies Timnah as the location connected with this event: Which town did Samson visit where he saw a Philistine woman?",
+    "explanation": "The cited passage (Judges 14:1-3) identifies Timnah as the location of the event described in the clue.",
     "reference": "Judges 14:1-3",
     "metadata": {
       "difficulty": "easy",
@@ -575,7 +575,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Horeb"
     ],
     "correct_answer": "Kiriath-jearim",
-    "explanation": "The biblical account in 1 Samuel 7:1-2 identifies Kiriath-jearim as the location connected with this event: Where did the ark remain for twenty years in the house of Abinadab?",
+    "explanation": "The cited passage (1 Samuel 7:1-2) identifies Kiriath-jearim as the location of the event described in the clue.",
     "reference": "1 Samuel 7:1-2",
     "metadata": {
       "difficulty": "easy",
@@ -595,7 +595,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Hebron"
     ],
     "correct_answer": "Mount Gilboa",
-    "explanation": "The biblical account in 1 Samuel 31:1-6 identifies Mount Gilboa as the location connected with this event: On which mountain did Saul and his sons die in battle?",
+    "explanation": "The cited passage (1 Samuel 31:1-6) identifies Mount Gilboa as the location of the event described in the clue.",
     "reference": "1 Samuel 31:1-6",
     "metadata": {
       "difficulty": "easy",
@@ -615,7 +615,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Valley of Elah",
-    "explanation": "The biblical account in 1 Samuel 17:2,19,40 identifies Valley of Elah as the location connected with this event: In which valley did David face Goliath?",
+    "explanation": "The cited passage (1 Samuel 17:2,19,40) identifies Valley of Elah as the location of the event described in the clue.",
     "reference": "1 Samuel 17:2,19,40",
     "metadata": {
       "difficulty": "easy",
@@ -635,7 +635,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Dan"
     ],
     "correct_answer": "En-gedi",
-    "explanation": "The biblical account in 1 Samuel 24:1-4 identifies En-gedi as the location connected with this event: Near which oasis did David spare Saul inside a cave?",
+    "explanation": "The cited passage (1 Samuel 24:1-4) identifies En-gedi as the location of the event described in the clue.",
     "reference": "1 Samuel 24:1-4",
     "metadata": {
       "difficulty": "easy",
@@ -655,7 +655,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Susa"
     ],
     "correct_answer": "Jerusalem",
-    "explanation": "The biblical account in 2 Samuel 5:6-9 identifies Jerusalem as the location connected with this event: Which city did David capture from the Jebusites and make his capital?",
+    "explanation": "The cited passage (2 Samuel 5:6-9) identifies Jerusalem as the location of the event described in the clue.",
     "reference": "2 Samuel 5:6-9",
     "metadata": {
       "difficulty": "easy",
@@ -675,7 +675,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Golgotha"
     ],
     "correct_answer": "Araunah’s threshing floor",
-    "explanation": "The biblical account in 2 Samuel 24:18-25 identifies Araunah’s threshing floor as the location connected with this event: At whose threshing floor did David build an altar after the plague?",
+    "explanation": "The cited passage (2 Samuel 24:18-25) identifies Araunah’s threshing floor as the location of the event described in the clue.",
     "reference": "2 Samuel 24:18-25",
     "metadata": {
       "difficulty": "easy",
@@ -695,7 +695,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Bethlehem"
     ],
     "correct_answer": "Mount Carmel",
-    "explanation": "The biblical account in 1 Kings 18:19-40 identifies Mount Carmel as the location connected with this event: On which mountain did Elijah challenge the prophets of Baal?",
+    "explanation": "The cited passage (1 Kings 18:19-40) identifies Mount Carmel as the location of the event described in the clue.",
     "reference": "1 Kings 18:19-40",
     "metadata": {
       "difficulty": "easy",
@@ -735,7 +735,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Pool of Siloam"
     ],
     "correct_answer": "Zarephath",
-    "explanation": "The biblical account in 1 Kings 17:8-10 identifies Zarephath as the location connected with this event: To which coastal town was Elijah sent to stay with a widow?",
+    "explanation": "The cited passage (1 Kings 17:8-10) identifies Zarephath as the location of the event described in the clue.",
     "reference": "1 Kings 17:8-10",
     "metadata": {
       "difficulty": "easy",
@@ -755,7 +755,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Jericho"
     ],
     "correct_answer": "Jordan River",
-    "explanation": "The biblical account in 2 Kings 5:10-14 identifies Jordan River as the location connected with this event: In which river did Naaman wash seven times?",
+    "explanation": "The cited passage (2 Kings 5:10-14) identifies Jordan River as the location of the event described in the clue.",
     "reference": "2 Kings 5:10-14",
     "metadata": {
       "difficulty": "easy",
@@ -775,7 +775,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Sinai"
     ],
     "correct_answer": "Shunem",
-    "explanation": "The biblical account in 2 Kings 4:8-12 identifies Shunem as the location connected with this event: Which town was home to the woman who provided a room for Elisha?",
+    "explanation": "The cited passage (2 Kings 4:8-12) identifies Shunem as the location of the event described in the clue.",
     "reference": "2 Kings 4:8-12",
     "metadata": {
       "difficulty": "easy",
@@ -795,7 +795,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Carmel"
     ],
     "correct_answer": "Jordan River",
-    "explanation": "The biblical account in 2 Kings 6:1-6 identifies Jordan River as the location connected with this event: At which river did the borrowed axe head fall into the water?",
+    "explanation": "The cited passage (2 Kings 6:1-6) identifies Jordan River as the location of the event described in the clue.",
     "reference": "2 Kings 6:1-6",
     "metadata": {
       "difficulty": "easy",
@@ -815,7 +815,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Dothan",
-    "explanation": "The biblical account in 2 Kings 6:13-17 identifies Dothan as the location connected with this event: At which town did the Aramean army surround Elisha?",
+    "explanation": "The cited passage (2 Kings 6:13-17) identifies Dothan as the location of the event described in the clue.",
     "reference": "2 Kings 6:13-17",
     "metadata": {
       "difficulty": "easy",
@@ -835,7 +835,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Joppa",
-    "explanation": "The biblical account in Jonah 1:1-3 identifies Joppa as the location connected with this event: From which port did Jonah board a ship to flee toward Tarshish?",
+    "explanation": "The cited passage (Jonah 1:1-3) identifies Joppa as the location of the event described in the clue.",
     "reference": "Jonah 1:1-3",
     "metadata": {
       "difficulty": "easy",
@@ -855,7 +855,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Nineveh",
-    "explanation": "The biblical account in Jonah 1:1-2; 3:1-3 identifies Nineveh as the location connected with this event: To which great city was Jonah sent to preach?",
+    "explanation": "The cited passage (Jonah 1:1-2; 3:1-3) identifies Nineveh as the location of the event described in the clue.",
     "reference": "Jonah 1:1-2; 3:1-3",
     "metadata": {
       "difficulty": "easy",
@@ -875,7 +875,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Kiriath-jearim"
     ],
     "correct_answer": "Ahava",
-    "explanation": "The biblical account in Ezra 8:15-21 identifies Ahava as the location connected with this event: At which river did Ezra gather the returning exiles before travelling to Jerusalem?",
+    "explanation": "The cited passage (Ezra 8:15-21) identifies Ahava as the location of the event described in the clue.",
     "reference": "Ezra 8:15-21",
     "metadata": {
       "difficulty": "easy",
@@ -895,7 +895,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Shechem"
     ],
     "correct_answer": "Susa",
-    "explanation": "The biblical account in Esther 1:2; 2:5-8 identifies Susa as the location connected with this event: Which Persian citadel was Esther’s royal residence?",
+    "explanation": "The cited passage (Esther 1:2; 2:5-8) identifies Susa as the location of the event described in the clue.",
     "reference": "Esther 1:2; 2:5-8",
     "metadata": {
       "difficulty": "easy",
@@ -915,7 +915,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Caesarea"
     ],
     "correct_answer": "Dura",
-    "explanation": "The biblical account in Daniel 3:1 identifies Dura as the location connected with this event: On which plain did Nebuchadnezzar set up his golden image?",
+    "explanation": "The cited passage (Daniel 3:1) identifies Dura as the location of the event described in the clue.",
     "reference": "Daniel 3:1",
     "metadata": {
       "difficulty": "easy",
@@ -935,7 +935,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Tigris",
-    "explanation": "The biblical account in Daniel 10:4-6 identifies Tigris as the location connected with this event: Beside which river did Daniel receive the vision in Daniel 10?",
+    "explanation": "The cited passage (Daniel 10:4-6) identifies Tigris as the location of the event described in the clue.",
     "reference": "Daniel 10:4-6",
     "metadata": {
       "difficulty": "easy",
@@ -955,7 +955,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Horeb"
     ],
     "correct_answer": "Bethlehem",
-    "explanation": "The biblical account in Matthew 2:1; Luke 2:4-7 identifies Bethlehem as the location connected with this event: In which town was Jesus born?",
+    "explanation": "The cited passage (Matthew 2:1; Luke 2:4-7) identifies Bethlehem as the location of the event described in the clue.",
     "reference": "Matthew 2:1; Luke 2:4-7",
     "metadata": {
       "difficulty": "easy",
@@ -975,7 +975,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Hebron"
     ],
     "correct_answer": "Egypt",
-    "explanation": "The biblical account in Matthew 2:13-15 identifies Egypt as the location connected with this event: To which country did Joseph take Mary and Jesus to escape Herod?",
+    "explanation": "The cited passage (Matthew 2:13-15) identifies Egypt as the location of the event described in the clue.",
     "reference": "Matthew 2:13-15",
     "metadata": {
       "difficulty": "easy",
@@ -995,7 +995,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Nazareth",
-    "explanation": "The biblical account in Matthew 2:19-23 identifies Nazareth as the location connected with this event: In which town did Jesus grow up after returning from Egypt?",
+    "explanation": "The cited passage (Matthew 2:19-23) identifies Nazareth as the location of the event described in the clue.",
     "reference": "Matthew 2:19-23",
     "metadata": {
       "difficulty": "easy",
@@ -1015,7 +1015,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Dan"
     ],
     "correct_answer": "Jordan River",
-    "explanation": "The biblical account in Mark 1:9-11 identifies Jordan River as the location connected with this event: At which river was Jesus baptised by John?",
+    "explanation": "The cited passage (Mark 1:9-11) identifies Jordan River as the location of the event described in the clue.",
     "reference": "Mark 1:9-11",
     "metadata": {
       "difficulty": "intermediate",
@@ -1035,7 +1035,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Susa"
     ],
     "correct_answer": "Bethany",
-    "explanation": "The biblical account in John 11:1,17,43-44 identifies Bethany as the location connected with this event: At which village did Jesus raise Lazarus?",
+    "explanation": "The cited passage (John 11:1,17,43-44) identifies Bethany as the location of the event described in the clue.",
     "reference": "John 11:1,17,43-44",
     "metadata": {
       "difficulty": "intermediate",
@@ -1055,7 +1055,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Golgotha"
     ],
     "correct_answer": "Pool of Siloam",
-    "explanation": "The biblical account in John 9:6-7 identifies Pool of Siloam as the location connected with this event: At which pool did Jesus tell the blind man to wash?",
+    "explanation": "The cited passage (John 9:6-7) identifies Pool of Siloam as the location of the event described in the clue.",
     "reference": "John 9:6-7",
     "metadata": {
       "difficulty": "intermediate",
@@ -1075,7 +1075,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Bethlehem"
     ],
     "correct_answer": "Jacob’s well",
-    "explanation": "The biblical account in John 4:5-7 identifies Jacob’s well as the location connected with this event: Near which well did Jesus speak with a Samaritan woman?",
+    "explanation": "The cited passage (John 4:5-7) identifies Jacob’s well as the location of the event described in the clue.",
     "reference": "John 4:5-7",
     "metadata": {
       "difficulty": "intermediate",
@@ -1095,7 +1095,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Sodom"
     ],
     "correct_answer": "Sea of Galilee",
-    "explanation": "The biblical account in Mark 4:35-41 identifies Sea of Galilee as the location connected with this event: Which lake did Jesus cross when he calmed the storm?",
+    "explanation": "The cited passage (Mark 4:35-41) identifies Sea of Galilee as the location of the event described in the clue.",
     "reference": "Mark 4:35-41",
     "metadata": {
       "difficulty": "intermediate",
@@ -1115,7 +1115,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Pool of Siloam"
     ],
     "correct_answer": "Cana",
-    "explanation": "The biblical account in John 2:1-11 identifies Cana as the location connected with this event: At which town did Jesus turn water into wine?",
+    "explanation": "The cited passage (John 2:1-11) identifies Cana as the location of the event described in the clue.",
     "reference": "John 2:1-11",
     "metadata": {
       "difficulty": "intermediate",
@@ -1135,7 +1135,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Jericho"
     ],
     "correct_answer": "Emmaus",
-    "explanation": "The biblical account in Luke 24:13-18 identifies Emmaus as the location connected with this event: To which village were two disciples travelling when they met the risen Jesus?",
+    "explanation": "The cited passage (Luke 24:13-18) identifies Emmaus as the location of the event described in the clue.",
     "reference": "Luke 24:13-18",
     "metadata": {
       "difficulty": "intermediate",
@@ -1155,7 +1155,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Sinai"
     ],
     "correct_answer": "Capernaum",
-    "explanation": "The biblical account in John 4:46-54 identifies Capernaum as the location connected with this event: Which town was the home of the royal official whose son Jesus healed?",
+    "explanation": "The cited passage (John 4:46-54) identifies Capernaum as the location of the event described in the clue.",
     "reference": "John 4:46-54",
     "metadata": {
       "difficulty": "intermediate",
@@ -1175,7 +1175,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Gerasenes",
-    "explanation": "The biblical account in Mark 5:1-13 identifies Gerasenes as the location connected with this event: In which region did Jesus deliver the man possessed by Legion?",
+    "explanation": "The cited passage (Mark 5:1-13) identifies Gerasenes as the location of the event described in the clue.",
     "reference": "Mark 5:1-13",
     "metadata": {
       "difficulty": "intermediate",
@@ -1195,7 +1195,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Gethsemane",
-    "explanation": "The biblical account in Matthew 26:36-46 identifies Gethsemane as the location connected with this event: At which garden did Jesus pray before his arrest?",
+    "explanation": "The cited passage (Matthew 26:36-46) identifies Gethsemane as the location of the event described in the clue.",
     "reference": "Matthew 26:36-46",
     "metadata": {
       "difficulty": "intermediate",
@@ -1215,7 +1215,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Golgotha",
-    "explanation": "The biblical account in John 19:17-18 identifies Golgotha as the location connected with this event: At which place, meaning Place of a Skull, was Jesus crucified?",
+    "explanation": "The cited passage (John 19:17-18) identifies Golgotha as the location of the event described in the clue.",
     "reference": "John 19:17-18",
     "metadata": {
       "difficulty": "intermediate",
@@ -1235,7 +1235,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Jerusalem",
-    "explanation": "The biblical account in Acts 2:1-5 identifies Jerusalem as the location connected with this event: In which city were the disciples gathered at Pentecost?",
+    "explanation": "The cited passage (Acts 2:1-5) identifies Jerusalem as the location of the event described in the clue.",
     "reference": "Acts 2:1-5",
     "metadata": {
       "difficulty": "intermediate",
@@ -1255,7 +1255,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Kiriath-jearim"
     ],
     "correct_answer": "Samaria",
-    "explanation": "The biblical account in Acts 8:5-8 identifies Samaria as the location connected with this event: In which city did Philip preach and many Samaritans believe?",
+    "explanation": "The cited passage (Acts 8:5-8) identifies Samaria as the location of the event described in the clue.",
     "reference": "Acts 8:5-8",
     "metadata": {
       "difficulty": "intermediate",
@@ -1275,7 +1275,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Shechem"
     ],
     "correct_answer": "Road to Damascus",
-    "explanation": "The biblical account in Acts 9:1-6 identifies Road to Damascus as the location connected with this event: On which road did Saul encounter Jesus?",
+    "explanation": "The cited passage (Acts 9:1-6) identifies Road to Damascus as the location of the event described in the clue.",
     "reference": "Acts 9:1-6",
     "metadata": {
       "difficulty": "intermediate",
@@ -1295,7 +1295,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Caesarea"
     ],
     "correct_answer": "Joppa",
-    "explanation": "The biblical account in Acts 9:36-42 identifies Joppa as the location connected with this event: In which coastal city did Peter raise Tabitha?",
+    "explanation": "The cited passage (Acts 9:36-42) identifies Joppa as the location of the event described in the clue.",
     "reference": "Acts 9:36-42",
     "metadata": {
       "difficulty": "intermediate",
@@ -1315,7 +1315,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Caesarea",
-    "explanation": "The biblical account in Acts 10:1-8,24 identifies Caesarea as the location connected with this event: In which city did Peter meet Cornelius?",
+    "explanation": "The cited passage (Acts 10:1-8,24) identifies Caesarea as the location of the event described in the clue.",
     "reference": "Acts 10:1-8,24",
     "metadata": {
       "difficulty": "intermediate",
@@ -1335,7 +1335,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Horeb"
     ],
     "correct_answer": "Antioch",
-    "explanation": "The biblical account in Acts 11:25-26 identifies Antioch as the location connected with this event: In which city were believers first called Christians?",
+    "explanation": "The cited passage (Acts 11:25-26) identifies Antioch as the location of the event described in the clue.",
     "reference": "Acts 11:25-26",
     "metadata": {
       "difficulty": "intermediate",
@@ -1355,7 +1355,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Hebron"
     ],
     "correct_answer": "Seleucia",
-    "explanation": "The biblical account in Acts 13:1-4 identifies Seleucia as the location connected with this event: From which port did Paul and Barnabas sail to Cyprus?",
+    "explanation": "The cited passage (Acts 13:1-4) identifies Seleucia as the location of the event described in the clue.",
     "reference": "Acts 13:1-4",
     "metadata": {
       "difficulty": "intermediate",
@@ -1375,7 +1375,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Cyprus",
-    "explanation": "The biblical account in Acts 13:4-6 identifies Cyprus as the location connected with this event: On which island did Paul and Barnabas first preach after sailing from Seleucia?",
+    "explanation": "The cited passage (Acts 13:4-6) identifies Cyprus as the location of the event described in the clue.",
     "reference": "Acts 13:4-6",
     "metadata": {
       "difficulty": "intermediate",
@@ -1395,7 +1395,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Dan"
     ],
     "correct_answer": "Lystra",
-    "explanation": "The biblical account in Acts 14:8-13 identifies Lystra as the location connected with this event: In which city did Paul heal a man lame from birth and the crowd called Barnabas Zeus?",
+    "explanation": "The cited passage (Acts 14:8-13) identifies Lystra as the location of the event described in the clue.",
     "reference": "Acts 14:8-13",
     "metadata": {
       "difficulty": "intermediate",
@@ -1415,7 +1415,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Susa"
     ],
     "correct_answer": "Philippi",
-    "explanation": "The biblical account in Acts 16:12,22-25 identifies Philippi as the location connected with this event: In which city did Paul and Silas sing in prison at midnight?",
+    "explanation": "The cited passage (Acts 16:12,22-25) identifies Philippi as the location of the event described in the clue.",
     "reference": "Acts 16:12,22-25",
     "metadata": {
       "difficulty": "intermediate",
@@ -1435,7 +1435,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Golgotha"
     ],
     "correct_answer": "Thessalonica",
-    "explanation": "The biblical account in Acts 17:1-3 identifies Thessalonica as the location connected with this event: In which city did Paul reason for three Sabbaths about the Messiah?",
+    "explanation": "The cited passage (Acts 17:1-3) identifies Thessalonica as the location of the event described in the clue.",
     "reference": "Acts 17:1-3",
     "metadata": {
       "difficulty": "intermediate",
@@ -1455,7 +1455,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Bethlehem"
     ],
     "correct_answer": "Athens",
-    "explanation": "The biblical account in Acts 17:16-22 identifies Athens as the location connected with this event: At which city’s Areopagus did Paul speak about the unknown god?",
+    "explanation": "The cited passage (Acts 17:16-22) identifies Athens as the location of the event described in the clue.",
     "reference": "Acts 17:16-22",
     "metadata": {
       "difficulty": "intermediate",
@@ -1475,7 +1475,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Sodom"
     ],
     "correct_answer": "Corinth",
-    "explanation": "The biblical account in Acts 18:1-3 identifies Corinth as the location connected with this event: In which city did Paul work as a tentmaker with Aquila and Priscilla?",
+    "explanation": "The cited passage (Acts 18:1-3) identifies Corinth as the location of the event described in the clue.",
     "reference": "Acts 18:1-3",
     "metadata": {
       "difficulty": "intermediate",
@@ -1495,7 +1495,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Pool of Siloam"
     ],
     "correct_answer": "Ephesus",
-    "explanation": "The biblical account in Acts 18:18-21 identifies Ephesus as the location connected with this event: In which city did Paul leave Priscilla and Aquila before sailing to Caesarea?",
+    "explanation": "The cited passage (Acts 18:18-21) identifies Ephesus as the location of the event described in the clue.",
     "reference": "Acts 18:18-21",
     "metadata": {
       "difficulty": "intermediate",
@@ -1515,7 +1515,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Jericho"
     ],
     "correct_answer": "Malta",
-    "explanation": "The biblical account in Acts 28:1-2 identifies Malta as the location connected with this event: On which island did Paul reach land after the shipwreck?",
+    "explanation": "The cited passage (Acts 28:1-2) identifies Malta as the location of the event described in the clue.",
     "reference": "Acts 28:1-2",
     "metadata": {
       "difficulty": "hard",
@@ -1535,7 +1535,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Sinai"
     ],
     "correct_answer": "Miletus",
-    "explanation": "The biblical account in 2 Timothy 4:20 identifies Miletus as the location connected with this event: At which place did Paul leave Trophimus sick?",
+    "explanation": "The cited passage (2 Timothy 4:20) identifies Miletus as the location of the event described in the clue.",
     "reference": "2 Timothy 4:20",
     "metadata": {
       "difficulty": "hard",
@@ -1555,7 +1555,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Patmos",
-    "explanation": "The biblical account in Revelation 1:9 identifies Patmos as the location connected with this event: On which island was John when he received Revelation?",
+    "explanation": "The cited passage (Revelation 1:9) identifies Patmos as the location of the event described in the clue.",
     "reference": "Revelation 1:9",
     "metadata": {
       "difficulty": "hard",
@@ -1575,7 +1575,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Asia",
-    "explanation": "The biblical account in Revelation 1:4,11 identifies Asia as the location connected with this event: Which province contained the seven churches addressed in Revelation?",
+    "explanation": "The cited passage (Revelation 1:4,11) identifies Asia as the location of the event described in the clue.",
     "reference": "Revelation 1:4,11",
     "metadata": {
       "difficulty": "hard",
@@ -1595,7 +1595,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Ephesus",
-    "explanation": "The biblical account in Revelation 2:1 identifies Ephesus as the location connected with this event: Which church is addressed first among the seven churches in Revelation?",
+    "explanation": "The cited passage (Revelation 2:1) identifies Ephesus as the location of the event described in the clue.",
     "reference": "Revelation 2:1",
     "metadata": {
       "difficulty": "hard",
@@ -1615,7 +1615,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Laodicea",
-    "explanation": "The biblical account in Revelation 3:14-16 identifies Laodicea as the location connected with this event: Which church is rebuked for being lukewarm, neither cold nor hot?",
+    "explanation": "The cited passage (Revelation 3:14-16) identifies Laodicea as the location of the event described in the clue.",
     "reference": "Revelation 3:14-16",
     "metadata": {
       "difficulty": "hard",
@@ -1635,7 +1635,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Kiriath-jearim"
     ],
     "correct_answer": "Philadelphia",
-    "explanation": "The biblical account in Revelation 3:7-8 identifies Philadelphia as the location connected with this event: Which church is commended for keeping Christ’s word despite having little strength?",
+    "explanation": "The cited passage (Revelation 3:7-8) identifies Philadelphia as the location of the event described in the clue.",
     "reference": "Revelation 3:7-8",
     "metadata": {
       "difficulty": "hard",
@@ -1655,7 +1655,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Shechem"
     ],
     "correct_answer": "Mountains of Ararat",
-    "explanation": "The biblical account in Genesis 8:4 identifies Mountains of Ararat as the location connected with this event: On which mountains did Noah’s ark come to rest?",
+    "explanation": "The cited passage (Genesis 8:4) identifies Mountains of Ararat as the location of the event described in the clue.",
     "reference": "Genesis 8:4",
     "metadata": {
       "difficulty": "hard",
@@ -1675,7 +1675,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Caesarea"
     ],
     "correct_answer": "Ur of the Chaldeans",
-    "explanation": "The biblical account in Genesis 11:31; 12:1-5 identifies Ur of the Chaldeans as the location connected with this event: From which city did Abraham’s family set out toward Canaan?",
+    "explanation": "The cited passage (Genesis 11:31; 12:1-5) identifies Ur of the Chaldeans as the location of the event described in the clue.",
     "reference": "Genesis 11:31; 12:1-5",
     "metadata": {
       "difficulty": "hard",
@@ -1695,7 +1695,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Paddan-aram",
-    "explanation": "The biblical account in Genesis 28:2-5 identifies Paddan-aram as the location connected with this event: To which region did Jacob flee to stay with Laban?",
+    "explanation": "The cited passage (Genesis 28:2-5) identifies Paddan-aram as the location of the event described in the clue.",
     "reference": "Genesis 28:2-5",
     "metadata": {
       "difficulty": "hard",
@@ -1715,7 +1715,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Horeb"
     ],
     "correct_answer": "Kadesh",
-    "explanation": "The biblical account in Numbers 20:1 identifies Kadesh as the location connected with this event: At which place did Miriam die and was buried?",
+    "explanation": "The cited passage (Numbers 20:1) identifies Kadesh as the location of the event described in the clue.",
     "reference": "Numbers 20:1",
     "metadata": {
       "difficulty": "hard",
@@ -1735,7 +1735,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Hebron"
     ],
     "correct_answer": "Mount Hor",
-    "explanation": "The biblical account in Numbers 20:22-29 identifies Mount Hor as the location connected with this event: On which mountain did Aaron die?",
+    "explanation": "The cited passage (Numbers 20:22-29) identifies Mount Hor as the location of the event described in the clue.",
     "reference": "Numbers 20:22-29",
     "metadata": {
       "difficulty": "hard",
@@ -1755,7 +1755,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Arnon",
-    "explanation": "The biblical account in Deuteronomy 2:24,36 identifies Arnon as the location connected with this event: Which river marked the boundary Israel crossed before entering the Amorite territory?",
+    "explanation": "The cited passage (Deuteronomy 2:24,36) identifies Arnon as the location of the event described in the clue.",
     "reference": "Deuteronomy 2:24,36",
     "metadata": {
       "difficulty": "hard",
@@ -1775,7 +1775,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Dan"
     ],
     "correct_answer": "Dibon",
-    "explanation": "The biblical account in Numbers 32:3-5,34 identifies Dibon as the location connected with this event: Which town east of the Jordan was rebuilt by the Gadites?",
+    "explanation": "The cited passage (Numbers 32:3-5,34) identifies Dibon as the location of the event described in the clue.",
     "reference": "Numbers 32:3-5,34",
     "metadata": {
       "difficulty": "hard",
@@ -1795,7 +1795,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Susa"
     ],
     "correct_answer": "Heights of Baal",
-    "explanation": "The biblical account in Numbers 22:41; 23:1-3 identifies Heights of Baal as the location connected with this event: At which high place did Balak take Balaam to view part of Israel?",
+    "explanation": "The cited passage (Numbers 22:41; 23:1-3) identifies Heights of Baal as the location of the event described in the clue.",
     "reference": "Numbers 22:41; 23:1-3",
     "metadata": {
       "difficulty": "hard",
@@ -1815,7 +1815,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Golgotha"
     ],
     "correct_answer": "Heshbon",
-    "explanation": "The biblical account in Numbers 21:21-26 identifies Heshbon as the location connected with this event: Which city did Israel capture from Sihon, king of the Amorites?",
+    "explanation": "The cited passage (Numbers 21:21-26) identifies Heshbon as the location of the event described in the clue.",
     "reference": "Numbers 21:21-26",
     "metadata": {
       "difficulty": "hard",
@@ -1835,7 +1835,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Bethlehem"
     ],
     "correct_answer": "Gibeon",
-    "explanation": "The biblical account in Joshua 9:3-27 identifies Gibeon as the location connected with this event: Which city did the Gibeonites inhabit?",
+    "explanation": "The cited passage (Joshua 9:3-27) identifies Gibeon as the location of the event described in the clue.",
     "reference": "Joshua 9:3-27",
     "metadata": {
       "difficulty": "hard",
@@ -1855,7 +1855,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Sodom"
     ],
     "correct_answer": "Hebron",
-    "explanation": "The biblical account in Joshua 20:7; 21:11-13 identifies Hebron as the location connected with this event: Which city of refuge was allotted to the Levites in Judah’s hill country?",
+    "explanation": "The cited passage (Joshua 20:7; 21:11-13) identifies Hebron as the location of the event described in the clue.",
     "reference": "Joshua 20:7; 21:11-13",
     "metadata": {
       "difficulty": "hard",
@@ -1875,7 +1875,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Pool of Siloam"
     ],
     "correct_answer": "Bethlehem",
-    "explanation": "The biblical account in 1 Samuel 16:1-13 identifies Bethlehem as the location connected with this event: Which town was the home of Jesse, where Samuel anointed David?",
+    "explanation": "The cited passage (1 Samuel 16:1-13) identifies Bethlehem as the location of the event described in the clue.",
     "reference": "1 Samuel 16:1-13",
     "metadata": {
       "difficulty": "hard",
@@ -1895,7 +1895,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Jericho"
     ],
     "correct_answer": "Mount Moriah",
-    "explanation": "The biblical account in 2 Chronicles 3:1 identifies Mount Moriah as the location connected with this event: On which mountain did Solomon’s temple stand?",
+    "explanation": "The cited passage (2 Chronicles 3:1) identifies Mount Moriah as the location of the event described in the clue.",
     "reference": "2 Chronicles 3:1",
     "metadata": {
       "difficulty": "hard",
@@ -1915,7 +1915,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Sinai"
     ],
     "correct_answer": "Samaria",
-    "explanation": "The biblical account in 1 Kings 16:23-24 identifies Samaria as the location connected with this event: Which city did Omri build on a hill and make the capital of Israel?",
+    "explanation": "The cited passage (1 Kings 16:23-24) identifies Samaria as the location of the event described in the clue.",
     "reference": "1 Kings 16:23-24",
     "metadata": {
       "difficulty": "hard",
@@ -1935,7 +1935,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Mount Gilboa"
     ],
     "correct_answer": "Bethel",
-    "explanation": "The biblical account in 2 Kings 2:23-24 identifies Bethel as the location connected with this event: Which city did Elisha enter when youths mocked him and bears came out?",
+    "explanation": "The cited passage (2 Kings 2:23-24) identifies Bethel as the location of the event described in the clue.",
     "reference": "2 Kings 2:23-24",
     "metadata": {
       "difficulty": "hard",
@@ -1955,7 +1955,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Marah"
     ],
     "correct_answer": "Megiddo",
-    "explanation": "The biblical account in 2 Kings 23:29-30 identifies Megiddo as the location connected with this event: Which city did Josiah go to meet Pharaoh Neco, where he was killed?",
+    "explanation": "The cited passage (2 Kings 23:29-30) identifies Megiddo as the location of the event described in the clue.",
     "reference": "2 Kings 23:29-30",
     "metadata": {
       "difficulty": "hard",
@@ -1975,7 +1975,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Zarephath"
     ],
     "correct_answer": "Susa",
-    "explanation": "The biblical account in Nehemiah 1:1; 2:1 identifies Susa as the location connected with this event: In which city was Nehemiah serving when he heard about Jerusalem’s broken walls?",
+    "explanation": "The cited passage (Nehemiah 1:1; 2:1) identifies Susa as the location of the event described in the clue.",
     "reference": "Nehemiah 1:1; 2:1",
     "metadata": {
       "difficulty": "hard",
@@ -1995,7 +1995,7 @@ export const BIBLE_GEOGRAPHY_BATCH_01: ChallengeItem[] = [
       "Ai"
     ],
     "correct_answer": "Tarsus",
-    "explanation": "The biblical account in Acts 21:39; 22:3 identifies Tarsus as the location connected with this event: From which city was Paul, according to his own statement?",
+    "explanation": "The cited passage (Acts 21:39; 22:3) identifies Tarsus as the location of the event described in the clue.",
     "reference": "Acts 21:39; 22:3",
     "metadata": {
       "difficulty": "hard",
