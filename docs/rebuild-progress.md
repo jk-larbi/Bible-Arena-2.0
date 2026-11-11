@@ -1,10 +1,12 @@
 # BibleArena 2.0 — Rebuild Progress
 
-Last verified: 2026-11-10  
+Last verified: 2026-11-11 12:22 UTC  
 Repository: `jk-larbi/Bible-Arena-2.0`  
 Branch: `hosting/cloudflare-github-pages`  
 Supabase project: `cbbtqsjcsttguukfgnvw`  
 Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
+
+Verified complete: **5 of 19 games**. Remaining: **14 games**.
 
 ## Latest Bible Chain investigation update — 2026-11-09
 
@@ -80,6 +82,32 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 - A subsequent build-and-deploy run completed successfully for commit `8e9be6167ddacb85cce1bd5f4d47a77e6eab4a79`, whose tree includes the Bible Chain source changes: [run 42818623312](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/42818623312). Both build and deploy jobs, including the GitHub Pages deployment step, succeeded.
 - The public Pages URL could not be independently fetched from this environment (web fetch returned a cache miss). Deployment is therefore confirmed by the official GitHub Actions deployment job; manual visual/browser verification remains unavailable here.
 
+## Bible Geography Quest — verified complete and deployed (2026-11-11)
+
+- Canonical runtime source: `src/data/rebuild/bibleGeographyBatch01.ts` and `src/data/rebuild/bibleGeographyBatch02.ts`, imported into `REVIEWED_BATCHES_BY_GAME` in `src/data/bibleContentBank.ts`. `buildLocalChallengesForLevel` selects the five reviewed entries for each level; `bible-geography-quest` remains in `LOCAL_CONTENT_GAMES`, preserving its existing local grading and attempt behaviour.
+- Playable bank: exactly 150 challenges, five at every Level 1–30. Existing geography multiple-choice mechanics are preserved; every playable question has four distinct location options including the correct answer.
+- Replaced cross-game fact collisions and repeated facts, and corrected several weak or inaccurate location prompts. Notable replacements include:
+  - Level 1, Challenge 1: Shechem altar question → Abram's altar at Mamre (Genesis 13:18).
+  - Level 8, Challenge 1: Cherith brook → Beer-lahai-roi and Hagar's encounter (Genesis 16:13–14).
+  - Level 22, Challenge 1: Sinai covenant repetition → Israel's camp at Pi-hahiroth before the sea crossing (Exodus 14:2).
+  - Level 23, Challenges 1, 4 and 5: repeated Nebo/Ai/Shechem facts → Moses' death in Moab, Joshua's altar on Mount Ebal, and the tabernacle at Shiloh.
+  - Level 24, Challenges 1–3: Gibeon treaty / Deborah palm-tree / Harod spring repeats → Joshua's long-day battle at Gibeon, Heber's tent near Kedesh, and Samson at Lehi.
+  - Level 25, Challenge 4: Goliath-sword clue now asks about the sword kept behind the ephod at Nob (1 Samuel 21:8–9), avoiding an inaccurate narrative cue.
+  - Level 26, Challenges 1 and 5: enemy-nation / purchase-price questions → the Philistines' assembly at Shunem and the ark's return to Beth-shemesh.
+  - Level 27, Challenges 1 and 2: temple-mountain repeat and imprecise Elijah location → Solomon's fleet at Ezion-geber and the famine in Samaria.
+  - Level 28, Challenges 1–3: repeated axe-head, Naaman and Nineveh facts → Elisha healing Jericho's spring, Elisha returning to the Jordan after Elijah's ascent, and Jonah's intended destination Tarshish.
+  - Level 29, Challenges 1, 4 and 5: repeated Dura / Esther-in-Susa / Nehemiah-in-Susa facts → the Ulai River, Daniel's vision in Babylon, and the plain of Ono.
+- Additional corrections include the narrow vineyard path in Balaam's route (Numbers 22:24–27) and Israel's encampment at Iye-abarim (Numbers 21:10–11).
+- Difficulty metadata progresses in six bands: Levels 1–5 beginner, 6–10 easy, 11–15 intermediate, 16–20 hard, 21–25 advanced, and 26–30 expert.
+- Source validation: 150 playable rows; exactly five per level; 150 unique normalized question wordings and 150 unique normalized reference+answer facts; zero missing question, answer, explanation or reference fields; zero option failures.
+- Cross-bank audit compared normalized question wording and normalized reference+answer facts against all existing `game_content` rows outside the replaced Levels 1–30 slots, including the other games and this game's hidden Levels 31–50. Collisions remaining: zero.
+- Supabase: updated exactly 150 existing rows in place by `game_slug, level, challenge_index`. Existing UUIDs and question keys were preserved. Final source-to-database comparison: 150 source rows, zero missing rows, zero mismatched fields.
+- Post-import database validation: 150 rows, 150 unique slots, 150 unique wordings, 150 unique reference-answer facts, zero missing details, zero option failures and zero cross-game collisions.
+- Publication: 30 levels published and 20 unpublished. `game_content_public` exposes exactly 150 Geography questions and zero rows above Level 30. The project-wide 30-level frontend guard and remote/local publication merge remain unchanged and consistent.
+- First deployment attempt exposed an over-broad test heuristic that treated any question mentioning Goliath as the original Goliath battle. The Nob clue was clarified to ask about the sword kept behind the ephod; no reference was falsified or weakened.
+- Final CI and deployment for commit `40f20d17eb815f13b0986b31b79042915cb555b4`: quiz accuracy/scoring, all-50-level/game-mechanics, staged-batch validation, multiplayer/catalogue, TypeScript, production build and GitHub Pages deployment all passed. Runs: [deploy 43019611747](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611747), [content audit 43019611703](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611703), [staged validation 43019611687](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611687).
+- The official GitHub Pages deploy job succeeded. A separate direct fetch of the public Pages URL returned a cache miss in this environment, so manual browser rendering/visual verification was unavailable; do not describe that manual check as completed.
+
 ## Bible Crossword — audit blocked; not complete (2026-11-10)
 
 - Runtime source: `src/data/bibleCrosswordQuestions.ts`; `buildLocalChallengesForLevel` returns this curated bank for `bible-crossword`. The game is in `LOCAL_CONTENT_GAMES`, so the 10-entry crossword puzzles are client-generated/local content, not loaded from the current public Supabase feed.
@@ -97,20 +125,19 @@ Live site: https://jk-larbi.github.io/Bible-Arena-2.0/
 ## Other games awaiting completion
 
 1. Bible Crossword
-2. Bible Geography Quest
-3. Bible Match Up
-4. Bible Memory Challenge
-5. Bible Puzzles
-6. Bible Timeline
-7. Bible Word Search
-8. Complete the Scripture
-9. Find the Bible Book
-10. Guess the Emoji
-11. Old vs New Testament
-12. Scripture Challenge
-13. Scripture Scramble
-14. Verse Builder
-15. Who Said It
+2. Bible Match Up
+3. Bible Memory Challenge
+4. Bible Puzzles
+5. Bible Timeline
+6. Bible Word Search
+7. Complete the Scripture
+8. Find the Bible Book
+9. Guess the Emoji
+10. Old vs New Testament
+11. Scripture Challenge
+12. Scripture Scramble
+13. Verse Builder
+14. Who Said It
 
 Some of these have partial staged batches or prior content work. None should be marked complete until it has 150 verified playable challenges, game-specific mechanics preserved, cross-game duplicate checks, publication checks, and a successful deployment.
 
