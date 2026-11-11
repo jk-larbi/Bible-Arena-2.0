@@ -1,6 +1,6 @@
 # BibleArena 2.0 — Rebuild Progress
 
-Last verified: 2026-11-11 12:22 UTC  
+Last verified: 2026-11-11 12:27 UTC  
 Repository: `jk-larbi/Bible-Arena-2.0`  
 Branch: `hosting/cloudflare-github-pages`  
 Supabase project: `cbbtqsjcsttguukfgnvw`  
@@ -105,7 +105,7 @@ Verified complete: **5 of 19 games**. Remaining: **14 games**.
 - Post-import database validation: 150 rows, 150 unique slots, 150 unique wordings, 150 unique reference-answer facts, zero missing details, zero option failures and zero cross-game collisions.
 - Publication: 30 levels published and 20 unpublished. `game_content_public` exposes exactly 150 Geography questions and zero rows above Level 30. The project-wide 30-level frontend guard and remote/local publication merge remain unchanged and consistent.
 - First deployment attempt exposed an over-broad test heuristic that treated any question mentioning Goliath as the original Goliath battle. The Nob clue was clarified to ask about the sword kept behind the ephod; no reference was falsified or weakened.
-- Final CI and deployment for commit `40f20d17eb815f13b0986b31b79042915cb555b4`: quiz accuracy/scoring, all-50-level/game-mechanics, staged-batch validation, multiplayer/catalogue, TypeScript, production build and GitHub Pages deployment all passed. Runs: [deploy 43019611747](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611747), [content audit 43019611703](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611703), [staged validation 43019611687](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43019611687).
+- Final content-polish commit `97c5c75c2d3140d17b9d4967a0b92a816e338fab` refined the non-replacement explanations and was rechecked against Supabase: 150 source rows, zero missing rows and zero mismatches. Final quiz accuracy/scoring, all-50-level/game-mechanics, staged-batch validation, multiplayer/catalogue, TypeScript, production build and GitHub Pages deployment all passed. Runs: [deploy 43020247741](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43020247741), [content audit 43020247742](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43020247742), [staged validation 43020247874](https://github.com/jk-larbi/Bible-Arena-2.0/actions/runs/43020247874).
 - The official GitHub Pages deploy job succeeded. A separate direct fetch of the public Pages URL returned a cache miss in this environment, so manual browser rendering/visual verification was unavailable; do not describe that manual check as completed.
 
 ## Bible Crossword — audit blocked; not complete (2026-11-10)
