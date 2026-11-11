@@ -16,10 +16,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Bethel",
     "reference": "Genesis 28:18-19",
-    "explanation": "The passage Genesis 28:18-19 records this biblical detail.",
+    "explanation": "The biblical account in Genesis 28:18-19 identifies Bethel as the location connected with this event: Where did Jacob set up a pillar after his dream of the ladder?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-1"
+      "fact_key": "bible-geography-fact-21-1"
     }
   },
   {
@@ -36,10 +36,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Peniel",
     "reference": "Genesis 32:30",
-    "explanation": "The passage Genesis 32:30 records this biblical detail.",
+    "explanation": "The biblical account in Genesis 32:30 identifies Peniel as the location connected with this event: Where did Jacob wrestle with the mysterious man and receive the name Israel?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-2"
+      "fact_key": "bible-geography-fact-21-2"
     }
   },
   {
@@ -56,10 +56,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Dothan",
     "reference": "Genesis 37:17-28",
-    "explanation": "The passage Genesis 37:17-28 records this biblical detail.",
+    "explanation": "The biblical account in Genesis 37:17-28 identifies Dothan as the location connected with this event: Where did Joseph's brothers sell him to passing merchants?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-3"
+      "fact_key": "bible-geography-fact-21-3"
     }
   },
   {
@@ -76,10 +76,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Egypt",
     "reference": "Genesis 41:41-46",
-    "explanation": "The passage Genesis 41:41-46 records this biblical detail.",
+    "explanation": "The biblical account in Genesis 41:41-46 identifies Egypt as the location connected with this event: Where did Joseph serve in Pharaoh's administration?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-4"
+      "fact_key": "bible-geography-fact-21-4"
     }
   },
   {
@@ -96,10 +96,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Egypt",
     "reference": "Exodus 2:1-3",
-    "explanation": "The passage Exodus 2:1-3 records this biblical detail.",
+    "explanation": "The biblical account in Exodus 2:1-3 identifies Egypt as the location connected with this event: Where was Moses born and hidden as an infant?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-5"
+      "fact_key": "bible-geography-fact-21-5"
     }
   },
   {
@@ -107,19 +107,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 22,
     "challenge_index": 1,
-    "question_text": "At which mountain did Moses receive the covenant law?",
+    "question_text": "Where did Israel camp between Migdol and the sea before Pharaoh's army caught up with them?",
     "options": [
-      "Mount Sinai",
-      "Bethlehem",
-      "Ramah",
-      "Ebenezer"
+      "Pi-hahiroth",
+      "Migdol",
+      "Etham",
+      "Succoth"
     ],
-    "correct_answer": "Mount Sinai",
-    "reference": "Exodus 19:1-20",
-    "explanation": "The passage Exodus 19:1-20 records this biblical detail.",
+    "correct_answer": "Pi-hahiroth",
+    "reference": "Exodus 14:2",
+    "explanation": "Exodus 14:2 names Pi-hahiroth as Israel's camp between Migdol and the sea, opposite Baal-zephon.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-6"
+      "fact_key": "bible-geography-fact-22-1"
     }
   },
   {
@@ -136,10 +136,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Rephidim",
     "reference": "Exodus 17:1-7",
-    "explanation": "The passage Exodus 17:1-7 records this biblical detail.",
+    "explanation": "The biblical account in Exodus 17:1-7 identifies Rephidim as the location connected with this event: Where did Israel complain about the lack of water and Moses struck the rock?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-7"
+      "fact_key": "bible-geography-fact-22-2"
     }
   },
   {
@@ -156,10 +156,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Mount Sinai",
     "reference": "Exodus 32:1-6",
-    "explanation": "The passage Exodus 32:1-6 records this biblical detail.",
+    "explanation": "The biblical account in Exodus 32:1-6 identifies Mount Sinai as the location connected with this event: At which place did the Israelites make the golden calf?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-8"
+      "fact_key": "bible-geography-fact-22-3"
     }
   },
   {
@@ -167,19 +167,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 22,
     "challenge_index": 4,
-    "question_text": "Where did Balaam's donkey turn aside and lie down?",
+    "question_text": "In what kind of narrow route did the angel block Balaam, causing the donkey to press against a wall and later lie down?",
     "options": [
-      "The road",
-      "Samaria",
-      "The wilderness near Beersheba",
-      "Horeb"
+      "A narrow path between vineyards",
+      "A paved road through Jericho",
+      "A river crossing at the Jordan",
+      "A mountain pass near Moab"
     ],
-    "correct_answer": "The road",
-    "reference": "Numbers 22:21-27",
-    "explanation": "The passage Numbers 22:21-27 records this biblical detail.",
+    "correct_answer": "A narrow path between vineyards",
+    "reference": "Numbers 22:24-27",
+    "explanation": "Numbers 22:24–27 describes the angel blocking Balaam in a narrow path between vineyards; the donkey pressed against a wall and eventually lay down.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-9"
+      "fact_key": "bible-geography-fact-22-4"
     }
   },
   {
@@ -187,19 +187,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 22,
     "challenge_index": 5,
-    "question_text": "From which place did Israel set out before arriving at Mount Hor?",
+    "question_text": "At which encampment did Israel stop after travelling from Mount Hor along the route around Edom?",
     "options": [
+      "Iye-abarim",
       "Kadesh",
-      "Jezreel",
-      "The Jordan",
-      "The Jordan River"
+      "Mount Hor",
+      "Dibon"
     ],
-    "correct_answer": "Kadesh",
-    "reference": "Numbers 20:22",
-    "explanation": "The passage Numbers 20:22 supports this distinct biblical detail.",
+    "correct_answer": "Iye-abarim",
+    "reference": "Numbers 21:10-11",
+    "explanation": "Numbers 21:10–11 records Israel's encampment at Iye-abarim in the wilderness east of Moab.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-10"
+      "fact_key": "bible-geography-fact-22-5"
     }
   },
   {
@@ -207,19 +207,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 23,
     "challenge_index": 1,
-    "question_text": "From which place did Moses view the promised land before his death?",
+    "question_text": "In which land did Moses die after viewing Canaan from Mount Nebo?",
     "options": [
-      "Mount Nebo",
-      "Nineveh",
-      "East of Nineveh",
-      "Babylon"
+      "The land of Moab",
+      "The land of Edom",
+      "The land of Ammon",
+      "The land of Midian"
     ],
-    "correct_answer": "Mount Nebo",
-    "reference": "Deuteronomy 34:1-4",
-    "explanation": "The passage Deuteronomy 34:1-4 records this biblical detail.",
+    "correct_answer": "The land of Moab",
+    "reference": "Deuteronomy 34:5-6",
+    "explanation": "Deuteronomy 34:5–6 records Moses' death in the land of Moab and his burial in the valley opposite Beth-peor.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-11"
+      "fact_key": "bible-geography-fact-23-1"
     }
   },
   {
@@ -236,10 +236,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Gilgal",
     "reference": "Joshua 4:19-24",
-    "explanation": "The passage Joshua 4:19-24 records this biblical detail.",
+    "explanation": "The biblical account in Joshua 4:19-24 identifies Gilgal as the location connected with this event: Where did Joshua set up twelve stones after crossing the Jordan?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-12"
+      "fact_key": "bible-geography-fact-23-2"
     }
   },
   {
@@ -256,10 +256,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Gilgal",
     "reference": "Joshua 9:6",
-    "explanation": "The passage Joshua 9:6 supports this distinct biblical detail.",
+    "explanation": "The biblical account in Joshua 9:6 identifies Gilgal as the location connected with this event: At which camp did the Gibeonites meet Joshua to seek a treaty?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-13"
+      "fact_key": "bible-geography-fact-23-3"
     }
   },
   {
@@ -267,19 +267,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 23,
     "challenge_index": 4,
-    "question_text": "At which city did Achan's sin lead to Israel's defeat?",
+    "question_text": "On which mountain did Joshua build an altar and write a copy of the law on stones?",
     "options": [
-      "Ai",
-      "Nazareth",
-      "Jordan River",
-      "The wilderness"
+      "Mount Ebal",
+      "Mount Gerizim",
+      "Mount Nebo",
+      "Mount Carmel"
     ],
-    "correct_answer": "Ai",
-    "reference": "Joshua 7:2-26",
-    "explanation": "The passage Joshua 7:2-26 records this biblical detail.",
+    "correct_answer": "Mount Ebal",
+    "reference": "Joshua 8:30-32",
+    "explanation": "Joshua 8:30–32 says Joshua built an altar to the LORD on Mount Ebal and wrote a copy of the law on stones.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-14"
+      "fact_key": "bible-geography-fact-23-4"
     }
   },
   {
@@ -287,19 +287,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 23,
     "challenge_index": 5,
-    "question_text": "Where did Joshua renew the covenant with Israel?",
+    "question_text": "At which town did Israel set up the tent of meeting after taking possession of the land?",
     "options": [
-      "Shechem",
-      "Sea of Galilee",
-      "A mountain in Galilee",
-      "Capernaum"
+      "Shiloh",
+      "Gilgal",
+      "Gibeon",
+      "Shechem"
     ],
-    "correct_answer": "Shechem",
-    "reference": "Joshua 24:1-28",
-    "explanation": "The passage Joshua 24:1-28 records this biblical detail.",
+    "correct_answer": "Shiloh",
+    "reference": "Joshua 18:1",
+    "explanation": "Joshua 18:1 records that the whole congregation assembled at Shiloh and set up the tent of meeting there.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-15"
+      "fact_key": "bible-geography-fact-23-5"
     }
   },
   {
@@ -307,19 +307,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 24,
     "challenge_index": 1,
-    "question_text": "Which city did the Gibeonites come from?",
+    "question_text": "Above which city did Joshua call for the sun to stand still during the battle against the Amorite kings?",
     "options": [
       "Gibeon",
-      "Bethany",
-      "Jacob's well at Sychar",
-      "The region of the Gerasenes"
+      "Jericho",
+      "Ai",
+      "Lachish"
     ],
     "correct_answer": "Gibeon",
-    "reference": "Joshua 9:3-15",
-    "explanation": "The passage Joshua 9:3-15 records this biblical detail.",
+    "reference": "Joshua 10:12-14",
+    "explanation": "Joshua 10:12–14 recounts Joshua calling for the sun to stand still over Gibeon during Israel's battle.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-16"
+      "fact_key": "bible-geography-fact-24-1"
     }
   },
   {
@@ -327,19 +327,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 24,
     "challenge_index": 2,
-    "question_text": "Where did Deborah judge Israel under a palm tree?",
+    "question_text": "Near which town was Heber the Kenite's tent pitched, where Sisera fled to Jael?",
     "options": [
-      "Between Ramah and Bethel",
-      "A remote place near Bethsaida",
-      "Emmaus",
-      "Gethsemane"
+      "Near Kedesh",
+      "Near Shiloh",
+      "Near Jericho",
+      "Near Megiddo"
     ],
-    "correct_answer": "Between Ramah and Bethel",
-    "reference": "Judges 4:4-5",
-    "explanation": "The passage Judges 4:4-5 records this biblical detail.",
+    "correct_answer": "Near Kedesh",
+    "reference": "Judges 4:11,17",
+    "explanation": "Judges 4:11,17 places Heber the Kenite's tent near Kedesh, where Sisera fled and Jael received him.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-17"
+      "fact_key": "bible-geography-fact-24-2"
     }
   },
   {
@@ -347,19 +347,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 24,
     "challenge_index": 3,
-    "question_text": "At which spring did Gideon test his men before fighting Midian?",
+    "question_text": "At which place did Samson strike down Philistines with a donkey's jawbone?",
     "options": [
-      "Harod",
-      "The garden near the tomb",
-      "Outside Jerusalem",
-      "The road from Jerusalem to Gaza"
+      "Lehi",
+      "Timnah",
+      "Gath",
+      "Ashkelon"
     ],
-    "correct_answer": "Harod",
-    "reference": "Judges 7:1",
-    "explanation": "The passage Judges 7:1 records this biblical detail.",
+    "correct_answer": "Lehi",
+    "reference": "Judges 15:14-17",
+    "explanation": "Judges 15:14–17 names Lehi as the place where Samson defeated the Philistines with a donkey's jawbone.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-18"
+      "fact_key": "bible-geography-fact-24-3"
     }
   },
   {
@@ -376,10 +376,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Hebron",
     "reference": "Judges 16:1-3",
-    "explanation": "The passage Judges 16:1-3 records this biblical detail.",
+    "explanation": "The biblical account in Judges 16:1-3 identifies Hebron as the location connected with this event: Where did Samson carry the gates after escaping the Philistines?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-19"
+      "fact_key": "bible-geography-fact-24-4"
     }
   },
   {
@@ -396,10 +396,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Bethlehem",
     "reference": "Ruth 2:1-3",
-    "explanation": "The passage Ruth 2:1-3 records this biblical detail.",
+    "explanation": "The biblical account in Ruth 2:1-3 identifies Bethlehem as the location connected with this event: Where did Ruth glean in the field of Boaz?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-20"
+      "fact_key": "bible-geography-fact-24-5"
     }
   },
   {
@@ -416,10 +416,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Ramah",
     "reference": "1 Samuel 1:19-20",
-    "explanation": "The passage 1 Samuel 1:19-20 records this biblical detail.",
+    "explanation": "The biblical account in 1 Samuel 1:19-20 identifies Ramah as the location connected with this event: At which town was Samuel born?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-21"
+      "fact_key": "bible-geography-fact-25-1"
     }
   },
   {
@@ -436,10 +436,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Ebenezer",
     "reference": "1 Samuel 4:1-11",
-    "explanation": "The passage 1 Samuel 4:1-11 records this biblical detail.",
+    "explanation": "The biblical account in 1 Samuel 4:1-11 identifies Ebenezer as the location connected with this event: Where did the Philistines capture the ark after defeating Israel?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-22"
+      "fact_key": "bible-geography-fact-25-2"
     }
   },
   {
@@ -456,10 +456,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Gath",
     "reference": "1 Samuel 17:4",
-    "explanation": "The passage 1 Samuel 17:4 records this biblical detail.",
+    "explanation": "The biblical account in 1 Samuel 17:4 identifies Gath as the location connected with this event: Where was Goliath from?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-23"
+      "fact_key": "bible-geography-fact-25-3"
     }
   },
   {
@@ -467,19 +467,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 25,
     "challenge_index": 4,
-    "question_text": "At which valley did David confront Goliath?",
+    "question_text": "At which town did Ahimelech give David the sword he had taken from Goliath?",
     "options": [
-      "The Valley of Elah",
-      "Rome",
-      "The word of God and the testimony of Jesus",
-      "Eye salve"
+      "Nob",
+      "Gath",
+      "Shiloh",
+      "Beth-shemesh"
     ],
-    "correct_answer": "The Valley of Elah",
-    "reference": "1 Samuel 17:2-3",
-    "explanation": "The passage 1 Samuel 17:2-3 records this biblical detail.",
+    "correct_answer": "Nob",
+    "reference": "1 Samuel 21:8-9",
+    "explanation": "1 Samuel 21:8–9 records Ahimelech giving David Goliath's sword at Nob.",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-24"
+      "fact_key": "bible-geography-fact-25-4"
     }
   },
   {
@@ -496,10 +496,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Ziklag",
     "reference": "1 Samuel 27:5-6",
-    "explanation": "The passage 1 Samuel 27:5-6 records this biblical detail.",
+    "explanation": "The biblical account in 1 Samuel 27:5-6 identifies Ziklag as the location connected with this event: Where did David take refuge from Saul among the Philistines?",
     "metadata": {
       "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-25"
+      "fact_key": "bible-geography-fact-25-5"
     }
   },
   {
@@ -507,19 +507,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 26,
     "challenge_index": 1,
-    "question_text": "Which enemy nation fought Israel at Mount Gilboa when Saul died?",
+    "question_text": "Where did the Philistines assemble before Saul's final battle on Mount Gilboa?",
     "options": [
-      "The Philistines",
-      "Sardis",
-      "The key of David",
-      "From heaven"
+      "Shunem",
+      "Mount Gilboa",
+      "Jezreel",
+      "Aphek"
     ],
-    "correct_answer": "The Philistines",
-    "reference": "1 Samuel 31:1",
-    "explanation": "The passage 1 Samuel 31:1 supports this distinct biblical detail.",
+    "correct_answer": "Shunem",
+    "reference": "1 Samuel 28:4",
+    "explanation": "1 Samuel 28:4 says the Philistines assembled at Shunem while Saul gathered Israel at Mount Gilboa.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-26"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-26-1"
     }
   },
   {
@@ -536,10 +536,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Hebron",
     "reference": "2 Samuel 2:1-4",
-    "explanation": "The passage 2 Samuel 2:1-4 records this biblical detail.",
+    "explanation": "The biblical account in 2 Samuel 2:1-4 identifies Hebron as the location connected with this event: Where was David first anointed king over Judah?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-27"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-26-2"
     }
   },
   {
@@ -556,10 +556,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Hebron",
     "reference": "2 Samuel 5:1-3",
-    "explanation": "The passage 2 Samuel 5:1-3 supports this distinct biblical detail.",
+    "explanation": "The biblical account in 2 Samuel 5:1-3 identifies Hebron as the location connected with this event: At which city were David's men anointed king over all Israel?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-28"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-26-3"
     }
   },
   {
@@ -576,10 +576,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Hebron",
     "reference": "2 Samuel 15:7-10",
-    "explanation": "The passage 2 Samuel 15:7-10 records this biblical detail.",
+    "explanation": "The biblical account in 2 Samuel 15:7-10 identifies Hebron as the location connected with this event: Where did Absalom set up his rebellion against David?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-29"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-26-4"
     }
   },
   {
@@ -587,19 +587,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 26,
     "challenge_index": 5,
-    "question_text": "What price did David pay for Araunah's threshing floor and oxen?",
+    "question_text": "At which town did the ark arrive when the Philistines returned it on a cart?",
     "options": [
-      "Fifty shekels of silver for the threshing floor and oxen",
-      "Mount Nebo",
-      "Gilgal",
-      "Ai"
+      "Beth-shemesh",
+      "Ekron",
+      "Ashdod",
+      "Gath"
     ],
-    "correct_answer": "Fifty shekels of silver for the threshing floor and oxen",
-    "reference": "2 Samuel 24:24",
-    "explanation": "The passage 2 Samuel 24:24 supports this distinct biblical detail.",
+    "correct_answer": "Beth-shemesh",
+    "reference": "1 Samuel 6:12-15",
+    "explanation": "1 Samuel 6:12–15 records the ark's return to Beth-shemesh, where the people saw the cart arrive.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-30"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-26-5"
     }
   },
   {
@@ -607,19 +607,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 27,
     "challenge_index": 1,
-    "question_text": "Where did Solomon build the temple?",
+    "question_text": "At which port did Solomon build a fleet of ships on the shore of the Red Sea?",
     "options": [
-      "Mount Moriah in Jerusalem",
-      "Shechem",
-      "Gibeon",
-      "Between Ramah and Bethel"
+      "Ezion-geber",
+      "Joppa",
+      "Tyre",
+      "Sidon"
     ],
-    "correct_answer": "Mount Moriah in Jerusalem",
-    "reference": "2 Chronicles 3:1",
-    "explanation": "The passage 2 Chronicles 3:1 records this biblical detail.",
+    "correct_answer": "Ezion-geber",
+    "reference": "1 Kings 9:26",
+    "explanation": "1 Kings 9:26 says Solomon built a fleet at Ezion-geber, near Eloth on the shore of the Red Sea.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-31"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-27-1"
     }
   },
   {
@@ -627,19 +627,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 27,
     "challenge_index": 2,
-    "question_text": "In which city was Elijah when Obadiah met him and told Ahab he had returned?",
+    "question_text": "In which region was the famine severe when Elijah went to present himself to Ahab?",
     "options": [
       "Samaria",
-      "Harod",
-      "Hebron",
-      "Bethlehem"
+      "Jezreel",
+      "Shunem",
+      "Gilgal"
     ],
     "correct_answer": "Samaria",
     "reference": "1 Kings 18:2",
-    "explanation": "The passage 1 Kings 18:2 supports this distinct biblical detail.",
+    "explanation": "1 Kings 18:2 notes that the famine was severe in Samaria when Elijah went to present himself to Ahab.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-32"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-27-2"
     }
   },
   {
@@ -656,10 +656,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "The wilderness near Beersheba",
     "reference": "1 Kings 19:3-8",
-    "explanation": "The passage 1 Kings 19:3-8 records this biblical detail.",
+    "explanation": "The biblical account in 1 Kings 19:3-8 identifies The wilderness near Beersheba as the location connected with this event: Where did Elijah flee and receive food from an angel?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-33"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-27-3"
     }
   },
   {
@@ -676,10 +676,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Horeb",
     "reference": "1 Kings 19:8-13",
-    "explanation": "The passage 1 Kings 19:8-13 records this biblical detail.",
+    "explanation": "The biblical account in 1 Kings 19:8-13 identifies Horeb as the location connected with this event: At which mountain did Elijah hear the still small voice?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-34"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-27-4"
     }
   },
   {
@@ -696,10 +696,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Jezreel",
     "reference": "1 Kings 21:1",
-    "explanation": "The passage 1 Kings 21:1 records this biblical detail.",
+    "explanation": "The biblical account in 1 Kings 21:1 identifies Jezreel as the location connected with this event: Where did Naboth own the vineyard coveted by Ahab?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-35"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-27-5"
     }
   },
   {
@@ -707,19 +707,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 28,
     "challenge_index": 1,
-    "question_text": "Where did Elisha make the iron axe head float?",
+    "question_text": "At which city did Elisha heal the spring whose water made the land unproductive?",
     "options": [
-      "The Jordan",
-      "The wilderness near Beersheba",
-      "Horeb",
-      "Jezreel"
+      "Jericho",
+      "Gilgal",
+      "Bethel",
+      "Shiloh"
     ],
-    "correct_answer": "The Jordan",
-    "reference": "2 Kings 6:1-7",
-    "explanation": "The passage 2 Kings 6:1-7 records this biblical detail.",
+    "correct_answer": "Jericho",
+    "reference": "2 Kings 2:19-22",
+    "explanation": "2 Kings 2:19–22 describes Elisha healing Jericho's spring by throwing salt into the water.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-36"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-28-1"
     }
   },
   {
@@ -727,19 +727,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 28,
     "challenge_index": 2,
-    "question_text": "Where did Naaman wash to be cleansed?",
+    "question_text": "By which river did Elisha return after Elijah was taken up, using Elijah's mantle to part the water?",
     "options": [
-      "The Jordan River",
-      "The Jordan",
-      "Nineveh",
-      "East of Nineveh"
+      "Jordan River",
+      "Cherith Brook",
+      "Jabbok River",
+      "Euphrates River"
     ],
-    "correct_answer": "The Jordan River",
-    "reference": "2 Kings 5:10-14",
-    "explanation": "The passage 2 Kings 5:10-14 records this biblical detail.",
+    "correct_answer": "Jordan River",
+    "reference": "2 Kings 2:13-14",
+    "explanation": "2 Kings 2:13–14 says Elisha picked up Elijah's mantle and struck the Jordan's water, which parted for him.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-37"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-28-2"
     }
   },
   {
@@ -747,19 +747,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 28,
     "challenge_index": 3,
-    "question_text": "Which city did Jonah preach to after leaving the fish?",
+    "question_text": "To which distant destination did Jonah try to sail from Joppa to flee from the LORD's presence?",
     "options": [
+      "Tarshish",
       "Nineveh",
-      "Babylon",
-      "The plain of Dura",
-      "Susa"
+      "Sidon",
+      "Tyre"
     ],
-    "correct_answer": "Nineveh",
-    "reference": "Jonah 3:1-5",
-    "explanation": "The passage Jonah 3:1-5 records this biblical detail.",
+    "correct_answer": "Tarshish",
+    "reference": "Jonah 1:3",
+    "explanation": "Jonah 1:3 says Jonah set out for Tarshish from Joppa to flee from the LORD's presence.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-38"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-28-3"
     }
   },
   {
@@ -776,10 +776,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "East of Nineveh",
     "reference": "Jonah 4:5",
-    "explanation": "The passage Jonah 4:5 records this biblical detail.",
+    "explanation": "The biblical account in Jonah 4:5 identifies East of Nineveh as the location connected with this event: Where did Jonah sit east of Nineveh to watch the city?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-39"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-28-4"
     }
   },
   {
@@ -796,10 +796,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Babylon",
     "reference": "Daniel 1:1-6",
-    "explanation": "The passage Daniel 1:1-6 records this biblical detail.",
+    "explanation": "The biblical account in Daniel 1:1-6 identifies Babylon as the location connected with this event: Where was Daniel taken as an exile?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-40"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-28-5"
     }
   },
   {
@@ -807,19 +807,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 29,
     "challenge_index": 1,
-    "question_text": "In which plain was Nebuchadnezzar's golden image erected?",
+    "question_text": "Beside which river did Daniel see the vision of the ram and goat while at the citadel of Susa?",
     "options": [
-      "The plain of Dura",
-      "The wilderness",
-      "Sea of Galilee",
-      "A mountain in Galilee"
+      "Ulai River",
+      "Tigris River",
+      "Euphrates River",
+      "Chebar Canal"
     ],
-    "correct_answer": "The plain of Dura",
-    "reference": "Daniel 3:1",
-    "explanation": "The passage Daniel 3:1 records this biblical detail.",
+    "correct_answer": "Ulai River",
+    "reference": "Daniel 8:2",
+    "explanation": "Daniel 8:2 locates Daniel's vision at the citadel of Susa beside the Ulai River.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-41"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-29-1"
     }
   },
   {
@@ -836,10 +836,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Susa",
     "reference": "Daniel 8:2",
-    "explanation": "The passage Daniel 8:2 records this biblical detail.",
+    "explanation": "The biblical account in Daniel 8:2 identifies Susa as the location connected with this event: Where was Daniel when he received the vision by the river Ulai?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-42"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-29-2"
     }
   },
   {
@@ -856,10 +856,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Chebar canal",
     "reference": "Ezekiel 1:1-3",
-    "explanation": "The passage Ezekiel 1:1-3 records this biblical detail.",
+    "explanation": "The biblical account in Ezekiel 1:1-3 identifies Chebar canal as the location connected with this event: By which river did Ezekiel receive visions among the exiles?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-43"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-29-3"
     }
   },
   {
@@ -867,19 +867,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 29,
     "challenge_index": 4,
-    "question_text": "Where did Esther become queen of Persia?",
+    "question_text": "In which city did Daniel receive the vision of four beasts in the first year of Belshazzar?",
     "options": [
+      "Babylon",
       "Susa",
-      "Gethsemane",
-      "The garden near the tomb",
-      "Outside Jerusalem"
+      "Ecbatana",
+      "Nineveh"
     ],
-    "correct_answer": "Susa",
-    "reference": "Esther 2:5-17",
-    "explanation": "The passage Esther 2:5-17 records this biblical detail.",
+    "correct_answer": "Babylon",
+    "reference": "Daniel 7:1",
+    "explanation": "Daniel 7:1 records Daniel's vision in the first year of Belshazzar while Daniel was in Babylon.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-44"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-29-4"
     }
   },
   {
@@ -887,19 +887,19 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     "game_slug": "bible-geography-quest",
     "level": 29,
     "challenge_index": 5,
-    "question_text": "Where did Nehemiah serve the Persian king?",
+    "question_text": "On which plain did Sanballat and Geshem ask Nehemiah to meet them, hoping to harm him?",
     "options": [
-      "Susa",
-      "The road from Jerusalem to Gaza",
-      "Damascus",
-      "Simon the tanner"
+      "Plain of Ono",
+      "Gibeon",
+      "Jerusalem",
+      "Samaria"
     ],
-    "correct_answer": "Susa",
-    "reference": "Nehemiah 1:1",
-    "explanation": "The passage Nehemiah 1:1 records this biblical detail.",
+    "correct_answer": "Plain of Ono",
+    "reference": "Nehemiah 6:2",
+    "explanation": "Nehemiah 6:2 says Sanballat and Geshem invited Nehemiah to meet them in the plain of Ono.",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-45"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-29-5"
     }
   },
   {
@@ -916,10 +916,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Jerusalem",
     "reference": "Nehemiah 2:11-18",
-    "explanation": "The passage Nehemiah 2:11-18 records this biblical detail.",
+    "explanation": "The biblical account in Nehemiah 2:11-18 identifies Jerusalem as the location connected with this event: Which city did Nehemiah travel to rebuild its walls?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-46"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-30-1"
     }
   },
   {
@@ -936,10 +936,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Jerusalem",
     "reference": "Nehemiah 8:1-8",
-    "explanation": "The passage Nehemiah 8:1-8 records this biblical detail.",
+    "explanation": "The biblical account in Nehemiah 8:1-8 identifies Jerusalem as the location connected with this event: Where did Ezra teach the law after the return from exile?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-47"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-30-2"
     }
   },
   {
@@ -956,10 +956,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Tekoa",
     "reference": "Amos 1:1",
-    "explanation": "The passage Amos 1:1 records this biblical detail.",
+    "explanation": "The biblical account in Amos 1:1 identifies Tekoa as the location connected with this event: Which region was the home of the prophet Amos?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-48"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-30-3"
     }
   },
   {
@@ -976,10 +976,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Moresheth",
     "reference": "Micah 1:1",
-    "explanation": "The passage Micah 1:1 records this biblical detail.",
+    "explanation": "The biblical account in Micah 1:1 identifies Moresheth as the location connected with this event: From which town did Micah come?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-49"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-30-4"
     }
   },
   {
@@ -996,10 +996,10 @@ export const BIBLE_GEOGRAPHY_BATCH_02: ChallengeItem[] = [
     ],
     "correct_answer": "Nazareth",
     "reference": "Luke 1:26-27",
-    "explanation": "The passage Luke 1:26-27 supports this distinct biblical detail.",
+    "explanation": "The biblical account in Luke 1:26-27 identifies Nazareth as the location connected with this event: In which town did Gabriel visit Mary to announce Jesus' birth?",
     "metadata": {
-      "difficulty": "advanced",
-      "fact_key": "bible-geography-quest-b02-fact-50"
+      "difficulty": "expert",
+      "fact_key": "bible-geography-fact-30-5"
     }
   },
   {
